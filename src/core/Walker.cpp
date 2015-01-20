@@ -12,17 +12,15 @@
 
 Walker::Walker()
 : Entity() {
-  _noisePos = createRandomVec3f(100000);
-  position = createSignedNoiseVec3f(_noisePos);
 }
 
 void Walker::update(State &state) {
-  _noisePos.z += state.timeDelta * 1;
-  auto angle = ofSignedNoise(_noisePos.x, _noisePos.y, _noisePos.z) * 180;
+  noisePos.z += state.timeDelta * 1;
+  auto angle = ofSignedNoise(noisePos.x, noisePos.y, noisePos.z) * 180;
   velocity = ofVec3f(0.006);
-  velocity.rotate(ofSignedNoise(_noisePos.x) * 180,
-                  ofSignedNoise(_noisePos.y) * 180,
-                  ofSignedNoise(_noisePos.z) * 180);
+  velocity.rotate(ofSignedNoise(noisePos.x) * 180,
+                  ofSignedNoise(noisePos.y) * 180,
+                  ofSignedNoise(noisePos.z) * 180);
   //..
   Entity::update(state);
 }

@@ -13,6 +13,9 @@
 #include <ofTypes.h>
 #include "Entity.h"
 
-typedef std::vector<ofPtr<Entity> > EntityGroup;
+template<typename TEntity>
+class EntityGroup : public std::vector<ofPtr<TEntity> > {
+  
+};
 
 #endif /* defined(__behavior__EntityGroup__) */

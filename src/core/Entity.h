@@ -28,6 +28,7 @@ public:
   ofVec3f position;
   ofVec3f velocity;
   ofFloatColor color;
+  ofVec3f noisePos;
 };
 
 #endif /* defined(__behavior__Entity__) */

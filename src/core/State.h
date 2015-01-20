@@ -10,13 +10,15 @@
 #define __behavior__State__
 
 #include "EntityGroup.h"
+#include "Attractor.h"
 
 class State {
 public:
   State();
   void updateTime();
   
-  EntityGroup entities;
+  EntityGroup<Entity> entities;
+  EntityGroup<Attractor> attractors;
   float time;
   float timeDelta;
 };

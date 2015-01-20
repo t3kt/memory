@@ -19,7 +19,6 @@ public:
   ~Walker() override { }
   void update(State& state) override;
 private:
-  ofVec3f _noisePos;
 };
 
 #endif /* defined(__behavior__Walker__) */

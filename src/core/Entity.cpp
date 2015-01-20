@@ -16,7 +16,10 @@ static EntityId nextId() {
 }
 
 Entity::Entity()
-: id(nextId()) { }
+: id(nextId()) {
+  noisePos = createRandomVec3f(10000000);
+  position = createRandomVec3f(ofVec3f(-1), ofVec3f(1));
+}
 
 void Entity::update(State &state) {
   position += velocity;
@@ -25,11 +28,7 @@ void Entity::update(State &state) {
 
 void Entity::draw(State &state) {
   ofPushStyle();
-//  ofPushMatrix();
   ofSetColor(color);
-//  ofTranslate(position);
-//  ofDrawSphere(5);
   ofDrawSphere(position, .01);
-//  ofPopMatrix();
   ofPopStyle();
 }
