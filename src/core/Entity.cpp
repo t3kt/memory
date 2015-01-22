@@ -21,7 +21,14 @@ Entity::Entity()
   position = createRandomVec3f(ofVec3f(-1), ofVec3f(1));
 }
 
+Entity& Entity::addBehavior(shared_ptr<Behavior> behavior) {
+  _behaviors.push_back(behavior);
+  return *this;
+}
+
 void Entity::update(State &state) {
+  velocity = ofVec3f::zero();
+  updateBehaviors(_behaviors, *this, state);
   position += velocity;
   position = wrapVec(position, -1, 1);
 }
