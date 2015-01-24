@@ -16,9 +16,7 @@ static EntityId nextId() {
 }
 
 Entity::Entity()
-: id(nextId()) {
-  position = createRandomVec3f(ofVec3f(-1), ofVec3f(1));
-}
+: id(nextId()) { }
 
 Entity& Entity::addBehavior(shared_ptr<Behavior> behavior) {
   _behaviors.push_back(behavior);
