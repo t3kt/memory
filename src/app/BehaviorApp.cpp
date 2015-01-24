@@ -8,7 +8,6 @@
 
 #include "BehaviorApp.h"
 #include "Common.h"
-#include "Attractor.h"
 #include "RandomWalkBehavior.h"
 #include "AttractionBehavior.h"
 

@@ -19,7 +19,6 @@
 		32FAEEF21A6DA1EF00E108EE /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEF01A6DA1EF00E108EE /* EntityGroup.cpp */; };
 		32FAEEF51A6DA2C300E108EE /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEF31A6DA2C300E108EE /* State.cpp */; };
 		32FAEEFB1A6DA5BE00E108EE /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEF91A6DA5BE00E108EE /* Common.cpp */; };
-		32FAEEFE1A6DB18600E108EE /* Attractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEFC1A6DB18600E108EE /* Attractor.cpp */; };
 		66810C01C7565033ADB09359 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCE74B76815262F7E72DB951 /* ofxLabel.cpp */; };
 		7EFCFE727D9DE492780174E1 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FBB646797B9F2C403446BE /* ofxXmlSettings.cpp */; };
 		8E4B38BFD068409CC33E8EF4 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03848B7C0EDDE6BED9783E0C /* tinyxmlerror.cpp */; };
@@ -101,8 +100,6 @@
 		32FAEEF41A6DA2C300E108EE /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = core/State.h; sourceTree = "<group>"; };
 		32FAEEF91A6DA5BE00E108EE /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Common.cpp; path = core/Common.cpp; sourceTree = "<group>"; };
 		32FAEEFA1A6DA5BE00E108EE /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = core/Common.h; sourceTree = "<group>"; };
-		32FAEEFC1A6DB18600E108EE /* Attractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Attractor.cpp; path = core/Attractor.cpp; sourceTree = "<group>"; };
-		32FAEEFD1A6DB18600E108EE /* Attractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attractor.h; path = core/Attractor.h; sourceTree = "<group>"; };
 		3413947B945ACD229F00DBBE /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../of_v0.8.4_osx_release/addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
 		3877F60E4A0079027579DB8A /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../of_v0.8.4_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		39783A9656B1D4A78782703C /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../of_v0.8.4_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
@@ -190,8 +187,6 @@
 				32FAEEF41A6DA2C300E108EE /* State.h */,
 				32FAEEF91A6DA5BE00E108EE /* Common.cpp */,
 				32FAEEFA1A6DA5BE00E108EE /* Common.h */,
-				32FAEEFC1A6DB18600E108EE /* Attractor.cpp */,
-				32FAEEFD1A6DB18600E108EE /* Attractor.h */,
 				325C9B671A706F3700F82AEC /* Behavior.cpp */,
 				325C9B681A706F3700F82AEC /* Behavior.h */,
 				325C9B6A1A707C6E00F82AEC /* RandomWalkBehavior.cpp */,
@@ -443,7 +438,6 @@
 				32FAEEFB1A6DA5BE00E108EE /* Common.cpp in Sources */,
 				32FAEEEC1A6D9DFC00E108EE /* BehaviorApp.cpp in Sources */,
 				66810C01C7565033ADB09359 /* ofxLabel.cpp in Sources */,
-				32FAEEFE1A6DB18600E108EE /* Attractor.cpp in Sources */,
 				325C9B6C1A707C6E00F82AEC /* RandomWalkBehavior.cpp in Sources */,
 				32BB21861A742766003F0B68 /* AttractionBehavior.cpp in Sources */,
 				181852019B0A9DEA7D78D274 /* ofxPanel.cpp in Sources */,
