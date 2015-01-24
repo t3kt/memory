@@ -12,6 +12,7 @@
 		1E5FEDF788EB25A15DC2460C /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEB71DBDC0C28F5821B4445E /* ofxGuiGroup.cpp */; };
 		325C9B691A706F3700F82AEC /* Behavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 325C9B671A706F3700F82AEC /* Behavior.cpp */; };
 		325C9B6C1A707C6E00F82AEC /* RandomWalkBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 325C9B6A1A707C6E00F82AEC /* RandomWalkBehavior.cpp */; };
+		32BB21861A742766003F0B68 /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB21841A742766003F0B68 /* AttractionBehavior.cpp */; };
 		32FAEEE81A6D9DE900E108EE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEE51A6D9DE900E108EE /* main.cpp */; };
 		32FAEEEC1A6D9DFC00E108EE /* BehaviorApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEEA1A6D9DFC00E108EE /* BehaviorApp.cpp */; };
 		32FAEEEF1A6DA12600E108EE /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEED1A6DA12600E108EE /* Entity.cpp */; };
@@ -87,6 +88,8 @@
 		325C9B681A706F3700F82AEC /* Behavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Behavior.h; path = core/Behavior.h; sourceTree = "<group>"; };
 		325C9B6A1A707C6E00F82AEC /* RandomWalkBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RandomWalkBehavior.cpp; path = core/RandomWalkBehavior.cpp; sourceTree = "<group>"; };
 		325C9B6B1A707C6E00F82AEC /* RandomWalkBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomWalkBehavior.h; path = core/RandomWalkBehavior.h; sourceTree = "<group>"; };
+		32BB21841A742766003F0B68 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttractionBehavior.cpp; path = core/AttractionBehavior.cpp; sourceTree = "<group>"; };
+		32BB21851A742766003F0B68 /* AttractionBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttractionBehavior.h; path = core/AttractionBehavior.h; sourceTree = "<group>"; };
 		32FAEEE51A6D9DE900E108EE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = app/main.cpp; sourceTree = "<group>"; };
 		32FAEEEA1A6D9DFC00E108EE /* BehaviorApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BehaviorApp.cpp; path = app/BehaviorApp.cpp; sourceTree = "<group>"; };
 		32FAEEEB1A6D9DFC00E108EE /* BehaviorApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BehaviorApp.h; path = app/BehaviorApp.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				325C9B681A706F3700F82AEC /* Behavior.h */,
 				325C9B6A1A707C6E00F82AEC /* RandomWalkBehavior.cpp */,
 				325C9B6B1A707C6E00F82AEC /* RandomWalkBehavior.h */,
+				32BB21841A742766003F0B68 /* AttractionBehavior.cpp */,
+				32BB21851A742766003F0B68 /* AttractionBehavior.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				66810C01C7565033ADB09359 /* ofxLabel.cpp in Sources */,
 				32FAEEFE1A6DB18600E108EE /* Attractor.cpp in Sources */,
 				325C9B6C1A707C6E00F82AEC /* RandomWalkBehavior.cpp in Sources */,
+				32BB21861A742766003F0B68 /* AttractionBehavior.cpp in Sources */,
 				181852019B0A9DEA7D78D274 /* ofxPanel.cpp in Sources */,
 				EE0AFEED578C90CDB485FBB7 /* ofxSlider.cpp in Sources */,
 				0B79D1370C521A99743B84F8 /* ofxSliderGroup.cpp in Sources */,

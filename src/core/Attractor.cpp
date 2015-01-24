@@ -18,7 +18,7 @@ void Attractor::draw(State &state) {
 
 void Attractor::applyTo(Entity *entity) const {
   auto diff = position - entity->position;
-  auto dist = diff.length();
+  auto dist = diff.lengthSquared();
   if (dist < range) {
 //    auto amount = ofMap(dist, 0, 1, 0, pull);
     auto amount = pull;

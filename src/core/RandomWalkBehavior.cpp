@@ -10,7 +10,8 @@
 #include "Common.h"
 #include "State.h"
 
-RandomWalkBehavior::RandomWalkBehavior() {
+RandomWalkBehavior::RandomWalkBehavior()
+: _speed(0.006) {
   _noisePos = createRandomVec3f(ofVec3f(-1000),
                                 ofVec3f(1000));
 }
@@ -21,7 +22,7 @@ void RandomWalkBehavior::update(Entity& entity,
   auto angle = ofSignedNoise(_noisePos.x,
                              _noisePos.y,
                              _noisePos.z) * 180;
-  auto vel = ofVec3f(0.006);
+  auto vel = ofVec3f(_speed);
   vel.rotate(ofSignedNoise(_noisePos.x) * 180,
              ofSignedNoise(_noisePos.y) * 180,
              ofSignedNoise(_noisePos.z) * 180);

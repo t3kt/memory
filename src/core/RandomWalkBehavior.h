@@ -17,7 +17,12 @@ class RandomWalkBehavior : public Behavior {
 public:
   RandomWalkBehavior();
   void update(Entity& entity, State& state) override;
+  RandomWalkBehavior& setSpeed(float speed) {
+    _speed = speed;
+    return *this;
+  }
 private:
+  float _speed;
   ofVec3f _noisePos;
 };
 
