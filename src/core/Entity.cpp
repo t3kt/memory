@@ -27,7 +27,7 @@ void Entity::update(State &state) {
   velocity = ofVec3f::zero();
   updateBehaviors(_behaviors, *this, state);
   position += velocity;
-  position = wrapVec(position, -1, 1);
+//  position = wrapVec(position, -1, 1);
 }
 
 void Entity::draw(State &state) {

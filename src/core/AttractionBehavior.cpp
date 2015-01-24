@@ -11,24 +11,36 @@
 #include <ofVec3f.h>
 #include <ofMath.h>
 
+bool
+AttractionBehaviorBase::applyAttraction(const ofVec3f& attractorPos,
+                                        Entity *entity) const {
+  auto diff = attractorPos - entity->position;
+  auto dist = diff.lengthSquared();
+  if (dist < _minDist || dist > _maxDist)
+    return false;
+  auto pull = ofMap(dist, _minDist, _maxDist,
+                    _minPull, _maxPull);
+  diff.normalize();
+  diff *= pull;
+  entity->velocity += diff;
+  return true;
+}
+
 void AttractionBehavior::update(Entity &entity, State &state) {
-  ofVec3f vel;
+  applyAttraction(_position, &entity);
+}
+
+void EntityAttractionBehavior::update(Entity &entity,
+                                      State &state) {
   int count = 0;
   for (const auto& other : state.entities) {
     if (other->id == entity.id)
       continue;
-    auto diff = other->position - entity.position;
-    auto dist = diff.length();
-    if (dist >= _minDist && dist <= _maxDist) {
-      auto pull = ofMap(dist, _minDist, _maxDist,
-                        _minPull, _maxPull);
-      diff.normalize();
-      diff *= pull;
-      vel += diff;
+    if (applyAttraction(other->position,
+                        &entity)) {
       count++;
       if (count >= _limit)
         break;
     }
   }
-  entity.velocity += vel;
 }
