@@ -16,7 +16,7 @@ void BehaviorApp::setup() {
   for (int i = 0; i < 50; i++) {
     ofPtr<Entity> entity(new Entity());
     entity->color = ofFloatColor(0, 0.2, 1);
-    entity->addBehavior(shared_ptr<Behavior>(new RandomWalkBehavior()));
+    entity->addBehavior<RandomWalkBehavior>();
     _state.entities.push_back(entity);
   }
 }

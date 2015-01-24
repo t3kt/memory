@@ -32,6 +32,13 @@ public:
   ofVec3f noisePos;
   
   Entity& addBehavior(shared_ptr<Behavior> behavior);
+  
+  template<typename TBehavior>
+  TBehavior& addBehavior() {
+    shared_ptr<TBehavior> behavior(new TBehavior());
+    _behaviors.push_back(behavior);
+    return *behavior;
+  }
 private:
   BehaviorList _behaviors;
 };
