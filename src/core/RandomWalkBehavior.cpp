@@ -10,8 +10,13 @@
 #include "Common.h"
 #include "State.h"
 
-RandomWalkBehavior::RandomWalkBehavior()
-: _speed(0.006) {
+RandomWalkBehavior::Params::Params(std::string label) {
+  paramGroup.setName(label);
+  paramGroup.add(speed.set("Speed", 0.006, 0, 0.1));
+}
+
+RandomWalkBehavior::RandomWalkBehavior(const Params& params)
+: _params(params) {
   _noisePos = createRandomVec3f(ofVec3f(-1000),
                                 ofVec3f(1000));
 }
@@ -19,12 +24,10 @@ RandomWalkBehavior::RandomWalkBehavior()
 void RandomWalkBehavior::update(Entity& entity,
                                 State &state) {
   _noisePos.z += state.timeDelta * 1;
-  auto angle = ofSignedNoise(_noisePos.x,
-                             _noisePos.y,
-                             _noisePos.z) * 180;
-  auto vel = ofVec3f(_speed);
-  vel.rotate(ofSignedNoise(_noisePos.x) * 180,
-             ofSignedNoise(_noisePos.y) * 180,
-             ofSignedNoise(_noisePos.z) * 180);
+  auto offset = entity.id * 10000;
+  auto vel = ofVec3f(_params.speed.get());
+  vel.rotate(ofSignedNoise(_noisePos.x + offset) * 180,
+             ofSignedNoise(_noisePos.y + offset) * 180,
+             ofSignedNoise(_noisePos.z + offset) * 180);
   entity.velocity += vel;
 }

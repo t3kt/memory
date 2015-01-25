@@ -10,19 +10,29 @@
 #define __behavior__RandomWalkBehavior__
 
 #include <ofVec3f.h>
+#include <ofParameterGroup.h>
 
 #include "Behavior.h"
 
 class RandomWalkBehavior : public Behavior {
 public:
-  RandomWalkBehavior();
+  class Params {
+  public:
+    Params(std::string label);
+    
+    Params& setSpeed(float sp) {
+      speed.set(sp);
+      return *this;
+    }
+    
+    ofParameter<float> speed;
+    ofParameterGroup paramGroup;
+  };
+  
+  explicit RandomWalkBehavior(const Params& params);
   void update(Entity& entity, State& state) override;
-  RandomWalkBehavior& setSpeed(float speed) {
-    _speed = speed;
-    return *this;
-  }
 private:
-  float _speed;
+  const Params& _params;
   ofVec3f _noisePos;
 };
 

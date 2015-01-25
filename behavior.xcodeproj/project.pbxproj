@@ -13,6 +13,7 @@
 		325C9B691A706F3700F82AEC /* Behavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 325C9B671A706F3700F82AEC /* Behavior.cpp */; };
 		325C9B6C1A707C6E00F82AEC /* RandomWalkBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 325C9B6A1A707C6E00F82AEC /* RandomWalkBehavior.cpp */; };
 		32BB21861A742766003F0B68 /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB21841A742766003F0B68 /* AttractionBehavior.cpp */; };
+		32BB21891A755A14003F0B68 /* AppParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB21871A755A14003F0B68 /* AppParameters.cpp */; };
 		32FAEEE81A6D9DE900E108EE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEE51A6D9DE900E108EE /* main.cpp */; };
 		32FAEEEC1A6D9DFC00E108EE /* BehaviorApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEEA1A6D9DFC00E108EE /* BehaviorApp.cpp */; };
 		32FAEEEF1A6DA12600E108EE /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32FAEEED1A6DA12600E108EE /* Entity.cpp */; };
@@ -89,6 +90,8 @@
 		325C9B6B1A707C6E00F82AEC /* RandomWalkBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomWalkBehavior.h; path = core/RandomWalkBehavior.h; sourceTree = "<group>"; };
 		32BB21841A742766003F0B68 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttractionBehavior.cpp; path = core/AttractionBehavior.cpp; sourceTree = "<group>"; };
 		32BB21851A742766003F0B68 /* AttractionBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttractionBehavior.h; path = core/AttractionBehavior.h; sourceTree = "<group>"; };
+		32BB21871A755A14003F0B68 /* AppParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppParameters.cpp; path = app/AppParameters.cpp; sourceTree = "<group>"; };
+		32BB21881A755A14003F0B68 /* AppParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppParameters.h; path = app/AppParameters.h; sourceTree = "<group>"; };
 		32FAEEE51A6D9DE900E108EE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = app/main.cpp; sourceTree = "<group>"; };
 		32FAEEEA1A6D9DFC00E108EE /* BehaviorApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BehaviorApp.cpp; path = app/BehaviorApp.cpp; sourceTree = "<group>"; };
 		32FAEEEB1A6D9DFC00E108EE /* BehaviorApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BehaviorApp.h; path = app/BehaviorApp.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				32FAEEE51A6D9DE900E108EE /* main.cpp */,
 				32FAEEEA1A6D9DFC00E108EE /* BehaviorApp.cpp */,
 				32FAEEEB1A6D9DFC00E108EE /* BehaviorApp.h */,
+				32BB21871A755A14003F0B68 /* AppParameters.cpp */,
+				32BB21881A755A14003F0B68 /* AppParameters.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				32FAEEEF1A6DA12600E108EE /* Entity.cpp in Sources */,
 				325C9B691A706F3700F82AEC /* Behavior.cpp in Sources */,
 				AB8A4587A21CD2325D587E8A /* tinyxmlparser.cpp in Sources */,
+				32BB21891A755A14003F0B68 /* AppParameters.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,60 +9,82 @@
 #ifndef __behavior__AttractionBehavior__
 #define __behavior__AttractionBehavior__
 
+#include <ofParameter.h>
+#include <ofParameterGroup.h>
+
 #include "Behavior.h"
 
-class AttractionBehaviorBase : public Behavior {
+class AttractionBehaviorParams {
 public:
-protected:
-  bool applyAttraction(const ofVec3f& attractorPos,
-                       Entity* entity) const;
+  AttractionBehaviorParams();
   
-  float _minDist;
-  float _maxDist;
-  float _minPull;
-  float _maxPull;
+  ofParameter<float> minDist;
+  ofParameter<float> maxDist;
+  ofParameter<float> minPull;
+  ofParameter<float> maxPull;
+  ofParameterGroup paramGroup;
 };
 
-class AttractionBehavior : public AttractionBehaviorBase {
+class SingleAttractionBehavior : public Behavior {
 public:
+  class Params : public AttractionBehaviorParams {
+  public:
+    explicit Params(std::string label);
+    Params& setRange(float min, float max) {
+      minDist.set(min);
+      maxDist.set(max);
+      return *this;
+    }
+    Params& setPull(float min, float max) {
+      minPull.set(min);
+      maxPull.set(max);
+      return *this;
+    }
+    Params& setPosition(ofVec3f pos) {
+      position.set(pos);
+      return *this;
+    }
+    
+    ofParameter<ofVec3f> position;
+  };
+  
+  explicit SingleAttractionBehavior(const Params& params)
+  : _params(params) { }
+  
   void update(Entity& entity, State& state) override;
-  AttractionBehavior& setRange(float min, float max) {
-    _minDist = min;
-    _maxDist = max;
-    return *this;
-  }
-  AttractionBehavior& setPull(float min, float max) {
-    _minPull = min;
-    _maxPull = max;
-    return *this;
-  }
-  AttractionBehavior& setPosition(ofVec3f position) {
-    _position = position;
-    return *this;
-  }
 private:
-  ofVec3f _position;
+  const Params& _params;
 };
 
-class EntityAttractionBehavior : public AttractionBehaviorBase {
+class EntityAttractionBehavior : public Behavior {
 public:
+  class Params : public AttractionBehaviorParams {
+  public:
+    explicit Params(std::string label);
+    Params& setRange(float min, float max) {
+      minDist.set(min);
+      maxDist.set(max);
+      return *this;
+    }
+    Params& setPull(float min, float max) {
+      minPull.set(min);
+      maxPull.set(max);
+      return *this;
+    }
+    Params& setLimit(int lim) {
+      limit.set(lim);
+      return *this;
+    }
+    
+    ofParameter<int> limit;
+  };
+  
+  explicit EntityAttractionBehavior(const Params& params)
+  : _params(params) { }
+  
   void update(Entity& entity, State& state) override;
-  EntityAttractionBehavior& setRange(float min, float max) {
-    _minDist = min;
-    _maxDist = max;
-    return *this;
-  }
-  EntityAttractionBehavior& setPull(float min, float max) {
-    _minPull = min;
-    _maxPull = max;
-    return *this;
-  }
-  EntityAttractionBehavior& setLimit(int limit) {
-    _limit = limit;
-    return *this;
-  }
 private:
-  int _limit;
+  const Params& _params;
 };
 
 #endif /* defined(__behavior__AttractionBehavior__) */

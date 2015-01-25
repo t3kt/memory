@@ -11,23 +11,49 @@
 #include <ofVec3f.h>
 #include <ofMath.h>
 
-bool
-AttractionBehaviorBase::applyAttraction(const ofVec3f& attractorPos,
-                                        Entity *entity) const {
+AttractionBehaviorParams::AttractionBehaviorParams() {
+  paramGroup.add(minDist.set("Min Dist", 0, 0, 2));
+  paramGroup.add(maxDist.set("Max Dist", 0.2, 0, 2));
+  paramGroup.add(minPull.set("Min Pull", 0, -2, 2));
+  paramGroup.add(maxPull.set("Max Pull", 0.1, -2, 2));
+}
+
+
+SingleAttractionBehavior::Params::Params(std::string label) {
+  paramGroup.setName(label);
+  paramGroup.add(position.set("Position",
+                              ofVec3f(0),
+                              ofVec3f(-2),
+                              ofVec3f(2)));
+}
+
+EntityAttractionBehavior::Params::Params(std::string label) {
+  paramGroup.setName(label);
+  paramGroup.add(limit.set("Limit", 10, 0, 50));
+}
+
+static bool applyAttraction(const ofVec3f& attractorPos,
+                            const AttractionBehaviorParams& params,
+                            Entity* entity) {
   auto diff = attractorPos - entity->position;
   auto dist = diff.lengthSquared();
-  if (dist < _minDist || dist > _maxDist)
+  if (dist < params.minDist.get() ||
+      dist > params.maxDist.get())
     return false;
-  auto pull = ofMap(dist, _minDist, _maxDist,
-                    _minPull, _maxPull);
+  auto pull = ofMap(dist,
+                    params.minDist.get(),
+                    params.maxDist.get(),
+                    params.minPull.get(),
+                    params.maxPull.get());
   diff.normalize();
   diff *= pull;
   entity->velocity += diff;
   return true;
 }
 
-void AttractionBehavior::update(Entity &entity, State &state) {
-  applyAttraction(_position, &entity);
+void SingleAttractionBehavior::update(Entity &entity,
+                                      State &state) {
+  applyAttraction(_params.position.get(), _params, &entity);
 }
 
 void EntityAttractionBehavior::update(Entity &entity,
@@ -37,9 +63,10 @@ void EntityAttractionBehavior::update(Entity &entity,
     if (other->id == entity.id)
       continue;
     if (applyAttraction(other->position,
+                        _params,
                         &entity)) {
       count++;
-      if (count >= _limit)
+      if (count >= _params.limit)
         break;
     }
   }

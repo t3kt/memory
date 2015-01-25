@@ -10,7 +10,9 @@
 #define __behavior__BehaviorApp__
 
 #include <ofMain.h>
+#include <ofxGui.h>
 #include "State.h"
+#include "AppParameters.h"
 
 class BehaviorApp : public ofBaseApp {
 public:
@@ -19,7 +21,9 @@ public:
   void draw() override;
 private:
   State _state;
+  BehaviorAppParameters _appParams;
   ofEasyCam _cam;
+  ofxPanel _gui;
 };
 
 #endif /* defined(__behavior__BehaviorApp__) */
