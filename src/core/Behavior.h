@@ -10,6 +10,7 @@
 #define __behavior__Behavior__
 
 #include <ofTypes.h>
+#include <ofParameterGroup.h>
 #include <vector>
 
 class Entity;
@@ -17,6 +18,14 @@ class State;
 
 class Behavior {
 public:
+  class Params {
+  public:
+    Params();
+    
+    ofParameter<bool> enabled;
+    ofParameterGroup paramGroup;
+  };
+  
   virtual void update(Entity& entity,
                       State& state) = 0;
 };

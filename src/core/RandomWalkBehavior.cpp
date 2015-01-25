@@ -23,7 +23,9 @@ RandomWalkBehavior::RandomWalkBehavior(const Params& params)
 
 void RandomWalkBehavior::update(Entity& entity,
                                 State &state) {
-  _noisePos.z += state.timeDelta * 1;
+  if (!_params.enabled.get())
+    return;
+  _noisePos.z += state.timeDelta * 0.002;
   auto offset = entity.id * 10000;
   auto vel = ofVec3f(_params.speed.get());
   vel.rotate(ofSignedNoise(_noisePos.x + offset) * 180,

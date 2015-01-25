@@ -16,7 +16,7 @@
 
 class RandomWalkBehavior : public Behavior {
 public:
-  class Params {
+  class Params : public Behavior::Params {
   public:
     Params(std::string label);
     
@@ -26,7 +26,6 @@ public:
     }
     
     ofParameter<float> speed;
-    ofParameterGroup paramGroup;
   };
   
   explicit RandomWalkBehavior(const Params& params);

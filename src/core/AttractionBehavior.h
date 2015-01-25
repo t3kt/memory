@@ -14,7 +14,7 @@
 
 #include "Behavior.h"
 
-class AttractionBehaviorParams {
+class AttractionBehaviorParams : public Behavior::Params {
 public:
   AttractionBehaviorParams();
   
@@ -22,7 +22,6 @@ public:
   ofParameter<float> maxDist;
   ofParameter<float> minPull;
   ofParameter<float> maxPull;
-  ofParameterGroup paramGroup;
 };
 
 class SingleAttractionBehavior : public Behavior {

@@ -10,6 +10,10 @@
 #include "State.h"
 #include "Entity.h"
 
+Behavior::Params::Params() {
+  paramGroup.add(enabled.set("Enabled?", true));
+}
+
 void updateBehaviors(BehaviorList &behaviors,
                      Entity& entity,
                      State &state) {

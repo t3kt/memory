@@ -14,8 +14,8 @@
 AttractionBehaviorParams::AttractionBehaviorParams() {
   paramGroup.add(minDist.set("Min Dist", 0, 0, 2));
   paramGroup.add(maxDist.set("Max Dist", 0.2, 0, 2));
-  paramGroup.add(minPull.set("Min Pull", 0, -2, 2));
-  paramGroup.add(maxPull.set("Max Pull", 0.1, -2, 2));
+  paramGroup.add(minPull.set("Min Pull", 0, -.5, .5));
+  paramGroup.add(maxPull.set("Max Pull", 0.1, -.5, .5));
 }
 
 
@@ -53,11 +53,15 @@ static bool applyAttraction(const ofVec3f& attractorPos,
 
 void SingleAttractionBehavior::update(Entity &entity,
                                       State &state) {
+  if (!_params.enabled.get())
+    return;
   applyAttraction(_params.position.get(), _params, &entity);
 }
 
 void EntityAttractionBehavior::update(Entity &entity,
                                       State &state) {
+  if (!_params.enabled.get())
+    return;
   int count = 0;
   for (const auto& other : state.entities) {
     if (other->id == entity.id)
