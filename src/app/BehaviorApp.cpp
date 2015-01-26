@@ -49,13 +49,12 @@ void BehaviorApp::setup() {
   auto attractorWalk = makeBehavior(_appParams.attractorWalk);
   auto repulsorWalk = makeBehavior(_appParams.repulsorWalk);
   auto otherWalk = makeBehavior(_appParams.otherWalk);
-  for (int i = 0; i < 2000; i++) {
+  for (int i = 0; i < 8000; i++) {
     ofPtr<Entity> entity(new Entity());
     entity->position = createRandomVec3f(ofVec3f(-1, -1, -1), ofVec3f(1, 1, 1));
     entity->color = ofFloatColor(0, 0.2, 1);
     entity->radius = 0.003;
     entity->addBehavior(centerAttractor);
-//    entity->addBehavior(i % 5 == 0 ? walk2 : walk1);
     if (i % 3 == 0) {
       entity->addBehavior(pullBehavior);
       entity->color = ofFloatColor(0.7, 0.1, 0);
@@ -67,6 +66,8 @@ void BehaviorApp::setup() {
     } else {
       entity->addBehavior(otherWalk);
     }
+    _mesh.addVertex(entity->position);
+    _mesh.addColor(entity->color);
     _state.entities.push_back(entity);
   }
   _gui.setup(_appParams.paramGroup);
@@ -74,8 +75,11 @@ void BehaviorApp::setup() {
 
 void BehaviorApp::update() {
   _state.updateTime();
+  int i = 0;
   for (auto& entity : _state.entities) {
     entity->update(_state);
+    _mesh.setVertex(i, entity->position);
+    i++;
   }
 }
 
@@ -91,9 +95,10 @@ void BehaviorApp::draw() {
   auto winSize = ofGetWindowSize();
   auto size = ::min(winSize.x, winSize.y) / 2;
   ofScale(size, size, size);
-  for (auto& entity : _state.entities) {
-    entity->draw(_state);
-  }
+//  for (auto& entity : _state.entities) {
+//    entity->draw(_state);
+//  }
+  _mesh.draw(OF_MESH_POINTS);
   ofPopStyle();
   ofPopMatrix();
   _cam.end();

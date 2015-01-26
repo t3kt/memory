@@ -24,6 +24,7 @@ private:
   BehaviorAppParameters _appParams;
   ofEasyCam _cam;
   ofxPanel _gui;
+  ofVboMesh _mesh;
 };
 
 #endif /* defined(__behavior__BehaviorApp__) */

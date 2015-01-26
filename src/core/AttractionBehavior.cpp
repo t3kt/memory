@@ -33,18 +33,18 @@ EntityAttractionBehavior::Params::Params(std::string label) {
 }
 
 static bool applyAttraction(const ofVec3f& attractorPos,
-                            const AttractionBehaviorParams& params,
-                            Entity* entity) {
+                            Entity* entity,
+                            float minDist,
+                            float maxDist,
+                            float minPull,
+                            float maxPull) {
   auto diff = attractorPos - entity->position;
   auto dist = diff.lengthSquared();
-  if (dist < params.minDist.get() ||
-      dist > params.maxDist.get())
+  if (dist < minDist || dist > maxDist)
     return false;
   auto pull = ofMap(dist,
-                    params.minDist.get(),
-                    params.maxDist.get(),
-                    params.minPull.get(),
-                    params.maxPull.get());
+                    minDist, maxDist,
+                    minPull, maxPull);
   diff.normalize();
   diff *= pull;
   entity->velocity += diff;
@@ -55,7 +55,11 @@ void SingleAttractionBehavior::update(Entity &entity,
                                       State &state) {
   if (!_params.enabled.get())
     return;
-  applyAttraction(_params.position.get(), _params, &entity);
+  applyAttraction(_params.position.get(), &entity,
+                  _params.minDist.get(),
+                  _params.maxDist.get(),
+                  _params.minPull.get(),
+                  _params.maxPull.get());
 }
 
 void EntityAttractionBehavior::update(Entity &entity,
@@ -63,14 +67,20 @@ void EntityAttractionBehavior::update(Entity &entity,
   if (!_params.enabled.get())
     return;
   int count = 0;
+  auto minDist = _params.minDist.get();
+  auto maxDist = _params.maxDist.get();
+  auto minPull = _params.minPull.get();
+  auto maxPull = _params.maxPull.get();
+  auto limit = _params.limit.get();
   for (const auto& other : state.entities) {
     if (other->id == entity.id)
       continue;
     if (applyAttraction(other->position,
-                        _params,
-                        &entity)) {
+                        &entity,
+                        minDist, maxDist,
+                        minPull, maxPull)) {
       count++;
-      if (count >= _params.limit)
+      if (count >= limit)
         break;
     }
   }
