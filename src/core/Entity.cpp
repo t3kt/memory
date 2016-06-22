@@ -33,6 +33,6 @@ void Entity::update(State &state) {
 void Entity::draw(State &state) {
   ofPushStyle();
   ofSetColor(color);
-  ofDrawSphere(position, radius);
+  ofDrawSphere(position, drawRadius);
   ofPopStyle();
 }

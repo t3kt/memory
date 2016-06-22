@@ -53,7 +53,7 @@ void BehaviorApp::setup() {
     ofPtr<Entity> entity(new Entity());
     entity->position = createRandomVec3f(ofVec3f(-1, -1, -1), ofVec3f(1, 1, 1));
     entity->color = ofFloatColor(0, 0.2, 1);
-    entity->radius = 0.003;
+    entity->drawRadius = 0.003;
     entity->addBehavior(centerAttractor);
     if (i % 3 == 0) {
       entity->addBehavior(pullBehavior);

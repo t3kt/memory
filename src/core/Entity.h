@@ -29,7 +29,7 @@ public:
   ofVec3f position;
   ofVec3f velocity;
   ofFloatColor color;
-  float radius;
+  float drawRadius;
   
   Entity& addBehavior(shared_ptr<Behavior> behavior);
   
