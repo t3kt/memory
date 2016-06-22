@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+build/*.build
+xcuserdata
+
+memory-prototype-2.xcodeproj/project.xcworkspace/xcuserdata/tekt.xcuserdatad/UserInterfaceState.xcuserstate
