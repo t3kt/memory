@@ -10,6 +10,10 @@
 #include "OccurrenceEntity.h"
 #include <ofMain.h>
 
+ObserverEntity::Params::Params() {
+  paramGroup.add(lifetimeRange.set("Lifetime Range", ofVec2f(5000, 60000)));
+}
+
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 : Entity()
 , _startTime(state.time)
@@ -32,19 +36,29 @@ float ObserverEntity::getRemainingLifetimeFraction(const State &state) {
 void ObserverEntity::draw(State &state) {
   float alpha = getRemainingLifetimeFraction(state);
   ofPushMatrix();
-  ofPushStyle();
   
   ofTranslate(position);
   
-  ofPath path;
-  path.setFilled(true);
-  path.setFillColor(ofColor(ofColor::black, alpha));
-  path.setStrokeWidth(1.0f);
-  path.setStrokeColor(ofColor(ofColor::black,
-                              ofClamp(alpha + 1.0f, 0.0f, 1.0f)));
-  path.circle(ofVec3f::zero(), 5);
-  path.draw();
-  
+  ofPushStyle();
+  ofFill();
+  ofSetColor(ofColor(ofColor::black, alpha));
+  ofDrawCircle(0, 0, 5);
   ofPopStyle();
+  
+  ofPushStyle();
+  ofNoFill();
+  ofSetColor(ofColor(ofColor::black, ofClamp(alpha + 0.1f, 0, 1)));
+  ofDrawCircle(0, 0, 5);
+  ofPopStyle();
+  
+//  ofPath path;
+//  path.setFilled(true);
+//  path.setFillColor(ofColor(ofColor::black, alpha));
+//  path.setStrokeWidth(1.0f);
+//  path.setStrokeColor(ofColor(ofColor::black,
+//                              ofClamp(alpha + 1.0f, 0.0f, 1.0f)));
+//  path.circle(ofVec3f::zero(), 5);
+//  path.draw();
+  
   ofPopMatrix();
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32CC45461D1A47C4003D0A9B /* OccurrenceEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC45441D1A47C4003D0A9B /* OccurrenceEntity.cpp */; };
 		32CC454A1D1A4B81003D0A9B /* ObserverEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */; };
+		32CC454D1D1A5720003D0A9B /* MemoryApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4485ECA6D65C95823CB2AB2 /* ofxSlider.cpp */; };
 		4AD8BA1BE1C26CD8F650327D /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 617E2EED508D869478CE99F8 /* AttractionBehavior.cpp */; };
@@ -78,6 +79,8 @@
 		32CC45451D1A47C4003D0A9B /* OccurrenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceEntity.h; path = core/OccurrenceEntity.h; sourceTree = "<group>"; };
 		32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverEntity.cpp; path = core/ObserverEntity.cpp; sourceTree = "<group>"; };
 		32CC45491D1A4B81003D0A9B /* ObserverEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverEntity.h; path = core/ObserverEntity.h; sourceTree = "<group>"; };
+		32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryApp.cpp; path = app/MemoryApp.cpp; sourceTree = "<group>"; };
+		32CC454C1D1A5720003D0A9B /* MemoryApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoryApp.h; path = app/MemoryApp.h; sourceTree = "<group>"; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		36AFCF9C48B26AC8B17E9C98 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		36B95376ECF45981665C19E8 /* State.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = State.cpp; path = src/core/State.cpp; sourceTree = SOURCE_ROOT; };
@@ -239,6 +242,8 @@
 				B5AE60AFE0DF2982A9C8B269 /* BehaviorApp.cpp */,
 				FA4224E79ECDCD28E6304654 /* BehaviorApp.h */,
 				823FBC6F9791944E4D93726D /* main.cpp */,
+				32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */,
+				32CC454C1D1A5720003D0A9B /* MemoryApp.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				32CC45461D1A47C4003D0A9B /* OccurrenceEntity.cpp in Sources */,
 				A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */,
 				F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */,
+				32CC454D1D1A5720003D0A9B /* MemoryApp.cpp in Sources */,
 				78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */,
 				495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */,
 				CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */,

@@ -38,10 +38,38 @@ float OccurrenceEntity::getAmountOfObservation(const State& state) const {
 
 void OccurrenceEntity::draw(State &state) {
   ofPushMatrix();
+  
+  ofTranslate(position);
+  
+  float amount = getAmountOfObservation(state);
+  
+  float alpha = ofMap(amount, 0, MAX_OBS_LEVEL, 0.02f, 0.2f, true);
+  
+  
   ofPushStyle();
-  
-  //....
-  
+//  ofPath markerPath;
+//  markerPath.setFillColor(ofColor(1.0f, 0.5f, 0.25f, alpha));
+//  ofRectangle rect;
+//  rect.setFromCenter(0, 0, 5, 5);
+//  markerPath.rectangle(rect);
+//  markerPath.draw();
+  ofSetRectMode(OF_RECTMODE_CENTER);
+  ofSetColor(ofColor(1.0f, 0.5f, 0.25f, alpha));
+  ofFill();
+  ofDrawRectangle(0, 0, 5, 5);
   ofPopStyle();
+
+  ofPushStyle();
+  ofSetColor(ofColor(0.5f, 0.5f, 0.5f, alpha));
+  ofFill();
+  ofDrawCircle(0, 0, _actualRadius);
+  ofPopStyle();
+  
+  ofPushStyle();
+  ofSetColor(ofColor(0.7f, 0.7f, 0.7f, ofClamp(alpha + 0.1f, 0, 1)));
+  ofNoFill();
+  ofDrawCircle(0, 0, _actualRadius);
+  ofPopStyle();
+  
   ofPopMatrix();
 }

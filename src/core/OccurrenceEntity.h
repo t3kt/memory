@@ -1,5 +1,5 @@
 //
-//  OccurrenceEntity.hpp
+//  OccurrenceEntity.h
 //  memory-prototype-2
 //
 //  Created by tekt on 6/21/16.
@@ -36,4 +36,4 @@ private:
   std::vector<shared_ptr<ObserverEntity>> _connectedObservers;
 };
 
-#endif /* OccurrenceEntity_hpp */
+#endif /* OccurrenceEntity_h */

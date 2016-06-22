@@ -1,5 +1,5 @@
 //
-//  ObserverEntity.hpp
+//  ObserverEntity.h
 //  memory-prototype-2
 //
 //  Created by tekt on 6/21/16.
@@ -18,6 +18,14 @@ class OccurrenceEntity;
 
 class ObserverEntity : public Entity {
 public:
+  class Params {
+  public:
+    Params();
+    
+    ofParameterGroup paramGroup;
+    ofParameter<ofVec2f> lifetimeRange;
+  };
+  
   ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() {}
   

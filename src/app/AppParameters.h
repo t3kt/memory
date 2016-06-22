@@ -13,6 +13,8 @@
 #include "AttractionBehavior.h"
 #include "RandomWalkBehavior.h"
 
+#include "ObserverEntity.h"
+
 class BehaviorAppParameters {
 public:
   BehaviorAppParameters();
@@ -23,6 +25,13 @@ public:
   RandomWalkBehavior::Params attractorWalk;
   RandomWalkBehavior::Params repulsorWalk;
   RandomWalkBehavior::Params otherWalk;
+};
+
+class MemoryAppParameters {
+public:
+  MemoryAppParameters() {}
+  
+  ObserverEntity::Params observer;
 };
 
 #endif /* defined(__behavior__AppParameters__) */
