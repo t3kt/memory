@@ -19,6 +19,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 , _startTime(state.time)
 , _totalLifetime(life)
 {
+  position = pos;
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
@@ -42,13 +43,13 @@ void ObserverEntity::draw(State &state) {
   ofPushStyle();
   ofFill();
   ofSetColor(ofColor(ofColor::black, alpha));
-  ofDrawCircle(0, 0, 5);
+  ofDrawCircle(0, 0, 20);
   ofPopStyle();
   
   ofPushStyle();
   ofNoFill();
   ofSetColor(ofColor(ofColor::black, ofClamp(alpha + 0.1f, 0, 1)));
-  ofDrawCircle(0, 0, 5);
+  ofDrawCircle(0, 0, 20);
   ofPopStyle();
   
 //  ofPath path;

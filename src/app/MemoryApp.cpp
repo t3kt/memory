@@ -15,6 +15,9 @@ void MemoryApp::setup() {
   ofEnableAlphaBlending();
   
   _appParams.observer.lifetimeRange.set(ofVec2f(5000, 60000));
+  for (int i = 0; i < START_OBSERVERS; i++) {
+    spawnObserver();
+  }
   //...
 }
 
@@ -30,10 +33,14 @@ void MemoryApp::draw() {
   ofPushMatrix();
   ofPushStyle();
   
-  auto winSize = ofGetWindowSize();
-  auto size = ::min(winSize.x, winSize.y) / 2;
-  ofScale(size, size, size);
+//  auto winSize = ofGetWindowSize();
+//  auto size = ::min(winSize.x, winSize.y) / 2;
+//  ofScale(size, size, size);
   //...
+  
+  for (auto observer : _observers) {
+    observer->draw(_state);
+  }
   
   ofPopMatrix();
   ofPopStyle();
@@ -43,7 +50,11 @@ void MemoryApp::draw() {
 }
 
 void MemoryApp::spawnObserver() {
-  ofVec3f pos = createRandomVec3f(ofVec3f::zero(), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
+  ofVec3f pos;
+  pos.x = ofRandom(0, ofGetWidth());
+  pos.y = ofRandom(0, ofGetHeight());
+  pos.z = 0;
+  //  ofVec3f pos = createRandomVec3f(ofVec3f::zero(), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
   float life = ofRandom(_appParams.observer.lifetimeRange.get()[0], _appParams.observer.lifetimeRange.get()[1]);
   _observers.push_back(shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, _state)));
 }
