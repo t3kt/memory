@@ -12,21 +12,71 @@
 #include <iostream>
 
 const int START_OBSERVERS = 20;
+const int START_OCCURRENCES = 10;
+
+static ofVec3f randomPosition() {
+  return ofVec3f(ofRandom(-1, 1),
+                 ofRandom(-1, 1),
+                 ofRandom(-1, 1));
+}
 
 void MemoryApp::setup() {
   ofEnableAlphaBlending();
+//  ofDisableDepthTest();
   
   _appParams.observer.lifetimeRange.set(ofVec2f(10, 60));
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver();
+  }
+  
+  for (int i = 0; i < START_OCCURRENCES; i++) {
+    spawnOccurrence();
   }
   //...
 }
 
 void MemoryApp::update() {
   _state.updateTime();
-  for (auto observer : _observers) {
-    observer->update(_state);
+//  for (auto observer : _observers) {
+//    observer->update(_state);
+//  }
+  for (auto i = _observers.begin();
+       i != _observers.end();) {
+    shared_ptr<ObserverEntity>& observer = *i;
+    bool dead = false;
+    if (!observer) {
+      dead = true;
+    } else {
+      if (observer->getRemainingLifetimeFraction(_state) <= 0) {
+        dead = true;
+      }
+    }
+    if (dead) {
+      for (auto occurrence : observer->getConnectedOccurrences()) {
+        occurrence->removeObserver(observer);
+      }
+      i = _observers.erase(i);
+    } else {
+      i++;
+    }
+  }
+  for (auto i = _occurrences.begin();
+       i != _occurrences.end(); ) {
+    shared_ptr<OccurrenceEntity>& occurrence = *i;
+    bool done = false;
+    if (!occurrence) {
+      done = true;
+    } else {
+      occurrence->update(_state);
+      if (!occurrence->hasConnectedObservers()) {
+        done = true;
+      }
+    }
+    if (done) {
+      i = _occurrences.erase(i);
+    } else {
+      i++;
+    }
   }
   //...
 }
@@ -44,12 +94,15 @@ void MemoryApp::draw() {
   
   auto winSize = ofGetWindowSize();
   auto size = ::min(winSize.x, winSize.y) / 2;
-  size *= 0.7;
+  size *= 0.4;
   ofScale(size, size, size);
   //...
   
   for (auto observer : _observers) {
     observer->draw(_state);
+  }
+  for (auto occurrence : _occurrences) {
+    occurrence->draw(_state);
   }
   
   ofPopMatrix();
@@ -62,13 +115,7 @@ void MemoryApp::draw() {
 }
 
 void MemoryApp::spawnObserver() {
-  ofVec3f pos;
-//  pos.x = ofRandom(0, ofGetWidth());
-//  pos.y = ofRandom(0, ofGetHeight());
-  pos.x = ofRandom(-1, 1);
-  pos.y = ofRandom(-1, 1);
-  pos.z = ofRandom(-1, 1);
-  //  ofVec3f pos = createRandomVec3f(ofVec3f::zero(), ofVec3f(ofGetWidth(), ofGetHeight(), 0));
+  ofVec3f pos = randomPosition();
   float life = ofRandom(_appParams.observer.lifetimeRange.get()[0], _appParams.observer.lifetimeRange.get()[1]);
   auto observer = shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, _state));
   _observers.push_back(observer);
@@ -77,5 +124,26 @@ void MemoryApp::spawnObserver() {
 }
 
 void MemoryApp::spawnOccurrence() {
+  ofVec3f pos = randomPosition();
+  float radius = ofRandom(_appParams.occurrence.radiusRange.get()[0], _appParams.occurrence.radiusRange.get()[1]);
+  auto occurrence = shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius));
+  
+  bool connected = false;
+  
+  for (auto observer : _observers) {
+    float dist = pos.distance(observer->position);
+    if (dist <= radius) {
+      occurrence->addObserver(observer);
+      observer->addOccurrence(occurrence);
+      connected = true;
+    }
+  }
+  
+  if (connected) {
+    std::cout << "Spawned occurrence: " << *occurrence << std::endl;
+    _occurrences.push_back(occurrence);
+  } else {
+    std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
+  }
   //...
 }

@@ -22,7 +22,7 @@ class ObserverEntity
 : public Entity
 , public Outputable {
 public:
-  class Params {
+  class Params : public Entity::Params {
   public:
     Params();
     
@@ -34,6 +34,10 @@ public:
   virtual ~ObserverEntity() {}
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+  
+  std::vector<shared_ptr<OccurrenceEntity>>& getConnectedOccurrences() {
+    return _connectedOccurrences;
+  }
   
   float getRemainingLifetimeFraction(const State& state);
   

@@ -10,7 +10,10 @@
 #define __behavior__Entity__
 
 #include <ofTypes.h>
+#include <ofParameter.h>
+#include <ofParameterGroup.h>
 #include <vector>
+#include <string>
 #include "Behavior.h"
 
 typedef long EntityId;
@@ -19,6 +22,16 @@ class State;
 
 class Entity {
 public:
+  class Params {
+  public:
+    Params() {}
+    explicit Params(std::string label) {
+      paramGroup.setName(label);
+    }
+    
+    ofParameterGroup paramGroup;
+  };
+  
   Entity();
   virtual ~Entity() {}
   

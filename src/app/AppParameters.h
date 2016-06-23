@@ -14,6 +14,7 @@
 #include "RandomWalkBehavior.h"
 
 #include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 
 class BehaviorAppParameters {
 public:
@@ -32,6 +33,7 @@ public:
   MemoryAppParameters() {}
   
   ObserverEntity::Params observer;
+  OccurrenceEntity::Params occurrence;
 };
 
 #endif /* defined(__behavior__AppParameters__) */
