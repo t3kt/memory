@@ -12,11 +12,15 @@
 #include <ofTypes.h>
 #include "Entity.h"
 #include "State.h"
+#include "Common.h"
 #include <vector>
+#include <iostream>
 
 class OccurrenceEntity;
 
-class ObserverEntity : public Entity {
+class ObserverEntity
+: public Entity
+, public Outputable {
 public:
   class Params {
   public:
@@ -33,7 +37,9 @@ public:
   
   float getRemainingLifetimeFraction(const State& state);
   
-  virtual void draw(State& state) override;
+  void draw(State& state) override;
+  
+  void output(std::ostream& os) const override;
   
 private:
   const float _startTime;

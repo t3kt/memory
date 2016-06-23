@@ -29,6 +29,7 @@ private:
   MemoryAppParameters _appParams;
   std::vector<shared_ptr<OccurrenceEntity>> _occurrences;
   std::vector<shared_ptr<ObserverEntity>> _observers;
+  ofEasyCam _cam;
 };
 
 #endif /* MemoryApp_h */

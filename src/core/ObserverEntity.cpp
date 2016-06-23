@@ -11,7 +11,7 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params() {
-  paramGroup.add(lifetimeRange.set("Lifetime Range", ofVec2f(5000, 60000)));
+  paramGroup.add(lifetimeRange.set("Lifetime Range", ofVec2f(1, 4)));
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
@@ -20,6 +20,8 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 , _totalLifetime(life)
 {
   position = pos;
+  drawRadius = 0.005;
+  color = ofColor(0.4, 0, 0.5, 1);
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
@@ -36,21 +38,26 @@ float ObserverEntity::getRemainingLifetimeFraction(const State &state) {
 
 void ObserverEntity::draw(State &state) {
   float alpha = getRemainingLifetimeFraction(state);
+  if (alpha <= 0) {
+    return;
+  }
   ofPushMatrix();
   
-  ofTranslate(position);
+  //ofTranslate(position);
   
   ofPushStyle();
-  ofFill();
-  ofSetColor(ofColor(ofColor::black, alpha));
-  ofDrawCircle(0, 0, 20);
+    ofFill();
+  ofSetColor(ofColor::blue, alpha * 255);
+  //ofDrawCircle(0, 0, 20);
+  ofDrawSphere(position, 0.03);
+//  ofDrawCircle(position, 0.03);
   ofPopStyle();
   
-  ofPushStyle();
-  ofNoFill();
-  ofSetColor(ofColor(ofColor::black, ofClamp(alpha + 0.1f, 0, 1)));
-  ofDrawCircle(0, 0, 20);
-  ofPopStyle();
+//  ofPushStyle();
+//  ofNoFill();
+//  ofSetColor(ofColor(ofColor::black, ofClamp(alpha + 0.1f, 0, 1)));
+//  ofDrawCircle(0, 0, 20);
+//  ofPopStyle();
   
 //  ofPath path;
 //  path.setFilled(true);
@@ -62,4 +69,12 @@ void ObserverEntity::draw(State &state) {
 //  path.draw();
   
   ofPopMatrix();
+}
+
+void ObserverEntity::output(std::ostream &os) const {
+  os << "Observer{id: " << id
+      << ", position: " << position
+      << ", startTime: " << _startTime
+      << ", totalLifetime: " << _totalLifetime
+      << "}";
 }

@@ -33,3 +33,9 @@ ofVec3f wrapVec(ofVec3f vec, float min, float max) {
   vec.z = ofWrap(vec.z, min, max);
   return vec;
 }
+
+
+std::ostream& operator<<(std::ostream& os, const Outputable& obj) {
+  obj.output(os);
+  return os;
+}
