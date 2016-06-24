@@ -28,7 +28,7 @@ void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
   _connectedOccurrences.push_back(occurrence);
 }
 
-float ObserverEntity::getRemainingLifetimeFraction(const State &state) {
+float ObserverEntity::getRemainingLifetimeFraction(const State &state) const {
   float elapsed = state.time - _startTime;
   if (elapsed > _totalLifetime) {
     return 0.0f;
@@ -36,7 +36,13 @@ float ObserverEntity::getRemainingLifetimeFraction(const State &state) {
   return ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
 }
 
-void ObserverEntity::draw(State &state) {
+void ObserverEntity::handleDeath() {
+  for (auto occurrence : _connectedOccurrences) {
+    occurrence->removeObserver(id);
+  }
+}
+
+void ObserverEntity::draw(const State &state) {
   float alpha = getRemainingLifetimeFraction(state);
   if (alpha <= 0) {
     return;

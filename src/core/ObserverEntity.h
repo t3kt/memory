@@ -39,11 +39,17 @@ public:
     return _connectedOccurrences;
   }
   
-  float getRemainingLifetimeFraction(const State& state);
+  float getRemainingLifetimeFraction(const State& state) const;
   
-  void draw(State& state) override;
+  void draw(const State& state) override;
   
   void output(std::ostream& os) const override;
+  
+  bool isAlive(const State& state) const override {
+    return getRemainingLifetimeFraction(state) > 0;
+  }
+  
+  void handleDeath() override;
   
 private:
   const float _startTime;

@@ -11,7 +11,7 @@
 
 #include <ofTypes.h>
 #include "Entity.h"
-#include <vector>
+#include <map>
 #include "Common.h"
 #include <iostream>
 
@@ -32,7 +32,7 @@ public:
   
   void addObserver(shared_ptr<ObserverEntity> observer);
   
-  void removeObserver(shared_ptr<ObserverEntity> observer);
+  void removeObserver(EntityId id);
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
@@ -40,16 +40,20 @@ public:
   
   float getAmountOfObservation(const State& state) const;
   
-  void draw(State& state) override;
+  void draw(const State& state) override;
   
   void output(std::ostream& os) const override;
+  
+  bool isAlive(const State& state) const override {
+    return hasConnectedObservers();
+  }
   
 private:
   void recalculateRadius();
   
   const float _originalRadius;
   float _actualRadius;
-  std::vector<shared_ptr<ObserverEntity>> _connectedObservers;
+  std::map<EntityId, shared_ptr<ObserverEntity>> _connectedObservers;
 };
 
 #endif /* OccurrenceEntity_h */

@@ -75,6 +75,7 @@
 		27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		27F7A6AF265FCB06BA639098 /* State.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = State.h; path = src/core/State.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		321257701D1CC820002E4C42 /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityManager.h; path = core/EntityManager.h; sourceTree = "<group>"; };
 		32CC45441D1A47C4003D0A9B /* OccurrenceEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceEntity.cpp; path = core/OccurrenceEntity.cpp; sourceTree = "<group>"; };
 		32CC45451D1A47C4003D0A9B /* OccurrenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceEntity.h; path = core/OccurrenceEntity.h; sourceTree = "<group>"; };
 		32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverEntity.cpp; path = core/ObserverEntity.cpp; sourceTree = "<group>"; };
@@ -230,6 +231,7 @@
 				32CC45451D1A47C4003D0A9B /* OccurrenceEntity.h */,
 				32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */,
 				32CC45491D1A4B81003D0A9B /* ObserverEntity.h */,
+				321257701D1CC820002E4C42 /* EntityManager.h */,
 			);
 			name = core;
 			sourceTree = "<group>";

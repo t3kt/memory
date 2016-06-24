@@ -29,7 +29,7 @@ public:
   };
   
   explicit RandomWalkBehavior(const Params& params);
-  void update(Entity& entity, State& state) override;
+  void update(Entity& entity, const State& state) override;
 private:
   const Params& _params;
   ofVec3f _noisePos;

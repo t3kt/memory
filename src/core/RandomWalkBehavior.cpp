@@ -22,7 +22,7 @@ RandomWalkBehavior::RandomWalkBehavior(const Params& params)
 }
 
 void RandomWalkBehavior::update(Entity& entity,
-                                State &state) {
+                                const State &state) {
   if (!_params.enabled.get())
     return;
   _noisePos.z += state.timeDelta * 0.002;

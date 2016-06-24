@@ -37,47 +37,8 @@ void MemoryApp::setup() {
 
 void MemoryApp::update() {
   _state.updateTime();
-//  for (auto observer : _observers) {
-//    observer->update(_state);
-//  }
-  for (auto i = _observers.begin();
-       i != _observers.end();) {
-    shared_ptr<ObserverEntity>& observer = *i;
-    bool dead = false;
-    if (!observer) {
-      dead = true;
-    } else {
-      if (observer->getRemainingLifetimeFraction(_state) <= 0) {
-        dead = true;
-      }
-    }
-    if (dead) {
-      for (auto occurrence : observer->getConnectedOccurrences()) {
-        occurrence->removeObserver(observer);
-      }
-      i = _observers.erase(i);
-    } else {
-      i++;
-    }
-  }
-  for (auto i = _occurrences.begin();
-       i != _occurrences.end(); ) {
-    shared_ptr<OccurrenceEntity>& occurrence = *i;
-    bool done = false;
-    if (!occurrence) {
-      done = true;
-    } else {
-      occurrence->update(_state);
-      if (!occurrence->hasConnectedObservers()) {
-        done = true;
-      }
-    }
-    if (done) {
-      i = _occurrences.erase(i);
-    } else {
-      i++;
-    }
-  }
+  _observers.update(_state);
+  _occurrences.update(_state);
   //...
 }
 
@@ -96,14 +57,9 @@ void MemoryApp::draw() {
   auto size = ::min(winSize.x, winSize.y) / 2;
   size *= 0.4;
   ofScale(size, size, size);
-  //...
   
-  for (auto observer : _observers) {
-    observer->draw(_state);
-  }
-  for (auto occurrence : _occurrences) {
-    occurrence->draw(_state);
-  }
+  _observers.draw(_state);
+  _occurrences.draw(_state);
   
   ofPopMatrix();
   ofPopStyle();
@@ -118,7 +74,7 @@ void MemoryApp::spawnObserver() {
   ofVec3f pos = randomPosition();
   float life = ofRandom(_appParams.observer.lifetimeRange.get()[0], _appParams.observer.lifetimeRange.get()[1]);
   auto observer = shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, _state));
-  _observers.push_back(observer);
+  _observers.addEntity(observer);
   
   std::cout << "Spawned observer: " << *observer << std::endl;
 }
@@ -130,18 +86,19 @@ void MemoryApp::spawnOccurrence() {
   
   bool connected = false;
   
-  for (auto observer : _observers) {
-    float dist = pos.distance(observer->position);
+  _observers.performAction([&] (shared_ptr<ObserverEntity> obs) {
+    float dist = pos.distance(obs->position);
     if (dist <= radius) {
-      occurrence->addObserver(observer);
-      observer->addOccurrence(occurrence);
+      occurrence->addObserver(obs);
+      obs->addOccurrence(occurrence);
       connected = true;
     }
-  }
+    
+  });
   
   if (connected) {
     std::cout << "Spawned occurrence: " << *occurrence << std::endl;
-    _occurrences.push_back(occurrence);
+    _occurrences.addEntity(occurrence);
   } else {
     std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
   }

@@ -35,8 +35,12 @@ public:
   Entity();
   virtual ~Entity() {}
   
-  virtual void update(State& state);
-  virtual void draw(State& state);
+  virtual void update(const State& state);
+  virtual void draw(const State& state);
+  
+  virtual bool isAlive(const State& state) const { return true; };
+  
+  virtual void handleDeath() {}
   
   const EntityId id;
   ofVec3f position;

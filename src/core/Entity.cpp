@@ -23,14 +23,14 @@ Entity& Entity::addBehavior(shared_ptr<Behavior> behavior) {
   return *this;
 }
 
-void Entity::update(State &state) {
+void Entity::update(const State &state) {
   velocity = ofVec3f::zero();
   updateBehaviors(_behaviors, *this, state);
   position += velocity;
 //  position = wrapVec(position, -1, 1);
 }
 
-void Entity::draw(State &state) {
+void Entity::draw(const State &state) {
   ofPushStyle();
   ofSetColor(color);
   ofDrawSphere(position, drawRadius);

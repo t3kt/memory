@@ -52,7 +52,7 @@ static bool applyAttraction(const ofVec3f& attractorPos,
 }
 
 void SingleAttractionBehavior::update(Entity &entity,
-                                      State &state) {
+                                      const State &state) {
   if (!_params.enabled.get())
     return;
   applyAttraction(_params.position.get(), &entity,
@@ -63,7 +63,7 @@ void SingleAttractionBehavior::update(Entity &entity,
 }
 
 void EntityAttractionBehavior::update(Entity &entity,
-                                      State &state) {
+                                      const State &state) {
   if (!_params.enabled.get())
     return;
   int count = 0;

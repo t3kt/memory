@@ -25,7 +25,7 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius)
 }
 
 void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
-  _connectedObservers.push_back(observer);
+  _connectedObservers[observer->id] = observer;
   float dist = position.distance(observer->position);
   if (dist > _actualRadius) {
     _actualRadius = dist;
@@ -36,7 +36,7 @@ void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
 void OccurrenceEntity::recalculateRadius() {
   _actualRadius = 0;
   for (auto observer : _connectedObservers) {
-    float dist = position.distance(observer->position);
+    float dist = position.distance(observer.second->position);
     if (dist > _actualRadius) {
       _actualRadius = dist;
       drawRadius = dist;
@@ -44,23 +44,23 @@ void OccurrenceEntity::recalculateRadius() {
   }
 }
 
-void OccurrenceEntity::removeObserver(shared_ptr<ObserverEntity> observer) {
-  auto i = std::find(_connectedObservers.begin(), _connectedObservers.end(), observer);
+void OccurrenceEntity::removeObserver(EntityId id) {
+  auto i = _connectedObservers.find(id);
   if (i != _connectedObservers.end()) {
-    _connectedObservers.erase(i);
+    _connectedObservers.erase(id);
+    recalculateRadius();
   }
-  recalculateRadius();
 }
 
 float OccurrenceEntity::getAmountOfObservation(const State& state) const {
   float result = 0;
   for (auto observer : _connectedObservers) {
-    result += observer->getRemainingLifetimeFraction(state);
+    result += observer.second->getRemainingLifetimeFraction(state);
   }
   return result;
 }
 
-void OccurrenceEntity::draw(State &state) {
+void OccurrenceEntity::draw(const State &state) {
 //  ofPushMatrix();
   
 //  ofTranslate(position);
@@ -111,8 +111,8 @@ void OccurrenceEntity::draw(State &state) {
   for (auto observer : _connectedObservers) {
     connectorMesh.addVertex(position);
     connectorMesh.addColor(ofColor(127, 127, 127, alpha * 255));
-    connectorMesh.addVertex(observer->position);
-    connectorMesh.addColor(ofColor(127, 127, 127, observer->getRemainingLifetimeFraction(state)*255));
+    connectorMesh.addVertex(observer.second->position);
+    connectorMesh.addColor(ofColor(127, 127, 127, observer.second->getRemainingLifetimeFraction(state)*255));
 //    ofDrawLine(position, observer->position);
   }
   connectorMesh.setMode(OF_PRIMITIVE_LINES);

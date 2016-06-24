@@ -50,7 +50,7 @@ public:
   explicit SingleAttractionBehavior(const Params& params)
   : _params(params) { }
   
-  void update(Entity& entity, State& state) override;
+  void update(Entity& entity, const State& state) override;
 private:
   const Params& _params;
 };
@@ -81,7 +81,7 @@ public:
   explicit EntityAttractionBehavior(const Params& params)
   : _params(params) { }
   
-  void update(Entity& entity, State& state) override;
+  void update(Entity& entity, const State& state) override;
 private:
   const Params& _params;
 };

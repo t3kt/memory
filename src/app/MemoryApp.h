@@ -15,6 +15,7 @@
 #include "AppParameters.h"
 #include "OccurrenceEntity.h"
 #include "ObserverEntity.h"
+#include "EntityManager.h"
 
 class MemoryApp : public ofBaseApp {
 public:
@@ -27,8 +28,10 @@ private:
   
   State _state;
   MemoryAppParameters _appParams;
-  std::vector<shared_ptr<OccurrenceEntity>> _occurrences;
-  std::vector<shared_ptr<ObserverEntity>> _observers;
+  //  std::vector<shared_ptr<OccurrenceEntity>> _occurrences;
+  //  std::vector<shared_ptr<ObserverEntity>> _observers;
+  EntityManager<OccurrenceEntity> _occurrences;
+  EntityManager<ObserverEntity> _observers;
   ofEasyCam _cam;
 };
 

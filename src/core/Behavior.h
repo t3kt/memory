@@ -27,13 +27,13 @@ public:
   };
   
   virtual void update(Entity& entity,
-                      State& state) = 0;
+                      const State& state) = 0;
 };
 
 typedef std::vector<shared_ptr<Behavior> > BehaviorList;
 
 void updateBehaviors(BehaviorList& behaviors,
                      Entity& entity,
-                     State& state);
+                     const State& state);
 
 #endif /* defined(__behavior__Behavior__) */

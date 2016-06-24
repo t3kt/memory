@@ -16,7 +16,7 @@ Behavior::Params::Params() {
 
 void updateBehaviors(BehaviorList &behaviors,
                      Entity& entity,
-                     State &state) {
+                     const State &state) {
   for (auto& behavior : behaviors) {
     behavior->update(entity, state);
   }
