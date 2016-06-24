@@ -32,7 +32,6 @@
 		EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A03571044EBB2DB95F16A0C2 /* ofxBaseGui.cpp */; };
 		F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */; };
 		F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10E1EFE181FE634470793842 /* ofxLabel.cpp */; };
-		FC9932AA35318741653B555B /* BehaviorApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE60AFE0DF2982A9C8B269 /* BehaviorApp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +103,6 @@
 		AEBD31FAD3848740F78A7596 /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
 		B10D9A4C4D69F318E4DF5F5B /* Common.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Common.cpp; path = src/core/Common.cpp; sourceTree = SOURCE_ROOT; };
 		B4485ECA6D65C95823CB2AB2 /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSlider.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
-		B5AE60AFE0DF2982A9C8B269 /* BehaviorApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BehaviorApp.cpp; path = src/app/BehaviorApp.cpp; sourceTree = SOURCE_ROOT; };
 		BC825A4168A0DF78F0ACE6A7 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		C61E6252FE237B3F16BFBC43 /* ofxSliderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSliderGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSliderGroup.h; sourceTree = SOURCE_ROOT; };
 		D64FC38492D2B36B95A8253D /* Behavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Behavior.cpp; path = src/core/Behavior.cpp; sourceTree = SOURCE_ROOT; };
@@ -117,7 +115,6 @@
 		E6FA95564CAB1A6A26998186 /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		F1FEB66CE88C2B47C1925F8C /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		F2DFEDC5C804323DDDAA56B1 /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
-		FA4224E79ECDCD28E6304654 /* BehaviorApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BehaviorApp.h; path = src/app/BehaviorApp.h; sourceTree = SOURCE_ROOT; };
 		FE2A2263379000D359CB7227 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -241,8 +238,6 @@
 			children = (
 				7B1EA976C3295181487B1B58 /* AppParameters.cpp */,
 				5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */,
-				B5AE60AFE0DF2982A9C8B269 /* BehaviorApp.cpp */,
-				FA4224E79ECDCD28E6304654 /* BehaviorApp.h */,
 				823FBC6F9791944E4D93726D /* main.cpp */,
 				32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */,
 				32CC454C1D1A5720003D0A9B /* MemoryApp.h */,
@@ -377,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
-				FC9932AA35318741653B555B /* BehaviorApp.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
 				4AD8BA1BE1C26CD8F650327D /* AttractionBehavior.cpp in Sources */,
 				960691FA92BF31B9FD010694 /* Behavior.cpp in Sources */,

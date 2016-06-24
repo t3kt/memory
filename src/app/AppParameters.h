@@ -10,28 +10,15 @@
 #define __behavior__AppParameters__
 
 #include <ofParameterGroup.h>
-#include "AttractionBehavior.h"
-#include "RandomWalkBehavior.h"
 
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 
-class BehaviorAppParameters {
-public:
-  BehaviorAppParameters();
-  ofParameterGroup paramGroup;
-  SingleAttractionBehavior::Params centerAttraction;
-  EntityAttractionBehavior::Params entityAttraction;
-  EntityAttractionBehavior::Params entityRepulsion;
-  RandomWalkBehavior::Params attractorWalk;
-  RandomWalkBehavior::Params repulsorWalk;
-  RandomWalkBehavior::Params otherWalk;
-};
-
 class MemoryAppParameters {
 public:
-  MemoryAppParameters() {}
+  MemoryAppParameters();
   
+  ofParameterGroup paramGroup;
   ObserverEntity::Params observer;
   OccurrenceEntity::Params occurrence;
 };

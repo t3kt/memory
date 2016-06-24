@@ -8,6 +8,7 @@
 
 #include "AttractionBehavior.h"
 #include "State.h"
+#include "Entity.h"
 #include <ofVec3f.h>
 #include <ofMath.h>
 
@@ -27,10 +28,10 @@ SingleAttractionBehavior::Params::Params(std::string label) {
                               ofVec3f(2)));
 }
 
-EntityAttractionBehavior::Params::Params(std::string label) {
-  paramGroup.setName(label);
-  paramGroup.add(limit.set("Limit", 10, 0, 50));
-}
+//EntityAttractionBehavior::Params::Params(std::string label) {
+//  paramGroup.setName(label);
+//  paramGroup.add(limit.set("Limit", 10, 0, 50));
+//}
 
 static bool applyAttraction(const ofVec3f& attractorPos,
                             Entity* entity,
@@ -62,26 +63,26 @@ void SingleAttractionBehavior::update(Entity &entity,
                   _params.maxPull.get());
 }
 
-void EntityAttractionBehavior::update(Entity &entity,
-                                      const State &state) {
-  if (!_params.enabled.get())
-    return;
-  int count = 0;
-  auto minDist = _params.minDist.get();
-  auto maxDist = _params.maxDist.get();
-  auto minPull = _params.minPull.get();
-  auto maxPull = _params.maxPull.get();
-  auto limit = _params.limit.get();
-  for (const auto& other : state.entities) {
-    if (other->id == entity.id)
-      continue;
-    if (applyAttraction(other->position,
-                        &entity,
-                        minDist, maxDist,
-                        minPull, maxPull)) {
-      count++;
-      if (count >= limit)
-        break;
-    }
-  }
-}
+//void EntityAttractionBehavior::update(Entity &entity,
+//                                      const State &state) {
+//  if (!_params.enabled.get())
+//    return;
+//  int count = 0;
+//  auto minDist = _params.minDist.get();
+//  auto maxDist = _params.maxDist.get();
+//  auto minPull = _params.minPull.get();
+//  auto maxPull = _params.maxPull.get();
+//  auto limit = _params.limit.get();
+//  for (const auto& other : state.entities) {
+//    if (other->id == entity.id)
+//      continue;
+//    if (applyAttraction(other->position,
+//                        &entity,
+//                        minDist, maxDist,
+//                        minPull, maxPull)) {
+//      count++;
+//      if (count >= limit)
+//        break;
+//    }
+//  }
+//}

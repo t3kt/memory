@@ -9,6 +9,7 @@
 #include "RandomWalkBehavior.h"
 #include "Common.h"
 #include "State.h"
+#include "Entity.h"
 
 RandomWalkBehavior::Params::Params(std::string label) {
   paramGroup.setName(label);

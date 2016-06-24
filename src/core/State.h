@@ -9,14 +9,11 @@
 #ifndef __behavior__State__
 #define __behavior__State__
 
-#include "EntityGroup.h"
-
 class State {
 public:
   State();
   void updateTime();
   
-  EntityGroup entities;
   float time;
   float timeDelta;
 };

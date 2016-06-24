@@ -86,11 +86,11 @@ void MemoryApp::spawnOccurrence() {
   
   bool connected = false;
   
-  _observers.performAction([&] (shared_ptr<ObserverEntity> obs) {
-    float dist = pos.distance(obs->position);
+  _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
+    float dist = pos.distance(observer->position);
     if (dist <= radius) {
-      occurrence->addObserver(obs);
-      obs->addOccurrence(occurrence);
+      occurrence->addObserver(observer);
+      observer->addOccurrence(occurrence);
       connected = true;
     }
     
