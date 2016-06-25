@@ -13,16 +13,14 @@
 #include <ofParameterGroup.h>
 #include <ofxGuiGroup.h>
 
-class Params {
+class Params : public ofParameterGroup {
 public:
   Params() {}
   explicit Params(std::string label) {
-    paramGroup.setName(label);
+    setName(label);
   }
   
   virtual void initPanel(ofxGuiGroup& panel) {};
-  
-  ofParameterGroup paramGroup;
 };
 
 #endif /* Params_h */

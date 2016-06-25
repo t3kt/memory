@@ -17,28 +17,35 @@ OccurrenceEntity::Params::Params()
 : ::Params("Occurrences")
 , radius("Radius Range")
 , spawnArea("Spawn Area") {
-  paramGroup.add(radius
-                 .set(0.4, 1.3)
-                 .setParamRange(0, 4));
-  paramGroup.add(spawnArea
-                 .set(ofVec3f(-1), ofVec3f(1))
-                 .setParamRange(ofVec3f(-2), ofVec3f(2)));
+  add(radius
+      .set(0.4, 1.3)
+      .setParamRange(0, 4));
+  add(spawnArea
+      .set(ofVec3f(-1), ofVec3f(1))
+      .setParamRange(ofVec3f(-2), ofVec3f(2)));
+  add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
+  add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
+  add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
 }
 
 void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
   panel.getGroup("Spawn Area").minimize();
+  panel.getGroup("Marker Color").minimize();
+  panel.getGroup("Range Color").minimize();
+  panel.getGroup("Connector Color").minimize();
 }
 
 shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params) {
   ofVec3f pos = params.spawnArea.getValue();
   float radius = params.radius.getValue();
-  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius));
+  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius, params));
 }
 
-OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius)
-: _actualRadius(0)
+OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params)
+: WorldObject()
+, _actualRadius(0)
 , _originalRadius(radius)
-, WorldObject() {
+, _params(params) {
   position = pos;
 }
 
@@ -77,65 +84,37 @@ float OccurrenceEntity::getAmountOfObservation(const State& state) const {
 }
 
 void OccurrenceEntity::draw(const State &state) {
-//  ofPushMatrix();
-  
-//  ofTranslate(position);
-  
   float amount = getAmountOfObservation(state);
   
   float alpha = ofMap(amount, 0, MAX_OBS_LEVEL, 0.02f, 0.2f, true);
   
   
   ofPushStyle();
-//  ofPath markerPath;
-//  markerPath.setFillColor(ofColor(1.0f, 0.5f, 0.25f, alpha));
-//  ofRectangle rect;
-//  rect.setFromCenter(0, 0, 5, 5);
-//  markerPath.rectangle(rect);
-//  markerPath.draw();
-//  ofSetRectMode(OF_RECTMODE_CENTER);
-//  ofSetColor(ofColor(1.0f, 0.5f, 0.25f, alpha));
-  ofSetColor(255, 127, 63, alpha * 255);
-//  ofFill();
-//  ofDrawRectangle(0, 0, 5, 5);
+  ofFloatColor markerColor = _params.markerColor.get();
+  markerColor.a *= alpha;
+  ofSetColor(markerColor);
   ofDrawBox(position, 0.02);
   ofPopStyle();
 
   ofPushStyle();
-  //  ofSetColor(ofColor(0.5f, 0.5f, 0.5f, alpha));
-  ofSetColor(127, 127, 127, alpha * 255);
-//  ofFill();
-//  ofDrawCircle(0, 0, _actualRadius);
+  ofFloatColor rangeColor = _params.rangeColor.get();
+  rangeColor *= alpha;
+  ofSetColor(rangeColor);
   ofDrawSphere(position, _actualRadius);
   ofPopStyle();
   
-//  ofPushStyle();
-//  ofSetColor(ofColor(0.7f, 0.7f, 0.7f, ofClamp(alpha + 0.1f, 0, 1)));
-//  ofNoFill();
-//  ofDrawCircle(0, 0, _actualRadius);
-//  ofPopStyle();
-  
-//  ofPushStyle();
-//  ofFill();
-//  ofSetColor(ofColor::red);
-//  ofDrawCircle(0, 0, 5);
-//  ofPopStyle();
-  
   ofPushStyle();
-  ofSetColor(190, 190, 190);
+  ofFloatColor connectorColor = _params.connectorColor.get();
   ofMesh connectorMesh;
   for (auto observer : _connectedObservers) {
     connectorMesh.addVertex(position);
-    connectorMesh.addColor(ofColor(127, 127, 127, alpha * 255));
+    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * alpha));
     connectorMesh.addVertex(observer.second->position);
-    connectorMesh.addColor(ofColor(127, 127, 127, observer.second->getRemainingLifetimeFraction(state)*255));
-//    ofDrawLine(position, observer->position);
+    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * observer.second->getRemainingLifetimeFraction(state)));
   }
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   connectorMesh.draw();
   ofPopStyle();
-  
-//  ofPopMatrix();
 }
 
 void OccurrenceEntity::output(std::ostream &os) const {

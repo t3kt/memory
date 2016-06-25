@@ -15,28 +15,31 @@ ObserverEntity::Params::Params()
 : ::Params("Observers")
 , lifetime("Lifetime Range")
 , spawnArea("Spawn Area") {
-  paramGroup.add(lifetime
-                 .set(1, 4)
-                 .setParamRange(0, 240));
-  paramGroup.add(spawnArea
-                 .set(ofVec3f(-1), ofVec3f(1))
-                 .set(ofVec3f(-2), ofVec3f(2)));
+  add(lifetime
+      .set(1, 4)
+      .setParamRange(0, 240));
+  add(spawnArea
+      .set(ofVec3f(-1), ofVec3f(1))
+      .setParamRange(ofVec3f(-2), ofVec3f(2)));
+  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
   panel.getGroup("Spawn Area").minimize();
+  panel.getGroup("Color").minimize();
 }
 
 shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const State& state) {
   ofVec3f pos = params.spawnArea.getValue();
   float life = params.lifetime.getValue();
-  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, state));
+  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, params, state));
 }
 
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
+ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
 : WorldObject()
 , _startTime(state.time)
 , _totalLifetime(life)
+, _params(params)
 {
   position = pos;
 }
@@ -64,13 +67,15 @@ void ObserverEntity::draw(const State &state) {
   if (alpha <= 0) {
     return;
   }
+  ofFloatColor color = _params.color.get();
+  color.a *= alpha;
 //  ofPushMatrix();
   
   //ofTranslate(position);
   
   ofPushStyle();
     ofFill();
-  ofSetColor(ofColor::blue, alpha * 255);
+    ofSetColor(color);
   //ofDrawCircle(0, 0, 20);
   ofDrawSphere(position, 0.03);
 //  ofDrawCircle(position, 0.03);

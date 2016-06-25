@@ -30,10 +30,13 @@ public:
     
     RandomValueSupplier<float> radius;
     RandomValueSupplier<ofVec3f> spawnArea;
+    ofParameter<ofFloatColor> markerColor;
+    ofParameter<ofFloatColor> rangeColor;
+    ofParameter<ofFloatColor> connectorColor;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params);
   
-  OccurrenceEntity(ofVec3f pos, float radius);
+  OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(shared_ptr<ObserverEntity> observer);
@@ -59,6 +62,7 @@ public:
 private:
   void recalculateRadius();
   
+  const Params& _params;
   const float _originalRadius;
   float _actualRadius;
   std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
