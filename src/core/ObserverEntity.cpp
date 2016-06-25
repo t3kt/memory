@@ -11,8 +11,9 @@
 #include "State.h"
 #include <ofMain.h>
 
-ObserverEntity::Params::Params() {
-  paramGroup.add(lifetimeRange.set("Lifetime Range", ofVec2f(1, 4)));
+ObserverEntity::Params::Params()
+: lifetime("Lifetime Range") {
+  paramGroup.add(lifetime.set(1, 4).paramGroup);
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)

@@ -13,8 +13,9 @@
 
 const float MAX_OBS_LEVEL = 4.0f;
 
-OccurrenceEntity::Params::Params() {
-  paramGroup.add(radiusRange.set("Radius Range", ofVec2f(0.4, 1.3)));
+OccurrenceEntity::Params::Params()
+: radius("Radius Range") {
+  paramGroup.add(radius.set(0.4, 1.3).paramGroup);
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius)

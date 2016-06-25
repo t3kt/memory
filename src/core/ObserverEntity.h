@@ -15,6 +15,7 @@
 #include "WorldObject.h"
 #include <vector>
 #include <iostream>
+#include "ValueSupplier.h"
 
 class OccurrenceEntity;
 
@@ -25,7 +26,7 @@ public:
   public:
     Params();
     
-    ofParameter<ofVec2f> lifetimeRange;
+    RandomValueSupplier<float> lifetime;
   };
   
   ObserverEntity(ofVec3f pos, float life, const State& state);

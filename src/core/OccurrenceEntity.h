@@ -15,6 +15,7 @@
 #include "WorldObject.h"
 #include "Params.h"
 #include <iostream>
+#include "ValueSupplier.h"
 
 class ObserverEntity;
 
@@ -25,7 +26,7 @@ public:
   public:
     Params();
     
-    ofParameter<ofVec2f> radiusRange;
+    RandomValueSupplier<float> radius;
   };
   OccurrenceEntity(ofVec3f pos, float radius);
   virtual ~OccurrenceEntity() {}

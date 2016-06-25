@@ -21,10 +21,13 @@ static ofVec3f randomPosition() {
 }
 
 void MemoryApp::setup() {
+  
+  _gui.setup(_appParams.paramGroup);
+  
   ofEnableAlphaBlending();
 //  ofDisableDepthTest();
   
-  _appParams.observer.lifetimeRange.set(ofVec2f(10, 60));
+  _appParams.observer.lifetime.set(10, 60);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver();
   }
@@ -68,11 +71,12 @@ void MemoryApp::draw() {
   
   ofSetColor(255);
   ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), ofGetWidth() - 100, 20);
+  _gui.draw();
 }
 
 void MemoryApp::spawnObserver() {
   ofVec3f pos = randomPosition();
-  float life = ofRandom(_appParams.observer.lifetimeRange.get()[0], _appParams.observer.lifetimeRange.get()[1]);
+  float life = _appParams.observer.lifetime.getValue();
   auto observer = shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, _state));
   _observers.addEntity(observer);
   
@@ -81,7 +85,7 @@ void MemoryApp::spawnObserver() {
 
 void MemoryApp::spawnOccurrence() {
   ofVec3f pos = randomPosition();
-  float radius = ofRandom(_appParams.occurrence.radiusRange.get()[0], _appParams.occurrence.radiusRange.get()[1]);
+  float radius = _appParams.occurrence.radius.getValue();
   auto occurrence = shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius));
   
   bool connected = false;
