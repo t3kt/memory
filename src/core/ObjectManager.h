@@ -39,7 +39,7 @@ public:
     }
   }
   
-  void addEntity(shared_ptr<E> entity) {
+  void add(shared_ptr<E> entity) {
     _entities.insert(std::make_pair(entity->id, entity));
   }
   

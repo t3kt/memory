@@ -18,6 +18,8 @@ ofVec3f createRandomVec3f(const ofVec3f& mins,
 ofVec3f createRandomVec3f(float max);
 ofVec3f wrapVec(ofVec3f vec, float min, float max);
 
+template<typename T>
+T getInterpolated(const T& a, const T& b, float amount);
 
 class Outputable {
 public:

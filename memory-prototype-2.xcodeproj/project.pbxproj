@@ -12,6 +12,7 @@
 		32CC454D1D1A5720003D0A9B /* MemoryApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */; };
 		32E4EC141D1E3732006163EF /* WorldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E4EC121D1E3732006163EF /* WorldObject.cpp */; };
 		32E4EC1A1D1E4272006163EF /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E4EC191D1E4272006163EF /* ValueSupplier.cpp */; };
+		32E4EC1D1D1E6C90006163EF /* Timing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E4EC1B1D1E6C90006163EF /* Timing.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4485ECA6D65C95823CB2AB2 /* ofxSlider.cpp */; };
 		51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */; };
@@ -80,6 +81,8 @@
 		32E4EC161D1E38EB006163EF /* Params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Params.h; path = core/Params.h; sourceTree = "<group>"; };
 		32E4EC181D1E4066006163EF /* ValueSupplier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ValueSupplier.h; path = core/ValueSupplier.h; sourceTree = "<group>"; };
 		32E4EC191D1E4272006163EF /* ValueSupplier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ValueSupplier.cpp; path = core/ValueSupplier.cpp; sourceTree = "<group>"; };
+		32E4EC1B1D1E6C90006163EF /* Timing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Timing.cpp; path = core/Timing.cpp; sourceTree = "<group>"; };
+		32E4EC1C1D1E6C90006163EF /* Timing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timing.h; path = core/Timing.h; sourceTree = "<group>"; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		36AFCF9C48B26AC8B17E9C98 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		36B95376ECF45981665C19E8 /* State.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = State.cpp; path = src/core/State.cpp; sourceTree = SOURCE_ROOT; };
@@ -216,6 +219,8 @@
 				32E4EC161D1E38EB006163EF /* Params.h */,
 				32E4EC181D1E4066006163EF /* ValueSupplier.h */,
 				32E4EC191D1E4272006163EF /* ValueSupplier.cpp */,
+				32E4EC1B1D1E6C90006163EF /* Timing.cpp */,
+				32E4EC1C1D1E6C90006163EF /* Timing.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
+				32E4EC1D1D1E6C90006163EF /* Timing.cpp in Sources */,
 				32CC454A1D1A4B81003D0A9B /* ObserverEntity.cpp in Sources */,
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,
 				32E4EC141D1E3732006163EF /* WorldObject.cpp in Sources */,

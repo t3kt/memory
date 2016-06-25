@@ -76,7 +76,7 @@ void MemoryApp::draw() {
 
 void MemoryApp::spawnObserver() {
   auto observer = ObserverEntity::spawn(_appParams.observer, _state);
-  _observers.addEntity(observer);
+  _observers.add(observer);
   
   std::cout << "Spawned observer: " << *observer << std::endl;
 }
@@ -98,7 +98,7 @@ void MemoryApp::spawnOccurrence() {
   
   if (connected) {
     std::cout << "Spawned occurrence: " << *occurrence << std::endl;
-    _occurrences.addEntity(occurrence);
+    _occurrences.add(occurrence);
   } else {
     std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
   }
