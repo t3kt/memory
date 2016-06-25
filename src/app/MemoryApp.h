@@ -16,7 +16,9 @@
 #include "AppParameters.h"
 #include "OccurrenceEntity.h"
 #include "ObserverEntity.h"
+#include "AnimationObject.h"
 #include "ObjectManager.h"
+#include "Timing.h"
 
 class MemoryApp : public ofBaseApp {
 public:
@@ -31,6 +33,8 @@ private:
   MemoryAppParameters _appParams;
   ObjectManager<OccurrenceEntity> _occurrences;
   ObjectManager<ObserverEntity> _observers;
+  ObjectManager<AnimationObject> _animations;
+  TimedActionSet _timedActions;
   ofEasyCam _cam;
   ofxPanel _gui;
 };

@@ -41,6 +41,8 @@ public:
   }
   void revive() { _alive = true; }
   
+  virtual bool visible() const { return this->alive(); }
+  
   ofVec3f position;
   
 private:

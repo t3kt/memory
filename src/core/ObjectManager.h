@@ -44,12 +44,25 @@ public:
   
   void draw(const State& state) {
     for (auto entry : _objects) {
-      entry.second->draw(state);
+      if (entry.second->visible()) {
+        entry.second->draw(state);
+      }
     }
   }
   
   void add(shared_ptr<T> object) {
     _objects.insert(std::make_pair(object->id, object));
+  }
+  
+  bool eraseById(ObjectId id) {
+    auto i = _objects.find(id);
+    if (i == std::end(_objects)) {
+      return false;
+    } else {
+      i->second.reset();
+      _objects.erase(i);
+      return true;
+    }
   }
   
   void performAction(std::function<void(shared_ptr<T>)> action) {
