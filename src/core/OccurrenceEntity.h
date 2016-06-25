@@ -33,6 +33,7 @@ public:
     ofParameter<ofFloatColor> markerColor;
     ofParameter<ofFloatColor> rangeColor;
     ofParameter<ofFloatColor> connectorColor;
+    ofParameter<float> markerSize;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params);
   

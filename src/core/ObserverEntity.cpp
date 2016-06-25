@@ -22,6 +22,7 @@ ObserverEntity::Params::Params()
       .set(ofVec3f(-1), ofVec3f(1))
       .setParamRange(ofVec3f(-2), ofVec3f(2)));
   add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
+  add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
@@ -69,34 +70,12 @@ void ObserverEntity::draw(const State &state) {
   }
   ofFloatColor color = _params.color.get();
   color.a *= alpha;
-//  ofPushMatrix();
-  
-  //ofTranslate(position);
   
   ofPushStyle();
-    ofFill();
-    ofSetColor(color);
-  //ofDrawCircle(0, 0, 20);
-  ofDrawSphere(position, 0.03);
-//  ofDrawCircle(position, 0.03);
+  ofFill();
+  ofSetColor(color);
+  ofDrawSphere(position, _params.drawRadius.get());
   ofPopStyle();
-  
-//  ofPushStyle();
-//  ofNoFill();
-//  ofSetColor(ofColor(ofColor::black, ofClamp(alpha + 0.1f, 0, 1)));
-//  ofDrawCircle(0, 0, 20);
-//  ofPopStyle();
-  
-//  ofPath path;
-//  path.setFilled(true);
-//  path.setFillColor(ofColor(ofColor::black, alpha));
-//  path.setStrokeWidth(1.0f);
-//  path.setStrokeColor(ofColor(ofColor::black,
-//                              ofClamp(alpha + 1.0f, 0.0f, 1.0f)));
-//  path.circle(ofVec3f::zero(), 5);
-//  path.draw();
-  
-//  ofPopMatrix();
 }
 
 void ObserverEntity::output(std::ostream &os) const {

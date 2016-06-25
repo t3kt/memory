@@ -26,6 +26,7 @@ OccurrenceEntity::Params::Params()
   add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
   add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
   add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
+  add(markerSize.set("Marker Size", 0.02, 0, 0.1));
 }
 
 void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
@@ -93,7 +94,7 @@ void OccurrenceEntity::draw(const State &state) {
   ofFloatColor markerColor = _params.markerColor.get();
   markerColor.a *= alpha;
   ofSetColor(markerColor);
-  ofDrawBox(position, 0.02);
+  ofDrawBox(position, _params.markerSize.get());
   ofPopStyle();
 
   ofPushStyle();

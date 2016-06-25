@@ -31,6 +31,7 @@ public:
     RandomValueSupplier<float> lifetime;
     RandomValueSupplier<ofVec3f> spawnArea;
     ofParameter<ofFloatColor> color;
+    ofParameter<float> drawRadius;
   };
   
   static shared_ptr<ObserverEntity> spawn(const Params& params, const State& state);
