@@ -27,7 +27,10 @@ public:
     Params();
     
     RandomValueSupplier<float> radius;
+    RandomValueSupplier<ofVec3f> spawnArea;
   };
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params);
+  
   OccurrenceEntity(ofVec3f pos, float radius);
   virtual ~OccurrenceEntity() {}
   
@@ -48,6 +51,8 @@ public:
   bool isAlive(const State& state) const override {
     return hasConnectedObservers();
   }
+  
+  float originalRadius() const { return _originalRadius; };
   
 private:
   void recalculateRadius();

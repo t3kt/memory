@@ -12,8 +12,16 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params()
-: lifetime("Lifetime Range") {
+: lifetime("Lifetime Range")
+, spawnArea("Spawn Area") {
   paramGroup.add(lifetime.set(1, 4).paramGroup);
+  paramGroup.add(spawnArea.set(ofVec3f(-1), ofVec3f(1)).paramGroup);
+}
+
+shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const State& state) {
+  ofVec3f pos = params.spawnArea.getValue();
+  float life = params.lifetime.getValue();
+  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, state));
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)

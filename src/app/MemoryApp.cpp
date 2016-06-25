@@ -75,24 +75,20 @@ void MemoryApp::draw() {
 }
 
 void MemoryApp::spawnObserver() {
-  ofVec3f pos = randomPosition();
-  float life = _appParams.observer.lifetime.getValue();
-  auto observer = shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, _state));
+  auto observer = ObserverEntity::spawn(_appParams.observer, _state);
   _observers.addEntity(observer);
   
   std::cout << "Spawned observer: " << *observer << std::endl;
 }
 
 void MemoryApp::spawnOccurrence() {
-  ofVec3f pos = randomPosition();
-  float radius = _appParams.occurrence.radius.getValue();
-  auto occurrence = shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius));
+  auto occurrence = OccurrenceEntity::spawn(_appParams.occurrence);
   
   bool connected = false;
   
   _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
-    float dist = pos.distance(observer->position);
-    if (dist <= radius) {
+    float dist = occurrence->position.distance(observer->position);
+    if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);
       observer->addOccurrence(occurrence);
       connected = true;

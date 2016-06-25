@@ -27,7 +27,10 @@ public:
     Params();
     
     RandomValueSupplier<float> lifetime;
+    RandomValueSupplier<ofVec3f> spawnArea;
   };
+  
+  static shared_ptr<ObserverEntity> spawn(const Params& params, const State& state);
   
   ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
@@ -49,6 +52,8 @@ public:
   }
   
   void handleDeath() override;
+  
+  float lifetime() const { return _totalLifetime; };
   
 private:
   const float _startTime;

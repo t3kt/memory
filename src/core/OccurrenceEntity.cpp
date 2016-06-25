@@ -13,9 +13,17 @@
 
 const float MAX_OBS_LEVEL = 4.0f;
 
+shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params) {
+  ofVec3f pos = params.spawnArea.getValue();
+  float radius = params.radius.getValue();
+  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius));
+}
+
 OccurrenceEntity::Params::Params()
-: radius("Radius Range") {
+: radius("Radius Range")
+, spawnArea("Spawn Area") {
   paramGroup.add(radius.set(0.4, 1.3).paramGroup);
+  paramGroup.add(spawnArea.set(ofVec3f(-1), ofVec3f(1)).paramGroup);
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius)
