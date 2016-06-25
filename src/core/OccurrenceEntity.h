@@ -50,13 +50,13 @@ public:
   
   float getAmountOfObservation(const State& state) const;
   
+  void update(const State& state) override;
+  
   void draw(const State& state) override;
   
-  void output(std::ostream& os) const override;
+  void handleDeath() override;
   
-  bool isAlive(const State& state) const override {
-    return hasConnectedObservers();
-  }
+  void output(std::ostream& os) const override;
   
   float originalRadius() const { return _originalRadius; };
   

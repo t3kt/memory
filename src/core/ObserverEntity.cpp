@@ -49,22 +49,25 @@ void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
   _connectedOccurrences.push_back(occurrence);
 }
 
-float ObserverEntity::getRemainingLifetimeFraction(const State &state) const {
+void ObserverEntity::update(const State &state) {
   float elapsed = state.time - _startTime;
   if (elapsed > _totalLifetime) {
-    return 0.0f;
+    _lifeFraction = 0.0f;
+    kill();
+  } else {
+    _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
   }
-  return ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
 }
 
 void ObserverEntity::handleDeath() {
+  std::cout << "Observer died: " << *this << std::endl;
   for (auto occurrence : _connectedOccurrences) {
     occurrence->removeObserver(id);
   }
 }
 
 void ObserverEntity::draw(const State &state) {
-  float alpha = getRemainingLifetimeFraction(state);
+  float alpha = _lifeFraction;
   if (alpha <= 0) {
     return;
   }
@@ -83,5 +86,6 @@ void ObserverEntity::output(std::ostream &os) const {
       << ", position: " << position
       << ", startTime: " << _startTime
       << ", totalLifetime: " << _totalLifetime
+      << ", lifeFraction: " << _lifeFraction
       << "}";
 }

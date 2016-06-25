@@ -41,13 +41,13 @@ void MemoryApp::setup() {
 void MemoryApp::update() {
   _state.updateTime();
   _observers.update(_state);
+  _observers.extractDeadObjects();
   _occurrences.update(_state);
-  //...
+  _occurrences.extractDeadObjects();
 }
 
 void MemoryApp::draw() {
-//  ofClear(ofColor::white);
-  ofBackground(ofColor::white);
+  ofBackground(ofFloatColor::white);
   glPushAttrib(GL_ENABLE_BIT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);

@@ -45,15 +45,13 @@ public:
     return _connectedOccurrences;
   }
   
-  float getRemainingLifetimeFraction(const State& state) const;
+  float getRemainingLifetimeFraction() const { return _lifeFraction; }
+  
+  void update(const State& state) override;
   
   void draw(const State& state) override;
   
   void output(std::ostream& os) const override;
-  
-  bool isAlive(const State& state) const override {
-    return getRemainingLifetimeFraction(state) > 0;
-  }
   
   void handleDeath() override;
   
@@ -63,6 +61,7 @@ private:
   const Params& _params;
   const float _startTime;
   const float _totalLifetime;
+  float _lifeFraction;
   std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;
 };
 

@@ -76,10 +76,16 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
   }
 }
 
+void OccurrenceEntity::update(const State &state) {
+  if (!hasConnectedObservers()) {
+    kill();
+  }
+}
+
 float OccurrenceEntity::getAmountOfObservation(const State& state) const {
   float result = 0;
   for (auto observer : _connectedObservers) {
-    result += observer.second->getRemainingLifetimeFraction(state);
+    result += observer.second->getRemainingLifetimeFraction();
   }
   return result;
 }
@@ -111,11 +117,15 @@ void OccurrenceEntity::draw(const State &state) {
     connectorMesh.addVertex(position);
     connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * alpha));
     connectorMesh.addVertex(observer.second->position);
-    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * observer.second->getRemainingLifetimeFraction(state)));
+    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * observer.second->getRemainingLifetimeFraction()));
   }
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   connectorMesh.draw();
   ofPopStyle();
+}
+
+void OccurrenceEntity::handleDeath() {
+  std::cout << "Occurrence died: " << *this << std::endl;
 }
 
 void OccurrenceEntity::output(std::ostream &os) const {
