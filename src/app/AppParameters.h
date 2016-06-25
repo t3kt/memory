@@ -10,6 +10,7 @@
 #define __behavior__AppParameters__
 
 #include <ofParameterGroup.h>
+#include <ofxPanel.h>
 
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
@@ -17,6 +18,8 @@
 class MemoryAppParameters {
 public:
   MemoryAppParameters();
+  
+  void initGui(ofxPanel& gui);
   
   ofParameterGroup paramGroup;
   ObserverEntity::Params observer;

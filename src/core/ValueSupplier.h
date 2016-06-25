@@ -31,7 +31,18 @@ public:
     return *this;
   };
   
+  RandomValueSupplier& setParamRange(T minVal, T maxVal) {
+    minValue.setMin(minVal);
+    minValue.setMax(maxVal);
+    maxValue.setMin(minVal);
+    maxValue.setMax(maxVal);
+    return *this;
+  };
+  
   T getValue() const;
+  
+  operator ofParameterGroup&() { return paramGroup; };
+  operator const ofParameterGroup&() const { return paramGroup; };
   
   ofParameterGroup paramGroup;
   ofParameter<T> minValue;

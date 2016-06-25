@@ -26,6 +26,8 @@ public:
   public:
     Params();
     
+    void initPanel(ofxGuiGroup& panel) override;
+    
     RandomValueSupplier<float> radius;
     RandomValueSupplier<ofVec3f> spawnArea;
   };

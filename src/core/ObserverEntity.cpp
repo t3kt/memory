@@ -12,10 +12,19 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params()
-: lifetime("Lifetime Range")
+: ::Params("Observers")
+, lifetime("Lifetime Range")
 , spawnArea("Spawn Area") {
-  paramGroup.add(lifetime.set(1, 4).paramGroup);
-  paramGroup.add(spawnArea.set(ofVec3f(-1), ofVec3f(1)).paramGroup);
+  paramGroup.add(lifetime
+                 .set(1, 4)
+                 .setParamRange(0, 240));
+  paramGroup.add(spawnArea
+                 .set(ofVec3f(-1), ofVec3f(1))
+                 .set(ofVec3f(-2), ofVec3f(2)));
+}
+
+void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
+  panel.getGroup("Spawn Area").minimize();
 }
 
 shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const State& state) {
@@ -55,7 +64,7 @@ void ObserverEntity::draw(const State &state) {
   if (alpha <= 0) {
     return;
   }
-  ofPushMatrix();
+//  ofPushMatrix();
   
   //ofTranslate(position);
   
@@ -82,7 +91,7 @@ void ObserverEntity::draw(const State &state) {
 //  path.circle(ofVec3f::zero(), 5);
 //  path.draw();
   
-  ofPopMatrix();
+//  ofPopMatrix();
 }
 
 void ObserverEntity::output(std::ostream &os) const {

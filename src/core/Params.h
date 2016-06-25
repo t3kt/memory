@@ -11,6 +11,7 @@
 
 #include <string>
 #include <ofParameterGroup.h>
+#include <ofxGuiGroup.h>
 
 class Params {
 public:
@@ -18,6 +19,8 @@ public:
   explicit Params(std::string label) {
     paramGroup.setName(label);
   }
+  
+  virtual void initPanel(ofxGuiGroup& panel) {};
   
   ofParameterGroup paramGroup;
 };

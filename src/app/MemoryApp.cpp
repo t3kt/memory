@@ -22,7 +22,7 @@ static ofVec3f randomPosition() {
 
 void MemoryApp::setup() {
   
-  _gui.setup(_appParams.paramGroup);
+  _appParams.initGui(_gui);
   
   ofEnableAlphaBlending();
 //  ofDisableDepthTest();
