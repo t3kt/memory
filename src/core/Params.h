@@ -1,0 +1,25 @@
+//
+//  Params.h
+//  memory-prototype-2
+//
+//  Created by tekt on 6/24/16.
+//
+//
+
+#ifndef Params_h
+#define Params_h
+
+#include <string>
+#include <ofParameterGroup.h>
+
+class Params {
+public:
+  Params() {}
+  explicit Params(std::string label) {
+    paramGroup.setName(label);
+  }
+  
+  ofParameterGroup paramGroup;
+};
+
+#endif /* Params_h */

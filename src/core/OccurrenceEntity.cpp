@@ -20,7 +20,7 @@ OccurrenceEntity::Params::Params() {
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius)
 : _actualRadius(0)
 , _originalRadius(radius)
-, Entity() {
+, WorldObject() {
   position = pos;
 }
 
@@ -29,7 +29,6 @@ void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
   float dist = position.distance(observer->position);
   if (dist > _actualRadius) {
     _actualRadius = dist;
-    drawRadius = dist;
   }
 }
 
@@ -39,12 +38,11 @@ void OccurrenceEntity::recalculateRadius() {
     float dist = position.distance(observer.second->position);
     if (dist > _actualRadius) {
       _actualRadius = dist;
-      drawRadius = dist;
     }
   }
 }
 
-void OccurrenceEntity::removeObserver(EntityId id) {
+void OccurrenceEntity::removeObserver(ObjectId id) {
   auto i = _connectedObservers.find(id);
   if (i != _connectedObservers.end()) {
     _connectedObservers.erase(id);

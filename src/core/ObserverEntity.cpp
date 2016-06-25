@@ -8,6 +8,7 @@
 
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
+#include "State.h"
 #include <ofMain.h>
 
 ObserverEntity::Params::Params() {
@@ -15,13 +16,11 @@ ObserverEntity::Params::Params() {
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
-: Entity()
+: WorldObject()
 , _startTime(state.time)
 , _totalLifetime(life)
 {
   position = pos;
-  drawRadius = 0.005;
-  color = ofColor(0.4, 0, 0.5, 1);
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {

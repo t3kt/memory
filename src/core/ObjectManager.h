@@ -1,22 +1,22 @@
 //
-//  EntityManager.h
+//  ObjectManager.h
 //  memory-prototype-2
 //
 //  Created by tekt on 6/23/16.
 //
 //
 
-#ifndef EntityManager_h
-#define EntityManager_h
+#ifndef ObjectManager_h
+#define ObjectManager_h
 
 #include <map>
 #include <memory>
 #include <functional>
-#include "Entity.h"
+#include "WorldObject.h"
 #include "State.h"
 
 template <class E>
-class EntityManager {
+class ObjectManager {
 public:
   
   void update(const State& state) {
@@ -50,7 +50,7 @@ public:
   }
   
 private:
-  std::map<EntityId, shared_ptr<E>> _entities;
+  std::map<ObjectId, shared_ptr<E>> _entities;
 };
 
-#endif /* EntityManager_h */
+#endif /* ObjectManager_h */

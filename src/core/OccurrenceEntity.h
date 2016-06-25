@@ -10,18 +10,18 @@
 #define OccurrenceEntity_h
 
 #include <ofTypes.h>
-#include "Entity.h"
 #include <map>
 #include "Common.h"
+#include "WorldObject.h"
+#include "Params.h"
 #include <iostream>
 
 class ObserverEntity;
 
 class OccurrenceEntity
-: public Entity
-, public Outputable {
+: public WorldObject {
 public:
-  class Params : public Entity::Params {
+  class Params : public ::Params {
   public:
     Params();
     
@@ -32,7 +32,7 @@ public:
   
   void addObserver(shared_ptr<ObserverEntity> observer);
   
-  void removeObserver(EntityId id);
+  void removeObserver(ObjectId id);
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
@@ -53,7 +53,7 @@ private:
   
   const float _originalRadius;
   float _actualRadius;
-  std::map<EntityId, shared_ptr<ObserverEntity>> _connectedObservers;
+  std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
 };
 
 #endif /* OccurrenceEntity_h */

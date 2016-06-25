@@ -10,28 +10,26 @@
 #define ObserverEntity_h
 
 #include <ofTypes.h>
-#include "Entity.h"
-#include "State.h"
+#include "Params.h"
 #include "Common.h"
+#include "WorldObject.h"
 #include <vector>
 #include <iostream>
 
 class OccurrenceEntity;
 
 class ObserverEntity
-: public Entity
-, public Outputable {
+: public WorldObject {
 public:
-  class Params : public Entity::Params {
+  class Params : public ::Params {
   public:
     Params();
     
-    ofParameterGroup paramGroup;
     ofParameter<ofVec2f> lifetimeRange;
   };
   
   ObserverEntity(ofVec3f pos, float life, const State& state);
-  virtual ~ObserverEntity() {}
+  virtual ~ObserverEntity() override {}
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
   
