@@ -7,3 +7,9 @@
 //
 
 #include "Events.h"
+
+void StateEventArgs::output(std::ostream &os) const {
+  os << "StateEventArgs{"
+    << state
+    << "}";
+}

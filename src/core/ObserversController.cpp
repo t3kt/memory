@@ -36,8 +36,8 @@ void ObserversController::setup(const State &state) {
 void ObserversController::update(const State &state) {
   _observers.update(state);
   _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
-    ObserverEventArgs e(observer);
-    ofNotifyEvent(observerDied, e);
+    ObserverEventArgs e(state, observer);
+    observerDied.notifyListeners(e);
   });
   
   if (_spawnInterval.check(state)) {
@@ -67,7 +67,7 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 void ObserversController::spawnObserver(const State &state) {
   auto observer = ObserverEntity::spawn(_params.entities, state);
   _observers.add(observer);
-  ObserverEventArgs e(observer);
-  ofNotifyEvent(observerSpawned, e);
+  ObserverEventArgs e(state, observer);
+  observerSpawned.notifyListeners(e);
   std::cout << "Spawned observer: " << *observer << std::endl;
 }

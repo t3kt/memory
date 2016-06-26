@@ -9,7 +9,6 @@
 #ifndef ObserversController_h
 #define ObserversController_h
 
-#include <ofEvent.h>
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "ObjectManager.h"
@@ -19,7 +18,7 @@
 #include "Events.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
-using ObserverEvent = ofEvent<ObserverEventArgs>;
+using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
 
 class ObserversController {
 public:

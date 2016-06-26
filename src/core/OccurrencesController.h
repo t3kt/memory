@@ -9,7 +9,6 @@
 #ifndef OccurrencesController_h
 #define OccurrencesController_h
 
-#include <ofEvent.h>
 #include "OccurrenceEntity.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
@@ -19,7 +18,7 @@
 #include "Events.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = ofEvent<OccurrenceEventArgs>;
+using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
 
 class OccurrencesController {
 public:

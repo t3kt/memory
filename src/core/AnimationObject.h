@@ -16,6 +16,8 @@
 
 class AnimationObject : public WorldObject {
 public:
+  AnimationObject(float delay, float duration);
+  
   virtual void draw(const State& state) override = 0;
   virtual void output(std::ostream& os) const override;
   

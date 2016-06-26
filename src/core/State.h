@@ -9,10 +9,14 @@
 #ifndef __behavior__State__
 #define __behavior__State__
 
-class State {
+#include "Common.h"
+
+class State : public Outputable {
 public:
   State();
   void updateTime();
+  
+  void output(std::ostream& os) const override;
   
   float time;
   float timeDelta;

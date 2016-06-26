@@ -42,6 +42,13 @@ void AnimationUpdater::end() {
   _animationManager.eraseById(_animation.id);
 }
 
+AnimationObject::AnimationObject(float delay, float duration)
+: _delay(delay)
+, _duration(duration)
+, _visible(true)
+, _percentage(0) {
+}
+
 void AnimationObject::output(std::ostream &os) const {
   os << "Animation{id:" << id
     << "}";
