@@ -39,6 +39,7 @@ public:
   void draw(const State& state);
   
   OccurrenceEvent occurrenceSpawned;
+  OccurrenceEvent occurrenceSpawnFailed;
   OccurrenceEvent occurrenceDied;
   
 private:

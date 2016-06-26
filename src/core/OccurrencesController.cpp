@@ -55,13 +55,13 @@ void OccurrencesController::spawnOccurrence(const State &state) {
   
   bool connected = _observers.registerOccurrence(occurrence);
   
+  OccurrenceEventArgs e(state, occurrence);
   if (connected) {
     std::cout << "Spawned occurrence: " << *occurrence << std::endl;
     _occurrences.add(occurrence);
-    
-    OccurrenceEventArgs e(state, occurrence);
     occurrenceSpawned.notifyListeners(e);
   } else {
     std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
+    occurrenceSpawnFailed.notifyListeners(e);
   }
 }
