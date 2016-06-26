@@ -25,6 +25,9 @@ void AnimationsController::addTimedAction(shared_ptr<TimedAction> action) {
 void AnimationsController::update(const State &state) {
   _animations.update(state);
   _timedActions.update(state.time);
+  _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
+    std::cout << "Animation ended: " << *animation << std::endl;
+  });
 }
 
 void AnimationsController::draw(const State &state) {
