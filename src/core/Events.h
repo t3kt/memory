@@ -14,7 +14,6 @@
 
 #include <vector>
 
-using std::vector;
 #include <ofxLiquidEvent.h>
 
 class StateEventArgs : public Outputable {
