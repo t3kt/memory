@@ -10,11 +10,11 @@
 
 MemoryAppParameters::MemoryAppParameters() {
   paramGroup.add(observers);
-  paramGroup.add(occurrence);
+  paramGroup.add(occurrences);
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {
   gui.setup(paramGroup);
   observers.initPanel(gui.getGroup(observers.getName()));
-  occurrence.initPanel(gui.getGroup(occurrence.getName()));
+  occurrences.initPanel(gui.getGroup(occurrences.getName()));
 }

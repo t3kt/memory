@@ -19,6 +19,7 @@
 #include "AnimationObject.h"
 #include "ObjectManager.h"
 #include "ObserversController.h"
+#include "OccurrencesController.h"
 #include "Timing.h"
 
 class MemoryApp : public ofBaseApp {
@@ -27,12 +28,10 @@ public:
   void update() override;
   void draw() override;
 private:
-  void spawnOccurrence();
-  
   State _state;
   MemoryAppParameters _appParams;
   shared_ptr<ObserversController> _observers;
-  ObjectManager<OccurrenceEntity> _occurrences;
+  shared_ptr<OccurrencesController> _occurrences;
   ObjectManager<AnimationObject> _animations;
   TimedActionSet _timedActions;
   ofEasyCam _cam;

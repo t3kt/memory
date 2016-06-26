@@ -17,6 +17,11 @@ ObserversController::Params::Params()
   add(spawnInterval);
 }
 
+void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
+  entities.initPanel(panel);
+  spawnInterval.initPanel(panel);
+}
+
 ObserversController::ObserversController(const ObserversController::Params& params, const State& state)
 : _params(params)
 , _spawnInterval(params.spawnInterval, state) {
@@ -41,8 +46,19 @@ void ObserversController::draw(const State &state) {
   _observers.draw(state);
 }
 
-void ObserversController::performAction(std::function<void (shared_ptr<ObserverEntity>)> action) {
-  _observers.performAction(action);
+bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
+  bool connected = false;
+  
+  _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
+    float dist = occurrence->position.distance(observer->position);
+    if (dist <= occurrence->originalRadius()) {
+      occurrence->addObserver(observer);
+      observer->addOccurrence(occurrence);
+      connected = true;
+    }
+    
+  });
+  return connected;
 }
 
 void ObserversController::spawnObserver(const State &state) {

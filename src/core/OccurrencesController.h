@@ -1,22 +1,22 @@
 //
-//  ObserversController.h
+//  OccurrencesController.h
 //  memory-prototype-2
 //
 //  Created by tekt on 6/25/16.
 //
 //
 
-#ifndef ObserversController_h
-#define ObserversController_h
+#ifndef OccurrencesController_h
+#define OccurrencesController_h
 
-#include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
+#include "ObserversController.h"
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
 #include "Interval.h"
 
-class ObserversController {
+class OccurrencesController {
 public:
   class Params : public ::Params {
   public:
@@ -24,23 +24,23 @@ public:
     
     void initPanel(ofxGuiGroup& panel) override;
     
-    ObserverEntity::Params entities;
+    OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
   };
   
-  ObserversController(const Params& params, const State& state);
+  OccurrencesController(const Params& params, ObserversController& observers, const State& state);
   
   void setup(const State& state);
   void update(const State& state);
   void draw(const State& state);
   
-  bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
 private:
-  void spawnObserver(const State& state);
+  void spawnOccurrence(const State& state);
   
   const Params& _params;
   Interval _spawnInterval;
-  ObjectManager<ObserverEntity> _observers;
+  ObserversController& _observers;
+  ObjectManager<OccurrenceEntity> _occurrences;
 };
 
-#endif /* ObserversController_h */
+#endif /* OccurrencesController_h */

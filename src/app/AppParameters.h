@@ -13,7 +13,7 @@
 #include <ofxPanel.h>
 
 #include "ObserversController.h"
-#include "OccurrenceEntity.h"
+#include "OccurrencesController.h"
 
 class MemoryAppParameters {
 public:
@@ -23,7 +23,7 @@ public:
   
   ofParameterGroup paramGroup;
   ObserversController::Params observers;
-  OccurrenceEntity::Params occurrence;
+  OccurrencesController::Params occurrences;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

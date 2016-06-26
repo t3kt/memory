@@ -11,7 +11,6 @@
 #include <memory>
 #include <iostream>
 
-const int START_OBSERVERS = 20;
 const int START_OCCURRENCES = 10;
 
 static ofVec3f randomPosition() {
@@ -32,17 +31,15 @@ void MemoryApp::setup() {
   _observers = std::make_shared<ObserversController>(_appParams.observers, _state);
   _observers->setup(_state);
   
-  for (int i = 0; i < START_OCCURRENCES; i++) {
-    spawnOccurrence();
-  }
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, *_observers, _state);
+  _occurrences->setup(_state);
   //...
 }
 
 void MemoryApp::update() {
   _state.updateTime();
   _observers->update(_state);
-  _occurrences.update(_state);
-  _occurrences.extractDeadObjects();
+  _occurrences->update(_state);
 }
 
 void MemoryApp::draw() {
@@ -61,7 +58,7 @@ void MemoryApp::draw() {
   ofScale(size, size, size);
   
   _observers->draw(_state);
-  _occurrences.draw(_state);
+  _occurrences->draw(_state);
   
   ofPopMatrix();
   ofPopStyle();
@@ -71,28 +68,4 @@ void MemoryApp::draw() {
   ofSetColor(255);
   ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), ofGetWidth() - 100, 20);
   _gui.draw();
-}
-
-void MemoryApp::spawnOccurrence() {
-  auto occurrence = OccurrenceEntity::spawn(_appParams.occurrence);
-  
-  bool connected = false;
-  
-  _observers->performAction([&] (shared_ptr<ObserverEntity> observer) {
-    float dist = occurrence->position.distance(observer->position);
-    if (dist <= occurrence->originalRadius()) {
-      occurrence->addObserver(observer);
-      observer->addOccurrence(occurrence);
-      connected = true;
-    }
-    
-  });
-  
-  if (connected) {
-    std::cout << "Spawned occurrence: " << *occurrence << std::endl;
-    _occurrences.add(occurrence);
-  } else {
-    std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
-  }
-  //...
 }
