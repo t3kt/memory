@@ -12,7 +12,7 @@
 #include <ofParameterGroup.h>
 #include <ofxPanel.h>
 
-#include "ObserverEntity.h"
+#include "ObserversController.h"
 #include "OccurrenceEntity.h"
 
 class MemoryAppParameters {
@@ -22,7 +22,7 @@ public:
   void initGui(ofxPanel& gui);
   
   ofParameterGroup paramGroup;
-  ObserverEntity::Params observer;
+  ObserversController::Params observers;
   OccurrenceEntity::Params occurrence;
 };
 

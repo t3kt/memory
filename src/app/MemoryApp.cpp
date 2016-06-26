@@ -27,10 +27,10 @@ void MemoryApp::setup() {
   ofEnableAlphaBlending();
 //  ofDisableDepthTest();
   
-  _appParams.observer.lifetime.set(10, 60);
-  for (int i = 0; i < START_OBSERVERS; i++) {
-    spawnObserver();
-  }
+  _appParams.observers.entities.lifetime.set(10, 60);
+  
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _state);
+  _observers->setup(_state);
   
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence();
@@ -40,8 +40,7 @@ void MemoryApp::setup() {
 
 void MemoryApp::update() {
   _state.updateTime();
-  _observers.update(_state);
-  _observers.extractDeadObjects();
+  _observers->update(_state);
   _occurrences.update(_state);
   _occurrences.extractDeadObjects();
 }
@@ -61,7 +60,7 @@ void MemoryApp::draw() {
   size *= 0.4;
   ofScale(size, size, size);
   
-  _observers.draw(_state);
+  _observers->draw(_state);
   _occurrences.draw(_state);
   
   ofPopMatrix();
@@ -74,19 +73,12 @@ void MemoryApp::draw() {
   _gui.draw();
 }
 
-void MemoryApp::spawnObserver() {
-  auto observer = ObserverEntity::spawn(_appParams.observer, _state);
-  _observers.add(observer);
-  
-  std::cout << "Spawned observer: " << *observer << std::endl;
-}
-
 void MemoryApp::spawnOccurrence() {
   auto occurrence = OccurrenceEntity::spawn(_appParams.occurrence);
   
   bool connected = false;
   
-  _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
+  _observers->performAction([&] (shared_ptr<ObserverEntity> observer) {
     float dist = occurrence->position.distance(observer->position);
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);
