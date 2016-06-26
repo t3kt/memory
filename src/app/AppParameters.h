@@ -14,6 +14,7 @@
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "AnimationsController.h"
 #include "Params.h"
 
 class MemoryAppParameters : public Params {
@@ -21,7 +22,8 @@ public:
   MemoryAppParameters();
   
   void initGui(ofxPanel& gui);
-  
+
+  AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
 };

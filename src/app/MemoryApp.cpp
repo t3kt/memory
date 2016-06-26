@@ -34,7 +34,7 @@ void MemoryApp::setup() {
   _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, *_observers, _state);
   _occurrences->setup(_state);
   
-  _animations = std::make_shared<AnimationsController>();
+  _animations = std::make_shared<AnimationsController>(_appParams.animations);
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
   //...

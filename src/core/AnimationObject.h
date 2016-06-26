@@ -9,14 +9,28 @@
 #ifndef AnimationObject_h
 #define AnimationObject_h
 
+#include <string>
+#include <ofParameter.h>
 #include "WorldObject.h"
 #include "ObjectManager.h"
 #include "Timing.h"
 #include "State.h"
+#include "Params.h"
+#include "ValueSupplier.h"
 
 class AnimationObject : public WorldObject {
 public:
+  class Params : public ::Params {
+  public:
+    explicit Params(std::string name);
+
+    ofParameter<bool> enabled;
+    ofParameter<float> delay;
+    ofParameter<float> duration;
+  };
+  
   AnimationObject(float delay, float duration);
+  AnimationObject(const Params& params);
   
   virtual void draw(const State& state) override = 0;
   virtual void output(std::ostream& os) const override;
@@ -39,6 +53,28 @@ private:
   float _percentage;
   
   friend class AnimationUpdater;
+};
+
+class ExpandingSphereAnimation : public AnimationObject {
+public:
+  class Params : public AnimationObject::Params {
+  public:
+    explicit Params(std::string name);
+
+    ValueRange<float> radius;
+    ValueRange<float> alpha;
+    RandomHsbFloatColorSupplier color;
+  };
+
+  ExpandingSphereAnimation(ofVec3f position, const Params& params);
+
+  virtual void draw(const State& state) override;
+  virtual void output(std::ostream& os) const override;
+
+private:
+  const Params& _params;
+  const ofFloatColor _color;
+  ofVec3f _position;
 };
 
 #endif /* AnimationObject_h */

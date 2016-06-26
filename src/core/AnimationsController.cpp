@@ -10,6 +10,19 @@
 #include <ofMain.h>
 #include <iostream>
 
+AnimationsController::Params::Params()
+: ::Params("Animations")
+, observerDied("Observer Died")
+, occurrenceDied("Occurrence Died") {
+  add(enabled.set("Enabled", true));
+  add(observerDied);
+  add(occurrenceDied);
+}
+
+AnimationsController::AnimationsController(const AnimationsController::Params& params)
+: _params(params) {
+}
+
 void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, const State& state) {
   std::cout << "Adding animation: " << *animation << std::endl;
   
@@ -34,72 +47,28 @@ void AnimationsController::draw(const State &state) {
   _animations.draw(state);
 }
 
-class ObserverDiedAnimation : public AnimationObject {
-public:
-  ObserverDiedAnimation(const ObserverEntity& observer)
-  : AnimationObject(0, 5)
-  , _position(observer.position) {}
-  
-  void draw(const State& state) override {
-    ofPushMatrix();
-    ofPushStyle();
-    ofEnableAlphaBlending();
-    
-    ofSetColor(ofFloatColor(0, 0, 0.5, ofMap(percentage(), 0, 1, 0.5, 0)));
-    ofDrawSphere(_position, ofMap(percentage(), 0, 1, 0, 0.5));
-    
-    ofPopStyle();
-    ofPopMatrix();
-  }
-  
-  void output(std::ostream& os) const override {
-    os << "ObserverDiedAnimation{id: " << id
-        << "position: " << _position
-        << "}";
-  }
-private:
-  const ofVec3f _position;
-    };
-    
-class OccurrenceDiedAnimation : public AnimationObject {
-public:
-  OccurrenceDiedAnimation(const OccurrenceEntity& occurrence)
-  : AnimationObject(0, 5)
-  , _position(occurrence.position) {}
-  
-  void draw(const State& state) override {
-    ofPushMatrix();
-    ofPushStyle();
-    ofEnableAlphaBlending();
-    
-    ofSetColor(ofFloatColor(0, 0.5, 0.2, ofMap(percentage(), 0, 1, 0.5, 0)));
-    ofDrawSphere(_position, ofMap(percentage(), 0, 1, 0, 0.5));
-    
-    ofPopStyle();
-    ofPopMatrix();
-  }
-  
-  void output(std::ostream& os) const override {
-    os << "OccurrenceDiedAnimation{id: " << id
-    << "position: " << _position
-    << "}";
-  }
-private:
-  const ofVec3f _position;
-};
-
 void AnimationsController::attachTo(ObserversController &observers) {
   observers.observerDied += [&](ObserverEventArgs e) {
+    if (!_params.enabled.get() || !_params.observerDied.enabled.get()) {
+      return;
+    }
     auto observer = e.entity();
-    addAnimation(std::make_shared<ObserverDiedAnimation>(*observer), e.state);
+    auto animation = std::make_shared<ExpandingSphereAnimation>(observer->position, _params.observerDied);
+    addAnimation(animation, e.state);
+    std::cout << "Adding observer died animation: " << *animation << std::endl;
   };
   //...
 }
 
 void AnimationsController::attachTo(OccurrencesController &occurrences) {
   occurrences.occurrenceDied += [&](OccurrenceEventArgs e) {
+    if (!_params.enabled.get() || !_params.occurrenceDied.enabled.get()) {
+      return;
+    }
     auto occurrence = e.entity();
-    addAnimation(std::make_shared<OccurrenceDiedAnimation>(*occurrence), e.state);
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence->position, _params.observerDied);
+    addAnimation(animation, e.state);
+    std::cout << "Adding occurrence died animation: " << *animation << std::endl;
   };
   //...
 }

@@ -20,6 +20,17 @@
 
 class AnimationsController {
 public:
+  class Params : public ::Params {
+  public:
+    Params();
+
+    ofParameter<bool> enabled;
+    ExpandingSphereAnimation::Params observerDied;
+    ExpandingSphereAnimation::Params occurrenceDied;
+  };
+
+  AnimationsController(const Params& params);
+
   void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
   void addTimedAction(shared_ptr<TimedAction> action);
   
@@ -30,6 +41,7 @@ public:
   void draw(const State& state);
   
 private:
+  const Params& _params;
   ObjectManager<AnimationObject> _animations;
   TimedActionSet _timedActions;
 };

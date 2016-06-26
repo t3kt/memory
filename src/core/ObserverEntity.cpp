@@ -15,9 +15,9 @@ ObserverEntity::Params::Params()
 : ::Params("Observers")
 , lifetime("Lifetime Range")
 , spawnArea("Spawn Area") {
-  add(lifetime
-      .set(1, 4)
-      .setParamRange(0, 240));
+  add(lifetime);
+  lifetime.set(1, 4);
+  lifetime.setParamRange(0, 240);
   add(spawnArea
       .set(ofVec3f(-1), ofVec3f(1))
       .setParamRange(ofVec3f(-2), ofVec3f(2)));
