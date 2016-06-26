@@ -37,6 +37,10 @@ public:
   void setup(const State& state);
   void update(const State& state);
   void draw(const State& state);
+
+  std::size_t count() const {
+    return _occurrences.size();
+  }
   
   OccurrenceEvent occurrenceSpawned;
   OccurrenceEvent occurrenceSpawnFailed;

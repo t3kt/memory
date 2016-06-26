@@ -72,6 +72,8 @@ void MemoryApp::draw() {
   glPopAttrib();
   
   ofSetColor(255);
-  ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), ofGetWidth() - 100, 20);
+  ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), ofGetWidth() - 140, 20);
+  ofDrawBitmapStringHighlight("Observers: " + ofToString(_observers->count()), ofGetWidth() - 140, 40);
+  ofDrawBitmapStringHighlight("Occurrences: " + ofToString(_occurrences->count()), ofGetWidth() - 140, 60);
   _gui.draw();
 }

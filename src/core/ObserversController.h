@@ -39,6 +39,10 @@ public:
   void draw(const State& state);
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+
+  std::size_t count() const {
+    return _observers.size();
+  }
   
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
