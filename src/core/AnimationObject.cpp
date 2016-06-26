@@ -47,10 +47,10 @@ void AnimationObject::output(std::ostream &os) const {
     << "}";
 }
 
-DurationAction*
+shared_ptr<DurationAction>
 AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>& animationManager) {
   float now = time;
   float start = now + _delay;
-  return new AnimationUpdater(start, start + _duration,
-                              *this, animationManager);
+  return std::make_shared<AnimationUpdater>(start, start + _duration,
+                                            *this, animationManager);
 }

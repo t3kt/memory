@@ -12,10 +12,11 @@
 #include "WorldObject.h"
 #include "ObjectManager.h"
 #include "Timing.h"
+#include "State.h"
 
 class AnimationObject : public WorldObject {
 public:
-  virtual void draw() = 0;
+  virtual void draw(const State& state) override = 0;
   virtual void output(std::ostream& os) const override;
   
   void show() { _visible = true; }
@@ -25,7 +26,7 @@ public:
     return alive() && _visible;
   }
   
-  DurationAction*
+  shared_ptr<DurationAction>
   createUpdaterAction(float time, ObjectManager<AnimationObject>& animations);
 protected:
   inline float percentage() const { return _percentage; }

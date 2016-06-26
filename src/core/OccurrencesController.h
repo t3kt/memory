@@ -18,6 +18,9 @@
 #include "Interval.h"
 #include "Events.h"
 
+using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
+using OccurrenceEvent = ofEvent<OccurrenceEventArgs>;
+
 class OccurrencesController {
 public:
   class Params : public ::Params {
@@ -36,8 +39,8 @@ public:
   void update(const State& state);
   void draw(const State& state);
   
-  ofEvent<EntityEventArgs<OccurrenceEntity>> occurrenceSpawned;
-  ofEvent<EntityEventArgs<OccurrenceEntity>> occurrenceDied;
+  OccurrenceEvent occurrenceSpawned;
+  OccurrenceEvent occurrenceDied;
   
 private:
   void spawnOccurrence(const State& state);

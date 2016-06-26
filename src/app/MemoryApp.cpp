@@ -33,6 +33,10 @@ void MemoryApp::setup() {
   
   _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, *_observers, _state);
   _occurrences->setup(_state);
+  
+  _animations = std::make_shared<AnimationsController>();
+  _animations->attachTo(*_observers);
+  _animations->attachTo(*_occurrences);
   //...
 }
 
@@ -40,6 +44,7 @@ void MemoryApp::update() {
   _state.updateTime();
   _observers->update(_state);
   _occurrences->update(_state);
+  _animations->update(_state);
 }
 
 void MemoryApp::draw() {
@@ -59,6 +64,7 @@ void MemoryApp::draw() {
   
   _observers->draw(_state);
   _occurrences->draw(_state);
+  _animations->draw(_state);
   
   ofPopMatrix();
   ofPopStyle();

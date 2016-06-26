@@ -20,6 +20,7 @@
 #include "ObjectManager.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "AnimationsController.h"
 #include "Timing.h"
 
 class MemoryApp : public ofBaseApp {
@@ -32,8 +33,7 @@ private:
   MemoryAppParameters _appParams;
   shared_ptr<ObserversController> _observers;
   shared_ptr<OccurrencesController> _occurrences;
-  ObjectManager<AnimationObject> _animations;
-  TimedActionSet _timedActions;
+  shared_ptr<AnimationsController> _animations;
   ofEasyCam _cam;
   ofxPanel _gui;
 };

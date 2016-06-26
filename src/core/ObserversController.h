@@ -18,6 +18,9 @@
 #include "Interval.h"
 #include "Events.h"
 
+using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
+using ObserverEvent = ofEvent<ObserverEventArgs>;
+
 class ObserversController {
 public:
   class Params : public ::Params {
@@ -38,8 +41,8 @@ public:
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
   
-  ofEvent<EntityEventArgs<ObserverEntity>> observerSpawned;
-  ofEvent<EntityEventArgs<ObserverEntity>> observerDied;
+  ObserverEvent observerSpawned;
+  ObserverEvent observerDied;
 private:
   void spawnObserver(const State& state);
   
