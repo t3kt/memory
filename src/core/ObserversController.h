@@ -9,12 +9,14 @@
 #ifndef ObserversController_h
 #define ObserversController_h
 
+#include <ofEvent.h>
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
 #include "Interval.h"
+#include "Events.h"
 
 class ObserversController {
 public:
@@ -35,6 +37,9 @@ public:
   void draw(const State& state);
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+  
+  ofEvent<EntityEventArgs<ObserverEntity>> observerSpawned;
+  ofEvent<EntityEventArgs<ObserverEntity>> observerDied;
 private:
   void spawnObserver(const State& state);
   

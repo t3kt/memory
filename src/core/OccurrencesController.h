@@ -9,12 +9,14 @@
 #ifndef OccurrencesController_h
 #define OccurrencesController_h
 
+#include <ofEvent.h>
 #include "OccurrenceEntity.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
 #include "Interval.h"
+#include "Events.h"
 
 class OccurrencesController {
 public:
@@ -33,6 +35,9 @@ public:
   void setup(const State& state);
   void update(const State& state);
   void draw(const State& state);
+  
+  ofEvent<EntityEventArgs<OccurrenceEntity>> occurrenceSpawned;
+  ofEvent<EntityEventArgs<OccurrenceEntity>> occurrenceDied;
   
 private:
   void spawnOccurrence(const State& state);

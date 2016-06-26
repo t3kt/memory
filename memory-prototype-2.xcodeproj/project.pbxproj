@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		326773BD1D1F995200B6F233 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 326773BB1D1F995200B6F233 /* Events.cpp */; };
 		32CC45461D1A47C4003D0A9B /* OccurrenceEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC45441D1A47C4003D0A9B /* OccurrenceEntity.cpp */; };
 		32CC454A1D1A4B81003D0A9B /* ObserverEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */; };
 		32CC454D1D1A5720003D0A9B /* MemoryApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CC454B1D1A5720003D0A9B /* MemoryApp.cpp */; };
@@ -74,6 +75,8 @@
 		27F7A6AF265FCB06BA639098 /* State.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = State.h; path = src/core/State.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		321257701D1CC820002E4C42 /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectManager.h; path = core/ObjectManager.h; sourceTree = "<group>"; };
+		326773BB1D1F995200B6F233 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Events.cpp; path = core/Events.cpp; sourceTree = "<group>"; };
+		326773BC1D1F995200B6F233 /* Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Events.h; path = core/Events.h; sourceTree = "<group>"; };
 		32CC45441D1A47C4003D0A9B /* OccurrenceEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceEntity.cpp; path = core/OccurrenceEntity.cpp; sourceTree = "<group>"; };
 		32CC45451D1A47C4003D0A9B /* OccurrenceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceEntity.h; path = core/OccurrenceEntity.h; sourceTree = "<group>"; };
 		32CC45481D1A4B81003D0A9B /* ObserverEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverEntity.cpp; path = core/ObserverEntity.cpp; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				32E4EC251D1F7537006163EF /* Interval.h */,
 				32E4EC271D1F7F25006163EF /* OccurrencesController.cpp */,
 				32E4EC281D1F7F25006163EF /* OccurrencesController.h */,
+				326773BB1D1F995200B6F233 /* Events.cpp */,
+				326773BC1D1F995200B6F233 /* Events.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */,
 				495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */,
 				CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */,
+				326773BD1D1F995200B6F233 /* Events.cpp in Sources */,
 				BEC7011B31196451456DBC43 /* ofxToggle.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,

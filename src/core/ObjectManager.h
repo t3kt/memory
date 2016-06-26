@@ -15,6 +15,7 @@
 #include <functional>
 #include "WorldObject.h"
 #include "State.h"
+#include "Events.h"
 
 template <class T>
 class ObjectManager {
@@ -29,17 +30,23 @@ public:
   
   std::vector<std::shared_ptr<T>> extractDeadObjects() {
     std::vector<std::shared_ptr<T>> deadObjects;
+    cullDeadObjects([&](std::shared_ptr<T> entity) {
+      deadObjects.push_back(entity);
+    });
+    return deadObjects;
+  }
+  
+  void cullDeadObjects(std::function<void(shared_ptr<T>)> callback) {
     for (auto i = std::begin(_objects);
          i != std::end(_objects);) {
       shared_ptr<T>& object = i->second;
       if (object->alive()) {
         i++;
       } else {
-        deadObjects.push_back(object);
+        callback(object);
         i = _objects.erase(i);
       }
     }
-    return deadObjects;
   }
   
   void draw(const State& state) {

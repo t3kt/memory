@@ -36,7 +36,10 @@ void OccurrencesController::setup(const State &state) {
 
 void OccurrencesController::update(const State &state) {
   _occurrences.update(state);
-  _occurrences.extractDeadObjects();
+  _occurrences.cullDeadObjects([&](shared_ptr<OccurrenceEntity> occurrence) {
+    EntityEventArgs<OccurrenceEntity> e(occurrence);
+    ofNotifyEvent(occurrenceDied, e);
+  });
   
   if (_spawnInterval.check(state)) {
     spawnOccurrence(state);
@@ -55,6 +58,10 @@ void OccurrencesController::spawnOccurrence(const State &state) {
   if (connected) {
     std::cout << "Spawned occurrence: " << *occurrence << std::endl;
     _occurrences.add(occurrence);
+    
+    EntityEventArgs<OccurrenceEntity> e(occurrence);
+    
+    ofNotifyEvent(occurrenceSpawned, e);
   } else {
     std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
   }
