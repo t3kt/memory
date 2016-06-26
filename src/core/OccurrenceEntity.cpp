@@ -30,10 +30,10 @@ OccurrenceEntity::Params::Params()
 }
 
 void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
-  panel.getGroup("Spawn Area").minimize();
-  panel.getGroup("Marker Color").minimize();
-  panel.getGroup("Range Color").minimize();
-  panel.getGroup("Connector Color").minimize();
+//  panel.getGroup("Spawn Area").minimize();
+//  panel.getGroup("Marker Color").minimize();
+//  panel.getGroup("Range Color").minimize();
+//  panel.getGroup("Connector Color").minimize();
 }
 
 shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params) {

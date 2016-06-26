@@ -14,14 +14,14 @@
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "Params.h"
 
-class MemoryAppParameters {
+class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
   
   void initGui(ofxPanel& gui);
   
-  ofParameterGroup paramGroup;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
 };

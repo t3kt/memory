@@ -9,12 +9,12 @@
 #include "AppParameters.h"
 
 MemoryAppParameters::MemoryAppParameters() {
-  paramGroup.add(observers);
-  paramGroup.add(occurrences);
+  add(observers);
+  add(occurrences);
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {
-  gui.setup(paramGroup);
+  gui.setup(*this);
   observers.initPanel(gui.getGroup(observers.getName()));
   occurrences.initPanel(gui.getGroup(occurrences.getName()));
 }

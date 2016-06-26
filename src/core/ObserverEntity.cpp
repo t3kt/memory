@@ -26,8 +26,8 @@ ObserverEntity::Params::Params()
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
-  panel.getGroup("Spawn Area").minimize();
-  panel.getGroup("Color").minimize();
+//  panel.getGroup("Spawn Area").minimize();
+//  panel.getGroup("Color").minimize();
 }
 
 shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const State& state) {
