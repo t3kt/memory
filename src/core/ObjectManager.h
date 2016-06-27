@@ -60,6 +60,12 @@ public:
   void add(shared_ptr<T> object) {
     _objects.insert(std::make_pair(object->id, object));
   }
+
+  template<typename ...Args>
+  void add(shared_ptr<T> object, Args&... others) {
+    add(object);
+    add(others...);
+  }
   
   bool eraseById(ObjectId id) {
     auto i = _objects.find(id);

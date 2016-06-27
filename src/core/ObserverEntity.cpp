@@ -37,7 +37,7 @@ shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &p
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
-: WorldObject()
+: StandardWorldObject()
 , _startTime(state.time)
 , _totalLifetime(life)
 , _params(params)
@@ -57,6 +57,7 @@ void ObserverEntity::update(const State &state) {
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
   }
+  _behaviors.update(*this, state);
 }
 
 void ObserverEntity::handleDeath() {

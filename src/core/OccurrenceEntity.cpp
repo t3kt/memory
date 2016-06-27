@@ -43,7 +43,7 @@ shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Par
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params)
-: WorldObject()
+: StandardWorldObject()
 , _actualRadius(0)
 , _originalRadius(radius)
 , _params(params) {

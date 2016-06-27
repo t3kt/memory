@@ -15,10 +15,12 @@ static ObjectId nextId() {
 }
 
 WorldObject::WorldObject()
-: id(nextId())
-, _alive(true) { }
-
+: id(nextId()) { }
 
 void WorldObject::output(std::ostream &os) const {
   os << "WorldObject{id:" << id << "}";
 }
+
+StandardWorldObject::StandardWorldObject()
+: WorldObject()
+, _alive(true) { }

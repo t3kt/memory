@@ -16,11 +16,12 @@
 #include <vector>
 #include <iostream>
 #include "ValueSupplier.h"
+#include "Behavior.h"
 
 class OccurrenceEntity;
 
 class ObserverEntity
-: public WorldObject {
+: public StandardWorldObject {
 public:
   class Params : public ::Params {
   public:
@@ -38,6 +39,10 @@ public:
   
   ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
   virtual ~ObserverEntity() override {}
+
+  void addBehavior(shared_ptr<Behavior<ObserverEntity>> behavior) {
+    _behaviors.add(behavior);
+  }
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
   
@@ -63,6 +68,7 @@ private:
   const float _totalLifetime;
   float _lifeFraction;
   std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;
+  BehaviorCollection<ObserverEntity> _behaviors;
 };
 
 #endif /* ObserverEntity_h */

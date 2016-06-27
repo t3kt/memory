@@ -20,7 +20,7 @@
 class ObserverEntity;
 
 class OccurrenceEntity
-: public WorldObject {
+: public StandardWorldObject {
 public:
   class Params : public ::Params {
   public:
