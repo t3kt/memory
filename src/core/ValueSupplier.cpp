@@ -36,6 +36,15 @@ ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
                  ofRandom(minVal.z, maxVal.z));
 }
 
+ofVec3f SimpleRandomVectorSupplier::getValue() const {
+  float dist = ofRandom(lowValue.get(), highValue.get());
+  ofVec3f value = ofVec3f(dist, 0, 0);
+  value.rotate(ofRandom(0, 360),
+               ofRandom(0, 360),
+               ofRandom(0, 360));
+  return value;
+}
+
 RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier(std::string name)
 : Params(name)
 , _hueRange("Hue")

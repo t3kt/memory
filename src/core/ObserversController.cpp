@@ -17,9 +17,8 @@ ObserversController::Params::Params()
   add(entities);
   add(spawnInterval);
   add(initialVelocity
-      //.set(ofVec3f(-0.01), ofVec3f(0.01))
-      .set(ofVec3f::zero(), ofVec3f::zero())
-      .setParamRange(ofVec3f(-0.1), ofVec3f(0.1)));
+      .set(0, 0.01)
+      .setParamRange(0, 0.1));
   add(occurrenceAttraction);
 }
 

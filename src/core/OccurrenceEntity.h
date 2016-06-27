@@ -18,6 +18,7 @@
 #include <iostream>
 #include "ValueSupplier.h"
 #include "Bounds.h"
+#include "Behavior.h"
 
 class ObserverEntity;
 
@@ -40,6 +41,10 @@ public:
   
   OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
   virtual ~OccurrenceEntity() {}
+
+  void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
+    _behaviors.add(behavior);
+  }
   
   void addObserver(shared_ptr<ObserverEntity> observer);
   
@@ -70,6 +75,7 @@ private:
   const float _originalRadius;
   float _actualRadius;
   std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
+  BehaviorCollection<OccurrenceEntity> _behaviors;
 };
 
 #endif /* OccurrenceEntity_h */

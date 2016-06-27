@@ -31,7 +31,7 @@ public:
     
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
-    RandomValueSupplier<ofVec3f> initialVelocity;
+    SimpleRandomVectorSupplier initialVelocity;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
   };
   

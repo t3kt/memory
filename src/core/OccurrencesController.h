@@ -17,6 +17,7 @@
 #include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
+#include "Behavior.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
@@ -31,6 +32,7 @@ public:
     
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
+    SimpleRandomVectorSupplier initialVelocity;
   };
   
   OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
@@ -55,6 +57,7 @@ private:
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
+  shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
 };
 
 #endif /* OccurrencesController_h */

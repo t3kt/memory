@@ -34,6 +34,22 @@ public:
   T getValue() const;
 };
 
+class SimpleRandomVectorSupplier : public ValueRange<float> {
+public:
+  explicit SimpleRandomVectorSupplier(std::string name) : ValueRange<float>(name) {}
+
+  SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
+    ValueRange<float>::set(minVal, maxVal);
+    return *this;
+  }
+  SimpleRandomVectorSupplier& setParamRange(float minVal, float maxVal) {
+    ValueRange<float>::setParamRange(minVal, maxVal);
+    return *this;
+  }
+
+  ofVec3f getValue() const;
+};
+
 class RandomHsbFloatColorSupplier : public Params {
 public:
   explicit RandomHsbFloatColorSupplier(std::string name);

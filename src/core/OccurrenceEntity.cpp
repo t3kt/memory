@@ -73,6 +73,7 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
 
 void OccurrenceEntity::update(const State &state) {
   if (hasConnectedObservers()) {
+    _behaviors.update(*this, state);
     ParticleObject::update(state);
   } else {
     kill();
