@@ -92,20 +92,3 @@ void ObserverEntity::outputFields(std::ostream &os) const {
       << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction;
 }
-
-void ObserverOccurrenceAttraction::update(ObserverEntity &observer, const State &state) {
-  float lowBound = _params.distanceBounds.lowValue.get();
-  float highBound = _params.distanceBounds.highValue.get();
-  float lowMagnitude = _params.forceRange.lowValue.get();
-  float highMagnitude = _params.forceRange.highValue.get();
-  for (auto occurrence : observer._connectedOccurrences) {
-    ofVec3f posDiff = occurrence->position() - observer.position();
-    float dist = posDiff.length();
-    if (dist < lowBound || dist > highBound) {
-      continue;
-    }
-    float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
-    posDiff.normalize();
-    observer.addForce(posDiff * mag);
-  }
-}

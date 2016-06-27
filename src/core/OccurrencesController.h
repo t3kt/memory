@@ -33,6 +33,7 @@ public:
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
+    OccurrenceObserverAttraction::Params observerAttraction;
   };
   
   OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
@@ -58,6 +59,7 @@ private:
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
   shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
+  shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
 };
 
 #endif /* OccurrencesController_h */

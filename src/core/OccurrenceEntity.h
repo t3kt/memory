@@ -76,6 +76,25 @@ private:
   float _actualRadius;
   std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
   BehaviorCollection<OccurrenceEntity> _behaviors;
+
+  friend class OccurrenceObserverAttraction;
+};
+
+class OccurrenceObserverAttraction
+: public EntityAttraction<OccurrenceEntity, ObserverEntity> {
+public:
+
+  OccurrenceObserverAttraction(const Params& params)
+  : EntityAttraction<OccurrenceEntity, ObserverEntity>(params) { }
+
+protected:
+  std::vector<shared_ptr<ObserverEntity>> getOthers(OccurrenceEntity& occurrence) const override {
+    std::vector<shared_ptr<ObserverEntity>> observers;
+    for (auto entry : occurrence._connectedObservers) {
+      observers.push_back(entry.second);
+    }
+    return observers;
+  }
 };
 
 #endif /* OccurrenceEntity_h */

@@ -9,6 +9,7 @@
 #ifndef ParticleObject_h
 #define ParticleObject_h
 
+#include <vector>
 #include "WorldObject.h"
 #include "State.h"
 #include "Behavior.h"
@@ -72,6 +73,51 @@ public:
       entityRebounded.notifyListeners(e);
     }
   }
+};
+
+class AbstractEntityAttraction {
+public:
+  class Params : public ::Params {
+  public:
+    Params();
+
+    ValueRange<float> distanceBounds;
+    ValueRange<float> forceRange;
+  };
+
+  AbstractEntityAttraction(const Params& params) : _params(params) {}
+
+protected:
+  const Params& _params;
+};
+
+template<typename E, typename O>
+class EntityAttraction
+: public AbstractEntityAttraction
+, public Behavior<E> {
+public:
+  EntityAttraction(const AbstractEntityAttraction::Params& params)
+  : AbstractEntityAttraction(params) {}
+
+  void update(E& entity, const State& state) override {
+    float lowBound = _params.distanceBounds.lowValue.get();
+    float highBound = _params.distanceBounds.highValue.get();
+    float lowMagnitude = _params.forceRange.lowValue.get();
+    float highMagnitude = _params.forceRange.highValue.get();
+    std::vector<shared_ptr<O>> others = getOthers(entity);
+    for (auto other : others) {
+      ofVec3f posDiff = other->position() - entity.position();
+      float dist = posDiff.length();
+      if (dist < lowBound || dist > highBound) {
+        continue;
+      }
+      float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
+      posDiff.normalize();
+      entity.addForce(posDiff * mag);
+    }
+  }
+protected:
+  virtual std::vector<shared_ptr<O>> getOthers(E& entity) const = 0;
 };
 
 #endif /* ParticleObject_h */

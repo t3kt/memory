@@ -18,6 +18,7 @@ OccurrencesController::Params::Params()
   add(spawnInterval);
   add(initialVelocity.set(0, 0.01)
       .setParamRange(0, 0.1));
+  add(observerAttraction);
 }
 
 void OccurrencesController::Params::initPanel(ofxGuiGroup &panel) {
@@ -34,6 +35,7 @@ OccurrencesController::OccurrencesController(const OccurrencesController::Params
 
 void OccurrencesController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<OccurrenceEntity>>(_bounds);
+  _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }
@@ -64,6 +66,7 @@ void OccurrencesController::spawnOccurrence(const State &state) {
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     occurrence->addBehavior(_reboundBehavior);
+    occurrence->addBehavior(_observerAttraction);
     std::cout << "Spawned occurrence: " << *occurrence << std::endl;
     _occurrences.add(occurrence);
     occurrenceSpawned.notifyListeners(e);

@@ -78,21 +78,16 @@ private:
 };
 
 class ObserverOccurrenceAttraction
-: public Behavior<ObserverEntity> {
+: public EntityAttraction<ObserverEntity, OccurrenceEntity> {
 public:
-  class Params : public ::Params {
-  public:
-    Params();
 
-    ValueRange<float> distanceBounds;
-    ValueRange<float> forceRange;
-  };
+  ObserverOccurrenceAttraction(const AbstractEntityAttraction::Params& params)
+  : EntityAttraction<ObserverEntity, OccurrenceEntity>(params) { }
 
-  ObserverOccurrenceAttraction(const Params& params) : _params(params) { }
-
-  void update(ObserverEntity& observer, const State& state) override;
-private:
-  const Params& _params;
+protected:
+  std::vector<shared_ptr<OccurrenceEntity>> getOthers(ObserverEntity& observer) const override {
+    return observer._connectedOccurrences;
+  }
 };
 
 #endif /* ObserverEntity_h */
