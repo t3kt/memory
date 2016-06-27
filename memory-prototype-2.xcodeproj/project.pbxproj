@@ -11,6 +11,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		3285995A1D209F3F00651172 /* Behavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 328599581D209F3F00651172 /* Behavior.cpp */; };
 		3285995D1D20ABA700651172 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3285995B1D20ABA700651172 /* ParticleObject.cpp */; };
+		32B14F741D20DF5E0029043B /* Bounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B14F721D20DF5E0029043B /* Bounds.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */; };
 		444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */; };
@@ -89,6 +90,8 @@
 		328599591D209F3F00651172 /* Behavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Behavior.h; path = core/Behavior.h; sourceTree = "<group>"; };
 		3285995B1D20ABA700651172 /* ParticleObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleObject.cpp; path = core/ParticleObject.cpp; sourceTree = "<group>"; };
 		3285995C1D20ABA700651172 /* ParticleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleObject.h; path = core/ParticleObject.h; sourceTree = "<group>"; };
+		32B14F721D20DF5E0029043B /* Bounds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bounds.cpp; path = core/Bounds.cpp; sourceTree = "<group>"; };
+		32B14F731D20DF5E0029043B /* Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bounds.h; path = core/Bounds.h; sourceTree = "<group>"; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		36AFCF9C48B26AC8B17E9C98 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		36B95376ECF45981665C19E8 /* State.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = State.cpp; path = src/core/State.cpp; sourceTree = SOURCE_ROOT; };
@@ -271,6 +274,8 @@
 				328599591D209F3F00651172 /* Behavior.h */,
 				3285995B1D20ABA700651172 /* ParticleObject.cpp */,
 				3285995C1D20ABA700651172 /* ParticleObject.h */,
+				32B14F721D20DF5E0029043B /* Bounds.cpp */,
+				32B14F731D20DF5E0029043B /* Bounds.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */,
+				32B14F741D20DF5E0029043B /* Bounds.cpp in Sources */,
 				7F4DAE7D88443C43EA6E0EF9 /* Interval.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,

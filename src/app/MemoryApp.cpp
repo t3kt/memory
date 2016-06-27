@@ -28,10 +28,10 @@ void MemoryApp::setup() {
 
   _appParams.observers.entities.lifetime.set(10, 60);
   
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _state);
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state);
   _observers->setup(_state);
   
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, *_observers, _state);
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.bounds, *_observers, _state);
   _occurrences->setup(_state);
   
   _animations = std::make_shared<AnimationsController>(_appParams.animations);

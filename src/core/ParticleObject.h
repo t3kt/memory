@@ -14,6 +14,7 @@
 #include "Behavior.h"
 #include "Params.h"
 #include "Events.h"
+#include "Bounds.h"
 
 class ParticleObject : public StandardWorldObject {
 public:
@@ -46,18 +47,13 @@ private:
 
 class AbstractReboundBehavior {
 public:
-  class Params : public ValueRange<ofVec3f> {
-  public:
-    Params(std::string);
-  };
-
-  AbstractReboundBehavior(const Params& params);
+  AbstractReboundBehavior(const Bounds& bounds);
 
 protected:
   bool updateEntity(ParticleObject& entity, const State& state);
 
 private:
-  const Params& _params;
+  const Bounds& _bounds;
 };
 
 template<typename E>
@@ -65,8 +61,8 @@ class ReboundBehavior
 : public AbstractReboundBehavior
 , public Behavior<E> {
 public:
-  ReboundBehavior(const Params& params)
-  : AbstractReboundBehavior(params) { }
+  ReboundBehavior(const Bounds& bounds)
+  : AbstractReboundBehavior(bounds) { }
 
   ofxLiquidEvent<EntityEventArgs<E>> entityRebounded;
 

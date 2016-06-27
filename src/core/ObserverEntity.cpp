@@ -13,14 +13,10 @@
 
 ObserverEntity::Params::Params()
 : ::ParticleObject::Params("Observers")
-, lifetime("Lifetime Range")
-, spawnArea("Spawn Area") {
+, lifetime("Lifetime Range") {
   add(lifetime);
   lifetime.set(1, 4);
   lifetime.setParamRange(0, 240);
-  add(spawnArea
-      .set(ofVec3f(-1), ofVec3f(1))
-      .setParamRange(ofVec3f(-2), ofVec3f(2)));
   add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
   add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
 }
@@ -38,8 +34,8 @@ void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Color").minimize();
 }
 
-shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const State& state) {
-  ofVec3f pos = params.spawnArea.getValue();
+shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
+  ofVec3f pos = bounds.randomPoint();
   float life = params.lifetime.getValue();
   return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, params, state));
 }

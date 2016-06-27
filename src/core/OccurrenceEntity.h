@@ -17,6 +17,7 @@
 #include "Params.h"
 #include <iostream>
 #include "ValueSupplier.h"
+#include "Bounds.h"
 
 class ObserverEntity;
 
@@ -30,13 +31,12 @@ public:
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> radius;
-    RandomValueSupplier<ofVec3f> spawnArea;
     ofParameter<ofFloatColor> markerColor;
     ofParameter<ofFloatColor> rangeColor;
     ofParameter<ofFloatColor> connectorColor;
     ofParameter<float> markerSize;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params);
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds);
   
   OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
   virtual ~OccurrenceEntity() {}
