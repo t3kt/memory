@@ -16,6 +16,10 @@ ParticleObject::ParticleObject(ofVec3f pos)
   _position = pos;
 }
 
+AbstractReboundBehavior::Params::Params(std::string name)
+: ::ValueRange<ofVec3f>(name) {
+}
+
 void ParticleObject::setInitialCondition(ofVec3f pos, ofVec3f vel) {
   _position = pos;
   _velocity = vel;
@@ -37,3 +41,31 @@ void ParticleObject::update(const State &state) {
   _velocity += _force;
   _position += _velocity;
 }
+
+void ParticleObject::outputFields(std::ostream &os) const {
+  StandardWorldObject::outputFields(os);
+  os << ", velocity: " << _velocity
+      << ", force: " << _force
+      << ", damping: " << _damping;
+}
+
+static float reboundVelocity(float vel, float pos, float minPos, float maxPos) {
+  float newPos = pos + vel;
+  if (newPos < minPos || newPos >= maxPos) {
+    return vel * -1;
+  } else {
+    return vel;
+  }
+}
+
+AbstractReboundBehavior::AbstractReboundBehavior(const AbstractReboundBehavior::Params& params)
+: _params(params) { }
+
+void AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
+  ofVec3f lowBound = _params.lowValue.get();
+  ofVec3f highBound = _params.highValue.get();
+  entity._velocity.x = reboundVelocity(entity._velocity.x, entity._position.x, lowBound.x, highBound.x);
+  entity._velocity.y = reboundVelocity(entity._velocity.y, entity._position.y, lowBound.x, highBound.y);
+  entity._velocity.z = reboundVelocity(entity._velocity.z, entity._position.z, lowBound.z, highBound.z);
+}
+

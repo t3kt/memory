@@ -57,9 +57,11 @@ public:
   
   void handleDeath() override;
   
-  void output(std::ostream& os) const override;
-  
   float originalRadius() const { return _originalRadius; };
+
+protected:
+  std::string typeName() const override { return "OccurrenceEntity"; }
+  void outputFields(std::ostream& os) const override;
   
 private:
   void recalculateRadius();

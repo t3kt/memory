@@ -57,7 +57,7 @@ public:
 
   ofVec3f position() const { return _position; }
 protected:
-  virtual void outputFields(std::ostream& os) const;
+  virtual void outputFields(std::ostream& os) const override;
 
   ofVec3f _position;
 private:

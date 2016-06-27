@@ -57,11 +57,13 @@ public:
   
   void draw(const State& state) override;
   
-  void output(std::ostream& os) const override;
-  
   void handleDeath() override;
   
   float lifetime() const { return _totalLifetime; };
+
+protected:
+  std::string typeName() const override { return "ObserverEntity"; }
+  void outputFields(std::ostream& os) const override;
   
 private:
   const Params& _params;

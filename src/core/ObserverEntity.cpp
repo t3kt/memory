@@ -82,11 +82,9 @@ void ObserverEntity::draw(const State &state) {
   ofPopStyle();
 }
 
-void ObserverEntity::output(std::ostream &os) const {
-  os << "Observer{id: " << id
-      << ", position: " << _position
-      << ", startTime: " << _startTime
+void ObserverEntity::outputFields(std::ostream &os) const {
+  ParticleObject::outputFields(os);
+  os << ", startTime: " << _startTime
       << ", totalLifetime: " << _totalLifetime
-      << ", lifeFraction: " << _lifeFraction
-      << "}";
+      << ", lifeFraction: " << _lifeFraction;
 }

@@ -30,6 +30,8 @@ public:
     
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
+    RandomValueSupplier<ofVec3f> initialVelocity;
+    AbstractReboundBehavior::Params bounds;
   };
   
   ObserversController(const Params& params, const State& state);
@@ -52,6 +54,7 @@ private:
   const Params& _params;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
+  shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
 };
 
 #endif /* ObserversController_h */

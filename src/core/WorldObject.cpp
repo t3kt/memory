@@ -37,5 +37,6 @@ StandardWorldObject::StandardWorldObject()
 
 void StandardWorldObject::outputFields(std::ostream& os) const {
   WorldObject::outputFields(os);
-  os << ", alive: " << _alive;
+  os << ", alive: " << _alive
+      << ", position: " << _position;
 }

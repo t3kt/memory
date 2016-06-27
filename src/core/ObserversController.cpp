@@ -12,9 +12,17 @@ const int START_OBSERVERS = 20;
 
 ObserversController::Params::Params()
 : ::Params("Observers")
-, spawnInterval("Spawning") {
+, spawnInterval("Spawning")
+, initialVelocity("Initial Velocity")
+, bounds("Bounds") {
   add(entities);
   add(spawnInterval);
+  add(initialVelocity
+      .set(ofVec3f(-0.01), ofVec3f(0.01))
+      .setParamRange(ofVec3f(-0.1), ofVec3f(0.1)));
+  add(bounds
+      .set(ofVec3f(-1), ofVec3f(1))
+      .setParamRange(ofVec3f(-1), ofVec3f(1)));
 }
 
 void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
@@ -28,6 +36,7 @@ ObserversController::ObserversController(const ObserversController::Params& para
 }
 
 void ObserversController::setup(const State &state) {
+  _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_params.bounds);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -71,9 +80,8 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 
 void ObserversController::spawnObserver(const State &state) {
   auto observer = ObserverEntity::spawn(_params.entities, state);
-  observer->setVelocity(ofVec3f(ofRandom(-0.01, 0.01),
-                                ofRandom(-0.01, 0.01),
-                                ofRandom(-0.01, 0.01)));
+  observer->setVelocity(_params.initialVelocity.getValue());
+  observer->addBehavior(_reboundBehavior);
   _observers.add(observer);
   ObserverEventArgs e(state, observer);
   observerSpawned.notifyListeners(e);

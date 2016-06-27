@@ -130,10 +130,8 @@ void OccurrenceEntity::handleDeath() {
   std::cout << "Occurrence died: " << *this << std::endl;
 }
 
-void OccurrenceEntity::output(std::ostream &os) const {
-  os << "OccurrenceEntity{id: " << id
-      << ", position: " << _position
-      << ", originalRadius: " << _originalRadius
-      << ", actualRadius: " << _actualRadius
-      << "}";
+void OccurrenceEntity::outputFields(std::ostream &os) const {
+  ParticleObject::outputFields(os);
+  os << ", originalRadius: " << _originalRadius
+      << ", actualRadius: " << _actualRadius;
 }
