@@ -14,7 +14,7 @@
 const float MAX_OBS_LEVEL = 4.0f;
 
 OccurrenceEntity::Params::Params()
-: ::Params("Occurrences")
+: ParticleObject::Params("Occurrences")
 , radius("Radius Range")
 , spawnArea("Spawn Area") {
   add(radius
@@ -43,7 +43,7 @@ shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Par
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params)
-: ParticleObject(pos)
+: ParticleObject(pos, params)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _params(params) {

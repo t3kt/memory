@@ -11,6 +11,7 @@
 
 #include <ofTypes.h>
 #include "Params.h"
+#include "Behavior.h"
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
@@ -24,7 +25,7 @@ class OccurrenceEntity;
 class ObserverEntity
 : public ParticleObject {
 public:
-  class Params : public ::Params {
+  class Params : public ParticleObject::Params {
   public:
     Params();
     
@@ -72,6 +73,26 @@ private:
   float _lifeFraction;
   std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;
   BehaviorCollection<ObserverEntity> _behaviors;
+
+  friend class ObserverOccurrenceAttraction;
+};
+
+class ObserverOccurrenceAttraction
+: public Behavior<ObserverEntity> {
+public:
+  class Params : public ::Params {
+  public:
+    Params();
+
+    ValueRange<float> distanceBounds;
+    ValueRange<float> forceRange;
+  };
+
+  ObserverOccurrenceAttraction(const Params& params) : _params(params) { }
+
+  void update(ObserverEntity& observer, const State& state) override;
+private:
+  const Params& _params;
 };
 
 #endif /* ObserverEntity_h */

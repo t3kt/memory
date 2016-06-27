@@ -12,7 +12,7 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params()
-: ::Params("Observers")
+: ::ParticleObject::Params("Observers")
 , lifetime("Lifetime Range")
 , spawnArea("Spawn Area") {
   add(lifetime);
@@ -23,6 +23,14 @@ ObserverEntity::Params::Params()
       .setParamRange(ofVec3f(-2), ofVec3f(2)));
   add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
   add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
+}
+
+ObserverOccurrenceAttraction::Params::Params()
+: ::Params("Occurrence Attraction")
+, distanceBounds("Distance Bounds")
+, forceRange("Force Range") {
+  add(distanceBounds.set(0.04, 0.3).setParamRange(0, 1));
+  add(forceRange.set(0, 0.002).setParamRange(-0.04, 0.04));
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
@@ -37,7 +45,7 @@ shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &p
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
-: ParticleObject(pos)
+: ParticleObject(pos, params)
 , _startTime(state.time)
 , _totalLifetime(life)
 , _params(params)
@@ -87,4 +95,21 @@ void ObserverEntity::outputFields(std::ostream &os) const {
   os << ", startTime: " << _startTime
       << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction;
+}
+
+void ObserverOccurrenceAttraction::update(ObserverEntity &observer, const State &state) {
+  float lowBound = _params.distanceBounds.lowValue.get();
+  float highBound = _params.distanceBounds.highValue.get();
+  float lowMagnitude = _params.forceRange.lowValue.get();
+  float highMagnitude = _params.forceRange.highValue.get();
+  for (auto occurrence : observer._connectedOccurrences) {
+    ofVec3f posDiff = occurrence->position() - observer.position();
+    float dist = posDiff.length();
+    if (dist < lowBound || dist > highBound) {
+      continue;
+    }
+    float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
+    posDiff.normalize();
+    observer.addForce(posDiff * mag);
+  }
 }

@@ -8,11 +8,16 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::ParticleObject(ofVec3f pos)
+ParticleObject::Params::Params(std::string name)
+: ::Params(name) {
+  add(damping.set("Damping", 0.01, 0, 0.2));
+}
+
+ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)
 : StandardWorldObject()
 , _velocity(0)
 , _force(0)
-, _damping(0) {
+, _params(params) {
   _position = pos;
 }
 
@@ -34,7 +39,7 @@ void ParticleObject::addForce(ofVec3f force) {
 }
 
 void ParticleObject::addDampingForce() {
-  addForce(_velocity * -_damping);
+  addForce(_velocity * -_params.damping.get());
 }
 
 void ParticleObject::update(const State &state) {
@@ -45,8 +50,7 @@ void ParticleObject::update(const State &state) {
 void ParticleObject::outputFields(std::ostream &os) const {
   StandardWorldObject::outputFields(os);
   os << ", velocity: " << _velocity
-      << ", force: " << _force
-      << ", damping: " << _damping;
+      << ", force: " << _force;
 }
 
 static bool reboundVelocity(float *vel, float pos, float minPos, float maxPos) {

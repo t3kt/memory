@@ -23,7 +23,7 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
-  class Params : public ::Params {
+  class Params : public ParticleObject::Params {
   public:
     Params();
     

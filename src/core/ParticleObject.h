@@ -17,11 +17,17 @@
 
 class ParticleObject : public StandardWorldObject {
 public:
-  ParticleObject(ofVec3f pos);
+  class Params : public ::Params {
+  public:
+    Params(std::string name);
+
+    ofParameter<float> damping;
+  };
+
+  ParticleObject(ofVec3f pos, const Params& params);
 
   void setInitialCondition(ofVec3f pos, ofVec3f vel);
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }
-  void setDamping(float damping) { _damping = damping; }
 
   void resetForce();
   void addForce(ofVec3f force);
@@ -31,9 +37,9 @@ public:
 protected:
   virtual void outputFields(std::ostream& os) const override;
 private:
+  const Params& _params;
   ofVec3f _velocity;
   ofVec3f _force;
-  float _damping;
 
   friend class AbstractReboundBehavior;
 };
