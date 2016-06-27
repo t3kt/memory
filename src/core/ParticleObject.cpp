@@ -34,7 +34,7 @@ void ParticleObject::addForce(ofVec3f force) {
 }
 
 void ParticleObject::addDampingForce() {
-  addForce(_velocity.scale(-_damping));
+  addForce(_velocity * -_damping);
 }
 
 void ParticleObject::update(const State &state) {
@@ -65,6 +65,7 @@ AbstractReboundBehavior::AbstractReboundBehavior(const AbstractReboundBehavior::
 bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
   ofVec3f lowBound = _params.lowValue.get();
   ofVec3f highBound = _params.highValue.get();
+
   bool changed = true;
   changed &= reboundVelocity(&entity._velocity.x, entity._position.x, lowBound.x, highBound.x);
   changed &= reboundVelocity(&entity._velocity.y, entity._position.y, lowBound.x, highBound.y);
