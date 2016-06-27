@@ -35,6 +35,10 @@ public:
   virtual bool alive() const = 0;
   
   virtual bool visible() const { return this->alive(); }
+
+protected:
+  virtual std::string typeName() const;
+  virtual void outputFields(std::ostream& os) const;
 };
 
 class StandardWorldObject : public WorldObject {
@@ -49,9 +53,13 @@ public:
   }
   void revive() { _alive = true; }
 
-  virtual void handleDeath() {};
+  virtual void handleDeath() {}
 
-  ofVec3f position;
+  ofVec3f position() const { return _position; }
+protected:
+  virtual void outputFields(std::ostream& os) const;
+
+  ofVec3f _position;
 private:
   bool _alive;
 };

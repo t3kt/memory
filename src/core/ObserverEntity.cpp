@@ -37,12 +37,11 @@ shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &p
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
-: StandardWorldObject()
+: ParticleObject(pos)
 , _startTime(state.time)
 , _totalLifetime(life)
 , _params(params)
 {
-  position = pos;
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
@@ -56,8 +55,9 @@ void ObserverEntity::update(const State &state) {
     kill();
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
+    _behaviors.update(*this, state);
+    ParticleObject::update(state);
   }
-  _behaviors.update(*this, state);
 }
 
 void ObserverEntity::handleDeath() {
@@ -78,13 +78,13 @@ void ObserverEntity::draw(const State &state) {
   ofPushStyle();
   ofFill();
   ofSetColor(color);
-  ofDrawSphere(position, _params.drawRadius.get());
+  ofDrawSphere(_position, _params.drawRadius.get());
   ofPopStyle();
 }
 
 void ObserverEntity::output(std::ostream &os) const {
   os << "Observer{id: " << id
-      << ", position: " << position
+      << ", position: " << _position
       << ", startTime: " << _startTime
       << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction

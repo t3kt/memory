@@ -43,16 +43,15 @@ shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Par
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params)
-: StandardWorldObject()
+: ParticleObject(pos)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _params(params) {
-  position = pos;
 }
 
 void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
   _connectedObservers[observer->id] = observer;
-  float dist = position.distance(observer->position);
+  float dist = _position.distance(observer->position());
   if (dist > _actualRadius) {
     _actualRadius = dist;
   }
@@ -61,7 +60,7 @@ void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
 void OccurrenceEntity::recalculateRadius() {
   _actualRadius = 0;
   for (auto observer : _connectedObservers) {
-    float dist = position.distance(observer.second->position);
+    float dist = _position.distance(observer.second->position());
     if (dist > _actualRadius) {
       _actualRadius = dist;
     }
@@ -77,7 +76,9 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
 }
 
 void OccurrenceEntity::update(const State &state) {
-  if (!hasConnectedObservers()) {
+  if (hasConnectedObservers()) {
+    ParticleObject::update(state);
+  } else {
     kill();
   }
 }
@@ -100,7 +101,7 @@ void OccurrenceEntity::draw(const State &state) {
   ofFloatColor markerColor = _params.markerColor.get();
   markerColor.a *= alpha;
   ofSetColor(markerColor);
-  ofDrawBox(position, _params.markerSize.get());
+  ofDrawBox(_position, _params.markerSize.get());
   ofPopStyle();
 
 //  ofPushStyle();
@@ -115,9 +116,9 @@ void OccurrenceEntity::draw(const State &state) {
   ofFloatColor connectorColor = _params.connectorColor.get();
   ofMesh connectorMesh;
   for (auto observer : _connectedObservers) {
-    connectorMesh.addVertex(position);
+    connectorMesh.addVertex(_position);
     connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * alpha));
-    connectorMesh.addVertex(observer.second->position);
+    connectorMesh.addVertex(observer.second->position());
     connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * observer.second->getRemainingLifetimeFraction()));
   }
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
@@ -131,7 +132,7 @@ void OccurrenceEntity::handleDeath() {
 
 void OccurrenceEntity::output(std::ostream &os) const {
   os << "OccurrenceEntity{id: " << id
-      << ", position: " << position
+      << ", position: " << _position
       << ", originalRadius: " << _originalRadius
       << ", actualRadius: " << _actualRadius
       << "}";

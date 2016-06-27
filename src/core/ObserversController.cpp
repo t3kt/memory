@@ -34,7 +34,12 @@ void ObserversController::setup(const State &state) {
 }
 
 void ObserversController::update(const State &state) {
-  _observers.update(state);
+  _observers.performAction([&](shared_ptr<ObserverEntity> observer) {
+    observer->resetForce();
+    observer->addDampingForce();
+    observer->update(state);
+  });
+
   _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
     ObserverEventArgs e(state, observer);
     observerDied.notifyListeners(e);
@@ -53,7 +58,7 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
   bool connected = false;
   
   _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
-    float dist = occurrence->position.distance(observer->position);
+    float dist = occurrence->position().distance(observer->position());
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);
       observer->addOccurrence(occurrence);
@@ -66,6 +71,9 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 
 void ObserversController::spawnObserver(const State &state) {
   auto observer = ObserverEntity::spawn(_params.entities, state);
+  observer->setVelocity(ofVec3f(ofRandom(-0.01, 0.01),
+                                ofRandom(-0.01, 0.01),
+                                ofRandom(-0.01, 0.01)));
   _observers.add(observer);
   ObserverEventArgs e(state, observer);
   observerSpawned.notifyListeners(e);

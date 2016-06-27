@@ -13,6 +13,7 @@
 #include "Params.h"
 #include "Common.h"
 #include "WorldObject.h"
+#include "ParticleObject.h"
 #include <vector>
 #include <iostream>
 #include "ValueSupplier.h"
@@ -21,7 +22,7 @@
 class OccurrenceEntity;
 
 class ObserverEntity
-: public StandardWorldObject {
+: public ParticleObject {
 public:
   class Params : public ::Params {
   public:
