@@ -16,6 +16,7 @@
 #include "Params.h"
 #include "Interval.h"
 #include "Events.h"
+#include "Bounds.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
@@ -32,7 +33,7 @@ public:
     Interval::Params spawnInterval;
   };
   
-  OccurrencesController(const Params& params, ObserversController& observers, const State& state);
+  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
   
   void setup(const State& state);
   void update(const State& state);
@@ -50,6 +51,7 @@ private:
   void spawnOccurrence(const State& state);
   
   const Params& _params;
+  const Bounds& _bounds;
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;

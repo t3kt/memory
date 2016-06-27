@@ -16,6 +16,7 @@
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
 #include "Params.h"
+#include "Bounds.h"
 
 class MemoryAppParameters : public Params {
 public:
@@ -23,6 +24,7 @@ public:
   
   void initGui(ofxPanel& gui);
 
+  SimpleCubeBounds bounds;
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;

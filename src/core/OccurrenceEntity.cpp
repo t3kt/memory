@@ -15,14 +15,10 @@ const float MAX_OBS_LEVEL = 4.0f;
 
 OccurrenceEntity::Params::Params()
 : ParticleObject::Params("Occurrences")
-, radius("Radius Range")
-, spawnArea("Spawn Area") {
+, radius("Radius Range") {
   add(radius
       .set(0.4, 1.3)
       .setParamRange(0, 4));
-  add(spawnArea
-      .set(ofVec3f(-1), ofVec3f(1))
-      .setParamRange(ofVec3f(-2), ofVec3f(2)));
   add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
   add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
   add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
@@ -36,8 +32,8 @@ void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Connector Color").minimize();
 }
 
-shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params) {
-  ofVec3f pos = params.spawnArea.getValue();
+shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds) {
+  ofVec3f pos = bounds.randomPoint();
   float radius = params.radius.getValue();
   return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius, params));
 }

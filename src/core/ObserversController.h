@@ -16,6 +16,7 @@
 #include "Params.h"
 #include "Interval.h"
 #include "Events.h"
+#include "Bounds.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
@@ -31,11 +32,10 @@ public:
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
     RandomValueSupplier<ofVec3f> initialVelocity;
-    AbstractReboundBehavior::Params bounds;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
   };
   
-  ObserversController(const Params& params, const State& state);
+  ObserversController(const Params& params, const Bounds& bounds, const State& state);
   
   void setup(const State& state);
   void update(const State& state);
@@ -54,6 +54,7 @@ private:
   void spawnObserver(const State& state);
   
   const Params& _params;
+  const Bounds& _bounds;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;

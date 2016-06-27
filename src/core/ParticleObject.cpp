@@ -21,10 +21,6 @@ ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params
   _position = pos;
 }
 
-AbstractReboundBehavior::Params::Params(std::string name)
-: ::ValueRange<ofVec3f>(name) {
-}
-
 void ParticleObject::setInitialCondition(ofVec3f pos, ofVec3f vel) {
   _position = pos;
   _velocity = vel;
@@ -63,17 +59,10 @@ static bool reboundVelocity(float *vel, float pos, float minPos, float maxPos) {
   }
 }
 
-AbstractReboundBehavior::AbstractReboundBehavior(const AbstractReboundBehavior::Params& params)
-: _params(params) { }
+AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
+: _bounds(bounds) { }
 
 bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
-  ofVec3f lowBound = _params.lowValue.get();
-  ofVec3f highBound = _params.highValue.get();
-
-  bool changed = true;
-  changed &= reboundVelocity(&entity._velocity.x, entity._position.x, lowBound.x, highBound.x);
-  changed &= reboundVelocity(&entity._velocity.y, entity._position.y, lowBound.x, highBound.y);
-  changed &= reboundVelocity(&entity._velocity.z, entity._position.z, lowBound.z, highBound.z);
-  return changed;
+  return _bounds.reflect(&entity._velocity, entity._position);
 }
 

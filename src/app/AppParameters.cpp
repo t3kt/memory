@@ -8,10 +8,14 @@
 
 #include "AppParameters.h"
 
-MemoryAppParameters::MemoryAppParameters() {
+MemoryAppParameters::MemoryAppParameters()
+: bounds("Bounds") {
   add(observers);
   add(occurrences);
   add(animations);
+  add(bounds
+      .set(2)
+      .setParamRange(0, 10));
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {
