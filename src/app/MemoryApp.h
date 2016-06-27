@@ -11,17 +11,11 @@
 
 #include <ofMain.h>
 #include <ofxGui.h>
-#include <vector>
 #include "State.h"
 #include "AppParameters.h"
-#include "OccurrenceEntity.h"
-#include "ObserverEntity.h"
-#include "AnimationObject.h"
-#include "ObjectManager.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
-#include "Timing.h"
 
 class MemoryApp : public ofBaseApp {
 public:
