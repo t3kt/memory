@@ -27,6 +27,7 @@ public:
     ofParameter<bool> enabled;
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;
+    ExpandingSphereAnimation::Params occurrenceSpawnFailed;
   };
 
   AnimationsController(const Params& params);

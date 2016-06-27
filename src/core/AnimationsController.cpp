@@ -13,10 +13,14 @@
 AnimationsController::Params::Params()
 : ::Params("Animations")
 , observerDied("Observer Died")
-, occurrenceDied("Occurrence Died") {
+, occurrenceDied("Occurrence Died")
+, occurrenceSpawnFailed("Occurrence Spawn Failed") {
   add(enabled.set("Enabled", true));
   add(observerDied);
   add(occurrenceDied);
+  add(occurrenceSpawnFailed);
+  occurrenceSpawnFailed.radius.set(0, 0.01);
+  occurrenceSpawnFailed.duration.set(1);
 }
 
 AnimationsController::AnimationsController(const AnimationsController::Params& params)
@@ -57,7 +61,6 @@ void AnimationsController::attachTo(ObserversController &observers) {
     addAnimation(animation, e.state);
     std::cout << "Adding observer died animation: " << *animation << std::endl;
   };
-  //...
 }
 
 void AnimationsController::attachTo(OccurrencesController &occurrences) {
@@ -70,5 +73,13 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     addAnimation(animation, e.state);
     std::cout << "Adding occurrence died animation: " << *animation << std::endl;
   };
-  //...
+  occurrences.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
+    if (!_params.enabled.get() || !_params.occurrenceSpawnFailed.enabled.get()) {
+      return;
+    }
+    auto occurrence = e.entity();
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed);
+    addAnimation(animation, e.state);
+    std::cout << "Adding occurrence spawn failed animation: " << *animation << std::endl;
+  };
 }

@@ -79,7 +79,7 @@ ExpandingSphereAnimation::Params::Params(std::string name)
 , radius("Radius")
 , color("Color")
 , alpha("Alpha") {
-  add(radius.setNames("Start", "End").setParamRange(0, 0.02).set(0, 1));
+  add(radius.setNames("Start", "End").setParamRange(0, 0.4).set(0, 0.2));
   add(alpha.setNames("Start", "End").setParamRange(0, 1).set(0, 1));
   add(color);
 }
