@@ -24,8 +24,8 @@ void MemoryApp::setup() {
   _appParams.initGui(_gui);
   
   ofEnableAlphaBlending();
-//  ofDisableDepthTest();
-  
+  ofDisableDepthTest();
+
   _appParams.observers.entities.lifetime.set(10, 60);
   
   _observers = std::make_shared<ObserversController>(_appParams.observers, _state);
@@ -50,7 +50,7 @@ void MemoryApp::update() {
 void MemoryApp::draw() {
   ofBackground(ofFloatColor::white);
   glPushAttrib(GL_ENABLE_BIT);
-  glEnable(GL_DEPTH_TEST);
+  //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
   _cam.begin();
   
