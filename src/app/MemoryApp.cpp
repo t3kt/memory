@@ -77,3 +77,9 @@ void MemoryApp::draw() {
   ofDrawBitmapStringHighlight("Occurrences: " + ofToString(_occurrences->count()), ofGetWidth() - 140, 60);
   _gui.draw();
 }
+
+void MemoryApp::keyPressed(int key) {
+  if (key == 'h') {
+    _cam.reset();
+  }
+}
