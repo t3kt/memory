@@ -13,6 +13,7 @@
 #include "State.h"
 #include "Behavior.h"
 #include "Params.h"
+#include "Events.h"
 
 class ParticleObject : public StandardWorldObject {
 public:
@@ -47,22 +48,27 @@ public:
   AbstractReboundBehavior(const Params& params);
 
 protected:
-  void updateEntity(ParticleObject& entity, const State& state);
+  bool updateEntity(ParticleObject& entity, const State& state);
 
 private:
   const Params& _params;
 };
 
-template<typename T>
+template<typename E>
 class ReboundBehavior
 : public AbstractReboundBehavior
-, public Behavior<T> {
+, public Behavior<E> {
 public:
   ReboundBehavior(const Params& params)
   : AbstractReboundBehavior(params) { }
 
-  void update(T& entity, const State& state) override {
-    updateEntity(entity, state);
+  ofxLiquidEvent<EntityEventArgs<E>> entityRebounded;
+
+  void update(E& entity, const State& state) override {
+    if (updateEntity(entity, state)) {
+      EntityEventArgs<E> e(state, entity);
+      entityRebounded.notifyListeners(e);
+    }
   }
 };
 

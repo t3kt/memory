@@ -28,18 +28,18 @@ public:
 template<typename T>
 class EntityEventArgs : public StateEventArgs {
 public:
-  EntityEventArgs(const State& s, shared_ptr<T> entity) : StateEventArgs(s), _entity(entity) {}
+  EntityEventArgs(const State& s, T& entity) : StateEventArgs(s), _entity(entity) {}
   
   void output(std::ostream& os) const override {
     os << "EntityEventArgs{"
-        << "entity: " << *_entity
+        << "entity: " << _entity
         << "state: " << state
         << "}";
   }
   
-  shared_ptr<T> entity() { return _entity; }
+  T& entity() { return _entity; }
 private:
-  shared_ptr<T> _entity;
+  T& _entity;
 };
 
 #endif /* Events_h */

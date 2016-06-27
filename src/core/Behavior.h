@@ -11,6 +11,7 @@
 
 #include <functional>
 #include <vector>
+#include <memory>
 #include "State.h"
 
 template <typename E>
@@ -33,7 +34,7 @@ protected:
 template<typename E>
 class FunctionBehavior : public Behavior<E> {
 public:
-  using UpdateFunction = std::function<void(E&, const State&)>;
+  using UpdateFunction = std::function<void(std::shared_ptr<E>, const State&)>;
 
   FunctionBehavior(UpdateFunction update) : _update(update) { }
 

@@ -48,6 +48,7 @@ public:
   
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
+  ObserverEvent observerRebounded;
 private:
   void spawnObserver(const State& state);
   

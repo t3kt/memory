@@ -37,6 +37,10 @@ ObserversController::ObserversController(const ObserversController::Params& para
 
 void ObserversController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_params.bounds);
+  _reboundBehavior->entityRebounded += [&](ObserverEventArgs e) {
+    observerRebounded.notifyListeners(e);
+    std::cout << "Observer rebounded: " << e.entity() << std::endl;
+  };
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -50,7 +54,7 @@ void ObserversController::update(const State &state) {
   });
 
   _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
-    ObserverEventArgs e(state, observer);
+    ObserverEventArgs e(state, *observer);
     observerDied.notifyListeners(e);
   });
   
@@ -83,7 +87,7 @@ void ObserversController::spawnObserver(const State &state) {
   observer->setVelocity(_params.initialVelocity.getValue());
   observer->addBehavior(_reboundBehavior);
   _observers.add(observer);
-  ObserverEventArgs e(state, observer);
+  ObserverEventArgs e(state, *observer);
   observerSpawned.notifyListeners(e);
   std::cout << "Spawned observer: " << *observer << std::endl;
 }

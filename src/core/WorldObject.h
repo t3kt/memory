@@ -46,7 +46,7 @@ public:
   StandardWorldObject();
   virtual ~StandardWorldObject() {}
 
-  virtual bool alive() const { return _alive; };
+  virtual bool alive() const override { return _alive; };
   void kill() {
     _alive = false;
     handleDeath();

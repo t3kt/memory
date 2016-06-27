@@ -53,7 +53,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
       return;
     }
     auto observer = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(observer->position(), _params.observerDied);
+    auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied);
     addAnimation(animation, e.state);
     std::cout << "Adding observer died animation: " << *animation << std::endl;
   };
@@ -66,7 +66,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
       return;
     }
     auto occurrence = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence->position(), _params.observerDied);
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied);
     addAnimation(animation, e.state);
     std::cout << "Adding occurrence died animation: " << *animation << std::endl;
   };
