@@ -18,13 +18,21 @@
 #include "Params.h"
 #include "Bounds.h"
 
+class DebugParams : public Params {
+public:
+  DebugParams();
+
+  ofParameter<bool> showLog;
+  ofParameter<bool> drawBounds;
+};
+
 class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
   
   void initGui(ofxPanel& gui);
 
-  ofParameter<bool> showLog;
+  DebugParams debug;
   SimpleCubeBounds bounds;
   AnimationsController::Params animations;
   ObserversController::Params observers;

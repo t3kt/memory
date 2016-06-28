@@ -54,7 +54,7 @@ void MemoryApp::update() {
 
   // Slide the logger screen in and out.
   ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
-  if (_appParams.showLog.get()) {
+  if (_appParams.debug.showLog.get()) {
     bounds.y = ofLerp(bounds.y, 0, 0.2);
   }
   else {
@@ -81,6 +81,14 @@ void MemoryApp::draw() {
   _observers->draw(_state);
   _occurrences->draw(_state);
   _animations->draw(_state);
+
+  if (_appParams.debug.drawBounds.get()) {
+    ofPushStyle();
+    ofNoFill();
+    ofSetColor(ofFloatColor(0.2, 0.2, 0.2, 0.3));
+    ofDrawBox(_appParams.bounds.size.get());
+    ofPopStyle();
+  }
   
   ofPopMatrix();
   ofPopStyle();
@@ -99,6 +107,6 @@ void MemoryApp::keyPressed(int key) {
   if (key == 'h') {
     _cam.reset();
   } else if (key == 'l') {
-    _appParams.showLog.set(!_appParams.showLog.get());
+    _appParams.debug.showLog.set(!_appParams.debug.showLog.get());
   }
 }
