@@ -20,7 +20,7 @@ MemoryAppParameters::MemoryAppParameters()
   add(occurrences);
   add(animations);
   add(bounds
-      .set(2)
+      .set(6)
       .setParamRange(0, 10));
   add(debug);
 }

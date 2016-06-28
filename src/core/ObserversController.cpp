@@ -9,7 +9,7 @@
 #include <ofLog.h>
 #include "ObserversController.h"
 
-const int START_OBSERVERS = 20;
+const int START_OBSERVERS = 60;
 
 ObserversController::Params::Params()
 : ::Params("Observers")
