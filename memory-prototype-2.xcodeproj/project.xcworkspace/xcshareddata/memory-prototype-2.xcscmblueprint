@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
-    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0
+    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0,
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "676F03B3-BFAE-4D8D-A790-5276FD0F2741",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "62C8F139-9CD6-4750-BCC3-E8E848261C3F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory-prototype-2\/",
-    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent"
+    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "memory-prototype-2",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -22,7 +24,12 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C4F98D1E32128123613498B488D73B56E9A53F8"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/elliotwoods\/ofxLiquidEvent",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/prisonerjohn\/ofxLoggerChannel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/t3kt\/ofxLiquidEvent.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64"
     }

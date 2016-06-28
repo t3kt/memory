@@ -10,6 +10,7 @@
 
 MemoryAppParameters::MemoryAppParameters()
 : bounds("Bounds") {
+  add(showLog.set("Show Log?", false));
   add(observers);
   add(occurrences);
   add(animations);
