@@ -104,13 +104,16 @@ void OccurrenceEntity::draw(const State &state) {
   ofDrawBox(_position, _params.markerSize.get());
   ofPopStyle();
 
-  ofPushStyle();
-  ofEnableAlphaBlending();
+
   ofFloatColor rangeColor = _params.rangeColor.get();
-  rangeColor *= alpha * lifePercent;
-  ofSetColor(rangeColor);
-  ofDrawSphere(_position, _actualRadius);
-  ofPopStyle();
+  rangeColor.a *= alpha * lifePercent;
+  if (rangeColor.a > 0) {
+    ofPushStyle();
+    ofEnableAlphaBlending();
+    ofSetColor(rangeColor);
+    ofDrawSphere(_position, _actualRadius);
+    ofPopStyle();
+  }
 
   ofPushStyle();
   ofFloatColor connectorColor = _params.connectorColor.get();
