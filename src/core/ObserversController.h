@@ -15,8 +15,16 @@
 #include "State.h"
 #include "Params.h"
 #include "Interval.h"
+#include "Events.h"
+#include "Bounds.h"
+#include "ThresholdRenderer.h"
+#include "Status.h"
 
-class ObserversController {
+using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
+using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
+
+class ObserversController
+: public StatusInfoProvider {
 public:
   class Params : public ::Params {
   public:
@@ -26,21 +34,40 @@ public:
     
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
+    SimpleRandomVectorSupplier initialVelocity;
+    ObserverOccurrenceAttraction::Params occurrenceAttraction;
+    AbstractThresholdRenderer::Params threshold;
   };
   
-  ObserversController(const Params& params, const State& state);
+  ObserversController(const Params& params, const Bounds& bounds, const State& state);
   
   void setup(const State& state);
   void update(const State& state);
   void draw(const State& state);
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+
+  std::size_t count() const {
+    return _observers.size();
+  }
+
+  const StatusInfo& getStatusInfo() const { return _status; }
+  
+  ObserverEvent observerSpawned;
+  ObserverEvent observerDied;
+  ObserverEvent observerRebounded;
 private:
   void spawnObserver(const State& state);
   
   const Params& _params;
+  const Bounds& _bounds;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
+  shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
+  shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
+  shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
+  StatusInfo _status;
+  std::size_t STATUS_COUNT;
 };
 
 #endif /* ObserversController_h */

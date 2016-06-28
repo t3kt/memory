@@ -13,32 +13,40 @@
 #include <map>
 #include "Common.h"
 #include "WorldObject.h"
+#include "ParticleObject.h"
 #include "Params.h"
 #include <iostream>
 #include "ValueSupplier.h"
+#include "Bounds.h"
+#include "Behavior.h"
+#include "State.h"
 
 class ObserverEntity;
 
 class OccurrenceEntity
-: public WorldObject {
+: public ParticleObject {
 public:
-  class Params : public ::Params {
+  class Params : public ParticleObject::Params {
   public:
     Params();
     
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> radius;
-    RandomValueSupplier<ofVec3f> spawnArea;
     ofParameter<ofFloatColor> markerColor;
+    ofParameter<float> rangeFadeIn;
     ofParameter<ofFloatColor> rangeColor;
     ofParameter<ofFloatColor> connectorColor;
     ofParameter<float> markerSize;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params);
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
+  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
   virtual ~OccurrenceEntity() {}
+
+  void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
+    _behaviors.add(behavior);
+  }
   
   void addObserver(shared_ptr<ObserverEntity> observer);
   
@@ -56,9 +64,11 @@ public:
   
   void handleDeath() override;
   
-  void output(std::ostream& os) const override;
-  
   float originalRadius() const { return _originalRadius; };
+
+protected:
+  std::string typeName() const override { return "OccurrenceEntity"; }
+  void outputFields(std::ostream& os) const override;
   
 private:
   void recalculateRadius();
@@ -66,7 +76,28 @@ private:
   const Params& _params;
   const float _originalRadius;
   float _actualRadius;
+  float _startTime;
   std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
+  BehaviorCollection<OccurrenceEntity> _behaviors;
+
+  friend class OccurrenceObserverAttraction;
+};
+
+class OccurrenceObserverAttraction
+: public EntityAttraction<OccurrenceEntity, ObserverEntity> {
+public:
+
+  OccurrenceObserverAttraction(const Params& params)
+  : EntityAttraction<OccurrenceEntity, ObserverEntity>(params) { }
+
+protected:
+  std::vector<shared_ptr<ObserverEntity>> getOthers(OccurrenceEntity& occurrence) const override {
+    std::vector<shared_ptr<ObserverEntity>> observers;
+    for (auto entry : occurrence._connectedObservers) {
+      observers.push_back(entry.second);
+    }
+    return observers;
+  }
 };
 
 #endif /* OccurrenceEntity_h */

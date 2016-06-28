@@ -7,6 +7,14 @@
 //
 
 #include "AnimationObject.h"
+#include <ofMain.h>
+
+AnimationObject::Params::Params(std::string name)
+: ::Params(name) {
+  add(enabled.set("Enabled", true));
+  add(delay.set("Delay", 0, 0, 2));
+  add(duration.set("Duration", 1, 0, 8));
+}
 
 class AnimationUpdater : public DurationAction {
 public:
@@ -42,15 +50,45 @@ void AnimationUpdater::end() {
   _animationManager.eraseById(_animation.id);
 }
 
-void AnimationObject::output(std::ostream &os) const {
-  os << "Animation{id:" << id
-    << "}";
+AnimationObject::AnimationObject(const AnimationObject::Params& params)
+: _delay(params.delay.get())
+, _duration(params.duration.get())
+, _visible(true)
+, _percentage(0) {
 }
 
-DurationAction*
+shared_ptr<DurationAction>
 AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>& animationManager) {
   float now = time;
   float start = now + _delay;
-  return new AnimationUpdater(start, start + _duration,
-                              *this, animationManager);
+  return std::make_shared<AnimationUpdater>(start, start + _duration,
+                                            *this, animationManager);
+}
+
+ExpandingSphereAnimation::Params::Params(std::string name)
+: AnimationObject::Params(name)
+, radius("Radius")
+, color("Color")
+, alpha("Alpha") {
+  add(radius.setNames("Start", "End").setParamRange(0, 0.4).set(0, 0.2));
+  add(alpha.setNames("Start", "End").setParamRange(0, 1).set(0, 1));
+  add(color);
+}
+
+ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params)
+: AnimationObject(params)
+, _params(params)
+, _color(params.color.getValue()) {
+  _position = position;
+}
+
+void ExpandingSphereAnimation::draw(const State &state) {
+  ofPushStyle();
+
+  ofFloatColor color = _color;
+  color.a *= _params.alpha.getLerped(percentage());
+  ofSetColor(color);
+  ofDrawSphere(_position, _params.radius.getLerped(percentage()));
+
+  ofPopStyle();
 }

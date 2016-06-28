@@ -15,8 +15,16 @@
 #include "State.h"
 #include "Params.h"
 #include "Interval.h"
+#include "Events.h"
+#include "Bounds.h"
+#include "Behavior.h"
+#include "Status.h"
 
-class OccurrencesController {
+using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
+using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
+
+class OccurrencesController
+: public StatusInfoProvider {
 public:
   class Params : public ::Params {
   public:
@@ -26,21 +34,40 @@ public:
     
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
+    SimpleRandomVectorSupplier initialVelocity;
+    OccurrenceObserverAttraction::Params observerAttraction;
   };
   
-  OccurrencesController(const Params& params, ObserversController& observers, const State& state);
+  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
   
   void setup(const State& state);
   void update(const State& state);
   void draw(const State& state);
+
+  std::size_t count() const {
+    return _occurrences.size();
+  }
+
+  const StatusInfo& getStatusInfo() const override {
+    return _status;
+  }
+  
+  OccurrenceEvent occurrenceSpawned;
+  OccurrenceEvent occurrenceSpawnFailed;
+  OccurrenceEvent occurrenceDied;
   
 private:
   void spawnOccurrence(const State& state);
   
   const Params& _params;
+  const Bounds& _bounds;
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
+  shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
+  shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
+  StatusInfo _status;
+  std::size_t STATUS_COUNT;
 };
 
 #endif /* OccurrencesController_h */

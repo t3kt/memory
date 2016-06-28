@@ -30,21 +30,36 @@ public:
   virtual void update(const State& state) {}
   virtual void draw(const State& state) {}
   
-  virtual void handleDeath() {};
-  
   virtual void output(std::ostream& os) const override;
+
+  virtual bool alive() const = 0;
   
-  bool alive() const { return _alive; };
+  virtual bool visible() const { return this->alive(); }
+
+protected:
+  virtual std::string typeName() const;
+  virtual void outputFields(std::ostream& os) const;
+};
+
+class StandardWorldObject : public WorldObject {
+public:
+  StandardWorldObject();
+  virtual ~StandardWorldObject() {}
+
+  virtual bool alive() const override { return _alive; };
   void kill() {
     _alive = false;
     handleDeath();
   }
   void revive() { _alive = true; }
-  
-  virtual bool visible() const { return this->alive(); }
-  
-  ofVec3f position;
-  
+
+  virtual void handleDeath() {}
+
+  ofVec3f position() const { return _position; }
+protected:
+  virtual void outputFields(std::ostream& os) const override;
+
+  ofVec3f _position;
 private:
   bool _alive;
 };

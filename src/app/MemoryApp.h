@@ -11,31 +11,36 @@
 
 #include <ofMain.h>
 #include <ofxGui.h>
-#include <vector>
+#include <ofxScreenLoggerChannel.h>
+#include <ofxMultiLoggerChannel.h>
 #include "State.h"
 #include "AppParameters.h"
-#include "OccurrenceEntity.h"
-#include "ObserverEntity.h"
-#include "AnimationObject.h"
-#include "ObjectManager.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
-#include "Timing.h"
+#include "AnimationsController.h"
+#include "Status.h"
+
+class FPSInfoProvider;
 
 class MemoryApp : public ofBaseApp {
 public:
   void setup() override;
   void update() override;
   void draw() override;
+
+  void keyPressed(int key) override;
 private:
   State _state;
   MemoryAppParameters _appParams;
   shared_ptr<ObserversController> _observers;
   shared_ptr<OccurrencesController> _occurrences;
-  ObjectManager<AnimationObject> _animations;
-  TimedActionSet _timedActions;
+  shared_ptr<AnimationsController> _animations;
+  shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
   ofxPanel _gui;
+  shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
+  shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
+  shared_ptr<FPSInfoProvider> _fpsProvider;
 };
 
 #endif /* MemoryApp_h */

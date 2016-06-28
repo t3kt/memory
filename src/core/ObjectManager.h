@@ -12,62 +12,77 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <list>
 #include <functional>
 #include "WorldObject.h"
 #include "State.h"
+#include "Events.h"
 
 template <class T>
 class ObjectManager {
 public:
-  using StorageType = std::map<ObjectId, std::shared_ptr<T>>;
+  using StorageList = std::list<std::shared_ptr<T>>;
   
   void update(const State& state) {
-    for (auto entry : _objects) {
-      entry.second->update(state);
+    for (auto entity : _objects) {
+      entity->update(state);
     }
   }
   
   std::vector<std::shared_ptr<T>> extractDeadObjects() {
     std::vector<std::shared_ptr<T>> deadObjects;
-    for (auto i = std::begin(_objects);
-         i != std::end(_objects);) {
-      shared_ptr<T>& object = i->second;
-      if (object->alive()) {
-        i++;
-      } else {
-        deadObjects.push_back(object);
-        i = _objects.erase(i);
-      }
-    }
+    cullDeadObjects([&](std::shared_ptr<T> entity) {
+      deadObjects.push_back(entity);
+    });
     return deadObjects;
   }
   
+  void cullDeadObjects(std::function<void(shared_ptr<T>)> callback) {
+    for (auto i = std::begin(_objects);
+         i != std::end(_objects);) {
+      shared_ptr<T>& object = *i;
+      if (object->alive()) {
+        i++;
+      } else {
+        callback(object);
+        i = _objects.erase(i);
+      }
+    }
+  }
+  
   void draw(const State& state) {
-    for (auto entry : _objects) {
-      if (entry.second->visible()) {
-        entry.second->draw(state);
+    for (auto entity : _objects) {
+      if (entity->visible()) {
+        entity->draw(state);
       }
     }
   }
   
   void add(shared_ptr<T> object) {
-    _objects.insert(std::make_pair(object->id, object));
+    _objects.push_back(object);
+  }
+
+  template<typename ...Args>
+  void add(shared_ptr<T> object, Args&... others) {
+    add(object);
+    add(others...);
   }
   
   bool eraseById(ObjectId id) {
-    auto i = _objects.find(id);
-    if (i == std::end(_objects)) {
-      return false;
-    } else {
-      i->second.reset();
-      _objects.erase(i);
-      return true;
+    for (auto i = std::begin(_objects);
+         i != std::end(_objects);
+         i++) {
+      if ((*i)->id == id) {
+        _objects.erase(i);
+        return true;
+      }
     }
+    return false;
   }
   
   void performAction(std::function<void(shared_ptr<T>)> action) {
-    for (auto entry : _objects) {
-      action(entry.second);
+    for (auto entity : _objects) {
+      action(entity);
     }
   }
   
@@ -78,9 +93,17 @@ public:
   bool isEmpty() const {
     return _objects.empty();
   }
-  
+
+  typename StorageList::iterator begin() {
+    return _objects.begin();
+  }
+
+  typename StorageList::iterator end() {
+    return _objects.end();
+  }
+
 private:
-  StorageType _objects;
+  StorageList _objects;
 };
 
 #endif /* ObjectManager_h */

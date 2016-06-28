@@ -14,14 +14,28 @@
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "AnimationsController.h"
+#include "Params.h"
+#include "Bounds.h"
 
-class MemoryAppParameters {
+class DebugParams : public Params {
+public:
+  DebugParams();
+
+  ofParameter<bool> showLog;
+  ofParameter<bool> showBounds;
+  ofParameter<bool> showStatus;
+};
+
+class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
   
   void initGui(ofxPanel& gui);
-  
-  ofParameterGroup paramGroup;
+
+  DebugParams debug;
+  SimpleCubeBounds bounds;
+  AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
 };

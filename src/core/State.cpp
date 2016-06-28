@@ -21,3 +21,9 @@ void State::updateTime() {
   timeDelta = t - time;
   time = t;
 }
+
+void State::output(std::ostream &os) const {
+  os << "State{time: " << time
+      << ", timeDelta: " << timeDelta
+      << "}";
+}

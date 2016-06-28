@@ -1,2 +1,5 @@
 ofxGui
+ofxLiquidEvent
+ofxLoggerChannel
+ofxTextAlign
 ofxXmlSettings

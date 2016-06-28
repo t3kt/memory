@@ -13,87 +13,68 @@
 #include <ofParameterGroup.h>
 #include <ofTypes.h>
 #include <string>
-
-class AbstractValueSupplier : public ofParameterGroup {
-public:
-  AbstractValueSupplier(std::string name) {
-    setName(name);
-  };
-};
+#include "Params.h"
 
 template <typename T>
-class RandomValueSupplier : public AbstractValueSupplier {
+class RandomValueSupplier : public ValueRange<T> {
 public:
-  RandomValueSupplier(std::string name)
-  : AbstractValueSupplier(name) {
-    _lowValue.setName("Low");
-    _highValue.setName("High");
-    add(_lowValue, _highValue);
-  };
+  explicit RandomValueSupplier(std::string name)
+  : ValueRange<T>(name) {};
   
   RandomValueSupplier& set(T minVal, T maxVal) {
-    _lowValue.set(minVal);
-    _highValue.set(maxVal);
-    return *this;
-  };
-  
-  RandomValueSupplier& setLow(T low) {
-    _lowValue.set(low);
-    return *this;
-  };
-  
-  RandomValueSupplier& setHigh(T high) {
-    _highValue.set(high);
+    ValueRange<T>::set(minVal, maxVal);
     return *this;
   };
   
   RandomValueSupplier& setParamRange(T minVal, T maxVal) {
-    _lowValue.setMin(minVal);
-    _lowValue.setMax(maxVal);
-    _highValue.setMin(minVal);
-    _highValue.setMax(maxVal);
+    ValueRange<T>::setParamRange(minVal, maxVal);
     return *this;
   };
   
   T getValue() const;
-  
-private:
-  ofParameter<T> _lowValue;
-  ofParameter<T> _highValue;
 };
 
-class FloatColorSupplier : public AbstractValueSupplier {
+class SimpleRandomVectorSupplier : public ValueRange<float> {
 public:
-  FloatColorSupplier(std::string name) : AbstractValueSupplier(name) { };
-  
-  virtual ofFloatColor getValue() const = 0;
+  explicit SimpleRandomVectorSupplier(std::string name) : ValueRange<float>(name) {}
+
+  SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
+    ValueRange<float>::set(minVal, maxVal);
+    return *this;
+  }
+  SimpleRandomVectorSupplier& setParamRange(float minVal, float maxVal) {
+    ValueRange<float>::setParamRange(minVal, maxVal);
+    return *this;
+  }
+
+  ofVec3f getValue() const;
 };
 
-class RandomHsbFloatColorSupplier : public FloatColorSupplier {
+class RandomHsbFloatColorSupplier : public Params {
 public:
-  RandomHsbFloatColorSupplier(std::string name);
+  explicit RandomHsbFloatColorSupplier(std::string name);
   
   RandomHsbFloatColorSupplier& setHue(float low, float high) {
-    _hueRange.setLow(low).setHigh(high);
+    _hueRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setSaturation(float low, float high) {
-    _saturationRange.setLow(low).setHigh(high);
+    _saturationRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setBrightness(float low, float high) {
-    _brightnessRange.setLow(low).setHigh(high);
+    _brightnessRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setAlpha(float low, float high) {
-    _alphaRange.setLow(low).setHigh(high);
+    _alphaRange.set(low, high);
     return *this;
   }
   
-  ofFloatColor getValue() const override;
+  ofFloatColor getValue() const;
   
 private:
   RandomValueSupplier<float> _hueRange;
