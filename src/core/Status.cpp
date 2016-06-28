@@ -36,11 +36,6 @@ void StatusInfoController::draw() {
   float xValue = ofGetWidth() - VALUE_WIDTH - RIGHT;
   float xLabel = xValue - PADDING;
 
-//  xValue = 300;
-//  xLabel = 290;
-//  xValue = ofGetWidth() - 300;
-//  xLabel = ofGetWidth() - 310;
-
   StatusInfo::StatusList allLines;
 
   for (auto provider : _providers) {
