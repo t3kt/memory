@@ -15,13 +15,15 @@ ObserversController::Params::Params()
 : ::Params("Observers")
 , spawnInterval("Spawning")
 , initialVelocity("Initial Velocity")
-, occurrenceAttraction("Occurrence Attraction") {
+, occurrenceAttraction("Occurrence Attraction")
+, threshold("Threshold") {
   add(entities);
   add(spawnInterval);
   add(initialVelocity
       .set(0, 0.01)
       .setParamRange(0, 0.1));
   add(occurrenceAttraction);
+  add(threshold);
 }
 
 void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
@@ -42,6 +44,7 @@ void ObserversController::setup(const State &state) {
     ofLogNotice() << "Observer rebounded: " << e.entity();
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
+  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -62,10 +65,13 @@ void ObserversController::update(const State &state) {
   if (_spawnInterval.check(state)) {
     spawnObserver(state);
   }
+
+  _thresholdRenderer->update(state);
 }
 
 void ObserversController::draw(const State &state) {
   _observers.draw(state);
+  _thresholdRenderer->draw(state);
 }
 
 bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurrence) {

@@ -1,7 +1,7 @@
 <group>
 	<Observers>
 		<Observers>
-			<Damping>0.01</Damping>
+			<Damping>0.00264473</Damping>
 			<Lifetime_Range>
 				<Low>10</Low>
 				<High>60</High>
@@ -11,25 +11,33 @@
 		</Observers>
 		<Spawning>
 			<Interval>
-				<Low>2</Low>
-				<High>6</High>
+				<Low>0.344075</Low>
+				<High>1.19406</High>
 			</Interval>
 		</Spawning>
 		<Initial_Velocity>
-			<Low>0</Low>
-			<High>0.01</High>
+			<Low>0.00524781</Low>
+			<High>0.00993336</High>
 		</Initial_Velocity>
 		<Occurrence_Attraction>
-			<Enabled?>1</Enabled?>
+			<Enabled>1</Enabled>
 			<Distance_Bounds>
 				<Low>0.04</Low>
 				<High>0.3</High>
 			</Distance_Bounds>
 			<Force_Range>
-				<Low>0.0001</Low>
+				<Low>0.000537574</Low>
 				<High>0</High>
 			</Force_Range>
 		</Occurrence_Attraction>
+		<Threshold>
+			<Enabled>1</Enabled>
+			<Color>0.7, 0.7, 0.85, 0.4</Color>
+			<Range>
+				<Low>0</Low>
+				<High>1.8376</High>
+			</Range>
+		</Threshold>
 	</Observers>
 	<Occurrences>
 		<Occurrences>
@@ -40,7 +48,7 @@
 			</Radius_Range>
 			<Fade_In>1</Fade_In>
 			<Marker_Color>1, 0.5, 0.25, 1</Marker_Color>
-			<Range_Color>0.5, 0.5, 0.5, 0.0915775</Range_Color>
+			<Range_Color>0.5, 0.5, 0.5, 0.2</Range_Color>
 			<Connector_Color>0.5, 0.5, 0.5, 1</Connector_Color>
 			<Marker_Size>0.05</Marker_Size>
 		</Occurrences>
@@ -55,7 +63,7 @@
 			<High>0</High>
 		</Initial_Velocity>
 		<Observer_Attraction>
-			<Enabled?>0</Enabled?>
+			<Enabled>0</Enabled>
 			<Distance_Bounds>
 				<Low>0.04</Low>
 				<High>0.3</High>
@@ -163,10 +171,10 @@
 		</Occurrence_Spawn_Failed>
 	</Animations>
 	<Bounds>
-		<Size>2</Size>
+		<Size>6</Size>
 	</Bounds>
 	<Debug>
 		<Show_Log?>0</Show_Log?>
-		<Show_Bounds?>1</Show_Bounds?>
+		<Show_Bounds?>0</Show_Bounds?>
 	</Debug>
 </group>

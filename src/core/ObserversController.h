@@ -17,6 +17,7 @@
 #include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
+#include "ThresholdRenderer.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
@@ -33,6 +34,7 @@ public:
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
+    AbstractThresholdRenderer::Params threshold;
   };
   
   ObserversController(const Params& params, const Bounds& bounds, const State& state);
@@ -59,6 +61,7 @@ private:
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
+  shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 };
 
 #endif /* ObserversController_h */
