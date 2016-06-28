@@ -61,11 +61,6 @@ AnimationObject::AnimationObject(const AnimationObject::Params& params)
 : AnimationObject(params.delay.get(), params.duration.get()) {
 }
 
-void AnimationObject::output(std::ostream &os) const {
-  os << "Animation{id: " << id
-    << "}";
-}
-
 shared_ptr<DurationAction>
 AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>& animationManager) {
   float now = time;
@@ -87,8 +82,9 @@ ExpandingSphereAnimation::Params::Params(std::string name)
 ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params)
 : AnimationObject(params)
 , _params(params)
-, _position(position)
-, _color(params.color.getValue()) { }
+, _color(params.color.getValue()) {
+  _position = position;
+}
 
 void ExpandingSphereAnimation::draw(const State &state) {
   ofPushStyle();
@@ -99,8 +95,4 @@ void ExpandingSphereAnimation::draw(const State &state) {
   ofDrawSphere(_position, _params.radius.getLerped(percentage()));
 
   ofPopStyle();
-}
-
-void ExpandingSphereAnimation::output(std::ostream &os) const {
-  os << "ExpandingSphereAnimation{id: " << id << "}";
 }

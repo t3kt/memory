@@ -33,7 +33,6 @@ public:
   AnimationObject(const Params& params);
   
   virtual void draw(const State& state) override = 0;
-  virtual void output(std::ostream& os) const override;
   
   void show() { _visible = true; }
   void hide() { _visible = false; }
@@ -45,6 +44,9 @@ public:
   shared_ptr<DurationAction>
   createUpdaterAction(float time, ObjectManager<AnimationObject>& animations);
 protected:
+  virtual std::string typeName() const override {
+    return "Animation";
+  }
   inline float percentage() const { return _percentage; }
 private:
   bool _visible;
@@ -69,12 +71,15 @@ public:
   ExpandingSphereAnimation(ofVec3f position, const Params& params);
 
   virtual void draw(const State& state) override;
-  virtual void output(std::ostream& os) const override;
+
+protected:
+  virtual std::string typeName() const override {
+    return "ExpandingSphereAnimation";
+  }
 
 private:
   const Params& _params;
   const ofFloatColor _color;
-  ofVec3f _position;
 };
 
 #endif /* AnimationObject_h */
