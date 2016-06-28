@@ -21,7 +21,7 @@ public:
   void draw();
 
 private:
-  void tryAddFolder(Params& params);
+  void add(Params& params);
 
   MemoryAppParameters& _appParams;
   ofxDatGui* _gui;

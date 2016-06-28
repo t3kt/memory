@@ -13,6 +13,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		326986F91D232950006C7922 /* AppGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 326986F71D232950006C7922 /* AppGui.cpp */; };
 		326986FC1D2331E5006C7922 /* ParamsGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 326986FA1D2331E5006C7922 /* ParamsGui.cpp */; };
+		326986FF1D233E7D006C7922 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 326986FE1D233E7D006C7922 /* Params.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */; };
 		444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */; };
@@ -112,6 +113,7 @@
 		326986F81D232950006C7922 /* AppGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGui.h; path = app/AppGui.h; sourceTree = "<group>"; };
 		326986FA1D2331E5006C7922 /* ParamsGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamsGui.cpp; path = core/ParamsGui.cpp; sourceTree = "<group>"; };
 		326986FB1D2331E5006C7922 /* ParamsGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamsGui.h; path = core/ParamsGui.h; sourceTree = "<group>"; };
+		326986FE1D233E7D006C7922 /* Params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Params.cpp; path = core/Params.cpp; sourceTree = "<group>"; };
 		32831CD20CC05BAA1B5697B3 /* ofxDatGuiLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiLabel.h; sourceTree = SOURCE_ROOT; };
 		345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGuiComponent.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiComponent.cpp; sourceTree = SOURCE_ROOT; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
@@ -397,6 +399,7 @@
 				96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */,
 				DFC44816FA79F669BBF0EC7A /* OccurrencesController.h */,
 				EF3A3B4184C0BD92ED93C143 /* Params.h */,
+				326986FE1D233E7D006C7922 /* Params.cpp */,
 				F38907EC6905E539FB6235FC /* ParticleObject.cpp */,
 				A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */,
 				36B95376ECF45981665C19E8 /* State.cpp */,
@@ -647,6 +650,7 @@
 				326986FC1D2331E5006C7922 /* ParamsGui.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */,
+				326986FF1D233E7D006C7922 /* Params.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

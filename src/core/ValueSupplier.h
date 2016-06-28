@@ -34,9 +34,10 @@ public:
   T getValue() const;
 };
 
-class SimpleRandomVectorSupplier : public ValueRange<float> {
+class SimpleRandomVectorSupplier : public FloatValueRange {
 public:
-  explicit SimpleRandomVectorSupplier(std::string name) : ValueRange<float>(name) {}
+  explicit SimpleRandomVectorSupplier(std::string name)
+  : FloatValueRange(name) {}
 
   SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
     ValueRange<float>::set(minVal, maxVal);

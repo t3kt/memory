@@ -25,7 +25,10 @@ protected:
 
   ofxDatGuiToggle* addToggle(ofParameter<bool>& param);
 
+  ofxDatGuiSlider* addSlider(ofParameter<float>& param);
+
   virtual void onToggleEvent(ofxDatGuiToggleEvent e);
+  virtual void onSliderEvent(ofxDatGuiSliderEvent e);
 
 private:
   Params& _baseParams;

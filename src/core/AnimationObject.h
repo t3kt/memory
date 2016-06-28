@@ -60,8 +60,8 @@ public:
   public:
     explicit Params(std::string name);
 
-    ValueRange<float> radius;
-    ValueRange<float> alpha;
+    FloatValueRange radius;
+    FloatValueRange alpha;
     RandomHsbFloatColorSupplier color;
   };
 

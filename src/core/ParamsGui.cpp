@@ -18,7 +18,8 @@ void AbstractParamsGui::setup() {
 }
 
 ofxDatGuiToggle* AbstractParamsGui::addToggle(ofParameter<bool> &param) {
-  ofxDatGuiToggle* toggle = _folder->addToggle(param.getName());
+  ofxDatGuiToggle* toggle = _folder->addToggle(param.getName(),
+                                               param.get());
   toggle->onToggleEvent(this, &AbstractParamsGui::onToggleEvent);
   return toggle;
 }
@@ -26,4 +27,18 @@ ofxDatGuiToggle* AbstractParamsGui::addToggle(ofParameter<bool> &param) {
 void AbstractParamsGui::onToggleEvent(ofxDatGuiToggleEvent e) {
   ofParameter<bool>& param = _baseParams.getBool(e.target->getName());
   param.set(e.checked);
+}
+
+ofxDatGuiSlider* AbstractParamsGui::addSlider(ofParameter<float> &param) {
+  ofxDatGuiSlider* slider = _folder->addSlider(param.getName(),
+                                               param.getMin(),
+                                               param.getMax(),
+                                               param.get());
+  slider->onSliderEvent(this, &AbstractParamsGui::onSliderEvent);
+  return slider;
+}
+
+void AbstractParamsGui::onSliderEvent(ofxDatGuiSliderEvent e) {
+  ofParameter<float>& param = _baseParams.getFloat(e.target->getName());
+  param.set(e.value);
 }

@@ -37,7 +37,7 @@ public:
 
     ofParameter<bool> enabled;
     ofParameter<ofFloatColor> color;
-    ValueRange<float> range;
+    FloatValueRange range;
   };
 
   AbstractThresholdRenderer(const Params& params)

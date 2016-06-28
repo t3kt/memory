@@ -38,11 +38,10 @@ class ValueRange : public Params {
 public:
   explicit ValueRange(std::string name)
   : Params(name) {
-    init();
-  }
-  
-  ValueRange() {
-    init();
+    lowValue.setName("Low");
+    highValue.setName("High");
+    add(lowValue);
+    add(highValue);
   }
 
   ValueRange<T>& setNames(std::string lowName, std::string highName) {
@@ -71,14 +70,15 @@ public:
   
   ofParameter<T> lowValue;
   ofParameter<T> highValue;
+};
 
+class FloatValueRange : public ValueRange<float> {
+public:
+  explicit FloatValueRange(std::string name) : ValueRange<float>(name) { }
+
+  ParamsGui* getGui() override;
 private:
-  void init() {
-    lowValue.setName("Low");
-    highValue.setName("High");
-    add(lowValue);
-    add(highValue);
-  }
+  ParamsGui* _gui;
 };
 
 #endif /* Params_h */

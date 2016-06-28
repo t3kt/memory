@@ -82,8 +82,8 @@ public:
     Params(std::string name);
 
     ofParameter<bool> enabled;
-    ValueRange<float> distanceBounds;
-    ValueRange<float> forceRange;
+    FloatValueRange distanceBounds;
+    FloatValueRange forceRange;
   };
 
   AbstractEntityAttraction(const Params& params) : _params(params) {}
