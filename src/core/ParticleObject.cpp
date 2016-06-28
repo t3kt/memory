@@ -63,6 +63,6 @@ AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
 : _bounds(bounds) { }
 
 bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
-  return _bounds.reflect(&entity._velocity, entity._position);
+  return _bounds.reflect(&entity._velocity, &entity._position);
 }
 

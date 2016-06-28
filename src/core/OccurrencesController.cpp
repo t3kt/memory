@@ -35,6 +35,9 @@ OccurrencesController::OccurrencesController(const OccurrencesController::Params
 
 void OccurrencesController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<OccurrenceEntity>>(_bounds);
+  _reboundBehavior->entityRebounded += [&](OccurrenceEventArgs e) {
+    ofLogNotice() << "Occurrence rebounded: " << e.entity();
+  };
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
@@ -67,11 +70,11 @@ void OccurrencesController::spawnOccurrence(const State &state) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     occurrence->addBehavior(_reboundBehavior);
     occurrence->addBehavior(_observerAttraction);
-    ofLog(OF_LOG_NOTICE) << "Spawned occurrence: " << *occurrence << std::endl;
+    ofLogNotice() << "Spawned occurrence: " << *occurrence;
     _occurrences.add(occurrence);
     occurrenceSpawned.notifyListeners(e);
   } else {
-    ofLog(OF_LOG_NOTICE) << "Nothing in range of occurrence: " << *occurrence << std::endl;
+    ofLogNotice() << "Nothing in range of occurrence: " << *occurrence;
     occurrenceSpawnFailed.notifyListeners(e);
   }
 }

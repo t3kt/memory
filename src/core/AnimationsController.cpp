@@ -28,7 +28,7 @@ AnimationsController::AnimationsController(const AnimationsController::Params& p
 }
 
 void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, const State& state) {
-  ofLog(OF_LOG_NOTICE) << "Adding animation: " << *animation << std::endl;
+  ofLogNotice() << "Adding animation: " << *animation;
   
   _animations.add(animation);
   auto updater = animation->createUpdaterAction(state.time, _animations);
@@ -43,7 +43,7 @@ void AnimationsController::update(const State &state) {
   _animations.update(state);
   _timedActions.update(state.time);
   _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
-    ofLog(OF_LOG_NOTICE) << "Animation ended: " << *animation << std::endl;
+    ofLogNotice() << "Animation ended: " << *animation;
   });
 }
 
@@ -59,7 +59,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
     auto observer = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied);
     addAnimation(animation, e.state);
-    ofLog(OF_LOG_NOTICE) << "Adding observer died animation: " << *animation << std::endl;
+    ofLogNotice() << "Adding observer died animation: " << *animation;
   };
 }
 
@@ -71,7 +71,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied);
     addAnimation(animation, e.state);
-    ofLog(OF_LOG_NOTICE) << "Adding occurrence died animation: " << *animation << std::endl;
+    ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
   occurrences.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
     if (!_params.enabled.get() || !_params.occurrenceSpawnFailed.enabled.get()) {
@@ -80,6 +80,6 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed);
     addAnimation(animation, e.state);
-    ofLog(OF_LOG_NOTICE) << "Adding occurrence spawn failed animation: " << *animation << std::endl;
+    ofLogNotice() << "Adding occurrence spawn failed animation: " << *animation;
   };
 }

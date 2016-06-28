@@ -38,7 +38,7 @@ void ObserversController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_bounds);
   _reboundBehavior->entityRebounded += [&](ObserverEventArgs e) {
     observerRebounded.notifyListeners(e);
-    ofLog(OF_LOG_NOTICE) << "Observer rebounded: " << e.entity() << std::endl;
+    ofLogNotice() << "Observer rebounded: " << e.entity();
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
   for (int i = 0; i < START_OBSERVERS; i++) {
@@ -90,5 +90,5 @@ void ObserversController::spawnObserver(const State &state) {
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
   observerSpawned.notifyListeners(e);
-  ofLog(OF_LOG_NOTICE) << "Spawned observer: " << *observer << std::endl;
+  ofLogNotice() << "Spawned observer: " << *observer;
 }

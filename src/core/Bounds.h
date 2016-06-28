@@ -16,7 +16,7 @@ class Bounds : public Params {
 public:
   Bounds(std::string name);
 
-  virtual bool reflect(ofVec3f* velocity, ofVec3f position) const = 0;
+  virtual bool reflect(ofVec3f* velocity, ofVec3f* position) const = 0;
   virtual ofVec3f randomPoint() const = 0;
 };
 
@@ -34,7 +34,7 @@ public:
     return *this;
   }
 
-  bool reflect(ofVec3f* velocity, ofVec3f position) const override;
+  bool reflect(ofVec3f* velocity, ofVec3f* position) const override;
 
   ofVec3f randomPoint() const override;
 
