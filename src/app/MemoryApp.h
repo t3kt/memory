@@ -19,6 +19,7 @@
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
 #include "Status.h"
+#include "AppGui.h"
 
 class FPSInfoProvider;
 
@@ -38,6 +39,7 @@ private:
   shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
   ofxPanel _gui;
+  shared_ptr<AppGui> _NEW_gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;

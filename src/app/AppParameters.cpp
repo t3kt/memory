@@ -7,12 +7,39 @@
 //
 
 #include "AppParameters.h"
+#include "ParamsGui.h"
 
 DebugParams::DebugParams()
 : Params("Debug") {
   add(showLog.set("Show Log", false));
   add(showBounds.set("Show Bounds", false));
   add(showStatus.set("Show Status", true));
+}
+
+class DebugParamsGui
+: public AbstractParamsGui {
+public:
+  DebugParamsGui(DebugParams& params)
+  : AbstractParamsGui(params)
+  , _params(params) { }
+protected:
+  void addControls() override;
+private:
+  DebugParams& _params;
+};
+
+void DebugParamsGui::addControls() {
+  addToggle(_params.showLog);
+  addToggle(_params.showBounds);
+  addToggle(_params.showStatus);
+}
+
+ParamsGui* DebugParams::getGui() {
+  if (_gui == nullptr) {
+    _gui = new DebugParamsGui(*this);
+    _gui->setup();
+  }
+  return _gui;
 }
 
 MemoryAppParameters::MemoryAppParameters()

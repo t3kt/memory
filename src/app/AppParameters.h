@@ -11,6 +11,7 @@
 
 #include <ofParameterGroup.h>
 #include <ofxPanel.h>
+#include <ofxDatGui.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -25,6 +26,10 @@ public:
   ofParameter<bool> showLog;
   ofParameter<bool> showBounds;
   ofParameter<bool> showStatus;
+
+  ParamsGui* getGui() override;
+private:
+  ParamsGui* _gui;
 };
 
 class MemoryAppParameters : public Params {

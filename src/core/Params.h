@@ -14,6 +14,14 @@
 #include <ofxGuiGroup.h>
 #include "Common.h"
 
+class ofxDatGuiFolder;
+
+class ParamsGui {
+public:
+  virtual void setup() {}
+  virtual ofxDatGuiFolder* getGuiFolder() = 0;
+};
+
 class Params : public ofParameterGroup {
 public:
   Params() {}
@@ -21,7 +29,8 @@ public:
     setName(label);
   }
   
-  virtual void initPanel(ofxGuiGroup& panel) {};
+  virtual void initPanel(ofxGuiGroup& panel) {}
+  virtual ParamsGui* getGui() { return nullptr; }
 };
 
 template<typename T>
