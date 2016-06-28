@@ -5,15 +5,17 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
+    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : 0,
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0,
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "545B37FA-F938-4762-9500-742E97F6CB85",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "63C3919C-8ABC-46AB-9313-9F3FBE03F5C9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory-prototype-2\/",
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
+    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : "..\/of_v0.9.3_osx_release\/addons\/ofxDatGui",
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/of_v0.9.3_osx_release\/addons\/ofxTextAlign"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "memory-prototype-2",
@@ -29,6 +31,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/prisonerjohn\/ofxLoggerChannel.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/braitsch\/ofxDatGui.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9233F0F4A2BE011BD468E5177A5AD6623263B23D"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nariakiiwatani\/ofxTextAlign.git",

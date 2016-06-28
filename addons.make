@@ -1,3 +1,4 @@
+ofxDatGui
 ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
