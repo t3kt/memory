@@ -26,11 +26,7 @@ void FloatValueRangeGui::addControls() {
   addSlider(_params.highValue);
 }
 
-ParamsGui* FloatValueRange::getGui() {
-  if (_gui == nullptr) {
-    _gui = new FloatValueRangeGui(*this);
-    _gui->setup();
-  }
-  return _gui;
+ParamsGui* FloatValueRange::createGui() {
+  return new FloatValueRangeGui(*this);
 }
 

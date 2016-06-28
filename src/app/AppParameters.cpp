@@ -34,12 +34,8 @@ void DebugParamsGui::addControls() {
   addToggle(_params.showStatus);
 }
 
-ParamsGui* DebugParams::getGui() {
-  if (_gui == nullptr) {
-    _gui = new DebugParamsGui(*this);
-    _gui->setup();
-  }
-  return _gui;
+ParamsGui* DebugParams::createGui() {
+  return new DebugParamsGui(*this);
 }
 
 MemoryAppParameters::MemoryAppParameters()

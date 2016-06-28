@@ -27,9 +27,8 @@ public:
   ofParameter<bool> showBounds;
   ofParameter<bool> showStatus;
 
-  ParamsGui* getGui() override;
-private:
-  ParamsGui* _gui;
+protected:
+  ParamsGui* createGui() override;
 };
 
 class MemoryAppParameters : public Params {

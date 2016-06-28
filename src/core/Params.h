@@ -30,7 +30,20 @@ public:
   }
   
   virtual void initPanel(ofxGuiGroup& panel) {}
-  virtual ParamsGui* getGui() { return nullptr; }
+
+  ParamsGui* getGui() {
+    if (_gui == nullptr) {
+      _gui = createGui();
+      if (_gui != nullptr) {
+        _gui->setup();
+      }
+    }
+    return _gui;
+  }
+protected:
+  virtual ParamsGui* createGui() { return nullptr; }
+private:
+  ParamsGui* _gui;
 };
 
 template<typename T>
@@ -76,9 +89,8 @@ class FloatValueRange : public ValueRange<float> {
 public:
   explicit FloatValueRange(std::string name) : ValueRange<float>(name) { }
 
-  ParamsGui* getGui() override;
-private:
-  ParamsGui* _gui;
+protected:
+  ParamsGui* createGui() override;
 };
 
 #endif /* Params_h */
