@@ -35,6 +35,9 @@ OccurrencesController::OccurrencesController(const OccurrencesController::Params
 
 void OccurrencesController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<OccurrenceEntity>>(_bounds);
+  _reboundBehavior->entityRebounded += [&](OccurrenceEventArgs e) {
+    ofLogNotice() << "Occurrence rebounded: " << e.entity() << std::endl;
+  };
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
