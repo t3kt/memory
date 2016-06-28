@@ -21,14 +21,6 @@ ObserverEntity::Params::Params()
   add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
 }
 
-ObserverOccurrenceAttraction::Params::Params()
-: ::Params("Occurrence Attraction")
-, distanceBounds("Distance Bounds")
-, forceRange("Force Range") {
-  add(distanceBounds.set(0.04, 0.3).setParamRange(0, 1));
-  add(forceRange.set(0, 0.002).setParamRange(-0.04, 0.04));
-}
-
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Spawn Area").minimize();
 //  panel.getGroup("Color").minimize();

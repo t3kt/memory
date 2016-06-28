@@ -19,6 +19,7 @@
 #include "ValueSupplier.h"
 #include "Bounds.h"
 #include "Behavior.h"
+#include "State.h"
 
 class ObserverEntity;
 
@@ -33,13 +34,14 @@ public:
     
     RandomValueSupplier<float> radius;
     ofParameter<ofFloatColor> markerColor;
+    ofParameter<float> rangeFadeIn;
     ofParameter<ofFloatColor> rangeColor;
     ofParameter<ofFloatColor> connectorColor;
     ofParameter<float> markerSize;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds);
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
+  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
   virtual ~OccurrenceEntity() {}
 
   void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
@@ -74,6 +76,7 @@ private:
   const Params& _params;
   const float _originalRadius;
   float _actualRadius;
+  float _startTime;
   std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
   BehaviorCollection<OccurrenceEntity> _behaviors;
 

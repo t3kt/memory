@@ -79,8 +79,9 @@ class AbstractEntityAttraction {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params(std::string name);
 
+    ofParameter<bool> enabled;
     ValueRange<float> distanceBounds;
     ValueRange<float> forceRange;
   };
@@ -100,6 +101,9 @@ public:
   : AbstractEntityAttraction(params) {}
 
   void update(E& entity, const State& state) override {
+    if (!_params.enabled.get()) {
+      return;
+    }
     float lowBound = _params.distanceBounds.lowValue.get();
     float highBound = _params.distanceBounds.highValue.get();
     float lowMagnitude = _params.forceRange.lowValue.get();

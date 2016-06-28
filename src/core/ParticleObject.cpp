@@ -10,7 +10,16 @@
 
 ParticleObject::Params::Params(std::string name)
 : ::Params(name) {
-  add(damping.set("Damping", 0.01, 0, 0.2));
+  add(damping.set("Damping", 0.01, 0, 0.1));
+}
+
+AbstractEntityAttraction::Params::Params(std::string name)
+: ::Params(name)
+, distanceBounds("Distance Bounds")
+, forceRange("Force Range") {
+  add(enabled.set("Enabled", true));
+  add(distanceBounds.set(0.04, 0.3).setParamRange(0, 1));
+  add(forceRange.set(0.0001, 0).setParamRange(-0.005, 0.005));
 }
 
 ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)

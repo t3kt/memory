@@ -14,7 +14,8 @@ const int START_OBSERVERS = 20;
 ObserversController::Params::Params()
 : ::Params("Observers")
 , spawnInterval("Spawning")
-, initialVelocity("Initial Velocity") {
+, initialVelocity("Initial Velocity")
+, occurrenceAttraction("Occurrence Attraction") {
   add(entities);
   add(spawnInterval);
   add(initialVelocity

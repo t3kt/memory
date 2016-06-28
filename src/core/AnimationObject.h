@@ -28,11 +28,8 @@ public:
     ofParameter<float> delay;
     ofParameter<float> duration;
   };
-  
-  AnimationObject(float delay, float duration);
+
   AnimationObject(const Params& params);
-  
-  virtual void draw(const State& state) override = 0;
   
   void show() { _visible = true; }
   void hide() { _visible = false; }

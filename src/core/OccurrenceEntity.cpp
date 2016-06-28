@@ -19,10 +19,11 @@ OccurrenceEntity::Params::Params()
   add(radius
       .set(0.4, 1.3)
       .setParamRange(0, 4));
+  add(rangeFadeIn.set("Fade In", 1, 0, 4));
   add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
   add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
   add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
-  add(markerSize.set("Marker Size", 0.02, 0, 0.1));
+  add(markerSize.set("Marker Size", 0.05, 0, 0.5));
 }
 
 void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
@@ -32,17 +33,18 @@ void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Connector Color").minimize();
 }
 
-shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds) {
+shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state) {
   ofVec3f pos = bounds.randomPoint();
   float radius = params.radius.getValue();
-  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius, params));
+  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius, params, state));
 }
 
-OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params)
+OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state)
 : ParticleObject(pos, params)
 , _actualRadius(0)
 , _originalRadius(radius)
-, _params(params) {
+, _params(params)
+, _startTime(state.time) {
 }
 
 void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
@@ -92,6 +94,7 @@ void OccurrenceEntity::draw(const State &state) {
   float amount = getAmountOfObservation(state);
   
   float alpha = ofMap(amount, 0, MAX_OBS_LEVEL, 0.02f, 0.2f, true);
+  float lifePercent = ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
   
   
   ofPushStyle();
@@ -104,13 +107,14 @@ void OccurrenceEntity::draw(const State &state) {
   ofPushStyle();
   ofEnableAlphaBlending();
   ofFloatColor rangeColor = _params.rangeColor.get();
-  rangeColor *= alpha;
+  rangeColor *= alpha * lifePercent;
   ofSetColor(rangeColor);
   ofDrawSphere(_position, _actualRadius);
   ofPopStyle();
 
   ofPushStyle();
   ofFloatColor connectorColor = _params.connectorColor.get();
+  connectorColor.a *= lifePercent;
   ofMesh connectorMesh;
   for (auto observer : _connectedObservers) {
     connectorMesh.addVertex(_position);

@@ -13,12 +13,14 @@ const int START_OCCURRENCES = 5;
 OccurrencesController::Params::Params()
 : ::Params("Occurrences")
 , spawnInterval("Spawning")
-, initialVelocity("Initial Velocity") {
+, initialVelocity("Initial Velocity")
+, observerAttraction("Observer Attraction") {
   add(entities);
   add(spawnInterval);
-  add(initialVelocity.set(0, 0.01)
+  add(initialVelocity.set(0, 0)
       .setParamRange(0, 0.1));
   add(observerAttraction);
+  observerAttraction.enabled.set(false);
 }
 
 void OccurrencesController::Params::initPanel(ofxGuiGroup &panel) {
@@ -36,7 +38,7 @@ OccurrencesController::OccurrencesController(const OccurrencesController::Params
 void OccurrencesController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<OccurrenceEntity>>(_bounds);
   _reboundBehavior->entityRebounded += [&](OccurrenceEventArgs e) {
-    ofLogNotice() << "Occurrence rebounded: " << e.entity();
+//    ofLogNotice() << "Occurrence rebounded: " << e.entity();
   };
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   for (int i = 0; i < START_OCCURRENCES; i++) {
@@ -61,7 +63,7 @@ void OccurrencesController::draw(const State &state) {
 }
 
 void OccurrencesController::spawnOccurrence(const State &state) {
-  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds);
+  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state);
   
   bool connected = _observers.registerOccurrence(occurrence);
   

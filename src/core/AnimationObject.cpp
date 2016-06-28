@@ -50,15 +50,11 @@ void AnimationUpdater::end() {
   _animationManager.eraseById(_animation.id);
 }
 
-AnimationObject::AnimationObject(float delay, float duration)
-: _delay(delay)
-, _duration(duration)
+AnimationObject::AnimationObject(const AnimationObject::Params& params)
+: _delay(params.delay.get())
+, _duration(params.duration.get())
 , _visible(true)
 , _percentage(0) {
-}
-
-AnimationObject::AnimationObject(const AnimationObject::Params& params)
-: AnimationObject(params.delay.get(), params.duration.get()) {
 }
 
 shared_ptr<DurationAction>
