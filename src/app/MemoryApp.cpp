@@ -20,6 +20,12 @@ static ofVec3f randomPosition() {
 }
 
 void MemoryApp::setup() {
+  _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
+  _screenLoggerChannel->setDrawBounds(ofRectangle(150, 0, ofGetScreenWidth() - 500, 250));
+  _multiLoggerChannel = std::make_shared<ofxMultiLoggerChannel>();
+  _multiLoggerChannel->addConsoleLoggerChannel();
+  _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
+  ofSetLoggerChannel(_multiLoggerChannel);
   
   _appParams.initGui(_gui);
   
@@ -45,6 +51,16 @@ void MemoryApp::update() {
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);
+
+  // Slide the logger screen in and out.
+  ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
+  if (_appParams.showLog.get()) {
+    bounds.y = ofLerp(bounds.y, 0, 0.2);
+  }
+  else {
+    bounds.y = ofLerp(bounds.y, -bounds.height, 0.2);
+  }
+  _screenLoggerChannel->setDrawBounds(bounds);
 }
 
 void MemoryApp::draw() {
@@ -76,10 +92,13 @@ void MemoryApp::draw() {
   ofDrawBitmapStringHighlight("Observers: " + ofToString(_observers->count()), ofGetWidth() - 140, 40);
   ofDrawBitmapStringHighlight("Occurrences: " + ofToString(_occurrences->count()), ofGetWidth() - 140, 60);
   _gui.draw();
+  _screenLoggerChannel->draw();
 }
 
 void MemoryApp::keyPressed(int key) {
   if (key == 'h') {
     _cam.reset();
+  } else if (key == 'l') {
+    _appParams.showLog.set(!_appParams.showLog.get());
   }
 }

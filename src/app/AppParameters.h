@@ -24,6 +24,7 @@ public:
   
   void initGui(ofxPanel& gui);
 
+  ofParameter<bool> showLog;
   SimpleCubeBounds bounds;
   AnimationsController::Params animations;
   ObserversController::Params observers;

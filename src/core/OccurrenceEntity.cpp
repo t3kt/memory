@@ -124,7 +124,7 @@ void OccurrenceEntity::draw(const State &state) {
 }
 
 void OccurrenceEntity::handleDeath() {
-  std::cout << "Occurrence died: " << *this << std::endl;
+  ofLog(OF_LOG_NOTICE) << "Occurrence died: " << *this << std::endl;
 }
 
 void OccurrenceEntity::outputFields(std::ostream &os) const {
