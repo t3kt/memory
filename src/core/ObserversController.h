@@ -18,11 +18,13 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
+#include "Status.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
 
-class ObserversController {
+class ObserversController
+: public StatusInfoProvider {
 public:
   class Params : public ::Params {
   public:
@@ -48,6 +50,8 @@ public:
   std::size_t count() const {
     return _observers.size();
   }
+
+  const StatusInfo& getStatusInfo() const { return _status; }
   
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
@@ -62,6 +66,8 @@ private:
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
   shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
+  StatusInfo _status;
+  std::size_t STATUS_COUNT;
 };
 
 #endif /* ObserversController_h */

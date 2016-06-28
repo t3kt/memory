@@ -10,8 +10,9 @@
 
 DebugParams::DebugParams()
 : Params("Debug") {
-  add(showLog.set("Show Log?", false));
-  add(drawBounds.set("Show Bounds?", false));
+  add(showLog.set("Show Log", false));
+  add(showBounds.set("Show Bounds", false));
+  add(showStatus.set("Show Status", true));
 }
 
 MemoryAppParameters::MemoryAppParameters()

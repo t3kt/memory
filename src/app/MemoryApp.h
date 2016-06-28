@@ -18,6 +18,9 @@
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
+#include "Status.h"
+
+class FPSInfoProvider;
 
 class MemoryApp : public ofBaseApp {
 public:
@@ -32,10 +35,12 @@ private:
   shared_ptr<ObserversController> _observers;
   shared_ptr<OccurrencesController> _occurrences;
   shared_ptr<AnimationsController> _animations;
+  shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
   ofxPanel _gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
+  shared_ptr<FPSInfoProvider> _fpsProvider;
 };
 
 #endif /* MemoryApp_h */

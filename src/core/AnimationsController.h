@@ -17,8 +17,10 @@
 #include "Events.h"
 #include "OccurrencesController.h"
 #include "ObserversController.h"
+#include "Status.h"
 
-class AnimationsController {
+class AnimationsController
+: public StatusInfoProvider {
 public:
   class Params : public ::Params {
   public:
@@ -32,6 +34,8 @@ public:
 
   AnimationsController(const Params& params);
 
+  void setup();
+
   void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
   void addTimedAction(shared_ptr<TimedAction> action);
   
@@ -40,11 +44,15 @@ public:
   
   void update(const State& state);
   void draw(const State& state);
+
+  const StatusInfo& getStatusInfo() const override { return _status; }
   
 private:
   const Params& _params;
   ObjectManager<AnimationObject> _animations;
   TimedActionSet _timedActions;
+  StatusInfo _status;
+  std::size_t STATUS_COUNT;
 };
 
 #endif /* AnimationsController_h */

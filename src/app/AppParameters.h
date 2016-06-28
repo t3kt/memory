@@ -23,7 +23,8 @@ public:
   DebugParams();
 
   ofParameter<bool> showLog;
-  ofParameter<bool> drawBounds;
+  ofParameter<bool> showBounds;
+  ofParameter<bool> showStatus;
 };
 
 class MemoryAppParameters : public Params {

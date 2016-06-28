@@ -11,13 +11,20 @@
 #include <memory>
 #include <iostream>
 
-const int START_OCCURRENCES = 10;
-
-static ofVec3f randomPosition() {
-  return ofVec3f(ofRandom(-1, 1),
-                 ofRandom(-1, 1),
-                 ofRandom(-1, 1));
-}
+class FPSInfoProvider
+: public StatusInfoProvider {
+public:
+  void setup() {
+    FPS_LINE = _status.registerLine("FPS:");
+  }
+  void update(const State& state) {
+    _status.setValue(FPS_LINE, ofToString(ofGetFrameRate()));
+  }
+  const StatusInfo& getStatusInfo() const { return _status; }
+private:
+  StatusInfo _status;
+  std::size_t FPS_LINE;
+};
 
 void MemoryApp::setup() {
   _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
@@ -41,8 +48,19 @@ void MemoryApp::setup() {
   _occurrences->setup(_state);
   
   _animations = std::make_shared<AnimationsController>(_appParams.animations);
+  _animations->setup();
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
+
+  _fpsProvider = std::make_shared<FPSInfoProvider>();
+  _fpsProvider->setup();
+
+  _statusController = std::make_shared<StatusInfoController>();
+  _statusController->setup();
+  _statusController->addProvider(_fpsProvider.get());
+  _statusController->addProvider(_observers.get());
+  _statusController->addProvider(_occurrences.get());
+  _statusController->addProvider(_animations.get());
   //...
 }
 
@@ -61,6 +79,7 @@ void MemoryApp::update() {
     bounds.y = ofLerp(bounds.y, -bounds.height, 0.2);
   }
   _screenLoggerChannel->setDrawBounds(bounds);
+  _fpsProvider->update(_state);
 }
 
 void MemoryApp::draw() {
@@ -82,7 +101,7 @@ void MemoryApp::draw() {
   _occurrences->draw(_state);
   _animations->draw(_state);
 
-  if (_appParams.debug.drawBounds.get()) {
+  if (_appParams.debug.showBounds.get()) {
     ofPushStyle();
     ofNoFill();
     ofSetColor(ofFloatColor(0.2, 0.2, 0.2, 0.3));
@@ -95,12 +114,12 @@ void MemoryApp::draw() {
   _cam.end();
   glPopAttrib();
   
-  ofSetColor(255);
-  ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), ofGetWidth() - 140, 20);
-  ofDrawBitmapStringHighlight("Observers: " + ofToString(_observers->count()), ofGetWidth() - 140, 40);
-  ofDrawBitmapStringHighlight("Occurrences: " + ofToString(_occurrences->count()), ofGetWidth() - 140, 60);
   _gui.draw();
   _screenLoggerChannel->draw();
+
+  if (_appParams.debug.showStatus.get()) {
+    _statusController->draw();
+  }
 }
 
 void MemoryApp::keyPressed(int key) {
