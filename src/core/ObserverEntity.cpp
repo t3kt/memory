@@ -65,7 +65,7 @@ void ObserverEntity::update(const State &state) {
 }
 
 void ObserverEntity::handleDeath() {
-  ofLog(OF_LOG_NOTICE) << "Observer died: " << *this << std::endl;
+  ofLogNotice() << "Observer died: " << *this;
   for (auto occurrence : _connectedOccurrences) {
     occurrence->removeObserver(id);
   }
