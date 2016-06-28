@@ -67,11 +67,11 @@ void OccurrencesController::spawnOccurrence(const State &state) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     occurrence->addBehavior(_reboundBehavior);
     occurrence->addBehavior(_observerAttraction);
-    std::cout << "Spawned occurrence: " << *occurrence << std::endl;
+    ofLog(OF_LOG_NOTICE) << "Spawned occurrence: " << *occurrence << std::endl;
     _occurrences.add(occurrence);
     occurrenceSpawned.notifyListeners(e);
   } else {
-    std::cout << "Nothing in range of occurrence: " << *occurrence << std::endl;
+    ofLog(OF_LOG_NOTICE) << "Nothing in range of occurrence: " << *occurrence << std::endl;
     occurrenceSpawnFailed.notifyListeners(e);
   }
 }

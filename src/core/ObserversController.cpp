@@ -6,6 +6,7 @@
 //
 //
 
+#include <ofLog.h>
 #include "ObserversController.h"
 
 const int START_OBSERVERS = 20;
@@ -37,7 +38,7 @@ void ObserversController::setup(const State &state) {
   _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_bounds);
   _reboundBehavior->entityRebounded += [&](ObserverEventArgs e) {
     observerRebounded.notifyListeners(e);
-    std::cout << "Observer rebounded: " << e.entity() << std::endl;
+    ofLog(OF_LOG_NOTICE) << "Observer rebounded: " << e.entity() << std::endl;
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
   for (int i = 0; i < START_OBSERVERS; i++) {
@@ -89,5 +90,5 @@ void ObserversController::spawnObserver(const State &state) {
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
   observerSpawned.notifyListeners(e);
-  std::cout << "Spawned observer: " << *observer << std::endl;
+  ofLog(OF_LOG_NOTICE) << "Spawned observer: " << *observer << std::endl;
 }
