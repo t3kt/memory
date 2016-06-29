@@ -8,6 +8,7 @@
 			</Lifetime_Range>
 			<Color>0.525, 0.7, 0.35, 1</Color>
 			<Draw_Radius>0.0781341</Draw_Radius>
+		<Speed>1.20158</Speed>
 		</Observers>
 		<Spawning>
 			<Interval>
@@ -17,16 +18,16 @@
 		</Spawning>
 		<Initial_Velocity>
 			<Low>0.0135777</Low>
-			<High>0.0229488</High>
+			<High>0.044294</High>
 		</Initial_Velocity>
 		<Occurrence_Attraction>
 			<Enabled>1</Enabled>
 			<Distance_Bounds>
 				<Low>0.04</Low>
-				<High>0.3</High>
+				<High>0.495321</High>
 			</Distance_Bounds>
 			<Force_Range>
-				<Low>0.0001</Low>
+				<Low>0.0021313</Low>
 				<High>0</High>
 			</Force_Range>
 		</Occurrence_Attraction>
@@ -38,6 +39,12 @@
 				<High>1.7951</High>
 			</Range>
 		</Threshold>
+	<Spatial_Noise_Force>
+			<Enabled>0</Enabled>
+			<Scale>1</Scale>
+			<Rate>0.1</Rate>
+			<Magnitude>0.0001</Magnitude>
+		</Spatial_Noise_Force>
 	</Observers>
 	<Occurrences>
 		<Occurrences>
@@ -51,6 +58,7 @@
 			<Range_Color>0.5, 0.5, 0.5, 0.2</Range_Color>
 			<Connector_Color>0.5, 0.5, 0.5, 1</Connector_Color>
 			<Marker_Size>0.317784</Marker_Size>
+		<Speed>1</Speed>
 		</Occurrences>
 		<Spawning>
 			<Interval>
@@ -73,6 +81,12 @@
 				<High>0</High>
 			</Force_Range>
 		</Observer_Attraction>
+	<Spatial_Noise_Force>
+			<Enabled>0</Enabled>
+			<Scale>1</Scale>
+			<Rate>0.1</Rate>
+			<Magnitude>0.0001</Magnitude>
+		</Spatial_Noise_Force>
 	</Occurrences>
 	<Animations>
 		<Enabled>1</Enabled>
@@ -181,6 +195,6 @@
 <group/>
 	<Clock>
 		<Paused>0</Paused>
-		<Rate>1.06122</Rate>
+		<Rate>1.08163</Rate>
 	</Clock>
 </group>

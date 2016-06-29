@@ -11,6 +11,7 @@
 ParticleObject::Params::Params(std::string name)
 : ::Params(name) {
   add(damping.set("Damping", 0.01, 0, 0.1));
+  add(speed.set("Speed", 1, 0, 10));
 }
 
 AbstractEntityAttraction::Params::Params(std::string name)
@@ -48,8 +49,10 @@ void ParticleObject::addDampingForce() {
 }
 
 void ParticleObject::update(const State &state) {
-  _velocity += _force;
-  _position += _velocity;
+  if (state.timeDelta > 0) {
+    _velocity += _force * state.timeDelta;
+    _position += _velocity * _params.speed.get() * state.timeDelta;
+  }
 }
 
 void ParticleObject::outputFields(std::ostream &os) const {

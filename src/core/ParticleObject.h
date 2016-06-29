@@ -24,6 +24,7 @@ public:
     Params(std::string name);
 
     ofParameter<float> damping;
+    ofParameter<float> speed;
   };
 
   ParticleObject(ofVec3f pos, const Params& params);
