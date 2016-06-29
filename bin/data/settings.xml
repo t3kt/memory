@@ -99,11 +99,10 @@
 				<End>0.2</End>
 			</Radius>
 			<Alpha>
-				<Start>0</Start>
-				<End>1</End>
+				<Start>1</Start>
+				<End>0</End>
 			</Alpha>
-			<Color>
-				<Hue>
+			<Color>0.660006, 0.644068, 0.787503, 0.686568<Hue>
 					<Low>0</Low>
 					<High>1</High>
 				</Hue>
@@ -130,11 +129,10 @@
 				<End>0.2</End>
 			</Radius>
 			<Alpha>
-				<Start>0</Start>
-				<End>1</End>
+				<Start>1</Start>
+				<End>0</End>
 			</Alpha>
-			<Color>
-				<Hue>
+			<Color>0.766254, 0.644068, 0.452822, 0.792816<Hue>
 					<Low>0</Low>
 					<High>1</High>
 				</Hue>
@@ -161,11 +159,10 @@
 				<End>0.01</End>
 			</Radius>
 			<Alpha>
-				<Start>0</Start>
-				<End>1</End>
+				<Start>1</Start>
+				<End>0</End>
 			</Alpha>
-			<Color>
-				<Hue>
+			<Color>0.814066, 0.681255, 0.511258, 0.569695<Hue>
 					<Low>0</Low>
 					<High>1</High>
 				</Hue>
@@ -189,7 +186,7 @@
 	</Bounds>
 	<Debug>
 		<Show_Log>0</Show_Log>
-		<Show_Bounds>0</Show_Bounds>
+		<Show_Bounds>1</Show_Bounds>
 		<Show_Status>1</Show_Status>
 	</Debug>
 <group/>

@@ -68,17 +68,16 @@ AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>&
 ExpandingSphereAnimation::Params::Params(std::string name)
 : AnimationObject::Params(name)
 , radius("Radius")
-, color("Color")
 , alpha("Alpha") {
   add(radius.setNames("Start", "End").setParamRange(0, 0.4).set(0, 0.2));
   add(alpha.setNames("Start", "End").setParamRange(0, 1).set(0, 1));
-  add(color);
+  add(color.set("Color", ofFloatColor(0.6, 0.8, 0.4, 0.6)));
 }
 
 ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params)
 : AnimationObject(params)
 , _params(params)
-, _color(params.color.getValue()) {
+, _color(params.color.get()) {
   _position = position;
 }
 

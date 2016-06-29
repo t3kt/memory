@@ -62,7 +62,7 @@ public:
 
     FloatValueRange radius;
     FloatValueRange alpha;
-    RandomHsbFloatColorSupplier color;
+    ofParameter<ofFloatColor> color;
   };
 
   ExpandingSphereAnimation(ofVec3f position, const Params& params);
