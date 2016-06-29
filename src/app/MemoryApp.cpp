@@ -18,7 +18,7 @@ public:
     FPS_LINE = _status.registerLine("FPS:");
   }
   void update(const State& state) {
-    _status.setValue(FPS_LINE, ofToString(ofGetFrameRate()));
+    _status.setValue(FPS_LINE, ofToString(ofGetFrameRate(), 2));
   }
   const StatusInfo& getStatusInfo() const { return _status; }
 private:
@@ -52,11 +52,15 @@ void MemoryApp::setup() {
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
 
+  _clock = std::make_shared<Clock>(_appParams.clock, _state);
+  _clock->setup();
+
   _fpsProvider = std::make_shared<FPSInfoProvider>();
   _fpsProvider->setup();
 
   _statusController = std::make_shared<StatusInfoController>();
   _statusController->setup();
+  _statusController->addProvider(_clock.get());
   _statusController->addProvider(_fpsProvider.get());
   _statusController->addProvider(_observers.get());
   _statusController->addProvider(_occurrences.get());
@@ -68,7 +72,7 @@ void MemoryApp::setup() {
 }
 
 void MemoryApp::update() {
-  _state.updateTime();
+  _clock->update();
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);

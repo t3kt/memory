@@ -40,6 +40,7 @@ ParamsGui* DebugParams::createGui() {
 
 MemoryAppParameters::MemoryAppParameters()
 : bounds("Bounds") {
+  add(clock);
   add(observers);
   add(occurrences);
   add(animations);

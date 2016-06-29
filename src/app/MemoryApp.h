@@ -20,6 +20,7 @@
 #include "AnimationsController.h"
 #include "Status.h"
 #include "AppGui.h"
+#include "Clock.h"
 
 class FPSInfoProvider;
 
@@ -43,6 +44,7 @@ private:
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;
+  shared_ptr<Clock> _clock;
 };
 
 #endif /* MemoryApp_h */

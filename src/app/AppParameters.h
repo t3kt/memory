@@ -18,6 +18,7 @@
 #include "AnimationsController.h"
 #include "Params.h"
 #include "Bounds.h"
+#include "Clock.h"
 
 class DebugParams : public Params {
 public:
@@ -37,6 +38,7 @@ public:
   
   void initGui(ofxPanel& gui);
 
+  Clock::Params clock;
   DebugParams debug;
   SimpleCubeBounds bounds;
   AnimationsController::Params animations;
