@@ -142,5 +142,11 @@ void MemoryApp::keyPressed(int key) {
     case ' ':
       _clock->toggleState();
       break;
+    case '9':
+      _occurrences->spawnOccurrences(5, _state);
+      break;
+    case '0':
+      _observers->spawnObservers(5, _state);
+      break;
   }
 }

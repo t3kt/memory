@@ -45,6 +45,8 @@ public:
   void update(const State& state);
   void draw(const State& state);
 
+  void spawnOccurrences(int count, const State& state);
+
   std::size_t count() const {
     return _occurrences.size();
   }

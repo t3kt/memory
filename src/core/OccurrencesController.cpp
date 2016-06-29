@@ -87,3 +87,10 @@ void OccurrencesController::spawnOccurrence(const State &state) {
     occurrenceSpawnFailed.notifyListeners(e);
   }
 }
+
+void OccurrencesController::spawnOccurrences(int count,
+                                             const State &state) {
+  for (int i = 0; i < count; ++i) {
+    spawnOccurrence(state);
+  }
+}

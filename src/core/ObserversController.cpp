@@ -107,3 +107,9 @@ void ObserversController::spawnObserver(const State &state) {
   observerSpawned.notifyListeners(e);
   ofLogNotice() << "Spawned observer: " << *observer;
 }
+
+void ObserversController::spawnObservers(int count, const State& state) {
+  for (int i = 0; i < count; ++i) {
+    spawnObserver(state);
+  }
+}

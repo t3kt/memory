@@ -48,6 +48,8 @@ public:
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
 
+  void spawnObservers(int count, const State& state);
+
   std::size_t count() const {
     return _observers.size();
   }
