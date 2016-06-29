@@ -26,6 +26,14 @@ private:
   std::size_t FPS_LINE;
 };
 
+class GuiPanel
+: public ofxPanel {
+public:
+  void reloadSettings() {
+    loadFromFile(filename);
+  }
+};
+
 void MemoryApp::setup() {
   _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
   _screenLoggerChannel->setDrawBounds(ofRectangle(150, 0, ofGetScreenWidth() - 500, 250));
@@ -33,8 +41,10 @@ void MemoryApp::setup() {
   _multiLoggerChannel->addConsoleLoggerChannel();
   _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
   ofSetLoggerChannel(_multiLoggerChannel);
-  
-  _appParams.initGui(_gui);
+
+  _gui = std::make_shared<GuiPanel>();
+  _appParams.initGui(*_gui);
+  _gui->reloadSettings();
   
   ofEnableAlphaBlending();
   ofDisableDepthTest();
@@ -122,7 +132,7 @@ void MemoryApp::draw() {
   _cam.end();
   glPopAttrib();
   
-  _gui.draw();
+  _gui->draw();
   _screenLoggerChannel->draw();
 
   if (_appParams.debug.showStatus.get()) {

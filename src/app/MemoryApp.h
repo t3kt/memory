@@ -23,6 +23,7 @@
 #include "Clock.h"
 
 class FPSInfoProvider;
+class GuiPanel;
 
 class MemoryApp : public ofBaseApp {
 public:
@@ -39,7 +40,7 @@ private:
   shared_ptr<AnimationsController> _animations;
   shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
-  ofxPanel _gui;
+  shared_ptr<GuiPanel> _gui;
   shared_ptr<AppGui> _NEW_gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
