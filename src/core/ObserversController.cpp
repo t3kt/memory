@@ -16,6 +16,7 @@ ObserversController::Params::Params()
 , spawnInterval("Spawning")
 , initialVelocity("Initial Velocity")
 , occurrenceAttraction("Occurrence Attraction")
+, spatialNoiseForce("Spatial Noise Force")
 , threshold("Threshold") {
   add(entities);
   add(spawnInterval);
@@ -23,7 +24,10 @@ ObserversController::Params::Params()
       .set(0, 0.01)
       .setParamRange(0, 0.1));
   add(occurrenceAttraction);
+  add(spatialNoiseForce);
   add(threshold);
+
+  spatialNoiseForce.enabled.set(false);
 }
 
 void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
@@ -44,6 +48,7 @@ void ObserversController::setup(const State &state) {
     ofLogNotice() << "Observer rebounded: " << e.entity();
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
+  _spatialNoiseForce = std::make_shared<SpatialNoiseForce<ObserverEntity>>(_params.spatialNoiseForce);
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
@@ -96,6 +101,7 @@ void ObserversController::spawnObserver(const State &state) {
   observer->setVelocity(_params.initialVelocity.getValue());
   observer->addBehavior(_reboundBehavior);
   observer->addBehavior(_occurrenceAttraction);
+  observer->addBehavior(_spatialNoiseForce);
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
   observerSpawned.notifyListeners(e);

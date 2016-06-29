@@ -124,4 +124,41 @@ protected:
   virtual std::vector<shared_ptr<O>> getOthers(E& entity) const = 0;
 };
 
+class AbstractSpatialNoiseForce {
+public:
+  class Params : public ::Params {
+  public:
+    Params(std::string name);
+
+    ofParameter<bool> enabled;
+    ofParameter<float> scale;
+    ofParameter<float> rate;
+    ofParameter<float> magnitude;
+  };
+
+  AbstractSpatialNoiseForce(const Params& params)
+  : _params(params) { }
+protected:
+  ofVec3f getForce(ofVec3f position, const State& state) const;
+
+  const Params& _params;
+};
+
+template<typename E>
+class SpatialNoiseForce
+: public AbstractSpatialNoiseForce
+, public Behavior<E> {
+public:
+  SpatialNoiseForce(const Params& params)
+  : AbstractSpatialNoiseForce(params) { }
+
+  void update(E& entity, const State& state) override {
+    if (!_params.enabled.get()) {
+      return;
+    }
+    ofVec3f force = getForce(entity.position(), state);
+    entity.addForce(force);
+  }
+};
+
 #endif /* ParticleObject_h */

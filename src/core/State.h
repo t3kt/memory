@@ -14,7 +14,6 @@
 class State : public Outputable {
 public:
   State();
-  void updateTime();
   
   void output(std::ostream& os) const override;
   

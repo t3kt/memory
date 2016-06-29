@@ -36,6 +36,7 @@ public:
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
+    AbstractSpatialNoiseForce::Params spatialNoiseForce;
     AbstractThresholdRenderer::Params threshold;
   };
   
@@ -65,6 +66,7 @@ private:
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
+  shared_ptr<SpatialNoiseForce<ObserverEntity>> _spatialNoiseForce;
   shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
   StatusInfo _status;
   std::size_t STATUS_COUNT;

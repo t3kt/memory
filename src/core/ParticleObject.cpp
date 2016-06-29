@@ -75,3 +75,26 @@ bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &
   return _bounds.reflect(&entity._velocity, &entity._position);
 }
 
+AbstractSpatialNoiseForce::Params::Params(std::string name)
+: ::Params(name) {
+  add(enabled.set("Enabled", true));
+  add(scale.set("Scale", 1, 0, 4));
+  add(rate.set("Rate", 0.1, 0, 0.5));
+  add(magnitude.set("Magnitude", 0.0001, 0, 0.005));
+}
+
+const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
+const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
+
+ofVec3f AbstractSpatialNoiseForce::getForce(ofVec3f position,
+                                            const State &state) const {
+  ofVec4f noisePos = ofVec4f(position * _params.scale.get());
+  noisePos.w = state.time * _params.rate.get();
+
+  ofVec3f force(ofSignedNoise(noisePos),
+                ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
+                ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
+
+  return force * _params.magnitude.get();
+}
+

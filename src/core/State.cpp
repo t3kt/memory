@@ -11,15 +11,9 @@
 #include <ofMain.h>
 
 State::State()
-: time(ofGetElapsedTimef())
+: time(0)
 , timeDelta(0) {
   
-}
-
-void State::updateTime() {
-  auto t = ofGetElapsedTimef();
-  timeDelta = t - time;
-  time = t;
 }
 
 void State::output(std::ostream &os) const {

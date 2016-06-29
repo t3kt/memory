@@ -36,6 +36,7 @@ public:
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceObserverAttraction::Params observerAttraction;
+    AbstractSpatialNoiseForce::Params spatialNoiseForce;
   };
   
   OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
@@ -66,6 +67,7 @@ private:
   ObjectManager<OccurrenceEntity> _occurrences;
   shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
   shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
+  shared_ptr<SpatialNoiseForce<OccurrenceEntity>> _spatialNoiseForce;
   StatusInfo _status;
   std::size_t STATUS_COUNT;
 };

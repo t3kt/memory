@@ -14,13 +14,16 @@ OccurrencesController::Params::Params()
 : ::Params("Occurrences")
 , spawnInterval("Spawning")
 , initialVelocity("Initial Velocity")
-, observerAttraction("Observer Attraction") {
+, observerAttraction("Observer Attraction")
+, spatialNoiseForce("Spatial Noise Force") {
   add(entities);
   add(spawnInterval);
   add(initialVelocity.set(0, 0)
       .setParamRange(0, 0.1));
   add(observerAttraction);
+  add(spatialNoiseForce);
   observerAttraction.enabled.set(false);
+  spatialNoiseForce.enabled.set(false);
 }
 
 void OccurrencesController::Params::initPanel(ofxGuiGroup &panel) {
@@ -41,6 +44,7 @@ void OccurrencesController::setup(const State &state) {
 //    ofLogNotice() << "Occurrence rebounded: " << e.entity();
   };
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
+  _spatialNoiseForce = std::make_shared<SpatialNoiseForce<OccurrenceEntity>>(_params.spatialNoiseForce);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }
@@ -74,6 +78,7 @@ void OccurrencesController::spawnOccurrence(const State &state) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     occurrence->addBehavior(_reboundBehavior);
     occurrence->addBehavior(_observerAttraction);
+    occurrence->addBehavior(_spatialNoiseForce);
     ofLogNotice() << "Spawned occurrence: " << *occurrence;
     _occurrences.add(occurrence);
     occurrenceSpawned.notifyListeners(e);
