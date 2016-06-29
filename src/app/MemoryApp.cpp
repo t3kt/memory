@@ -132,9 +132,15 @@ void MemoryApp::draw() {
 }
 
 void MemoryApp::keyPressed(int key) {
-  if (key == 'h') {
-    _cam.reset();
-  } else if (key == 'l') {
-    _appParams.debug.showLog.set(!_appParams.debug.showLog.get());
+  switch (key) {
+    case 'h':
+      _cam.reset();
+      break;
+    case 'l':
+      _appParams.debug.showLog.set(!_appParams.debug.showLog.get());
+      break;
+    case ' ':
+      _clock->toggleState();
+      break;
   }
 }

@@ -29,8 +29,11 @@ public:
   Clock(Params& params, State& state);
 
   void setup();
+
   void start();
   void stop();
+  void toggleState();
+
   void update();
 
   const StatusInfo& getStatusInfo() const { return _status; }

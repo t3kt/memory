@@ -39,6 +39,10 @@ void Clock::stop() {
   _params.paused.setWithoutEventNotifications(true);
 }
 
+void Clock::toggleState() {
+  _params.paused.set(!_params.paused.get());
+}
+
 void Clock::update() {
   if (_params.paused.get()) {
     _state.timeDelta = 0;
