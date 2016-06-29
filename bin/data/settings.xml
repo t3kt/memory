@@ -7,17 +7,17 @@
 				<High>60</High>
 			</Lifetime_Range>
 			<Color>0.525, 0.7, 0.35, 1</Color>
-			<Draw_Radius>0.03</Draw_Radius>
+			<Draw_Radius>0.0781341</Draw_Radius>
 		</Observers>
 		<Spawning>
 			<Interval>
-				<Low>0.344075</Low>
-				<High>1.19406</High>
+				<Low>2</Low>
+				<High>6</High>
 			</Interval>
 		</Spawning>
 		<Initial_Velocity>
-			<Low>0.00524781</Low>
-			<High>0.00993336</High>
+			<Low>0.00733028</Low>
+			<High>0.0229488</High>
 		</Initial_Velocity>
 		<Occurrence_Attraction>
 			<Enabled>1</Enabled>
@@ -26,7 +26,7 @@
 				<High>0.3</High>
 			</Distance_Bounds>
 			<Force_Range>
-				<Low>0.000537574</Low>
+				<Low>0.0001</Low>
 				<High>0</High>
 			</Force_Range>
 		</Occurrence_Attraction>
@@ -35,7 +35,7 @@
 			<Color>0.7, 0.7, 0.85, 0.4</Color>
 			<Range>
 				<Low>0</Low>
-				<High>1.8376</High>
+				<High>1.7951</High>
 			</Range>
 		</Threshold>
 	</Observers>
@@ -174,7 +174,8 @@
 		<Size>6</Size>
 	</Bounds>
 	<Debug>
-		<Show_Log?>0</Show_Log?>
-		<Show_Bounds?>0</Show_Bounds?>
+		<Show_Log>0</Show_Log>
+		<Show_Bounds>0</Show_Bounds>
+		<Show_Status>1</Show_Status>
 	</Debug>
 </group>

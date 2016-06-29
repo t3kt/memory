@@ -2,5 +2,6 @@ ofxDatGui
 ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
+ofxMSATimer
 ofxTextAlign
 ofxXmlSettings
