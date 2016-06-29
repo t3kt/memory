@@ -33,7 +33,8 @@ bool ThreshData::tryAdd(ofVec3f pos1, ofVec3f pos2) {
   if (dist < _minDist || dist > _maxDist) {
     return false;
   }
-  ofFloatColor color = ofFloatColor(_color, ofMap(dist, _minDist, _maxDist, 1, 0));
+  ofFloatColor color = _color;
+  color.a *= ofMap(dist, _minDist, _maxDist, 1, 0);
   _mesh.addVertex(pos1);
   _mesh.addVertex(pos2);
   _mesh.addColor(color);
