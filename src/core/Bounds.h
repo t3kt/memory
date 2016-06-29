@@ -39,6 +39,9 @@ public:
   ofVec3f randomPoint() const override;
 
   ofParameter<float> size;
+
+protected:
+  ParamsGui* createGui() override;
 };
 
 #endif /* Bounds_h */

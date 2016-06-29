@@ -7,6 +7,7 @@
 //
 
 #include "Bounds.h"
+#include "ParamsGui.h"
 
 Bounds::Bounds(std::string name)
 : Params(name) {
@@ -42,4 +43,22 @@ ofVec3f SimpleCubeBounds::randomPoint() const {
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),
                  ofRandom(-bound, bound));
+}
+
+class SimpleCubeBoundsGui
+: public AbstractParamsGui {
+public:
+  SimpleCubeBoundsGui(SimpleCubeBounds& params)
+  : AbstractParamsGui(params)
+  , _params(params) { }
+protected:
+  void addControls() override {
+    addSlider(_params.size);
+  }
+private:
+  SimpleCubeBounds& _params;
+};
+
+ParamsGui* SimpleCubeBounds::createGui() {
+  return new SimpleCubeBoundsGui(*this);
 }
