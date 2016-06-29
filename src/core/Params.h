@@ -83,14 +83,11 @@ public:
   
   ofParameter<T> lowValue;
   ofParameter<T> highValue;
-};
-
-class FloatValueRange : public ValueRange<float> {
-public:
-  explicit FloatValueRange(std::string name) : ValueRange<float>(name) { }
 
 protected:
   ParamsGui* createGui() override;
 };
+
+using FloatValueRange = ValueRange<float>;
 
 #endif /* Params_h */

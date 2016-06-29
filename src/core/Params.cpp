@@ -12,21 +12,40 @@
 class FloatValueRangeGui
 : public AbstractParamsGui {
 public:
-  FloatValueRangeGui(FloatValueRange& params)
+  FloatValueRangeGui(ValueRange<float>& params)
   : AbstractParamsGui(params)
   , _params(params) { }
 protected:
-  void addControls() override;
+  void addControls() override {
+    addSlider(_params.lowValue);
+    addSlider(_params.highValue);
+  }
 private:
-  FloatValueRange& _params;
+  ValueRange<float>& _params;
 };
 
-void FloatValueRangeGui::addControls() {
-  addSlider(_params.lowValue);
-  addSlider(_params.highValue);
+template<>
+ParamsGui* ValueRange<float>::createGui() {
+  return new FloatValueRangeGui(*this);
 }
 
-ParamsGui* FloatValueRange::createGui() {
-  return new FloatValueRangeGui(*this);
+class FloatColorValueRangeGui
+: public AbstractParamsGui {
+public:
+  FloatColorValueRangeGui(ValueRange<ofFloatColor>& params)
+  : AbstractParamsGui(params)
+  , _params(params) { }
+protected:
+  void addControls() override {
+    addColorPicker(_params.lowValue);
+    addColorPicker(_params.highValue);
+  }
+private:
+  ValueRange<ofFloatColor>& _params;
+};
+
+template<>
+ParamsGui* ValueRange<ofFloatColor>::createGui() {
+  return new FloatColorValueRangeGui(*this);
 }
 

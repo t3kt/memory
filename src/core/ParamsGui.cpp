@@ -42,3 +42,14 @@ void AbstractParamsGui::onSliderEvent(ofxDatGuiSliderEvent e) {
   ofParameter<float>& param = _baseParams.getFloat(e.target->getName());
   param.set(e.value);
 }
+
+ofxDatGuiColorPicker* AbstractParamsGui::addColorPicker(ofParameter<ofFloatColor> &param) {
+  ofxDatGuiColorPicker* picker = _folder->addColorPicker(param.getName());
+  picker->setColor(param.get());
+  return picker;
+}
+
+void AbstractParamsGui::onColorPickerEvent(ofxDatGuiColorPickerEvent e) {
+  ofParameter<ofFloatColor>& param = _baseParams.getFloatColor(e.target->getName());
+  param.set(e.color);
+}
