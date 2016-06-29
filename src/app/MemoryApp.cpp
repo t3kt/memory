@@ -62,8 +62,8 @@ void MemoryApp::setup() {
   _statusController->addProvider(_occurrences.get());
   _statusController->addProvider(_animations.get());
 
-  _NEW_gui = std::make_shared<AppGui>(_appParams);
-  _NEW_gui->setup();
+//  _NEW_gui = std::make_shared<AppGui>(_appParams);
+//  _NEW_gui->setup();
   //...
 }
 
@@ -83,7 +83,7 @@ void MemoryApp::update() {
   }
   _screenLoggerChannel->setDrawBounds(bounds);
   _fpsProvider->update(_state);
-  _NEW_gui->update();
+//  _NEW_gui->update();
 }
 
 void MemoryApp::draw() {
@@ -124,7 +124,7 @@ void MemoryApp::draw() {
   if (_appParams.debug.showStatus.get()) {
     _statusController->draw();
   }
-  _NEW_gui->draw();
+//  _NEW_gui->draw();
 }
 
 void MemoryApp::keyPressed(int key) {
