@@ -19,6 +19,7 @@
 #include "Bounds.h"
 #include "Behavior.h"
 #include "Status.h"
+#include "Colors.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
@@ -39,7 +40,7 @@ public:
     AbstractSpatialNoiseForce::Params spatialNoiseForce;
   };
   
-  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
+  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors);
   
   void setup(const State& state);
   void update(const State& state);
@@ -64,6 +65,7 @@ private:
   
   const Params& _params;
   const Bounds& _bounds;
+  const ColorTheme& _colors;
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;

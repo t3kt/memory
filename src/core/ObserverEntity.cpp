@@ -17,7 +17,7 @@ ObserverEntity::Params::Params()
   add(lifetime);
   lifetime.set(1, 4);
   lifetime.setParamRange(0, 240);
-  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
+//  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
   add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
 }
 
@@ -26,18 +26,18 @@ void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Color").minimize();
 }
 
-shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
+shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state, const ofFloatColor& color) {
   ofVec3f pos = bounds.randomPoint();
   float life = params.lifetime.getValue();
-  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, params, state));
+  return std::make_shared<ObserverEntity>(pos, life, params, state, color);
 }
 
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
+ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state, const ofFloatColor& color)
 : ParticleObject(pos, params)
 , _startTime(state.time)
 , _totalLifetime(life)
 , _params(params)
-{
+, _color(color) {
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
@@ -68,7 +68,7 @@ void ObserverEntity::draw(const State &state) {
   if (alpha <= 0) {
     return;
   }
-  ofFloatColor color = _params.color.get();
+  ofFloatColor color(_color);
   color.a *= alpha;
   
   ofPushStyle();

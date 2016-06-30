@@ -20,9 +20,9 @@ OccurrenceEntity::Params::Params()
       .set(0.4, 1.3)
       .setParamRange(0, 4));
   add(rangeFadeIn.set("Fade In", 1, 0, 4));
-  add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
-  add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
-  add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
+//  add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
+//  add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
+//  add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
   add(markerSize.set("Marker Size", 0.05, 0, 0.5));
 }
 
@@ -33,17 +33,18 @@ void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {
 //  panel.getGroup("Connector Color").minimize();
 }
 
-shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state) {
+shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state, const ColorTheme& colors) {
   ofVec3f pos = bounds.randomPoint();
   float radius = params.radius.getValue();
-  return shared_ptr<OccurrenceEntity>(new OccurrenceEntity(pos, radius, params, state));
+  return std::make_shared<OccurrenceEntity>(pos, radius, params, state, colors);
 }
 
-OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state)
+OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state, const ColorTheme& colors)
 : ParticleObject(pos, params)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _params(params)
+, _colors(colors)
 , _startTime(state.time) {
 }
 
@@ -98,14 +99,14 @@ void OccurrenceEntity::draw(const State &state) {
   
   
   ofPushStyle();
-  ofFloatColor markerColor = _params.markerColor.get();
+  ofFloatColor markerColor = _colors.occurrenceMarker.get();
   markerColor.a *= alpha;
   ofSetColor(markerColor);
   ofDrawBox(_position, _params.markerSize.get());
   ofPopStyle();
 
 
-  ofFloatColor rangeColor = _params.rangeColor.get();
+  ofFloatColor rangeColor = _colors.occurrenceRange.get();
   rangeColor.a *= alpha * lifePercent;
   if (rangeColor.a > 0) {
     ofPushStyle();
@@ -116,7 +117,7 @@ void OccurrenceEntity::draw(const State &state) {
   }
 
   ofPushStyle();
-  ofFloatColor connectorColor = _params.connectorColor.get();
+  ofFloatColor connectorColor = _colors.occurrenceConnector.get();
   connectorColor.a *= lifePercent;
   ofMesh connectorMesh;
   for (auto observer : _connectedObservers) {

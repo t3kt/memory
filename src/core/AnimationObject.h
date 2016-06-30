@@ -62,10 +62,10 @@ public:
 
     FloatValueRange radius;
     FloatValueRange alpha;
-    ofParameter<ofFloatColor> color;
+    //ofParameter<ofFloatColor> color;
   };
 
-  ExpandingSphereAnimation(ofVec3f position, const Params& params);
+  ExpandingSphereAnimation(ofVec3f position, const Params& params, ofFloatColor color);
 
   virtual void draw(const State& state) override;
 

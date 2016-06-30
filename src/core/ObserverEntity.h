@@ -33,13 +33,13 @@ public:
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> lifetime;
-    ofParameter<ofFloatColor> color;
+//    ofParameter<ofFloatColor> color;
     ofParameter<float> drawRadius;
   };
   
-  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
+  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ofFloatColor& color);
   
-  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
+  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state, const ofFloatColor& color);
   virtual ~ObserverEntity() override {}
 
   void addBehavior(shared_ptr<Behavior<ObserverEntity>> behavior) {
@@ -68,6 +68,7 @@ protected:
   
 private:
   const Params& _params;
+  const ofFloatColor& _color;
   const float _startTime;
   const float _totalLifetime;
   float _lifeFraction;

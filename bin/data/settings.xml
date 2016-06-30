@@ -194,4 +194,16 @@
 		<Paused>0</Paused>
 		<Rate>1.08163</Rate>
 	</Clock>
+<Color_Theme>
+		<Background>0, 0, 0, 1</Background>
+		<Bounds>0.2, 0.2, 0.2, 0.3</Bounds>
+		<Observer_Marker>0.525, 0.7, 0.35, 1</Observer_Marker>
+		<Occurrence_Marker>1, 0.5, 0.34, 1</Occurrence_Marker>
+		<Occurrence_Range>0.5, 0.5, 0.5, 0.58</Occurrence_Range>
+		<Occurrence_Connector>0.5, 0.5, 0.5, 1</Occurrence_Connector>
+		<Threshold_Connector>0.7, 0.7, 0.85, 0.4</Threshold_Connector>
+		<Observer_Died>0.660006, 0.644068, 0.787503, 0.686568</Observer_Died>
+		<Occurrence_Died>0.766254, 0.644068, 0.452822, 0.792816</Occurrence_Died>
+		<Occurrence_Spawn_Failed>0.814066, 0.681255, 0.511258, 0.569695</Occurrence_Spawn_Failed>
+	</Color_Theme>
 </group>

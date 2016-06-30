@@ -51,13 +51,13 @@ void MemoryApp::setup() {
 
   _appParams.observers.entities.lifetime.set(10, 60);
   
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state);
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state, _appParams.colors);
   _observers->setup(_state);
   
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.bounds, *_observers, _state);
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.bounds, *_observers, _state, _appParams.colors);
   _occurrences->setup(_state);
   
-  _animations = std::make_shared<AnimationsController>(_appParams.animations);
+  _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
   _animations->setup();
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
@@ -101,7 +101,7 @@ void MemoryApp::update() {
 }
 
 void MemoryApp::draw() {
-  ofBackground(ofFloatColor::white);
+  ofBackground(_appParams.colors.background.get());
   glPushAttrib(GL_ENABLE_BIT);
   //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);

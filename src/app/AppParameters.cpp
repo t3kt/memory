@@ -44,6 +44,7 @@ MemoryAppParameters::MemoryAppParameters()
   add(observers);
   add(occurrences);
   add(animations);
+  add(colors);
   add(bounds
       .set(6)
       .setParamRange(0, 10));

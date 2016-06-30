@@ -31,9 +31,10 @@ void OccurrencesController::Params::initPanel(ofxGuiGroup &panel) {
   spawnInterval.initPanel(panel);
 }
 
-OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state)
+OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors)
 : _params(params)
 , _bounds(bounds)
+, _colors(colors)
 , _spawnInterval(params.spawnInterval, state)
 , _observers(observers) {
 }
@@ -69,7 +70,7 @@ void OccurrencesController::draw(const State &state) {
 }
 
 void OccurrencesController::spawnOccurrence(const State &state) {
-  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state);
+  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state, _colors);
   
   bool connected = _observers.registerOccurrence(occurrence);
   

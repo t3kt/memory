@@ -19,6 +19,7 @@
 #include "Params.h"
 #include "Bounds.h"
 #include "Clock.h"
+#include "Colors.h"
 
 class DebugParams : public Params {
 public:
@@ -40,6 +41,7 @@ public:
 
   Clock::Params clock;
   DebugParams debug;
+  ColorTheme colors;
   SimpleCubeBounds bounds;
   AnimationsController::Params animations;
   ObserversController::Params observers;

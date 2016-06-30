@@ -35,9 +35,10 @@ void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
   spawnInterval.initPanel(panel);
 }
 
-ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
+ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)
 : _params(params)
 , _bounds(bounds)
+, _colors(colors)
 , _spawnInterval(params.spawnInterval, state) {
 }
 
@@ -97,7 +98,7 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 }
 
 void ObserversController::spawnObserver(const State &state) {
-  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state);
+  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state, _colors.observerMarker.get());
   observer->setVelocity(_params.initialVelocity.getValue());
   observer->addBehavior(_reboundBehavior);
   observer->addBehavior(_occurrenceAttraction);

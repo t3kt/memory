@@ -18,6 +18,7 @@
 #include "OccurrencesController.h"
 #include "ObserversController.h"
 #include "Status.h"
+#include "Colors.h"
 
 class AnimationsController
 : public StatusInfoProvider {
@@ -32,7 +33,7 @@ public:
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;
   };
 
-  AnimationsController(const Params& params);
+  AnimationsController(const Params& params, const ColorTheme& colors);
 
   void setup();
 
@@ -49,6 +50,7 @@ public:
   
 private:
   const Params& _params;
+  const ColorTheme& _colors;
   ObjectManager<AnimationObject> _animations;
   TimedActionSet _timedActions;
   StatusInfo _status;

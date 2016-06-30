@@ -11,6 +11,7 @@
 		17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AAD52AEE519A889E5A8B9D /* ofxTextAlign.cpp */; };
 		2B8F288F1B4106CC768D4FBE /* ofxDatGuiComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
+		328B614F1D24F19400041706 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 328B614D1D24F19400041706 /* Colors.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */; };
 		444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */; };
@@ -112,6 +113,8 @@
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		32831CD20CC05BAA1B5697B3 /* ofxDatGuiLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiLabel.h; sourceTree = SOURCE_ROOT; };
+		328B614D1D24F19400041706 /* Colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Colors.cpp; path = core/Colors.cpp; sourceTree = "<group>"; };
+		328B614E1D24F19400041706 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = core/Colors.h; sourceTree = "<group>"; };
 		345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGuiComponent.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiComponent.cpp; sourceTree = SOURCE_ROOT; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		36AFCF9C48B26AC8B17E9C98 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
@@ -181,7 +184,7 @@
 		DFC44816FA79F669BBF0EC7A /* OccurrencesController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrencesController.h; path = src/core/OccurrencesController.h; sourceTree = SOURCE_ROOT; };
 		E273EEB8AE7904F98040A557 /* ParamsGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ParamsGui.h; path = src/core/ParamsGui.h; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* memoryDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "memoryDebug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* memoryDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memoryDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
@@ -439,6 +442,8 @@
 				DCD5F898419E9A122FCFE280 /* ValueSupplier.h */,
 				4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */,
 				0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */,
+				328B614D1D24F19400041706 /* Colors.cpp */,
+				328B614E1D24F19400041706 /* Colors.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -561,7 +566,7 @@
 			dependencies = (
 				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
 			);
-			name = "memory";
+			name = memory;
 			productName = myOFApp;
 			productReference = E4B69B5B0A3A1756003C02F2 /* memoryDebug.app */;
 			productType = "com.apple.product-type.application";
@@ -634,6 +639,7 @@
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
+				328B614F1D24F19400041706 /* Colors.cpp in Sources */,
 				FC51CF98DA234C142DDDAF5F /* MemoryApp.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,

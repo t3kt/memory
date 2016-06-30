@@ -71,13 +71,13 @@ ExpandingSphereAnimation::Params::Params(std::string name)
 , alpha("Alpha") {
   add(radius.setNames("Start", "End").setParamRange(0, 0.4).set(0, 0.2));
   add(alpha.setNames("Start", "End").setParamRange(0, 1).set(0, 1));
-  add(color.set("Color", ofFloatColor(0.6, 0.8, 0.4, 0.6)));
+//  add(color.set("Color", ofFloatColor(0.6, 0.8, 0.4, 0.6)));
 }
 
-ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params)
+ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, ofFloatColor color)
 : AnimationObject(params)
 , _params(params)
-, _color(params.color.get()) {
+, _color(color) {
   _position = position;
 }
 

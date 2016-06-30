@@ -19,6 +19,7 @@
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
 #include "Status.h"
+#include "Colors.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
@@ -40,7 +41,7 @@ public:
     AbstractThresholdRenderer::Params threshold;
   };
   
-  ObserversController(const Params& params, const Bounds& bounds, const State& state);
+  ObserversController(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
   
   void setup(const State& state);
   void update(const State& state);
@@ -64,6 +65,7 @@ private:
   
   const Params& _params;
   const Bounds& _bounds;
+  const ColorTheme& _colors;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
