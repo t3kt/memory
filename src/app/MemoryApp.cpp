@@ -76,6 +76,12 @@ void MemoryApp::setup() {
   _statusController->addProvider(_occurrences.get());
   _statusController->addProvider(_animations.get());
 
+  _postProc.init(ofGetWidth(), ofGetHeight());
+//  _postProc.createPass<BloomPass>();
+//  _postProc.createPass<RimHighlightingPass>();
+//  shared_ptr<DofPass> dof = _postProc.createPass<DofPass>();
+//  shared_ptr<FakeSSSPass> sss = _postProc.createPass<FakeSSSPass>();
+
 //  _NEW_gui = std::make_shared<AppGui>(_appParams);
 //  _NEW_gui->setup();
   //...
@@ -105,8 +111,9 @@ void MemoryApp::draw() {
   glPushAttrib(GL_ENABLE_BIT);
   //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
-  _cam.begin();
-  
+  _postProc.begin(_cam);
+//  _cam.begin();
+
   ofPushMatrix();
   ofPushStyle();
   
@@ -129,7 +136,8 @@ void MemoryApp::draw() {
   
   ofPopMatrix();
   ofPopStyle();
-  _cam.end();
+//  _cam.end();
+  _postProc.end();
   glPopAttrib();
   
   _gui->draw();

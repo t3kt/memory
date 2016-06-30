@@ -13,6 +13,7 @@
 #include <ofxGui.h>
 #include <ofxScreenLoggerChannel.h>
 #include <ofxMultiLoggerChannel.h>
+#include <ofxPostProcessing.h>
 #include "State.h"
 #include "AppParameters.h"
 #include "ObserversController.h"
@@ -46,6 +47,7 @@ private:
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;
   shared_ptr<Clock> _clock;
+  ofxPostProcessing _postProc;
 };
 
 #endif /* MemoryApp_h */

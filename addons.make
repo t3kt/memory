@@ -3,5 +3,6 @@ ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
 ofxMSATimer
+ofxPostProcessing
 ofxTextAlign
 ofxXmlSettings
