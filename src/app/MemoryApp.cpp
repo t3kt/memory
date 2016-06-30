@@ -76,6 +76,10 @@ void MemoryApp::setup() {
   _statusController->addProvider(_occurrences.get());
   _statusController->addProvider(_animations.get());
 
+#ifdef ENABLE_SYPHON
+  _syphonServer.setName("Memory Main Output");
+#endif
+
 //  _NEW_gui = std::make_shared<AppGui>(_appParams);
 //  _NEW_gui->setup();
   //...
@@ -131,6 +135,10 @@ void MemoryApp::draw() {
   ofPopStyle();
   _cam.end();
   glPopAttrib();
+
+#ifdef ENABLE_SYPHON
+  _syphonServer.publishScreen();
+#endif
   
   _gui->draw();
   _screenLoggerChannel->draw();

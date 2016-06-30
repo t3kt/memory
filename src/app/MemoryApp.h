@@ -22,6 +22,15 @@
 #include "AppGui.h"
 #include "Clock.h"
 
+
+#ifdef TARGET_OSX
+#define ENABLE_SYPHON
+#endif
+
+#ifdef ENABLE_SYPHON
+#include <ofxSyphon.h>
+#endif
+
 class FPSInfoProvider;
 class GuiPanel;
 
@@ -46,6 +55,9 @@ private:
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;
   shared_ptr<Clock> _clock;
+#ifdef ENABLE_SYPHON
+  ofxSyphonServer _syphonServer;
+#endif
 };
 
 #endif /* MemoryApp_h */
