@@ -113,6 +113,14 @@ void MemoryApp::draw() {
   
   ofPushMatrix();
   ofPushStyle();
+
+  if (_appParams.camera.spinEnabled.get()) {
+    ofVec3f dr = _appParams.camera.spinRate.get() * _state.timeDelta;
+    _rotation += dr;
+  }
+  ofRotateX(_rotation.x);
+  ofRotateY(_rotation.y);
+  ofRotateZ(_rotation.z);
   
   auto winSize = ofGetWindowSize();
   auto size = ::min(winSize.x, winSize.y) / 2;

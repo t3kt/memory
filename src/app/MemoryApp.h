@@ -55,6 +55,7 @@ private:
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;
   shared_ptr<Clock> _clock;
+  ofVec3f _rotation;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
 #endif

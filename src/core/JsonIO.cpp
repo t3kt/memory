@@ -44,6 +44,13 @@ Json DebugParams::to_json() const {
   };
 }
 
+Json CameraParams::to_json() const {
+  return Json::object {
+    {"spinEnabled", spinEnabled.get()},
+    {"spinRate", toJsonValue(spinRate.get())},
+  };
+}
+
 Json MemoryAppParameters::to_json() const {
   return Json::object {
     {"clock", clock},

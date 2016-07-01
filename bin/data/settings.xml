@@ -4,7 +4,7 @@
 			<Damping>0.00264473</Damping>
 			<Lifetime_Range>
 				<Low>10</Low>
-				<High>60.228</High>
+				<High>60</High>
 			</Lifetime_Range>
 			<Color>0.525, 0.7, 0.35, 1</Color>
 			<Draw_Radius>0.0781341</Draw_Radius>
@@ -206,4 +206,6 @@
 		<Occurrence_Died>0.766254, 0.644068, 0.452822, 0.792816</Occurrence_Died>
 		<Occurrence_Spawn_Failed>0.814066, 0.681255, 0.511258, 0.569695</Occurrence_Spawn_Failed>
 	</Color_Theme>
+<Spin_Enabled>1</Spin_Enabled>
+	<Spin_Rate>0.108289, -2.28655, 2.399</Spin_Rate>
 </group>

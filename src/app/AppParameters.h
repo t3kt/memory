@@ -35,6 +35,16 @@ protected:
   ParamsGui* createGui() override;
 };
 
+class CameraParams : public Params {
+public:
+  CameraParams();
+
+  Json to_json() const override;
+
+  ofParameter<bool> spinEnabled;
+  ofParameter<ofVec3f> spinRate;
+};
+
 class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
@@ -50,6 +60,7 @@ public:
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
+  CameraParams camera;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

@@ -38,6 +38,11 @@ ParamsGui* DebugParams::createGui() {
   return new DebugParamsGui(*this);
 }
 
+CameraParams::CameraParams() {
+  add(spinEnabled.set("Spin Enabled", true));
+  add(spinRate.set("Spin Rate", ofVec3f(2, 4, 5), ofVec3f(-10), ofVec3f(10)));
+}
+
 MemoryAppParameters::MemoryAppParameters()
 : bounds("Bounds") {
   add(clock);
@@ -49,6 +54,7 @@ MemoryAppParameters::MemoryAppParameters()
       .set(6)
       .setParamRange(0, 10));
   add(debug);
+  add(camera);
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {
