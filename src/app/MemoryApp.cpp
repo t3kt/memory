@@ -126,7 +126,7 @@ void MemoryApp::draw() {
   if (_appParams.debug.showBounds.get()) {
     ofPushStyle();
     ofNoFill();
-    ofSetColor(ofFloatColor(0.2, 0.2, 0.2, 0.3));
+    ofSetColor(_appParams.colors.bounds.get());
     ofDrawBox(_appParams.bounds.size.get());
     ofPopStyle();
   }
