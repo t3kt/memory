@@ -22,12 +22,70 @@
 #include "ParticleObject.h"
 #include "ThresholdRenderer.h"
 
+#include <ofUtils.h>
+
+class JsonException {
+public:
+  JsonException(std::string msg) : message(msg) { }
+  std::string message;
+};
+
+static void assertHasShape(const Json& value, Json::shape shape) {
+  std::string message;
+  if (!value.has_shape(shape, message)) {
+    throw JsonException(message);
+  }
+}
+
+static void assertHasType(const Json& value, Json::Type type) {
+  if (value.type() != type) {
+    throw JsonException("Incorrect json type: " + value.dump());
+  }
+}
+
+static void assertHasLength(const Json& value, int length) {
+  if (value.array_items().size() != length) {
+    throw JsonException("Incorrect length (should be " + ofToString(length) + "): " + value.dump());
+  }
+}
+
 Json toJsonValue(const ofVec3f& value) {
   return Json::array { value.x, value.y, value.z };
 }
 
 Json toJsonValue(const ofFloatColor& value) {
   return Json::array { value.r, value.g, value.b, value.a };
+}
+
+static ofVec3f ofVec3fFromJsonValue(const Json& value) {
+  assertHasType(value, Json::ARRAY);
+  assertHasLength(value, 3);
+  const Json& x = value[0];
+  const Json& y = value[1];
+  const Json& z = value[2];
+  assertHasType(x, Json::NUMBER);
+  assertHasType(y, Json::NUMBER);
+  assertHasType(z, Json::NUMBER);
+  return ofVec3f(x.number_value(),
+                 y.number_value(),
+                 z.number_value());
+}
+
+static ofFloatColor ofFloatColorFromJsonValue(const Json& value) {
+  assertHasType(value, Json::ARRAY);
+  assertHasLength(value, 4);
+  const Json& r = value[0];
+  const Json& g = value[1];
+  const Json& b = value[2];
+  const Json& a = value[3];
+  assertHasType(r, Json::NUMBER);
+  assertHasType(g, Json::NUMBER);
+  assertHasType(b, Json::NUMBER);
+  assertHasType(a, Json::NUMBER);
+  return ofFloatColor(r.number_value(),
+                      g.number_value(),
+                      b.number_value(),
+                      a.number_value());
 }
 
 static Json merge(const Json obj1, const Json obj2) {

@@ -34,6 +34,8 @@ public:
   virtual Json to_json() const {
     return nullptr;
   }
+
+  void read_json(const Json& obj) { }
   
   virtual void initPanel(ofxGuiGroup& panel) {}
 
