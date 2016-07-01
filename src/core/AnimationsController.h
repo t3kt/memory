@@ -27,6 +27,8 @@ public:
   public:
     Params();
 
+    Json to_json() const override;
+
     ofParameter<bool> enabled;
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;

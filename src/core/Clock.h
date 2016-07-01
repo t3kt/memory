@@ -22,6 +22,8 @@ public:
   public:
     Params();
 
+    Json to_json() const override;
+
     ofParameter<bool> paused;
     ofParameter<float> rate;
   };

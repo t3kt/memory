@@ -29,6 +29,8 @@ public:
   class Params : public ParticleObject::Params {
   public:
     Params();
+
+    Json to_json() const override;
     
     void initPanel(ofxGuiGroup& panel) override;
     

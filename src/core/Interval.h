@@ -20,6 +20,8 @@ public:
   class Params : public ::Params {
   public:
     Params(std::string name);
+
+    Json to_json() const override;
     
     RandomValueSupplier<float> interval;
   };

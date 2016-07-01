@@ -18,6 +18,8 @@ public:
   ColorTheme(std::string name);
   ColorTheme() : ColorTheme("Color Theme") { }
 
+  Json to_json() const override;
+
   ofParameter<ofFloatColor> background;
   ofParameter<ofFloatColor> bounds;
   ofParameter<ofFloatColor> observerMarker;

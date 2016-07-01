@@ -166,5 +166,8 @@ void MemoryApp::keyPressed(int key) {
     case '0':
       _observers->spawnObservers(5, _state);
       break;
+    case 'j':
+      std::cout << "PARAMS JSON:\n" << _appParams.to_json().dump() << std::endl;
+      break;
   }
 }

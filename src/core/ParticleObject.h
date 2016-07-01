@@ -23,6 +23,8 @@ public:
   public:
     Params(std::string name);
 
+    Json to_json() const override;
+
     ofParameter<float> damping;
     ofParameter<float> speed;
   };
@@ -82,6 +84,8 @@ public:
   public:
     Params(std::string name);
 
+    Json to_json() const override;
+
     ofParameter<bool> enabled;
     FloatValueRange distanceBounds;
     FloatValueRange forceRange;
@@ -130,6 +134,8 @@ public:
   class Params : public ::Params {
   public:
     Params(std::string name);
+
+    Json to_json() const override;
 
     ofParameter<bool> enabled;
     ofParameter<float> scale;

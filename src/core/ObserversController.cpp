@@ -50,7 +50,7 @@ void ObserversController::setup(const State &state) {
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
   _spatialNoiseForce = std::make_shared<SpatialNoiseForce<ObserverEntity>>(_params.spatialNoiseForce);
-  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold);
+  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, _colors.thresholdConnector.get());
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }

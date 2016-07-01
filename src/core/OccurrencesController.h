@@ -30,6 +30,8 @@ public:
   class Params : public ::Params {
   public:
     Params();
+
+    Json to_json() const override;
     
     void initPanel(ofxGuiGroup& panel) override;
     

@@ -24,6 +24,8 @@ public:
   public:
     explicit Params(std::string name);
 
+    Json to_json() const override;
+
     ofParameter<bool> enabled;
     ofParameter<float> delay;
     ofParameter<float> duration;
@@ -59,6 +61,8 @@ public:
   class Params : public AnimationObject::Params {
   public:
     explicit Params(std::string name);
+
+    Json to_json() const override;
 
     FloatValueRange radius;
     FloatValueRange alpha;

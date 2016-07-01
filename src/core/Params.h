@@ -13,6 +13,7 @@
 #include <ofParameterGroup.h>
 #include <ofxGuiGroup.h>
 #include "Common.h"
+#include "JsonIO.h"
 
 class ofxDatGuiFolder;
 
@@ -27,6 +28,11 @@ public:
   Params() {}
   explicit Params(std::string label) {
     setName(label);
+  }
+
+  // json11 library requires this naming
+  virtual Json to_json() const {
+    return nullptr;
   }
   
   virtual void initPanel(ofxGuiGroup& panel) {}
@@ -79,6 +85,10 @@ public:
 
   T getLerped(float amount) const {
     return getInterpolated(lowValue.get(), highValue.get(), amount);
+  }
+
+  Json to_json() const override {
+    return Json::array { lowValue.get(), highValue.get() };
   }
   
   ofParameter<T> lowValue;

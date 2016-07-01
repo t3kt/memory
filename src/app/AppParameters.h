@@ -25,6 +25,8 @@ class DebugParams : public Params {
 public:
   DebugParams();
 
+  Json to_json() const override;
+
   ofParameter<bool> showLog;
   ofParameter<bool> showBounds;
   ofParameter<bool> showStatus;
@@ -36,6 +38,8 @@ protected:
 class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
+
+  Json to_json() const override;
   
   void initGui(ofxPanel& gui);
 

@@ -13,7 +13,7 @@ AbstractThresholdRenderer::Params::Params(std::string name)
 : ::Params(name)
 , range("Range") {
   add(enabled.set("Enabled", true));
-  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
+//  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
   add(range.set(0, 0.1).setParamRange(0, 8));
 }
 
@@ -49,7 +49,7 @@ void AbstractThresholdRenderer::update(const State &state) {
   }
   _data.initialize(_params.range.lowValue.get(),
                    _params.range.highValue.get(),
-                   _params.color.get());
+                   _color);
   populateThreshData(&_data);
 }
 
