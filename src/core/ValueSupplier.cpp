@@ -45,17 +45,28 @@ ofVec3f SimpleRandomVectorSupplier::getValue() const {
   return value;
 }
 
-RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier(std::string name)
-: Params(name)
-, hueRange("Hue")
-, saturationRange("Saturation")
-, brightnessRange("Brightness")
-, alphaRange("Alpha") {
-  
-  add(hueRange.setParamRange(0, 1).set(0, 1),
-      saturationRange.setParamRange(0, 1).set(0, 1),
-      brightnessRange.setParamRange(0, 1).set(0, 1),
-      alphaRange.setParamRange(0, 1).set(0, 1));
+RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier()
+: Params() {
+  add(hueRange
+      .setKey("hueRange")
+      .setName("Hue")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(saturationRange
+      .setKey("saturationRange")
+      .setName("Saturation")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(brightnessRange
+      .setKey("brightnessRange")
+      .setName("Brightness")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(alphaRange
+      .setKey("alphaRange")
+      .setName("Alpha")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
 }
 
 ofFloatColor RandomHsbFloatColorSupplier::getValue() const {

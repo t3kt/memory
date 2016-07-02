@@ -12,13 +12,18 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params()
-: ::ParticleObject::Params("Observers")
-, lifetime("Lifetime Range") {
-  add(lifetime);
-  lifetime.set(1, 4);
-  lifetime.setParamRange(0, 240);
+: ::ParticleObject::Params() {
+  add(lifetime
+      .setKey("lifetime")
+      .setName("Lifetime Range")
+      .setParamValuesAndDefaults(1, 4)
+      .setParamRanges(0, 240));
 //  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
-  add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
+  add(drawRadius
+      .setKey("drawRadius")
+      .setName("Draw Radius")
+      .setValueAndDefault(0.03)
+      .setRange(0, 0.1));
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {

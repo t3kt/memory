@@ -9,11 +9,22 @@
 #include "AnimationObject.h"
 #include <ofMain.h>
 
-AnimationObject::Params::Params(std::string name)
-: ::Params(name) {
-  add(enabled.set("Enabled", true));
-  add(delay.set("Delay", 0, 0, 2));
-  add(duration.set("Duration", 1, 0, 8));
+AnimationObject::Params::Params()
+: ::Params() {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+  add(delay
+      .setKey("delay")
+      .setName("Delay")
+      .setValueAndDefault(0)
+      .setRange(0, 2));
+  add(duration
+      .setKey("duration")
+      .setName("Duration")
+      .setValueAndDefault(1)
+      .setRange(0, 8));
 }
 
 class AnimationUpdater : public DurationAction {
@@ -65,12 +76,20 @@ AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>&
                                             *this, animationManager);
 }
 
-ExpandingSphereAnimation::Params::Params(std::string name)
-: AnimationObject::Params(name)
-, radius("Radius")
-, alpha("Alpha") {
-  add(radius.setNames("Start", "End").setParamRange(0, 0.4).set(0, 0.2));
-  add(alpha.setNames("Start", "End").setParamRange(0, 1).set(0, 1));
+ExpandingSphereAnimation::Params::Params()
+: AnimationObject::Params() {
+  add(radius
+      .setKey("radius")
+      .setName("Radius")
+      .setParamNames("Start", "End")
+      .setParamRanges(0, 0.4)
+      .setParamValuesAndDefaults(0, 0.2));
+  add(alpha
+      .setKey("alpha")
+      .setName("Alpha")
+      .setParamNames("Start", "End")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
 //  add(color.set("Color", ofFloatColor(0.6, 0.8, 0.4, 0.6)));
 }
 

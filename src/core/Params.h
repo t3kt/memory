@@ -12,6 +12,7 @@
 #include <string>
 #include <ofParameterGroup.h>
 #include <ofxGuiGroup.h>
+#include <ofUtils.h>
 #include "Common.h"
 #include "JsonIO.h"
 
@@ -46,8 +47,8 @@ public:
   }
 
   TParam<T>& setRange(T minValue, T maxValue) {
-    setMin(minValue);
-    setMax(maxValue);
+    ofParameter<T>::setMin(minValue);
+    ofParameter<T>::setMax(maxValue);
     return *this;
   }
 
@@ -55,6 +56,11 @@ public:
     _defaultValue = defaultValue;
     _hasDefaultValue = true;
     return *this;
+  }
+
+  TParam<T>& setValueAndDefault(T value) {
+    ofParameter<T>::set(value);
+    return setDefaultValue(value);
   }
 
   bool hasDefaultValue() const {
@@ -72,7 +78,7 @@ public:
 
   std::string getKey() const override {
     if (_key.empty()) {
-      return ofParameter<T>::getEscapedName();
+      return ofToLower(ofParameter<T>::getEscapedName());
     } else {
       return _key;
     }
@@ -110,16 +116,27 @@ class Params
 , public TParamInfoBase {
 public:
   Params() {}
-  explicit Params(std::string label) {
+  Params(std::string key, std::string label) {
+    setKey(key);
     setName(label);
   }
 
   std::string getKey() const override {
     if (_key.empty()) {
-      return ofParameterGroup::getEscapedName();
+      return ofToLower(ofParameterGroup::getEscapedName());
     } else {
       return _key;
     }
+  }
+
+  Params& setKey(std::string key) {
+    _key = key;
+    return *this;
+  }
+
+  Params& setName(std::string name) {
+    ofParameterGroup::setName(name);
+    return *this;
   }
 
   virtual Json to_json() const override = 0;
@@ -151,27 +168,51 @@ private:
 template<typename T>
 class ValueRange : public Params {
 public:
-  explicit ValueRange(std::string name)
-  : Params(name) {
-    lowValue.setName("Low");
-    highValue.setName("High");
-    add(lowValue);
-    add(highValue);
+  ValueRange()
+  : Params() {
+    add(lowValue
+        .setKey("low")
+        .setName("Low"));
+    add(highValue
+        .setKey("high")
+        .setName("High"));
   }
 
-  ValueRange<T>& setNames(std::string lowName, std::string highName) {
+  ValueRange<T>& setKey(std::string key) {
+    Params::setKey(key);
+    return *this;
+  }
+
+  ValueRange<T>& setName(std::string name) {
+    Params::setName(name);
+    return *this;
+  }
+
+  ValueRange<T>& setParamKeys(std::string lowKey, std::string highKey) {
+    lowValue.setKey(lowKey);
+    highValue.setKey(highKey);
+    return *this;
+  }
+
+  ValueRange<T>& setParamNames(std::string lowName, std::string highName) {
     lowValue.setName(lowName);
     highValue.setName(highName);
     return *this;
   }
 
-  ValueRange<T>& set(T low, T high) {
+  ValueRange<T>& setParamValues(T low, T high) {
     lowValue.set(low);
     highValue.set(high);
     return *this;
   }
 
-  ValueRange<T>& setParamRange(T minVal, T maxVal) {
+  ValueRange<T>& setParamValuesAndDefaults(T low, T high) {
+    lowValue.setValueAndDefault(low);
+    highValue.setValueAndDefault(high);
+    return *this;
+  }
+
+  ValueRange<T>& setParamRanges(T minVal, T maxVal) {
     lowValue.setMin(minVal);
     lowValue.setMax(maxVal);
     highValue.setMin(minVal);

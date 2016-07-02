@@ -9,13 +9,17 @@
 #include "Bounds.h"
 #include "ParamsGui.h"
 
-Bounds::Bounds(std::string name)
-: Params(name) {
+Bounds::Bounds()
+: Params() {
 }
 
-SimpleCubeBounds::SimpleCubeBounds(std::string name)
-: Bounds(name) {
-  add(size.set("Size", 2, 0, 6));
+SimpleCubeBounds::SimpleCubeBounds()
+: Bounds() {
+  add(size
+      .setKey("size")
+      .setName("Size")
+      .setValueAndDefault(6)
+      .setRange(0, 10));
 }
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {

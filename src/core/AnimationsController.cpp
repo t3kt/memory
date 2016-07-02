@@ -11,15 +11,21 @@
 #include <iostream>
 
 AnimationsController::Params::Params()
-: ::Params("Animations")
-, observerDied("Observer Died")
-, occurrenceDied("Occurrence Died")
-, occurrenceSpawnFailed("Occurrence Spawn Failed") {
-  add(enabled.set("Enabled", true));
-  add(observerDied);
-  add(occurrenceDied);
-  add(occurrenceSpawnFailed);
-  occurrenceSpawnFailed.radius.set(0, 0.01);
+: ::Params("animations", "Animations") {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+  add(observerDied
+      .setKey("observerDied")
+      .setName("Observer Died"));
+  add(occurrenceDied
+      .setKey("occurrenceDied")
+      .setName("Occurrence Died"));
+  add(occurrenceSpawnFailed
+      .setKey("occurrenceSpawnFailed")
+      .setName("Occurrence Spawn Failed"));
+  occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 0.01);
   occurrenceSpawnFailed.duration.set(1);
 }
 

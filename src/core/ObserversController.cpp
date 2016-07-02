@@ -12,20 +12,27 @@
 const int START_OBSERVERS = 60;
 
 ObserversController::Params::Params()
-: ::Params("Observers")
-, spawnInterval("Spawning")
-, initialVelocity("Initial Velocity")
-, occurrenceAttraction("Occurrence Attraction")
-, spatialNoiseForce("Spatial Noise Force")
-, threshold("Threshold") {
-  add(entities);
-  add(spawnInterval);
+: ::Params() {
+  add(entities
+      .setKey("entities")
+      .setName("Observers"));
+  add(spawnInterval
+      .setKey("spawnInterval")
+      .setName("Spawning"));
   add(initialVelocity
-      .set(0, 0.01)
-      .setParamRange(0, 0.1));
-  add(occurrenceAttraction);
-  add(spatialNoiseForce);
-  add(threshold);
+      .setKey("initialVelocity")
+      .setName("Initial Velocity")
+      .setParamValuesAndDefaults(0, 0.01)
+      .setParamRanges(0, 0.1));
+  add(occurrenceAttraction
+      .setKey("occurrenceAttraction")
+      .setName("Occurrence Attraction"));
+  add(spatialNoiseForce
+      .setKey("spatialNoiseForce")
+      .setName("Spatial Noise Force"));
+  add(threshold
+      .setKey("threshold")
+      .setName("Threshold"));
 
   spatialNoiseForce.enabled.set(false);
 }

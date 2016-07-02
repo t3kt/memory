@@ -8,11 +8,13 @@
 
 #include "Interval.h"
 
-Interval::Params::Params(std::string name)
-: ::Params(name)
-, interval("Interval") {
-  add(interval.set(2, 6)
-      .setParamRange(0, 20));
+Interval::Params::Params()
+: ::Params() {
+  add(interval
+      .setKey("interval")
+      .setName("Interval")
+      .setParamValuesAndDefaults(2, 6)
+      .setParamRanges(0, 20));
 }
 
 Interval::Interval(const Interval::Params& params, const State& state)

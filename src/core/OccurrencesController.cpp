@@ -11,17 +11,24 @@
 const int START_OCCURRENCES = 5;
 
 OccurrencesController::Params::Params()
-: ::Params("Occurrences")
-, spawnInterval("Spawning")
-, initialVelocity("Initial Velocity")
-, observerAttraction("Observer Attraction")
-, spatialNoiseForce("Spatial Noise Force") {
-  add(entities);
-  add(spawnInterval);
-  add(initialVelocity.set(0, 0)
-      .setParamRange(0, 0.1));
-  add(observerAttraction);
-  add(spatialNoiseForce);
+: ::Params() {
+  add(entities
+      .setKey("entities")
+      .setName("Occurrences"));
+  add(spawnInterval
+      .setKey("spawnInterval")
+      .setName("Spawning"));
+  add(initialVelocity
+      .setKey("initialVelocity")
+      .setName("Initial Velocity")
+      .setParamValuesAndDefaults(0, 0.01)
+      .setParamRanges(0, 0.1));
+  add(observerAttraction
+      .setKey("observerAttraction")
+      .setName("Observer Attraction"));
+  add(spatialNoiseForce
+      .setKey("spatialNoiseForce")
+      .setName("Spatial Noise Force"));
   observerAttraction.enabled.set(false);
   spatialNoiseForce.enabled.set(false);
 }

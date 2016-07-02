@@ -10,10 +10,19 @@
 #include "ParamsGui.h"
 
 DebugParams::DebugParams()
-: Params("Debug") {
-  add(showLog.set("Show Log", false));
-  add(showBounds.set("Show Bounds", false));
-  add(showStatus.set("Show Status", true));
+: Params() {
+  add(showLog
+      .setKey("showLog")
+      .setName("Show Log")
+      .setValueAndDefault(false));
+  add(showBounds
+      .setKey("showBounds")
+      .setName("Show Bounds")
+      .setValueAndDefault(false));
+  add(showStatus
+      .setKey("showStatus")
+      .setName("Show Status")
+      .setValueAndDefault(true));
 }
 
 class DebugParamsGui
@@ -38,23 +47,45 @@ ParamsGui* DebugParams::createGui() {
   return new DebugParamsGui(*this);
 }
 
-CameraParams::CameraParams() {
-  add(spinEnabled.set("Spin Enabled", true));
-  add(spinRate.set("Spin Rate", ofVec3f(2, 4, 5), ofVec3f(-10), ofVec3f(10)));
+CameraParams::CameraParams()
+: ::Params() {
+  add(spinEnabled
+      .setKey("spinEnabled")
+      .setName("Spin Enabled")
+      .setValueAndDefault(true));
+  add(spinRate
+      .setKey("spinRate")
+      .setName("Spin Rate")
+      .setValueAndDefault(ofVec3f(2, 4, 5))
+      .setRange(ofVec3f(-10), ofVec3f(10)));
 }
 
 MemoryAppParameters::MemoryAppParameters()
-: bounds("Bounds") {
-  add(clock);
-  add(observers);
-  add(occurrences);
-  add(animations);
-  add(colors);
+: ::Params() {
+  add(clock
+      .setKey("clock")
+      .setName("Clock"));
+  add(observers
+      .setKey("observers")
+      .setName("Observers"));
+  add(occurrences
+      .setKey("occurrences")
+      .setName("Occurrences"));
+  add(animations
+      .setKey("animations")
+      .setName("Animations"));
+  add(colors
+      .setKey("colors")
+      .setName("Colors"));
   add(bounds
-      .set(6)
-      .setParamRange(0, 10));
-  add(debug);
-  add(camera);
+      .setKey("bounds")
+      .setName("Bounds"));
+  add(debug
+      .setKey("debug")
+      .setName("Debug"));
+  add(camera
+      .setKey("camera")
+      .setName("Camera"));
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {

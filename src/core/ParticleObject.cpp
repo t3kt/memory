@@ -8,19 +8,36 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::Params::Params(std::string name)
-: ::Params(name) {
-  add(damping.set("Damping", 0.01, 0, 0.1));
-  add(speed.set("Speed", 1, 0, 10));
+ParticleObject::Params::Params()
+: ::Params() {
+  add(damping
+      .setKey("damping")
+      .setName("Damping")
+      .setValueAndDefault(0.01)
+      .setRange(0, 0.1));
+  add(speed
+      .setKey("speed")
+      .setName("Speed")
+      .setValueAndDefault(1)
+      .setRange(0, 10));
 }
 
-AbstractEntityAttraction::Params::Params(std::string name)
-: ::Params(name)
-, distanceBounds("Distance Bounds")
-, forceRange("Force Range") {
-  add(enabled.set("Enabled", true));
-  add(distanceBounds.set(0.04, 0.3).setParamRange(0, 1));
-  add(forceRange.set(0.0001, 0).setParamRange(-0.005, 0.005));
+AbstractEntityAttraction::Params::Params()
+: ::Params() {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+  add(distanceBounds
+      .setKey("distanceBounds")
+      .setName("Distance Bounds")
+      .setParamValuesAndDefaults(0.04, 0.3)
+      .setParamRanges(0, 1));
+  add(forceRange
+      .setKey("forceRange")
+      .setName("Force Range")
+      .setParamValuesAndDefaults(0.0001, 0)
+      .setParamRanges(-0.005, 0.005));
 }
 
 ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)
@@ -78,12 +95,27 @@ bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &
   return _bounds.reflect(&entity._velocity, &entity._position);
 }
 
-AbstractSpatialNoiseForce::Params::Params(std::string name)
-: ::Params(name) {
-  add(enabled.set("Enabled", true));
-  add(scale.set("Scale", 1, 0, 4));
-  add(rate.set("Rate", 0.1, 0, 0.5));
-  add(magnitude.set("Magnitude", 0.0001, 0, 0.005));
+AbstractSpatialNoiseForce::Params::Params()
+: ::Params() {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+  add(scale
+      .setKey("scale")
+      .setName("Scale")
+      .setValueAndDefault(1)
+      .setRange(0, 4));
+  add(rate
+      .setKey("rate")
+      .setName("Rate")
+      .setValueAndDefault(0.1)
+      .setRange(0, 0.5));
+  add(magnitude
+      .setKey("magnitude")
+      .setName("Magnitude")
+      .setValueAndDefault(0.0001)
+      .setRange(0, 0.005));
 }
 
 const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);

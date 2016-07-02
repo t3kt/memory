@@ -15,8 +15,7 @@
 class ColorTheme
 : public Params {
 public:
-  ColorTheme(std::string name);
-  ColorTheme() : ColorTheme("Color Theme") { }
+  ColorTheme();
 
   Json to_json() const override;
   void read_json(const Json& obj) override;

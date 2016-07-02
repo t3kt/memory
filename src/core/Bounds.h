@@ -14,7 +14,7 @@
 
 class Bounds : public Params {
 public:
-  Bounds(std::string name);
+  Bounds();
 
   virtual bool reflect(ofVec3f* velocity, ofVec3f* position) const = 0;
   virtual ofVec3f randomPoint() const = 0;
@@ -22,7 +22,7 @@ public:
 
 class SimpleCubeBounds : public Bounds {
 public:
-  SimpleCubeBounds(std::string name);
+  SimpleCubeBounds();
 
   SimpleCubeBounds& set(float sz) {
     size.set(sz);

@@ -14,16 +14,21 @@
 const float MAX_OBS_LEVEL = 4.0f;
 
 OccurrenceEntity::Params::Params()
-: ParticleObject::Params("Occurrences")
-, radius("Radius Range") {
+: ParticleObject::Params() {
   add(radius
-      .set(0.4, 1.3)
-      .setParamRange(0, 4));
+      .setKey("radius")
+      .setName("Radius Range")
+      .setParamValuesAndDefaults(0.4, 1.3)
+      .setParamRanges(0, 4));
   add(rangeFadeIn.set("Fade In", 1, 0, 4));
 //  add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
 //  add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
 //  add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
-  add(markerSize.set("Marker Size", 0.05, 0, 0.5));
+  add(markerSize
+      .setKey("markerSize")
+      .setName("Marker Size")
+      .setValueAndDefault(0.05)
+      .setRange(0, 0.5));
 }
 
 void OccurrenceEntity::Params::initPanel(ofxGuiGroup &panel) {

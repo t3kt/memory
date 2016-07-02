@@ -33,7 +33,7 @@ class AbstractThresholdRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string);
+    Params();
 
     Json to_json() const override;
     void read_json(const Json& obj) override;

@@ -42,14 +42,14 @@ void MemoryApp::setup() {
   _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
   ofSetLoggerChannel(_multiLoggerChannel);
 
+  _appParams.observers.entities.lifetime.setParamValues(10, 60);  
+
   _gui = std::make_shared<GuiPanel>();
   _appParams.initGui(*_gui);
 //  _gui->reloadSettings();
 
   ofEnableAlphaBlending();
   ofDisableDepthTest();
-
-  _appParams.observers.entities.lifetime.set(10, 60);
   
   _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state, _appParams.colors);
   _observers->setup(_state);

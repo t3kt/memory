@@ -9,12 +9,18 @@
 #include "ThresholdRenderer.h"
 #include <ofMath.h>
 
-AbstractThresholdRenderer::Params::Params(std::string name)
-: ::Params(name)
-, range("Range") {
-  add(enabled.set("Enabled", true));
+AbstractThresholdRenderer::Params::Params()
+: ::Params() {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
 //  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
-  add(range.set(0, 0.1).setParamRange(0, 8));
+  add(range
+      .setKey("range")
+      .setName("Range")
+      .setParamValuesAndDefaults(0, 0.1)
+      .setParamRanges(0, 8));
 }
 
 ThreshData::ThreshData() {

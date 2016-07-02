@@ -22,7 +22,7 @@ class AnimationObject : public StandardWorldObject {
 public:
   class Params : public ::Params {
   public:
-    explicit Params(std::string name);
+    Params();
 
     Json to_json() const override;
     void read_json(const Json& obj) override;
@@ -61,7 +61,7 @@ class ExpandingSphereAnimation : public AnimationObject {
 public:
   class Params : public AnimationObject::Params {
   public:
-    explicit Params(std::string name);
+    Params();
 
     Json to_json() const override;
     void read_json(const Json& obj) override;
