@@ -59,32 +59,31 @@ public:
   void read_json(const Json& obj) override;
 
   RandomHsbFloatColorSupplier& setHue(float low, float high) {
-    _hueRange.set(low, high);
+    hueRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setSaturation(float low, float high) {
-    _saturationRange.set(low, high);
+    saturationRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setBrightness(float low, float high) {
-    _brightnessRange.set(low, high);
+    brightnessRange.set(low, high);
     return *this;
   }
   
   RandomHsbFloatColorSupplier& setAlpha(float low, float high) {
-    _alphaRange.set(low, high);
+    alphaRange.set(low, high);
     return *this;
   }
   
   ofFloatColor getValue() const;
-  
-private:
-  RandomValueSupplier<float> _hueRange;
-  RandomValueSupplier<float> _saturationRange;
-  RandomValueSupplier<float> _brightnessRange;
-  RandomValueSupplier<float> _alphaRange;
+
+  RandomValueSupplier<float> hueRange;
+  RandomValueSupplier<float> saturationRange;
+  RandomValueSupplier<float> brightnessRange;
+  RandomValueSupplier<float> alphaRange;
 };
 
 #endif /* ValueSpecifier_h */

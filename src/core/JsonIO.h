@@ -13,4 +13,10 @@
 
 using json11::Json;
 
+class JsonException {
+public:
+  JsonException(std::string msg) : message(msg) { }
+  std::string message;
+};
+
 #endif /* JsonIO_h */

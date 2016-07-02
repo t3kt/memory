@@ -20,10 +20,12 @@ class ofxDatGuiFolder;
 class TParamInfoBase {
 public:
   virtual std::string getKey() const = 0;
-  bool hasDefaultValue() const { return _hasDefaultValue; }
-protected:
-  std::string _key;
-  bool _hasDefaultValue;
+  virtual Json to_json() const = 0; // json11 library requires this naming
+  virtual Json::object::value_type toJsonField() const {
+    return { getKey(), to_json() };
+  }
+  virtual void read_json(const Json& val) = 0;
+  virtual void readJsonField(const Json& obj) = 0;
 };
 
 template<typename T>
@@ -55,6 +57,10 @@ public:
     return *this;
   }
 
+  bool hasDefaultValue() const {
+    return _hasDefaultValue;
+  }
+
   const T& getDefaultValue() const {
     return _defaultValue;
   }
@@ -66,18 +72,30 @@ public:
 
   std::string getKey() const override {
     if (_key.empty()) {
-      return ofAbstractParameter::getEscapedName();
+      return ofParameter<T>::getEscapedName();
     } else {
       return _key;
     }
   }
 
-  Json to_json() const;
+  Json to_json() const override;
 
-  Json::object::value_type toJsonField() const {
-    return { getKey(), to_json() };
+  void read_json(const Json& val) override;
+
+  void readJsonField(const Json& obj) override {
+    Json val = obj[getKey()];
+    if (!val.is_null()) {
+      read_json(val);
+    } else if (hasDefaultValue()) {
+      ofParameter<T>::set(getDefaultValue());
+    } else {
+      throw JsonException("Required field missing: " + getKey());
+    }
   }
+  
 private:
+  std::string _key;
+  bool _hasDefaultValue;
   T _defaultValue;
 };
 
@@ -87,19 +105,28 @@ public:
   virtual ofxDatGuiFolder* getGuiFolder() = 0;
 };
 
-class Params : public ofParameterGroup {
+class Params
+: public ofParameterGroup
+, public TParamInfoBase {
 public:
   Params() {}
   explicit Params(std::string label) {
     setName(label);
   }
 
-  // json11 library requires this naming
-  virtual Json to_json() const {
-    return nullptr;
+  std::string getKey() const override {
+    if (_key.empty()) {
+      return ofParameterGroup::getEscapedName();
+    } else {
+      return _key;
+    }
   }
 
-  virtual void read_json(const Json& obj) { }
+  virtual Json to_json() const override = 0;
+
+  virtual void read_json(const Json& val) override = 0;
+
+  void readJsonField(const Json& obj) override;
   
   virtual void initPanel(ofxGuiGroup& panel) {}
 
@@ -113,8 +140,11 @@ public:
     return _gui;
   }
 protected:
+  virtual void resetToDefaults() {}
+  virtual bool hasDefaults() const { return false; }
   virtual ParamsGui* createGui() { return nullptr; }
 private:
+  std::string _key;
   ParamsGui* _gui;
 };
 
@@ -153,9 +183,9 @@ public:
     return getInterpolated(lowValue.get(), highValue.get(), amount);
   }
 
-  Json to_json() const override {
-    return Json::array { lowValue.get(), highValue.get() };
-  }
+  Json to_json() const override;
+
+  void read_json(const Json& val) override;
   
   TParam<T> lowValue;
   TParam<T> highValue;
