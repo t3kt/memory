@@ -29,9 +29,41 @@ private:
 class GuiPanel
 : public ofxPanel {
 public:
-//  void reloadSettings() {
-//    loadFromFile(filename);
-//  }
+  GuiPanel() {
+  }
+
+  void setup(MemoryAppParameters& appParams) {
+    ofxPanel::setup();
+    setName("Memory Controls");
+    actionsGroup.setName("Actions");
+    paramsGroup.setName("Parameters");
+    actionsGroup.setup();
+    loadButton.setup("load");
+    saveButton.setup("save");
+    loadButton.addListener(this, &GuiPanel::onLoadClick);
+    saveButton.addListener(this, &GuiPanel::onSaveClick);
+    actionsGroup.add(&loadButton);
+    actionsGroup.add(&saveButton);
+    paramsGroup.setup(appParams);
+    add(&actionsGroup);
+    add(&paramsGroup);
+  }
+
+  ofxLiquidEvent<void> onLoad;
+  ofxLiquidEvent<void> onSave;
+
+private:
+  void onLoadClick(void) {
+    onLoad.notifyListeners();
+  }
+  void onSaveClick(void) {
+    onSave.notifyListeners();
+  }
+
+  ofxGuiGroup actionsGroup;
+  ofxButton loadButton;
+  ofxButton saveButton;
+  ofxGuiGroup paramsGroup;
 };
 
 void MemoryApp::setup() {
@@ -45,8 +77,13 @@ void MemoryApp::setup() {
   _appParams.observers.entities.lifetime.setParamValues(10, 60);  
 
   _gui = std::make_shared<GuiPanel>();
-  _appParams.initGui(*_gui);
-//  _gui->reloadSettings();
+  _gui->setup(_appParams);
+  _gui->onLoad += [&]() {
+    loadSettings();
+  };
+  _gui->onSave += [&]() {
+    saveSettings();
+  };
 
   ofEnableAlphaBlending();
   ofDisableDepthTest();
@@ -178,14 +215,23 @@ void MemoryApp::keyPressed(int key) {
       std::cout << "PARAMS JSON:\n" << _appParams.to_json().dump() << std::endl;
       break;
     case 'r':
-      std::cout << "Reading JSON settings..." << std::endl;
-      _appParams.readFromFile("settings.json");
-      std::cout << ".. read from JSON finished" << std::endl;
+      loadSettings();
       break;
     case 'w':
-      std::cout << "Writing JSON settings..." << std::endl;
-      _appParams.writeToFile("settings.json");
-      std::cout << ".. write to JSON finished" << std::endl;
+      saveSettings();
       break;
   }
+}
+
+void MemoryApp::loadSettings() {
+  std::cout << "Reading JSON settings..." << std::endl;
+  _appParams.readFromFile("settings.json");
+  std::cout << ".. read from JSON finished" << std::endl;
+  std::cout << _appParams << std::endl;
+}
+
+void MemoryApp::saveSettings() {
+  std::cout << "Writing JSON settings..." << std::endl;
+  _appParams.writeToFile("settings.json");
+  std::cout << ".. write to JSON finished" << std::endl;
 }

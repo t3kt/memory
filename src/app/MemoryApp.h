@@ -42,6 +42,9 @@ public:
 
   void keyPressed(int key) override;
 private:
+  void loadSettings();
+  void saveSettings();
+
   State _state;
   MemoryAppParameters _appParams;
   shared_ptr<ObserversController> _observers;
