@@ -29,9 +29,9 @@ private:
 class GuiPanel
 : public ofxPanel {
 public:
-  void reloadSettings() {
-    loadFromFile(filename);
-  }
+//  void reloadSettings() {
+//    loadFromFile(filename);
+//  }
 };
 
 void MemoryApp::setup() {
@@ -44,8 +44,8 @@ void MemoryApp::setup() {
 
   _gui = std::make_shared<GuiPanel>();
   _appParams.initGui(*_gui);
-  _gui->reloadSettings();
-  
+//  _gui->reloadSettings();
+
   ofEnableAlphaBlending();
   ofDisableDepthTest();
 
@@ -176,6 +176,16 @@ void MemoryApp::keyPressed(int key) {
       break;
     case 'j':
       std::cout << "PARAMS JSON:\n" << _appParams.to_json().dump() << std::endl;
+      break;
+    case 'r':
+      std::cout << "Reading JSON settings..." << std::endl;
+      _appParams.readFromFile("settings.json");
+      std::cout << ".. read from JSON finished" << std::endl;
+      break;
+    case 'w':
+      std::cout << "Writing JSON settings..." << std::endl;
+      _appParams.writeToFile("settings.json");
+      std::cout << ".. write to JSON finished" << std::endl;
       break;
   }
 }

@@ -51,6 +51,9 @@ class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters();
 
+  void readFromFile(std::string filepath);
+  void writeToFile(std::string filepath) const;
+
   Json to_json() const override;
   void read_json(const Json& obj) override;
 

@@ -24,6 +24,11 @@
 #include "ValueSupplier.h"
 
 #include <ofUtils.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using json11::JsonParse;
 
 class JsonException {
 public:
@@ -476,5 +481,28 @@ void RandomHsbFloatColorSupplier::read_json(const Json& obj) {
   _saturationRange.read_json(obj["saturationRange"]);
   _brightnessRange.read_json(obj["brightnessRange"]);
   _alphaRange.read_json(obj["alphaRange"]);
+}
+
+void MemoryAppParameters::readFromFile(std::string filepath) {
+  filepath = ofToDataPath(filepath);
+  std::ifstream in(filepath.c_str());
+  std::stringstream buf;
+  buf << in.rdbuf();
+  in.close();
+  std::string jsonstr = buf.str();
+  std::string error;
+  Json obj = Json::parse(jsonstr, error, JsonParse::STANDARD);
+  if (!error.empty()) {
+    throw JsonException(error);
+  }
+  read_json(obj);
+}
+
+void MemoryAppParameters::writeToFile(std::string filepath) const {
+  Json obj = to_json();
+  filepath = ofToDataPath(filepath);
+  std::ofstream out(filepath.c_str());
+  out << obj.dump();
+  out.close();
 }
 
