@@ -25,6 +25,7 @@ public:
     explicit Params(std::string name);
 
     Json to_json() const override;
+    void read_json(const Json& obj) override;
 
     ofParameter<bool> enabled;
     ofParameter<float> delay;
@@ -63,6 +64,7 @@ public:
     explicit Params(std::string name);
 
     Json to_json() const override;
+    void read_json(const Json& obj) override;
 
     FloatValueRange radius;
     FloatValueRange alpha;

@@ -24,6 +24,7 @@ public:
     Params(std::string name);
 
     Json to_json() const override;
+    void read_json(const Json& obj) override;
 
     ofParameter<float> damping;
     ofParameter<float> speed;
@@ -85,6 +86,7 @@ public:
     Params(std::string name);
 
     Json to_json() const override;
+    void read_json(const Json& obj) override;
 
     ofParameter<bool> enabled;
     FloatValueRange distanceBounds;
@@ -136,6 +138,7 @@ public:
     Params(std::string name);
 
     Json to_json() const override;
+    void read_json(const Json& obj) override;
 
     ofParameter<bool> enabled;
     ofParameter<float> scale;

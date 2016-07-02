@@ -19,6 +19,7 @@ public:
   ColorTheme() : ColorTheme("Color Theme") { }
 
   Json to_json() const override;
+  void read_json(const Json& obj) override;
 
   ofParameter<ofFloatColor> background;
   ofParameter<ofFloatColor> bounds;

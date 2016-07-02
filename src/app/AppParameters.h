@@ -26,6 +26,7 @@ public:
   DebugParams();
 
   Json to_json() const override;
+  void read_json(const Json& obj) override;
 
   ofParameter<bool> showLog;
   ofParameter<bool> showBounds;
@@ -40,6 +41,7 @@ public:
   CameraParams();
 
   Json to_json() const override;
+  void read_json(const Json& obj) override;
 
   ofParameter<bool> spinEnabled;
   ofParameter<ofVec3f> spinRate;
@@ -50,7 +52,8 @@ public:
   MemoryAppParameters();
 
   Json to_json() const override;
-  
+  void read_json(const Json& obj) override;
+
   void initGui(ofxPanel& gui);
 
   Clock::Params clock;

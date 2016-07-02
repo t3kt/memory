@@ -21,6 +21,7 @@
 #include "OccurrencesController.h"
 #include "ParticleObject.h"
 #include "ThresholdRenderer.h"
+#include "ValueSupplier.h"
 
 #include <ofUtils.h>
 
@@ -102,11 +103,31 @@ Json DebugParams::to_json() const {
   };
 }
 
+void DebugParams::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"showLog", Json::BOOL},
+    {"showBounds", Json::BOOL},
+    {"showStatus", Json::BOOL},
+  });
+  showLog.set(obj["showLog"].bool_value());
+  showBounds.set(obj["showBounds"].bool_value());
+  showStatus.set(obj["showStatus"].bool_value());
+}
+
 Json CameraParams::to_json() const {
   return Json::object {
     {"spinEnabled", spinEnabled.get()},
     {"spinRate", toJsonValue(spinRate.get())},
   };
+}
+
+void CameraParams::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"spinEnabled", Json::BOOL},
+    {"spinRate", Json::ARRAY},
+  });
+  spinEnabled.set(obj["spinEnabled"].bool_value());
+  spinRate.set(ofVec3fFromJsonValue(obj["spinRate"]));
 }
 
 Json MemoryAppParameters::to_json() const {
@@ -121,6 +142,19 @@ Json MemoryAppParameters::to_json() const {
   };
 }
 
+void MemoryAppParameters::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"clock", Json::OBJECT},
+    {"debug", Json::OBJECT},
+    {"colors", Json::OBJECT},
+    {"bounds", Json::OBJECT},
+    {"animations", Json::OBJECT},
+    {"observers", Json::OBJECT},
+    {"occurrences", Json::OBJECT},
+
+  });
+}
+
 Json AnimationObject::Params::to_json() const {
   return Json::object {
     {"enabled", enabled.get()},
@@ -129,12 +163,33 @@ Json AnimationObject::Params::to_json() const {
   };
 }
 
+void AnimationObject::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"enabled", Json::BOOL},
+    {"delay", Json::NUMBER},
+    {"duration", Json::NUMBER},
+  });
+  enabled.set(obj["enabled"].bool_value());
+  delay.set(obj["delay"].number_value());
+  duration.set(obj["duration"].number_value());
+}
+
 Json ExpandingSphereAnimation::Params::to_json() const {
   return merge(AnimationObject::Params::to_json(),
                Json::object {
                  {"radius", radius},
                  {"alpha", alpha},
                });
+}
+
+void ExpandingSphereAnimation::Params::read_json(const Json& obj) {
+  AnimationObject::Params::read_json(obj);
+  assertHasShape(obj, Json::shape {
+    {"radius", Json::ARRAY},
+    {"alpha", Json::ARRAY},
+  });
+  radius.read_json(obj["radius"]);
+  alpha.read_json(obj["alpha"]);
 }
 
 Json AnimationsController::Params::to_json() const {
@@ -146,10 +201,30 @@ Json AnimationsController::Params::to_json() const {
   };
 }
 
+void AnimationsController::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"enabled", Json::BOOL},
+    {"observerDied", Json::OBJECT},
+    {"occurrenceDied", Json::OBJECT},
+    {"occurrenceSpawnFailed", Json::OBJECT},
+  });
+  enabled.set(obj["enabled"].bool_value());
+  observerDied.read_json(obj["observerDied"]);
+  occurrenceDied.read_json(obj["occurrenceDied"]);
+  occurrenceSpawnFailed.read_json(obj["occurrenceSpawnFailed"]);
+}
+
 Json SimpleCubeBounds::to_json() const {
   return Json::object {
     {"size", size.get()},
   };
+}
+
+void SimpleCubeBounds::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"size", Json::NUMBER},
+  });
+  size.set(obj["size"].number_value());
 }
 
 Json Clock::Params::to_json() const {
@@ -157,6 +232,15 @@ Json Clock::Params::to_json() const {
     {"paused", paused.get()},
     {"rate", rate.get()},
   };
+}
+
+void Clock::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"paused", Json::BOOL},
+    {"rate", Json::NUMBER},
+  });
+  paused.set(obj["paused"].bool_value());
+  rate.set(obj["rate"].number_value());
 }
 
 Json ColorTheme::to_json() const {
@@ -174,10 +258,42 @@ Json ColorTheme::to_json() const {
   };
 }
 
+void ColorTheme::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"background", Json::OBJECT},
+    {"bounds", Json::OBJECT},
+    {"observerMarker", Json::OBJECT},
+    {"occurrenceMarker", Json::OBJECT},
+    {"occurrenceRange", Json::OBJECT},
+    {"occurrenceConnector", Json::OBJECT},
+    {"thresholdConnector", Json::OBJECT},
+    {"observerDied", Json::OBJECT},
+    {"occurrenceDied", Json::OBJECT},
+    {"occurrenceSpawnFailed", Json::OBJECT},
+  });
+  background.set(ofFloatColorFromJsonValue(obj["background"]));
+  bounds.set(ofFloatColorFromJsonValue(obj["bounds"]));
+  observerMarker.set(ofFloatColorFromJsonValue(obj["observerMarker"]));
+  occurrenceMarker.set(ofFloatColorFromJsonValue(obj["occurrenceMarker"]));
+  occurrenceRange.set(ofFloatColorFromJsonValue(obj["occurrenceRange"]));
+  occurrenceConnector.set(ofFloatColorFromJsonValue(obj["occurrenceConnector"]));
+  thresholdConnector.set(ofFloatColorFromJsonValue(obj["thresholdConnector"]));
+  observerDied.set(ofFloatColorFromJsonValue(obj["observerDied"]));
+  occurrenceDied.set(ofFloatColorFromJsonValue(obj["occurrenceDied"]));
+  occurrenceSpawnFailed.set(ofFloatColorFromJsonValue(obj["occurrenceSpawnFailed"]));
+}
+
 Json Interval::Params::to_json() const {
   return Json::object {
     {"interval", interval},
   };
+}
+
+void Interval::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"interval", Json::ARRAY},
+  });
+  interval.read_json(obj["interval"]);
 }
 
 Json ObserverEntity::Params::to_json() const {
@@ -186,6 +302,16 @@ Json ObserverEntity::Params::to_json() const {
                  {"lifetime", lifetime},
                  {"drawRadius", drawRadius.get()},
                });
+}
+
+void ObserverEntity::Params::read_json(const Json& obj) {
+  ParticleObject::Params::read_json(obj);
+  assertHasShape(obj, Json::shape {
+    {"lifetime", Json::OBJECT},
+    {"drawRadius", Json::NUMBER},
+  });
+  lifetime.read_json(obj["lifetime"]);
+  drawRadius.set(obj["drawRadius"].number_value());
 }
 
 Json ObserversController::Params::to_json() const {
@@ -199,6 +325,23 @@ Json ObserversController::Params::to_json() const {
   };
 }
 
+void ObserversController::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"entities", Json::OBJECT},
+    {"spawnInterval", Json::OBJECT},
+    {"initialVelocity", Json::OBJECT},
+    {"occurrenceAttraction", Json::OBJECT},
+    {"spatialNoiseForce", Json::OBJECT},
+    {"threshold", Json::OBJECT},
+  });
+  entities.read_json(obj["entities"]);
+  spawnInterval.read_json(obj["spawnInterval"]);
+  initialVelocity.read_json(obj["initialVelocity"]);
+  occurrenceAttraction.read_json(obj["occurrenceAttraction"]);
+  spatialNoiseForce.read_json(obj["spatialNoiseForce"]);
+  threshold.read_json(obj["threshold"]);
+}
+
 Json OccurrenceEntity::Params::to_json() const {
   return merge(ParticleObject::Params::to_json(),
                Json::object {
@@ -206,6 +349,15 @@ Json OccurrenceEntity::Params::to_json() const {
                  {"rangeFadeIn", rangeFadeIn.get()},
                  {"markerSize", markerSize.get()},
                });
+}
+
+void OccurrenceEntity::Params::read_json(const Json& obj) {
+  ParticleObject::Params::read_json(obj);
+  assertHasShape(obj, Json::shape {
+    {"radius", Json::OBJECT},
+    {"rangeFadeIn", Json::NUMBER},
+    {"markerSize", Json::NUMBER},
+  });
 }
 
 Json OccurrencesController::Params::to_json() const {
@@ -218,11 +370,33 @@ Json OccurrencesController::Params::to_json() const {
   };
 }
 
+void OccurrencesController::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"entities", Json::OBJECT},
+    {"spawnInterval", Json::OBJECT},
+    {"initialVelocity", Json::OBJECT},
+    {"observerAttraction", Json::OBJECT},
+    {"spatialNoiseForce", Json::OBJECT},
+  });
+  entities.read_json(obj["entities"]);
+  spawnInterval.read_json(obj["spawnInterval"]);
+  initialVelocity.read_json(obj["initialVelocity"]);
+  observerAttraction.read_json(obj["observerAttraction"]);
+  spatialNoiseForce.read_json(obj["spatialNoiseForce"]);
+}
+
 Json ParticleObject::Params::to_json() const {
   return Json::object {
     {"damping", damping.get()},
     {"speed", speed.get()},
   };
+}
+
+void ParticleObject::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"damping", Json::NUMBER},
+    {"speed", Json::NUMBER},
+  });
 }
 
 Json AbstractEntityAttraction::Params::to_json() const {
@@ -231,6 +405,17 @@ Json AbstractEntityAttraction::Params::to_json() const {
     {"distanceBounds", distanceBounds},
     {"forceRange", forceRange},
   };
+}
+
+void AbstractEntityAttraction::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"enabled", Json::BOOL},
+    {"distanceBounds", Json::OBJECT},
+    {"forceRange", Json::OBJECT},
+  });
+  enabled.set(obj["enabled"].bool_value());
+  distanceBounds.read_json(obj["distanceBounds"]);
+  forceRange.read_json(obj["forceRange"]);
 }
 
 Json AbstractSpatialNoiseForce::Params::to_json() const {
@@ -242,10 +427,54 @@ Json AbstractSpatialNoiseForce::Params::to_json() const {
   };
 }
 
+void AbstractSpatialNoiseForce::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"enabled", Json::BOOL},
+    {"scale", Json::NUMBER},
+    {"rate", Json::NUMBER},
+    {"magnitude", Json::NUMBER},
+  });
+  enabled.set(obj["enabled"].bool_value());
+  scale.set(obj["scale"].number_value());
+  rate.set(obj["rate"].number_value());
+  magnitude.set(obj["magnitude"].number_value());
+}
+
 Json AbstractThresholdRenderer::Params::to_json() const {
   return Json::object {
     {"enabled", enabled.get()},
     {"range", range},
   };
+}
+
+void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"enabled", Json::BOOL},
+    {"range", Json::OBJECT},
+  });
+  enabled.set(obj["enabled"].bool_value());
+  range.read_json(obj["range"]);
+}
+
+Json RandomHsbFloatColorSupplier::to_json() const {
+  return Json::object {
+    {"hueRange", _hueRange},
+    {"saturationRange", _saturationRange},
+    {"brightnessRange", _brightnessRange},
+    {"alphaRange", _alphaRange},
+  };
+}
+
+void RandomHsbFloatColorSupplier::read_json(const Json& obj) {
+  assertHasShape(obj, Json::shape {
+    {"hueRange", Json::OBJECT},
+    {"saturationRange", Json::OBJECT},
+    {"brightnessRange", Json::OBJECT},
+    {"alphaRange", Json::OBJECT},
+  });
+  _hueRange.read_json(obj["hueRange"]);
+  _saturationRange.read_json(obj["saturationRange"]);
+  _brightnessRange.read_json(obj["brightnessRange"]);
+  _alphaRange.read_json(obj["alphaRange"]);
 }
 

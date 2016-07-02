@@ -35,7 +35,7 @@ public:
     return nullptr;
   }
 
-  void read_json(const Json& obj) { }
+  virtual void read_json(const Json& obj) { }
   
   virtual void initPanel(ofxGuiGroup& panel) {}
 

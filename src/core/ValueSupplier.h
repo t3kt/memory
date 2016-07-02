@@ -54,7 +54,10 @@ public:
 class RandomHsbFloatColorSupplier : public Params {
 public:
   explicit RandomHsbFloatColorSupplier(std::string name);
-  
+
+  Json to_json() const override;
+  void read_json(const Json& obj) override;
+
   RandomHsbFloatColorSupplier& setHue(float low, float high) {
     _hueRange.set(low, high);
     return *this;
