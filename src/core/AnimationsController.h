@@ -30,7 +30,7 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    ofParameter<bool> enabled;
+    TParam<bool> enabled;
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;

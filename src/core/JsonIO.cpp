@@ -23,6 +23,7 @@
 #include "ThresholdRenderer.h"
 #include "ValueSupplier.h"
 
+#include <ofTypes.h>
 #include <ofUtils.h>
 #include <iostream>
 #include <fstream>
@@ -55,11 +56,11 @@ static void assertHasLength(const Json& value, int length) {
   }
 }
 
-Json toJsonValue(const ofVec3f& value) {
+static Json toJsonValue(const ofVec3f& value) {
   return Json::array { value.x, value.y, value.z };
 }
 
-Json toJsonValue(const ofFloatColor& value) {
+static Json toJsonValue(const ofFloatColor& value) {
   return Json::array { value.r, value.g, value.b, value.a };
 }
 
@@ -98,6 +99,31 @@ static Json merge(const Json obj1, const Json obj2) {
   Json::object out(obj1.object_items());
   out.insert(obj2.object_items().begin(), obj2.object_items().end());
   return out;
+}
+
+template<>
+Json TParam<ofVec3f>::to_json() const {
+  return toJsonValue(get());
+}
+
+template<>
+Json TParam<ofFloatColor>::to_json() const {
+  return toJsonValue(get());
+}
+
+template<>
+Json TParam<float>::to_json() const {
+  return get();
+}
+
+template<>
+Json TParam<bool>::to_json() const {
+  return get();
+}
+
+template<>
+Json TParam<int>::to_json() const {
+  return get();
 }
 
 Json DebugParams::to_json() const {

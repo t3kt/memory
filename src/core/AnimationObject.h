@@ -27,9 +27,9 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    ofParameter<bool> enabled;
-    ofParameter<float> delay;
-    ofParameter<float> duration;
+    TParam<bool> enabled;
+    TParam<float> delay;
+    TParam<float> duration;
   };
 
   AnimationObject(const Params& params);
@@ -68,7 +68,7 @@ public:
 
     FloatValueRange radius;
     FloatValueRange alpha;
-    //ofParameter<ofFloatColor> color;
+    //TParam<ofFloatColor> color;
   };
 
   ExpandingSphereAnimation(ofVec3f position, const Params& params, ofFloatColor color);

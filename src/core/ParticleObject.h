@@ -26,8 +26,8 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    ofParameter<float> damping;
-    ofParameter<float> speed;
+    TParam<float> damping;
+    TParam<float> speed;
   };
 
   ParticleObject(ofVec3f pos, const Params& params);
@@ -88,7 +88,7 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    ofParameter<bool> enabled;
+    TParam<bool> enabled;
     FloatValueRange distanceBounds;
     FloatValueRange forceRange;
   };
@@ -140,10 +140,10 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    ofParameter<bool> enabled;
-    ofParameter<float> scale;
-    ofParameter<float> rate;
-    ofParameter<float> magnitude;
+    TParam<bool> enabled;
+    TParam<float> scale;
+    TParam<float> rate;
+    TParam<float> magnitude;
   };
 
   AbstractSpatialNoiseForce(const Params& params)

@@ -17,6 +17,38 @@
 
 class ofxDatGuiFolder;
 
+class TParamInfoBase {
+public:
+  void setKey(std::string key) { _key = key; }
+  virtual std::string getKey() const = 0;
+protected:
+  std::string _key;
+};
+
+template<typename T>
+class TParam
+: public ofParameter<T>
+, public TParamInfoBase {
+public:
+  void setDefaultValue(T defaultValue) {
+    _defaultValue = defaultValue;
+  }
+  const T& getDefaultValue() const {
+    return _defaultValue;
+  }
+  std::string getKey() const override {
+    if (_key.empty()) {
+      return ofAbstractParameter::getEscapedName();
+    } else {
+      return _key;
+    }
+  }
+
+  Json to_json() const;
+private:
+  T _defaultValue;
+};
+
 class ParamsGui {
 public:
   virtual void setup() {}
@@ -93,8 +125,8 @@ public:
     return Json::array { lowValue.get(), highValue.get() };
   }
   
-  ofParameter<T> lowValue;
-  ofParameter<T> highValue;
+  TParam<T> lowValue;
+  TParam<T> highValue;
 
 protected:
   ParamsGui* createGui() override;

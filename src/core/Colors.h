@@ -21,16 +21,16 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  ofParameter<ofFloatColor> background;
-  ofParameter<ofFloatColor> bounds;
-  ofParameter<ofFloatColor> observerMarker;
-  ofParameter<ofFloatColor> occurrenceMarker;
-  ofParameter<ofFloatColor> occurrenceRange;
-  ofParameter<ofFloatColor> occurrenceConnector;
-  ofParameter<ofFloatColor> thresholdConnector;
-  ofParameter<ofFloatColor> observerDied;
-  ofParameter<ofFloatColor> occurrenceDied;
-  ofParameter<ofFloatColor> occurrenceSpawnFailed;
+  TParam<ofFloatColor> background;
+  TParam<ofFloatColor> bounds;
+  TParam<ofFloatColor> observerMarker;
+  TParam<ofFloatColor> occurrenceMarker;
+  TParam<ofFloatColor> occurrenceRange;
+  TParam<ofFloatColor> occurrenceConnector;
+  TParam<ofFloatColor> thresholdConnector;
+  TParam<ofFloatColor> observerDied;
+  TParam<ofFloatColor> occurrenceDied;
+  TParam<ofFloatColor> occurrenceSpawnFailed;
 };
 
 #endif /* Colors_h */

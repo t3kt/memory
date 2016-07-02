@@ -28,9 +28,9 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  ofParameter<bool> showLog;
-  ofParameter<bool> showBounds;
-  ofParameter<bool> showStatus;
+  TParam<bool> showLog;
+  TParam<bool> showBounds;
+  TParam<bool> showStatus;
 
 protected:
   ParamsGui* createGui() override;
@@ -43,8 +43,8 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  ofParameter<bool> spinEnabled;
-  ofParameter<ofVec3f> spinRate;
+  TParam<bool> spinEnabled;
+  TParam<ofVec3f> spinRate;
 };
 
 class MemoryAppParameters : public Params {

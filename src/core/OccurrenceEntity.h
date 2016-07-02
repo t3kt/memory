@@ -37,11 +37,11 @@ public:
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> radius;
-//    ofParameter<ofFloatColor> markerColor;
-    ofParameter<float> rangeFadeIn;
-//    ofParameter<ofFloatColor> rangeColor;
-//    ofParameter<ofFloatColor> connectorColor;
-    ofParameter<float> markerSize;
+//    TParam<ofFloatColor> markerColor;
+    TParam<float> rangeFadeIn;
+//    TParam<ofFloatColor> rangeColor;
+//    TParam<ofFloatColor> connectorColor;
+    TParam<float> markerSize;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
   

@@ -41,7 +41,7 @@ public:
 
   ofVec3f randomPoint() const override;
 
-  ofParameter<float> size;
+  TParam<float> size;
 
 protected:
   ParamsGui* createGui() override;

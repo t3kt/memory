@@ -36,8 +36,8 @@ public:
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> lifetime;
-//    ofParameter<ofFloatColor> color;
-    ofParameter<float> drawRadius;
+//    TParam<ofFloatColor> color;
+    TParam<float> drawRadius;
   };
   
   static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ofFloatColor& color);
