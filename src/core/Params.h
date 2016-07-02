@@ -19,10 +19,11 @@ class ofxDatGuiFolder;
 
 class TParamInfoBase {
 public:
-  void setKey(std::string key) { _key = key; }
   virtual std::string getKey() const = 0;
+  bool hasDefaultValue() const { return _hasDefaultValue; }
 protected:
   std::string _key;
+  bool _hasDefaultValue;
 };
 
 template<typename T>
@@ -30,12 +31,39 @@ class TParam
 : public ofParameter<T>
 , public TParamInfoBase {
 public:
-  void setDefaultValue(T defaultValue) {
-    _defaultValue = defaultValue;
+  static Json::Type jsonType;
+
+  TParam<T>& setKey(std::string key) {
+    _key = key;
+    return *this;
   }
+
+  TParam<T>& setName(std::string name) {
+    ofParameter<T>::setName(name);
+    return *this;
+  }
+
+  TParam<T>& setRange(T minValue, T maxValue) {
+    setMin(minValue);
+    setMax(maxValue);
+    return *this;
+  }
+
+  TParam<T>& setDefaultValue(T defaultValue) {
+    _defaultValue = defaultValue;
+    _hasDefaultValue = true;
+    return *this;
+  }
+
   const T& getDefaultValue() const {
     return _defaultValue;
   }
+
+  void clearDefaultValue() {
+    _defaultValue = {};
+    _hasDefaultValue = false;
+  }
+
   std::string getKey() const override {
     if (_key.empty()) {
       return ofAbstractParameter::getEscapedName();
@@ -45,6 +73,10 @@ public:
   }
 
   Json to_json() const;
+
+  Json::object::value_type toJsonField() const {
+    return { getKey(), to_json() };
+  }
 private:
   T _defaultValue;
 };
