@@ -20,6 +20,7 @@
 #include "Behavior.h"
 #include "Status.h"
 #include "Colors.h"
+#include "Renderer.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
@@ -41,6 +42,7 @@ public:
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceObserverAttraction::Params observerAttraction;
     AbstractSpatialNoiseForce::Params spatialNoiseForce;
+    OccurrenceRenderer::Params renderer;
   };
   
   OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors);
@@ -72,6 +74,7 @@ private:
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
+  shared_ptr<OccurrenceRenderer> _renderer;
   shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
   shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
   shared_ptr<SpatialNoiseForce<OccurrenceEntity>> _spatialNoiseForce;

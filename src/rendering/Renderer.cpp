@@ -9,46 +9,65 @@
 #include "Renderer.h"
 #include <ofMain.h>
 
-ObserverRenderer::Params::Params()
+EnumTypeInfo<EntityShape> EntityShapeType({
+  {"sphere", EntityShape::SPHERE},
+  {"box", EntityShape::BOX},
+});
+
+AbstractEntityRenderer::Params::Params()
 : ::Params() {
-  add(drawRadius
-      .setKey("drawRadius")
-      .setName("Draw Radius")
+  add(size
+      .setKey("size")
+      .setName("Draw Size")
       .setValueAndDefault(0.03)
       .setRange(0, 0.1));
 }
 
-ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params,
-                                   const ColorTheme& colors,
-                                   ObjectManager<ObserverEntity>& observers)
-: _params(params)
-, _colors(colors)
-, _observers(observers) { }
-
-void ObserverRenderer::setup() {
-
-}
-
-void ObserverRenderer::update(const State &state) {
-
-}
-
-void ObserverRenderer::draw(const State &state) {
-  ofFloatColor baseColor = _colors.observerMarker.get();
-  float radius = _params.drawRadius.get();
+template<typename T>
+void EntityRenderer<T>::draw(const State& state) {
+  ofFloatColor baseColor(_color);
+  float size = _baseParams.size.get();
   ofPushStyle();
   ofFill();
-  for (shared_ptr<ObserverEntity> observer : _observers) {
-    if (!observer->visible()) {
+  for (shared_ptr<T> entity : *this) {
+    if (!entity->visible()) {
       continue;
     }
-    float alpha = observer->getRemainingLifetimeFraction();
-    if (alpha <= 0) {
-      continue;
-    }
-    ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-    ofDrawSphere(observer->position(), radius);
+    drawEntity(*entity, baseColor, size, state);
   }
-  //...
   ofPopStyle();
+}
+
+void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
+  float alpha = entity.getRemainingLifetimeFraction();
+  if (alpha <= 0) {
+    return;
+  }
+  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofDrawSphere(entity.position(), size);
+}
+
+OccurrenceRenderer::Params::Params()
+: AbstractEntityRenderer::Params() {
+  add(connectionCountRange
+      .setKey("connectionCountRange")
+      .setName("Connection Count Range")
+      .setParamValuesAndDefaults(0, 4)
+      .setParamRanges(0, 20));
+  size.setValueAndDefault(0.1);
+  size.setRange(0, 0.5);
+}
+
+void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
+  auto count = entity.getAmountOfObservation(state);
+  float alpha = ofMap(count,
+                      _params.connectionCountRange.lowValue.get(),
+                      _params.connectionCountRange.highValue.get(),
+                      0, 1, true);
+  if (alpha <= 0.0) {
+    return;
+  }
+
+  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofDrawBox(entity.position(), size);
 }

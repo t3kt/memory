@@ -8,17 +8,18 @@
 
 #include "Colors.h"
 
-EnumTypeInfo<ColorId> ColorIdType = EnumTypeInfo<ColorId>()
-  .add("background", ColorId::BACKGROUND)
-  .add("bounds", ColorId::BOUNDS)
-  .add("observerMarker", ColorId::OBSERVER_MARKER)
-  .add("observerThresholdConnector", ColorId::OBSERVER_THRESHOLD_CONNECTOR)
-  .add("occurrenceMarker", ColorId::OCCURRENCE_MARKER)
-  .add("occurrenceRange", ColorId::OCCURRENCE_RANGE)
-  .add("occurrenceConnector", ColorId::OCCURRENCE_CONNECTOR)
-  .add("observerDied", ColorId::OBSERVER_DIED)
-  .add("occurrenceDied", ColorId::OCCURRENCE_DIED)
-  .add("occurrenceSpawnFailed", ColorId::OCCURRENCE_SPAWN_FAILED);
+EnumTypeInfo<ColorId> ColorIdType({
+  {"background", ColorId::BACKGROUND},
+  {"bounds", ColorId::BOUNDS},
+  {"observerMarker", ColorId::OBSERVER_MARKER},
+  {"observerThresholdConnector", ColorId::OBSERVER_THRESHOLD_CONNECTOR},
+  {"occurrenceMarker", ColorId::OCCURRENCE_MARKER},
+  {"occurrenceRange", ColorId::OCCURRENCE_RANGE},
+  {"occurrenceConnector", ColorId::OCCURRENCE_CONNECTOR},
+  {"observerDied", ColorId::OBSERVER_DIED},
+  {"occurrenceDied", ColorId::OCCURRENCE_DIED},
+  {"occurrenceSpawnFailed", ColorId::OCCURRENCE_SPAWN_FAILED},
+});
 
 ColorTheme::ColorTheme()
 : ::Params() {

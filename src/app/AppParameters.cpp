@@ -52,7 +52,7 @@ CameraParams::CameraParams()
   add(spinEnabled
       .setKey("spinEnabled")
       .setName("Spin Enabled")
-      .setValueAndDefault(true));
+      .setValueAndDefault(false));
   add(spinRate
       .setKey("spinRate")
       .setName("Spin Rate")

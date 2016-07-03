@@ -34,10 +34,11 @@ std::ostream& operator<<(std::ostream& os, const Outputable& obj);
 template<typename T>
 class EnumTypeInfo {
 public:
-  EnumTypeInfo<T>& add(std::string name, T value) {
-    _stringToEnum.insert(std::make_pair(name, value));
-    _enumToString.insert(std::make_pair(value, name));
-    return *this;
+  EnumTypeInfo(std::initializer_list<std::pair<std::string, T>> entries) {
+    for (std::pair<std::string, T> entry : entries) {
+      _stringToEnum.insert(entry);
+      _enumToString.insert(std::make_pair(entry.second, entry.first));
+    }
   }
 
   bool tryParseString(const std::string& str, T* result) {

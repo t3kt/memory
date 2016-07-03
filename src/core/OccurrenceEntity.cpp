@@ -103,12 +103,12 @@ void OccurrenceEntity::draw(const State &state) {
   float lifePercent = ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
   
   
-  ofPushStyle();
-  ofFloatColor markerColor = _colors.occurrenceMarker.get();
-  markerColor.a *= alpha;
-  ofSetColor(markerColor);
-  ofDrawBox(_position, _params.markerSize.get());
-  ofPopStyle();
+//  ofPushStyle();
+//  ofFloatColor markerColor = _colors.occurrenceMarker.get();
+//  markerColor.a *= alpha;
+//  ofSetColor(markerColor);
+//  ofDrawBox(_position, _params.markerSize.get());
+//  ofPopStyle();
 
 
   ofFloatColor rangeColor = _colors.occurrenceRange.get();
