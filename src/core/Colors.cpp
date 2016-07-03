@@ -8,6 +8,18 @@
 
 #include "Colors.h"
 
+EnumTypeInfo<ColorId> ColorIdType = EnumTypeInfo<ColorId>()
+  .add("background", ColorId::BACKGROUND)
+  .add("bounds", ColorId::BOUNDS)
+  .add("observerMarker", ColorId::OBSERVER_MARKER)
+  .add("observerThresholdConnector", ColorId::OBSERVER_THRESHOLD_CONNECTOR)
+  .add("occurrenceMarker", ColorId::OCCURRENCE_MARKER)
+  .add("occurrenceRange", ColorId::OCCURRENCE_RANGE)
+  .add("occurrenceConnector", ColorId::OCCURRENCE_CONNECTOR)
+  .add("observerDied", ColorId::OBSERVER_DIED)
+  .add("occurrenceDied", ColorId::OCCURRENCE_DIED)
+  .add("occurrenceSpawnFailed", ColorId::OCCURRENCE_SPAWN_FAILED);
+
 ColorTheme::ColorTheme()
 : ::Params() {
   add(background
@@ -22,6 +34,10 @@ ColorTheme::ColorTheme()
       .setKey("observerMarker")
       .setName("Observer Marker")
       .setValueAndDefault(ofFloatColor(0.525, 0.7, 0.35, 1)));
+  add(observerThresholdConnector
+      .setKey("observerThresholdConnector")
+      .setName("Observer Threshold Connector")
+      .setValueAndDefault(ofFloatColor(0.7, 0.7, 0.85, 0.4)));
   add(occurrenceMarker
       .setKey("occurrenceMarker")
       .setName("Occurrence Marker")
@@ -34,10 +50,6 @@ ColorTheme::ColorTheme()
       .setKey("occurrenceConnector")
       .setName("Occurrence Connector")
       .setValueAndDefault(ofFloatColor(0.5, 0.5, 0.5, 1)));
-  add(thresholdConnector
-      .setKey("thresholdConnector")
-      .setName("Threshold Connector")
-      .setValueAndDefault(ofFloatColor(0.7, 0.7, 0.85, 0.4)));
   add(observerDied
       .setKey("observerDied")
       .setName("Observer Died")
@@ -50,4 +62,31 @@ ColorTheme::ColorTheme()
       .setKey("occurrenceSpawnFailed")
       .setName("Occurrence Spawn Failed")
       .setValueAndDefault(ofFloatColor(0.814066, 0.681255, 0.511258, 0.569695)));
+  registerColorFields({
+    background,
+    bounds,
+    observerMarker,
+    observerThresholdConnector,
+    occurrenceMarker,
+    occurrenceRange,
+    occurrenceConnector,
+    observerDied,
+    occurrenceDied,
+    occurrenceSpawnFailed,
+  });
+}
+
+void ColorTheme::registerColorFields(std::initializer_list<std::reference_wrapper<TParam<ofFloatColor>>> params) {
+  for (std::reference_wrapper<TParam<ofFloatColor>> param : params) {
+    ColorId colorId = ColorIdType.parseString(param.get().getKey());
+    _colorParamsById.insert(std::make_pair(colorId, param));
+  }
+}
+
+const ofFloatColor& ColorTheme::getColor(ColorId colorId) const {
+  auto iter = _colorParamsById.find(colorId);
+  if (iter == _colorParamsById.end()) {
+    throw std::invalid_argument("Unknown color: " + ColorIdType.toString(colorId));
+  }
+  return iter->second.get();
 }

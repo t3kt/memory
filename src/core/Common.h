@@ -11,6 +11,8 @@
 
 #include <ofVec3f.h>
 #include <iostream>
+#include <map>
+#include <stdexcept>
 
 ofVec3f createSignedNoiseVec3f(const ofVec3f& position);
 ofVec3f createRandomVec3f(const ofVec3f& mins,
@@ -28,5 +30,51 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);
+
+template<typename T>
+class EnumTypeInfo {
+public:
+  EnumTypeInfo<T>& add(std::string name, T value) {
+    _stringToEnum.insert(std::make_pair(name, value));
+    _enumToString.insert(std::make_pair(value, name));
+    return *this;
+  }
+
+  bool tryParseString(const std::string& str, T* result) {
+    auto iter = _stringToEnum.find(str);
+    if (iter == _stringToEnum.end()) {
+      return false;
+    } else {
+      *result = iter->second;
+      return true;
+    }
+  }
+  bool tryToString(const T& value, std::string* result) {
+    auto iter = _enumToString.find(value);
+    if (iter == _enumToString.end()) {
+      return false;
+    } else {
+      *result = iter->second;
+      return true;
+    }
+  }
+  std::string toString(T value) {
+    std::string name;
+    if (!tryToString(value, &name)) {
+      throw std::invalid_argument("Unknown enum value");
+    }
+    return name;
+  }
+  T parseString(const std::string& str) {
+    T value;
+    if (!tryParseString(str, &value)) {
+      throw std::invalid_argument("Unknown enum value: " + str);
+    }
+    return value;
+  }
+private:
+  std::map<std::string, T> _stringToEnum;
+  std::map<T, std::string> _enumToString;
+};
 
 #endif /* defined(__behavior__Common__) */
