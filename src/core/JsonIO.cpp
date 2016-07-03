@@ -20,6 +20,7 @@
 #include "OccurrenceEntity.h"
 #include "OccurrencesController.h"
 #include "ParticleObject.h"
+#include "Renderer.h"
 #include "ThresholdRenderer.h"
 #include "ValueSupplier.h"
 
@@ -388,7 +389,6 @@ Json ObserverEntity::Params::to_json() const {
   return merge(ParticleObject::Params::to_json(),
                paramsToObject({
                  lifetime,
-                 drawRadius,
                }));
 }
 
@@ -396,7 +396,6 @@ void ObserverEntity::Params::read_json(const Json& obj) {
   ParticleObject::Params::read_json(obj);
   readJsonIntoParams(obj, {
     lifetime,
-    drawRadius,
   });
 }
 
@@ -407,6 +406,7 @@ Json ObserversController::Params::to_json() const {
     initialVelocity,
     occurrenceAttraction,
     spatialNoiseForce,
+    renderer,
     threshold,
   });
 }
@@ -418,6 +418,7 @@ void ObserversController::Params::read_json(const Json& obj) {
     initialVelocity,
     occurrenceAttraction,
     spatialNoiseForce,
+    renderer,
     threshold,
   });
 }
@@ -519,6 +520,18 @@ void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
     enabled,
     range,
+  });
+}
+
+Json ObserverRenderer::Params::to_json() const {
+  return paramsToObject({
+    drawRadius,
+  });
+}
+
+void ObserverRenderer::Params::read_json(const json11::Json &obj) {
+  readJsonIntoParams(obj, {
+    drawRadius,
   });
 }
 

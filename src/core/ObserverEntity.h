@@ -36,8 +36,6 @@ public:
     void initPanel(ofxGuiGroup& panel) override;
     
     RandomValueSupplier<float> lifetime;
-//    TParam<ofFloatColor> color;
-    TParam<float> drawRadius;
   };
   
   static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ofFloatColor& color);
@@ -58,8 +56,6 @@ public:
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
   
   void update(const State& state) override;
-  
-  void draw(const State& state) override;
   
   void handleDeath() override;
   

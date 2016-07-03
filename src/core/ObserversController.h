@@ -18,6 +18,7 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
+#include "Renderer.h"
 #include "Status.h"
 #include "Colors.h"
 
@@ -41,6 +42,7 @@ public:
     SimpleRandomVectorSupplier initialVelocity;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
     AbstractSpatialNoiseForce::Params spatialNoiseForce;
+    ObserverRenderer::Params renderer;
     AbstractThresholdRenderer::Params threshold;
   };
   
@@ -71,6 +73,7 @@ private:
   const ColorTheme& _colors;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
+  shared_ptr<ObserverRenderer> _observerRenderer;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
   shared_ptr<SpatialNoiseForce<ObserverEntity>> _spatialNoiseForce;

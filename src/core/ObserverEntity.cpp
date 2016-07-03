@@ -18,12 +18,6 @@ ObserverEntity::Params::Params()
       .setName("Lifetime Range")
       .setParamValuesAndDefaults(1, 4)
       .setParamRanges(0, 240));
-//  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
-  add(drawRadius
-      .setKey("drawRadius")
-      .setName("Draw Radius")
-      .setValueAndDefault(0.03)
-      .setRange(0, 0.1));
 }
 
 void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
@@ -66,21 +60,6 @@ void ObserverEntity::handleDeath() {
   for (auto occurrence : _connectedOccurrences) {
     occurrence->removeObserver(id);
   }
-}
-
-void ObserverEntity::draw(const State &state) {
-  float alpha = _lifeFraction;
-  if (alpha <= 0) {
-    return;
-  }
-  ofFloatColor color(_color);
-  color.a *= alpha;
-  
-  ofPushStyle();
-  ofFill();
-  ofSetColor(color);
-  ofDrawSphere(_position, _params.drawRadius.get());
-  ofPopStyle();
 }
 
 void ObserverEntity::outputFields(std::ostream &os) const {

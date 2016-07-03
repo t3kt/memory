@@ -12,6 +12,7 @@
 		2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */; };
 		2B8F288F1B4106CC768D4FBE /* ofxDatGuiComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
+		329604131D288FB000B79262 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329604111D288FB000B79262 /* Renderer.cpp */; };
 		32C6CF251D262C470090DC33 /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C6CF231D262C470090DC33 /* json11.cpp */; };
 		32C6CF281D262C680090DC33 /* JsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C6CF261D262C680090DC33 /* JsonIO.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -126,6 +127,8 @@
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		32831CD20CC05BAA1B5697B3 /* ofxDatGuiLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiLabel.h; sourceTree = SOURCE_ROOT; };
+		329604111D288FB000B79262 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Renderer.cpp; path = rendering/Renderer.cpp; sourceTree = "<group>"; };
+		329604121D288FB000B79262 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = rendering/Renderer.h; sourceTree = "<group>"; };
 		32C6CF231D262C470090DC33 /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json11.cpp; sourceTree = "<group>"; };
 		32C6CF241D262C470090DC33 /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json11.hpp; sourceTree = "<group>"; };
 		32C6CF261D262C680090DC33 /* JsonIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JsonIO.cpp; path = core/JsonIO.cpp; sourceTree = "<group>"; };
@@ -261,6 +264,15 @@
 				65F3085962B3A8825746C3C2 /* Syphon */,
 			);
 			name = libs;
+			sourceTree = "<group>";
+		};
+		329604101D288F7B00B79262 /* rendering */ = {
+			isa = PBXGroup;
+			children = (
+				329604111D288FB000B79262 /* Renderer.cpp */,
+				329604121D288FB000B79262 /* Renderer.h */,
+			);
+			name = rendering;
 			sourceTree = "<group>";
 		};
 		32C6CF221D262C470090DC33 /* lib */ = {
@@ -617,6 +629,7 @@
 			children = (
 				BE9DD360F550B0DF4D357E7B /* app */,
 				BC405D98CD8417CE9E222B0C /* core */,
+				329604101D288F7B00B79262 /* rendering */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -766,6 +779,7 @@
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
 				2B8F288F1B4106CC768D4FBE /* ofxDatGuiComponent.cpp in Sources */,
 				32C6CF251D262C470090DC33 /* json11.cpp in Sources */,
+				329604131D288FB000B79262 /* Renderer.cpp in Sources */,
 				32C6CF281D262C680090DC33 /* JsonIO.cpp in Sources */,
 				9E323A6D767216E5BC85DD67 /* ofxSmartFont.cpp in Sources */,
 				CBCAFF2D02669C3E7771524B /* ofxDatGui.cpp in Sources */,
