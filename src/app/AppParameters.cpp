@@ -22,6 +22,9 @@ DebugParams::DebugParams()
       .setKey("showStatus")
       .setName("Show Status")
       .setValueAndDefault(true));
+  _showLog.bindTo(&_paramGroup.addBool("showLog").set(false));
+  _showBounds.bindTo(&_paramGroup.addBool("showBounds").set(false));
+  _showStatus.bindTo(&_paramGroup.addBool("showStatus").set(true));
 }
 
 CameraParams::CameraParams()
@@ -63,6 +66,8 @@ MemoryAppParameters::MemoryAppParameters()
   add(camera
       .setKey("camera")
       .setName("Camera"));
+  _paramGroup.setName("Memory");
+  _paramGroup.add(&debug.getParamGroup().setName("debug"));
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {

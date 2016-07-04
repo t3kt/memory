@@ -27,9 +27,9 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  bool showLog() const { return _showLog.get(); }
-  bool showBounds() const { return _showBounds.get(); }
-  bool showStatus() const { return _showStatus.get(); }
+  bool showLog() const { return _paramGroup["showLog"]; }
+  bool showBounds() const { return _paramGroup["showBounds"]; }
+  bool showStatus() const { return _paramGroup["showStatus"]; }
 
   void setShowLog(bool showLog) { _showLog.set(showLog); }
   void setShowBounds(bool showBounds) { _showBounds.set(showBounds); }

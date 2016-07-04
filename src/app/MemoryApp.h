@@ -13,6 +13,7 @@
 #include <ofxGui.h>
 #include <ofxScreenLoggerChannel.h>
 #include <ofxMultiLoggerChannel.h>
+#include <ofxMSAControlFreakGui.h>
 #include "State.h"
 #include "AppParameters.h"
 #include "ObserversController.h"
@@ -53,6 +54,7 @@ private:
   shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
   shared_ptr<GuiPanel> _gui;
+  ctl::gui::Gui _NEW_gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<FPSInfoProvider> _fpsProvider;

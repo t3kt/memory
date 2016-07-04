@@ -117,8 +117,9 @@ void MemoryApp::setup() {
   _syphonServer.setName("Memory Main Output");
 #endif
 
-//  _NEW_gui = std::make_shared<AppGui>(_appParams);
-//  _NEW_gui->setup();
+  _NEW_gui.addPage(_appParams.getParamGroup());
+  _NEW_gui.setPage(0);
+  _NEW_gui.setPosition(200, 0);
   //...
 }
 
