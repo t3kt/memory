@@ -32,32 +32,23 @@ public:
   
   virtual void output(std::ostream& os) const override;
 
-  virtual bool alive() const = 0;
-  
-  virtual bool visible() const { return this->alive(); }
+  virtual bool alive() const { return _alive; }
 
-protected:
-  virtual std::string typeName() const;
-  virtual void outputFields(std::ostream& os) const;
-};
-
-class StandardWorldObject : public WorldObject {
-public:
-  StandardWorldObject();
-  virtual ~StandardWorldObject() {}
-
-  virtual bool alive() const override { return _alive; };
   void kill() {
     _alive = false;
     handleDeath();
   }
   void revive() { _alive = true; }
+  
+  virtual bool visible() const { return this->alive(); }
+
+  ofVec3f position() const { return _position; }
 
   virtual void handleDeath() {}
 
-  ofVec3f position() const { return _position; }
 protected:
-  virtual void outputFields(std::ostream& os) const override;
+  virtual std::string typeName() const;
+  virtual void outputFields(std::ostream& os) const;
 
   ofVec3f _position;
 private:

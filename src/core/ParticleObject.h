@@ -17,7 +17,7 @@
 #include "Events.h"
 #include "Bounds.h"
 
-class ParticleObject : public StandardWorldObject {
+class ParticleObject : public WorldObject {
 public:
   class Params : public ::Params {
   public:

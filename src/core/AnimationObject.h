@@ -18,7 +18,7 @@
 #include "Params.h"
 #include "ValueSupplier.h"
 
-class AnimationObject : public StandardWorldObject {
+class AnimationObject : public WorldObject {
 public:
   class Params : public ::Params {
   public:

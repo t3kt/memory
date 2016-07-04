@@ -41,7 +41,7 @@ AbstractEntityAttraction::Params::Params()
 }
 
 ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)
-: StandardWorldObject()
+: WorldObject()
 , _velocity(0)
 , _force(0)
 , _params(params) {
@@ -73,7 +73,7 @@ void ParticleObject::update(const State &state) {
 }
 
 void ParticleObject::outputFields(std::ostream &os) const {
-  StandardWorldObject::outputFields(os);
+  WorldObject::outputFields(os);
   os << ", velocity: " << _velocity
       << ", force: " << _force;
 }
