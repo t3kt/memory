@@ -93,7 +93,7 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
 
 ObserverOccurrenceConnectorRenderer::Params::Params()
 : ::Params() {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
@@ -105,7 +105,7 @@ ObserverOccurrenceConnectorRenderer::Params::Params()
 }
 
 void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
-  if (!_params.enabled.get()) {
+  if (!_params.enabled()) {
     return;
   }
   ofPushStyle();

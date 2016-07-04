@@ -345,31 +345,31 @@ void Clock::Params::read_json(const Json& obj) {
 
 Json ColorTheme::to_json() const {
   return paramsToObject({
-    background,
-    bounds,
-    observerMarker,
-    observerThresholdConnector,
-    occurrenceMarker,
-    occurrenceRange,
-    occurrenceConnector,
-    observerDied,
-    occurrenceDied,
-    occurrenceSpawnFailed,
+    _background,
+    _bounds,
+    _observerMarker,
+    _observerThresholdConnector,
+    _occurrenceMarker,
+    _occurrenceRange,
+    _occurrenceConnector,
+    _observerDied,
+    _occurrenceDied,
+    _occurrenceSpawnFailed,
   });
 }
 
 void ColorTheme::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    background,
-    bounds,
-    observerMarker,
-    observerThresholdConnector,
-    occurrenceMarker,
-    occurrenceRange,
-    occurrenceConnector,
-    observerDied,
-    occurrenceDied,
-    occurrenceSpawnFailed,
+    _background,
+    _bounds,
+    _observerMarker,
+    _observerThresholdConnector,
+    _occurrenceMarker,
+    _occurrenceRange,
+    _occurrenceConnector,
+    _observerDied,
+    _occurrenceDied,
+    _occurrenceSpawnFailed,
   });
 }
 
@@ -515,14 +515,14 @@ void AbstractSpatialNoiseForce::Params::read_json(const Json& obj) {
 
 Json AbstractThresholdRenderer::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     range,
   });
 }
 
 void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     range,
   });
 }
@@ -557,14 +557,14 @@ Json OccurrenceRenderer::Params::to_json() const {
 
 void ObserverOccurrenceConnectorRenderer::Params::read_json(const json11::Json &obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     connectionCountRange,
   });
 }
 
 Json ObserverOccurrenceConnectorRenderer::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     connectionCountRange,
   });
 }

@@ -39,20 +39,20 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  TParam<ofFloatColor> background;
-  TParam<ofFloatColor> bounds;
-  TParam<ofFloatColor> observerMarker;
-  TParam<ofFloatColor> observerThresholdConnector;
-  TParam<ofFloatColor> occurrenceMarker;
-  TParam<ofFloatColor> occurrenceRange;
-  TParam<ofFloatColor> occurrenceConnector;
-  TParam<ofFloatColor> observerDied;
-  TParam<ofFloatColor> occurrenceDied;
-  TParam<ofFloatColor> occurrenceSpawnFailed;
-
   const ofFloatColor& getColor(ColorId colorId) const;
 private:
   void registerColorFields(std::initializer_list<std::reference_wrapper<TParam<ofFloatColor>>> params);
+
+  TParam<ofFloatColor> _background;
+  TParam<ofFloatColor> _bounds;
+  TParam<ofFloatColor> _observerMarker;
+  TParam<ofFloatColor> _observerThresholdConnector;
+  TParam<ofFloatColor> _occurrenceMarker;
+  TParam<ofFloatColor> _occurrenceRange;
+  TParam<ofFloatColor> _occurrenceConnector;
+  TParam<ofFloatColor> _observerDied;
+  TParam<ofFloatColor> _occurrenceDied;
+  TParam<ofFloatColor> _occurrenceSpawnFailed;
   std::map<ColorId, std::reference_wrapper<TParam<ofFloatColor>>> _colorParamsById;
 };
 

@@ -69,7 +69,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
       return;
     }
     auto observer = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.observerDied.get());
+    auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.getColor(ColorId::OBSERVER_DIED));
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding observer died animation: " << *animation;
   };
@@ -81,7 +81,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
       return;
     }
     auto occurrence = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.observerDied.get());
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.getColor(ColorId::OCCURRENCE_DIED));
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
@@ -90,7 +90,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
       return;
     }
     auto occurrence = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.occurrenceSpawnFailed.get());
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.getColor(ColorId::OCCURRENCE_SPAWN_FAILED));
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding occurrence spawn failed animation: " << *animation;
   };

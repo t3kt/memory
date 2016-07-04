@@ -55,7 +55,7 @@ void OccurrencesController::setup(const State &state) {
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   _spatialNoiseForce = std::make_shared<SpatialNoiseForce<OccurrenceEntity>>(_params.spatialNoiseForce);
   _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, _colors, _occurrences);
-  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, _colors.occurrenceConnector.get(), _occurrences);
+  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, _colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }

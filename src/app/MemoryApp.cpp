@@ -142,7 +142,7 @@ void MemoryApp::update() {
 }
 
 void MemoryApp::draw() {
-  ofBackground(_appParams.colors.background.get());
+  ofBackground(_appParams.colors.getColor(ColorId::BACKGROUND));
   glPushAttrib(GL_ENABLE_BIT);
   //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
@@ -171,7 +171,7 @@ void MemoryApp::draw() {
   if (_appParams.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
-    ofSetColor(_appParams.colors.bounds.get());
+    ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
     ofDrawBox(_appParams.bounds.size());
     ofPopStyle();
   }
