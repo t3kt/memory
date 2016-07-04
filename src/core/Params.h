@@ -31,8 +31,6 @@ class TParam
 : public ofParameter<T>
 , public TParamInfoBase {
 public:
-  static Json::Type jsonType;
-
   TParam<T>& setKey(std::string key) {
     _key = key;
     return *this;
@@ -153,10 +151,10 @@ class ValueRange : public Params {
 public:
   ValueRange()
   : Params() {
-    add(lowValue
+    add(_lowValue
         .setKey("low")
         .setName("Low"));
-    add(highValue
+    add(_highValue
         .setKey("high")
         .setName("High"));
   }
@@ -172,39 +170,39 @@ public:
   }
 
   ValueRange<T>& setParamKeys(std::string lowKey, std::string highKey) {
-    lowValue.setKey(lowKey);
-    highValue.setKey(highKey);
+    _lowValue.setKey(lowKey);
+    _highValue.setKey(highKey);
     return *this;
   }
 
   ValueRange<T>& setParamNames(std::string lowName, std::string highName) {
-    lowValue.setName(lowName);
-    highValue.setName(highName);
+    _lowValue.setName(lowName);
+    _highValue.setName(highName);
     return *this;
   }
 
   ValueRange<T>& setParamValues(T low, T high) {
-    lowValue.set(low);
-    highValue.set(high);
+    _lowValue.set(low);
+    _highValue.set(high);
     return *this;
   }
 
   ValueRange<T>& setParamValuesAndDefaults(T low, T high) {
-    lowValue.setValueAndDefault(low);
-    highValue.setValueAndDefault(high);
+    _lowValue.setValueAndDefault(low);
+    _highValue.setValueAndDefault(high);
     return *this;
   }
 
   ValueRange<T>& setParamRanges(T minVal, T maxVal) {
-    lowValue.setMin(minVal);
-    lowValue.setMax(maxVal);
-    highValue.setMin(minVal);
-    highValue.setMax(maxVal);
+    _lowValue.setMin(minVal);
+    _lowValue.setMax(maxVal);
+    _highValue.setMin(minVal);
+    _highValue.setMax(maxVal);
     return *this;
   }
 
   T getLerped(float amount) const {
-    return getInterpolated(lowValue.get(), highValue.get(), amount);
+    return getInterpolated(lowValue(), highValue(), amount);
   }
 
   Json to_json() const override;
@@ -212,13 +210,17 @@ public:
   void read_json(const Json& val) override;
 
   virtual void resetToDefaults() override {
-    lowValue.resetToDefault();
-    highValue.resetToDefault();
+    _lowValue.resetToDefault();
+    _highValue.resetToDefault();
   }
   virtual bool hasDefaults() const override { return true; }
-  
-  TParam<T> lowValue;
-  TParam<T> highValue;
+
+  const T& lowValue() const { return _lowValue.get(); }
+  const T& highValue() const { return _highValue.get(); }
+
+protected:
+  TParam<T> _lowValue;
+  TParam<T> _highValue;
 };
 
 using FloatValueRange = ValueRange<float>;

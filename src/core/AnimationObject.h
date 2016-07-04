@@ -27,9 +27,18 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    TParam<bool> enabled;
-    TParam<float> delay;
-    TParam<float> duration;
+    bool enabled() const { return _enabled.get(); }
+    float delay() const { return _delay.get(); }
+    float duration() const { return _duration.get(); }
+
+    void setEnabled(bool enabled) { _enabled.set(enabled); }
+    void setDelay(float delay) { _delay.set(delay); }
+    void setDuration(float duration) { _duration.set(duration); }
+
+  private:
+    TParam<bool> _enabled;
+    TParam<float> _delay;
+    TParam<float> _duration;
   };
 
   AnimationObject(const Params& params);
@@ -68,7 +77,6 @@ public:
 
     FloatValueRange radius;
     FloatValueRange alpha;
-    //TParam<ofFloatColor> color;
   };
 
   ExpandingSphereAnimation(ofVec3f position, const Params& params, ofFloatColor color);

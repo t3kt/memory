@@ -25,22 +25,28 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    TParam<bool> paused;
-    TParam<float> rate;
+    bool paused() const { return _paused.get(); }
+    float rate() const { return _rate.get(); }
+
+    void setPaused(bool paused) { _paused.set(paused); }
+
+  private:
+    TParam<bool> _paused;
+    TParam<float> _rate;
   };
 
   Clock(Params& params, State& state);
 
   void setup();
 
-  void start();
-  void stop();
   void toggleState();
 
   void update();
 
   const StatusInfo& getStatusInfo() const { return _status; }
 private:
+  void start();
+  void stop();
   void onPausedChanged(bool& paused);
 
   class _Timer : public msa::Timer {

@@ -16,7 +16,7 @@ EnumTypeInfo<EntityShape> EntityShapeType({
 
 AbstractEntityRenderer::Params::Params()
 : ::Params() {
-  add(size
+  add(_size
       .setKey("size")
       .setName("Draw Size")
       .setValueAndDefault(0.03)
@@ -26,7 +26,7 @@ AbstractEntityRenderer::Params::Params()
 template<typename T>
 void EntityRenderer<T>::draw(const State& state) {
   ofFloatColor baseColor(_color);
-  float size = _baseParams.size.get();
+  float size = _baseParams.size();
   ofPushStyle();
   ofFill();
   for (shared_ptr<T> entity : *this) {
@@ -58,15 +58,15 @@ OccurrenceRenderer::Params::Params()
       .setName("Connection Amount Scale")
       .setParamValuesAndDefaults(0, 4)
       .setParamRanges(0, 20));
-  size.setValueAndDefault(0.1);
-  size.setRange(0, 0.5);
+  _size.setValueAndDefault(0.1);
+  _size.setRange(0, 0.5);
 }
 
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
   auto count = entity.getAmountOfObservation(state);
   float alpha = ofMap(count,
-                      _params.connectionCountRange.lowValue.get(),
-                      _params.connectionCountRange.highValue.get(),
+                      _params.connectionCountRange.lowValue(),
+                      _params.connectionCountRange.highValue(),
                       0, 1, true);
   float fadeIn = entity.getFadeInPercent(state);
   alpha *= fadeIn;
@@ -93,7 +93,7 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
 
 ObserverOccurrenceConnectorRenderer::Params::Params()
 : ::Params() {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
@@ -105,13 +105,13 @@ ObserverOccurrenceConnectorRenderer::Params::Params()
 }
 
 void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
-  if (!_params.enabled.get()) {
+  if (!_params.enabled()) {
     return;
   }
   ofPushStyle();
   ofMesh connectorMesh;
-  float lowCount = _params.connectionCountRange.lowValue.get();
-  float highCount = _params.connectionCountRange.highValue.get();
+  float lowCount = _params.connectionCountRange.lowValue();
+  float highCount = _params.connectionCountRange.highValue();
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (auto occurrence : _occurrences) {
     float occurrenceLife = occurrence->getAmountOfObservation(state);

@@ -36,10 +36,7 @@ public:
     void read_json(const Json& obj) override;
     
     RandomValueSupplier<float> radius;
-//    TParam<ofFloatColor> markerColor;
     TParam<float> rangeFadeIn;
-//    TParam<ofFloatColor> rangeColor;
-//    TParam<ofFloatColor> connectorColor;
     TParam<float> markerSize;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);

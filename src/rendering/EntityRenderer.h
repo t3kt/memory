@@ -32,11 +32,15 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
     virtual void resetToDefaults() override {
-      size.resetToDefault();
+      _size.resetToDefault();
     }
     virtual bool hasDefaults() const override { return true; }
 
-    TParam<float> size;
+    float size() const { return _size.get(); }
+    void setSize(float size) { _size.set(size); }
+
+  protected:
+    TParam<float> _size;
   };
 
   AbstractEntityRenderer(const Params& params, const ofFloatColor& color)
@@ -71,7 +75,7 @@ public:
   ObserverRenderer(const Params& params,
                    const ColorTheme& colors,
                    ObjectManager<ObserverEntity>& entities)
-  : EntityRenderer<ObserverEntity>(params, colors.observerMarker.get())
+  : EntityRenderer<ObserverEntity>(params, colors.getColor(ColorId::OBSERVER_MARKER))
   , _entities(entities) { }
 protected:
   ObjectManager<ObserverEntity>::StorageList::iterator begin() override {
@@ -108,9 +112,9 @@ public:
   OccurrenceRenderer(const Params& params,
                      const ColorTheme& colors,
                      ObjectManager<OccurrenceEntity>& entities)
-  : EntityRenderer<OccurrenceEntity>(params, colors.occurrenceMarker.get())
+  : EntityRenderer<OccurrenceEntity>(params, colors.getColor(ColorId::OCCURRENCE_MARKER))
   , _params(params)
-  , _rangeColor(colors.occurrenceRange.get())
+  , _rangeColor(colors.getColor(ColorId::OCCURRENCE_RANGE))
   , _entities(entities) { }
 protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator begin() override {
@@ -135,13 +139,16 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
     void resetToDefaults() override {
-      enabled.resetToDefault();
+      _enabled.resetToDefault();
       connectionCountRange.resetToDefaults();
     }
     bool hasDefaults() const override { return true; }
 
-    TParam<bool> enabled;
+    bool enabled() const { return _enabled.get(); }
+
     ValueRange<float> connectionCountRange;
+  private:
+    TParam<bool> _enabled;
   };
   ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
   : _params(params)

@@ -10,12 +10,12 @@
 
 ParticleObject::Params::Params()
 : ::Params() {
-  add(damping
+  add(_damping
       .setKey("damping")
       .setName("Damping")
       .setValueAndDefault(0.01)
       .setRange(0, 0.1));
-  add(speed
+  add(_speed
       .setKey("speed")
       .setName("Speed")
       .setValueAndDefault(1)
@@ -24,7 +24,7 @@ ParticleObject::Params::Params()
 
 AbstractEntityAttraction::Params::Params()
 : ::Params() {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
@@ -62,13 +62,13 @@ void ParticleObject::addForce(ofVec3f force) {
 }
 
 void ParticleObject::addDampingForce() {
-  addForce(_velocity * -_params.damping.get());
+  addForce(_velocity * -_params.damping());
 }
 
 void ParticleObject::update(const State &state) {
   if (state.timeDelta > 0) {
     _velocity += _force * state.timeDelta;
-    _position += _velocity * _params.speed.get() * state.timeDelta;
+    _position += _velocity * _params.speed() * state.timeDelta;
   }
 }
 
@@ -97,21 +97,21 @@ bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &
 
 AbstractSpatialNoiseForce::Params::Params()
 : ::Params() {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
-  add(scale
+  add(_scale
       .setKey("scale")
       .setName("Scale")
       .setValueAndDefault(1)
       .setRange(0, 4));
-  add(rate
+  add(_rate
       .setKey("rate")
       .setName("Rate")
       .setValueAndDefault(0.1)
       .setRange(0, 0.5));
-  add(magnitude
+  add(_magnitude
       .setKey("magnitude")
       .setName("Magnitude")
       .setValueAndDefault(0.0001)
@@ -123,13 +123,13 @@ const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
 
 ofVec3f AbstractSpatialNoiseForce::getForce(ofVec3f position,
                                             const State &state) const {
-  ofVec4f noisePos = ofVec4f(position * _params.scale.get());
-  noisePos.w = state.time * _params.rate.get();
+  ofVec4f noisePos = ofVec4f(position * _params.scale());
+  noisePos.w = state.time * _params.rate();
 
   ofVec3f force(ofSignedNoise(noisePos),
                 ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
                 ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
 
-  return force * _params.magnitude.get();
+  return force * _params.magnitude();
 }
 

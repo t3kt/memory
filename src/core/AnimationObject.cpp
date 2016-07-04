@@ -11,16 +11,16 @@
 
 AnimationObject::Params::Params()
 : ::Params() {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
-  add(delay
+  add(_delay
       .setKey("delay")
       .setName("Delay")
       .setValueAndDefault(0)
       .setRange(0, 2));
-  add(duration
+  add(_duration
       .setKey("duration")
       .setName("Duration")
       .setValueAndDefault(1)
@@ -62,8 +62,8 @@ void AnimationUpdater::end() {
 }
 
 AnimationObject::AnimationObject(const AnimationObject::Params& params)
-: _delay(params.delay.get())
-, _duration(params.duration.get())
+: _delay(params.delay())
+, _duration(params.duration())
 , _visible(true)
 , _percentage(0) {
 }

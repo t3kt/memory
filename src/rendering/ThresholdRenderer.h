@@ -38,8 +38,12 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    TParam<bool> enabled;
+    bool enabled() const { return _enabled.get(); }
+    void setEnabled(bool enabled) { _enabled.set(enabled); }
+
     FloatValueRange range;
+  private:
+    TParam<bool> _enabled;
   };
 
   AbstractThresholdRenderer(const Params& params, const ofFloatColor& color)

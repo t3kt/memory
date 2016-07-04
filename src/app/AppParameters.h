@@ -27,9 +27,18 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  TParam<bool> showLog;
-  TParam<bool> showBounds;
-  TParam<bool> showStatus;
+  bool showLog() const { return _showLog.get(); }
+  bool showBounds() const { return _showBounds.get(); }
+  bool showStatus() const { return _showStatus.get(); }
+
+  void setShowLog(bool showLog) { _showLog.set(showLog); }
+  void setShowBounds(bool showBounds) { _showBounds.set(showBounds); }
+  void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
+
+private:
+  TParam<bool> _showLog;
+  TParam<bool> _showBounds;
+  TParam<bool> _showStatus;
 };
 
 class CameraParams : public Params {
@@ -39,8 +48,12 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  TParam<bool> spinEnabled;
-  TParam<ofVec3f> spinRate;
+  bool spinEnabled() const { return _spinEnabled.get(); }
+  const ofVec3f& spinRate() const { return _spinRate.get(); }
+
+private:
+  TParam<bool> _spinEnabled;
+  TParam<ofVec3f> _spinRate;
 };
 
 class MemoryAppParameters : public Params {

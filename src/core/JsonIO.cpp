@@ -99,21 +99,6 @@ static Json merge(const Json obj1, const Json obj2) {
 }
 
 template<>
-Json::Type TParam<ofVec3f>::jsonType = Json::ARRAY;
-
-template<>
-Json::Type TParam<ofFloatColor>::jsonType = Json::ARRAY;
-
-template<>
-Json::Type TParam<float>::jsonType = Json::NUMBER;
-
-template<>
-Json::Type TParam<bool>::jsonType = Json::BOOL;
-
-template<>
-Json::Type TParam<int>::jsonType = Json::NUMBER;
-
-template<>
 Json TParam<ofVec3f>::to_json() const {
   return toJsonValue(get());
 }
@@ -199,8 +184,8 @@ void Params::readJsonField(const Json& obj) {
 template<typename T>
 Json ValueRange<T>::to_json() const {
   return paramsToObject({
-    lowValue,
-    highValue,
+    _lowValue,
+    _highValue,
   });
 }
 
@@ -208,38 +193,38 @@ template<typename T>
 void ValueRange<T>::read_json(const Json& val) {
   assertHasType(val, Json::OBJECT);
   readJsonIntoParams(val, {
-    lowValue,
-    highValue,
+    _lowValue,
+    _highValue,
   });
 }
 
 Json DebugParams::to_json() const {
   return paramsToObject({
-    showLog,
-    showBounds,
-    showStatus,
+    _showLog,
+    _showBounds,
+    _showStatus,
   });
 }
 
 void DebugParams::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    showLog,
-    showBounds,
-    showStatus,
+    _showLog,
+    _showBounds,
+    _showStatus,
   });
 }
 
 Json CameraParams::to_json() const {
   return paramsToObject({
-    spinEnabled,
-    spinRate,
+    _spinEnabled,
+    _spinRate,
   });
 }
 
 void CameraParams::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    spinEnabled,
-    spinRate,
+    _spinEnabled,
+    _spinRate,
   });
 }
 
@@ -269,17 +254,17 @@ void MemoryAppParameters::read_json(const Json& obj) {
 
 Json AnimationObject::Params::to_json() const {
   return paramsToObject({
-    enabled,
-    delay,
-    duration,
+    _enabled,
+    _delay,
+    _duration,
   });
 }
 
 void AnimationObject::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
-    delay,
-    duration,
+    _enabled,
+    _delay,
+    _duration,
   });
 }
 
@@ -301,7 +286,7 @@ void ExpandingSphereAnimation::Params::read_json(const Json& obj) {
 
 Json AnimationsController::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     observerDied,
     occurrenceDied,
     occurrenceSpawnFailed,
@@ -310,7 +295,7 @@ Json AnimationsController::Params::to_json() const {
 
 void AnimationsController::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     observerDied,
     occurrenceDied,
     occurrenceSpawnFailed,
@@ -319,57 +304,57 @@ void AnimationsController::Params::read_json(const Json& obj) {
 
 Json SimpleCubeBounds::to_json() const {
   return paramsToObject({
-    size,
+    _size,
   });
 }
 
 void SimpleCubeBounds::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    size,
+    _size,
   });
 }
 
 Json Clock::Params::to_json() const {
   return paramsToObject({
-    paused,
-    rate,
+    _paused,
+    _rate,
   });
 }
 
 void Clock::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    paused,
-    rate,
+    _paused,
+    _rate,
   });
 }
 
 Json ColorTheme::to_json() const {
   return paramsToObject({
-    background,
-    bounds,
-    observerMarker,
-    observerThresholdConnector,
-    occurrenceMarker,
-    occurrenceRange,
-    occurrenceConnector,
-    observerDied,
-    occurrenceDied,
-    occurrenceSpawnFailed,
+    _background,
+    _bounds,
+    _observerMarker,
+    _observerThresholdConnector,
+    _occurrenceMarker,
+    _occurrenceRange,
+    _occurrenceConnector,
+    _observerDied,
+    _occurrenceDied,
+    _occurrenceSpawnFailed,
   });
 }
 
 void ColorTheme::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    background,
-    bounds,
-    observerMarker,
-    observerThresholdConnector,
-    occurrenceMarker,
-    occurrenceRange,
-    occurrenceConnector,
-    observerDied,
-    occurrenceDied,
-    occurrenceSpawnFailed,
+    _background,
+    _bounds,
+    _observerMarker,
+    _observerThresholdConnector,
+    _occurrenceMarker,
+    _occurrenceRange,
+    _occurrenceConnector,
+    _observerDied,
+    _occurrenceDied,
+    _occurrenceSpawnFailed,
   });
 }
 
@@ -467,21 +452,21 @@ void OccurrencesController::Params::read_json(const Json& obj) {
 
 Json ParticleObject::Params::to_json() const {
   return paramsToObject({
-    damping,
-    speed,
+    _damping,
+    _speed,
   });
 }
 
 void ParticleObject::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    damping,
-    speed,
+    _damping,
+    _speed,
   });
 }
 
 Json AbstractEntityAttraction::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     distanceBounds,
     forceRange,
   });
@@ -489,7 +474,7 @@ Json AbstractEntityAttraction::Params::to_json() const {
 
 void AbstractEntityAttraction::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     distanceBounds,
     forceRange,
   });
@@ -497,45 +482,45 @@ void AbstractEntityAttraction::Params::read_json(const Json& obj) {
 
 Json AbstractSpatialNoiseForce::Params::to_json() const {
   return paramsToObject({
-    enabled,
-    scale,
-    rate,
-    magnitude,
+    _enabled,
+    _scale,
+    _rate,
+    _magnitude,
   });
 }
 
 void AbstractSpatialNoiseForce::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
-    scale,
-    rate,
-    magnitude,
+    _enabled,
+    _scale,
+    _rate,
+    _magnitude,
   });
 }
 
 Json AbstractThresholdRenderer::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     range,
   });
 }
 
 void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     range,
   });
 }
 
 Json AbstractEntityRenderer::Params::to_json() const {
   return paramsToObject({
-    size,
+    _size,
   });
 }
 
 void AbstractEntityRenderer::Params::read_json(const Json &obj) {
   readJsonIntoParams(obj, {
-    size,
+    _size,
   });
 }
 
@@ -557,14 +542,14 @@ Json OccurrenceRenderer::Params::to_json() const {
 
 void ObserverOccurrenceConnectorRenderer::Params::read_json(const json11::Json &obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     connectionCountRange,
   });
 }
 
 Json ObserverOccurrenceConnectorRenderer::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     connectionCountRange,
   });
 }

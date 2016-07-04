@@ -21,9 +21,6 @@ OccurrenceEntity::Params::Params()
       .setParamValuesAndDefaults(0.4, 1.3)
       .setParamRanges(0, 4));
   add(rangeFadeIn.set("Fade In", 1, 0, 4));
-//  add(markerColor.set("Marker Color", ofFloatColor(1, .5, .25, 1)));
-//  add(rangeColor.set("Range Color", ofFloatColor(.5, .5, .5, 0.2)));
-//  add(connectorColor.set("Connector Color", ofFloatColor(.5, .5, .5, 1.0)));
   add(markerSize
       .setKey("markerSize")
       .setName("Marker Size")
