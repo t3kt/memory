@@ -130,7 +130,7 @@ void MemoryApp::update() {
 
   // Slide the logger screen in and out.
   ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
-  if (_appParams.debug.showLog.get()) {
+  if (_appParams.debug.showLog()) {
     bounds.y = ofLerp(bounds.y, 0, 0.2);
   }
   else {
@@ -151,8 +151,8 @@ void MemoryApp::draw() {
   ofPushMatrix();
   ofPushStyle();
 
-  if (_appParams.camera.spinEnabled.get()) {
-    ofVec3f dr = _appParams.camera.spinRate.get() * _state.timeDelta;
+  if (_appParams.camera.spinEnabled()) {
+    ofVec3f dr = _appParams.camera.spinRate() * _state.timeDelta;
     _rotation += dr;
   }
   ofRotateX(_rotation.x);
@@ -168,7 +168,7 @@ void MemoryApp::draw() {
   _occurrences->draw(_state);
   _animations->draw(_state);
 
-  if (_appParams.debug.showBounds.get()) {
+  if (_appParams.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
     ofSetColor(_appParams.colors.bounds.get());
@@ -188,7 +188,7 @@ void MemoryApp::draw() {
   _gui->draw();
   _screenLoggerChannel->draw();
 
-  if (_appParams.debug.showStatus.get()) {
+  if (_appParams.debug.showStatus()) {
     _statusController->draw();
   }
 //  _NEW_gui->draw();
@@ -200,7 +200,7 @@ void MemoryApp::keyPressed(int key) {
       _cam.reset();
       break;
     case 'l':
-      _appParams.debug.showLog.set(!_appParams.debug.showLog.get());
+      _appParams.debug.setShowLog(!_appParams.debug.showLog());
       break;
     case ' ':
       _clock->toggleState();

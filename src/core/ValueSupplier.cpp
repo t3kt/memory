@@ -12,32 +12,32 @@
 
 template<>
 float RandomValueSupplier<float>::getValue() const {
-  return ofRandom(lowValue.get(), highValue.get());
+  return ofRandom(lowValue(), highValue());
 }
 
 template<>
 int RandomValueSupplier<int>::getValue() const {
-  float value = ofRandom(lowValue.get(), highValue.get());
+  float value = ofRandom(lowValue(), highValue());
   return static_cast<int>(std::round(value));
 }
 
 template<>
 uint8 RandomValueSupplier<uint8>::getValue() const {
-  float value = ofRandom(lowValue.get(), highValue.get());
+  float value = ofRandom(lowValue(), highValue());
   return static_cast<uint8>(std::round(value));
 }
 
 template<>
 ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
-  ofVec3f minVal = lowValue.get();
-  ofVec3f maxVal = highValue.get();
+  ofVec3f minVal = lowValue();
+  ofVec3f maxVal = highValue();
   return ofVec3f(ofRandom(minVal.x, maxVal.x),
                  ofRandom(minVal.y, maxVal.y),
                  ofRandom(minVal.z, maxVal.z));
 }
 
 ofVec3f SimpleRandomVectorSupplier::getValue() const {
-  float dist = ofRandom(lowValue.get(), highValue.get());
+  float dist = ofRandom(lowValue(), highValue());
   ofVec3f value = ofVec3f(dist, 0, 0);
   value.rotate(ofRandom(0, 360),
                ofRandom(0, 360),

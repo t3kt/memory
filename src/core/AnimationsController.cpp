@@ -26,7 +26,7 @@ AnimationsController::Params::Params()
       .setKey("occurrenceSpawnFailed")
       .setName("Occurrence Spawn Failed"));
   occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 0.01);
-  occurrenceSpawnFailed.duration.set(1);
+  occurrenceSpawnFailed.setDuration(1);
 }
 
 AnimationsController::AnimationsController(const AnimationsController::Params& params, const ColorTheme& colors)
@@ -65,7 +65,7 @@ void AnimationsController::draw(const State &state) {
 
 void AnimationsController::attachTo(ObserversController &observers) {
   observers.observerDied += [&](ObserverEventArgs e) {
-    if (!_params.enabled.get() || !_params.observerDied.enabled.get()) {
+    if (!_params.enabled.get() || !_params.observerDied.enabled()) {
       return;
     }
     auto observer = e.entity();
@@ -77,7 +77,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
 
 void AnimationsController::attachTo(OccurrencesController &occurrences) {
   occurrences.occurrenceDied += [&](OccurrenceEventArgs e) {
-    if (!_params.enabled.get() || !_params.occurrenceDied.enabled.get()) {
+    if (!_params.enabled.get() || !_params.occurrenceDied.enabled()) {
       return;
     }
     auto occurrence = e.entity();
@@ -86,7 +86,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
   occurrences.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
-    if (!_params.enabled.get() || !_params.occurrenceSpawnFailed.enabled.get()) {
+    if (!_params.enabled.get() || !_params.occurrenceSpawnFailed.enabled()) {
       return;
     }
     auto occurrence = e.entity();

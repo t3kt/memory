@@ -53,8 +53,8 @@ void AbstractThresholdRenderer::update(const State &state) {
   if (!_params.enabled.get()) {
     return;
   }
-  _data.initialize(_params.range.lowValue.get(),
-                   _params.range.highValue.get(),
+  _data.initialize(_params.range.lowValue(),
+                   _params.range.highValue(),
                    _color);
   populateThreshData(&_data);
 }

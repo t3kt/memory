@@ -111,10 +111,10 @@ public:
     if (!_params.enabled.get()) {
       return;
     }
-    float lowBound = _params.distanceBounds.lowValue.get();
-    float highBound = _params.distanceBounds.highValue.get();
-    float lowMagnitude = _params.forceRange.lowValue.get();
-    float highMagnitude = _params.forceRange.highValue.get();
+    float lowBound = _params.distanceBounds.lowValue();
+    float highBound = _params.distanceBounds.highValue();
+    float lowMagnitude = _params.forceRange.lowValue();
+    float highMagnitude = _params.forceRange.highValue();
     std::vector<shared_ptr<O>> others = getOthers(entity);
     for (auto other : others) {
       ofVec3f posDiff = other->position() - entity.position();

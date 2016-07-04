@@ -10,15 +10,15 @@
 
 DebugParams::DebugParams()
 : Params() {
-  add(showLog
+  add(_showLog
       .setKey("showLog")
       .setName("Show Log")
       .setValueAndDefault(false));
-  add(showBounds
+  add(_showBounds
       .setKey("showBounds")
       .setName("Show Bounds")
       .setValueAndDefault(false));
-  add(showStatus
+  add(_showStatus
       .setKey("showStatus")
       .setName("Show Status")
       .setValueAndDefault(true));
@@ -26,11 +26,11 @@ DebugParams::DebugParams()
 
 CameraParams::CameraParams()
 : ::Params() {
-  add(spinEnabled
+  add(_spinEnabled
       .setKey("spinEnabled")
       .setName("Spin Enabled")
       .setValueAndDefault(false));
-  add(spinRate
+  add(_spinRate
       .setKey("spinRate")
       .setName("Spin Rate")
       .setValueAndDefault(ofVec3f(2, 4, 5))

@@ -65,8 +65,8 @@ OccurrenceRenderer::Params::Params()
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
   auto count = entity.getAmountOfObservation(state);
   float alpha = ofMap(count,
-                      _params.connectionCountRange.lowValue.get(),
-                      _params.connectionCountRange.highValue.get(),
+                      _params.connectionCountRange.lowValue(),
+                      _params.connectionCountRange.highValue(),
                       0, 1, true);
   float fadeIn = entity.getFadeInPercent(state);
   alpha *= fadeIn;
@@ -110,8 +110,8 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
   }
   ofPushStyle();
   ofMesh connectorMesh;
-  float lowCount = _params.connectionCountRange.lowValue.get();
-  float highCount = _params.connectionCountRange.highValue.get();
+  float lowCount = _params.connectionCountRange.lowValue();
+  float highCount = _params.connectionCountRange.highValue();
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (auto occurrence : _occurrences) {
     float occurrenceLife = occurrence->getAmountOfObservation(state);

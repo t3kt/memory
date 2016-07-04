@@ -199,8 +199,8 @@ void Params::readJsonField(const Json& obj) {
 template<typename T>
 Json ValueRange<T>::to_json() const {
   return paramsToObject({
-    lowValue,
-    highValue,
+    _lowValue,
+    _highValue,
   });
 }
 
@@ -208,38 +208,38 @@ template<typename T>
 void ValueRange<T>::read_json(const Json& val) {
   assertHasType(val, Json::OBJECT);
   readJsonIntoParams(val, {
-    lowValue,
-    highValue,
+    _lowValue,
+    _highValue,
   });
 }
 
 Json DebugParams::to_json() const {
   return paramsToObject({
-    showLog,
-    showBounds,
-    showStatus,
+    _showLog,
+    _showBounds,
+    _showStatus,
   });
 }
 
 void DebugParams::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    showLog,
-    showBounds,
-    showStatus,
+    _showLog,
+    _showBounds,
+    _showStatus,
   });
 }
 
 Json CameraParams::to_json() const {
   return paramsToObject({
-    spinEnabled,
-    spinRate,
+    _spinEnabled,
+    _spinRate,
   });
 }
 
 void CameraParams::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    spinEnabled,
-    spinRate,
+    _spinEnabled,
+    _spinRate,
   });
 }
 
@@ -269,17 +269,17 @@ void MemoryAppParameters::read_json(const Json& obj) {
 
 Json AnimationObject::Params::to_json() const {
   return paramsToObject({
-    enabled,
-    delay,
-    duration,
+    _enabled,
+    _delay,
+    _duration,
   });
 }
 
 void AnimationObject::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
-    delay,
-    duration,
+    _enabled,
+    _delay,
+    _duration,
   });
 }
 
