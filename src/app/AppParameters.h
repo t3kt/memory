@@ -10,8 +10,7 @@
 #define __behavior__AppParameters__
 
 #include <ofParameterGroup.h>
-#include <ofxPanel.h>
-#include <ofxDatGui.h>
+#include <ofxGui.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -31,9 +30,6 @@ public:
   TParam<bool> showLog;
   TParam<bool> showBounds;
   TParam<bool> showStatus;
-
-protected:
-  ParamsGui* createGui() override;
 };
 
 class CameraParams : public Params {

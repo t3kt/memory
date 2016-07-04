@@ -7,7 +7,6 @@
 //
 
 #include "AppParameters.h"
-#include "ParamsGui.h"
 
 DebugParams::DebugParams()
 : Params() {
@@ -23,28 +22,6 @@ DebugParams::DebugParams()
       .setKey("showStatus")
       .setName("Show Status")
       .setValueAndDefault(true));
-}
-
-class DebugParamsGui
-: public AbstractParamsGui {
-public:
-  DebugParamsGui(DebugParams& params)
-  : AbstractParamsGui(params)
-  , _params(params) { }
-protected:
-  void addControls() override;
-private:
-  DebugParams& _params;
-};
-
-void DebugParamsGui::addControls() {
-  addToggle(_params.showLog);
-  addToggle(_params.showBounds);
-  addToggle(_params.showStatus);
-}
-
-ParamsGui* DebugParams::createGui() {
-  return new DebugParamsGui(*this);
 }
 
 CameraParams::CameraParams()
@@ -90,8 +67,4 @@ MemoryAppParameters::MemoryAppParameters()
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {
   gui.setup(*this);
-  observers.initPanel(gui.getGroup(observers.getName()));
-  occurrences.initPanel(gui.getGroup(occurrences.getName()));
-  animations.initPanel(gui.getGroup(animations.getName()));
-  debug.initPanel(gui.getGroup(debug.getName()));
 }

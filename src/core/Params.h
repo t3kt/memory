@@ -11,12 +11,9 @@
 
 #include <string>
 #include <ofParameterGroup.h>
-#include <ofxGuiGroup.h>
 #include <ofUtils.h>
 #include "Common.h"
 #include "JsonIO.h"
-
-class ofxDatGuiFolder;
 
 class TParamInfoBase {
 public:
@@ -111,12 +108,6 @@ private:
   T _defaultValue;
 };
 
-class ParamsGui {
-public:
-  virtual void setup() {}
-  virtual ofxDatGuiFolder* getGuiFolder() = 0;
-};
-
 class Params
 : public ofParameterGroup
 , public TParamInfoBase {
@@ -150,25 +141,11 @@ public:
   virtual void read_json(const Json& val) override = 0;
 
   void readJsonField(const Json& obj) override;
-  
-  virtual void initPanel(ofxGuiGroup& panel) {}
 
-  ParamsGui* getGui() {
-    if (_gui == nullptr) {
-      _gui = createGui();
-      if (_gui != nullptr) {
-        _gui->setup();
-      }
-    }
-    return _gui;
-  }
   virtual void resetToDefaults() {}
   virtual bool hasDefaults() const { return false; }
-protected:
-  virtual ParamsGui* createGui() { return nullptr; }
 private:
   std::string _key;
-  ParamsGui* _gui;
 };
 
 template<typename T>
@@ -242,9 +219,6 @@ public:
   
   TParam<T> lowValue;
   TParam<T> highValue;
-
-protected:
-  ParamsGui* createGui() override;
 };
 
 using FloatValueRange = ValueRange<float>;

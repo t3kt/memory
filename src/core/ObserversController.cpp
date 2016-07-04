@@ -40,11 +40,6 @@ ObserversController::Params::Params()
   spatialNoiseForce.enabled.set(false);
 }
 
-void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
-  entities.initPanel(panel);
-  spawnInterval.initPanel(panel);
-}
-
 ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)
 : _params(params)
 , _bounds(bounds)
