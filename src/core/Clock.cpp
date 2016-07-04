@@ -11,11 +11,11 @@
 
 Clock::Params::Params()
 : ::Params() {
-  add(paused
+  add(_paused
       .setKey("paused")
       .setName("Paused")
       .setValueAndDefault(false));
-  add(rate
+  add(_rate
       .setKey("rate")
       .setName("Rate")
       .setValueAndDefault(1)
@@ -28,7 +28,6 @@ Clock::Clock(Clock::Params& params, State& state)
 }
 
 void Clock::setup() {
-  _params.paused.addListener(this, &Clock::onPausedChanged);
   _state.time = 0;
   _state.timeDelta = 0;
   STATUS_STATE = _status.registerLine("State:");
@@ -38,36 +37,32 @@ void Clock::setup() {
 void Clock::start() {
   _timer.start();
   _timer.lastCallTime = _timer.startTime;
-  _params.paused.setWithoutEventNotifications(false);
 }
 
 void Clock::stop() {
   _timer.stop();
-  _params.paused.setWithoutEventNotifications(true);
 }
 
 void Clock::toggleState() {
-  _params.paused.set(!_params.paused.get());
+  _params.setPaused(!_params.paused());
 }
 
 void Clock::update() {
-  if (_params.paused.get()) {
+  if (_params.paused()) {
+    if (_timer.isRunning) {
+      stop();
+    }
     _state.timeDelta = 0;
     _status.setValue(STATUS_STATE, "Paused");
   } else {
+    if (!_timer.isRunning) {
+      start();
+    }
     float rawDelta = _timer.getSecondsSinceLastCall();
-    float delta = rawDelta * _params.rate.get();
+    float delta = rawDelta * _params.rate();
     _state.timeDelta = delta;
     _state.time += delta;
     _status.setValue(STATUS_STATE, "Playing");
   }
   _status.setValue(STATUS_TIME, ofToString(_state.time, 2));
-}
-
-void Clock::onPausedChanged(bool& paused) {
-  if (paused) {
-    stop();
-  } else {
-    start();
-  }
 }

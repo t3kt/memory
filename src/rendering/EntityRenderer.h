@@ -36,7 +36,7 @@ public:
     }
     virtual bool hasDefaults() const override { return true; }
 
-    bool size() const { return _size.get(); }
+    float size() const { return _size.get(); }
     void setSize(float size) { _size.set(size); }
 
   protected:

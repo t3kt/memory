@@ -331,15 +331,15 @@ void SimpleCubeBounds::read_json(const Json& obj) {
 
 Json Clock::Params::to_json() const {
   return paramsToObject({
-    paused,
-    rate,
+    _paused,
+    _rate,
   });
 }
 
 void Clock::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    paused,
-    rate,
+    _paused,
+    _rate,
   });
 }
 
