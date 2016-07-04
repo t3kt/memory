@@ -1,7 +1,6 @@
 ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
-ofxMSATimer
 ofxSyphon
 ofxTextAlign
 ofxXmlSettings

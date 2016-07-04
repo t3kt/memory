@@ -99,7 +99,6 @@
 		08C4341BA94A0398E5ECBDAA /* ofxMultiLoggerChannel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMultiLoggerChannel.h; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxMultiLoggerChannel.h; sourceTree = SOURCE_ROOT; };
 		0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WorldObject.h; path = src/core/WorldObject.h; sourceTree = SOURCE_ROOT; };
 		0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ValueSupplier.cpp; path = src/core/ValueSupplier.cpp; sourceTree = SOURCE_ROOT; };
-		0DF10023D165DC9596D26531 /* MSATimer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MSATimer.h; path = ../../of_v0.9.3_osx_release/addons/ofxMSATimer/src/MSATimer.h; sourceTree = SOURCE_ROOT; };
 		10E1EFE181FE634470793842 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		169A7495494F5C1E216A2174 /* ofxTextAlignTTF.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextAlignTTF.h; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.h; sourceTree = SOURCE_ROOT; };
 		17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
@@ -286,14 +285,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		5D5C0AE687AC481A1CA3E1C2 /* ofxMSATimer */ = {
-			isa = PBXGroup;
-			children = (
-				B0520B7D20D3F978FD735878 /* src */,
-			);
-			name = ofxMSATimer;
-			sourceTree = "<group>";
-		};
 		65F3085962B3A8825746C3C2 /* Syphon */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,21 +389,12 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		B0520B7D20D3F978FD735878 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				0DF10023D165DC9596D26531 /* MSATimer.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				CF1B72478A403C7607813DC5 /* ofxLiquidEvent */,
 				F98ABA024A65B4A6F9F70B2B /* ofxLoggerChannel */,
-				5D5C0AE687AC481A1CA3E1C2 /* ofxMSATimer */,
 				7F3C04577424427D348B1425 /* ofxSyphon */,
 				73252C2D4C7012665A9367CD /* ofxTextAlign */,
 				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,

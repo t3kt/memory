@@ -9,11 +9,13 @@
 #ifndef Clock_h
 #define Clock_h
 
+#include <memory>
 #include <ofParameter.h>
-#include <MSATimer.h>
 #include "State.h"
 #include "Params.h"
 #include "Status.h"
+
+class _Timer2;
 
 class Clock
 : public StatusInfoProvider {
@@ -49,13 +51,9 @@ private:
   void stop();
   void onPausedChanged(bool& paused);
 
-  class _Timer : public msa::Timer {
-    friend class Clock;
-  };
-
   State& _state;
   Params& _params;
-  _Timer _timer;
+  std::shared_ptr<_Timer2> _timer2;
   StatusInfo _status;
   std::size_t STATUS_STATE;
   std::size_t STATUS_TIME;
