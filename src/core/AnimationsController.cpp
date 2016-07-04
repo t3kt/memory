@@ -12,7 +12,7 @@
 
 AnimationsController::Params::Params()
 : ::Params("animations", "Animations") {
-  add(enabled
+  add(_enabled
       .setKey("enabled")
       .setName("Enabled")
       .setValueAndDefault(true));
@@ -65,7 +65,7 @@ void AnimationsController::draw(const State &state) {
 
 void AnimationsController::attachTo(ObserversController &observers) {
   observers.observerDied += [&](ObserverEventArgs e) {
-    if (!_params.enabled.get() || !_params.observerDied.enabled()) {
+    if (!_params.enabled() || !_params.observerDied.enabled()) {
       return;
     }
     auto observer = e.entity();
@@ -77,7 +77,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
 
 void AnimationsController::attachTo(OccurrencesController &occurrences) {
   occurrences.occurrenceDied += [&](OccurrenceEventArgs e) {
-    if (!_params.enabled.get() || !_params.occurrenceDied.enabled()) {
+    if (!_params.enabled() || !_params.occurrenceDied.enabled()) {
       return;
     }
     auto occurrence = e.entity();
@@ -86,7 +86,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
   occurrences.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
-    if (!_params.enabled.get() || !_params.occurrenceSpawnFailed.enabled()) {
+    if (!_params.enabled() || !_params.occurrenceSpawnFailed.enabled()) {
       return;
     }
     auto occurrence = e.entity();

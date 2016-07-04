@@ -172,7 +172,7 @@ void MemoryApp::draw() {
     ofPushStyle();
     ofNoFill();
     ofSetColor(_appParams.colors.bounds.get());
-    ofDrawBox(_appParams.bounds.size.get());
+    ofDrawBox(_appParams.bounds.size());
     ofPopStyle();
   }
   

@@ -301,7 +301,7 @@ void ExpandingSphereAnimation::Params::read_json(const Json& obj) {
 
 Json AnimationsController::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     observerDied,
     occurrenceDied,
     occurrenceSpawnFailed,
@@ -310,7 +310,7 @@ Json AnimationsController::Params::to_json() const {
 
 void AnimationsController::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     observerDied,
     occurrenceDied,
     occurrenceSpawnFailed,
@@ -319,13 +319,13 @@ void AnimationsController::Params::read_json(const Json& obj) {
 
 Json SimpleCubeBounds::to_json() const {
   return paramsToObject({
-    size,
+    _size,
   });
 }
 
 void SimpleCubeBounds::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    size,
+    _size,
   });
 }
 
@@ -467,21 +467,21 @@ void OccurrencesController::Params::read_json(const Json& obj) {
 
 Json ParticleObject::Params::to_json() const {
   return paramsToObject({
-    damping,
-    speed,
+    _damping,
+    _speed,
   });
 }
 
 void ParticleObject::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    damping,
-    speed,
+    _damping,
+    _speed,
   });
 }
 
 Json AbstractEntityAttraction::Params::to_json() const {
   return paramsToObject({
-    enabled,
+    _enabled,
     distanceBounds,
     forceRange,
   });
@@ -489,7 +489,7 @@ Json AbstractEntityAttraction::Params::to_json() const {
 
 void AbstractEntityAttraction::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
+    _enabled,
     distanceBounds,
     forceRange,
   });
@@ -497,19 +497,19 @@ void AbstractEntityAttraction::Params::read_json(const Json& obj) {
 
 Json AbstractSpatialNoiseForce::Params::to_json() const {
   return paramsToObject({
-    enabled,
-    scale,
-    rate,
-    magnitude,
+    _enabled,
+    _scale,
+    _rate,
+    _magnitude,
   });
 }
 
 void AbstractSpatialNoiseForce::Params::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    enabled,
-    scale,
-    rate,
-    magnitude,
+    _enabled,
+    _scale,
+    _rate,
+    _magnitude,
   });
 }
 
@@ -529,13 +529,13 @@ void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
 
 Json AbstractEntityRenderer::Params::to_json() const {
   return paramsToObject({
-    size,
+    _size,
   });
 }
 
 void AbstractEntityRenderer::Params::read_json(const Json &obj) {
   readJsonIntoParams(obj, {
-    size,
+    _size,
   });
 }
 

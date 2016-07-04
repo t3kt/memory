@@ -30,10 +30,13 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
-    TParam<bool> enabled;
+    bool enabled() const { return _enabled.get(); }
+
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;
+  private:
+    TParam<bool> _enabled;
   };
 
   AnimationsController(const Params& params, const ColorTheme& colors);

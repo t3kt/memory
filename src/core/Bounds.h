@@ -25,12 +25,12 @@ public:
   SimpleCubeBounds();
 
   SimpleCubeBounds& set(float sz) {
-    size.set(sz);
+    _size.set(sz);
     return *this;
   }
   SimpleCubeBounds& setParamRange(float minVal, float maxVal) {
-    size.setMin(minVal);
-    size.setMax(maxVal);
+    _size.setMin(minVal);
+    _size.setMax(maxVal);
     return *this;
   }
 
@@ -41,7 +41,10 @@ public:
 
   ofVec3f randomPoint() const override;
 
-  TParam<float> size;
+  float size() const { return _size.get(); }
+
+private:
+  TParam<float> _size;
 };
 
 #endif /* Bounds_h */

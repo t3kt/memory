@@ -37,7 +37,7 @@ ObserversController::Params::Params()
       .setKey("threshold")
       .setName("Threshold"));
 
-  spatialNoiseForce.enabled.set(false);
+  spatialNoiseForce.setEnabled(false);
 }
 
 ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)

@@ -14,7 +14,7 @@ Bounds::Bounds()
 
 SimpleCubeBounds::SimpleCubeBounds()
 : Bounds() {
-  add(size
+  add(_size
       .setKey("size")
       .setName("Size")
       .setValueAndDefault(6)
@@ -33,7 +33,7 @@ static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
 }
 
 bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
-  float bound = size.get() / 2;
+  float bound = size() / 2;
   bool changed = false;
   changed |= reflectVal(&velocity->x, &position->x, -bound, bound);
   changed |= reflectVal(&velocity->y, &position->y, -bound, bound);
@@ -42,7 +42,7 @@ bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
 }
 
 ofVec3f SimpleCubeBounds::randomPoint() const {
-  float bound = size.get() / 2;
+  float bound = size() / 2;
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),
                  ofRandom(-bound, bound));

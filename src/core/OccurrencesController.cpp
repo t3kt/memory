@@ -35,8 +35,8 @@ OccurrencesController::Params::Params()
   add(connectorRenderer
       .setKey("connectorRenderer")
       .setName("Connector Renderer"));
-  observerAttraction.enabled.set(false);
-  spatialNoiseForce.enabled.set(false);
+  observerAttraction.setEnabled(false);
+  spatialNoiseForce.setEnabled(false);
 }
 
 OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors)

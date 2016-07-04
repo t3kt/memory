@@ -16,7 +16,7 @@ EnumTypeInfo<EntityShape> EntityShapeType({
 
 AbstractEntityRenderer::Params::Params()
 : ::Params() {
-  add(size
+  add(_size
       .setKey("size")
       .setName("Draw Size")
       .setValueAndDefault(0.03)
@@ -26,7 +26,7 @@ AbstractEntityRenderer::Params::Params()
 template<typename T>
 void EntityRenderer<T>::draw(const State& state) {
   ofFloatColor baseColor(_color);
-  float size = _baseParams.size.get();
+  float size = _baseParams.size();
   ofPushStyle();
   ofFill();
   for (shared_ptr<T> entity : *this) {
@@ -58,8 +58,8 @@ OccurrenceRenderer::Params::Params()
       .setName("Connection Amount Scale")
       .setParamValuesAndDefaults(0, 4)
       .setParamRanges(0, 20));
-  size.setValueAndDefault(0.1);
-  size.setRange(0, 0.5);
+  _size.setValueAndDefault(0.1);
+  _size.setRange(0, 0.5);
 }
 
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
