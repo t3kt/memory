@@ -11,9 +11,13 @@
 
 #include <string>
 #include <ofParameterGroup.h>
+#include <ofxMSAControlFreak.h>
 #include <ofUtils.h>
 #include "Common.h"
 #include "JsonIO.h"
+
+namespace ctl = msa::controlfreak;
+
 
 class TParamInfoBase {
 public:
@@ -99,11 +103,24 @@ public:
       throw JsonException("Required field missing: " + getKey());
     }
   }
+
+  void bindTo(ctl::ParameterValueI* param) {
+    _boundParam = param;
+    ofParameter<T>::addListener(this, &TParam<T>::forwardToBoundParam);
+    param->set(ofParameter<T>::get());
+  }
   
 private:
+  void forwardToBoundParam(T& value) {
+    if (_boundParam) {
+      _boundParam->set(value);
+    }
+  }
+
   std::string _key;
   bool _hasDefaultValue;
   T _defaultValue;
+  ctl::ParameterValueI* _boundParam;
 };
 
 class Params
@@ -142,6 +159,12 @@ public:
 
   virtual void resetToDefaults() {}
   virtual bool hasDefaults() const { return false; }
+
+  ctl::ParameterGroup& getParamGroup() { return _paramGroup; }
+  const ctl::ParameterGroup& getParamGroup() const { return _paramGroup; }
+
+protected:
+  ctl::ParameterGroup _paramGroup;
 private:
   std::string _key;
 };
