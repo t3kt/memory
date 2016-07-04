@@ -81,7 +81,6 @@ void OccurrencesController::update(const State &state) {
 }
 
 void OccurrencesController::draw(const State &state) {
-  _occurrences.draw(state);
   _renderer->draw(state);
   _observerOccurrenceConnectorRenderer->draw(state);
 }

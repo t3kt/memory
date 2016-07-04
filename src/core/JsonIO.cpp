@@ -542,6 +542,7 @@ void AbstractEntityRenderer::Params::read_json(const Json &obj) {
 void OccurrenceRenderer::Params::read_json(const Json &obj) {
   AbstractEntityRenderer::Params::read_json(obj);
   readJsonIntoParams(obj, {
+    showRange,
     connectionCountRange,
   });
 }
@@ -549,6 +550,7 @@ void OccurrenceRenderer::Params::read_json(const Json &obj) {
 Json OccurrenceRenderer::Params::to_json() const {
   return merge(AbstractEntityRenderer::Params::to_json(),
                paramsToObject({
+    showRange,
     connectionCountRange,
   }));
 }

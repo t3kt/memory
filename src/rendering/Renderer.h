@@ -96,10 +96,12 @@ public:
     void read_json(const Json& obj) override;
 
     virtual void resetToDefaults() override {
+      showRange.resetToDefault();
       AbstractEntityRenderer::Params::resetToDefaults();
       connectionCountRange.resetToDefaults();
     }
 
+    TParam<bool> showRange;
     ValueRange<float> connectionCountRange;
   };
 
@@ -108,6 +110,7 @@ public:
                      ObjectManager<OccurrenceEntity>& entities)
   : EntityRenderer<OccurrenceEntity>(params, colors.occurrenceMarker.get())
   , _params(params)
+  , _rangeColor(colors.occurrenceRange.get())
   , _entities(entities) { }
 protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator begin() override {
@@ -119,6 +122,7 @@ protected:
   void drawEntity(const OccurrenceEntity& entity, const ofFloatColor& baseColor, float size, const State& state) const override;
 private:
   const Params& _params;
+  const ofFloatColor& _rangeColor;
   ObjectManager<OccurrenceEntity>& _entities;
 };
 

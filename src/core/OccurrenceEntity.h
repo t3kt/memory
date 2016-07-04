@@ -65,15 +65,17 @@ public:
   
   void update(const State& state) override;
   
-  void draw(const State& state) override;
-  
   void handleDeath() override;
   
-  float originalRadius() const { return _originalRadius; };
+  float originalRadius() const { return _originalRadius; }
+
+  float actualRadius() const { return _actualRadius; }
 
   const std::map<ObjectId, shared_ptr<ObserverEntity>>& connectedObservers() const {
     return _connectedObservers;
   }
+
+  float getFadeInPercent(const State& state) const;
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }

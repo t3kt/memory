@@ -83,6 +83,7 @@ void OccurrenceEntity::update(const State &state) {
   if (hasConnectedObservers()) {
     _behaviors.update(*this, state);
     ParticleObject::update(state);
+    recalculateRadius();
   } else {
     kill();
   }
@@ -96,22 +97,8 @@ float OccurrenceEntity::getAmountOfObservation(const State& state) const {
   return result;
 }
 
-void OccurrenceEntity::draw(const State &state) {
-  float amount = getAmountOfObservation(state);
-  
-  float alpha = ofMap(amount, 0, MAX_OBS_LEVEL, 0.02f, 0.2f, true);
-  float lifePercent = ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
-  
-
-  ofFloatColor rangeColor = _colors.occurrenceRange.get();
-  rangeColor.a *= alpha * lifePercent;
-  if (rangeColor.a > 0) {
-    ofPushStyle();
-    ofEnableAlphaBlending();
-    ofSetColor(rangeColor);
-    ofDrawSphere(_position, _actualRadius);
-    ofPopStyle();
-  }
+float OccurrenceEntity::getFadeInPercent(const State &state) const {
+  return ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
 }
 
 void OccurrenceEntity::handleDeath() {

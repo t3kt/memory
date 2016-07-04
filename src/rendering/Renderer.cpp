@@ -49,9 +49,13 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
 
 OccurrenceRenderer::Params::Params()
 : AbstractEntityRenderer::Params() {
+  add(showRange
+      .setKey("showRange")
+      .setName("Show Range")
+      .setValueAndDefault(true));
   add(connectionCountRange
       .setKey("connectionCountRange")
-      .setName("Connection Count Range")
+      .setName("Connection Amount Scale")
       .setParamValuesAndDefaults(0, 4)
       .setParamRanges(0, 20));
   size.setValueAndDefault(0.1);
@@ -64,12 +68,27 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
                       _params.connectionCountRange.lowValue.get(),
                       _params.connectionCountRange.highValue.get(),
                       0, 1, true);
+  float fadeIn = entity.getFadeInPercent(state);
+  alpha *= fadeIn;
   if (alpha <= 0.0) {
     return;
   }
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofDrawBox(entity.position(), size);
+
+  if (_params.showRange.get()) {
+    ofFloatColor rangeColor(_rangeColor);
+    rangeColor.a *= alpha;
+    if (rangeColor.a > 0) {
+      ofPushStyle();
+      ofEnableAlphaBlending();
+      ofSetColor(rangeColor);
+      float radius = entity.actualRadius();
+      ofDrawSphere(entity.position(), radius);
+      ofPopStyle();
+    }
+  }
 }
 
 ObserverOccurrenceConnectorRenderer::Params::Params()
