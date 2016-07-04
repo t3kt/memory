@@ -449,6 +449,7 @@ Json OccurrencesController::Params::to_json() const {
     observerAttraction,
     spatialNoiseForce,
     renderer,
+    connectorRenderer,
   });
 }
 
@@ -460,6 +461,7 @@ void OccurrencesController::Params::read_json(const Json& obj) {
     observerAttraction,
     spatialNoiseForce,
     renderer,
+    connectorRenderer,
   });
 }
 
@@ -549,6 +551,20 @@ Json OccurrenceRenderer::Params::to_json() const {
                paramsToObject({
     connectionCountRange,
   }));
+}
+
+void ObserverOccurrenceConnectorRenderer::Params::read_json(const json11::Json &obj) {
+  readJsonIntoParams(obj, {
+    enabled,
+    connectionCountRange,
+  });
+}
+
+Json ObserverOccurrenceConnectorRenderer::Params::to_json() const {
+  return paramsToObject({
+    enabled,
+    connectionCountRange,
+  });
 }
 
 Json RandomHsbFloatColorSupplier::to_json() const {

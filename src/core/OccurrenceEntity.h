@@ -21,6 +21,7 @@
 #include "Behavior.h"
 #include "State.h"
 #include "Colors.h"
+#include "ObjectManager.h"
 
 class ObserverEntity;
 
@@ -69,6 +70,10 @@ public:
   void handleDeath() override;
   
   float originalRadius() const { return _originalRadius; };
+
+  const std::map<ObjectId, shared_ptr<ObserverEntity>>& connectedObservers() const {
+    return _connectedObservers;
+  }
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }

@@ -71,3 +71,51 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofDrawBox(entity.position(), size);
 }
+
+ObserverOccurrenceConnectorRenderer::Params::Params()
+: ::Params() {
+  add(enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+  add(connectionCountRange
+      .setKey("connectionCountRange")
+      .setName("Connection Count Range")
+      .setParamValuesAndDefaults(0, 4)
+      .setParamRanges(0, 20));
+}
+
+void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
+  if (!_params.enabled.get()) {
+    return;
+  }
+  ofPushStyle();
+  ofMesh connectorMesh;
+  float lowCount = _params.connectionCountRange.lowValue.get();
+  float highCount = _params.connectionCountRange.highValue.get();
+  connectorMesh.setMode(OF_PRIMITIVE_LINES);
+  for (auto occurrence : _occurrences) {
+    float occurrenceLife = occurrence->getAmountOfObservation(state);
+    float occurrenceAlpha = ofMap(occurrenceLife,
+                                  lowCount,
+                                  highCount,
+                                  0, 1, true);
+    if (occurrenceAlpha <= 0) {
+      continue;
+    }
+    ofFloatColor connectorStartColor(_color, _color.a * occurrenceAlpha);
+    for (auto entry : occurrence->connectedObservers()) {
+      auto observer = entry.second;
+      float observerLife = observer->getRemainingLifetimeFraction();
+      if (observerLife <= 0) {
+        continue;
+      }
+      connectorMesh.addVertex(occurrence->position());
+      connectorMesh.addColor(connectorStartColor);
+      connectorMesh.addVertex(observer->position());
+      connectorMesh.addColor(ofFloatColor(_color, _color.a * observerLife));
+    }
+  }
+  connectorMesh.draw();
+  ofPopStyle();
+}

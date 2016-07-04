@@ -31,6 +31,10 @@ public:
 
     Json to_json() const override;
     void read_json(const Json& obj) override;
+    virtual void resetToDefaults() override {
+      size.resetToDefault();
+    }
+    virtual bool hasDefaults() const override { return true; }
 
     TParam<float> size;
   };
@@ -91,6 +95,11 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
 
+    virtual void resetToDefaults() override {
+      AbstractEntityRenderer::Params::resetToDefaults();
+      connectionCountRange.resetToDefaults();
+    }
+
     ValueRange<float> connectionCountRange;
   };
 
@@ -113,6 +122,34 @@ private:
   ObjectManager<OccurrenceEntity>& _entities;
 };
 
-//class ObserverOccurrenceConnectorRenderer
+class ObserverOccurrenceConnectorRenderer {
+public:
+  class Params : public ::Params {
+  public:
+    Params();
+
+    Json to_json() const override;
+    void read_json(const Json& obj) override;
+    void resetToDefaults() override {
+      enabled.resetToDefault();
+      connectionCountRange.resetToDefaults();
+    }
+    bool hasDefaults() const override { return true; }
+
+    TParam<bool> enabled;
+    ValueRange<float> connectionCountRange;
+  };
+  ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
+  : _params(params)
+  , _color(color)
+  , _occurrences(occurrences) { }
+
+  void draw(const State& state);
+
+private:
+  const Params& _params;
+  const ofFloatColor& _color;
+  const ObjectManager<OccurrenceEntity>& _occurrences;
+};
 
 #endif /* Renderer_h */

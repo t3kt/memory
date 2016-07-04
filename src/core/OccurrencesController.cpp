@@ -32,6 +32,9 @@ OccurrencesController::Params::Params()
   add(renderer
       .setKey("renderer")
       .setName("Renderer"));
+  add(connectorRenderer
+      .setKey("connectorRenderer")
+      .setName("Connector Renderer"));
   observerAttraction.enabled.set(false);
   spatialNoiseForce.enabled.set(false);
 }
@@ -57,6 +60,7 @@ void OccurrencesController::setup(const State &state) {
   _observerAttraction = std::make_shared<OccurrenceObserverAttraction>(_params.observerAttraction);
   _spatialNoiseForce = std::make_shared<SpatialNoiseForce<OccurrenceEntity>>(_params.spatialNoiseForce);
   _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, _colors, _occurrences);
+  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, _colors.occurrenceConnector.get(), _occurrences);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }
@@ -79,6 +83,7 @@ void OccurrencesController::update(const State &state) {
 void OccurrencesController::draw(const State &state) {
   _occurrences.draw(state);
   _renderer->draw(state);
+  _observerOccurrenceConnectorRenderer->draw(state);
 }
 
 void OccurrencesController::spawnOccurrence(const State &state) {

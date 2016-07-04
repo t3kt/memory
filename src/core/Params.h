@@ -76,6 +76,12 @@ public:
     _hasDefaultValue = false;
   }
 
+  void resetToDefault() {
+    if (hasDefaultValue()) {
+      ofParameter<T>::set(getDefaultValue());
+    }
+  }
+
   std::string getKey() const override {
     if (_key.empty()) {
       return ofToLower(ofParameter<T>::getEscapedName());
@@ -156,9 +162,9 @@ public:
     }
     return _gui;
   }
-protected:
   virtual void resetToDefaults() {}
   virtual bool hasDefaults() const { return false; }
+protected:
   virtual ParamsGui* createGui() { return nullptr; }
 private:
   std::string _key;
@@ -227,6 +233,12 @@ public:
   Json to_json() const override;
 
   void read_json(const Json& val) override;
+
+  virtual void resetToDefaults() override {
+    lowValue.resetToDefault();
+    highValue.resetToDefault();
+  }
+  virtual bool hasDefaults() const override { return true; }
   
   TParam<T> lowValue;
   TParam<T> highValue;

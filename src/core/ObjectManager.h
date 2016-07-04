@@ -22,6 +22,8 @@ template <class T>
 class ObjectManager {
 public:
   using StorageList = std::list<std::shared_ptr<T>>;
+  using Iterator = typename StorageList::iterator;
+  using ConstIterator = typename StorageList::const_iterator;
   
   void update(const State& state) {
     for (auto entity : _objects) {
@@ -90,16 +92,24 @@ public:
     return _objects.size();
   }
   
-  bool isEmpty() const {
+  bool empty() const {
     return _objects.empty();
   }
 
-  typename StorageList::iterator begin() {
+  Iterator begin() {
     return _objects.begin();
   }
 
-  typename StorageList::iterator end() {
+  Iterator end() {
     return _objects.end();
+  }
+
+  ConstIterator begin() const {
+    return _objects.cbegin();
+  }
+
+  ConstIterator end() const {
+    return _objects.cend();
   }
 
 private:

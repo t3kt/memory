@@ -102,14 +102,6 @@ void OccurrenceEntity::draw(const State &state) {
   float alpha = ofMap(amount, 0, MAX_OBS_LEVEL, 0.02f, 0.2f, true);
   float lifePercent = ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
   
-  
-//  ofPushStyle();
-//  ofFloatColor markerColor = _colors.occurrenceMarker.get();
-//  markerColor.a *= alpha;
-//  ofSetColor(markerColor);
-//  ofDrawBox(_position, _params.markerSize.get());
-//  ofPopStyle();
-
 
   ofFloatColor rangeColor = _colors.occurrenceRange.get();
   rangeColor.a *= alpha * lifePercent;
@@ -120,20 +112,6 @@ void OccurrenceEntity::draw(const State &state) {
     ofDrawSphere(_position, _actualRadius);
     ofPopStyle();
   }
-
-  ofPushStyle();
-  ofFloatColor connectorColor = _colors.occurrenceConnector.get();
-  connectorColor.a *= lifePercent;
-  ofMesh connectorMesh;
-  for (auto observer : _connectedObservers) {
-    connectorMesh.addVertex(_position);
-    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * alpha));
-    connectorMesh.addVertex(observer.second->position());
-    connectorMesh.addColor(ofFloatColor(connectorColor, connectorColor.a * observer.second->getRemainingLifetimeFraction()));
-  }
-  connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  connectorMesh.draw();
-  ofPopStyle();
 }
 
 void OccurrenceEntity::handleDeath() {
