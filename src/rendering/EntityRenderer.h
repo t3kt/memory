@@ -1,13 +1,13 @@
 //
-//  Renderer.h
+//  EntityRenderer.h
 //  memory
 //
 //  Created by tekt on 7/2/16.
 //
 //
 
-#ifndef Renderer_h
-#define Renderer_h
+#ifndef EntityRenderer_h
+#define EntityRenderer_h
 
 #include "Params.h"
 #include "Colors.h"
@@ -156,4 +156,4 @@ private:
   const ObjectManager<OccurrenceEntity>& _occurrences;
 };
 
-#endif /* Renderer_h */
+#endif /* EntityRenderer_h */
