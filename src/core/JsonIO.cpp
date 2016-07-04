@@ -99,21 +99,6 @@ static Json merge(const Json obj1, const Json obj2) {
 }
 
 template<>
-Json::Type TParam<ofVec3f>::jsonType = Json::ARRAY;
-
-template<>
-Json::Type TParam<ofFloatColor>::jsonType = Json::ARRAY;
-
-template<>
-Json::Type TParam<float>::jsonType = Json::NUMBER;
-
-template<>
-Json::Type TParam<bool>::jsonType = Json::BOOL;
-
-template<>
-Json::Type TParam<int>::jsonType = Json::NUMBER;
-
-template<>
 Json TParam<ofVec3f>::to_json() const {
   return toJsonValue(get());
 }

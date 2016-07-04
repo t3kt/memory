@@ -31,8 +31,6 @@ class TParam
 : public ofParameter<T>
 , public TParamInfoBase {
 public:
-  static Json::Type jsonType;
-
   TParam<T>& setKey(std::string key) {
     _key = key;
     return *this;
