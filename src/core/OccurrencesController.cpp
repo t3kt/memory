@@ -39,11 +39,6 @@ OccurrencesController::Params::Params()
   spatialNoiseForce.enabled.set(false);
 }
 
-void OccurrencesController::Params::initPanel(ofxGuiGroup &panel) {
-  entities.initPanel(panel);
-  spawnInterval.initPanel(panel);
-}
-
 OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors)
 : _params(params)
 , _bounds(bounds)

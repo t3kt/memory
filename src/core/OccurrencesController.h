@@ -35,8 +35,6 @@ public:
     Json to_json() const override;
     void read_json(const Json& obj) override;
     
-    void initPanel(ofxGuiGroup& panel) override;
-    
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;

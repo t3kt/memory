@@ -9,7 +9,6 @@
 #ifndef AppGui_h
 #define AppGui_h
 
-#include <ofxDatGui.h>
 #include "AppParameters.h"
 
 class AppGui {
@@ -21,10 +20,7 @@ public:
   void draw();
 
 private:
-  void add(Params& params);
-
   MemoryAppParameters& _appParams;
-  ofxDatGui* _gui;
 };
 
 #endif /* AppGui_h */
