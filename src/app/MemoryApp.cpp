@@ -211,9 +211,6 @@ void MemoryApp::keyPressed(int key) {
     case '0':
       _observers->spawnObservers(5, _state);
       break;
-    case 'j':
-      std::cout << "PARAMS JSON:\n" << _appParams.to_json().dump() << std::endl;
-      break;
     case 'r':
       loadSettings();
       break;
@@ -224,14 +221,13 @@ void MemoryApp::keyPressed(int key) {
 }
 
 void MemoryApp::loadSettings() {
-  std::cout << "Reading JSON settings..." << std::endl;
+  ofLogNotice() << "Reading JSON settings...";
   _appParams.readFromFile("settings.json");
-  std::cout << ".. read from JSON finished" << std::endl;
-  std::cout << _appParams << std::endl;
+  ofLogNotice() << ".. read from JSON finished\n\t" << _appParams;
 }
 
 void MemoryApp::saveSettings() {
-  std::cout << "Writing JSON settings..." << std::endl;
+  ofLogNotice() << "Writing JSON settings...";
   _appParams.writeToFile("settings.json");
-  std::cout << ".. write to JSON finished" << std::endl;
+  ofLogNotice() << ".. write to JSON finished";
 }
