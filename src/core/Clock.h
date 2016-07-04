@@ -15,8 +15,6 @@
 #include "Params.h"
 #include "Status.h"
 
-class _Timer2;
-
 class Clock
 : public StatusInfoProvider {
 public:
@@ -51,9 +49,12 @@ private:
   void stop();
   void onPausedChanged(bool& paused);
 
+  void DUMP_STATE(std::string message) const;
+
   State& _state;
   Params& _params;
-  std::shared_ptr<_Timer2> _timer2;
+  float _lastTime;
+  bool _isRunning;
   StatusInfo _status;
   std::size_t STATUS_STATE;
   std::size_t STATUS_TIME;
