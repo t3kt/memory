@@ -18,7 +18,7 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
-#include "Renderer.h"
+#include "EntityRenderer.h"
 #include "Status.h"
 #include "Colors.h"
 

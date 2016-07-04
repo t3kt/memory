@@ -2,6 +2,11 @@ ofxDatGui
 ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
+ofxMSAControlFreak
+ofxMSAControlFreakGui
+ofxMSACore
+ofxMSAInteractiveObject
+ofxMSAOrderedPointerMap
 ofxMSATimer
 ofxSyphon
 ofxTextAlign

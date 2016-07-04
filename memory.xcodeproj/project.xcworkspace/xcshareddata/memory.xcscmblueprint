@@ -4,28 +4,53 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0118AC6AA396F7E730C1AA2AC536B2E895F87584" : 0,
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0,
-    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : 0,
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
-    "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
-    "98BC3A67BC9B321879E64C02FB0E60FD3FE44A6B" : 0,
+    "018898C00CCEF683897D83A8439B999D21AA18FA" : 0,
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : 0,
-    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : 0
+    "D5147E29C0D762B3663B6DC0C699C39760359DB9" : 0,
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
+    "CB1CF109CA3A77AF931BD92C92B3F38F4A501645" : 0,
+    "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
+    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : 0,
+    "328B2D9D97956D43F1C477558678A6865720047A" : 0,
+    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : 0,
+    "98BC3A67BC9B321879E64C02FB0E60FD3FE44A6B" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0C967A3A-EA0D-48ED-A9D8-5D7BD3F05E79",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0118AC6AA396F7E730C1AA2AC536B2E895F87584" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSAOrderedPointerMap",
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
-    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : "..\/of_v0.9.3_osx_release\/addons\/ofxSyphon",
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
-    "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory\/",
-    "98BC3A67BC9B321879E64C02FB0E60FD3FE44A6B" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSATimer",
+    "018898C00CCEF683897D83A8439B999D21AA18FA" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSAControlFreakGui",
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/of_v0.9.3_osx_release\/addons\/ofxTextAlign",
-    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : "..\/of_v0.9.3_osx_release\/addons\/ofxDatGui"
+    "D5147E29C0D762B3663B6DC0C699C39760359DB9" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSAControlFreak",
+    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
+    "CB1CF109CA3A77AF931BD92C92B3F38F4A501645" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSACore",
+    "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory\/",
+    "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : "..\/of_v0.9.3_osx_release\/addons\/ofxDatGui",
+    "328B2D9D97956D43F1C477558678A6865720047A" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSAInteractiveObject",
+    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : "..\/of_v0.9.3_osx_release\/addons\/ofxSyphon",
+    "98BC3A67BC9B321879E64C02FB0E60FD3FE44A6B" : "..\/of_v0.9.3_osx_release\/addons\/ofxMSATimer"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "memory",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "memory.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memo\/ofxMSAOrderedPointerMap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0118AC6AA396F7E730C1AA2AC536B2E895F87584"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memo\/ofxMSAControlFreakGui.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "018898C00CCEF683897D83A8439B999D21AA18FA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memo\/ofxMSAInteractiveObject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "328B2D9D97956D43F1C477558678A6865720047A"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/t3kt\/memory.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
@@ -47,9 +72,19 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "98BC3A67BC9B321879E64C02FB0E60FD3FE44A6B"
     },
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memo\/ofxMSACore.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CB1CF109CA3A77AF931BD92C92B3F38F4A501645"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nariakiiwatani\/ofxTextAlign.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D08E1224D3E9B278133ABA5D69376C337D7BD443"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/memo\/ofxMSAControlFreak.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D5147E29C0D762B3663B6DC0C699C39760359DB9"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/astellato\/ofxSyphon.git",

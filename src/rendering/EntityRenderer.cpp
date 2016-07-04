@@ -1,12 +1,12 @@
 //
-//  Renderer.cpp
+//  EntityRenderer.cpp
 //  memory
 //
 //  Created by tekt on 7/2/16.
 //
 //
 
-#include "Renderer.h"
+#include "EntityRenderer.h"
 #include <ofMain.h>
 
 EnumTypeInfo<EntityShape> EntityShapeType({

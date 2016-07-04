@@ -20,7 +20,7 @@
 #include "Behavior.h"
 #include "Status.h"
 #include "Colors.h"
-#include "Renderer.h"
+#include "EntityRenderer.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;

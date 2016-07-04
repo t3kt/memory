@@ -20,7 +20,7 @@
 #include "OccurrenceEntity.h"
 #include "OccurrencesController.h"
 #include "ParticleObject.h"
-#include "Renderer.h"
+#include "EntityRenderer.h"
 #include "ThresholdRenderer.h"
 #include "ValueSupplier.h"
 
