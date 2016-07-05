@@ -542,7 +542,6 @@ Json OccurrenceEntity::Params::to_json() const {
   return merge(ParticleObject::Params::to_json(),
                paramsToObject({
                  radius,
-                 markerSize,
                }));
 }
 
@@ -550,7 +549,6 @@ void OccurrenceEntity::Params::read_json(const Json& obj) {
   ParticleObject::Params::read_json(obj);
   readJsonIntoParams(obj, {
     radius,
-    markerSize,
   });
 }
 

@@ -20,11 +20,6 @@ OccurrenceEntity::Params::Params()
       .setName("Radius Range")
       .setParamValuesAndDefaults(0.4, 1.3)
       .setParamRanges(0, 4));
-  add(markerSize
-      .setKey("markerSize")
-      .setName("Marker Size")
-      .setValueAndDefault(0.05)
-      .setRange(0, 0.5));
 }
 
 shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state, const ColorTheme& colors) {

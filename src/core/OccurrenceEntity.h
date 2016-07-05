@@ -36,7 +36,6 @@ public:
     void read_json(const Json& obj) override;
     
     RandomValueSupplier<float> radius;
-    TParam<float> markerSize;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
   
