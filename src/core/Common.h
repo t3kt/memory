@@ -16,6 +16,10 @@
 #include <map>
 #include <stdexcept>
 
+#ifdef TARGET_OSX
+#define ENABLE_SYPHON
+#endif
+
 using Time = choreograph::Time;
 
 ofVec3f createSignedNoiseVec3f(const ofVec3f& position);

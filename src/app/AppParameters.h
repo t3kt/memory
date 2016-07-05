@@ -68,6 +68,10 @@ public:
 
   void initGui(ofxPanel& gui);
 
+#ifdef ENABLE_SYPHON
+  bool syphonEnabled() const { return _syphonEnabled.get(); }
+#endif
+
   Clock::Params clock;
   DebugParams debug;
   ColorTheme colors;
@@ -76,6 +80,10 @@ public:
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
   CameraParams camera;
+private:
+#ifdef ENABLE_SYPHON
+  TParam<bool> _syphonEnabled;
+#endif
 };
 
 #endif /* defined(__behavior__AppParameters__) */

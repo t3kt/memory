@@ -21,11 +21,7 @@
 #include "Status.h"
 #include "AppGui.h"
 #include "Clock.h"
-
-
-#ifdef TARGET_OSX
-#define ENABLE_SYPHON
-#endif
+#include "Common.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>

@@ -63,6 +63,12 @@ MemoryAppParameters::MemoryAppParameters()
   add(camera
       .setKey("camera")
       .setName("Camera"));
+#ifdef ENABLE_SYPHON
+  add(_syphonEnabled
+      .setKey("syphonEnabled")
+      .setName("Enable Syphon")
+      .setValueAndDefault(false));
+#endif
 }
 
 void MemoryAppParameters::initGui(ofxPanel &gui) {

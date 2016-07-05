@@ -237,6 +237,9 @@ Json MemoryAppParameters::to_json() const {
     animations,
     observers,
     occurrences,
+#ifdef ENABLE_SYPHON
+    _syphonEnabled,
+#endif
   });
 }
 
@@ -249,6 +252,9 @@ void MemoryAppParameters::read_json(const Json& obj) {
     animations,
     observers,
     occurrences,
+#ifdef ENABLE_SYPHON
+    _syphonEnabled,
+#endif
   });
 }
 
