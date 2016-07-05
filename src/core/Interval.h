@@ -19,7 +19,7 @@ class Interval {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string name);
+    Params();
     
     RandomValueSupplier<float> interval;
   };

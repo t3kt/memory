@@ -12,32 +12,38 @@
 const int START_OBSERVERS = 60;
 
 ObserversController::Params::Params()
-: ::Params("Observers")
-, spawnInterval("Spawning")
-, initialVelocity("Initial Velocity")
-, occurrenceAttraction("Occurrence Attraction")
-, spatialNoiseForce("Spatial Noise Force")
-, threshold("Threshold") {
-  add(entities);
-  add(spawnInterval);
+: ::Params() {
+  add(entities
+      .setKey("entities")
+      .setName("Observers"));
+  add(spawnInterval
+      .setKey("spawnInterval")
+      .setName("Spawning"));
   add(initialVelocity
-      .set(0, 0.01)
-      .setParamRange(0, 0.1));
-  add(occurrenceAttraction);
-  add(spatialNoiseForce);
-  add(threshold);
+      .setKey("initialVelocity")
+      .setName("Initial Velocity")
+      .setParamValuesAndDefaults(0, 0.01)
+      .setParamRanges(0, 0.1));
+  add(occurrenceAttraction
+      .setKey("occurrenceAttraction")
+      .setName("Occurrence Attraction"));
+  add(spatialNoiseForce
+      .setKey("spatialNoiseForce")
+      .setName("Spatial Noise Force"));
+  add(renderer
+      .setKey("renderer")
+      .setName("Renderer"));
+  add(threshold
+      .setKey("threshold")
+      .setName("Threshold"));
 
-  spatialNoiseForce.enabled.set(false);
+  spatialNoiseForce.setEnabled(false);
 }
 
-void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
-  entities.initPanel(panel);
-  spawnInterval.initPanel(panel);
-}
-
-ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
+ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)
 : _params(params)
 , _bounds(bounds)
+, _colors(colors)
 , _spawnInterval(params.spawnInterval, state) {
 }
 
@@ -49,7 +55,8 @@ void ObserversController::setup(const State &state) {
   };
   _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
   _spatialNoiseForce = std::make_shared<SpatialNoiseForce<ObserverEntity>>(_params.spatialNoiseForce);
-  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold);
+  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, _colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, _colors, _observers);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -72,12 +79,14 @@ void ObserversController::update(const State &state) {
     spawnObserver(state);
   }
 
+  _observerRenderer->update(state);
   _thresholdRenderer->update(state);
   _status.setValue(STATUS_COUNT, ofToString(count()));
 }
 
 void ObserversController::draw(const State &state) {
-  _observers.draw(state);
+//  _observers.draw(state);
+  _observerRenderer->draw(state);
   _thresholdRenderer->draw(state);
 }
 
@@ -97,7 +106,7 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 }
 
 void ObserversController::spawnObserver(const State &state) {
-  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state);
+  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state, _colors.getColor(ColorId::OBSERVER_MARKER));
   observer->setVelocity(_params.initialVelocity.getValue());
   observer->addBehavior(_reboundBehavior);
   observer->addBehavior(_occurrenceAttraction);

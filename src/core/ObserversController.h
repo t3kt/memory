@@ -18,7 +18,9 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
+#include "EntityRenderer.h"
 #include "Status.h"
+#include "Colors.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
@@ -30,17 +32,16 @@ public:
   public:
     Params();
     
-    void initPanel(ofxGuiGroup& panel) override;
-    
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverOccurrenceAttraction::Params occurrenceAttraction;
     AbstractSpatialNoiseForce::Params spatialNoiseForce;
+    ObserverRenderer::Params renderer;
     AbstractThresholdRenderer::Params threshold;
   };
   
-  ObserversController(const Params& params, const Bounds& bounds, const State& state);
+  ObserversController(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
   
   void setup(const State& state);
   void update(const State& state);
@@ -64,8 +65,10 @@ private:
   
   const Params& _params;
   const Bounds& _bounds;
+  const ColorTheme& _colors;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
+  shared_ptr<ObserverRenderer> _observerRenderer;
   shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
   shared_ptr<SpatialNoiseForce<ObserverEntity>> _spatialNoiseForce;

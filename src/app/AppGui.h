@@ -9,8 +9,13 @@
 #ifndef AppGui_h
 #define AppGui_h
 
-#include <ofxDatGui.h>
+#include <memory>
+#include <vector>
+#include <ofxLiquidEvent.h>
+
 #include "AppParameters.h"
+
+class AppGuiImpl;
 
 class AppGui {
 public:
@@ -20,11 +25,12 @@ public:
   void update();
   void draw();
 
-private:
-  void add(Params& params);
+  ofxLiquidEvent<void> onLoad;
+  ofxLiquidEvent<void> onSave;
 
+private:
   MemoryAppParameters& _appParams;
-  ofxDatGui* _gui;
+  std::shared_ptr<AppGuiImpl> _impl;
 };
 
 #endif /* AppGui_h */

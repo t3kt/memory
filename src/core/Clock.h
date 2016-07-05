@@ -9,8 +9,8 @@
 #ifndef Clock_h
 #define Clock_h
 
+#include <memory>
 #include <ofParameter.h>
-#include <MSATimer.h>
 #include "State.h"
 #include "Params.h"
 #include "Status.h"
@@ -22,31 +22,36 @@ public:
   public:
     Params();
 
-    ofParameter<bool> paused;
-    ofParameter<float> rate;
+    bool paused() const { return _paused.get(); }
+    float rate() const { return _rate.get(); }
+
+    void setPaused(bool paused) { _paused.set(paused); }
+
+  private:
+    TParam<bool> _paused;
+    TParam<float> _rate;
   };
 
   Clock(Params& params, State& state);
 
   void setup();
 
-  void start();
-  void stop();
   void toggleState();
 
   void update();
 
   const StatusInfo& getStatusInfo() const { return _status; }
 private:
+  void start();
+  void stop();
   void onPausedChanged(bool& paused);
 
-  class _Timer : public msa::Timer {
-    friend class Clock;
-  };
+  void DUMP_STATE(std::string message) const;
 
   State& _state;
   Params& _params;
-  _Timer _timer;
+  float _lastTime;
+  bool _isRunning;
   StatusInfo _status;
   std::size_t STATUS_STATE;
   std::size_t STATUS_TIME;

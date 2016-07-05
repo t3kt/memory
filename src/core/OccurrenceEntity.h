@@ -20,6 +20,8 @@
 #include "Bounds.h"
 #include "Behavior.h"
 #include "State.h"
+#include "Colors.h"
+#include "ObjectManager.h"
 
 class ObserverEntity;
 
@@ -30,18 +32,11 @@ public:
   public:
     Params();
     
-    void initPanel(ofxGuiGroup& panel) override;
-    
     RandomValueSupplier<float> radius;
-    ofParameter<ofFloatColor> markerColor;
-    ofParameter<float> rangeFadeIn;
-    ofParameter<ofFloatColor> rangeColor;
-    ofParameter<ofFloatColor> connectorColor;
-    ofParameter<float> markerSize;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
   
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
+  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state, const ColorTheme& colors);
   virtual ~OccurrenceEntity() {}
 
   void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
@@ -60,11 +55,15 @@ public:
   
   void update(const State& state) override;
   
-  void draw(const State& state) override;
-  
   void handleDeath() override;
   
-  float originalRadius() const { return _originalRadius; };
+  float originalRadius() const { return _originalRadius; }
+
+  float actualRadius() const { return _actualRadius; }
+
+  const std::map<ObjectId, shared_ptr<ObserverEntity>>& connectedObservers() const {
+    return _connectedObservers;
+  }
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
@@ -74,6 +73,7 @@ private:
   void recalculateRadius();
   
   const Params& _params;
+  const ColorTheme& _colors;
   const float _originalRadius;
   float _actualRadius;
   float _startTime;

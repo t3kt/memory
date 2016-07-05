@@ -17,17 +17,21 @@
 #include "Events.h"
 #include "Bounds.h"
 
-class ParticleObject : public StandardWorldObject {
+class ParticleObject : public WorldObject {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string name);
+    Params();
 
-    ofParameter<float> damping;
-    ofParameter<float> speed;
+    float damping() const { return _damping.get(); }
+    float speed() const { return _speed.get(); }
+
+  private:
+    TParam<float> _damping;
+    TParam<float> _speed;
   };
 
-  ParticleObject(ofVec3f pos, const Params& params);
+  ParticleObject(ofVec3f pos, const Params& params, const State& state);
 
   void setInitialCondition(ofVec3f pos, ofVec3f vel);
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }
@@ -80,11 +84,16 @@ class AbstractEntityAttraction {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string name);
+    Params();
 
-    ofParameter<bool> enabled;
+    bool enabled() const { return _enabled.get(); }
+
+    void setEnabled(bool enabled) { _enabled.set(enabled); }
+
     FloatValueRange distanceBounds;
     FloatValueRange forceRange;
+  private:
+    TParam<bool> _enabled;
   };
 
   AbstractEntityAttraction(const Params& params) : _params(params) {}
@@ -102,13 +111,13 @@ public:
   : AbstractEntityAttraction(params) {}
 
   void update(E& entity, const State& state) override {
-    if (!_params.enabled.get()) {
+    if (!_params.enabled()) {
       return;
     }
-    float lowBound = _params.distanceBounds.lowValue.get();
-    float highBound = _params.distanceBounds.highValue.get();
-    float lowMagnitude = _params.forceRange.lowValue.get();
-    float highMagnitude = _params.forceRange.highValue.get();
+    float lowBound = _params.distanceBounds.lowValue();
+    float highBound = _params.distanceBounds.highValue();
+    float lowMagnitude = _params.forceRange.lowValue();
+    float highMagnitude = _params.forceRange.highValue();
     std::vector<shared_ptr<O>> others = getOthers(entity);
     for (auto other : others) {
       ofVec3f posDiff = other->position() - entity.position();
@@ -129,12 +138,20 @@ class AbstractSpatialNoiseForce {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string name);
+    Params();
 
-    ofParameter<bool> enabled;
-    ofParameter<float> scale;
-    ofParameter<float> rate;
-    ofParameter<float> magnitude;
+    bool enabled() const { return _enabled.get(); }
+    float scale() const { return _scale.get(); }
+    float rate() const { return _rate.get(); }
+    float magnitude() const { return _magnitude.get(); }
+
+    void setEnabled(bool enabled) { _enabled.set(enabled); }
+
+  private:
+    TParam<bool> _enabled;
+    TParam<float> _scale;
+    TParam<float> _rate;
+    TParam<float> _magnitude;
   };
 
   AbstractSpatialNoiseForce(const Params& params)
@@ -154,7 +171,7 @@ public:
   : AbstractSpatialNoiseForce(params) { }
 
   void update(E& entity, const State& state) override {
-    if (!_params.enabled.get()) {
+    if (!_params.enabled()) {
       return;
     }
     ofVec3f force = getForce(entity.position(), state);

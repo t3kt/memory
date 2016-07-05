@@ -7,72 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11CDA691B113223FE4302083 /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4FD2B31CCC6D024EAEDB3 /* NoiseWarpPass.cpp */; };
+		01A3B7EF0252EA16E181B49D /* ofxTabbedPages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAC291ACE4D9FD4C5320FFA /* ofxTabbedPages.cpp */; };
+		08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484B5A3E7BFD42517F620D1A /* ofxLabelExtended.cpp */; };
+		0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7660658A2B3CABCBAF09C220 /* ofxMasterSlaveControl.cpp */; };
 		16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E714069016FC9AE5D8E239FB /* Events.cpp */; };
 		17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AAD52AEE519A889E5A8B9D /* ofxTextAlign.cpp */; };
-		1C4A992F17CCCCB30E0D6BEC /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 889A11393A3D0B658184BE4E /* GodRaysPass.cpp */; };
-		23234C9FA76CB202C47F4199 /* ToonPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 782F67A8BCFC490B4EC34EEE /* ToonPass.cpp */; };
-		2B3926B6C2FA56994ECDED98 /* LimbDarkeningPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2497856BB0050666A3D3BD /* LimbDarkeningPass.cpp */; };
-		2B8F288F1B4106CC768D4FBE /* ofxDatGuiComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */; };
-		2C764E115EEBBDAF3D04B4F1 /* EdgePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29FA0CD0CDD5CBDBF8B0AE8E /* EdgePass.cpp */; };
-		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
+		181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6F3AEC223A54C1B2D6C337 /* ofxVerticalSlider.cpp */; };
+		1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF3275DA1779ABB3A490844 /* JsonIO.cpp */; };
+		22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86E7BBF4C34228C5E07E44F8 /* ofxGuiZoomableBaseDraws.cpp */; };
+		2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
-		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
+		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */; };
 		444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */; };
 		495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4485ECA6D65C95823CB2AB2 /* ofxSlider.cpp */; };
-		4BC7B83CAC8C09629FEB6BCE /* HorizontalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E0972EBAD194019AAE430 /* HorizontalTiltShifPass.cpp */; };
-		4BCEEA9B13F89A3E9FAD69BC /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 261D64D03197C5EBC148884A /* PostProcessing.cpp */; };
-		4EE8E2766DD8D1E01C0BB2CB /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */; };
+		4D508D34156E7076531D9084 /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D58DCB2C0AEFDE6171E29540 /* Syphon.framework */; };
 		51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */; };
 		57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A122F59697CD3D883DA2 /* ofxXmlSettings.cpp */; };
-		5A73BE78B916F134FC0AE416 /* SSAOPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 338201271E14EF15D6DC6CFB /* SSAOPass.cpp */; };
+		58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */; };
 		60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7B1EA976C3295181487B1B58 /* AppParameters.cpp */; };
-		6732E5D0B6ADA39649B35494 /* ConvolutionPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6649B1C272AD238D68E1145B /* ConvolutionPass.cpp */; };
-		68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91E8FAA22C71362D38AB7F6C /* BloomPass.cpp */; };
+		64FAD181AA2FEB345A37B089 /* ofxMinimalButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B0759625D6B9E67F16915F6 /* ofxMinimalButton.cpp */; };
+		6A6DCC07458DC20B3A9FB114 /* ofxFpsPlotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFF446B55586C2102433361C /* ofxFpsPlotter.cpp */; };
 		6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A196D8A32E95807070B6231 /* AnimationObject.cpp */; };
-		6F86A7380B683E0ABEF29AE1 /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7D54477D3F31295AD3C7A14 /* PixelatePass.cpp */; };
-		740191FE5076F6FA5E83F4CC /* DofPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FA23DCEA507C2123B618CF6 /* DofPass.cpp */; };
-		744A99D255BA21E0823917E3 /* LUTPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD50823B68F5BE29DB6D200A /* LUTPass.cpp */; };
+		75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F05D9B2D4915D920A10BE4F /* Colors.cpp */; };
 		78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB66CE88C2B47C1925F8C /* ofxPanel.cpp */; };
-		7BF4542127A5D0073BC80DA1 /* ThresholdRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E08F009A3EAADF7B521FB /* ThresholdRenderer.cpp */; };
 		7DE30FC333652825841CEBCD /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36B95376ECF45981665C19E8 /* State.cpp */; };
 		7F4DAE7D88443C43EA6E0EF9 /* Interval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */; };
 		7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7876E8AE07A41B33AD46E /* tinyxml.cpp */; };
+		7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3672BB2E4E3BEE27769838D5 /* ofxValuePlotter.cpp */; };
 		820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */; };
-		8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6477C34ACC12C364A027E364 /* ContrastPass.cpp */; };
-		88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7973CB857523C1FD621B06B3 /* ZoomBlurPass.cpp */; };
 		8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 060B900FD66542BB0792E633 /* ObserverEntity.cpp */; };
+		8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3451DF47D28415272A387305 /* ThresholdRenderer.cpp */; };
 		8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC825A4168A0DF78F0ACE6A7 /* tinyxmlerror.cpp */; };
+		929A03C47EC36B0C9514C249 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345E4E8CF2291EB7DCE2AB4 /* Timeline.cpp */; };
 		95295DFC21749761D7BF9B18 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 581F497F9FA3425721AEB3DC /* Params.cpp */; };
 		960691FA92BF31B9FD010694 /* Behavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64FC38492D2B36B95A8253D /* Behavior.cpp */; };
 		96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38907EC6905E539FB6235FC /* ParticleObject.cpp */; };
-		9E323A6D767216E5BC85DD67 /* ofxSmartFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4757C3C9BDF49F1DAD04AB5 /* ofxSmartFont.cpp */; };
+		98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */; };
+		9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */; };
 		9FF3497170D60884F112833A /* Timing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */; };
-		A014A6C6A8E9AB567F67CF47 /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */; };
 		A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CE452C77AF7B96205848C7E /* ofxGuiGroup.cpp */; };
 		A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */; };
-		A4CB0D937943452F112F31A4 /* VerticalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 424D19BC05EE7D509367F95A /* VerticalTiltShifPass.cpp */; };
+		A56DDEF911445AC15CE5F965 /* ofxPanelExtended.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 909F1DBBEB399AAC8AB183CC /* ofxPanelExtended.cpp */; };
 		A5C0430EBC106F9106E17BCF /* ofxMultiLoggerChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E1B9CCE472ADE266C36A578 /* ofxMultiLoggerChannel.cpp */; };
 		A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */; };
-		AD6E60491FC521ECE393DF78 /* ParamsGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97BDF101CE6B95BF10DAE33C /* ParamsGui.cpp */; };
+		A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B964A7A88211A94DF9AF3D /* ofxGuiMatrix.cpp */; };
 		AF4B42216D89DE9CFE2E5420 /* ofxScreenLoggerChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E897E843F4E44018FDE01A34 /* ofxScreenLoggerChannel.cpp */; };
 		B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */; };
-		B2236F1E65E160763BEADCEC /* DofAltPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A23379D1E9FD00754651741 /* DofAltPass.cpp */; };
-		B9EEB7E04A7A95BE29C7C543 /* FxaaPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1C8C692F0FE0C551B9AB957 /* FxaaPass.cpp */; };
+		B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */ = {isa = PBXBuildFile; fileRef = FDA9887B27C2BDEFDDAD2E3A /* ofxSyphonClient.mm */; };
+		B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E58A989EB67375DD408B1E /* SyphonNameboundClient.m */; };
 		BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B435F280334BE688BF136963 /* Clock.cpp */; };
-		BC1D9F2A3CC0258742E5ABE8 /* HsbShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82727736FE3D22A1F49338A /* HsbShiftPass.cpp */; };
 		BEC7011B31196451456DBC43 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2DFEDC5C804323DDDAA56B1 /* ofxToggle.cpp */; };
-		C11106AFBC3CD6F479EDB075 /* RGBShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */; };
-		CBCAFF2D02669C3E7771524B /* ofxDatGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BE771E8343FBE919A101B /* ofxDatGui.cpp */; };
+		C255A0483A81BF31B4EBCB2F /* ofxGuiGroupExtended.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18FDAA884F43D6CF3A92BA3B /* ofxGuiGroupExtended.cpp */; };
+		C7165067D1B817AB0063B30D /* ofxMinimalToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFF009F05AEE427C72141140 /* ofxMinimalToggle.cpp */; };
+		C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70EF35D871A701061ABEFFEB /* Cue.cpp */; };
+		CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5CE2B494B5EBDE056DBBC17 /* ofxSyphonServer.mm */; };
 		CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 088D20E7FB38937AE60F997D /* ofxSliderGroup.cpp */; };
 		D265D6207B2184FB12FD93AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 823FBC6F9791944E4D93726D /* main.cpp */; };
+		D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E19D04C1AD1A7DF029A38221 /* json11.cpp */; };
 		D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCBEBF66C39747BD1534C1B5 /* Status.cpp */; };
+		E1A3FD40C8BCD507345F1126 /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58DCB2C0AEFDE6171E29540 /* Syphon.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
-		E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE983A95928D317C859E5650 /* BleachBypassPass.cpp */; };
+		E915AD058D8CFBCF94867948 /* MotionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F7B869B77B84D84CBCF4EC6 /* MotionGroup.cpp */; };
 		EA6C3001ABA7EFDC59645D80 /* OccurrenceEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED1E236F3CF91768C675C432 /* OccurrenceEntity.cpp */; };
 		EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A03571044EBB2DB95F16A0C2 /* ofxBaseGui.cpp */; };
+		EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */; };
 		F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */; };
 		F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10E1EFE181FE634470793842 /* ofxLabel.cpp */; };
 		FC51CF98DA234C142DDDAF5F /* MemoryApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203D24998620B1B7C7970E9D /* MemoryApp.cpp */; };
@@ -103,6 +104,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4D508D34156E7076531D9084 /* Syphon.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,167 +112,167 @@
 
 /* Begin PBXFileReference section */
 		01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Bounds.cpp; path = src/core/Bounds.cpp; sourceTree = SOURCE_ROOT; };
-		031D2F330A586C93291D5773 /* ofxDatGuiTextInput.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTextInput.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiTextInput.h; sourceTree = SOURCE_ROOT; };
-		044896ED6F8FD2E911C3379A /* BloomPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BloomPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/BloomPass.h; sourceTree = SOURCE_ROOT; };
-		05F9F27640A2C6BA22F76E6C /* ofxDatGuiIntObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiIntObject.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiIntObject.h; sourceTree = SOURCE_ROOT; };
+		05563B9E7C908ABE1950F384 /* json11.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json11.hpp; path = src/lib/json11.hpp; sourceTree = SOURCE_ROOT; };
 		060B900FD66542BB0792E633 /* ObserverEntity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ObserverEntity.cpp; path = src/core/ObserverEntity.cpp; sourceTree = SOURCE_ROOT; };
+		062358C29D78AD90A7FCE0FC /* Choreograph.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Choreograph.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Choreograph.h; sourceTree = SOURCE_ROOT; };
 		0788472FBA8A75644C504F58 /* Behavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Behavior.h; path = src/core/Behavior.h; sourceTree = SOURCE_ROOT; };
 		07FEE36BDA17A50322435583 /* ofxToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxToggle.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.h; sourceTree = SOURCE_ROOT; };
 		088D20E7FB38937AE60F997D /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
 		08C4341BA94A0398E5ECBDAA /* ofxMultiLoggerChannel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMultiLoggerChannel.h; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxMultiLoggerChannel.h; sourceTree = SOURCE_ROOT; };
 		0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WorldObject.h; path = src/core/WorldObject.h; sourceTree = SOURCE_ROOT; };
 		0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ValueSupplier.cpp; path = src/core/ValueSupplier.cpp; sourceTree = SOURCE_ROOT; };
-		0DF10023D165DC9596D26531 /* MSATimer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MSATimer.h; path = ../../of_v0.9.3_osx_release/addons/ofxMSATimer/src/MSATimer.h; sourceTree = SOURCE_ROOT; };
-		0E7C6218F45FB6677EC72826 /* PostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PostProcessing.h; sourceTree = SOURCE_ROOT; };
+		0DDF468F753A8B21CF09BD7A /* ofxGuiGroupExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroupExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiGroupExtended.h; sourceTree = SOURCE_ROOT; };
+		0E8AC5BF9E205E7902E0DF98 /* TimelineOptions.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimelineOptions.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineOptions.hpp; sourceTree = SOURCE_ROOT; };
 		10E1EFE181FE634470793842 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
-		136AAE26EFF2EF319484E5DF /* ofxDatGuiSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiSlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiSlider.h; sourceTree = SOURCE_ROOT; };
+		1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EntityRenderer.cpp; path = src/rendering/EntityRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		169A7495494F5C1E216A2174 /* ofxTextAlignTTF.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextAlignTTF.h; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.h; sourceTree = SOURCE_ROOT; };
 		17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
 		1871276E2C2105C9C717619A /* ofxLiquidEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLiquidEvent.h; path = ../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src/ofxLiquidEvent.h; sourceTree = SOURCE_ROOT; };
+		18FDAA884F43D6CF3A92BA3B /* ofxGuiGroupExtended.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroupExtended.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiGroupExtended.cpp; sourceTree = SOURCE_ROOT; };
+		1A5C23DAFEE4E3049A5BA4BE /* SyphonNameboundClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SyphonNameboundClient.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src/SyphonNameboundClient.h; sourceTree = SOURCE_ROOT; };
 		1E1B9CCE472ADE266C36A578 /* ofxMultiLoggerChannel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMultiLoggerChannel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxMultiLoggerChannel.cpp; sourceTree = SOURCE_ROOT; };
-		1F2CC99241BA73036CFA84A6 /* ofxDatGuiControls.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiControls.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiControls.h; sourceTree = SOURCE_ROOT; };
-		2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RGBShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.cpp; sourceTree = SOURCE_ROOT; };
+		1F05D9B2D4915D920A10BE4F /* Colors.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Colors.cpp; path = src/core/Colors.cpp; sourceTree = SOURCE_ROOT; };
+		1F8E99083CDB97599C3EDFDA /* Hold.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Hold.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Hold.hpp; sourceTree = SOURCE_ROOT; };
 		203D24998620B1B7C7970E9D /* MemoryApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MemoryApp.cpp; path = src/app/MemoryApp.cpp; sourceTree = SOURCE_ROOT; };
-		22F017FB9260290C5F3E590A /* KaleidoscopePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KaleidoscopePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.h; sourceTree = SOURCE_ROOT; };
-		261D64D03197C5EBC148884A /* PostProcessing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PostProcessing.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PostProcessing.cpp; sourceTree = SOURCE_ROOT; };
+		21486E8D0CA688A2FC4DAA74 /* Colors.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Colors.h; path = src/core/Colors.h; sourceTree = SOURCE_ROOT; };
+		2361E49D807B63833D9BCEC7 /* Ramp.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Ramp.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Ramp.hpp; sourceTree = SOURCE_ROOT; };
+		27E58A989EB67375DD408B1E /* SyphonNameboundClient.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = SyphonNameboundClient.m; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src/SyphonNameboundClient.m; sourceTree = SOURCE_ROOT; };
 		27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		27F7A6AF265FCB06BA639098 /* State.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = State.h; path = src/core/State.h; sourceTree = SOURCE_ROOT; };
-		294DAE3A8718C89A6FA642D4 /* ofxDatGuiTheme.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTheme.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes/ofxDatGuiTheme.h; sourceTree = SOURCE_ROOT; };
-		29FA0CD0CDD5CBDBF8B0AE8E /* EdgePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EdgePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/EdgePass.cpp; sourceTree = SOURCE_ROOT; };
-		2C1FE410E3EAE25FBE59E368 /* ofxDatGuiTextInputField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTextInputField.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiTextInputField.h; sourceTree = SOURCE_ROOT; };
 		2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Timing.cpp; path = src/core/Timing.cpp; sourceTree = SOURCE_ROOT; };
 		2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AnimationsController.cpp; path = src/core/AnimationsController.cpp; sourceTree = SOURCE_ROOT; };
-		2F8E0972EBAD194019AAE430 /* HorizontalTiltShifPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = HorizontalTiltShifPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HorizontalTiltShifPass.cpp; sourceTree = SOURCE_ROOT; };
+		3085A7C9897B49320258786A /* TimelineItem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimelineItem.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineItem.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
-		32831CD20CC05BAA1B5697B3 /* ofxDatGuiLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiLabel.h; sourceTree = SOURCE_ROOT; };
-		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
-		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
-		345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGuiComponent.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiComponent.cpp; sourceTree = SOURCE_ROOT; };
+		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
+		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
+		3672BB2E4E3BEE27769838D5 /* ofxValuePlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxValuePlotter.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxValuePlotter.cpp; sourceTree = SOURCE_ROOT; };
 		36AFCF9C48B26AC8B17E9C98 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		36B95376ECF45981665C19E8 /* State.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = State.cpp; path = src/core/State.cpp; sourceTree = SOURCE_ROOT; };
 		37AAD52AEE519A889E5A8B9D /* ofxTextAlign.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlign.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlign.cpp; sourceTree = SOURCE_ROOT; };
-		37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FakeSSSPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FakeSSSPass.cpp; sourceTree = SOURCE_ROOT; };
 		3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Interval.cpp; path = src/core/Interval.cpp; sourceTree = SOURCE_ROOT; };
-		3C6BE771E8343FBE919A101B /* ofxDatGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGui.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/ofxDatGui.cpp; sourceTree = SOURCE_ROOT; };
 		3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppGui.h; path = src/app/AppGui.h; sourceTree = SOURCE_ROOT; };
-		3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = KaleidoscopePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.cpp; sourceTree = SOURCE_ROOT; };
-		4121B06355C54F47E889AF24 /* ofxDatGuiScrollView.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiScrollView.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiScrollView.h; sourceTree = SOURCE_ROOT; };
-		424D19BC05EE7D509367F95A /* VerticalTiltShifPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = VerticalTiltShifPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/VerticalTiltShifPass.cpp; sourceTree = SOURCE_ROOT; };
-		4256183AC7BC6229FF552A25 /* PixelatePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PixelatePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PixelatePass.h; sourceTree = SOURCE_ROOT; };
+		4188857B0399E72060D74E0D /* Retime.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Retime.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Retime.hpp; sourceTree = SOURCE_ROOT; };
 		4845BDCE28A6F7F1386923AF /* ObserversController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ObserversController.h; path = src/core/ObserversController.h; sourceTree = SOURCE_ROOT; };
+		484B5A3E7BFD42517F620D1A /* ofxLabelExtended.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabelExtended.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxLabelExtended.cpp; sourceTree = SOURCE_ROOT; };
+		48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiSpacer.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.cpp; sourceTree = SOURCE_ROOT; };
 		4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AppGui.cpp; path = src/app/AppGui.cpp; sourceTree = SOURCE_ROOT; };
 		4AA7876E8AE07A41B33AD46E /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
-		4B22344CFA8B0F18349AAD60 /* HsbShiftPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = HsbShiftPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HsbShiftPass.h; sourceTree = SOURCE_ROOT; };
-		4D2497856BB0050666A3D3BD /* LimbDarkeningPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LimbDarkeningPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/LimbDarkeningPass.cpp; sourceTree = SOURCE_ROOT; };
+		4AFEDF7BAD324D6D364245C9 /* Easing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Easing.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Easing.h; sourceTree = SOURCE_ROOT; };
+		4D576E06EFE9830A46955478 /* ofxGuiPage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiPage.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.h; sourceTree = SOURCE_ROOT; };
 		4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = WorldObject.cpp; path = src/core/WorldObject.cpp; sourceTree = SOURCE_ROOT; };
+		4E0C13C732F71C9FD66B3EB5 /* ofxMinimalButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMinimalButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMinimalButton.h; sourceTree = SOURCE_ROOT; };
+		4EAD32D60D1D1D1C63A8E21A /* Timeline.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Timeline.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Timeline.h; sourceTree = SOURCE_ROOT; };
+		50AD26136B528CBC0EBE1512 /* Phrase.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Phrase.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Phrase.hpp; sourceTree = SOURCE_ROOT; };
 		52DA674F75908A4AD4029805 /* Status.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Status.h; path = src/core/Status.h; sourceTree = SOURCE_ROOT; };
-		557B74EE7D901D8FCBAC977D /* ofxDatGuiMatrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiMatrix.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiMatrix.h; sourceTree = SOURCE_ROOT; };
+		55A8F82130278C2A892A5A61 /* ofxGuiExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiExtended.h; sourceTree = SOURCE_ROOT; };
 		581F497F9FA3425721AEB3DC /* Params.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Params.cpp; path = src/core/Params.cpp; sourceTree = SOURCE_ROOT; };
-		582597DC377ECBB19944EEC9 /* ofxDatGuiComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiComponent.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiComponent.h; sourceTree = SOURCE_ROOT; };
-		5CB4B21F346420AC3C025F44 /* FxaaPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FxaaPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FxaaPass.h; sourceTree = SOURCE_ROOT; };
+		5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiBaseDraws.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiBaseDraws.cpp; sourceTree = SOURCE_ROOT; };
+		5DE6C9D1BC68F14A44D812DA /* TimeType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimeType.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimeType.h; sourceTree = SOURCE_ROOT; };
 		5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppParameters.h; path = src/app/AppParameters.h; sourceTree = SOURCE_ROOT; };
-		5F7E08F009A3EAADF7B521FB /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/core/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
-		5FA23DCEA507C2123B618CF6 /* DofPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DofPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/DofPass.cpp; sourceTree = SOURCE_ROOT; };
-		64066E60379BD93047A905EA /* RenderPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RenderPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.h; sourceTree = SOURCE_ROOT; };
-		6477C34ACC12C364A027E364 /* ContrastPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ContrastPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ContrastPass.cpp; sourceTree = SOURCE_ROOT; };
-		6649B1C272AD238D68E1145B /* ConvolutionPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ConvolutionPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ConvolutionPass.cpp; sourceTree = SOURCE_ROOT; };
-		684721825A36D7F0FB1DF84F /* ofxDatGui2dPad.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGui2dPad.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGui2dPad.h; sourceTree = SOURCE_ROOT; };
-		6A23379D1E9FD00754651741 /* DofAltPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DofAltPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/DofAltPass.cpp; sourceTree = SOURCE_ROOT; };
 		6DA7C49D614EE11BC0871180 /* ObjectManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ObjectManager.h; path = src/core/ObjectManager.h; sourceTree = SOURCE_ROOT; };
+		6F0ECDE744FAD15E436ECD4C /* Motion.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Motion.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Motion.hpp; sourceTree = SOURCE_ROOT; };
+		6F5F97C64145AE333FB88D6E /* Procedural.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Procedural.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Procedural.hpp; sourceTree = SOURCE_ROOT; };
+		70EF35D871A701061ABEFFEB /* Cue.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Cue.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Cue.cpp; sourceTree = SOURCE_ROOT; };
 		73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ObserverEntity.h; path = src/core/ObserverEntity.h; sourceTree = SOURCE_ROOT; };
+		74B6EEDA2A3C4625BE226A4F /* Sugar.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Sugar.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Sugar.hpp; sourceTree = SOURCE_ROOT; };
+		7660658A2B3CABCBAF09C220 /* ofxMasterSlaveControl.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMasterSlaveControl.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMasterSlaveControl.cpp; sourceTree = SOURCE_ROOT; };
 		77B6A122F59697CD3D883DA2 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxXmlSettings.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
-		782F67A8BCFC490B4EC34EEE /* ToonPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ToonPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ToonPass.cpp; sourceTree = SOURCE_ROOT; };
-		7973CB857523C1FD621B06B3 /* ZoomBlurPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ZoomBlurPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ZoomBlurPass.cpp; sourceTree = SOURCE_ROOT; };
+		77F5A11629DFF28DDE5109B4 /* ofxSyphon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphon.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphon.h; sourceTree = SOURCE_ROOT; };
 		79F3F587E8BE3F79CCCD247A /* ofxScreenLoggerChannel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxScreenLoggerChannel.h; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxScreenLoggerChannel.h; sourceTree = SOURCE_ROOT; };
 		7B1EA976C3295181487B1B58 /* AppParameters.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AppParameters.cpp; path = src/app/AppParameters.cpp; sourceTree = SOURCE_ROOT; };
+		7B2B31E6D21FFAAC5C4D804F /* Cue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Cue.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Cue.h; sourceTree = SOURCE_ROOT; };
 		7CE452C77AF7B96205848C7E /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroup.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
-		7DE60E545559A4502D3576F9 /* LUTPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LUTPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/LUTPass.h; sourceTree = SOURCE_ROOT; };
-		7F446206658787E98874D7BE /* RimHighlightingPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RimHighlightingPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RimHighlightingPass.cpp; sourceTree = SOURCE_ROOT; };
+		7D04E0E5F91F111791FACE68 /* ofxLabelExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLabelExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxLabelExtended.h; sourceTree = SOURCE_ROOT; };
+		7D7D9AC4BC23EEA48F36E2A7 /* ofxGuiZoomableBaseDraws.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiZoomableBaseDraws.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiZoomableBaseDraws.h; sourceTree = SOURCE_ROOT; };
+		7EDC48211E3054289D46959D /* ofxVerticalSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxVerticalSlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxVerticalSlider.h; sourceTree = SOURCE_ROOT; };
+		7F7B869B77B84D84CBCF4EC6 /* MotionGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MotionGroup.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/MotionGroup.cpp; sourceTree = SOURCE_ROOT; };
+		822E790B3912E3C02B0B8D86 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		823FBC6F9791944E4D93726D /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = main.cpp; path = src/app/main.cpp; sourceTree = SOURCE_ROOT; };
+		83F1ABD23467A3AE1A0DB0DB /* ofxChoreograph.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxChoreograph.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/ofxChoreograph.h; sourceTree = SOURCE_ROOT; };
+		84EAA7B393EA98AE12FB5550 /* MakeUnique.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MakeUnique.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail/MakeUnique.hpp; sourceTree = SOURCE_ROOT; };
 		8630FD4BD2D04BDECA67876B /* Events.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Events.h; path = src/core/Events.h; sourceTree = SOURCE_ROOT; };
+		86E7BBF4C34228C5E07E44F8 /* ofxGuiZoomableBaseDraws.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiZoomableBaseDraws.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiZoomableBaseDraws.cpp; sourceTree = SOURCE_ROOT; };
 		871145729C2A812E6085F6DD /* AnimationsController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationsController.h; path = src/core/AnimationsController.h; sourceTree = SOURCE_ROOT; };
-		889A11393A3D0B658184BE4E /* GodRaysPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = GodRaysPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/GodRaysPass.cpp; sourceTree = SOURCE_ROOT; };
-		8A1B407C75DAB7B7B7378B97 /* EdgePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EdgePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/EdgePass.h; sourceTree = SOURCE_ROOT; };
 		8AEEEA82825BAC378C9E347D /* Common.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Common.h; path = src/core/Common.h; sourceTree = SOURCE_ROOT; };
-		8D2A8D41F40187F278A7449C /* ofxDatGuiTimeGraph.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTimeGraph.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiTimeGraph.h; sourceTree = SOURCE_ROOT; };
-		8E09789CA94CD1A0E1BA92B0 /* LimbDarkeningPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LimbDarkeningPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/LimbDarkeningPass.h; sourceTree = SOURCE_ROOT; };
-		8F8C2ABAE30E1C5AC125D366 /* NoiseWarpPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NoiseWarpPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/NoiseWarpPass.h; sourceTree = SOURCE_ROOT; };
 		8FC228FDBD8EBDF3566FFA28 /* ofxLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxLabel.h; sourceTree = SOURCE_ROOT; };
-		91E8FAA22C71362D38AB7F6C /* BloomPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BloomPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/BloomPass.cpp; sourceTree = SOURCE_ROOT; };
+		900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ofxSyphonServerDirectory.mm; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServerDirectory.mm; sourceTree = SOURCE_ROOT; };
+		903F7B2C593FDFFB36DC3688 /* ThresholdRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ThresholdRenderer.h; path = src/rendering/ThresholdRenderer.h; sourceTree = SOURCE_ROOT; };
+		909F1DBBEB399AAC8AB183CC /* ofxPanelExtended.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanelExtended.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxPanelExtended.cpp; sourceTree = SOURCE_ROOT; };
+		9345E4E8CF2291EB7DCE2AB4 /* Timeline.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Timeline.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Timeline.cpp; sourceTree = SOURCE_ROOT; };
+		93B964A7A88211A94DF9AF3D /* ofxGuiMatrix.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiMatrix.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiMatrix.cpp; sourceTree = SOURCE_ROOT; };
 		96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OccurrencesController.cpp; path = src/core/OccurrencesController.cpp; sourceTree = SOURCE_ROOT; };
-		96F1AD141064D5B077F10364 /* ConvolutionPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ConvolutionPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ConvolutionPass.h; sourceTree = SOURCE_ROOT; };
-		97BDF101CE6B95BF10DAE33C /* ParamsGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ParamsGui.cpp; path = src/core/ParamsGui.cpp; sourceTree = SOURCE_ROOT; };
+		99FAED8C33459D3E54F8B1A7 /* ofxGuiMatrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiMatrix.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiMatrix.h; sourceTree = SOURCE_ROOT; };
 		9A196D8A32E95807070B6231 /* AnimationObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AnimationObject.cpp; path = src/core/AnimationObject.cpp; sourceTree = SOURCE_ROOT; };
-		9CC4FD2B31CCC6D024EAEDB3 /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NoiseWarpPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/NoiseWarpPass.cpp; sourceTree = SOURCE_ROOT; };
-		9CFE7A80FCB3B01A4F2FE5F8 /* ofxDatGuiThemes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiThemes.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes/ofxDatGuiThemes.h; sourceTree = SOURCE_ROOT; };
-		9D08CEDCB85EBCA6CF535214 /* BleachBypassPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BleachBypassPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/BleachBypassPass.h; sourceTree = SOURCE_ROOT; };
+		9B0759625D6B9E67F16915F6 /* ofxMinimalButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMinimalButton.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMinimalButton.cpp; sourceTree = SOURCE_ROOT; };
 		9DB506652351C4E71E488395 /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		9E6DE711E9DCEFA912FC8D56 /* MemoryApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MemoryApp.h; path = src/app/MemoryApp.h; sourceTree = SOURCE_ROOT; };
+		9F301F8761080999A4AD0AF0 /* ofxPanelExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPanelExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxPanelExtended.h; sourceTree = SOURCE_ROOT; };
 		A03571044EBB2DB95F16A0C2 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
 		A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ParticleObject.h; path = src/core/ParticleObject.h; sourceTree = SOURCE_ROOT; };
-		A3312DBDB5D70B87AB6AB9F5 /* ofxDatGuiButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiButton.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiButton.h; sourceTree = SOURCE_ROOT; };
-		A38BC582B561AB5BC8A07D66 /* ofxDatGuiGroups.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiGroups.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiGroups.h; sourceTree = SOURCE_ROOT; };
-		AAAF97DEF4197628485E523C /* RGBShiftPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RGBShiftPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.h; sourceTree = SOURCE_ROOT; };
-		AAAFBCEFAB75367FFEB686A6 /* ZoomBlurPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ZoomBlurPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ZoomBlurPass.h; sourceTree = SOURCE_ROOT; };
+		A3603FB5CB1919665983CA28 /* ofxMinimalToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMinimalToggle.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMinimalToggle.h; sourceTree = SOURCE_ROOT; };
+		AB6F3AEC223A54C1B2D6C337 /* ofxVerticalSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVerticalSlider.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxVerticalSlider.cpp; sourceTree = SOURCE_ROOT; };
 		AEBD31FAD3848740F78A7596 /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
+		AF229BCAD99E0A11FCAB43EE /* ofxMasterSlaveControl.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMasterSlaveControl.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMasterSlaveControl.h; sourceTree = SOURCE_ROOT; };
 		B10D9A4C4D69F318E4DF5F5B /* Common.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Common.cpp; path = src/core/Common.cpp; sourceTree = SOURCE_ROOT; };
-		B180CA9E7B4C68CB29835E51 /* HorizontalTiltShifPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = HorizontalTiltShifPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HorizontalTiltShifPass.h; sourceTree = SOURCE_ROOT; };
 		B235D09E719D526194402149 /* Bounds.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Bounds.h; path = src/core/Bounds.h; sourceTree = SOURCE_ROOT; };
+		B296BDCCBAE08BED2CE65583 /* ofxRotarySlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxRotarySlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxRotarySlider.h; sourceTree = SOURCE_ROOT; };
+		B321549FC189E33A362D6C95 /* ofxGuiBaseDraws.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiBaseDraws.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiBaseDraws.h; sourceTree = SOURCE_ROOT; };
 		B435F280334BE688BF136963 /* Clock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Clock.cpp; path = src/core/Clock.cpp; sourceTree = SOURCE_ROOT; };
 		B4485ECA6D65C95823CB2AB2 /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSlider.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
-		B67B11BF7B9AF64A644DDD6C /* ToonPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ToonPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ToonPass.h; sourceTree = SOURCE_ROOT; };
+		B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EntityRenderer.h; path = src/rendering/EntityRenderer.h; sourceTree = SOURCE_ROOT; };
+		B5557E4DE42EB7CCBFC1D7CD /* ofxSyphonClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonClient.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonClient.h; sourceTree = SOURCE_ROOT; };
 		BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationObject.h; path = src/core/AnimationObject.h; sourceTree = SOURCE_ROOT; };
-		BC1CCF542D2FFA5D456D48E4 /* ofxDatGuiConstants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiConstants.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiConstants.h; sourceTree = SOURCE_ROOT; };
 		BC825A4168A0DF78F0ACE6A7 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
-		C0E80BB8CFD055D603998C3C /* SSAOPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SSAOPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.h; sourceTree = SOURCE_ROOT; };
-		C1AF18958F2829FEF9DBBB39 /* ofxDatGuiColorPicker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiColorPicker.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiColorPicker.h; sourceTree = SOURCE_ROOT; };
-		C2F047639D87CA3D8B103F83 /* DofAltPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DofAltPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/DofAltPass.h; sourceTree = SOURCE_ROOT; };
+		BDF3275DA1779ABB3A490844 /* JsonIO.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = JsonIO.cpp; path = src/core/JsonIO.cpp; sourceTree = SOURCE_ROOT; };
+		BFAC291ACE4D9FD4C5320FFA /* ofxTabbedPages.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTabbedPages.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxTabbedPages.cpp; sourceTree = SOURCE_ROOT; };
+		C39D8902FEE22BC10E3DAC9F /* ofxTabbedPages.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTabbedPages.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxTabbedPages.h; sourceTree = SOURCE_ROOT; };
+		C4D495C481B54072D1AEA87F /* Sequence.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Sequence.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Sequence.hpp; sourceTree = SOURCE_ROOT; };
 		C61E6252FE237B3F16BFBC43 /* ofxSliderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSliderGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSliderGroup.h; sourceTree = SOURCE_ROOT; };
-		C7E0EFB5CFD7B1F36754D88B /* ofxDatGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/ofxDatGui.h; sourceTree = SOURCE_ROOT; };
-		C82727736FE3D22A1F49338A /* HsbShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = HsbShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HsbShiftPass.cpp; sourceTree = SOURCE_ROOT; };
-		CBC98E48A385155AA7A6F024 /* ThresholdRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ThresholdRenderer.h; path = src/core/ThresholdRenderer.h; sourceTree = SOURCE_ROOT; };
+		C7E1536C3978261C377DBA1D /* MotionGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MotionGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/MotionGroup.h; sourceTree = SOURCE_ROOT; };
+		CD556EBA3E75A59B07B1DCBE /* Output.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Output.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Output.hpp; sourceTree = SOURCE_ROOT; };
 		CE2C9FDB26DB9F29B0989312 /* ofxTextAlign.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextAlign.h; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlign.h; sourceTree = SOURCE_ROOT; };
-		CF69DC4C4778D5EFF36391BF /* FakeSSSPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FakeSSSPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FakeSSSPass.h; sourceTree = SOURCE_ROOT; };
-		D1C8C692F0FE0C551B9AB957 /* FxaaPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FxaaPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FxaaPass.cpp; sourceTree = SOURCE_ROOT; };
-		D4757C3C9BDF49F1DAD04AB5 /* ofxSmartFont.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSmartFont.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont/ofxSmartFont.cpp; sourceTree = SOURCE_ROOT; };
+		D4A3A7A1C623F8F54F2A7E3B /* ofxFpsPlotter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxFpsPlotter.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxFpsPlotter.h; sourceTree = SOURCE_ROOT; };
 		D53E9332C9AE72A5C90B70F3 /* Timing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Timing.h; path = src/core/Timing.h; sourceTree = SOURCE_ROOT; };
+		D58D1EA565612E787A738D06 /* VectorManipulation.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VectorManipulation.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail/VectorManipulation.hpp; sourceTree = SOURCE_ROOT; };
+		D58DCB2C0AEFDE6171E29540 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Syphon.framework; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx/Syphon.framework; sourceTree = "<group>"; };
 		D64FC38492D2B36B95A8253D /* Behavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Behavior.cpp; path = src/core/Behavior.cpp; sourceTree = SOURCE_ROOT; };
 		D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlignTTF.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.cpp; sourceTree = SOURCE_ROOT; };
 		D9C3827264F0C34537CE0F6E /* Clock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Clock.h; path = src/core/Clock.h; sourceTree = SOURCE_ROOT; };
-		DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RenderPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.cpp; sourceTree = SOURCE_ROOT; };
 		DA37F0EB85A2C8ABCF7DCC58 /* Interval.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Interval.h; path = src/core/Interval.h; sourceTree = SOURCE_ROOT; };
-		DC57EE2B6865A8B4D30C6E56 /* ofxSmartFont.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSmartFont.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont/ofxSmartFont.h; sourceTree = SOURCE_ROOT; };
+		DA74967980DD7E2289059D81 /* ofxValuePlotter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxValuePlotter.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxValuePlotter.h; sourceTree = SOURCE_ROOT; };
 		DCBEBF66C39747BD1534C1B5 /* Status.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Status.cpp; path = src/core/Status.cpp; sourceTree = SOURCE_ROOT; };
 		DCD5F898419E9A122FCFE280 /* ValueSupplier.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ValueSupplier.h; path = src/core/ValueSupplier.h; sourceTree = SOURCE_ROOT; };
-		DD90AC05CFB8157154EA2881 /* ofxDatGuiEvents.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiEvents.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core/ofxDatGuiEvents.h; sourceTree = SOURCE_ROOT; };
 		DF6ADD8191A4BA65ACEF603F /* ofxPanel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPanel.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxPanel.h; sourceTree = SOURCE_ROOT; };
 		DFC44816FA79F669BBF0EC7A /* OccurrencesController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrencesController.h; path = src/core/OccurrencesController.h; sourceTree = SOURCE_ROOT; };
-		E0ACE660E458A6A6C457706A /* GodRaysPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = GodRaysPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/GodRaysPass.h; sourceTree = SOURCE_ROOT; };
-		E273EEB8AE7904F98040A557 /* ParamsGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ParamsGui.h; path = src/core/ParamsGui.h; sourceTree = SOURCE_ROOT; };
+		DFF446B55586C2102433361C /* ofxFpsPlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxFpsPlotter.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxFpsPlotter.cpp; sourceTree = SOURCE_ROOT; };
+		E19D04C1AD1A7DF029A38221 /* json11.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = json11.cpp; path = src/lib/json11.cpp; sourceTree = SOURCE_ROOT; };
+		E320776B6C2379AA9622439F /* CinderSpecialization.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CinderSpecialization.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/specialization/CinderSpecialization.hpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* memoryDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memoryDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		E4EC3CD2F359FDA848765167 /* RimHighlightingPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RimHighlightingPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RimHighlightingPass.h; sourceTree = SOURCE_ROOT; };
+		E64D341064775BD3E3B680FC /* JsonIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JsonIO.h; path = src/core/JsonIO.h; sourceTree = SOURCE_ROOT; };
 		E6FA95564CAB1A6A26998186 /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		E714069016FC9AE5D8E239FB /* Events.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Events.cpp; path = src/core/Events.cpp; sourceTree = SOURCE_ROOT; };
-		E7D54477D3F31295AD3C7A14 /* PixelatePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PixelatePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PixelatePass.cpp; sourceTree = SOURCE_ROOT; };
 		E897E843F4E44018FDE01A34 /* ofxScreenLoggerChannel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxScreenLoggerChannel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxScreenLoggerChannel.cpp; sourceTree = SOURCE_ROOT; };
+		EB976889384E808C423CE477 /* ofxSyphonServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServer.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServer.h; sourceTree = SOURCE_ROOT; };
 		ED1E236F3CF91768C675C432 /* OccurrenceEntity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OccurrenceEntity.cpp; path = src/core/OccurrenceEntity.cpp; sourceTree = SOURCE_ROOT; };
 		EF3A3B4184C0BD92ED93C143 /* Params.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Params.h; path = src/core/Params.h; sourceTree = SOURCE_ROOT; };
-		F083148DBAEB1FE2B433A449 /* DofPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DofPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/DofPass.h; sourceTree = SOURCE_ROOT; };
+		EFF009F05AEE427C72141140 /* ofxMinimalToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMinimalToggle.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxMinimalToggle.cpp; sourceTree = SOURCE_ROOT; };
 		F1FEB66CE88C2B47C1925F8C /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		F2DFEDC5C804323DDDAA56B1 /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
-		F31C3D145F6A4F2E85408631 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
+		F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TimelineItem.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineItem.cpp; sourceTree = SOURCE_ROOT; };
 		F38907EC6905E539FB6235FC /* ParticleObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ParticleObject.cpp; path = src/core/ParticleObject.cpp; sourceTree = SOURCE_ROOT; };
-		F89C8AA8770BD4AF3ACBE1DC /* VerticalTiltShifPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VerticalTiltShifPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/VerticalTiltShifPass.h; sourceTree = SOURCE_ROOT; };
-		FD50823B68F5BE29DB6D200A /* LUTPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LUTPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/LUTPass.cpp; sourceTree = SOURCE_ROOT; };
-		FD6B7850CF95A20F74FB0D3A /* ofxDatGuiFRM.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiFRM.h; path = ../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components/ofxDatGuiFRM.h; sourceTree = SOURCE_ROOT; };
+		F40E13E17B3F01D833ABDF2E /* OFSpecialization.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OFSpecialization.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/specialization/OFSpecialization.h; sourceTree = SOURCE_ROOT; };
+		F5CE2B494B5EBDE056DBBC17 /* ofxSyphonServer.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ofxSyphonServer.mm; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServer.mm; sourceTree = SOURCE_ROOT; };
+		F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxRotarySlider.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxRotarySlider.cpp; sourceTree = SOURCE_ROOT; };
+		FA429D539EE17F325A7DE726 /* Combine.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Combine.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Combine.hpp; sourceTree = SOURCE_ROOT; };
+		FDA9887B27C2BDEFDDAD2E3A /* ofxSyphonClient.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ofxSyphonClient.mm; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonClient.mm; sourceTree = SOURCE_ROOT; };
 		FE2A2263379000D359CB7227 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
-		FE983A95928D317C859E5650 /* BleachBypassPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BleachBypassPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/BleachBypassPass.cpp; sourceTree = SOURCE_ROOT; };
 		FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ObserversController.cpp; path = src/core/ObserversController.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -280,19 +282,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
+				E1A3FD40C8BCD507345F1126 /* Syphon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0EF29D3ABD6E4147AE024D7A /* ofxSmartFont */ = {
+		0973F5322B74DBB70BEE2030 /* specialization */ = {
 			isa = PBXGroup;
 			children = (
-				D4757C3C9BDF49F1DAD04AB5 /* ofxSmartFont.cpp */,
-				DC57EE2B6865A8B4D30C6E56 /* ofxSmartFont.h */,
+				F40E13E17B3F01D833ABDF2E /* OFSpecialization.h */,
 			);
-			name = ofxSmartFont;
+			name = specialization;
 			sourceTree = "<group>";
 		};
 		1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */ = {
@@ -304,6 +306,64 @@
 			name = ofxXmlSettings;
 			sourceTree = "<group>";
 		};
+		2317994671CD76BBA16927B8 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				65F3085962B3A8825746C3C2 /* Syphon */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		29184E6D07FD7D2651458351 /* specialization */ = {
+			isa = PBXGroup;
+			children = (
+				E320776B6C2379AA9622439F /* CinderSpecialization.hpp */,
+			);
+			name = specialization;
+			sourceTree = "<group>";
+		};
+		38BDCD9E6A577AD8255FE30C /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				BDEFCD97632FC7CD5284F00B /* Choreograph */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		398D2AD7D162CE13BF40CD4F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				821159A073ABA066739FD401 /* osx */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		43F3552C039E8CB9C7C56DA6 /* choreograph */ = {
+			isa = PBXGroup;
+			children = (
+				062358C29D78AD90A7FCE0FC /* Choreograph.h */,
+				70EF35D871A701061ABEFFEB /* Cue.cpp */,
+				7B2B31E6D21FFAAC5C4D804F /* Cue.h */,
+				A1EF91DBA995EB56DAE53F24 /* detail */,
+				4AFEDF7BAD324D6D364245C9 /* Easing.h */,
+				6F0ECDE744FAD15E436ECD4C /* Motion.hpp */,
+				7F7B869B77B84D84CBCF4EC6 /* MotionGroup.cpp */,
+				C7E1536C3978261C377DBA1D /* MotionGroup.h */,
+				CD556EBA3E75A59B07B1DCBE /* Output.hpp */,
+				98DD8C725A3506AA67291399 /* phrase */,
+				50AD26136B528CBC0EBE1512 /* Phrase.hpp */,
+				C4D495C481B54072D1AEA87F /* Sequence.hpp */,
+				29184E6D07FD7D2651458351 /* specialization */,
+				9345E4E8CF2291EB7DCE2AB4 /* Timeline.cpp */,
+				4EAD32D60D1D1D1C63A8E21A /* Timeline.h */,
+				F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */,
+				3085A7C9897B49320258786A /* TimelineItem.h */,
+				0E8AC5BF9E205E7902E0DF98 /* TimelineOptions.hpp */,
+				5DE6C9D1BC68F14A44D812DA /* TimeType.h */,
+			);
+			name = choreograph;
+			sourceTree = "<group>";
+		};
 		480A780D8D0308AE4A368801 /* ofxGui */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,20 +372,47 @@
 			name = ofxGui;
 			sourceTree = "<group>";
 		};
-		5D5C0AE687AC481A1CA3E1C2 /* ofxMSATimer */ = {
+		49A9E39C52C2DF4DDA1E185F /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B0520B7D20D3F978FD735878 /* src */,
+				77F5A11629DFF28DDE5109B4 /* ofxSyphon.h */,
+				B5557E4DE42EB7CCBFC1D7CD /* ofxSyphonClient.h */,
+				FDA9887B27C2BDEFDDAD2E3A /* ofxSyphonClient.mm */,
+				EB976889384E808C423CE477 /* ofxSyphonServer.h */,
+				F5CE2B494B5EBDE056DBBC17 /* ofxSyphonServer.mm */,
+				822E790B3912E3C02B0B8D86 /* ofxSyphonServerDirectory.h */,
+				900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */,
 			);
-			name = ofxMSATimer;
+			name = src;
 			sourceTree = "<group>";
 		};
-		69146F0BA46E48E576618E5E /* libs */ = {
+		50EAFB5FF7C5722E7B4895C7 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				0EF29D3ABD6E4147AE024D7A /* ofxSmartFont */,
+				1A5C23DAFEE4E3049A5BA4BE /* SyphonNameboundClient.h */,
+				27E58A989EB67375DD408B1E /* SyphonNameboundClient.m */,
 			);
-			name = libs;
+			name = src;
+			sourceTree = "<group>";
+		};
+		5533A127DD65323EB591F7AD /* rendering */ = {
+			isa = PBXGroup;
+			children = (
+				1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */,
+				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
+				3451DF47D28415272A387305 /* ThresholdRenderer.cpp */,
+				903F7B2C593FDFFB36DC3688 /* ThresholdRenderer.h */,
+			);
+			name = rendering;
+			sourceTree = "<group>";
+		};
+		65F3085962B3A8825746C3C2 /* Syphon */ = {
+			isa = PBXGroup;
+			children = (
+				50EAFB5FF7C5722E7B4895C7 /* src */,
+				398D2AD7D162CE13BF40CD4F /* lib */,
+			);
+			name = Syphon;
 			sourceTree = "<group>";
 		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
@@ -363,24 +450,37 @@
 			name = ofxTextAlign;
 			sourceTree = "<group>";
 		};
+		7977BD28B0325C8FE56A2B4F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				43F3552C039E8CB9C7C56DA6 /* choreograph */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		7F3C04577424427D348B1425 /* ofxSyphon */ = {
+			isa = PBXGroup;
+			children = (
+				49A9E39C52C2DF4DDA1E185F /* src */,
+				2317994671CD76BBA16927B8 /* libs */,
+			);
+			name = ofxSyphon;
+			sourceTree = "<group>";
+		};
+		821159A073ABA066739FD401 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				D58DCB2C0AEFDE6171E29540 /* Syphon.framework */,
+			);
+			name = osx;
+			sourceTree = "<group>";
+		};
 		87B7C64C02AE5E3940E65825 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				1871276E2C2105C9C717619A /* ofxLiquidEvent.h */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		8870759BC9CAEA1E4E9EA3A8 /* core */ = {
-			isa = PBXGroup;
-			children = (
-				345DDFA744B2429A442E997F /* ofxDatGuiComponent.cpp */,
-				582597DC377ECBB19944EEC9 /* ofxDatGuiComponent.h */,
-				BC1CCF542D2FFA5D456D48E4 /* ofxDatGuiConstants.h */,
-				DD90AC05CFB8157154EA2881 /* ofxDatGuiEvents.h */,
-				05F9F27640A2C6BA22F76E6C /* ofxDatGuiIntObject.h */,
-			);
-			name = core;
 			sourceTree = "<group>";
 		};
 		8D82D69CE80FD55076D0A11A /* src */ = {
@@ -394,33 +494,35 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		911FE1C75E520EE70A7B4830 /* themes */ = {
+		965168FECD51AAD1D9169011 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				294DAE3A8718C89A6FA642D4 /* ofxDatGuiTheme.h */,
-				9CFE7A80FCB3B01A4F2FE5F8 /* ofxDatGuiThemes.h */,
+				E19D04C1AD1A7DF029A38221 /* json11.cpp */,
+				05563B9E7C908ABE1950F384 /* json11.hpp */,
 			);
-			name = themes;
+			name = lib;
 			sourceTree = "<group>";
 		};
-		947FCD1248D8B0A16B53C1AA /* components */ = {
+		98DD8C725A3506AA67291399 /* phrase */ = {
 			isa = PBXGroup;
 			children = (
-				684721825A36D7F0FB1DF84F /* ofxDatGui2dPad.h */,
-				A3312DBDB5D70B87AB6AB9F5 /* ofxDatGuiButton.h */,
-				C1AF18958F2829FEF9DBBB39 /* ofxDatGuiColorPicker.h */,
-				1F2CC99241BA73036CFA84A6 /* ofxDatGuiControls.h */,
-				FD6B7850CF95A20F74FB0D3A /* ofxDatGuiFRM.h */,
-				A38BC582B561AB5BC8A07D66 /* ofxDatGuiGroups.h */,
-				32831CD20CC05BAA1B5697B3 /* ofxDatGuiLabel.h */,
-				557B74EE7D901D8FCBAC977D /* ofxDatGuiMatrix.h */,
-				4121B06355C54F47E889AF24 /* ofxDatGuiScrollView.h */,
-				136AAE26EFF2EF319484E5DF /* ofxDatGuiSlider.h */,
-				031D2F330A586C93291D5773 /* ofxDatGuiTextInput.h */,
-				2C1FE410E3EAE25FBE59E368 /* ofxDatGuiTextInputField.h */,
-				8D2A8D41F40187F278A7449C /* ofxDatGuiTimeGraph.h */,
+				FA429D539EE17F325A7DE726 /* Combine.hpp */,
+				1F8E99083CDB97599C3EDFDA /* Hold.hpp */,
+				6F5F97C64145AE333FB88D6E /* Procedural.hpp */,
+				2361E49D807B63833D9BCEC7 /* Ramp.hpp */,
+				4188857B0399E72060D74E0D /* Retime.hpp */,
+				74B6EEDA2A3C4625BE226A4F /* Sugar.hpp */,
 			);
-			name = components;
+			name = phrase;
+			sourceTree = "<group>";
+		};
+		A1EF91DBA995EB56DAE53F24 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				84EAA7B393EA98AE12FB5550 /* MakeUnique.hpp */,
+				D58D1EA565612E787A738D06 /* VectorManipulation.hpp */,
+			);
+			name = detail;
 			sourceTree = "<group>";
 		};
 		A763ED608B35AE3310251DEE /* src */ = {
@@ -447,81 +549,24 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		AFF78A8EB1A778F89BAD1809 /* src */ = {
+		B68D52E7A99A8C2199C32459 /* ofxChoreograph */ = {
 			isa = PBXGroup;
 			children = (
-				FE983A95928D317C859E5650 /* BleachBypassPass.cpp */,
-				9D08CEDCB85EBCA6CF535214 /* BleachBypassPass.h */,
-				91E8FAA22C71362D38AB7F6C /* BloomPass.cpp */,
-				044896ED6F8FD2E911C3379A /* BloomPass.h */,
-				6477C34ACC12C364A027E364 /* ContrastPass.cpp */,
-				F31C3D145F6A4F2E85408631 /* ContrastPass.h */,
-				6649B1C272AD238D68E1145B /* ConvolutionPass.cpp */,
-				96F1AD141064D5B077F10364 /* ConvolutionPass.h */,
-				6A23379D1E9FD00754651741 /* DofAltPass.cpp */,
-				C2F047639D87CA3D8B103F83 /* DofAltPass.h */,
-				5FA23DCEA507C2123B618CF6 /* DofPass.cpp */,
-				F083148DBAEB1FE2B433A449 /* DofPass.h */,
-				29FA0CD0CDD5CBDBF8B0AE8E /* EdgePass.cpp */,
-				8A1B407C75DAB7B7B7378B97 /* EdgePass.h */,
-				37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */,
-				CF69DC4C4778D5EFF36391BF /* FakeSSSPass.h */,
-				D1C8C692F0FE0C551B9AB957 /* FxaaPass.cpp */,
-				5CB4B21F346420AC3C025F44 /* FxaaPass.h */,
-				889A11393A3D0B658184BE4E /* GodRaysPass.cpp */,
-				E0ACE660E458A6A6C457706A /* GodRaysPass.h */,
-				2F8E0972EBAD194019AAE430 /* HorizontalTiltShifPass.cpp */,
-				B180CA9E7B4C68CB29835E51 /* HorizontalTiltShifPass.h */,
-				C82727736FE3D22A1F49338A /* HsbShiftPass.cpp */,
-				4B22344CFA8B0F18349AAD60 /* HsbShiftPass.h */,
-				3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */,
-				22F017FB9260290C5F3E590A /* KaleidoscopePass.h */,
-				4D2497856BB0050666A3D3BD /* LimbDarkeningPass.cpp */,
-				8E09789CA94CD1A0E1BA92B0 /* LimbDarkeningPass.h */,
-				FD50823B68F5BE29DB6D200A /* LUTPass.cpp */,
-				7DE60E545559A4502D3576F9 /* LUTPass.h */,
-				9CC4FD2B31CCC6D024EAEDB3 /* NoiseWarpPass.cpp */,
-				8F8C2ABAE30E1C5AC125D366 /* NoiseWarpPass.h */,
-				32C61823763A8EC46251B768 /* ofxPostProcessing.h */,
-				E7D54477D3F31295AD3C7A14 /* PixelatePass.cpp */,
-				4256183AC7BC6229FF552A25 /* PixelatePass.h */,
-				261D64D03197C5EBC148884A /* PostProcessing.cpp */,
-				0E7C6218F45FB6677EC72826 /* PostProcessing.h */,
-				DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */,
-				64066E60379BD93047A905EA /* RenderPass.h */,
-				2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */,
-				AAAF97DEF4197628485E523C /* RGBShiftPass.h */,
-				7F446206658787E98874D7BE /* RimHighlightingPass.cpp */,
-				E4EC3CD2F359FDA848765167 /* RimHighlightingPass.h */,
-				338201271E14EF15D6DC6CFB /* SSAOPass.cpp */,
-				C0E80BB8CFD055D603998C3C /* SSAOPass.h */,
-				782F67A8BCFC490B4EC34EEE /* ToonPass.cpp */,
-				B67B11BF7B9AF64A644DDD6C /* ToonPass.h */,
-				424D19BC05EE7D509367F95A /* VerticalTiltShifPass.cpp */,
-				F89C8AA8770BD4AF3ACBE1DC /* VerticalTiltShifPass.h */,
-				7973CB857523C1FD621B06B3 /* ZoomBlurPass.cpp */,
-				AAAFBCEFAB75367FFEB686A6 /* ZoomBlurPass.h */,
+				DD6FE84E2D8AC7725BCA78AC /* src */,
+				38BDCD9E6A577AD8255FE30C /* libs */,
 			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		B0520B7D20D3F978FD735878 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				0DF10023D165DC9596D26531 /* MSATimer.h */,
-			);
-			name = src;
+			name = ofxChoreograph;
 			sourceTree = "<group>";
 		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				D8DD1043C333F6F63C8685E6 /* ofxDatGui */,
+				B68D52E7A99A8C2199C32459 /* ofxChoreograph */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
+				DFCCF8BDC58AFA44D27F9F11 /* ofxGuiExtended */,
 				CF1B72478A403C7607813DC5 /* ofxLiquidEvent */,
 				F98ABA024A65B4A6F9F70B2B /* ofxLoggerChannel */,
-				5D5C0AE687AC481A1CA3E1C2 /* ofxMSATimer */,
-				BD52EC6DCE402D90869A80A1 /* ofxPostProcessing */,
+				7F3C04577424427D348B1425 /* ofxSyphon */,
 				73252C2D4C7012665A9367CD /* ofxTextAlign */,
 				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,
 			);
@@ -541,12 +586,16 @@
 				B235D09E719D526194402149 /* Bounds.h */,
 				B435F280334BE688BF136963 /* Clock.cpp */,
 				D9C3827264F0C34537CE0F6E /* Clock.h */,
+				1F05D9B2D4915D920A10BE4F /* Colors.cpp */,
+				21486E8D0CA688A2FC4DAA74 /* Colors.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
 				E714069016FC9AE5D8E239FB /* Events.cpp */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */,
 				DA37F0EB85A2C8ABCF7DCC58 /* Interval.h */,
+				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
+				E64D341064775BD3E3B680FC /* JsonIO.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
 				060B900FD66542BB0792E633 /* ObserverEntity.cpp */,
 				73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */,
@@ -558,16 +607,12 @@
 				DFC44816FA79F669BBF0EC7A /* OccurrencesController.h */,
 				581F497F9FA3425721AEB3DC /* Params.cpp */,
 				EF3A3B4184C0BD92ED93C143 /* Params.h */,
-				97BDF101CE6B95BF10DAE33C /* ParamsGui.cpp */,
-				E273EEB8AE7904F98040A557 /* ParamsGui.h */,
 				F38907EC6905E539FB6235FC /* ParticleObject.cpp */,
 				A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */,
 				36B95376ECF45981665C19E8 /* State.cpp */,
 				27F7A6AF265FCB06BA639098 /* State.h */,
 				DCBEBF66C39747BD1534C1B5 /* Status.cpp */,
 				52DA674F75908A4AD4029805 /* Status.h */,
-				5F7E08F009A3EAADF7B521FB /* ThresholdRenderer.cpp */,
-				CBC98E48A385155AA7A6F024 /* ThresholdRenderer.h */,
 				2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */,
 				D53E9332C9AE72A5C90B70F3 /* Timing.h */,
 				0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */,
@@ -578,12 +623,12 @@
 			name = core;
 			sourceTree = "<group>";
 		};
-		BD52EC6DCE402D90869A80A1 /* ofxPostProcessing */ = {
+		BDEFCD97632FC7CD5284F00B /* Choreograph */ = {
 			isa = PBXGroup;
 			children = (
-				AFF78A8EB1A778F89BAD1809 /* src */,
+				7977BD28B0325C8FE56A2B4F /* src */,
 			);
-			name = ofxPostProcessing;
+			name = Choreograph;
 			sourceTree = "<group>";
 		};
 		BE9DD360F550B0DF4D357E7B /* app */ = {
@@ -619,12 +664,21 @@
 			name = ofxLiquidEvent;
 			sourceTree = "<group>";
 		};
-		D8DD1043C333F6F63C8685E6 /* ofxDatGui */ = {
+		DD6FE84E2D8AC7725BCA78AC /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E9B32C117486580389FAFF01 /* src */,
+				83F1ABD23467A3AE1A0DB0DB /* ofxChoreograph.h */,
+				0973F5322B74DBB70BEE2030 /* specialization */,
 			);
-			name = ofxDatGui;
+			name = src;
+			sourceTree = "<group>";
+		};
+		DFCCF8BDC58AFA44D27F9F11 /* ofxGuiExtended */ = {
+			isa = PBXGroup;
+			children = (
+				FF557B38E74FD99053AD7E34 /* src */,
+			);
+			name = ofxGuiExtended;
 			sourceTree = "<group>";
 		};
 		E4328144138ABC890047C5CB /* Products */ = {
@@ -653,6 +707,8 @@
 			children = (
 				BE9DD360F550B0DF4D357E7B /* app */,
 				BC405D98CD8417CE9E222B0C /* core */,
+				965168FECD51AAD1D9169011 /* lib */,
+				5533A127DD65323EB591F7AD /* rendering */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -666,25 +722,52 @@
 			name = openFrameworks;
 			sourceTree = "<group>";
 		};
-		E9B32C117486580389FAFF01 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				947FCD1248D8B0A16B53C1AA /* components */,
-				8870759BC9CAEA1E4E9EA3A8 /* core */,
-				69146F0BA46E48E576618E5E /* libs */,
-				3C6BE771E8343FBE919A101B /* ofxDatGui.cpp */,
-				C7E0EFB5CFD7B1F36754D88B /* ofxDatGui.h */,
-				911FE1C75E520EE70A7B4830 /* themes */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
 		F98ABA024A65B4A6F9F70B2B /* ofxLoggerChannel */ = {
 			isa = PBXGroup;
 			children = (
 				C36373DED5B51DDD56BAFD0C /* src */,
 			);
 			name = ofxLoggerChannel;
+			sourceTree = "<group>";
+		};
+		FF557B38E74FD99053AD7E34 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DFF446B55586C2102433361C /* ofxFpsPlotter.cpp */,
+				D4A3A7A1C623F8F54F2A7E3B /* ofxFpsPlotter.h */,
+				5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */,
+				B321549FC189E33A362D6C95 /* ofxGuiBaseDraws.h */,
+				55A8F82130278C2A892A5A61 /* ofxGuiExtended.h */,
+				18FDAA884F43D6CF3A92BA3B /* ofxGuiGroupExtended.cpp */,
+				0DDF468F753A8B21CF09BD7A /* ofxGuiGroupExtended.h */,
+				93B964A7A88211A94DF9AF3D /* ofxGuiMatrix.cpp */,
+				99FAED8C33459D3E54F8B1A7 /* ofxGuiMatrix.h */,
+				31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */,
+				4D576E06EFE9830A46955478 /* ofxGuiPage.h */,
+				48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */,
+				34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */,
+				86E7BBF4C34228C5E07E44F8 /* ofxGuiZoomableBaseDraws.cpp */,
+				7D7D9AC4BC23EEA48F36E2A7 /* ofxGuiZoomableBaseDraws.h */,
+				484B5A3E7BFD42517F620D1A /* ofxLabelExtended.cpp */,
+				7D04E0E5F91F111791FACE68 /* ofxLabelExtended.h */,
+				7660658A2B3CABCBAF09C220 /* ofxMasterSlaveControl.cpp */,
+				AF229BCAD99E0A11FCAB43EE /* ofxMasterSlaveControl.h */,
+				9B0759625D6B9E67F16915F6 /* ofxMinimalButton.cpp */,
+				4E0C13C732F71C9FD66B3EB5 /* ofxMinimalButton.h */,
+				EFF009F05AEE427C72141140 /* ofxMinimalToggle.cpp */,
+				A3603FB5CB1919665983CA28 /* ofxMinimalToggle.h */,
+				909F1DBBEB399AAC8AB183CC /* ofxPanelExtended.cpp */,
+				9F301F8761080999A4AD0AF0 /* ofxPanelExtended.h */,
+				F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */,
+				B296BDCCBAE08BED2CE65583 /* ofxRotarySlider.h */,
+				BFAC291ACE4D9FD4C5320FFA /* ofxTabbedPages.cpp */,
+				C39D8902FEE22BC10E3DAC9F /* ofxTabbedPages.h */,
+				3672BB2E4E3BEE27769838D5 /* ofxValuePlotter.cpp */,
+				DA74967980DD7E2289059D81 /* ofxValuePlotter.h */,
+				AB6F3AEC223A54C1B2D6C337 /* ofxVerticalSlider.cpp */,
+				7EDC48211E3054289D46959D /* ofxVerticalSlider.h */,
+			);
+			name = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -783,25 +866,29 @@
 				960691FA92BF31B9FD010694 /* Behavior.cpp in Sources */,
 				A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */,
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
+				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */,
 				7F4DAE7D88443C43EA6E0EF9 /* Interval.cpp in Sources */,
+				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,
 				EA6C3001ABA7EFDC59645D80 /* OccurrenceEntity.cpp in Sources */,
 				3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */,
 				95295DFC21749761D7BF9B18 /* Params.cpp in Sources */,
-				AD6E60491FC521ECE393DF78 /* ParamsGui.cpp in Sources */,
 				96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */,
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,
 				D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */,
-				7BF4542127A5D0073BC80DA1 /* ThresholdRenderer.cpp in Sources */,
 				9FF3497170D60884F112833A /* Timing.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
-				2B8F288F1B4106CC768D4FBE /* ofxDatGuiComponent.cpp in Sources */,
-				9E323A6D767216E5BC85DD67 /* ofxSmartFont.cpp in Sources */,
-				CBCAFF2D02669C3E7771524B /* ofxDatGui.cpp in Sources */,
+				D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */,
+				EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */,
+				8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */,
+				C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */,
+				E915AD058D8CFBCF94867948 /* MotionGroup.cpp in Sources */,
+				929A03C47EC36B0C9514C249 /* Timeline.cpp in Sources */,
+				318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */,
 				EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */,
 				F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */,
 				A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */,
@@ -810,33 +897,28 @@
 				495032EB9D40A69EA3D21086 /* ofxSlider.cpp in Sources */,
 				CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */,
 				BEC7011B31196451456DBC43 /* ofxToggle.cpp in Sources */,
+				6A6DCC07458DC20B3A9FB114 /* ofxFpsPlotter.cpp in Sources */,
+				9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */,
+				C255A0483A81BF31B4EBCB2F /* ofxGuiGroupExtended.cpp in Sources */,
+				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
+				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
+				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
+				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,
+				08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */,
+				0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */,
+				64FAD181AA2FEB345A37B089 /* ofxMinimalButton.cpp in Sources */,
+				C7165067D1B817AB0063B30D /* ofxMinimalToggle.cpp in Sources */,
+				A56DDEF911445AC15CE5F965 /* ofxPanelExtended.cpp in Sources */,
+				98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */,
+				01A3B7EF0252EA16E181B49D /* ofxTabbedPages.cpp in Sources */,
+				7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */,
+				181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */,
 				A5C0430EBC106F9106E17BCF /* ofxMultiLoggerChannel.cpp in Sources */,
 				AF4B42216D89DE9CFE2E5420 /* ofxScreenLoggerChannel.cpp in Sources */,
-				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
-				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
-				8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */,
-				6732E5D0B6ADA39649B35494 /* ConvolutionPass.cpp in Sources */,
-				B2236F1E65E160763BEADCEC /* DofAltPass.cpp in Sources */,
-				740191FE5076F6FA5E83F4CC /* DofPass.cpp in Sources */,
-				2C764E115EEBBDAF3D04B4F1 /* EdgePass.cpp in Sources */,
-				3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */,
-				B9EEB7E04A7A95BE29C7C543 /* FxaaPass.cpp in Sources */,
-				1C4A992F17CCCCB30E0D6BEC /* GodRaysPass.cpp in Sources */,
-				4BC7B83CAC8C09629FEB6BCE /* HorizontalTiltShifPass.cpp in Sources */,
-				BC1D9F2A3CC0258742E5ABE8 /* HsbShiftPass.cpp in Sources */,
-				A014A6C6A8E9AB567F67CF47 /* KaleidoscopePass.cpp in Sources */,
-				2B3926B6C2FA56994ECDED98 /* LimbDarkeningPass.cpp in Sources */,
-				744A99D255BA21E0823917E3 /* LUTPass.cpp in Sources */,
-				11CDA691B113223FE4302083 /* NoiseWarpPass.cpp in Sources */,
-				6F86A7380B683E0ABEF29AE1 /* PixelatePass.cpp in Sources */,
-				4BCEEA9B13F89A3E9FAD69BC /* PostProcessing.cpp in Sources */,
-				4EE8E2766DD8D1E01C0BB2CB /* RenderPass.cpp in Sources */,
-				C11106AFBC3CD6F479EDB075 /* RGBShiftPass.cpp in Sources */,
-				2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */,
-				5A73BE78B916F134FC0AE416 /* SSAOPass.cpp in Sources */,
-				23234C9FA76CB202C47F4199 /* ToonPass.cpp in Sources */,
-				A4CB0D937943452F112F31A4 /* VerticalTiltShifPass.cpp in Sources */,
-				88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */,
+				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
+				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
+				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
+				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
 				A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
@@ -880,17 +962,27 @@
 					"$(OF_CORE_HEADERS)",
 					src/app,
 					src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes,
+					src/lib,
+					src/rendering,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/specialization,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/specialization,
 					../../of_v0.9.3_osx_release/addons/ofxGui/src,
+					../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src,
 					../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src,
 					../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src,
-					../../of_v0.9.3_osx_release/addons/ofxMSATimer/src,
-					../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/src,
 					../../of_v0.9.3_osx_release/addons/ofxTextAlign/src,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src,
@@ -929,17 +1021,27 @@
 					"$(OF_CORE_HEADERS)",
 					src/app,
 					src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes,
+					src/lib,
+					src/rendering,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/specialization,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/specialization,
 					../../of_v0.9.3_osx_release/addons/ofxGui/src,
+					../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src,
 					../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src,
 					../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src,
-					../../of_v0.9.3_osx_release/addons/ofxMSATimer/src,
-					../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/src,
 					../../of_v0.9.3_osx_release/addons/ofxTextAlign/src,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src,
@@ -962,6 +1064,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../of_v0.9.3_osx_release/libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -971,17 +1074,27 @@
 					"$(OF_CORE_HEADERS)",
 					src/app,
 					src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes,
+					src/lib,
+					src/rendering,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/specialization,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/specialization,
 					../../of_v0.9.3_osx_release/addons/ofxGui/src,
+					../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src,
 					../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src,
 					../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src,
-					../../of_v0.9.3_osx_release/addons/ofxMSATimer/src,
-					../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/src,
 					../../of_v0.9.3_osx_release/addons/ofxTextAlign/src,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src,
@@ -1005,6 +1118,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../of_v0.9.3_osx_release/libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1013,17 +1127,27 @@
 					"$(OF_CORE_HEADERS)",
 					src/app,
 					src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/components,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/core,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/libs/ofxSmartFont,
-					../../of_v0.9.3_osx_release/addons/ofxDatGui/src/themes,
+					src/lib,
+					src/rendering,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/specialization,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src,
+					../../of_v0.9.3_osx_release/addons/ofxChoreograph/src/specialization,
 					../../of_v0.9.3_osx_release/addons/ofxGui/src,
+					../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src,
 					../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src,
 					../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src,
-					../../of_v0.9.3_osx_release/addons/ofxMSATimer/src,
-					../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src,
+					../../of_v0.9.3_osx_release/addons/ofxSyphon/src,
 					../../of_v0.9.3_osx_release/addons/ofxTextAlign/src,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs,
 					../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src,

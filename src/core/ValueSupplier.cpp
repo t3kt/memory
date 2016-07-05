@@ -12,32 +12,32 @@
 
 template<>
 float RandomValueSupplier<float>::getValue() const {
-  return ofRandom(lowValue.get(), highValue.get());
+  return ofRandom(lowValue(), highValue());
 }
 
 template<>
 int RandomValueSupplier<int>::getValue() const {
-  float value = ofRandom(lowValue.get(), highValue.get());
+  float value = ofRandom(lowValue(), highValue());
   return static_cast<int>(std::round(value));
 }
 
 template<>
 uint8 RandomValueSupplier<uint8>::getValue() const {
-  float value = ofRandom(lowValue.get(), highValue.get());
+  float value = ofRandom(lowValue(), highValue());
   return static_cast<uint8>(std::round(value));
 }
 
 template<>
 ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
-  ofVec3f minVal = lowValue.get();
-  ofVec3f maxVal = highValue.get();
+  ofVec3f minVal = lowValue();
+  ofVec3f maxVal = highValue();
   return ofVec3f(ofRandom(minVal.x, maxVal.x),
                  ofRandom(minVal.y, maxVal.y),
                  ofRandom(minVal.z, maxVal.z));
 }
 
 ofVec3f SimpleRandomVectorSupplier::getValue() const {
-  float dist = ofRandom(lowValue.get(), highValue.get());
+  float dist = ofRandom(lowValue(), highValue());
   ofVec3f value = ofVec3f(dist, 0, 0);
   value.rotate(ofRandom(0, 360),
                ofRandom(0, 360),
@@ -45,22 +45,33 @@ ofVec3f SimpleRandomVectorSupplier::getValue() const {
   return value;
 }
 
-RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier(std::string name)
-: Params(name)
-, _hueRange("Hue")
-, _saturationRange("Saturation")
-, _brightnessRange("Brightness")
-, _alphaRange("Alpha") {
-  
-  add(_hueRange.setParamRange(0, 1).set(0, 1),
-      _saturationRange.setParamRange(0, 1).set(0, 1),
-      _brightnessRange.setParamRange(0, 1).set(0, 1),
-      _alphaRange.setParamRange(0, 1).set(0, 1));
+RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier()
+: Params() {
+  add(hueRange
+      .setKey("hueRange")
+      .setName("Hue")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(saturationRange
+      .setKey("saturationRange")
+      .setName("Saturation")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(brightnessRange
+      .setKey("brightnessRange")
+      .setName("Brightness")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
+  add(alphaRange
+      .setKey("alphaRange")
+      .setName("Alpha")
+      .setParamRanges(0, 1)
+      .setParamValuesAndDefaults(0, 1));
 }
 
 ofFloatColor RandomHsbFloatColorSupplier::getValue() const {
-  return ofFloatColor::fromHsb(_hueRange.getValue(),
-                               _saturationRange.getValue(),
-                               _brightnessRange.getValue(),
-                               _alphaRange.getValue());
+  return ofFloatColor::fromHsb(hueRange.getValue(),
+                               saturationRange.getValue(),
+                               brightnessRange.getValue(),
+                               alphaRange.getValue());
 }

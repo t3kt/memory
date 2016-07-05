@@ -14,7 +14,7 @@
 
 class Bounds : public Params {
 public:
-  Bounds(std::string name);
+  Bounds();
 
   virtual bool reflect(ofVec3f* velocity, ofVec3f* position) const = 0;
   virtual ofVec3f randomPoint() const = 0;
@@ -22,15 +22,15 @@ public:
 
 class SimpleCubeBounds : public Bounds {
 public:
-  SimpleCubeBounds(std::string name);
+  SimpleCubeBounds();
 
   SimpleCubeBounds& set(float sz) {
-    size.set(sz);
+    _size.set(sz);
     return *this;
   }
   SimpleCubeBounds& setParamRange(float minVal, float maxVal) {
-    size.setMin(minVal);
-    size.setMax(maxVal);
+    _size.setMin(minVal);
+    _size.setMax(maxVal);
     return *this;
   }
 
@@ -38,10 +38,10 @@ public:
 
   ofVec3f randomPoint() const override;
 
-  ofParameter<float> size;
+  float size() const { return _size.get(); }
 
-protected:
-  ParamsGui* createGui() override;
+private:
+  TParam<float> _size;
 };
 
 #endif /* Bounds_h */

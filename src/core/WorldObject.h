@@ -11,6 +11,7 @@
 
 #include "Common.h"
 #include "Params.h"
+#include "State.h"
 #include <iostream>
 #include <ofVec3f.h>
 
@@ -22,7 +23,7 @@ class WorldObject : public Outputable {
 public:
   typedef ::Params Params;
   
-  WorldObject();
+  WorldObject(const State& state);
   virtual ~WorldObject() {}
   
   const ObjectId id;
@@ -32,34 +33,28 @@ public:
   
   virtual void output(std::ostream& os) const override;
 
-  virtual bool alive() const = 0;
-  
-  virtual bool visible() const { return this->alive(); }
+  virtual bool alive() const { return _alive; }
 
-protected:
-  virtual std::string typeName() const;
-  virtual void outputFields(std::ostream& os) const;
-};
-
-class StandardWorldObject : public WorldObject {
-public:
-  StandardWorldObject();
-  virtual ~StandardWorldObject() {}
-
-  virtual bool alive() const override { return _alive; };
   void kill() {
     _alive = false;
     handleDeath();
   }
   void revive() { _alive = true; }
+  
+  virtual bool visible() const { return this->alive(); }
+
+  ofVec3f position() const { return _position; }
 
   virtual void handleDeath() {}
 
-  ofVec3f position() const { return _position; }
+  float getAge(const State& state) const { return state.time - _startTime; }
+
 protected:
-  virtual void outputFields(std::ostream& os) const override;
+  virtual std::string typeName() const;
+  virtual void outputFields(std::ostream& os) const;
 
   ofVec3f _position;
+  const float _startTime;
 private:
   bool _alive;
 };

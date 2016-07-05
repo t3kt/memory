@@ -10,6 +10,7 @@
 #include "Common.h"
 #include <memory>
 #include <iostream>
+#include <ofxGuiExtended.h>
 
 class FPSInfoProvider
 : public StatusInfoProvider {
@@ -26,14 +27,6 @@ private:
   std::size_t FPS_LINE;
 };
 
-class GuiPanel
-: public ofxPanel {
-public:
-  void reloadSettings() {
-    loadFromFile(filename);
-  }
-};
-
 void MemoryApp::setup() {
   _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
   _screenLoggerChannel->setDrawBounds(ofRectangle(150, 0, ofGetScreenWidth() - 500, 250));
@@ -42,27 +35,32 @@ void MemoryApp::setup() {
   _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
   ofSetLoggerChannel(_multiLoggerChannel);
 
-  _gui = std::make_shared<GuiPanel>();
-  _appParams.initGui(*_gui);
-  _gui->reloadSettings();
-  
+  loadSettings();
+
+  _gui = std::make_shared<AppGui>(_appParams);
+  _gui->setup();
+  _gui->onLoad += [&]() {
+    loadSettings();
+  };
+  _gui->onSave += [&]() {
+    saveSettings();
+  };
+
   ofEnableAlphaBlending();
   ofDisableDepthTest();
-
-  _appParams.observers.entities.lifetime.set(10, 60);
   
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state);
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
   _observers->setup(_state);
   
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.bounds, *_observers, _state);
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state, _appParams.colors);
   _occurrences->setup(_state);
   
-  _animations = std::make_shared<AnimationsController>(_appParams.animations);
+  _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
   _animations->setup();
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
 
-  _clock = std::make_shared<Clock>(_appParams.clock, _state);
+  _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
   _clock->setup();
 
   _fpsProvider = std::make_shared<FPSInfoProvider>();
@@ -76,15 +74,9 @@ void MemoryApp::setup() {
   _statusController->addProvider(_occurrences.get());
   _statusController->addProvider(_animations.get());
 
-  _postProc.init(ofGetWidth(), ofGetHeight());
-//  _postProc.createPass<BloomPass>();
-//  _postProc.createPass<RimHighlightingPass>();
-//  shared_ptr<DofPass> dof = _postProc.createPass<DofPass>();
-//  shared_ptr<FakeSSSPass> sss = _postProc.createPass<FakeSSSPass>();
-
-//  _NEW_gui = std::make_shared<AppGui>(_appParams);
-//  _NEW_gui->setup();
-  //...
+#ifdef ENABLE_SYPHON
+  _syphonServer.setName("Memory Main Output");
+#endif
 }
 
 void MemoryApp::update() {
@@ -95,7 +87,7 @@ void MemoryApp::update() {
 
   // Slide the logger screen in and out.
   ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
-  if (_appParams.debug.showLog.get()) {
+  if (_appParams.core.debug.showLog()) {
     bounds.y = ofLerp(bounds.y, 0, 0.2);
   }
   else {
@@ -103,19 +95,26 @@ void MemoryApp::update() {
   }
   _screenLoggerChannel->setDrawBounds(bounds);
   _fpsProvider->update(_state);
-//  _NEW_gui->update();
+  _gui->update();
 }
 
 void MemoryApp::draw() {
-  ofBackground(ofFloatColor::white);
+  ofBackground(_appParams.colors.getColor(ColorId::BACKGROUND));
   glPushAttrib(GL_ENABLE_BIT);
   //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
-  _postProc.begin(_cam);
-//  _cam.begin();
-
+  _cam.begin();
+  
   ofPushMatrix();
   ofPushStyle();
+
+  if (_appParams.core.camera.spinEnabled()) {
+    ofVec3f dr = _appParams.core.camera.spinRate() * _state.timeDelta;
+    _rotation += dr;
+  }
+  ofRotateX(_rotation.x);
+  ofRotateY(_rotation.y);
+  ofRotateZ(_rotation.z);
   
   auto winSize = ofGetWindowSize();
   auto size = ::min(winSize.x, winSize.y) / 2;
@@ -126,27 +125,31 @@ void MemoryApp::draw() {
   _occurrences->draw(_state);
   _animations->draw(_state);
 
-  if (_appParams.debug.showBounds.get()) {
+  if (_appParams.core.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
-    ofSetColor(ofFloatColor(0.2, 0.2, 0.2, 0.3));
-    ofDrawBox(_appParams.bounds.size.get());
+    ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
+    ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
   }
   
   ofPopMatrix();
   ofPopStyle();
-//  _cam.end();
-  _postProc.end();
+  _cam.end();
   glPopAttrib();
+
+#ifdef ENABLE_SYPHON
+  if (_appParams.core.syphonEnabled()) {
+    _syphonServer.publishScreen();
+  }
+#endif
   
   _gui->draw();
   _screenLoggerChannel->draw();
 
-  if (_appParams.debug.showStatus.get()) {
+  if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
   }
-//  _NEW_gui->draw();
 }
 
 void MemoryApp::keyPressed(int key) {
@@ -155,7 +158,7 @@ void MemoryApp::keyPressed(int key) {
       _cam.reset();
       break;
     case 'l':
-      _appParams.debug.showLog.set(!_appParams.debug.showLog.get());
+      _appParams.core.debug.setShowLog(!_appParams.core.debug.showLog());
       break;
     case ' ':
       _clock->toggleState();
@@ -166,5 +169,23 @@ void MemoryApp::keyPressed(int key) {
     case '0':
       _observers->spawnObservers(5, _state);
       break;
+    case 'r':
+      loadSettings();
+      break;
+    case 'w':
+      saveSettings();
+      break;
   }
+}
+
+void MemoryApp::loadSettings() {
+  ofLogNotice() << "Reading JSON settings...";
+  _appParams.readFromFile("settings.json");
+  ofLogNotice() << ".. read from JSON finished\n\t" << _appParams;
+}
+
+void MemoryApp::saveSettings() {
+  ofLogNotice() << "Writing JSON settings...";
+  _appParams.writeToFile("settings.json");
+  ofLogNotice() << ".. write to JSON finished";
 }

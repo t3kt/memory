@@ -9,12 +9,18 @@
 #include "ThresholdRenderer.h"
 #include <ofMath.h>
 
-AbstractThresholdRenderer::Params::Params(std::string name)
-: ::Params(name)
-, range("Range") {
-  add(enabled.set("Enabled", true));
-  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
-  add(range.set(0, 0.1).setParamRange(0, 8));
+AbstractThresholdRenderer::Params::Params()
+: ::Params() {
+  add(_enabled
+      .setKey("enabled")
+      .setName("Enabled")
+      .setValueAndDefault(true));
+//  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
+  add(range
+      .setKey("range")
+      .setName("Range")
+      .setParamValuesAndDefaults(0, 0.1)
+      .setParamRanges(0, 8));
 }
 
 ThreshData::ThreshData() {
@@ -44,17 +50,17 @@ bool ThreshData::tryAdd(ofVec3f pos1, ofVec3f pos2) {
 }
 
 void AbstractThresholdRenderer::update(const State &state) {
-  if (!_params.enabled.get()) {
+  if (!_params.enabled()) {
     return;
   }
-  _data.initialize(_params.range.lowValue.get(),
-                   _params.range.highValue.get(),
-                   _params.color.get());
+  _data.initialize(_params.range.lowValue(),
+                   _params.range.highValue(),
+                   _color);
   populateThreshData(&_data);
 }
 
 void AbstractThresholdRenderer::draw(const State &state) {
-  if (!_params.enabled.get()) {
+  if (!_params.enabled()) {
     return;
   }
   _data._mesh.draw();

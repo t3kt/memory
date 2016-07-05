@@ -7,15 +7,18 @@
 //
 
 #include "Bounds.h"
-#include "ParamsGui.h"
 
-Bounds::Bounds(std::string name)
-: Params(name) {
+Bounds::Bounds()
+: Params() {
 }
 
-SimpleCubeBounds::SimpleCubeBounds(std::string name)
-: Bounds(name) {
-  add(size.set("Size", 2, 0, 6));
+SimpleCubeBounds::SimpleCubeBounds()
+: Bounds() {
+  add(_size
+      .setKey("size")
+      .setName("Size")
+      .setValueAndDefault(6)
+      .setRange(0, 10));
 }
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
@@ -30,7 +33,7 @@ static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
 }
 
 bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
-  float bound = size.get() / 2;
+  float bound = size() / 2;
   bool changed = false;
   changed |= reflectVal(&velocity->x, &position->x, -bound, bound);
   changed |= reflectVal(&velocity->y, &position->y, -bound, bound);
@@ -39,26 +42,8 @@ bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
 }
 
 ofVec3f SimpleCubeBounds::randomPoint() const {
-  float bound = size.get() / 2;
+  float bound = size() / 2;
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),
                  ofRandom(-bound, bound));
-}
-
-class SimpleCubeBoundsGui
-: public AbstractParamsGui {
-public:
-  SimpleCubeBoundsGui(SimpleCubeBounds& params)
-  : AbstractParamsGui(params)
-  , _params(params) { }
-protected:
-  void addControls() override {
-    addSlider(_params.size);
-  }
-private:
-  SimpleCubeBounds& _params;
-};
-
-ParamsGui* SimpleCubeBounds::createGui() {
-  return new SimpleCubeBoundsGui(*this);
 }

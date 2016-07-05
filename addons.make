@@ -1,8 +1,8 @@
-ofxDatGui
+ofxChoreograph
 ofxGui
+ofxGuiExtended
 ofxLiquidEvent
 ofxLoggerChannel
-ofxMSATimer
-ofxPostProcessing
+ofxSyphon
 ofxTextAlign
 ofxXmlSettings

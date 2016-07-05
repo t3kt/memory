@@ -33,15 +33,19 @@ class AbstractThresholdRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params(std::string);
+    Params();
 
-    ofParameter<bool> enabled;
-    ofParameter<ofFloatColor> color;
+    bool enabled() const { return _enabled.get(); }
+    void setEnabled(bool enabled) { _enabled.set(enabled); }
+
     FloatValueRange range;
+  private:
+    TParam<bool> _enabled;
   };
 
-  AbstractThresholdRenderer(const Params& params)
-  : _params(params) {}
+  AbstractThresholdRenderer(const Params& params, const ofFloatColor& color)
+  : _params(params)
+  , _color(color) {}
 
   void update(const State& state);
   void draw(const State& state);
@@ -49,6 +53,7 @@ protected:
   virtual void populateThreshData(ThreshData* data) = 0;
 private:
   const Params& _params;
+  const ofFloatColor& _color;
   ThreshData _data;
 };
 
@@ -56,8 +61,8 @@ template<typename T>
 class ThresholdRenderer
 : public AbstractThresholdRenderer {
 public:
-  ThresholdRenderer(ObjectManager<T>& objects, const Params& params)
-  : AbstractThresholdRenderer(params)
+  ThresholdRenderer(ObjectManager<T>& objects, const Params& params, const ofFloatColor& color)
+  : AbstractThresholdRenderer(params, color)
   , _objects(objects) { }
 protected:
   void populateThreshData(ThreshData* data) override {

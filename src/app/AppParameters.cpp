@@ -7,53 +7,73 @@
 //
 
 #include "AppParameters.h"
-#include "ParamsGui.h"
 
 DebugParams::DebugParams()
-: Params("Debug") {
-  add(showLog.set("Show Log", false));
-  add(showBounds.set("Show Bounds", false));
-  add(showStatus.set("Show Status", true));
+: Params() {
+  add(_showLog
+      .setKey("showLog")
+      .setName("Show Log")
+      .setValueAndDefault(false));
+  add(_showBounds
+      .setKey("showBounds")
+      .setName("Show Bounds")
+      .setValueAndDefault(false));
+  add(_showStatus
+      .setKey("showStatus")
+      .setName("Show Status")
+      .setValueAndDefault(true));
 }
 
-class DebugParamsGui
-: public AbstractParamsGui {
-public:
-  DebugParamsGui(DebugParams& params)
-  : AbstractParamsGui(params)
-  , _params(params) { }
-protected:
-  void addControls() override;
-private:
-  DebugParams& _params;
-};
-
-void DebugParamsGui::addControls() {
-  addToggle(_params.showLog);
-  addToggle(_params.showBounds);
-  addToggle(_params.showStatus);
+CameraParams::CameraParams()
+: ::Params() {
+  add(_spinEnabled
+      .setKey("spinEnabled")
+      .setName("Spin Enabled")
+      .setValueAndDefault(false));
+  add(_spinRate
+      .setKey("spinRate")
+      .setName("Spin Rate")
+      .setValueAndDefault(ofVec3f(2, 4, 5))
+      .setRange(ofVec3f(-10), ofVec3f(10)));
 }
 
-ParamsGui* DebugParams::createGui() {
-  return new DebugParamsGui(*this);
+CoreParams::CoreParams()
+: ::Params() {
+  add(clock
+      .setKey("clock")
+      .setName("Clock"));
+  add(bounds
+      .setKey("bounds")
+      .setName("Bounds"));
+  add(debug
+      .setKey("debug")
+      .setName("Debug"));
+  add(camera
+      .setKey("camera")
+      .setName("Camera"));
+#ifdef ENABLE_SYPHON
+  add(_syphonEnabled
+      .setKey("syphonEnabled")
+      .setName("Enable Syphon")
+      .setValueAndDefault(false));
+#endif
 }
 
 MemoryAppParameters::MemoryAppParameters()
-: bounds("Bounds") {
-  add(clock);
-  add(observers);
-  add(occurrences);
-  add(animations);
-  add(bounds
-      .set(6)
-      .setParamRange(0, 10));
-  add(debug);
-}
-
-void MemoryAppParameters::initGui(ofxPanel &gui) {
-  gui.setup(*this);
-  observers.initPanel(gui.getGroup(observers.getName()));
-  occurrences.initPanel(gui.getGroup(occurrences.getName()));
-  animations.initPanel(gui.getGroup(animations.getName()));
-  debug.initPanel(gui.getGroup(debug.getName()));
+: ::Params() {
+  add(core
+      .setKey("core")
+      .setName("Core"));
+  add(observers
+      .setKey("observers")
+      .setName("Observers"));
+  add(occurrences
+      .setKey("occurrences")
+      .setName("Occurrences"));
+  add(animations
+      .setKey("animations")
+      .setName("Animations"));
+  add(colors
+      .setKey("colors")
+      .setName("Colors"));
 }

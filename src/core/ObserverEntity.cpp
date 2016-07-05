@@ -12,32 +12,26 @@
 #include <ofMain.h>
 
 ObserverEntity::Params::Params()
-: ::ParticleObject::Params("Observers")
-, lifetime("Lifetime Range") {
-  add(lifetime);
-  lifetime.set(1, 4);
-  lifetime.setParamRange(0, 240);
-  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
-  add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
+: ::ParticleObject::Params() {
+  add(lifetime
+      .setKey("lifetime")
+      .setName("Lifetime Range")
+      .setParamValuesAndDefaults(1, 4)
+      .setParamRanges(0, 240));
 }
 
-void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
-//  panel.getGroup("Spawn Area").minimize();
-//  panel.getGroup("Color").minimize();
-}
-
-shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
+shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state, const ofFloatColor& color) {
   ofVec3f pos = bounds.randomPoint();
   float life = params.lifetime.getValue();
-  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, params, state));
+  return std::make_shared<ObserverEntity>(pos, life, params, state, color);
 }
 
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
-: ParticleObject(pos, params)
-, _startTime(state.time)
+ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state, const ofFloatColor& color)
+: ParticleObject(pos, params, state)
 , _totalLifetime(life)
 , _params(params)
-{
+, _color(color)
+, _lifeFraction(1) {
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
@@ -63,24 +57,8 @@ void ObserverEntity::handleDeath() {
   }
 }
 
-void ObserverEntity::draw(const State &state) {
-  float alpha = _lifeFraction;
-  if (alpha <= 0) {
-    return;
-  }
-  ofFloatColor color = _params.color.get();
-  color.a *= alpha;
-  
-  ofPushStyle();
-  ofFill();
-  ofSetColor(color);
-  ofDrawSphere(_position, _params.drawRadius.get());
-  ofPopStyle();
-}
-
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
-  os << ", startTime: " << _startTime
-      << ", totalLifetime: " << _totalLifetime
+  os << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction;
 }
