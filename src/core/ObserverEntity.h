@@ -29,9 +29,6 @@ public:
   class Params : public ParticleObject::Params {
   public:
     Params();
-
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
     
     RandomValueSupplier<float> lifetime;
   };

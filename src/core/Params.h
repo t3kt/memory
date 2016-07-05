@@ -12,6 +12,7 @@
 #include <string>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <vector>
 #include "Common.h"
 #include "JsonIO.h"
 
@@ -134,9 +135,20 @@ public:
     return *this;
   }
 
-  virtual Json to_json() const override = 0;
+  void add(Params& params) {
+    ofParameterGroup::add(params);
+    _paramBases.push_back(&params);
+  }
 
-  virtual void read_json(const Json& val) override = 0;
+  template<typename T>
+  void add(TParam<T>& param) {
+    ofParameterGroup::add(param);
+    _paramBases.push_back(&param);
+  }
+
+  Json to_json() const override;
+
+  void read_json(const Json& val) override;
 
   void readJsonField(const Json& obj) override;
 
@@ -144,6 +156,7 @@ public:
   virtual bool hasDefaults() const { return false; }
 private:
   std::string _key;
+  std::vector<TParamInfoBase*> _paramBases;
 };
 
 template<typename T>
@@ -204,10 +217,6 @@ public:
   T getLerped(float amount) const {
     return getInterpolated(lowValue(), highValue(), amount);
   }
-
-  Json to_json() const override;
-
-  void read_json(const Json& val) override;
 
   virtual void resetToDefaults() override {
     _lowValue.resetToDefault();

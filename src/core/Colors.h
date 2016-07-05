@@ -36,9 +36,6 @@ class ColorTheme
 public:
   ColorTheme();
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-
   const ofFloatColor& getColor(ColorId colorId) const;
 private:
   void registerColorFields(std::initializer_list<std::reference_wrapper<TParam<ofFloatColor>>> params);

@@ -26,9 +26,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     bool enabled() const { return _enabled.get(); }
     float delay() const { return _delay.get(); }
     float duration() const { return _duration.get(); }
@@ -74,9 +71,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     FloatValueRange radius;
     FloatValueRange alpha;
   };
@@ -114,9 +108,6 @@ public:
   class Params : public ::Params {
   public:
     Params();
-
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
 
     void resetToDefaults() override {
       _duration.resetToDefault();

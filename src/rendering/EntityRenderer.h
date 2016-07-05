@@ -33,8 +33,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
     virtual void resetToDefaults() override {
       _size.resetToDefault();
       fadeIn.resetToDefaults();
@@ -104,9 +102,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     virtual void resetToDefaults() override {
       showRange.resetToDefault();
       AbstractEntityRenderer::Params::resetToDefaults();
@@ -144,8 +139,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
     void resetToDefaults() override {
       _enabled.resetToDefault();
       connectionCountRange.resetToDefaults();

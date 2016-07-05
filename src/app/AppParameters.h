@@ -24,9 +24,6 @@ class DebugParams : public Params {
 public:
   DebugParams();
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-
   bool showLog() const { return _showLog.get(); }
   bool showBounds() const { return _showBounds.get(); }
   bool showStatus() const { return _showStatus.get(); }
@@ -44,9 +41,6 @@ private:
 class CameraParams : public Params {
 public:
   CameraParams();
-
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
 
   void resetToDefaults() override {
     _spinEnabled.resetToDefault();
@@ -76,9 +70,6 @@ public:
 
   bool hasDefaults() const override { return true; }
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-
 #ifdef ENABLE_SYPHON
   bool syphonEnabled() const { return _syphonEnabled.get(); }
 #endif
@@ -102,9 +93,6 @@ public:
 
   void readFromFile(std::string filepath);
   void writeToFile(std::string filepath) const;
-
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
 
   void resetToDefaults() override {
     core.resetToDefaults();

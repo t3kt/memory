@@ -34,9 +34,6 @@ public:
     return *this;
   }
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-
   bool reflect(ofVec3f* velocity, ofVec3f* position) const override;
 
   ofVec3f randomPoint() const override;

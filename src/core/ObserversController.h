@@ -31,9 +31,6 @@ public:
   class Params : public ::Params {
   public:
     Params();
-
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
     
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;

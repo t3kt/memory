@@ -23,9 +23,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     float damping() const { return _damping.get(); }
     float speed() const { return _speed.get(); }
 
@@ -89,9 +86,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     bool enabled() const { return _enabled.get(); }
 
     void setEnabled(bool enabled) { _enabled.set(enabled); }
@@ -145,9 +139,6 @@ public:
   class Params : public ::Params {
   public:
     Params();
-
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
 
     bool enabled() const { return _enabled.get(); }
     float scale() const { return _scale.get(); }

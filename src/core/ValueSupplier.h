@@ -49,9 +49,6 @@ class RandomHsbFloatColorSupplier : public Params {
 public:
   RandomHsbFloatColorSupplier();
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-
   RandomHsbFloatColorSupplier& setHue(float low, float high) {
     hueRange.setParamValues(low, high);
     return *this;

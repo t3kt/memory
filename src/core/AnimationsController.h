@@ -27,9 +27,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     bool enabled() const { return _enabled.get(); }
 
     ExpandingSphereAnimation::Params observerDied;

@@ -22,9 +22,6 @@ public:
   public:
     Params();
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
-
     bool paused() const { return _paused.get(); }
     float rate() const { return _rate.get(); }
 
