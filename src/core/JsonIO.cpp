@@ -228,12 +228,28 @@ void CameraParams::read_json(const Json& obj) {
   });
 }
 
-Json MemoryAppParameters::to_json() const {
+Json CoreParams::to_json() const {
   return paramsToObject({
     clock,
+    camera,
     debug,
-    colors,
     bounds,
+  });
+}
+
+void CoreParams::read_json(const Json &obj) {
+  readJsonIntoParams(obj, {
+    clock,
+    camera,
+    debug,
+    bounds,
+  });
+}
+
+Json MemoryAppParameters::to_json() const {
+  return paramsToObject({
+    core,
+    colors,
     animations,
     observers,
     occurrences,
@@ -245,10 +261,8 @@ Json MemoryAppParameters::to_json() const {
 
 void MemoryAppParameters::read_json(const Json& obj) {
   readJsonIntoParams(obj, {
-    clock,
-    debug,
+    core,
     colors,
-    bounds,
     animations,
     observers,
     occurrences,

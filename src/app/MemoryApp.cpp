@@ -49,10 +49,10 @@ void MemoryApp::setup() {
   ofEnableAlphaBlending();
   ofDisableDepthTest();
   
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.bounds, _state, _appParams.colors);
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
   _observers->setup(_state);
   
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.bounds, *_observers, _state, _appParams.colors);
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state, _appParams.colors);
   _occurrences->setup(_state);
   
   _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
@@ -60,7 +60,7 @@ void MemoryApp::setup() {
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
 
-  _clock = std::make_shared<Clock>(_appParams.clock, _state);
+  _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
   _clock->setup();
 
   _fpsProvider = std::make_shared<FPSInfoProvider>();
@@ -91,7 +91,7 @@ void MemoryApp::update() {
 
   // Slide the logger screen in and out.
   ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
-  if (_appParams.debug.showLog()) {
+  if (_appParams.core.debug.showLog()) {
     bounds.y = ofLerp(bounds.y, 0, 0.2);
   }
   else {
@@ -99,7 +99,7 @@ void MemoryApp::update() {
   }
   _screenLoggerChannel->setDrawBounds(bounds);
   _fpsProvider->update(_state);
-//  _NEW_gui->update();
+  _gui->update();
 }
 
 void MemoryApp::draw() {
@@ -112,8 +112,8 @@ void MemoryApp::draw() {
   ofPushMatrix();
   ofPushStyle();
 
-  if (_appParams.camera.spinEnabled()) {
-    ofVec3f dr = _appParams.camera.spinRate() * _state.timeDelta;
+  if (_appParams.core.camera.spinEnabled()) {
+    ofVec3f dr = _appParams.core.camera.spinRate() * _state.timeDelta;
     _rotation += dr;
   }
   ofRotateX(_rotation.x);
@@ -129,11 +129,11 @@ void MemoryApp::draw() {
   _occurrences->draw(_state);
   _animations->draw(_state);
 
-  if (_appParams.debug.showBounds()) {
+  if (_appParams.core.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
     ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
-    ofDrawBox(_appParams.bounds.size());
+    ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
   }
   
@@ -151,7 +151,7 @@ void MemoryApp::draw() {
   _gui->draw();
   _screenLoggerChannel->draw();
 
-  if (_appParams.debug.showStatus()) {
+  if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
   }
 //  _NEW_gui->draw();
@@ -163,7 +163,7 @@ void MemoryApp::keyPressed(int key) {
       _cam.reset();
       break;
     case 'l':
-      _appParams.debug.setShowLog(!_appParams.debug.showLog());
+      _appParams.core.debug.setShowLog(!_appParams.core.debug.showLog());
       break;
     case ' ':
       _clock->toggleState();

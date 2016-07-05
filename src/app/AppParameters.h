@@ -48,12 +48,42 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
+  void resetToDefaults() override {
+    _spinEnabled.resetToDefault();
+    _spinRate.resetToDefault();
+  }
+
+  bool hasDefaults() const override { return true; }
+
   bool spinEnabled() const { return _spinEnabled.get(); }
   const ofVec3f& spinRate() const { return _spinRate.get(); }
 
 private:
   TParam<bool> _spinEnabled;
   TParam<ofVec3f> _spinRate;
+};
+
+class CoreParams : public Params {
+public:
+  CoreParams();
+
+  void resetToDefaults() override {
+    clock.resetToDefaults();
+    camera.resetToDefaults();
+    bounds.resetToDefaults();
+    debug.resetToDefaults();
+  }
+
+  bool hasDefaults() const override { return true; }
+
+  Json to_json() const override;
+  void read_json(const Json& obj) override;
+
+  Clock::Params clock;
+  CameraParams camera;
+  SimpleCubeBounds bounds;
+  DebugParams debug;
+
 };
 
 class MemoryAppParameters : public Params {
@@ -66,24 +96,31 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  void initGui(ofxPanel& gui);
+  void resetToDefaults() override {
+    core.resetToDefaults();
+    colors.resetToDefaults();
+    animations.resetToDefaults();
+    observers.resetToDefaults();
+    occurrences.resetToDefaults();
+  }
+
+  bool hasDefaults() const override { return true; }
 
 #ifdef ENABLE_SYPHON
   bool syphonEnabled() const { return _syphonEnabled.get(); }
 #endif
 
-  Clock::Params clock;
-  DebugParams debug;
+  CoreParams core;
   ColorTheme colors;
-  SimpleCubeBounds bounds;
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
-  CameraParams camera;
 private:
 #ifdef ENABLE_SYPHON
   TParam<bool> _syphonEnabled;
 #endif
+
+  friend class AppGuiImpl;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

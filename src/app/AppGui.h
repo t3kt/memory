@@ -10,9 +10,14 @@
 #define AppGui_h
 
 #include <memory>
+#include <vector>
 #include <ofxLiquidEvent.h>
 
 #include "AppParameters.h"
+
+class ofxFpsPlotter;
+
+class AppGuiImpl;
 
 class AppGui {
 public:
@@ -27,9 +32,7 @@ public:
 
 private:
   MemoryAppParameters& _appParams;
-
-  std::shared_ptr<ofxBaseGui> _actions;
-  std::shared_ptr<ofxBaseGui> _settings;
+  std::shared_ptr<AppGuiImpl> _impl;
 };
 
 #endif /* AppGui_h */

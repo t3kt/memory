@@ -10,40 +10,132 @@
 #include <ofxGuiExtended.h>
 
 class ActionsGui
-: public ofxPanelExtended {
+: public ofxGuiGroupExtended {
 public:
   ActionsGui(ofxLiquidEvent<void>& onLoad, ofxLiquidEvent<void>& onSave) {
     setup();
     setName("Actions");
 
-    auto group = new ofxGuiGroupExtended();
-    add(group);
-
     auto loadButton = new ofxMinimalButton("load");
     loadButton->addListener(&onLoad, &ofxLiquidEvent<void>::notifyListeners);
-    group->add(loadButton);
+    add(loadButton);
 
     auto saveButton = new ofxMinimalButton("save");
     saveButton->addListener(&onSave, &ofxLiquidEvent<void>::notifyListeners);
-    group->add(saveButton);
+    add(saveButton);
   }
 };
+
+class AppGuiImpl {
+public:
+  AppGuiImpl(MemoryAppParameters& appParams,
+             ofxLiquidEvent<void>& onLoad,
+             ofxLiquidEvent<void>& onSave);
+
+  void update() {
+    _fps.update();
+  }
+  void draw() {
+    _pages.draw();
+    _actions.draw();
+  }
+private:
+  void setupCorePage();
+  void setupObserversPage();
+  void setupOccurrencesPage();
+  void setupAnimationsPage();
+  void setupColorsPage();
+
+  MemoryAppParameters& _appParams;
+
+  ofxGuiPage _corePage;
+  ofxGuiPage _observersPage;
+  ofxGuiPage _occurrencesPage;
+  ofxGuiPage _animationsPage;
+  ofxGuiPage _colorsPage;
+
+  ActionsGui _actions;
+
+  ofxTabbedPages _pages;
+
+  ofxFpsPlotter _fps;
+};
+
+AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
+                       ofxLiquidEvent<void>& onLoad,
+                       ofxLiquidEvent<void>& onSave)
+: _appParams(appParams)
+, _actions(onLoad, onSave) {
+  _pages.setup();
+  _pages.setSize(400, 700);
+
+  setupCorePage();
+  _pages.add(&_corePage);
+
+  setupObserversPage();
+  _pages.add(&_observersPage);
+
+  setupOccurrencesPage();
+  _pages.add(&_occurrencesPage);
+
+  setupAnimationsPage();
+  _pages.add(&_animationsPage);
+
+  setupColorsPage();
+  _pages.add(&_colorsPage);
+
+  _actions.setPosition(_pages.getWidth() + 10, 0);
+}
+
+void AppGuiImpl::setupCorePage() {
+  _corePage.setup("Core");
+  //  _corePage.add(&_corePanel);
+//  corePanel->add(&_fps);
+//  corePanel->add(new ActionsGui(onLoad, onSave));
+  _corePage.add(new ofxGuiGroupExtended(_appParams.core));
+  //  _corePage.add(&_corePanel);
+  //  _corePanel.add(new ofxGuiGroupExtended(_appParams.debug));
+//  corePanel->add(new ofxGuiGroupExtended(_appParams.camera));
+//  corePanel->add(new ofxGuiGroupExtended(_appParams.bounds));
+#ifdef ENABLE_SYPHON
+  //    auto syphonGroup = new ofxGuiGroupExtended();
+  //    syphonGroup->setName("Syphon");
+  //    syphonGroup->add(new ofxMinimalToggle(appParams._syphonEnabled));
+  //    corePanel->add(syphonGroup);
+#endif
+}
+
+void AppGuiImpl::setupObserversPage() {
+  _observersPage.setup("Observers");
+  _observersPage.add(new ofxGuiGroupExtended(_appParams.observers));
+}
+
+void AppGuiImpl::setupOccurrencesPage() {
+  _occurrencesPage.setup("Occurrences");
+  _occurrencesPage.add(new ofxGuiGroupExtended(_appParams.occurrences));
+}
+
+void AppGuiImpl::setupAnimationsPage() {
+  _animationsPage.setup("Animations");
+  _animationsPage.add(new ofxGuiGroupExtended(_appParams.animations));
+}
+
+void AppGuiImpl::setupColorsPage() {
+  _colorsPage.setup("Colors");
+  _colorsPage.add(new ofxGuiGroupExtended(_appParams.colors));
+}
 
 AppGui::AppGui(MemoryAppParameters& appParams)
 : _appParams(appParams) { }
 
 void AppGui::setup() {
-  _actions = std::make_shared<ActionsGui>(onLoad, onSave);
-  _actions->setPosition(0, 0);
-  _settings = std::make_shared<ofxPanelExtended>(_appParams);
-  _settings->setPosition(0, _actions->getHeight() + 5);
-  _settings->setName("Settings");
+  _impl = std::make_shared<AppGuiImpl>(_appParams, onLoad, onSave);
 }
 
 void AppGui::update() {
+  _impl->update();
 }
 
 void AppGui::draw() {
-  _actions->draw();
-  _settings->draw();
+  _impl->draw();
 }

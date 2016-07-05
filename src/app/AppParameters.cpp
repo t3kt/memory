@@ -37,11 +37,27 @@ CameraParams::CameraParams()
       .setRange(ofVec3f(-10), ofVec3f(10)));
 }
 
-MemoryAppParameters::MemoryAppParameters()
+CoreParams::CoreParams()
 : ::Params() {
   add(clock
       .setKey("clock")
       .setName("Clock"));
+  add(bounds
+      .setKey("bounds")
+      .setName("Bounds"));
+  add(debug
+      .setKey("debug")
+      .setName("Debug"));
+  add(camera
+      .setKey("camera")
+      .setName("Camera"));
+}
+
+MemoryAppParameters::MemoryAppParameters()
+: ::Params() {
+  add(core
+      .setKey("core")
+      .setName("Core"));
   add(observers
       .setKey("observers")
       .setName("Observers"));
@@ -54,23 +70,10 @@ MemoryAppParameters::MemoryAppParameters()
   add(colors
       .setKey("colors")
       .setName("Colors"));
-  add(bounds
-      .setKey("bounds")
-      .setName("Bounds"));
-  add(debug
-      .setKey("debug")
-      .setName("Debug"));
-  add(camera
-      .setKey("camera")
-      .setName("Camera"));
 #ifdef ENABLE_SYPHON
   add(_syphonEnabled
       .setKey("syphonEnabled")
       .setName("Enable Syphon")
       .setValueAndDefault(false));
 #endif
-}
-
-void MemoryAppParameters::initGui(ofxPanel &gui) {
-  gui.setup(*this);
 }
