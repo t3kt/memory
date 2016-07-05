@@ -24,6 +24,7 @@
 		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		3233364B1D2BC4CC00A000BD /* RenderingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336491D2BC4CC00A000BD /* RenderingController.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -177,6 +178,8 @@
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		323336491D2BC4CC00A000BD /* RenderingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderingController.cpp; path = rendering/RenderingController.cpp; sourceTree = "<group>"; };
+		3233364A1D2BC4CC00A000BD /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = rendering/RenderingController.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -478,6 +481,8 @@
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
 				3451DF47D28415272A387305 /* ThresholdRenderer.cpp */,
 				903F7B2C593FDFFB36DC3688 /* ThresholdRenderer.h */,
+				323336491D2BC4CC00A000BD /* RenderingController.cpp */,
+				3233364A1D2BC4CC00A000BD /* RenderingController.h */,
 			);
 			name = rendering;
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3233364B1D2BC4CC00A000BD /* RenderingController.cpp in Sources */,
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,

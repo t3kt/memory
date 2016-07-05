@@ -30,10 +30,7 @@ void MemoryApp::setup() {
     saveSettings();
   };
 
-  ofEnableAlphaBlending();
-  ofDisableDepthTest();
-  _postProc.init();
-  _postProc.createPass<BloomPass>()->setEnabled(true);
+  _renderingController = RenderingController::create(_appParams.core.camera, _appParams.colors);
   
   _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
   _observers->setup(_state);
@@ -64,6 +61,7 @@ void MemoryApp::update() {
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);
+  _renderingController->update(_state);
 
   // Slide the logger screen in and out.
   ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
@@ -78,27 +76,7 @@ void MemoryApp::update() {
 }
 
 void MemoryApp::draw() {
-  ofBackground(_appParams.colors.getColor(ColorId::BACKGROUND));
-  glPushAttrib(GL_ENABLE_BIT);
-  //glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
-  _postProc.begin(_cam);
-  
-  ofPushMatrix();
-  ofPushStyle();
-
-  if (_appParams.core.camera.spinEnabled()) {
-    ofVec3f dr = _appParams.core.camera.spinRate() * _state.timeDelta;
-    _rotation += dr;
-  }
-  ofRotateX(_rotation.x);
-  ofRotateY(_rotation.y);
-  ofRotateZ(_rotation.z);
-  
-  auto winSize = ofGetWindowSize();
-  auto size = ::min(winSize.x, winSize.y) / 2;
-  size *= 0.4;
-  ofScale(size, size, size);
+  _renderingController->beginDraw(_state);
   
   _observers->draw(_state);
   _occurrences->draw(_state);
@@ -111,11 +89,8 @@ void MemoryApp::draw() {
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
   }
-  
-  ofPopMatrix();
-  ofPopStyle();
-  _postProc.end();
-  glPopAttrib();
+
+  _renderingController->endDraw(_state);
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.syphonEnabled()) {
@@ -134,7 +109,7 @@ void MemoryApp::draw() {
 void MemoryApp::keyPressed(int key) {
   switch (key) {
     case 'h':
-      _cam.reset();
+      _renderingController->resetCamera();
       break;
     case 'l':
       _appParams.core.debug.setShowLog(!_appParams.core.debug.showLog());

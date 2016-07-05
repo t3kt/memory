@@ -19,6 +19,7 @@
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
+#include "RenderingController.h"
 #include "Status.h"
 #include "AppGui.h"
 #include "Clock.h"
@@ -45,13 +46,11 @@ private:
   shared_ptr<OccurrencesController> _occurrences;
   shared_ptr<AnimationsController> _animations;
   shared_ptr<StatusInfoController> _statusController;
-  ofEasyCam _cam;
-  ofxPostProcessing _postProc;
+  shared_ptr<RenderingController> _renderingController;
   shared_ptr<AppGui> _gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<Clock> _clock;
-  ofVec3f _rotation;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
 #endif
