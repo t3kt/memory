@@ -77,10 +77,6 @@ void MemoryApp::setup() {
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
-
-//  _NEW_gui = std::make_shared<AppGui>(_appParams);
-//  _NEW_gui->setup();
-  //...
 }
 
 void MemoryApp::update() {
@@ -178,33 +174,6 @@ void MemoryApp::keyPressed(int key) {
       break;
     case 'w':
       saveSettings();
-      break;
-    //TEMP FOR TESTING
-    case 'z':
-      std::cout << "______params dump_____" << std::endl;
-      prettyPrintJsonToStream(_appParams.to_json(), std::cout);
-      std::cout << std::endl;
-      std::cout << "______test dump_______" << std::endl;
-      Json obj = Json::object {
-        {"foo", 12},
-        {
-          "arr", Json::array {
-            "stuff",
-            93,
-            false,
-            Json::object {
-              {"zzzz", Json::array {9, "hello"}},
-            },
-          },
-        },
-        {
-          "zz",
-          Json::object {
-          },
-        },
-      };
-      prettyPrintJsonToStream(obj, std::cout);
-      std::cout << std::endl;
       break;
   }
 }
