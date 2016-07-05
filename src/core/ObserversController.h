@@ -19,14 +19,12 @@
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
 #include "EntityRenderer.h"
-#include "Status.h"
 #include "Colors.h"
 
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
 using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
 
-class ObserversController
-: public StatusInfoProvider {
+class ObserversController {
 public:
   class Params : public ::Params {
   public:
@@ -54,8 +52,6 @@ public:
   std::size_t count() const {
     return _observers.size();
   }
-
-  const StatusInfo& getStatusInfo() const { return _status; }
   
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
@@ -73,8 +69,6 @@ private:
   shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
   shared_ptr<SpatialNoiseForce<ObserverEntity>> _spatialNoiseForce;
   shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
-  StatusInfo _status;
-  std::size_t STATUS_COUNT;
 };
 
 #endif /* ObserversController_h */

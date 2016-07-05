@@ -17,11 +17,9 @@
 #include "Events.h"
 #include "OccurrencesController.h"
 #include "ObserversController.h"
-#include "Status.h"
 #include "Colors.h"
 
-class AnimationsController
-: public StatusInfoProvider {
+class AnimationsController {
 public:
   class Params : public ::Params {
   public:
@@ -49,15 +47,13 @@ public:
   void update(const State& state);
   void draw(const State& state);
 
-  const StatusInfo& getStatusInfo() const override { return _status; }
+  int count() const { return _animations.size(); }
   
 private:
   const Params& _params;
   const ColorTheme& _colors;
   ObjectManager<AnimationObject> _animations;
   TimedActionSet _timedActions;
-  StatusInfo _status;
-  std::size_t STATUS_COUNT;
 };
 
 #endif /* AnimationsController_h */

@@ -28,8 +28,6 @@
 #include <ofxSyphon.h>
 #endif
 
-class FPSInfoProvider;
-
 class MemoryApp : public ofBaseApp {
 public:
   void setup() override;
@@ -52,7 +50,6 @@ private:
   shared_ptr<AppGui> _gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
-  shared_ptr<FPSInfoProvider> _fpsProvider;
   shared_ptr<Clock> _clock;
   ofVec3f _rotation;
 #ifdef ENABLE_SYPHON

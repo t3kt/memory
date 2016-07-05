@@ -18,15 +18,13 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "Behavior.h"
-#include "Status.h"
 #include "Colors.h"
 #include "EntityRenderer.h"
 
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
 
-class OccurrencesController
-: public StatusInfoProvider {
+class OccurrencesController {
 public:
   class Params : public ::Params {
   public:
@@ -52,10 +50,6 @@ public:
   std::size_t count() const {
     return _occurrences.size();
   }
-
-  const StatusInfo& getStatusInfo() const override {
-    return _status;
-  }
   
   OccurrenceEvent occurrenceSpawned;
   OccurrenceEvent occurrenceSpawnFailed;
@@ -75,8 +69,6 @@ private:
   shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
   shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
   shared_ptr<SpatialNoiseForce<OccurrenceEntity>> _spatialNoiseForce;
-  StatusInfo _status;
-  std::size_t STATUS_COUNT;
 };
 
 #endif /* OccurrencesController_h */

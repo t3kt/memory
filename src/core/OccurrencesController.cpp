@@ -59,7 +59,6 @@ void OccurrencesController::setup(const State &state) {
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }
-  STATUS_COUNT = _status.registerLine("Occurrences:");
 }
 
 void OccurrencesController::update(const State &state) {
@@ -73,7 +72,6 @@ void OccurrencesController::update(const State &state) {
     spawnOccurrence(state);
   }
   _renderer->update(state);
-  _status.setValue(STATUS_COUNT, ofToString(count()));
 }
 
 void OccurrencesController::draw(const State &state) {

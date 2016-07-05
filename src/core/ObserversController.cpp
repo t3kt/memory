@@ -60,7 +60,6 @@ void ObserversController::setup(const State &state) {
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
-  STATUS_COUNT = _status.registerLine("Observers:");
 }
 
 void ObserversController::update(const State &state) {
@@ -81,11 +80,9 @@ void ObserversController::update(const State &state) {
 
   _observerRenderer->update(state);
   _thresholdRenderer->update(state);
-  _status.setValue(STATUS_COUNT, ofToString(count()));
 }
 
 void ObserversController::draw(const State &state) {
-//  _observers.draw(state);
   _observerRenderer->draw(state);
   _thresholdRenderer->draw(state);
 }

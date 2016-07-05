@@ -13,10 +13,8 @@
 #include <ofParameter.h>
 #include "State.h"
 #include "Params.h"
-#include "Status.h"
 
-class Clock
-: public StatusInfoProvider {
+class Clock {
 public:
   class Params : public ::Params {
   public:
@@ -40,7 +38,9 @@ public:
 
   void update();
 
-  const StatusInfo& getStatusInfo() const { return _status; }
+  bool isRunning() const { return _isRunning; }
+
+  float time() const { return _state.time; }
 private:
   void start();
   void stop();
@@ -52,9 +52,6 @@ private:
   Params& _params;
   float _lastTime;
   bool _isRunning;
-  StatusInfo _status;
-  std::size_t STATUS_STATE;
-  std::size_t STATUS_TIME;
 };
 
 #endif /* Clock_h */

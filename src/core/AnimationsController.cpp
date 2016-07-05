@@ -35,7 +35,6 @@ AnimationsController::AnimationsController(const AnimationsController::Params& p
 }
 
 void AnimationsController::setup() {
-  STATUS_COUNT = _status.registerLine("Animations:");
 }
 
 void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, const State& state) {
@@ -56,7 +55,6 @@ void AnimationsController::update(const State &state) {
   _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
     ofLogNotice() << "Animation ended: " << *animation;
   });
-  _status.setValue(STATUS_COUNT, ofToString(_animations.size()));
 }
 
 void AnimationsController::draw(const State &state) {

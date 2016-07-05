@@ -8,6 +8,10 @@
 
 #include "Status.h"
 #include <ofMain.h>
+#include "Clock.h"
+#include "ObserversController.h"
+#include "OccurrencesController.h"
+#include "AnimationsController.h"
 
 const float LABEL_WIDTH = 150;
 const float VALUE_WIDTH = 60;
@@ -16,33 +20,32 @@ const float TOP = 5;
 const float RIGHT = 5;
 const float LINE_HEIGHT = 15;
 
-std::size_t StatusInfo::registerLine(std::string name) {
-  _lines.push_back(std::pair<std::string, std::string>(name, ""));
-  return _lines.size() - 1;
-}
-
-void StatusInfo::setValue(std::size_t index, std::string value) {
-  _lines[index].second = value;
-}
-
-void StatusInfoController::setup() {
+StatusInfoController::StatusInfoController(const Clock& clock,
+                                           const ObserversController& observers,
+                                           const OccurrencesController& occurrences,
+                                           const AnimationsController& animations)
+: _clock(clock)
+, _observers(observers)
+, _occurrences(occurrences)
+, _animations(animations) {
   _text.load(OF_TTF_MONO, 12);
   _text.setMinHeight(LINE_HEIGHT);
 }
 
 void StatusInfoController::draw() {
-  float lineHeight = LINE_HEIGHT;
   float y = TOP;
   float xValue = ofGetWidth() - VALUE_WIDTH - RIGHT;
   float xLabel = xValue - PADDING;
 
-  StatusInfo::StatusList allLines;
+  std::vector<std::pair<std::string, std::string>> lines;
 
-  for (auto provider : _providers) {
-    const StatusInfo& status = provider->getStatusInfo();
-    const StatusInfo::StatusList& lines = status.getLines();
-    allLines.insert(allLines.end(), lines.begin(), lines.end());
-  }
+  lines.emplace_back("State:",
+                     _clock.isRunning() ? "Playing" : "Paused");
+  lines.emplace_back("Time:", ofToString(_clock.time(), 2));
+  lines.emplace_back("FPS:", ofToString(ofGetFrameRate(), 2));
+  lines.emplace_back("Observers:", ofToString(_observers.count()));
+  lines.emplace_back("Occurrences:", ofToString(_occurrences.count()));
+  lines.emplace_back("Animations:", ofToString(_animations.count()));
 
   ofPushStyle();
   ofFill();
@@ -51,13 +54,13 @@ void StatusInfoController::draw() {
   ofDrawRectangle(xLabel - LABEL_WIDTH,
                   y - PADDING,
                   LABEL_WIDTH + PADDING + VALUE_WIDTH,
-                  lineHeight * allLines.size() + PADDING * 2);
+                  LINE_HEIGHT * lines.size() + PADDING * 2);
   ofPopStyle();
 
   ofPushStyle();
   ofSetColor(ofFloatColor::white);
 
-  for (const auto& line : allLines) {
+  for (const auto& line : lines) {
     _text.setMaxWidth(LABEL_WIDTH);
     _text.draw(line.first,
                xLabel, y,
@@ -68,7 +71,7 @@ void StatusInfoController::draw() {
                xValue, y,
                ofxTextAlign::HORIZONTAL_ALIGN_LEFT
                | ofxTextAlign::VERTICAL_ALIGN_TOP);
-    y += lineHeight;
+    y += LINE_HEIGHT;
   }
 
   ofPopStyle();

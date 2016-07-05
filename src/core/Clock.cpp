@@ -33,8 +33,6 @@ void Clock::setup() {
   _isRunning = true;
   _state.time = 0;
   _state.timeDelta = 0;
-  STATUS_STATE = _status.registerLine("State:");
-  STATUS_TIME = _status.registerLine("Time:");
 }
 
 void Clock::start() {
@@ -56,7 +54,6 @@ void Clock::update() {
       stop();
     }
     _state.timeDelta = 0;
-    _status.setValue(STATUS_STATE, "Paused");
   } else {
     if (!_isRunning) {
       start();
@@ -67,8 +64,5 @@ void Clock::update() {
     _state.timeDelta = delta;
     _state.time += delta;
     _lastTime = nowTime;
-    _status.setValue(STATUS_STATE, "Playing");
   }
-
-  _status.setValue(STATUS_TIME, ofToString(_state.time, 2));
 }

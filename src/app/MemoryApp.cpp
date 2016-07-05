@@ -10,22 +10,6 @@
 #include "Common.h"
 #include <memory>
 #include <iostream>
-#include <ofxGuiExtended.h>
-
-class FPSInfoProvider
-: public StatusInfoProvider {
-public:
-  void setup() {
-    FPS_LINE = _status.registerLine("FPS:");
-  }
-  void update(const State& state) {
-    _status.setValue(FPS_LINE, ofToString(ofGetFrameRate(), 2));
-  }
-  const StatusInfo& getStatusInfo() const { return _status; }
-private:
-  StatusInfo _status;
-  std::size_t FPS_LINE;
-};
 
 void MemoryApp::setup() {
   _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
@@ -65,16 +49,10 @@ void MemoryApp::setup() {
   _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
   _clock->setup();
 
-  _fpsProvider = std::make_shared<FPSInfoProvider>();
-  _fpsProvider->setup();
-
-  _statusController = std::make_shared<StatusInfoController>();
-  _statusController->setup();
-  _statusController->addProvider(_clock.get());
-  _statusController->addProvider(_fpsProvider.get());
-  _statusController->addProvider(_observers.get());
-  _statusController->addProvider(_occurrences.get());
-  _statusController->addProvider(_animations.get());
+  _statusController = std::make_shared<StatusInfoController>(*_clock,
+                                                             *_observers,
+                                                             *_occurrences,
+                                                             *_animations);
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
@@ -96,7 +74,6 @@ void MemoryApp::update() {
     bounds.y = ofLerp(bounds.y, -bounds.height, 0.2);
   }
   _screenLoggerChannel->setDrawBounds(bounds);
-  _fpsProvider->update(_state);
   _gui->update();
 }
 
