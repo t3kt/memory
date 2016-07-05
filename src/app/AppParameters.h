@@ -79,11 +79,21 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
+#ifdef ENABLE_SYPHON
+  bool syphonEnabled() const { return _syphonEnabled.get(); }
+#endif
+
   Clock::Params clock;
   CameraParams camera;
   SimpleCubeBounds bounds;
   DebugParams debug;
 
+private:
+#ifdef ENABLE_SYPHON
+  TParam<bool> _syphonEnabled;
+#endif
+
+  friend class AppGuiImpl;
 };
 
 class MemoryAppParameters : public Params {
@@ -106,21 +116,11 @@ public:
 
   bool hasDefaults() const override { return true; }
 
-#ifdef ENABLE_SYPHON
-  bool syphonEnabled() const { return _syphonEnabled.get(); }
-#endif
-
   CoreParams core;
   ColorTheme colors;
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
-private:
-#ifdef ENABLE_SYPHON
-  TParam<bool> _syphonEnabled;
-#endif
-
-  friend class AppGuiImpl;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

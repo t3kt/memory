@@ -234,6 +234,9 @@ Json CoreParams::to_json() const {
     camera,
     debug,
     bounds,
+#ifdef ENABLE_SYPHON
+    _syphonEnabled,
+#endif
   });
 }
 
@@ -243,6 +246,9 @@ void CoreParams::read_json(const Json &obj) {
     camera,
     debug,
     bounds,
+#ifdef ENABLE_SYPHON
+    _syphonEnabled,
+#endif
   });
 }
 
@@ -253,9 +259,6 @@ Json MemoryAppParameters::to_json() const {
     animations,
     observers,
     occurrences,
-#ifdef ENABLE_SYPHON
-    _syphonEnabled,
-#endif
   });
 }
 
@@ -266,9 +269,6 @@ void MemoryAppParameters::read_json(const Json& obj) {
     animations,
     observers,
     occurrences,
-#ifdef ENABLE_SYPHON
-    _syphonEnabled,
-#endif
   });
 }
 

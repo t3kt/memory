@@ -143,7 +143,7 @@ void MemoryApp::draw() {
   glPopAttrib();
 
 #ifdef ENABLE_SYPHON
-  if (_appParams.syphonEnabled()) {
+  if (_appParams.core.syphonEnabled()) {
     _syphonServer.publishScreen();
   }
 #endif

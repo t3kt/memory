@@ -68,6 +68,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
 , _actions(onLoad, onSave) {
   _pages.setup();
   _pages.setSize(400, 700);
+  _pages.setShowHeader(false);
 
   setupCorePage();
   _pages.add(&_corePage);
@@ -89,20 +90,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
 
 void AppGuiImpl::setupCorePage() {
   _corePage.setup("Core");
-  //  _corePage.add(&_corePanel);
-//  corePanel->add(&_fps);
-//  corePanel->add(new ActionsGui(onLoad, onSave));
   _corePage.add(new ofxGuiGroupExtended(_appParams.core));
-  //  _corePage.add(&_corePanel);
-  //  _corePanel.add(new ofxGuiGroupExtended(_appParams.debug));
-//  corePanel->add(new ofxGuiGroupExtended(_appParams.camera));
-//  corePanel->add(new ofxGuiGroupExtended(_appParams.bounds));
-#ifdef ENABLE_SYPHON
-  //    auto syphonGroup = new ofxGuiGroupExtended();
-  //    syphonGroup->setName("Syphon");
-  //    syphonGroup->add(new ofxMinimalToggle(appParams._syphonEnabled));
-  //    corePanel->add(syphonGroup);
-#endif
 }
 
 void AppGuiImpl::setupObserversPage() {
