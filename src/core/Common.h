@@ -10,9 +10,13 @@
 #define __behavior__Common__
 
 #include <ofVec3f.h>
+#include <ofColor.h>
+#include <ofxChoreograph.h>
 #include <iostream>
 #include <map>
 #include <stdexcept>
+
+using Time = choreograph::Time;
 
 ofVec3f createSignedNoiseVec3f(const ofVec3f& position);
 ofVec3f createRandomVec3f(const ofVec3f& mins,

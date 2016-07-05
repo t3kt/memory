@@ -9,6 +9,9 @@
 #ifndef EntityRenderer_h
 #define EntityRenderer_h
 
+#include <ofTypes.h>
+#include <ofxChoreograph.h>
+
 #include "Params.h"
 #include "Colors.h"
 #include "State.h"
@@ -74,9 +77,7 @@ public:
 
   ObserverRenderer(const Params& params,
                    const ColorTheme& colors,
-                   ObjectManager<ObserverEntity>& entities)
-  : EntityRenderer<ObserverEntity>(params, colors.getColor(ColorId::OBSERVER_MARKER))
-  , _entities(entities) { }
+                   ObjectManager<ObserverEntity>& entities);
 protected:
   ObjectManager<ObserverEntity>::StorageList::iterator begin() override {
     return _entities.begin();
@@ -86,6 +87,7 @@ protected:
   }
   void drawEntity(const ObserverEntity& entity, const ofFloatColor& baseColor, float size, const State& state) const override;
 private:
+  ofxChoreograph::Sequence<float> _alphaSequence;
   ObjectManager<ObserverEntity>& _entities;
 };
 

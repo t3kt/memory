@@ -52,6 +52,8 @@ public:
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
+
+  float getAge(const State& state) const { return state.time - _startTime; }
   
   void update(const State& state) override;
   

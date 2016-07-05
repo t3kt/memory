@@ -31,7 +31,8 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Pa
 , _startTime(state.time)
 , _totalLifetime(life)
 , _params(params)
-, _color(color) {
+, _color(color)
+, _lifeFraction(1) {
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {

@@ -9,6 +9,8 @@
 #include "EntityRenderer.h"
 #include <ofMain.h>
 
+using namespace ofxChoreograph;
+
 EnumTypeInfo<EntityShape> EntityShapeType({
   {"sphere", EntityShape::SPHERE},
   {"box", EntityShape::BOX},
@@ -38,11 +40,26 @@ void EntityRenderer<T>::draw(const State& state) {
   ofPopStyle();
 }
 
+ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
+: EntityRenderer<ObserverEntity>(params,
+                                 colors.getColor(ColorId::OBSERVER_MARKER))
+, _entities(entities)
+, _alphaSequence(0) {
+  _alphaSequence.then<RampTo>(1, // value
+                              1, // duration
+                              EaseNone());
+}
+
 void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
   float alpha = entity.getRemainingLifetimeFraction();
   if (alpha <= 0) {
     return;
   }
+  float age = entity.getAge(state);
+  if (age < _alphaSequence.getDuration()) {
+    alpha *= _alphaSequence.getValue(age);
+  }
+
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofDrawSphere(entity.position(), size);
 }
