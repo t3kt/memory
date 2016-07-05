@@ -15,8 +15,6 @@
 
 #include "AppParameters.h"
 
-class ofxFpsPlotter;
-
 class AppGuiImpl;
 
 class AppGui {
