@@ -36,7 +36,6 @@ public:
     void read_json(const Json& obj) override;
     
     RandomValueSupplier<float> radius;
-    TParam<float> rangeFadeIn;
     TParam<float> markerSize;
   };
   static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
@@ -69,8 +68,6 @@ public:
   const std::map<ObjectId, shared_ptr<ObserverEntity>>& connectedObservers() const {
     return _connectedObservers;
   }
-
-  float getFadeInPercent(const State& state) const;
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }

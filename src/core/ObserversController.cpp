@@ -79,6 +79,7 @@ void ObserversController::update(const State &state) {
     spawnObserver(state);
   }
 
+  _observerRenderer->update(state);
   _thresholdRenderer->update(state);
   _status.setValue(STATUS_COUNT, ofToString(count()));
 }

@@ -52,8 +52,6 @@ public:
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
-
-  float getAge(const State& state) const { return state.time - _startTime; }
   
   void update(const State& state) override;
   
@@ -68,7 +66,6 @@ protected:
 private:
   const Params& _params;
   const ofFloatColor& _color;
-  const float _startTime;
   const float _totalLifetime;
   float _lifeFraction;
   std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;

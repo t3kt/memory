@@ -61,8 +61,9 @@ void AnimationUpdater::end() {
   _animationManager.eraseById(_animation.id);
 }
 
-AnimationObject::AnimationObject(const AnimationObject::Params& params)
-: _delay(params.delay())
+AnimationObject::AnimationObject(const AnimationObject::Params& params, const State& state)
+: WorldObject(state)
+, _delay(params.delay())
 , _duration(params.duration())
 , _visible(true)
 , _percentage(0) {
@@ -93,8 +94,8 @@ ExpandingSphereAnimation::Params::Params()
 //  add(color.set("Color", ofFloatColor(0.6, 0.8, 0.4, 0.6)));
 }
 
-ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, ofFloatColor color)
-: AnimationObject(params)
+ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, ofFloatColor color, const State& state)
+: AnimationObject(params, state)
 , _params(params)
 , _color(color) {
   _position = position;
@@ -110,3 +111,24 @@ void ExpandingSphereAnimation::draw(const State &state) {
 
   ofPopStyle();
 }
+
+template<>
+RampFactory<float>::Params::Params() {
+  add(_duration
+      .setKey("duration")
+      .setName("Duration")
+      .setRange(0, 4)
+      .setValueAndDefault(1));
+  add(_startValue
+      .setKey("startValue")
+      .setName("Start Value")
+      .setRange(0, 1)
+      .setValueAndDefault(0));
+  add(_endValue
+      .setKey("endValue")
+      .setName("End Value")
+      .setRange(0, 1)
+      .setValueAndDefault(1));
+}
+
+

@@ -72,6 +72,7 @@ void OccurrencesController::update(const State &state) {
   if (_spawnInterval.check(state)) {
     spawnOccurrence(state);
   }
+  _renderer->update(state);
   _status.setValue(STATUS_COUNT, ofToString(count()));
 }
 

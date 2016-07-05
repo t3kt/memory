@@ -23,6 +23,13 @@ AbstractEntityRenderer::Params::Params()
       .setName("Draw Size")
       .setValueAndDefault(0.03)
       .setRange(0, 0.1));
+  add(fadeIn
+      .setKey("fadeIn")
+      .setName("Fade In"));
+}
+
+void AbstractEntityRenderer::update(const State &state) {
+  _fadeIn.update(state);
 }
 
 template<typename T>
@@ -43,21 +50,18 @@ void EntityRenderer<T>::draw(const State& state) {
 ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
 : EntityRenderer<ObserverEntity>(params,
                                  colors.getColor(ColorId::OBSERVER_MARKER))
-, _entities(entities)
-, _alphaSequence(0) {
-  _alphaSequence.then<RampTo>(1, // value
-                              1, // duration
-                              EaseNone());
+, _entities(entities) {
 }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
+void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
   float alpha = entity.getRemainingLifetimeFraction();
+  float age = entity.getAge(state);
+  auto fadeIn = _fadeIn.getPhrase();
+  if (age < fadeIn->getDuration()) {
+    alpha *= fadeIn->getValue(age);
+  }
   if (alpha <= 0) {
     return;
-  }
-  float age = entity.getAge(state);
-  if (age < _alphaSequence.getDuration()) {
-    alpha *= _alphaSequence.getValue(age);
   }
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
@@ -79,14 +83,17 @@ OccurrenceRenderer::Params::Params()
   _size.setRange(0, 0.5);
 }
 
-void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) const {
+void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
   auto count = entity.getAmountOfObservation(state);
   float alpha = ofMap(count,
                       _params.connectionCountRange.lowValue(),
                       _params.connectionCountRange.highValue(),
                       0, 1, true);
-  float fadeIn = entity.getFadeInPercent(state);
-  alpha *= fadeIn;
+  float age = entity.getAge(state);
+  auto fadeIn = _fadeIn.getPhrase();
+  if (age < fadeIn->getDuration()) {
+    alpha *= fadeIn->getValue(age);
+  }
   if (alpha <= 0.0) {
     return;
   }

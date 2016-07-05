@@ -284,6 +284,24 @@ void ExpandingSphereAnimation::Params::read_json(const Json& obj) {
   });
 }
 
+template<typename T>
+Json RampFactory<T>::Params::to_json() const {
+  return paramsToObject({
+    _duration,
+    _startValue,
+    _endValue,
+  });
+}
+
+template<typename T>
+void RampFactory<T>::Params::read_json(const Json &obj) {
+  readJsonIntoParams(obj, {
+    _duration,
+    _startValue,
+    _endValue,
+  });
+}
+
 Json AnimationsController::Params::to_json() const {
   return paramsToObject({
     _enabled,
@@ -412,7 +430,6 @@ Json OccurrenceEntity::Params::to_json() const {
   return merge(ParticleObject::Params::to_json(),
                paramsToObject({
                  radius,
-                 rangeFadeIn,
                  markerSize,
                }));
 }
@@ -421,7 +438,6 @@ void OccurrenceEntity::Params::read_json(const Json& obj) {
   ParticleObject::Params::read_json(obj);
   readJsonIntoParams(obj, {
     radius,
-    rangeFadeIn,
     markerSize,
   });
 }
@@ -515,12 +531,14 @@ void AbstractThresholdRenderer::Params::read_json(const Json& obj) {
 Json AbstractEntityRenderer::Params::to_json() const {
   return paramsToObject({
     _size,
+    fadeIn,
   });
 }
 
 void AbstractEntityRenderer::Params::read_json(const Json &obj) {
   readJsonIntoParams(obj, {
     _size,
+    fadeIn,
   });
 }
 

@@ -18,6 +18,7 @@
 #include "OccurrenceEntity.h"
 #include "ObserverEntity.h"
 #include "ObjectManager.h"
+#include "AnimationObject.h"
 
 enum class EntityShape {
   SPHERE,
@@ -36,11 +37,14 @@ public:
     void read_json(const Json& obj) override;
     virtual void resetToDefaults() override {
       _size.resetToDefault();
+      fadeIn.resetToDefaults();
     }
     virtual bool hasDefaults() const override { return true; }
 
     float size() const { return _size.get(); }
     void setSize(float size) { _size.set(size); }
+
+    RampFactory<float>::Params fadeIn;
 
   protected:
     TParam<float> _size;
@@ -48,12 +52,15 @@ public:
 
   AbstractEntityRenderer(const Params& params, const ofFloatColor& color)
   : _baseParams(params)
-  , _color(color) { }
+  , _color(color)
+  , _fadeIn(params.fadeIn) { }
 
+  virtual void update(const State& state);
   virtual void draw(const State& state) = 0;
 protected:
   const Params& _baseParams;
   const ofFloatColor& _color;
+  RampFactory<float> _fadeIn;
 };
 
 template<typename T>
@@ -68,7 +75,7 @@ public:
 protected:
   virtual typename ObjectManager<T>::StorageList::iterator begin() = 0;
   virtual typename ObjectManager<T>::StorageList::iterator end() = 0;
-  virtual void drawEntity(const T& entity, const ofFloatColor& baseColor, float size, const State& state) const = 0;
+  virtual void drawEntity(const T& entity, const ofFloatColor& baseColor, float size, const State& state) = 0;
 };
 
 class ObserverRenderer
@@ -85,9 +92,8 @@ protected:
   ObjectManager<ObserverEntity>::StorageList::iterator end() override {
     return _entities.end();
   }
-  void drawEntity(const ObserverEntity& entity, const ofFloatColor& baseColor, float size, const State& state) const override;
+  void drawEntity(const ObserverEntity& entity, const ofFloatColor& baseColor, float size, const State& state) override;
 private:
-  ofxChoreograph::Sequence<float> _alphaSequence;
   ObjectManager<ObserverEntity>& _entities;
 };
 
@@ -125,7 +131,7 @@ protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator end() override {
     return _entities.end();
   }
-  void drawEntity(const OccurrenceEntity& entity, const ofFloatColor& baseColor, float size, const State& state) const override;
+  void drawEntity(const OccurrenceEntity& entity, const ofFloatColor& baseColor, float size, const State& state) override;
 private:
   const Params& _params;
   const ofFloatColor& _rangeColor;

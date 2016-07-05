@@ -27,8 +27,7 @@ shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &p
 }
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state, const ofFloatColor& color)
-: ParticleObject(pos, params)
-, _startTime(state.time)
+: ParticleObject(pos, params, state)
 , _totalLifetime(life)
 , _params(params)
 , _color(color)
@@ -60,7 +59,6 @@ void ObserverEntity::handleDeath() {
 
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
-  os << ", startTime: " << _startTime
-      << ", totalLifetime: " << _totalLifetime
+  os << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction;
 }

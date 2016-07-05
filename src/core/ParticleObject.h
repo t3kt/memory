@@ -34,7 +34,7 @@ public:
     TParam<float> _speed;
   };
 
-  ParticleObject(ofVec3f pos, const Params& params);
+  ParticleObject(ofVec3f pos, const Params& params, const State& state);
 
   void setInitialCondition(ofVec3f pos, ofVec3f vel);
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }

@@ -40,8 +40,8 @@ AbstractEntityAttraction::Params::Params()
       .setParamRanges(-0.005, 0.005));
 }
 
-ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)
-: WorldObject()
+ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params, const State& state)
+: WorldObject(state)
 , _velocity(0)
 , _force(0)
 , _params(params) {

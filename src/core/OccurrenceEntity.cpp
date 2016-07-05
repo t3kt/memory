@@ -20,7 +20,6 @@ OccurrenceEntity::Params::Params()
       .setName("Radius Range")
       .setParamValuesAndDefaults(0.4, 1.3)
       .setParamRanges(0, 4));
-  add(rangeFadeIn.set("Fade In", 1, 0, 4));
   add(markerSize
       .setKey("markerSize")
       .setName("Marker Size")
@@ -35,7 +34,7 @@ shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Par
 }
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state, const ColorTheme& colors)
-: ParticleObject(pos, params)
+: ParticleObject(pos, params, state)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _params(params)
@@ -85,10 +84,6 @@ float OccurrenceEntity::getAmountOfObservation(const State& state) const {
     result += observer.second->getRemainingLifetimeFraction();
   }
   return result;
-}
-
-float OccurrenceEntity::getFadeInPercent(const State &state) const {
-  return ofMap(state.time - _startTime, 0, _params.rangeFadeIn.get(), 0, 1, true);
 }
 
 void OccurrenceEntity::handleDeath() {
