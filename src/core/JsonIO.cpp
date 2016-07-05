@@ -34,6 +34,98 @@
 
 using json11::JsonParse;
 
+class JsonWriter {
+public:
+  JsonWriter(std::ostream& out)
+  : _out(out)
+  , _tab("  ")
+  , _indent(0) { }
+
+  void write(const Json& value) {
+    switch (value.type()) {
+      case Json::ARRAY:
+        writeArray(value);
+        break;
+      case Json::OBJECT:
+        writeObject(value);
+        break;
+      default:
+        writeSimpleValue(value);
+        break;
+    }
+  }
+
+private:
+  void writeSimpleValue(const Json& val) {
+    _out << val.dump();
+  }
+
+  void writeObject(const Json& obj) {
+    const auto& items = obj.object_items();
+    if (items.empty()) {
+      _out << "{}";
+      return;
+    }
+    _out << "{\n";
+    _indent++;
+    int i = 0;
+    for (const auto& item : items) {
+      writeIndent();
+      Json key = item.first;
+      _out << key.dump() << ": ";
+      write(item.second);
+      if (i < (items.size() - 1)) {
+        _out << ",";
+      }
+      _out << "\n";
+      i++;
+    }
+    //..
+    _indent--;
+    writeIndent();
+    _out << "}";
+  }
+
+  void writeArray(const Json& arr) {
+    const auto& items = arr.array_items();
+    if (items.empty()) {
+      _out << "[]";
+      return;
+    }
+    _out << "[\n";
+    _indent++;
+    int i = 0;
+    for (const auto& item : items) {
+      writeIndent();
+      write(item);
+      if (i < (items.size() - 1)) {
+        _out << ",";
+      }
+      _out << "\n";
+      i++;
+    }
+    //...
+    _indent--;
+    writeIndent();
+    _out << "]";
+  }
+
+  void writeIndent() {
+    for (int i = 0; i < _indent; ++i) {
+      _out << _tab;
+    }
+  }
+
+  std::string _tab;
+  int _indent;
+  std::ostream& _out;
+};
+
+void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
+  JsonWriter writer(os);
+  writer.write(value);
+}
+
 static void assertHasShape(const Json& value, Json::shape shape) {
   std::string message;
   if (!value.has_shape(shape, message)) {
@@ -629,7 +721,7 @@ void MemoryAppParameters::writeToFile(std::string filepath) const {
   Json obj = to_json();
   filepath = ofToDataPath(filepath);
   std::ofstream out(filepath.c_str());
-  out << obj.dump();
+  prettyPrintJsonToStream(obj, out);
   out.close();
 }
 

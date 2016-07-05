@@ -10,6 +10,7 @@
 #define JsonIO_h
 
 #include <json11.hpp>
+#include <iostream>
 
 using json11::Json;
 
@@ -18,5 +19,7 @@ public:
   JsonException(std::string msg) : message(msg) { }
   std::string message;
 };
+
+void prettyPrintJsonToStream(const Json& value, std::ostream& os);
 
 #endif /* JsonIO_h */

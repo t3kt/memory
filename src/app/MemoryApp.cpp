@@ -35,7 +35,7 @@ void MemoryApp::setup() {
   _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
   ofSetLoggerChannel(_multiLoggerChannel);
 
-  _appParams.observers.entities.lifetime.setParamValues(10, 60);  
+  loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams);
   _gui->setup();
@@ -154,7 +154,6 @@ void MemoryApp::draw() {
   if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
   }
-//  _NEW_gui->draw();
 }
 
 void MemoryApp::keyPressed(int key) {
@@ -179,6 +178,33 @@ void MemoryApp::keyPressed(int key) {
       break;
     case 'w':
       saveSettings();
+      break;
+    //TEMP FOR TESTING
+    case 'z':
+      std::cout << "______params dump_____" << std::endl;
+      prettyPrintJsonToStream(_appParams.to_json(), std::cout);
+      std::cout << std::endl;
+      std::cout << "______test dump_______" << std::endl;
+      Json obj = Json::object {
+        {"foo", 12},
+        {
+          "arr", Json::array {
+            "stuff",
+            93,
+            false,
+            Json::object {
+              {"zzzz", Json::array {9, "hello"}},
+            },
+          },
+        },
+        {
+          "zz",
+          Json::object {
+          },
+        },
+      };
+      prettyPrintJsonToStream(obj, std::cout);
+      std::cout << std::endl;
       break;
   }
 }
