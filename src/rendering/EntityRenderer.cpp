@@ -50,7 +50,8 @@ void EntityRenderer<T>::draw(const State& state) {
 ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
 : EntityRenderer<ObserverEntity>(params,
                                  colors.getColor(ColorId::OBSERVER_MARKER))
-, _entities(entities) {
+, _entities(entities)
+, _markerMesh(ofMesh::sphere(1)) {
 }
 
 void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
@@ -65,7 +66,11 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   }
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-  ofDrawSphere(entity.position(), size);
+  ofPushMatrix();
+  ofTranslate(entity.position());
+  ofScale(ofVec3f(size));
+  _markerMesh.draw();
+  ofPopMatrix();
 }
 
 OccurrenceRenderer::Params::Params()
@@ -99,7 +104,12 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   }
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-  ofDrawBox(entity.position(), size);
+  ofPushMatrix();
+  ofTranslate(entity.position());
+  ofScale(ofVec3f(size));
+  _markerMesh.draw();
+  ofPopMatrix();
+
 
   if (_params.showRange.get()) {
     ofFloatColor rangeColor(_rangeColor);
