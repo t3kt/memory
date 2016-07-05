@@ -48,6 +48,8 @@ void MemoryApp::setup() {
 
   ofEnableAlphaBlending();
   ofDisableDepthTest();
+  _postProc.init();
+  _postProc.createPass<BloomPass>()->setEnabled(true);
   
   _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
   _observers->setup(_state);
@@ -103,7 +105,7 @@ void MemoryApp::draw() {
   glPushAttrib(GL_ENABLE_BIT);
   //glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
-  _cam.begin();
+  _postProc.begin(_cam);
   
   ofPushMatrix();
   ofPushStyle();
@@ -135,7 +137,7 @@ void MemoryApp::draw() {
   
   ofPopMatrix();
   ofPopStyle();
-  _cam.end();
+  _postProc.end();
   glPopAttrib();
 
 #ifdef ENABLE_SYPHON

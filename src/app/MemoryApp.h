@@ -13,6 +13,7 @@
 #include <ofxGui.h>
 #include <ofxScreenLoggerChannel.h>
 #include <ofxMultiLoggerChannel.h>
+#include <ofxPostProcessing.h>
 #include "State.h"
 #include "AppParameters.h"
 #include "ObserversController.h"
@@ -47,6 +48,7 @@ private:
   shared_ptr<AnimationsController> _animations;
   shared_ptr<StatusInfoController> _statusController;
   ofEasyCam _cam;
+  ofxPostProcessing _postProc;
   shared_ptr<AppGui> _gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;

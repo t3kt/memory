@@ -10,9 +10,10 @@
     "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : 0,
-    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : 0
+    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : 0,
+    "95F70890EFD46183734FEDFE52CF53391DE6937E" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7F9BAA6D-6937-49AF-AAD6-43660F7F5B25",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "254E31AC-835E-4762-B7E1-AB5DD847C381",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
     "886341EB263A49F7CBA1642BA1C0B5444E645742" : "..\/of_v0.9.3_osx_release\/addons\/ofxChoreograph",
@@ -20,7 +21,8 @@
     "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory\/",
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/of_v0.9.3_osx_release\/addons\/ofxTextAlign",
-    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : "..\/of_v0.9.3_osx_release\/addons\/ofxGuiExtended"
+    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : "..\/of_v0.9.3_osx_release\/addons\/ofxGuiExtended",
+    "95F70890EFD46183734FEDFE52CF53391DE6937E" : "..\/of_v0.9.3_osx_release\/addons\/ofxPostProcessing"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "memory",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -45,6 +47,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/daitomanabe\/ofxChoreograph.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "886341EB263A49F7CBA1642BA1C0B5444E645742"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/neilmendoza\/ofxPostProcessing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95F70890EFD46183734FEDFE52CF53391DE6937E"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nariakiiwatani\/ofxTextAlign.git",
