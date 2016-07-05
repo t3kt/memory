@@ -51,7 +51,7 @@ ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const
 : EntityRenderer<ObserverEntity>(params,
                                  colors.getColor(ColorId::OBSERVER_MARKER))
 , _entities(entities)
-, _markerMesh(ofMesh::sphere(1)) {
+, _markerMesh(1, 6) {
 }
 
 void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
@@ -65,12 +65,22 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
     return;
   }
 
-  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofPushStyle();
   ofPushMatrix();
+
+  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
   _markerMesh.draw();
+  ofScale(ofVec3f(1.01));
+  ofFloatColor wireColor(baseColor, baseColor.a * alpha);
+  wireColor.setSaturation(wireColor.getSaturation() * 0.5);
+  wireColor.setBrightness(wireColor.getBrightness() * 1.1);
+  ofSetColor(wireColor);
+  _markerMesh.drawWireframe();
+
   ofPopMatrix();
+  ofPopStyle();
 }
 
 OccurrenceRenderer::Params::Params()
@@ -103,12 +113,22 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
     return;
   }
 
-  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofPushStyle();
   ofPushMatrix();
+
+  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
   _markerMesh.draw();
+  ofScale(ofVec3f(1.01));
+  ofFloatColor wireColor(baseColor, baseColor.a * alpha);
+  wireColor.setSaturation(wireColor.getSaturation() * 0.5);
+  wireColor.setBrightness(wireColor.getBrightness() * 1.2);
+  ofSetColor(wireColor);
+  _markerMesh.drawWireframe();
+
   ofPopMatrix();
+  ofPopStyle();
 
 
   if (_params.showRange.get()) {

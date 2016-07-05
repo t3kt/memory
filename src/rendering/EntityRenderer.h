@@ -11,6 +11,7 @@
 
 #include <ofTypes.h>
 #include <ofVboMesh.h>
+#include <of3dPrimitives.h>
 #include <ofxChoreograph.h>
 
 #include "Params.h"
@@ -94,7 +95,7 @@ protected:
   void drawEntity(const ObserverEntity& entity, const ofFloatColor& baseColor, float size, const State& state) override;
 private:
   ObjectManager<ObserverEntity>& _entities;
-  ofVboMesh _markerMesh;
+  ofSpherePrimitive _markerMesh;
 };
 
 class OccurrenceRenderer
@@ -121,7 +122,7 @@ public:
   , _params(params)
   , _rangeColor(colors.getColor(ColorId::OCCURRENCE_RANGE))
   , _entities(entities)
-  , _markerMesh(ofMesh::box(1, 1, 1)) { }
+  , _markerMesh(1, 1, 1, 1, 1, 1) { }
 protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator begin() override {
     return _entities.begin();
@@ -134,7 +135,7 @@ private:
   const Params& _params;
   const ofFloatColor& _rangeColor;
   ObjectManager<OccurrenceEntity>& _entities;
-  ofVboMesh _markerMesh;
+  ofBoxPrimitive _markerMesh;
 };
 
 class ObserverOccurrenceConnectorRenderer {
