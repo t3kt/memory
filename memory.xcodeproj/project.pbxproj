@@ -13,7 +13,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		329604131D288FB000B79262 /* EntityRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329604111D288FB000B79262 /* EntityRenderer.cpp */; };
 		329604161D28C91500B79262 /* ThresholdRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329604141D28C91500B79262 /* ThresholdRenderer.cpp */; };
-		32C6CF251D262C470090DC33 /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C6CF231D262C470090DC33 /* json11.cpp */; };
+		32B646AF1D2B3B2000C82B6B /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B646AD1D2B3B2000C82B6B /* json11.cpp */; };
 		32C6CF281D262C680090DC33 /* JsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C6CF261D262C680090DC33 /* JsonIO.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
 		3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96C209AE3ABBF4927BA37582 /* OccurrencesController.cpp */; };
@@ -119,8 +119,8 @@
 		329604121D288FB000B79262 /* EntityRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityRenderer.h; path = rendering/EntityRenderer.h; sourceTree = "<group>"; };
 		329604141D28C91500B79262 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ThresholdRenderer.cpp; path = rendering/ThresholdRenderer.cpp; sourceTree = "<group>"; };
 		329604151D28C91500B79262 /* ThresholdRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThresholdRenderer.h; path = rendering/ThresholdRenderer.h; sourceTree = "<group>"; };
-		32C6CF231D262C470090DC33 /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json11.cpp; sourceTree = "<group>"; };
-		32C6CF241D262C470090DC33 /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json11.hpp; sourceTree = "<group>"; };
+		32B646AD1D2B3B2000C82B6B /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = src/lib/json11.cpp; sourceTree = SOURCE_ROOT; };
+		32B646AE1D2B3B2000C82B6B /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = src/lib/json11.hpp; sourceTree = SOURCE_ROOT; };
 		32C6CF261D262C680090DC33 /* JsonIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JsonIO.cpp; path = core/JsonIO.cpp; sourceTree = "<group>"; };
 		32C6CF271D262C680090DC33 /* JsonIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonIO.h; path = core/JsonIO.h; sourceTree = "<group>"; };
 		364DF778A13D6112AD85DBBA /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
@@ -240,10 +240,11 @@
 		32C6CF221D262C470090DC33 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				32C6CF231D262C470090DC33 /* json11.cpp */,
-				32C6CF241D262C470090DC33 /* json11.hpp */,
+				32B646AD1D2B3B2000C82B6B /* json11.cpp */,
+				32B646AE1D2B3B2000C82B6B /* json11.hpp */,
 			);
-			path = lib;
+			name = lib;
+			path = ../lib;
 			sourceTree = "<group>";
 		};
 		398D2AD7D162CE13BF40CD4F /* lib */ = {
@@ -496,7 +497,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				32C6CF221D262C470090DC33 /* lib */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -510,6 +510,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				32C6CF221D262C470090DC33 /* lib */,
 				BE9DD360F550B0DF4D357E7B /* app */,
 				BC405D98CD8417CE9E222B0C /* core */,
 				329604101D288F7B00B79262 /* rendering */,
@@ -645,7 +646,6 @@
 				9FF3497170D60884F112833A /* Timing.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
-				32C6CF251D262C470090DC33 /* json11.cpp in Sources */,
 				329604131D288FB000B79262 /* EntityRenderer.cpp in Sources */,
 				32C6CF281D262C680090DC33 /* JsonIO.cpp in Sources */,
 				EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */,
@@ -661,6 +661,7 @@
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
+				32B646AF1D2B3B2000C82B6B /* json11.cpp in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
 				329604161D28C91500B79262 /* ThresholdRenderer.cpp in Sources */,
