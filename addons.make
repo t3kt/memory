@@ -1,5 +1,6 @@
 ofxChoreograph
 ofxGui
+ofxGuiExtended
 ofxLiquidEvent
 ofxLoggerChannel
 ofxSyphon

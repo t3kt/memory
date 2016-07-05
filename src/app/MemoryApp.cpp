@@ -10,6 +10,7 @@
 #include "Common.h"
 #include <memory>
 #include <iostream>
+#include <ofxGuiExtended.h>
 
 class FPSInfoProvider
 : public StatusInfoProvider {
@@ -26,46 +27,6 @@ private:
   std::size_t FPS_LINE;
 };
 
-class GuiPanel
-: public ofxPanel {
-public:
-  GuiPanel() {
-  }
-
-  void setup(MemoryAppParameters& appParams) {
-    ofxPanel::setup();
-    setName("Memory Controls");
-    actionsGroup.setName("Actions");
-    paramsGroup.setName("Parameters");
-    actionsGroup.setup();
-    loadButton.setup("load");
-    saveButton.setup("save");
-    loadButton.addListener(this, &GuiPanel::onLoadClick);
-    saveButton.addListener(this, &GuiPanel::onSaveClick);
-    actionsGroup.add(&loadButton);
-    actionsGroup.add(&saveButton);
-    paramsGroup.setup(appParams);
-    add(&actionsGroup);
-    add(&paramsGroup);
-  }
-
-  ofxLiquidEvent<void> onLoad;
-  ofxLiquidEvent<void> onSave;
-
-private:
-  void onLoadClick(void) {
-    onLoad.notifyListeners();
-  }
-  void onSaveClick(void) {
-    onSave.notifyListeners();
-  }
-
-  ofxGuiGroup actionsGroup;
-  ofxButton loadButton;
-  ofxButton saveButton;
-  ofxGuiGroup paramsGroup;
-};
-
 void MemoryApp::setup() {
   _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
   _screenLoggerChannel->setDrawBounds(ofRectangle(150, 0, ofGetScreenWidth() - 500, 250));
@@ -76,8 +37,8 @@ void MemoryApp::setup() {
 
   _appParams.observers.entities.lifetime.setParamValues(10, 60);  
 
-  _gui = std::make_shared<GuiPanel>();
-  _gui->setup(_appParams);
+  _gui = std::make_shared<AppGui>(_appParams);
+  _gui->setup();
   _gui->onLoad += [&]() {
     loadSettings();
   };
