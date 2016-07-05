@@ -1,3 +1,4 @@
+ofxChoreograph
 ofxGui
 ofxLiquidEvent
 ofxLoggerChannel
