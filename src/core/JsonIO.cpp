@@ -704,6 +704,10 @@ void RandomHsbFloatColorSupplier::read_json(const Json& obj) {
 
 void MemoryAppParameters::readFromFile(std::string filepath) {
   filepath = ofToDataPath(filepath);
+  if (!ofFile::doesFileExist(filepath, true)) {
+    ofLogWarning() << "can't find settings file: " << filepath;
+    return;
+  }
   std::ifstream in(filepath.c_str());
   std::stringstream buf;
   buf << in.rdbuf();
