@@ -92,6 +92,9 @@ template<typename E, typename O>
 class AttractionBehavior
 : public AbstractAttractionBehavior {
 public:
+  AttractionBehavior(const Params& params)
+  : AbstractAttractionBehavior(params) { }
+public:
   void applyToWorld(PhysicsWorld* world) override;
 };
 
@@ -146,7 +149,7 @@ template<typename E>
 class SpatialNoiseForceBehavior
 : public AbstractSpatialNoiseForceBehavior {
 public:
-  SpatialNoiseForceBehavior(Params& params)
+  SpatialNoiseForceBehavior(const Params& params)
   : AbstractSpatialNoiseForceBehavior(params) { }
 
   void applyToWorld(PhysicsWorld* world) override;

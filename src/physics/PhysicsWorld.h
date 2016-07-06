@@ -19,7 +19,7 @@ class OccurrenceEntity;
 
 class PhysicsWorld {
 public:
-  PhysicsWorld(State& state,
+  PhysicsWorld(const State& state,
                ObserversController& observers,
                OccurrencesController& occurrences)
   : _state(state)
