@@ -7,8 +7,6 @@
 //
 
 #include "PhysicsController.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
 
 PhysicsController::PhysicsController(const PhysicsController::Params& params,
                                      const Bounds& bounds,
@@ -37,4 +35,13 @@ void PhysicsController::update() {
   _observerSpatialNoiseForce->applyToWorld(world);
   _occurrenceSpatialNoiseForce->applyToWorld(world);
   _rebound->applyToWorld(world);
+}
+
+void PhysicsController::stopAllEntities() {
+  for (auto entity : _world->observers()) {
+    entity->setVelocity(ofVec3f::zero());
+  }
+  for (auto entity : _world->occurrences()) {
+    entity->setVelocity(ofVec3f::zero());
+  }
 }

@@ -135,6 +135,9 @@ void MemoryApp::keyPressed(int key) {
     case 'w':
       saveSettings();
       break;
+    case 'x':
+      _physics->stopAllEntities();
+      break;
   }
 }
 

@@ -15,9 +15,8 @@
 #include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-
-class ObserversController;
-class OccurrencesController;
+#include "ObserversController.h"
+#include "OccurrencesController.h"
 
 class PhysicsController {
 public:
@@ -53,6 +52,8 @@ public:
   PhysicsController(const Params& params,
                     const Bounds& bounds,
                     const State& state);
+
+  void stopAllEntities();
 
   void setup(ObserversController& observers,
              OccurrencesController& occurrences);
