@@ -19,6 +19,7 @@ EnumTypeInfo<ColorId> ColorIdType({
   {"observerDied", ColorId::OBSERVER_DIED},
   {"occurrenceDied", ColorId::OCCURRENCE_DIED},
   {"occurrenceSpawnFailed", ColorId::OCCURRENCE_SPAWN_FAILED},
+  {"fog", ColorId::FOG},
 });
 
 ColorTheme::ColorTheme()
@@ -63,6 +64,10 @@ ColorTheme::ColorTheme()
       .setKey("occurrenceSpawnFailed")
       .setName("Occurrence Spawn Failed")
       .setValueAndDefault(ofFloatColor(0.814066, 0.681255, 0.511258, 0.569695)));
+  add(_fog
+      .setKey("fog")
+      .setName("Fog")
+      .setValueAndDefault(ofFloatColor(0.6, 0.6, 0.6, 0.5)));
   registerColorFields({
     _background,
     _bounds,
@@ -74,6 +79,7 @@ ColorTheme::ColorTheme()
     _observerDied,
     _occurrenceDied,
     _occurrenceSpawnFailed,
+    _fog,
   });
 }
 

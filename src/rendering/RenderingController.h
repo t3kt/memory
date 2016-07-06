@@ -25,6 +25,22 @@ private:
   TParam<ofVec3f> _spinRate;
 };
 
+class FogParams : public Params {
+public:
+  FogParams();
+
+  bool enabled() const { return _enabled.get(); }
+  float density() const { return _density.get(); }
+  bool useBackgroundColor() const { return _useBackgroundColor.get(); }
+
+  ValueRange<float> distance;
+
+private:
+  TParam<bool> _enabled;
+  TParam<float> _density;
+  TParam<bool> _useBackgroundColor;
+};
+
 class RenderingController {
 public:
   class Params : public ::Params {
@@ -32,6 +48,7 @@ public:
     Params();
 
     CameraParams camera;
+    FogParams fog;
   };
 
   static shared_ptr<RenderingController> create(const Params& params, const ColorTheme& colors);

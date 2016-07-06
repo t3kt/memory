@@ -24,19 +24,6 @@ DebugParams::DebugParams()
       .setValueAndDefault(true));
 }
 
-CameraParams::CameraParams()
-: ::Params() {
-  add(_spinEnabled
-      .setKey("spinEnabled")
-      .setName("Spin Enabled")
-      .setValueAndDefault(false));
-  add(_spinRate
-      .setKey("spinRate")
-      .setName("Spin Rate")
-      .setValueAndDefault(ofVec3f(2, 4, 5))
-      .setRange(ofVec3f(-10), ofVec3f(10)));
-}
-
 CoreParams::CoreParams()
 : ::Params() {
   add(clock

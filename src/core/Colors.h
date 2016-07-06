@@ -27,6 +27,7 @@ enum class ColorId {
   OBSERVER_DIED,
   OCCURRENCE_DIED,
   OCCURRENCE_SPAWN_FAILED,
+  FOG,
 };
 
 extern EnumTypeInfo<ColorId> ColorIdType;
@@ -50,6 +51,7 @@ private:
   TParam<ofFloatColor> _observerDied;
   TParam<ofFloatColor> _occurrenceDied;
   TParam<ofFloatColor> _occurrenceSpawnFailed;
+  TParam<ofFloatColor> _fog;
   std::map<ColorId, std::reference_wrapper<TParam<ofFloatColor>>> _colorParamsById;
 };
 
