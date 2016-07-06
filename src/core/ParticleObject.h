@@ -52,6 +52,10 @@ public:
   void addForce(ofVec3f force);
   void addDampingForce();
 
+  ofVec3f* positionPtr() { return &_position; }
+  ofVec3f* velocityPtr() { return &_velocity; }
+  ofVec3f* forcePtr() { return &_force; }
+
   virtual void update(const State& state) override;
 protected:
   virtual void outputFields(std::ostream& os) const override;

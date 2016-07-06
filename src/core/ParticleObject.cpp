@@ -46,16 +46,6 @@ void ParticleObject::outputFields(std::ostream &os) const {
       << ", force: " << _force;
 }
 
-static bool reboundVelocity(float *vel, float pos, float minPos, float maxPos) {
-  float newPos = pos + *vel;
-  if (newPos < minPos || newPos >= maxPos) {
-    *vel *= -1;
-    return true;
-  } else {
-    return false;
-  }
-}
-
 AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
 : _bounds(bounds) { }
 

@@ -10,6 +10,21 @@
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 
+void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
+  for (auto entity : world->observers()) {
+    applyToEntity(world, entity.get());
+  }
+  for (auto entity : world->occurrences()) {
+    applyToEntity(world, entity.get());
+  }
+}
+
+void BoundsBehavior::applyToEntity(PhysicsWorld *world,
+                                   ParticleObject *entity) {
+  _bounds.reflect(entity->velocityPtr(),
+                  entity->positionPtr());
+}
+
 template<>
 void SpatialNoiseForceBehavior<ObserverEntity>::applyToWorld(PhysicsWorld *world) {
   if (!_params.enabled()) {

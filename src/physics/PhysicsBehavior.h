@@ -13,6 +13,7 @@
 #include "State.h"
 #include "PhysicsWorld.h"
 #include "ParticleObject.h"
+#include "Bounds.h"
 
 class AbstractPhysicsBehavior {
 public:
@@ -37,6 +38,21 @@ public:
   };
 
   virtual void applyToWorld(PhysicsWorld* world) = 0;
+};
+
+class BoundsBehavior
+: public AbstractPhysicsBehavior {
+public:
+  BoundsBehavior(const Params& params, const Bounds& bounds)
+  : _params(params)
+  , _bounds(bounds) { }
+
+  void applyToWorld(PhysicsWorld* world) override;
+private:
+  void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
+
+  const Params& _params;
+  const Bounds& _bounds;
 };
 
 class AbstractSpatialNoiseForceBehavior
