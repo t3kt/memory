@@ -44,7 +44,7 @@ public:
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
   
-  std::vector<shared_ptr<OccurrenceEntity>>& getConnectedOccurrences() {
+  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
     return _connectedOccurrences;
   }
   
@@ -65,7 +65,7 @@ private:
   const ofFloatColor& _color;
   const float _totalLifetime;
   float _lifeFraction;
-  std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;
+  EntityMap<OccurrenceEntity> _connectedOccurrences;
   BehaviorCollection<ObserverEntity> _behaviors;
 
   friend class ObserverOccurrenceAttraction;
@@ -79,7 +79,7 @@ public:
   : EntityAttraction<ObserverEntity, OccurrenceEntity>(params) { }
 
 protected:
-  std::vector<shared_ptr<OccurrenceEntity>> getOthers(ObserverEntity& observer) const override {
+  EntityMap<OccurrenceEntity>& getOthers(ObserverEntity& observer) const override {
     return observer._connectedOccurrences;
   }
 };

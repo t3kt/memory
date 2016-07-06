@@ -61,7 +61,7 @@ public:
 
   float actualRadius() const { return _actualRadius; }
 
-  const std::map<ObjectId, shared_ptr<ObserverEntity>>& connectedObservers() const {
+  const EntityMap<ObserverEntity>& connectedObservers() const {
     return _connectedObservers;
   }
 
@@ -77,7 +77,7 @@ private:
   const float _originalRadius;
   float _actualRadius;
   float _startTime;
-  std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
+  EntityMap<ObserverEntity> _connectedObservers;
   BehaviorCollection<OccurrenceEntity> _behaviors;
 
   friend class OccurrenceObserverAttraction;
@@ -91,12 +91,8 @@ public:
   : EntityAttraction<OccurrenceEntity, ObserverEntity>(params) { }
 
 protected:
-  std::vector<shared_ptr<ObserverEntity>> getOthers(OccurrenceEntity& occurrence) const override {
-    std::vector<shared_ptr<ObserverEntity>> observers;
-    for (auto entry : occurrence._connectedObservers) {
-      observers.push_back(entry.second);
-    }
-    return observers;
+  EntityMap<ObserverEntity>& getOthers(OccurrenceEntity& occurrence) const override {
+    return occurrence._connectedObservers;
   }
 };
 

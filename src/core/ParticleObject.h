@@ -150,9 +150,9 @@ public:
     float highBound = _params.distanceBounds.highValue();
     float lowMagnitude = _params.forceRange.lowValue();
     float highMagnitude = _params.forceRange.highValue();
-    std::vector<shared_ptr<O>> others = getOthers(entity);
+    auto& others = getOthers(entity);
     for (auto other : others) {
-      ofVec3f posDiff = other->position() - entity.position();
+      ofVec3f posDiff = other.second->position() - entity.position();
       float dist = posDiff.length();
       if (dist < lowBound || dist > highBound) {
         continue;
@@ -163,7 +163,7 @@ public:
     }
   }
 protected:
-  virtual std::vector<shared_ptr<O>> getOthers(E& entity) const = 0;
+  virtual EntityMap<O>& getOthers(E& entity) const = 0;
 };
 
 class AbstractSpatialNoiseForce {

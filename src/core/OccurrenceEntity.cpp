@@ -38,7 +38,7 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& para
 }
 
 void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
-  _connectedObservers[observer->id] = observer;
+  _connectedObservers.add(observer);
   float dist = _position.distance(observer->position());
   if (dist > _actualRadius) {
     _actualRadius = dist;
@@ -56,9 +56,7 @@ void OccurrenceEntity::recalculateRadius() {
 }
 
 void OccurrenceEntity::removeObserver(ObjectId id) {
-  auto i = _connectedObservers.find(id);
-  if (i != _connectedObservers.end()) {
-    _connectedObservers.erase(id);
+  if (_connectedObservers.remove(id)) {
     recalculateRadius();
   }
 }

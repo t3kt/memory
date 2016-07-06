@@ -35,7 +35,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Pa
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
-  _connectedOccurrences.push_back(occurrence);
+  _connectedOccurrences.add(occurrence);
 }
 
 void ObserverEntity::update(const State &state) {
@@ -53,7 +53,7 @@ void ObserverEntity::update(const State &state) {
 void ObserverEntity::handleDeath() {
   ofLogNotice() << "Observer died: " << *this;
   for (auto occurrence : _connectedOccurrences) {
-    occurrence->removeObserver(id);
+    occurrence.second->removeObserver(id);
   }
 }
 

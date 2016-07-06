@@ -48,12 +48,68 @@ public:
   , _bounds(bounds) { }
 
   void applyToWorld(PhysicsWorld* world) override;
+
 private:
   void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
 
   const Params& _params;
   const Bounds& _bounds;
 };
+
+class AbstractAttractionBehavior
+: public AbstractPhysicsBehavior {
+public:
+  class Params
+  : public AbstractPhysicsBehavior::Params {
+  public:
+    Params()
+    : AbstractPhysicsBehavior::Params() {
+      add(distanceBounds
+          .setKey("distanceBounds")
+          .setName("Distance Bounds")
+          .setParamValuesAndDefaults(0.04, 0.3)
+          .setParamRanges(0, 4)
+          .setParamNames("Near", "Far"));
+      add(forceRange
+          .setKey("forceRange")
+          .setName("Force Range")
+          .setParamValuesAndDefaults(0.0001, 0)
+          .setParamRanges(-0.05, 0.05)
+          .setParamNames("Near", "Far"));
+    }
+
+    FloatValueRange distanceBounds;
+    FloatValueRange forceRange;
+  };
+
+  AbstractAttractionBehavior(const Params& params)
+  : _params(params) { }
+
+  const Params& _params;
+};
+
+template<typename E, typename O>
+class AttractionBehavior
+: public AbstractAttractionBehavior {
+public:
+  void applyToWorld(PhysicsWorld* world) override;
+};
+
+template<>
+void AttractionBehavior<ObserverEntity, OccurrenceEntity>::applyToWorld(PhysicsWorld *world) {
+  if (!_params.enabled()) {
+    return;
+  }
+  float lowBound = _params.distanceBounds.lowValue();
+  float highBound = _params.distanceBounds.highValue();
+  float lowMagnitude = _params.forceRange.lowValue();
+  float highMagnitude = _params.forceRange.highValue();
+  for (auto entity : world->observers()) {
+//    for (auto otherEntry : entity->getConnectedOccurrences()) {
+//
+//    }
+  }
+}
 
 class AbstractSpatialNoiseForceBehavior
 : public AbstractPhysicsBehavior {
@@ -95,6 +151,7 @@ public:
 
   AbstractSpatialNoiseForceBehavior(const Params& params)
   : _params(params) { }
+
 protected:
   void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
 
