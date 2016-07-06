@@ -65,7 +65,6 @@
 		8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC825A4168A0DF78F0ACE6A7 /* tinyxmlerror.cpp */; };
 		929A03C47EC36B0C9514C249 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345E4E8CF2291EB7DCE2AB4 /* Timeline.cpp */; };
 		95295DFC21749761D7BF9B18 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 581F497F9FA3425721AEB3DC /* Params.cpp */; };
-		960691FA92BF31B9FD010694 /* Behavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64FC38492D2B36B95A8253D /* Behavior.cpp */; };
 		96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38907EC6905E539FB6235FC /* ParticleObject.cpp */; };
 		98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */; };
 		9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */; };
@@ -145,7 +144,6 @@
 		05563B9E7C908ABE1950F384 /* json11.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json11.hpp; path = src/lib/json11.hpp; sourceTree = SOURCE_ROOT; };
 		060B900FD66542BB0792E633 /* ObserverEntity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ObserverEntity.cpp; path = src/core/ObserverEntity.cpp; sourceTree = SOURCE_ROOT; };
 		062358C29D78AD90A7FCE0FC /* Choreograph.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Choreograph.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Choreograph.h; sourceTree = SOURCE_ROOT; };
-		0788472FBA8A75644C504F58 /* Behavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Behavior.h; path = src/core/Behavior.h; sourceTree = SOURCE_ROOT; };
 		07FEE36BDA17A50322435583 /* ofxToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxToggle.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.h; sourceTree = SOURCE_ROOT; };
 		088D20E7FB38937AE60F997D /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
 		08C4341BA94A0398E5ECBDAA /* ofxMultiLoggerChannel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMultiLoggerChannel.h; path = ../../of_v0.9.3_osx_release/addons/ofxLoggerChannel/src/ofxMultiLoggerChannel.h; sourceTree = SOURCE_ROOT; };
@@ -317,7 +315,6 @@
 		D53E9332C9AE72A5C90B70F3 /* Timing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Timing.h; path = src/core/Timing.h; sourceTree = SOURCE_ROOT; };
 		D58D1EA565612E787A738D06 /* VectorManipulation.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VectorManipulation.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail/VectorManipulation.hpp; sourceTree = SOURCE_ROOT; };
 		D58DCB2C0AEFDE6171E29540 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Syphon.framework; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx/Syphon.framework; sourceTree = "<group>"; };
-		D64FC38492D2B36B95A8253D /* Behavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Behavior.cpp; path = src/core/Behavior.cpp; sourceTree = SOURCE_ROOT; };
 		D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlignTTF.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.cpp; sourceTree = SOURCE_ROOT; };
 		D9C3827264F0C34537CE0F6E /* Clock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Clock.h; path = src/core/Clock.h; sourceTree = SOURCE_ROOT; };
 		DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RenderPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.cpp; sourceTree = SOURCE_ROOT; };
@@ -742,8 +739,6 @@
 				BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */,
 				2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */,
 				871145729C2A812E6085F6DD /* AnimationsController.h */,
-				D64FC38492D2B36B95A8253D /* Behavior.cpp */,
-				0788472FBA8A75644C504F58 /* Behavior.h */,
 				01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */,
 				B235D09E719D526194402149 /* Bounds.h */,
 				B435F280334BE688BF136963 /* Clock.cpp */,
@@ -1035,7 +1030,6 @@
 				FC51CF98DA234C142DDDAF5F /* MemoryApp.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
-				960691FA92BF31B9FD010694 /* Behavior.cpp in Sources */,
 				A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */,
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
 				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,

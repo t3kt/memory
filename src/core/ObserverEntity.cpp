@@ -45,7 +45,6 @@ void ObserverEntity::update(const State &state) {
     kill();
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
-    _behaviors.update(*this, state);
     ParticleObject::update(state);
   }
 }

@@ -17,7 +17,6 @@
 #include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
-#include "Behavior.h"
 #include "Colors.h"
 #include "EntityRenderer.h"
 

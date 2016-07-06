@@ -11,14 +11,12 @@
 
 #include <ofTypes.h>
 #include "Params.h"
-#include "Behavior.h"
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
 #include <vector>
 #include <iostream>
 #include "ValueSupplier.h"
-#include "Behavior.h"
 #include "Bounds.h"
 
 class OccurrenceEntity;
@@ -37,10 +35,6 @@ public:
   
   ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state, const ofFloatColor& color);
   virtual ~ObserverEntity() override {}
-
-  void addBehavior(shared_ptr<Behavior<ObserverEntity>> behavior) {
-    _behaviors.add(behavior);
-  }
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
   
@@ -66,22 +60,6 @@ private:
   const float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
-  BehaviorCollection<ObserverEntity> _behaviors;
-
-  friend class ObserverOccurrenceAttraction;
-};
-
-class ObserverOccurrenceAttraction
-: public EntityAttraction<ObserverEntity, OccurrenceEntity> {
-public:
-
-  ObserverOccurrenceAttraction(const AbstractEntityAttraction::Params& params)
-  : EntityAttraction<ObserverEntity, OccurrenceEntity>(params) { }
-
-protected:
-  EntityMap<OccurrenceEntity>& getOthers(ObserverEntity& observer) const override {
-    return observer._connectedOccurrences;
-  }
 };
 
 #endif /* ObserverEntity_h */

@@ -46,25 +46,3 @@ void ParticleObject::outputFields(std::ostream &os) const {
       << ", force: " << _force;
 }
 
-AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
-: _bounds(bounds) { }
-
-bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
-  return _bounds.reflect(&entity._velocity, &entity._position);
-}
-
-const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
-const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
-
-ofVec3f AbstractSpatialNoiseForce::getForce(ofVec3f position,
-                                            const State &state) const {
-  ofVec4f noisePos = ofVec4f(position * _params.scale());
-  noisePos.w = state.time * _params.rate();
-
-  ofVec3f force(ofSignedNoise(noisePos),
-                ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
-                ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
-
-  return force * _params.magnitude();
-}
-

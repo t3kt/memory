@@ -18,7 +18,6 @@
 #include <iostream>
 #include "ValueSupplier.h"
 #include "Bounds.h"
-#include "Behavior.h"
 #include "State.h"
 #include "Colors.h"
 #include "ObjectManager.h"
@@ -38,10 +37,6 @@ public:
   
   OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state, const ColorTheme& colors);
   virtual ~OccurrenceEntity() {}
-
-  void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
-    _behaviors.add(behavior);
-  }
   
   void addObserver(shared_ptr<ObserverEntity> observer);
   
@@ -82,22 +77,6 @@ private:
   float _actualRadius;
   float _startTime;
   EntityMap<ObserverEntity> _connectedObservers;
-  BehaviorCollection<OccurrenceEntity> _behaviors;
-
-  friend class OccurrenceObserverAttraction;
-};
-
-class OccurrenceObserverAttraction
-: public EntityAttraction<OccurrenceEntity, ObserverEntity> {
-public:
-
-  OccurrenceObserverAttraction(const Params& params)
-  : EntityAttraction<OccurrenceEntity, ObserverEntity>(params) { }
-
-protected:
-  EntityMap<ObserverEntity>& getOthers(OccurrenceEntity& occurrence) const override {
-    return occurrence._connectedObservers;
-  }
 };
 
 #endif /* OccurrenceEntity_h */
