@@ -30,7 +30,7 @@ void MemoryApp::setup() {
     saveSettings();
   };
 
-  _renderingController = RenderingController::create(_appParams.core.camera, _appParams.colors);
+  _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
   
   _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
   _observers->setup(_state);

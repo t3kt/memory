@@ -11,10 +11,17 @@
 #include <ofxPostProcessing.h>
 #include <ofMain.h>
 
+RenderingController::Params::Params()
+: ::Params() {
+  add(camera
+      .setKey("camera")
+      .setName("Camera"));
+}
+
 class RenderingControllerImpl
 : public RenderingController {
 public:
-  RenderingControllerImpl(const CameraParams& cameraParams,
+  RenderingControllerImpl(const Params& params,
                           const ColorTheme& colors);
 
   void update(const State& state) override;
@@ -28,7 +35,7 @@ public:
   }
 
 private:
-  const CameraParams& _cameraParams;
+  const Params& _params;
   const ColorTheme& _colors;
   ofEasyCam _cam;
   ofxPostProcessing _postProc;
@@ -36,8 +43,8 @@ private:
   ofVec3f _rotation;
 };
 
-RenderingControllerImpl::RenderingControllerImpl(const CameraParams& cameraParams, const ColorTheme& colors)
-: _cameraParams(cameraParams)
+RenderingControllerImpl::RenderingControllerImpl(const Params& params, const ColorTheme& colors)
+: _params(params)
 , _colors(colors) {
 
   ofEnableAlphaBlending();
@@ -50,8 +57,8 @@ RenderingControllerImpl::RenderingControllerImpl(const CameraParams& cameraParam
 }
 
 void RenderingControllerImpl::update(const State &state) {
-  if (_cameraParams.spinEnabled()) {
-    _rotation += _cameraParams.spinRate() * state.timeDelta;
+  if (_params.camera.spinEnabled()) {
+    _rotation += _params.camera.spinRate() * state.timeDelta;
   }
 }
 
@@ -80,6 +87,6 @@ void RenderingControllerImpl::endDraw(const State &state) {
   glPopAttrib();
 }
 
-shared_ptr<RenderingController> RenderingController::create(const CameraParams& cameraParams, const ColorTheme& colors) {
-  return std::shared_ptr<RenderingController>(new RenderingControllerImpl(cameraParams, colors));
+shared_ptr<RenderingController> RenderingController::create(const Params& params, const ColorTheme& colors) {
+  return std::shared_ptr<RenderingController>(new RenderingControllerImpl(params, colors));
 }

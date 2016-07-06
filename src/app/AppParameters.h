@@ -15,6 +15,7 @@
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
+#include "RenderingController.h"
 #include "Params.h"
 #include "Bounds.h"
 #include "Clock.h"
@@ -38,18 +39,6 @@ private:
   TParam<bool> _showStatus;
 };
 
-class CameraParams : public Params {
-public:
-  CameraParams();
-
-  bool spinEnabled() const { return _spinEnabled.get(); }
-  const ofVec3f& spinRate() const { return _spinRate.get(); }
-
-private:
-  TParam<bool> _spinEnabled;
-  TParam<ofVec3f> _spinRate;
-};
-
 class CoreParams : public Params {
 public:
   CoreParams();
@@ -59,7 +48,6 @@ public:
 #endif
 
   Clock::Params clock;
-  CameraParams camera;
   SimpleCubeBounds bounds;
   DebugParams debug;
 
@@ -83,6 +71,7 @@ public:
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
+  RenderingController::Params rendering;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

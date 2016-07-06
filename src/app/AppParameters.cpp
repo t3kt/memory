@@ -48,9 +48,6 @@ CoreParams::CoreParams()
   add(debug
       .setKey("debug")
       .setName("Debug"));
-  add(camera
-      .setKey("camera")
-      .setName("Camera"));
 #ifdef ENABLE_SYPHON
   add(_syphonEnabled
       .setKey("syphonEnabled")
@@ -76,4 +73,7 @@ MemoryAppParameters::MemoryAppParameters()
   add(colors
       .setKey("colors")
       .setName("Colors"));
+  add(rendering
+      .setKey("rendering")
+      .setName("Rendering"));
 }

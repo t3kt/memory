@@ -46,6 +46,7 @@ private:
   ofxGuiPage _entityPage;
   ofxGuiPage _animationsPage;
   ofxGuiPage _colorsPage;
+  ofxGuiPage _renderingPage;
 
   ofxTabbedPages _pages;
 
@@ -57,6 +58,10 @@ private:
   ActionsGui _actions;
   ofxFpsPlotter _fps;
 };
+
+static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
+  gui->setBackgroundColor(ofColor(gui->getBackgroundColor(), alpha*255));
+}
 
 AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
                        ofxLiquidEvent<void>& onLoad,
@@ -76,7 +81,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _entityPages.setShowHeader(false);
 
   _entityPage.setup();
-  _entityPage.setName("Entities");
+  _entityPage.setName("Ent");
   _entityPage.add(&_entityPages);
   _pages.add(&_entityPage);
 
@@ -88,15 +93,22 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _occurrencesPage.add(new ofxGuiGroupExtended(_appParams.occurrences));
   _entityPages.add(&_occurrencesPage);
 
-  _animationsPage.setup("Animations");
+  _animationsPage.setup("Anim");
   _animationsPage.add(new ofxGuiGroupExtended(_appParams.animations));
   _pages.add(&_animationsPage);
 
-  _colorsPage.setup("Colors");
+  _colorsPage.setup("Col");
   _colorsPage.add(new ofxGuiGroupExtended(_appParams.colors));
   _pages.add(&_colorsPage);
 
+  _renderingPage.setup("Rend");
+  _renderingPage.add(new ofxGuiGroupExtended(_appParams.rendering));
+  _pages.add(&_renderingPage);
+
   _actions.setPosition(_pages.getWidth() + 10, 0);
+
+  setBackgroundAlpha(&_pages, 0.5);
+  setBackgroundAlpha(&_entityPages, 0.7);
 }
 
 AppGui::AppGui(MemoryAppParameters& appParams)
