@@ -95,22 +95,6 @@ public:
   void applyToWorld(PhysicsWorld* world) override;
 };
 
-template<>
-void AttractionBehavior<ObserverEntity, OccurrenceEntity>::applyToWorld(PhysicsWorld *world) {
-  if (!_params.enabled()) {
-    return;
-  }
-  float lowBound = _params.distanceBounds.lowValue();
-  float highBound = _params.distanceBounds.highValue();
-  float lowMagnitude = _params.forceRange.lowValue();
-  float highMagnitude = _params.forceRange.highValue();
-  for (auto entity : world->observers()) {
-//    for (auto otherEntry : entity->getConnectedOccurrences()) {
-//
-//    }
-  }
-}
-
 class AbstractSpatialNoiseForceBehavior
 : public AbstractPhysicsBehavior {
 public:

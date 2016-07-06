@@ -35,6 +35,12 @@ public:
 
   ObjectManager<OccurrenceEntity>& occurrences();
   const ObjectManager<OccurrenceEntity>& occurrences() const;
+
+  template<typename E>
+  ObjectManager<E>& getEntities();
+
+  template<typename E>
+  const ObjectManager<E>& getEntities() const;
 private:
   const State& _state;
   ObserversController& _observers;

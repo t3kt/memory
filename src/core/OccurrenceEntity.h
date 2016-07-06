@@ -65,6 +65,10 @@ public:
     return _connectedObservers;
   }
 
+  EntityMap<ObserverEntity>& connectedObservers() {
+    return _connectedObservers;
+  }
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;

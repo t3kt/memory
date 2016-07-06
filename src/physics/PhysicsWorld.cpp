@@ -25,3 +25,23 @@ ObjectManager<OccurrenceEntity>& PhysicsWorld::occurrences() {
 const ObjectManager<OccurrenceEntity>& PhysicsWorld::occurrences() const {
   return _occurrences.entities();
 }
+
+template<>
+ObjectManager<ObserverEntity>& PhysicsWorld::getEntities<ObserverEntity>() {
+  return observers();
+}
+
+template<>
+const ObjectManager<ObserverEntity>& PhysicsWorld::getEntities<ObserverEntity>() const {
+  return observers();
+}
+
+template<>
+ObjectManager<OccurrenceEntity>& PhysicsWorld::getEntities<OccurrenceEntity>() {
+  return occurrences();
+}
+
+template<>
+const ObjectManager<OccurrenceEntity>& PhysicsWorld::getEntities<OccurrenceEntity>() const {
+  return occurrences();
+}

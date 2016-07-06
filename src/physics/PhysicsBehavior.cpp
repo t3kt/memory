@@ -10,6 +10,20 @@
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 
+
+template<typename E, typename O>
+EntityMap<O>& getOthers(E *entity);
+
+template<>
+EntityMap<OccurrenceEntity>& getOthers<ObserverEntity, OccurrenceEntity>(ObserverEntity *entity) {
+  return entity->getConnectedOccurrences();
+}
+
+template<>
+EntityMap<ObserverEntity>& getOthers<OccurrenceEntity, ObserverEntity>(OccurrenceEntity *entity) {
+  return entity->connectedObservers();
+}
+
 void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
   for (auto entity : world->observers()) {
     applyToEntity(world, entity.get());
@@ -25,22 +39,35 @@ void BoundsBehavior::applyToEntity(PhysicsWorld *world,
                   entity->positionPtr());
 }
 
-template<>
-void SpatialNoiseForceBehavior<ObserverEntity>::applyToWorld(PhysicsWorld *world) {
+template<typename E, typename O>
+void AttractionBehavior<E, O>::applyToWorld(PhysicsWorld* world) {
   if (!_params.enabled()) {
     return;
   }
-  for (auto entity : world->observers()) {
-    applyToEntity(world, entity.get());
+  float lowBound = _params.distanceBounds.lowValue();
+  float highBound = _params.distanceBounds.highValue();
+  float lowMagnitude = _params.forceRange.lowValue();
+  float highMagnitude = _params.forceRange.highValue();
+  for (auto entity : world->getEntities<E>()) {
+    for (auto other : getOthers(entity.get())) {
+      ofVec3f posDiff = other.second->position() - entity->position();
+      float dist = posDiff.length();
+      if (dist < lowBound || dist > highBound) {
+        continue;
+      }
+      float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
+      posDiff.normalize();
+      entity->addForce(posDiff * mag);
+    }
   }
 }
 
-template<>
-void SpatialNoiseForceBehavior<OccurrenceEntity>::applyToWorld(PhysicsWorld *world) {
+template<typename E>
+void SpatialNoiseForceBehavior<E>::applyToWorld(PhysicsWorld *world) {
   if (!_params.enabled()) {
     return;
   }
-  for (auto entity : world->occurrences()) {
+  for (auto entity : world->getEntities<E>()) {
     applyToEntity(world, entity.get());
   }
 }
