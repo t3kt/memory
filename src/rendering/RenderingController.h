@@ -119,6 +119,9 @@ class PostProcParams : public RenderPassParams {
 public:
   PostProcParams()
   : RenderPassParams() {
+    add(fxaa
+        .setKey("fxaa")
+        .setName("FXAA"));
     add(edge
         .setKey("edge")
         .setName("Edge"));
@@ -133,6 +136,7 @@ public:
         .setName("Bloom"));
   }
 
+  RenderPassParams fxaa;
   EdgePassParams edge;
   DofPassParams dof;
   RenderPassParams rimHighlight;

@@ -267,6 +267,9 @@
         "saturation": 0.5
       },
       "enabled": true,
+      "fxaa": {
+        "enabled": true
+      },
       "rimHighlight": {
         "enabled": false
       }

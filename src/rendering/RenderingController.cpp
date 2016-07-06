@@ -85,10 +85,11 @@ private:
   const ofFloatColor& _fogColor;
   ofEasyCam _cam;
   ofxPostProcessing _postProc;
-  shared_ptr<BloomPass> _bloomPass;
+  shared_ptr<FxaaPass> _fxaaPass;
   shared_ptr<EdgePass> _edgePass;
   shared_ptr<DofPass> _dofPass;
   shared_ptr<RimHighlightingPass> _rimHighlightPass;
+  shared_ptr<BloomPass> _bloomPass;
 //  ofLight _light;
   ofVec3f _rotation;
 };
@@ -101,6 +102,7 @@ RenderingControllerImpl::RenderingControllerImpl(const Params& params, const Col
 
   ofEnableAlphaBlending();
   _postProc.init();
+  _fxaaPass = _postProc.createPass<FxaaPass>();
   _edgePass = _postProc.createPass<EdgePass>();
   _dofPass = _postProc.createPass<DofPass>();
   _rimHighlightPass = _postProc.createPass<RimHighlightingPass>();
@@ -115,23 +117,26 @@ void RenderingControllerImpl::update(const State &state) {
   if (_params.camera.spinEnabled()) {
     _rotation += _params.camera.spinRate() * state.timeDelta;
   }
-  if (_params.postProc.edge.enabled()) {
-    _edgePass->setEnabled(true);
-    _edgePass->setHue(_params.postProc.edge.hue());
-    _edgePass->setSaturation(_params.postProc.edge.saturation());
-  } else {
-    _edgePass->setEnabled(false);
+  if (_params.postProc.enabled()) {
+    _fxaaPass->setEnabled(_params.postProc.fxaa.enabled());
+    if (_params.postProc.edge.enabled()) {
+      _edgePass->setEnabled(true);
+      _edgePass->setHue(_params.postProc.edge.hue());
+      _edgePass->setSaturation(_params.postProc.edge.saturation());
+    } else {
+      _edgePass->setEnabled(false);
+    }
+    if (_params.postProc.dof.enabled()) {
+      _dofPass->setEnabled(true);
+      _dofPass->setFocus(_params.postProc.dof.focus());
+      _dofPass->setAperture(_params.postProc.dof.aperture());
+      _dofPass->setMaxBlur(_params.postProc.dof.maxBlur());
+    } else {
+      _dofPass->setEnabled(false);
+    }
+    _rimHighlightPass->setEnabled(_params.postProc.rimHighlight.enabled());
+    _bloomPass->setEnabled(_params.postProc.bloom.enabled());
   }
-  if (_params.postProc.dof.enabled()) {
-    _dofPass->setEnabled(true);
-    _dofPass->setFocus(_params.postProc.dof.focus());
-    _dofPass->setAperture(_params.postProc.dof.aperture());
-    _dofPass->setMaxBlur(_params.postProc.dof.maxBlur());
-  } else {
-    _dofPass->setEnabled(false);
-  }
-  _rimHighlightPass->setEnabled(_params.postProc.rimHighlight.enabled());
-  _bloomPass->setEnabled(_params.postProc.bloom.enabled());
 }
 
 void RenderingControllerImpl::beginDraw(const State &state) {
