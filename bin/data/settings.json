@@ -126,7 +126,7 @@
   },
   "observers": {
     "entities": {
-      "damping": 0.0099999997764825821,
+      "damping": 0.0081760203465819359,
       "lifetime": {
         "high": 60,
         "low": 10
@@ -250,6 +250,26 @@
       },
       "enabled": true,
       "useBackgroundColor": true
+    },
+    "postProc": {
+      "bloom": {
+        "enabled": true
+      },
+      "dof": {
+        "aperture": 0.33161184191703796,
+        "enabled": false,
+        "focus": 1.0010828971862793,
+        "maxBlur": 0.67721784114837646
+      },
+      "edge": {
+        "enabled": false,
+        "hue": 0.5,
+        "saturation": 0.5
+      },
+      "enabled": true,
+      "rimHighlight": {
+        "enabled": false
+      }
     }
   }
 }
