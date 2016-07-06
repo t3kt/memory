@@ -42,13 +42,6 @@ class CameraParams : public Params {
 public:
   CameraParams();
 
-  void resetToDefaults() override {
-    _spinEnabled.resetToDefault();
-    _spinRate.resetToDefault();
-  }
-
-  bool hasDefaults() const override { return true; }
-
   bool spinEnabled() const { return _spinEnabled.get(); }
   const ofVec3f& spinRate() const { return _spinRate.get(); }
 
@@ -60,15 +53,6 @@ private:
 class CoreParams : public Params {
 public:
   CoreParams();
-
-  void resetToDefaults() override {
-    clock.resetToDefaults();
-    camera.resetToDefaults();
-    bounds.resetToDefaults();
-    debug.resetToDefaults();
-  }
-
-  bool hasDefaults() const override { return true; }
 
 #ifdef ENABLE_SYPHON
   bool syphonEnabled() const { return _syphonEnabled.get(); }
@@ -93,16 +77,6 @@ public:
 
   void readFromFile(std::string filepath);
   void writeToFile(std::string filepath) const;
-
-  void resetToDefaults() override {
-    core.resetToDefaults();
-    colors.resetToDefaults();
-    animations.resetToDefaults();
-    observers.resetToDefaults();
-    occurrences.resetToDefaults();
-  }
-
-  bool hasDefaults() const override { return true; }
 
   CoreParams core;
   ColorTheme colors;

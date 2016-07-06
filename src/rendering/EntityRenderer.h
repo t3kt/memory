@@ -35,12 +35,6 @@ public:
   public:
     Params();
 
-    virtual void resetToDefaults() override {
-      _size.resetToDefault();
-      fadeIn.resetToDefaults();
-    }
-    virtual bool hasDefaults() const override { return true; }
-
     float size() const { return _size.get(); }
     void setSize(float size) { _size.set(size); }
 
@@ -105,12 +99,6 @@ public:
   public:
     Params();
 
-    virtual void resetToDefaults() override {
-      showRange.resetToDefault();
-      AbstractEntityRenderer::Params::resetToDefaults();
-      connectionCountRange.resetToDefaults();
-    }
-
     TParam<bool> showRange;
     ValueRange<float> connectionCountRange;
   };
@@ -143,12 +131,6 @@ public:
   class Params : public ::Params {
   public:
     Params();
-
-    void resetToDefaults() override {
-      _enabled.resetToDefault();
-      connectionCountRange.resetToDefaults();
-    }
-    bool hasDefaults() const override { return true; }
 
     bool enabled() const { return _enabled.get(); }
 

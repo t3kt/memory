@@ -25,6 +25,8 @@ public:
   }
   virtual void read_json(const Json& val) = 0;
   virtual void readJsonField(const Json& obj) = 0;
+  virtual void resetToDefault() = 0;
+  virtual bool hasDefault() const = 0;
 };
 
 template<typename T>
@@ -59,7 +61,7 @@ public:
     return setDefaultValue(value);
   }
 
-  bool hasDefaultValue() const {
+  bool hasDefault() const override {
     return _hasDefaultValue;
   }
 
@@ -72,8 +74,8 @@ public:
     _hasDefaultValue = false;
   }
 
-  void resetToDefault() {
-    if (hasDefaultValue()) {
+  void resetToDefault() override {
+    if (hasDefault()) {
       ofParameter<T>::set(getDefaultValue());
     }
   }
@@ -94,7 +96,7 @@ public:
     Json val = obj[getKey()];
     if (!val.is_null()) {
       read_json(val);
-    } else if (hasDefaultValue()) {
+    } else if (hasDefault()) {
       ofParameter<T>::set(getDefaultValue());
     } else {
       throw JsonException("Required field missing: " + getKey());
@@ -152,8 +154,13 @@ public:
 
   void readJsonField(const Json& obj) override;
 
-  virtual void resetToDefaults() {}
-  virtual bool hasDefaults() const { return false; }
+  virtual void resetToDefault() override {
+    for (auto param : _paramBases) {
+      param->resetToDefault();
+    }
+  }
+
+  virtual bool hasDefault() const override { return true; }
 private:
   std::string _key;
   std::vector<TParamInfoBase*> _paramBases;
@@ -217,12 +224,6 @@ public:
   T getLerped(float amount) const {
     return getInterpolated(lowValue(), highValue(), amount);
   }
-
-  virtual void resetToDefaults() override {
-    _lowValue.resetToDefault();
-    _highValue.resetToDefault();
-  }
-  virtual bool hasDefaults() const override { return true; }
 
   const T& lowValue() const { return _lowValue.get(); }
   const T& highValue() const { return _highValue.get(); }

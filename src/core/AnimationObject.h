@@ -109,14 +109,6 @@ public:
   public:
     Params();
 
-    void resetToDefaults() override {
-      _duration.resetToDefault();
-      _startValue.resetToDefault();
-      _endValue.resetToDefault();
-    }
-
-    bool hasDefaults() const override { return true; }
-
     float duration() const { return _duration.get(); }
     const T& startValue() const { return _startValue.get(); }
     const T& endValue() const { return _endValue.get(); }

@@ -252,8 +252,8 @@ void Params::readJsonField(const Json& obj) {
   if (!val.is_null()) {
     assertHasType(val, Json::OBJECT);
     read_json(val);
-  } else if (hasDefaults()) {
-    resetToDefaults();
+  } else if (hasDefault()) {
+    resetToDefault();
   } else {
     throw JsonException("Required field missing: " + getKey());
   }
