@@ -25,6 +25,9 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		3233364B1D2BC4CC00A000BD /* RenderingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336491D2BC4CC00A000BD /* RenderingController.cpp */; };
+		3233366C1D2CC49000A000BD /* PhysicsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366A1D2CC49000A000BD /* PhysicsController.cpp */; };
+		3233366F1D2CC4DD00A000BD /* PhysicsBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366D1D2CC4DD00A000BD /* PhysicsBehavior.cpp */; };
+		323336721D2CC6A000A000BD /* PhysicsWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336701D2CC6A000A000BD /* PhysicsWorld.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -180,6 +183,12 @@
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		323336491D2BC4CC00A000BD /* RenderingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderingController.cpp; path = rendering/RenderingController.cpp; sourceTree = "<group>"; };
 		3233364A1D2BC4CC00A000BD /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = rendering/RenderingController.h; sourceTree = "<group>"; };
+		3233366A1D2CC49000A000BD /* PhysicsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsController.cpp; path = physics/PhysicsController.cpp; sourceTree = "<group>"; };
+		3233366B1D2CC49000A000BD /* PhysicsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsController.h; path = physics/PhysicsController.h; sourceTree = "<group>"; };
+		3233366D1D2CC4DD00A000BD /* PhysicsBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsBehavior.cpp; path = physics/PhysicsBehavior.cpp; sourceTree = "<group>"; };
+		3233366E1D2CC4DD00A000BD /* PhysicsBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsBehavior.h; path = physics/PhysicsBehavior.h; sourceTree = "<group>"; };
+		323336701D2CC6A000A000BD /* PhysicsWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsWorld.cpp; path = physics/PhysicsWorld.cpp; sourceTree = "<group>"; };
+		323336711D2CC6A000A000BD /* PhysicsWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsWorld.h; path = physics/PhysicsWorld.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -399,6 +408,19 @@
 				E320776B6C2379AA9622439F /* CinderSpecialization.hpp */,
 			);
 			name = specialization;
+			sourceTree = "<group>";
+		};
+		323336691D2CC46F00A000BD /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				3233366A1D2CC49000A000BD /* PhysicsController.cpp */,
+				3233366B1D2CC49000A000BD /* PhysicsController.h */,
+				3233366D1D2CC4DD00A000BD /* PhysicsBehavior.cpp */,
+				3233366E1D2CC4DD00A000BD /* PhysicsBehavior.h */,
+				323336701D2CC6A000A000BD /* PhysicsWorld.cpp */,
+				323336711D2CC6A000A000BD /* PhysicsWorld.h */,
+			);
+			name = physics;
 			sourceTree = "<group>";
 		};
 		38BDCD9E6A577AD8255FE30C /* libs */ = {
@@ -856,6 +878,7 @@
 				BE9DD360F550B0DF4D357E7B /* app */,
 				BC405D98CD8417CE9E222B0C /* core */,
 				965168FECD51AAD1D9169011 /* lib */,
+				323336691D2CC46F00A000BD /* physics */,
 				5533A127DD65323EB591F7AD /* rendering */,
 			);
 			path = src;
@@ -1060,6 +1083,7 @@
 				A56DDEF911445AC15CE5F965 /* ofxPanelExtended.cpp in Sources */,
 				98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */,
 				01A3B7EF0252EA16E181B49D /* ofxTabbedPages.cpp in Sources */,
+				3233366F1D2CC4DD00A000BD /* PhysicsBehavior.cpp in Sources */,
 				7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */,
 				181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */,
 				A5C0430EBC106F9106E17BCF /* ofxMultiLoggerChannel.cpp in Sources */,
@@ -1071,6 +1095,7 @@
 				B2236F1E65E160763BEADCEC /* DofAltPass.cpp in Sources */,
 				740191FE5076F6FA5E83F4CC /* DofPass.cpp in Sources */,
 				2C764E115EEBBDAF3D04B4F1 /* EdgePass.cpp in Sources */,
+				323336721D2CC6A000A000BD /* PhysicsWorld.cpp in Sources */,
 				3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */,
 				B9EEB7E04A7A95BE29C7C543 /* FxaaPass.cpp in Sources */,
 				1C4A992F17CCCCB30E0D6BEC /* GodRaysPass.cpp in Sources */,
@@ -1097,6 +1122,7 @@
 				A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,
+				3233366C1D2CC49000A000BD /* PhysicsController.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */,
 			);

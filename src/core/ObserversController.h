@@ -49,6 +49,11 @@ public:
 
   void spawnObservers(int count, const State& state);
 
+  ObjectManager<ObserverEntity>& entities() { return _observers; }
+  const ObjectManager<ObserverEntity>& entities() const {
+    return _observers;
+  }
+
   std::size_t count() const {
     return _observers.size();
   }

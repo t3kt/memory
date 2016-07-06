@@ -27,7 +27,7 @@ public:
           .setKey("damping")
           .setName("Damping")
           .setValueAndDefault(0.01)
-          .setRange(0, 0.1));
+          .setRange(0, 1));
       add(_speed
           .setKey("speed")
           .setName("Speed")
@@ -106,12 +106,12 @@ public:
           .setKey("distanceBounds")
           .setName("Distance Bounds")
           .setParamValuesAndDefaults(0.04, 0.3)
-          .setParamRanges(0, 1));
+          .setParamRanges(0, 4));
       add(forceRange
           .setKey("forceRange")
           .setName("Force Range")
           .setParamValuesAndDefaults(0.0001, 0)
-          .setParamRanges(-0.005, 0.005));
+          .setParamRanges(-0.05, 0.05));
     }
 
     bool enabled() const { return _enabled.get(); }

@@ -47,6 +47,11 @@ public:
 
   void spawnOccurrences(int count, const State& state);
 
+  ObjectManager<OccurrenceEntity>& entities() { return _occurrences; }
+  const ObjectManager<OccurrenceEntity>& entities() const {
+    return _occurrences;
+  }
+
   std::size_t count() const {
     return _occurrences.size();
   }
