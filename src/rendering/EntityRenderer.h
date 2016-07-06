@@ -33,15 +33,52 @@ class AbstractEntityRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params()
+    : ::Params() {
+      add(_size
+          .setKey("size")
+          .setName("Draw Size")
+          .setValueAndDefault(0.03)
+          .setRange(0, 0.1));
+      add(fadeIn
+          .setKey("fadeIn")
+          .setName("Fade In"));
+      add(_wireEnabled
+          .setKey("wireEnabled")
+          .setName("Wireframe Enabled")
+          .setValueAndDefault(false));
+      add(_wireScale
+          .setKey("wireScale")
+          .setName("Wire Scale")
+          .setValueAndDefault(1.2)
+          .setRange(0.9, 1.8));
+      add(_wireSaturation
+          .setKey("wireSaturation")
+          .setName("Wire Saturation")
+          .setValueAndDefault(0.5)
+          .setRange(0, 1.5));
+      add(_wireBrightness
+          .setKey("wireBrightness")
+          .setName("Wire Brightness")
+          .setValueAndDefault(1.1)
+          .setRange(0.5, 1.5));
+    }
 
     float size() const { return _size.get(); }
     void setSize(float size) { _size.set(size); }
+    bool wireEnabled() const { return _wireEnabled.get(); }
+    float wireScale() const { return _wireScale.get(); }
+    float wireSaturation() const { return _wireSaturation.get(); }
+    float wireBrightness() const {return _wireBrightness.get(); }
 
     RampFactory<float>::Params fadeIn;
 
   protected:
     TParam<float> _size;
+    TParam<bool> _wireEnabled;
+    TParam<float> _wireScale;
+    TParam<float> _wireSaturation;
+    TParam<float> _wireBrightness;
   };
 
   AbstractEntityRenderer(const Params& params, const ofFloatColor& color)

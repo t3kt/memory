@@ -154,7 +154,11 @@
         "endValue": 1,
         "startValue": 0
       },
-      "size": 0.029999999329447746
+      "size": 0.029999999329447746,
+      "wireBrightness": 1.0561224222183228,
+      "wireEnabled": false,
+      "wireSaturation": 0.5,
+      "wireScale": 1.125
     },
     "spatialNoiseForce": {
       "enabled": true,
@@ -218,7 +222,11 @@
         "startValue": 0
       },
       "showRange": false,
-      "size": 0.10000000149011612
+      "size": 0.10000000149011612,
+      "wireBrightness": 1.1000000238418579,
+      "wireEnabled": false,
+      "wireSaturation": 0.5,
+      "wireScale": 1.2000000476837158
     },
     "spatialNoiseForce": {
       "enabled": false,

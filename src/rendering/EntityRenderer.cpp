@@ -16,18 +16,6 @@ EnumTypeInfo<EntityShape> EntityShapeType({
   {"box", EntityShape::BOX},
 });
 
-AbstractEntityRenderer::Params::Params()
-: ::Params() {
-  add(_size
-      .setKey("size")
-      .setName("Draw Size")
-      .setValueAndDefault(0.03)
-      .setRange(0, 0.1));
-  add(fadeIn
-      .setKey("fadeIn")
-      .setName("Fade In"));
-}
-
 void AbstractEntityRenderer::update(const State &state) {
   _fadeIn.update(state);
 }
@@ -72,12 +60,15 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
   _markerMesh.draw();
-  ofScale(ofVec3f(1.01));
-  ofFloatColor wireColor(baseColor, baseColor.a * alpha);
-  wireColor.setSaturation(wireColor.getSaturation() * 0.5);
-  wireColor.setBrightness(wireColor.getBrightness() * 1.1);
-  ofSetColor(wireColor);
-  _markerMesh.drawWireframe();
+
+  if (_baseParams.wireEnabled()) {
+    ofScale(ofVec3f(_baseParams.wireScale()));
+    ofFloatColor wireColor(baseColor, baseColor.a * alpha);
+    wireColor.setSaturation(_baseParams.wireSaturation());
+    wireColor.setBrightness(_baseParams.wireBrightness());
+    ofSetColor(wireColor);
+    _markerMesh.drawWireframe();
+  }
 
   ofPopMatrix();
   ofPopStyle();
@@ -120,12 +111,15 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
   _markerMesh.draw();
-  ofScale(ofVec3f(1.01));
-  ofFloatColor wireColor(baseColor, baseColor.a * alpha);
-  wireColor.setSaturation(wireColor.getSaturation() * 0.5);
-  wireColor.setBrightness(wireColor.getBrightness() * 1.2);
-  ofSetColor(wireColor);
-  _markerMesh.drawWireframe();
+
+  if (_baseParams.wireEnabled()) {
+    ofScale(ofVec3f(_baseParams.wireScale()));
+    ofFloatColor wireColor(baseColor, baseColor.a * alpha);
+    wireColor.setSaturation(_baseParams.wireSaturation());
+    wireColor.setBrightness(_baseParams.wireBrightness());
+    ofSetColor(wireColor);
+    _markerMesh.drawWireframe();
+  }
 
   ofPopMatrix();
   ofPopStyle();
@@ -163,6 +157,7 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
     return;
   }
   ofPushStyle();
+  ofEnableAlphaBlending();
   ofMesh connectorMesh;
   float lowCount = _params.connectionCountRange.lowValue();
   float highCount = _params.connectionCountRange.highValue();
