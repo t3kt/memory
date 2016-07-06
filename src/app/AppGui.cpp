@@ -47,6 +47,7 @@ private:
   ofxGuiPage _animationsPage;
   ofxGuiPage _colorsPage;
   ofxGuiPage _renderingPage;
+  ofxGuiPage _physicsPage;
 
   ofxTabbedPages _pages;
 
@@ -104,6 +105,10 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _renderingPage.setup("Rend");
   _renderingPage.add(new ofxGuiGroupExtended(_appParams.rendering));
   _pages.add(&_renderingPage);
+
+  _physicsPage.setup("Phys");
+  _physicsPage.add(new ofxGuiGroupExtended(_appParams.physics));
+  _pages.add(&_physicsPage);
 
   _actions.setPosition(_pages.getWidth() + 10, 0);
 

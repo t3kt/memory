@@ -33,8 +33,6 @@ public:
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
-    OccurrenceObserverAttraction::Params observerAttraction;
-    AbstractSpatialNoiseForce::Params spatialNoiseForce;
     OccurrenceRenderer::Params renderer;
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
   };
@@ -71,9 +69,6 @@ private:
   ObjectManager<OccurrenceEntity> _occurrences;
   shared_ptr<OccurrenceRenderer> _renderer;
   shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
-  shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
-  shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
-  shared_ptr<SpatialNoiseForce<OccurrenceEntity>> _spatialNoiseForce;
 };
 
 #endif /* OccurrencesController_h */

@@ -33,8 +33,6 @@ public:
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
-    ObserverOccurrenceAttraction::Params occurrenceAttraction;
-    AbstractSpatialNoiseForce::Params spatialNoiseForce;
     ObserverRenderer::Params renderer;
     AbstractThresholdRenderer::Params threshold;
   };
@@ -60,7 +58,6 @@ public:
   
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
-  ObserverEvent observerRebounded;
 private:
   void spawnObserver(const State& state);
   
@@ -70,9 +67,6 @@ private:
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ObserverRenderer> _observerRenderer;
-  shared_ptr<ReboundBehavior<ObserverEntity>> _reboundBehavior;
-  shared_ptr<ObserverOccurrenceAttraction> _occurrenceAttraction;
-  shared_ptr<SpatialNoiseForce<ObserverEntity>> _spatialNoiseForce;
   shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 };
 

@@ -16,6 +16,7 @@
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
 #include "RenderingController.h"
+#include "PhysicsController.h"
 #include "Params.h"
 #include "Bounds.h"
 #include "Clock.h"
@@ -72,6 +73,7 @@ public:
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
   RenderingController::Params rendering;
+  PhysicsController::Params physics;
 };
 
 #endif /* defined(__behavior__AppParameters__) */

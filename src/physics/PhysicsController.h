@@ -23,7 +23,25 @@ class PhysicsController {
 public:
   class Params : public ::Params {
   public:
-    Params() {}
+    Params() {
+      add(rebound
+          .setKey("rebound")
+          .setName("Rebound"));
+      add(observerOccurrenceAttraction
+          .setKey("observerOccurrenceAttraction")
+          .setName("Observer to Occurrence"));
+      add(occurrenceObserverAttraction
+          .setKey("occurrenceObserverAttraction")
+          .setName("Occurrence to Observer"));
+      add(observerSpatialNoiseForce
+          .setKey("observerSpatialNoiseForce")
+          .setName("Observer Spatial Noise"));
+      add(occurrenceSpatialNoiseForce
+          .setKey("occurrenceObserverAttraction")
+          .setName("Occurrence Spatial Noise"));
+      observerSpatialNoiseForce.setEnabled(false);
+      occurrenceObserverAttraction.setEnabled(false);
+    }
 
     BoundsBehavior::Params rebound;
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;

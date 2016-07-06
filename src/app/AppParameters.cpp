@@ -63,4 +63,7 @@ MemoryAppParameters::MemoryAppParameters()
   add(rendering
       .setKey("rendering")
       .setName("Rendering"));
+  add(physics
+      .setKey("physics")
+      .setName("Physics"));
 }

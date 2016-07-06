@@ -31,6 +31,10 @@ void PhysicsController::setup(ObserversController& observers,
 }
 
 void PhysicsController::update() {
-//  _rebound->applyToWorld(_world.get());
-  //...
+  auto world = _world.get();
+  _observerOccurrenceAttraction->applyToWorld(world);
+  _occurrenceObserverAttraction->applyToWorld(world);
+  _observerSpatialNoiseForce->applyToWorld(world);
+  _occurrenceSpatialNoiseForce->applyToWorld(world);
+  _rebound->applyToWorld(world);
 }

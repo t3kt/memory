@@ -7,8 +7,7 @@
 //
 
 #include "PhysicsBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include <ofLog.h>
 
 
 template<typename E, typename O>
@@ -35,12 +34,14 @@ void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
 
 void BoundsBehavior::applyToEntity(PhysicsWorld *world,
                                    ParticleObject *entity) {
-  _bounds.reflect(entity->velocityPtr(),
-                  entity->positionPtr());
+  if (_bounds.reflect(entity->velocityPtr(),
+                      entity->positionPtr())) {
+    ofLogNotice() << "Observer rebounded: " << *entity;
+  }
 }
 
-template<typename E, typename O>
-void AttractionBehavior<E, O>::applyToWorld(PhysicsWorld* world) {
+template<>
+void AttractionBehavior<ObserverEntity, OccurrenceEntity>::applyToWorld(PhysicsWorld* world) {
   if (!_params.enabled()) {
     return;
   }
@@ -48,8 +49,8 @@ void AttractionBehavior<E, O>::applyToWorld(PhysicsWorld* world) {
   float highBound = _params.distanceBounds.highValue();
   float lowMagnitude = _params.forceRange.lowValue();
   float highMagnitude = _params.forceRange.highValue();
-  for (auto entity : world->getEntities<E>()) {
-    for (auto other : getOthers(entity.get())) {
+  for (auto entity : world->getEntities<ObserverEntity>()) {
+    for (auto other : getOthers<ObserverEntity, OccurrenceEntity>(entity.get())) {
       ofVec3f posDiff = other.second->position() - entity->position();
       float dist = posDiff.length();
       if (dist < lowBound || dist > highBound) {
@@ -62,12 +63,45 @@ void AttractionBehavior<E, O>::applyToWorld(PhysicsWorld* world) {
   }
 }
 
-template<typename E>
-void SpatialNoiseForceBehavior<E>::applyToWorld(PhysicsWorld *world) {
+template<>
+void AttractionBehavior<OccurrenceEntity, ObserverEntity>::applyToWorld(PhysicsWorld* world) {
   if (!_params.enabled()) {
     return;
   }
-  for (auto entity : world->getEntities<E>()) {
+  float lowBound = _params.distanceBounds.lowValue();
+  float highBound = _params.distanceBounds.highValue();
+  float lowMagnitude = _params.forceRange.lowValue();
+  float highMagnitude = _params.forceRange.highValue();
+  for (auto entity : world->getEntities<OccurrenceEntity>()) {
+    for (auto other : getOthers<OccurrenceEntity, ObserverEntity>(entity.get())) {
+      ofVec3f posDiff = other.second->position() - entity->position();
+      float dist = posDiff.length();
+      if (dist < lowBound || dist > highBound) {
+        continue;
+      }
+      float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
+      posDiff.normalize();
+      entity->addForce(posDiff * mag);
+    }
+  }
+}
+
+template<>
+void SpatialNoiseForceBehavior<ObserverEntity>::applyToWorld(PhysicsWorld *world) {
+  if (!_params.enabled()) {
+    return;
+  }
+  for (auto entity : world->getEntities<ObserverEntity>()) {
+    applyToEntity(world, entity.get());
+  }
+}
+
+template<>
+void SpatialNoiseForceBehavior<OccurrenceEntity>::applyToWorld(PhysicsWorld *world) {
+  if (!_params.enabled()) {
+    return;
+  }
+  for (auto entity : world->getEntities<OccurrenceEntity>()) {
     applyToEntity(world, entity.get());
   }
 }

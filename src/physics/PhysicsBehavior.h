@@ -14,6 +14,8 @@
 #include "PhysicsWorld.h"
 #include "ParticleObject.h"
 #include "Bounds.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 
 class AbstractPhysicsBehavior {
 public:

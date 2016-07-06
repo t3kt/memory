@@ -24,20 +24,12 @@ ObserversController::Params::Params()
       .setName("Initial Velocity")
       .setParamValuesAndDefaults(0, 0.01)
       .setParamRanges(0, 0.1));
-  add(occurrenceAttraction
-      .setKey("occurrenceAttraction")
-      .setName("Occurrence Attraction"));
-  add(spatialNoiseForce
-      .setKey("spatialNoiseForce")
-      .setName("Spatial Noise Force"));
   add(renderer
       .setKey("renderer")
       .setName("Renderer"));
   add(threshold
       .setKey("threshold")
       .setName("Threshold"));
-
-  spatialNoiseForce.setEnabled(false);
 }
 
 ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)
@@ -48,13 +40,6 @@ ObserversController::ObserversController(const ObserversController::Params& para
 }
 
 void ObserversController::setup(const State &state) {
-  _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_bounds);
-  _reboundBehavior->entityRebounded += [&](ObserverEventArgs e) {
-    observerRebounded.notifyListeners(e);
-    ofLogNotice() << "Observer rebounded: " << e.entity();
-  };
-  _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
-  _spatialNoiseForce = std::make_shared<SpatialNoiseForce<ObserverEntity>>(_params.spatialNoiseForce);
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, _colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, _colors, _observers);
   for (int i = 0; i < START_OBSERVERS; i++) {
@@ -105,9 +90,6 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 void ObserversController::spawnObserver(const State &state) {
   auto observer = ObserverEntity::spawn(_params.entities, _bounds, state, _colors.getColor(ColorId::OBSERVER_MARKER));
   observer->setVelocity(_params.initialVelocity.getValue());
-  observer->addBehavior(_reboundBehavior);
-  observer->addBehavior(_occurrenceAttraction);
-  observer->addBehavior(_spatialNoiseForce);
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
   observerSpawned.notifyListeners(e);

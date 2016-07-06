@@ -43,6 +43,11 @@ void MemoryApp::setup() {
   _animations->attachTo(*_observers);
   _animations->attachTo(*_occurrences);
 
+  _physics = std::make_shared<PhysicsController>(_appParams.physics,
+                                                 _appParams.core.bounds,
+                                                 _state);
+  _physics->setup(*_observers, *_occurrences);
+
   _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
   _clock->setup();
 
@@ -61,6 +66,7 @@ void MemoryApp::update() {
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);
+  _physics->update();
   _renderingController->update(_state);
 
   // Slide the logger screen in and out.

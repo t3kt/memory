@@ -20,6 +20,7 @@
 #include "OccurrencesController.h"
 #include "AnimationsController.h"
 #include "RenderingController.h"
+#include "PhysicsController.h"
 #include "Status.h"
 #include "AppGui.h"
 #include "Clock.h"
@@ -47,6 +48,7 @@ private:
   shared_ptr<AnimationsController> _animations;
   shared_ptr<StatusInfoController> _statusController;
   shared_ptr<RenderingController> _renderingController;
+  shared_ptr<PhysicsController> _physics;
   shared_ptr<AppGui> _gui;
   shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
   shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
