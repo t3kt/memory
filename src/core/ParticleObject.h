@@ -21,7 +21,19 @@ class ParticleObject : public WorldObject {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params()
+    : ::Params() {
+      add(_damping
+          .setKey("damping")
+          .setName("Damping")
+          .setValueAndDefault(0.01)
+          .setRange(0, 0.1));
+      add(_speed
+          .setKey("speed")
+          .setName("Speed")
+          .setValueAndDefault(1)
+          .setRange(0, 10));
+    }
 
     float damping() const { return _damping.get(); }
     float speed() const { return _speed.get(); }
@@ -84,7 +96,23 @@ class AbstractEntityAttraction {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params()
+    : ::Params() {
+      add(_enabled
+          .setKey("enabled")
+          .setName("Enabled")
+          .setValueAndDefault(true));
+      add(distanceBounds
+          .setKey("distanceBounds")
+          .setName("Distance Bounds")
+          .setParamValuesAndDefaults(0.04, 0.3)
+          .setParamRanges(0, 1));
+      add(forceRange
+          .setKey("forceRange")
+          .setName("Force Range")
+          .setParamValuesAndDefaults(0.0001, 0)
+          .setParamRanges(-0.005, 0.005));
+    }
 
     bool enabled() const { return _enabled.get(); }
 
@@ -138,7 +166,28 @@ class AbstractSpatialNoiseForce {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params()
+    : ::Params() {
+      add(_enabled
+          .setKey("enabled")
+          .setName("Enabled")
+          .setValueAndDefault(true));
+      add(_scale
+          .setKey("scale")
+          .setName("Scale")
+          .setValueAndDefault(1)
+          .setRange(0, 4));
+      add(_rate
+          .setKey("rate")
+          .setName("Rate")
+          .setValueAndDefault(0.1)
+          .setRange(0, 0.5));
+      add(_magnitude
+          .setKey("magnitude")
+          .setName("Magnitude")
+          .setValueAndDefault(0.0001)
+          .setRange(0, 0.005));
+    }
 
     bool enabled() const { return _enabled.get(); }
     float scale() const { return _scale.get(); }

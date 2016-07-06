@@ -8,38 +8,6 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::Params::Params()
-: ::Params() {
-  add(_damping
-      .setKey("damping")
-      .setName("Damping")
-      .setValueAndDefault(0.01)
-      .setRange(0, 0.1));
-  add(_speed
-      .setKey("speed")
-      .setName("Speed")
-      .setValueAndDefault(1)
-      .setRange(0, 10));
-}
-
-AbstractEntityAttraction::Params::Params()
-: ::Params() {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-  add(distanceBounds
-      .setKey("distanceBounds")
-      .setName("Distance Bounds")
-      .setParamValuesAndDefaults(0.04, 0.3)
-      .setParamRanges(0, 1));
-  add(forceRange
-      .setKey("forceRange")
-      .setName("Force Range")
-      .setParamValuesAndDefaults(0.0001, 0)
-      .setParamRanges(-0.005, 0.005));
-}
-
 ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params, const State& state)
 : WorldObject(state)
 , _velocity(0)
@@ -93,29 +61,6 @@ AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
 
 bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
   return _bounds.reflect(&entity._velocity, &entity._position);
-}
-
-AbstractSpatialNoiseForce::Params::Params()
-: ::Params() {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-  add(_scale
-      .setKey("scale")
-      .setName("Scale")
-      .setValueAndDefault(1)
-      .setRange(0, 4));
-  add(_rate
-      .setKey("rate")
-      .setName("Rate")
-      .setValueAndDefault(0.1)
-      .setRange(0, 0.5));
-  add(_magnitude
-      .setKey("magnitude")
-      .setName("Magnitude")
-      .setValueAndDefault(0.0001)
-      .setRange(0, 0.005));
 }
 
 const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
