@@ -45,36 +45,4 @@ public:
   ofVec3f getValue() const;
 };
 
-class RandomHsbFloatColorSupplier : public Params {
-public:
-  RandomHsbFloatColorSupplier();
-
-  RandomHsbFloatColorSupplier& setHue(float low, float high) {
-    hueRange.setParamValues(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setSaturation(float low, float high) {
-    saturationRange.setParamValues(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setBrightness(float low, float high) {
-    brightnessRange.setParamValues(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setAlpha(float low, float high) {
-    alphaRange.setParamValues(low, high);
-    return *this;
-  }
-  
-  ofFloatColor getValue() const;
-
-  RandomValueSupplier<float> hueRange;
-  RandomValueSupplier<float> saturationRange;
-  RandomValueSupplier<float> brightnessRange;
-  RandomValueSupplier<float> alphaRange;
-};
-
 #endif /* ValueSpecifier_h */

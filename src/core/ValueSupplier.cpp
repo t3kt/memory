@@ -44,33 +44,3 @@ ofVec3f SimpleRandomVectorSupplier::getValue() const {
                ofRandom(0, 360));
   return value;
 }
-
-RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier() {
-  add(hueRange
-      .setKey("hueRange")
-      .setName("Hue")
-      .setParamRanges(0, 1)
-      .setParamValuesAndDefaults(0, 1));
-  add(saturationRange
-      .setKey("saturationRange")
-      .setName("Saturation")
-      .setParamRanges(0, 1)
-      .setParamValuesAndDefaults(0, 1));
-  add(brightnessRange
-      .setKey("brightnessRange")
-      .setName("Brightness")
-      .setParamRanges(0, 1)
-      .setParamValuesAndDefaults(0, 1));
-  add(alphaRange
-      .setKey("alphaRange")
-      .setName("Alpha")
-      .setParamRanges(0, 1)
-      .setParamValuesAndDefaults(0, 1));
-}
-
-ofFloatColor RandomHsbFloatColorSupplier::getValue() const {
-  return ofFloatColor::fromHsb(hueRange.getValue(),
-                               saturationRange.getValue(),
-                               brightnessRange.getValue(),
-                               alphaRange.getValue());
-}
