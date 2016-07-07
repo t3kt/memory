@@ -7,7 +7,9 @@
 //
 
 #include "PhysicsBehavior.h"
-#include <ofLog.h>
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
+#include <ofMain.h>
 
 
 template<>
@@ -37,61 +39,35 @@ void BoundsBehavior::applyToEntity(PhysicsWorld *world,
   }
 }
 
-template<>
-void AttractionBehavior<ObserverEntity, OccurrenceEntity>::applyToWorld(PhysicsWorld* world) {
-  if (!_params.enabled()) {
-    return;
-  }
-  float lowBound = _params.distanceBounds.lowValue();
-  float highBound = _params.distanceBounds.highValue();
-  float lowMagnitude = _params.forceRange.lowValue();
-  float highMagnitude = _params.forceRange.highValue();
-  for (auto entity : world->getEntities<ObserverEntity>()) {
-    for (auto other : getEntityOthers<ObserverEntity, OccurrenceEntity>(entity.get())) {
-      ofVec3f posDiff = other.second->position() - entity->position();
-      float dist = posDiff.length();
-      if (dist < lowBound || dist > highBound) {
-        continue;
-      }
-      float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
-      posDiff.normalize();
-      entity->addForce(posDiff * mag);
-    }
-  }
-}
-
-template<>
-void AttractionBehavior<OccurrenceEntity, ObserverEntity>::applyToWorld(PhysicsWorld* world) {
-  if (!_params.enabled()) {
-    return;
-  }
-  float lowBound = _params.distanceBounds.lowValue();
-  float highBound = _params.distanceBounds.highValue();
-  float lowMagnitude = _params.forceRange.lowValue();
-  float highMagnitude = _params.forceRange.highValue();
-  for (auto entity : world->getEntities<OccurrenceEntity>()) {
-    for (auto other : getEntityOthers<OccurrenceEntity, ObserverEntity>(entity.get())) {
-      ofVec3f posDiff = other.second->position() - entity->position();
-      float dist = posDiff.length();
-      if (dist < lowBound || dist > highBound) {
-        continue;
-      }
-      float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
-      posDiff.normalize();
-      entity->addForce(posDiff * mag);
-    }
-  }
-}
-
 const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
 const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
 
-void AbstractSpatialNoiseForceBehavior::applyToEntity(PhysicsWorld* world, ParticleObject *entity) {
+ofVec3f AbstractSpatialNoiseForceBehavior::getForceForEntity(PhysicsWorld *world, ParticleObject *entity) {
   ofVec4f noisePos = ofVec4f(entity->position() * _params.scale());
   noisePos.w = world->time() * _params.rate();
 
-  ofVec3f force(ofSignedNoise(noisePos),
-                ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
-                ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
+  return ofVec3f(ofSignedNoise(noisePos),
+                 ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
+                 ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
+}
+
+void AbstractSpatialNoiseForceBehavior::applyToEntity(PhysicsWorld* world, ParticleObject *entity) {
+  ofVec3f force = getForceForEntity(world, entity);
   entity->addForce(force);
+}
+
+void AbstractSpatialNoiseForceBehavior::beginDebugDraw() {
+  ofPushStyle();
+  ofSetColor(ofFloatColor::red);
+}
+
+void AbstractSpatialNoiseForceBehavior::debugDrawEntity(PhysicsWorld *world, ParticleObject *entity) {
+  ofVec3f force = getForceForEntity(world, entity);
+  ofVec3f start = entity->position();
+  ofVec3f end = start + force;
+  ofDrawArrow(start, end);
+}
+
+void AbstractSpatialNoiseForceBehavior::endDebugDraw() {
+  ofPopStyle();
 }

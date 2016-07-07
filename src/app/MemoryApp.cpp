@@ -88,6 +88,7 @@ void MemoryApp::draw() {
   _observers->draw(_state);
   _occurrences->draw(_state);
   _animations->draw(_state);
+  _physics->draw();
 
   if (_appParams.core.debug.showBounds()) {
     ofPushStyle();
