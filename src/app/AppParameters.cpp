@@ -22,6 +22,10 @@ DebugParams::DebugParams()
       .setKey("showStatus")
       .setName("Show Status")
       .setValueAndDefault(true));
+  add(_showPhysics
+      .setKey("showPhysics")
+      .setName("Show Physics")
+      .setValueAndDefault(false));
 }
 
 CoreParams::CoreParams()

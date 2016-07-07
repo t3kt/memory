@@ -40,6 +40,7 @@ public:
   };
 
   virtual void applyToWorld(PhysicsWorld* world) = 0;
+  virtual void debugDraw(PhysicsWorld* world) { }
 };
 
 class BoundsBehavior
@@ -88,6 +89,9 @@ public:
   : _params(params) { }
 
   const Params& _params;
+protected:
+  template<typename E, typename O>
+  static EntityMap<O>& getEntityOthers(E *entity);
 };
 
 template<typename E, typename O>
@@ -141,6 +145,8 @@ public:
   AbstractSpatialNoiseForceBehavior(const Params& params)
   : _params(params) { }
 
+  void debugDraw(PhysicsWorld* world) override{}
+
 protected:
   void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
 
@@ -154,7 +160,14 @@ public:
   SpatialNoiseForceBehavior(const Params& params)
   : AbstractSpatialNoiseForceBehavior(params) { }
 
-  void applyToWorld(PhysicsWorld* world) override;
+  void applyToWorld(PhysicsWorld* world) override {
+    if (!_params.enabled()) {
+      return;
+    }
+    for (auto entity : world->getEntities<E>()) {
+      applyToEntity(world, entity.get());
+    }
+  }
 };
 
 

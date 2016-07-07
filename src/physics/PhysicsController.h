@@ -18,6 +18,8 @@
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 
+class DebugParams;
+
 class PhysicsController {
 public:
   class Params : public ::Params {
@@ -51,6 +53,7 @@ public:
 
   PhysicsController(const Params& params,
                     const Bounds& bounds,
+                    const DebugParams& debugParams,
                     const State& state);
 
   void stopAllEntities();
@@ -59,10 +62,12 @@ public:
              OccurrencesController& occurrences);
 
   void update();
+  void draw();
 
 private:
   const Params& _params;
   const Bounds& _bounds;
+  const DebugParams& _debugParams;
   const State& _state;
 
   std::shared_ptr<PhysicsWorld> _world;

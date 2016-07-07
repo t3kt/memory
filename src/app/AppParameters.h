@@ -29,15 +29,18 @@ public:
   bool showLog() const { return _showLog.get(); }
   bool showBounds() const { return _showBounds.get(); }
   bool showStatus() const { return _showStatus.get(); }
+  bool showPhysics() const { return _showPhysics.get(); }
 
   void setShowLog(bool showLog) { _showLog.set(showLog); }
   void setShowBounds(bool showBounds) { _showBounds.set(showBounds); }
   void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
+  void setShowPhysics(bool showPhysics) { _showPhysics.set(showPhysics); }
 
 private:
   TParam<bool> _showLog;
   TParam<bool> _showBounds;
   TParam<bool> _showStatus;
+  TParam<bool> _showPhysics;
 };
 
 class CoreParams : public Params {

@@ -7,12 +7,15 @@
 //
 
 #include "PhysicsController.h"
+#include "AppParameters.h"
 
 PhysicsController::PhysicsController(const PhysicsController::Params& params,
                                      const Bounds& bounds,
+                                     const DebugParams& debugParams,
                                      const State& state)
 : _params(params)
 , _bounds(bounds)
+, _debugParams(debugParams)
 , _state(state) {}
 
 void PhysicsController::setup(ObserversController& observers,
@@ -35,6 +38,17 @@ void PhysicsController::update() {
   _observerSpatialNoiseForce->applyToWorld(world);
   _occurrenceSpatialNoiseForce->applyToWorld(world);
   _rebound->applyToWorld(world);
+}
+
+void PhysicsController::draw() {
+  if (_debugParams.showPhysics()) {
+    auto world = _world.get();
+    _observerOccurrenceAttraction->debugDraw(world);
+    _occurrenceObserverAttraction->debugDraw(world);
+    _observerSpatialNoiseForce->debugDraw(world);
+    _occurrenceSpatialNoiseForce->debugDraw(world);
+    _rebound->debugDraw(world);
+  }
 }
 
 void PhysicsController::stopAllEntities() {
