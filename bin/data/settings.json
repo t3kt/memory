@@ -120,7 +120,7 @@
     "debug": {
       "showBounds": false,
       "showLog": false,
-      "showPhysics": false,
+      "showPhysics": true,
       "showStatus": true
     },
     "syphonEnabled": true
@@ -232,6 +232,12 @@
         "high": 0,
         "low": 9.9999997473787516e-05
       }
+    },
+    "occurrenceSpatialNoiseForce": {
+      "enabled": true,
+      "magnitude": 0.0071428576484322548,
+      "rate": 0.028061224147677422,
+      "scale": 1
     },
     "occurrences": {
       "damping": 0.0099999997764825821,

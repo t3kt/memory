@@ -127,8 +127,8 @@ public:
       add(_magnitude
           .setKey("magnitude")
           .setName("Magnitude")
-          .setValueAndDefault(0.0001)
-          .setRange(0, 0.005));
+          .setValueAndDefault(0.001)
+          .setRange(0, 0.05));
     }
 
     float scale() const { return _scale.get(); }

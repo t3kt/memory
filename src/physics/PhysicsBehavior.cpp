@@ -51,7 +51,7 @@ ofVec3f AbstractSpatialNoiseForceBehavior::getForceForEntity(PhysicsWorld *world
 
   return ofVec3f(ofSignedNoise(noisePos),
                  ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),
-                 ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET));
+                 ofSignedNoise(noisePos + SPATIAL_NOISE_Z_OFFSET)) * _params.magnitude();
 }
 
 void AbstractSpatialNoiseForceBehavior::applyToEntity(PhysicsWorld* world, ParticleObject *entity) {
@@ -71,10 +71,10 @@ void AbstractSpatialNoiseForceBehavior::debugDrawEntity(PhysicsWorld *world, Par
   if (!entity->alive()) {
     return;
   }
-  ofVec3f force = getForceForEntity(world, entity);
+  ofVec3f force = getForceForEntity(world, entity) * 100.0f;
   ofVec3f start = entity->position();
   ofVec3f end = start + force;
-  ofDrawArrow(start, end);
+  ofDrawArrow(start, end, _params.magnitude() * 0.9f);
 }
 
 void AbstractSpatialNoiseForceBehavior::endDebugDraw() {
