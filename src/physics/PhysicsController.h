@@ -68,7 +68,7 @@ public:
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
       add(occurrenceSpatialNoiseForce
-          .setKey("occurrenceObserverAttraction")
+          .setKey("occurrenceSpatialNoiseForce")
           .setName("Occurrence Spatial Noise"));
       observerSpatialNoiseForce.setEnabled(false);
       occurrenceObserverAttraction.setEnabled(false);
