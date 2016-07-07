@@ -176,25 +176,18 @@ private:
 
 class ObserverOccurrenceConnectorRenderer {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_enabled
-          .setKey("enabled")
-          .setName("Enabled")
-          .setValueAndDefault(true));
       add(connectionCountRange
           .setKey("connectionCountRange")
           .setName("Connection Count Range")
           .setParamValuesAndDefaults(0, 4)
           .setParamRanges(0, 20));
+      setEnabledValueAndDefault(true);
     }
 
-    bool enabled() const { return _enabled.get(); }
-
     ValueRange<float> connectionCountRange;
-  private:
-    TParam<bool> _enabled;
   };
   ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
   : _params(params)

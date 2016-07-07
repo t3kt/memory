@@ -70,13 +70,14 @@ public:
       add(occurrenceSpatialNoiseForce
           .setKey("occurrenceSpatialNoiseForce")
           .setName("Occurrence Spatial Noise"));
-      observerSpatialNoiseForce.setEnabled(false);
-      occurrenceObserverAttraction.setEnabled(false);
+      rebound.setEnabledValueAndDefault(true);
+      observerSpatialNoiseForce.setEnabledValueAndDefault(false);
+      occurrenceObserverAttraction.setEnabledValueAndDefault(false);
     }
 
     EntityPhysicsParams observers;
     EntityPhysicsParams occurrences;
-    BoundsBehavior::Params rebound;
+    ParamsWithEnabled rebound;
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
     AbstractSpatialNoiseForceBehavior::Params observerSpatialNoiseForce;

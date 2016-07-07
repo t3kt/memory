@@ -22,13 +22,9 @@
 
 class AnimationObject : public WorldObject {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_enabled
-          .setKey("enabled")
-          .setName("Enabled")
-          .setValueAndDefault(true));
       add(_delay
           .setKey("delay")
           .setName("Delay")
@@ -39,18 +35,16 @@ public:
           .setName("Duration")
           .setValueAndDefault(1)
           .setRange(0, 8));
+      setEnabledValueAndDefault(true);
     }
 
-    bool enabled() const { return _enabled.get(); }
     float delay() const { return _delay.get(); }
     float duration() const { return _duration.get(); }
 
-    void setEnabled(bool enabled) { _enabled.set(enabled); }
     void setDelay(float delay) { _delay.set(delay); }
     void setDuration(float duration) { _duration.set(duration); }
 
   private:
-    TParam<bool> _enabled;
     TParam<float> _delay;
     TParam<float> _duration;
   };

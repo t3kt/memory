@@ -17,25 +17,6 @@
 
 class AbstractPhysicsBehavior {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(_enabled
-          .setKey("enabled")
-          .setName("Enabled")
-          .setValueAndDefault(true));
-    }
-
-    bool enabled() const { return _enabled.get(); }
-    void setEnabled(bool enabled) { _enabled.set(enabled); }
-  protected:
-    void setDefaultEnabled(bool enabled) {
-      _enabled.setValueAndDefault(enabled);
-    }
-  private:
-    TParam<bool> _enabled;
-  };
-
   virtual void applyToWorld(PhysicsWorld* world) = 0;
   virtual void debugDraw(PhysicsWorld* world) { }
 };
@@ -60,7 +41,7 @@ class AbstractAttractionBehavior
 : public AbstractPhysicsBehavior {
 public:
   class Params
-  : public AbstractPhysicsBehavior::Params {
+  : public ParamsWithEnabled {
   public:
     Params() {
       add(distanceBounds
@@ -75,6 +56,7 @@ public:
           .setParamValuesAndDefaults(0.0001, 0)
           .setParamRanges(-0.05, 0.05)
           .setParamNames("Near", "Far"));
+      setEnabledValueAndDefault(true);
     }
 
     FloatValueRange distanceBounds;
@@ -129,7 +111,7 @@ public:
 class AbstractSpatialNoiseForceBehavior
 : public AbstractPhysicsBehavior {
 public:
-  class Params : public AbstractPhysicsBehavior::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(_scale
@@ -149,15 +131,11 @@ public:
           .setRange(0, 0.005));
     }
 
-    bool enabled() const { return _enabled.get(); }
     float scale() const { return _scale.get(); }
     float rate() const { return _rate.get(); }
     float magnitude() const { return _magnitude.get(); }
 
-    void setEnabled(bool enabled) { _enabled.set(enabled); }
-
   private:
-    TParam<bool> _enabled;
     TParam<float> _scale;
     TParam<float> _rate;
     TParam<float> _magnitude;

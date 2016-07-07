@@ -35,13 +35,9 @@ private:
   TParam<ofVec3f> _spinRate;
 };
 
-class FogParams : public Params {
+class FogParams : public ParamsWithEnabled {
 public:
   FogParams() {
-    add(_enabled
-        .setKey("enabled")
-        .setName("Enabled")
-        .setValueAndDefault(true));
     add(_density
         .setKey("density")
         .setName("Density")
@@ -56,40 +52,20 @@ public:
         .setName("Distance")
         .setParamValuesAndDefaults(0.3, 0.9)
         .setParamRanges(0, 8));
+    setEnabledValueAndDefault(true);
   }
 
-  bool enabled() const { return _enabled.get(); }
   float density() const { return _density.get(); }
   bool useBackgroundColor() const { return _useBackgroundColor.get(); }
 
   ValueRange<float> distance;
 
 private:
-  TParam<bool> _enabled;
   TParam<float> _density;
   TParam<bool> _useBackgroundColor;
 };
 
-class RenderPassParams : public Params {
-public:
-  RenderPassParams() {
-    add(_enabled
-        .setKey("enabled")
-        .setName("Enabled")
-        .setValueAndDefault(true));
-  }
-
-  bool enabled() const { return _enabled.get(); }
-  void setEnabled(bool enabled) { _enabled.set(enabled); }
-protected:
-  void setDefaultEnabled(bool enabled) {
-    _enabled.setValueAndDefault(enabled);
-  }
-private:
-  TParam<bool> _enabled;
-};
-
-class EdgePassParams : public RenderPassParams {
+class EdgePassParams : public ParamsWithEnabled {
 public:
   EdgePassParams() {
     add(_hue
@@ -102,7 +78,7 @@ public:
         .setName("Saturation")
         .setValueAndDefault(0.5)
         .setRange(0, 1));
-    setDefaultEnabled(false);
+    setEnabledValueAndDefault(false);
   }
 
   float hue() const { return _hue.get(); }
@@ -112,7 +88,7 @@ private:
   TParam<float> _saturation;
 };
 
-class DofPassParams : public RenderPassParams {
+class DofPassParams : public ParamsWithEnabled {
 public:
   DofPassParams() {
     add(_focus
@@ -130,6 +106,7 @@ public:
         .setName("Max Blur")
         .setValueAndDefault(0.6)
         .setRange(0, 1));
+    setEnabledValueAndDefault(false);
   }
 
   float focus() const { return _focus.get(); }
@@ -141,7 +118,7 @@ private:
   TParam<float> _maxBlur;
 };
 
-class PostProcParams : public RenderPassParams {
+class PostProcParams : public ParamsWithEnabled {
 public:
   PostProcParams() {
     add(fxaa
@@ -159,13 +136,17 @@ public:
     add(bloom
         .setKey("bloom")
         .setName("Bloom"));
+    setEnabledValueAndDefault(true);
+    fxaa.setEnabledValueAndDefault(true);
+    rimHighlight.setEnabledValueAndDefault(false);
+    bloom.setEnabledValueAndDefault(true);
   }
 
-  RenderPassParams fxaa;
+  ParamsWithEnabled fxaa;
   EdgePassParams edge;
   DofPassParams dof;
-  RenderPassParams rimHighlight;
-  RenderPassParams bloom;
+  ParamsWithEnabled rimHighlight;
+  ParamsWithEnabled bloom;
 };
 
 class RenderingController {

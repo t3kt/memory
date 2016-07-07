@@ -167,6 +167,24 @@ private:
   std::vector<TParamInfoBase*> _paramBases;
 };
 
+class ParamsWithEnabled : public Params {
+public:
+  ParamsWithEnabled() {
+    add(_enabled
+        .setKey("enabled")
+        .setName("Enabled")
+        .setValueAndDefault(true));
+  }
+
+  bool enabled() const { return _enabled.get(); }
+  void setEnabled(bool enabled) { _enabled.set(enabled); }
+  void setEnabledValueAndDefault(bool enabled) {
+    _enabled.setValueAndDefault(enabled);
+  }
+private:
+  TParam<bool> _enabled;
+};
+
 template<typename T>
 class ValueRange : public Params {
 public:

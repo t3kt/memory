@@ -21,13 +21,9 @@
 
 class AnimationsController {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_enabled
-          .setKey("enabled")
-          .setName("Enabled")
-          .setValueAndDefault(true));
       add(observerDied
           .setKey("observerDied")
           .setName("Observer Died"));
@@ -37,17 +33,14 @@ public:
       add(occurrenceSpawnFailed
           .setKey("occurrenceSpawnFailed")
           .setName("Occurrence Spawn Failed"));
+      setEnabledValueAndDefault(true);
       occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 0.01);
       occurrenceSpawnFailed.setDuration(1);
     }
 
-    bool enabled() const { return _enabled.get(); }
-
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;
-  private:
-    TParam<bool> _enabled;
   };
 
   AnimationsController(const Params& params, const ColorTheme& colors);

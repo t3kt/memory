@@ -31,26 +31,18 @@ private:
 
 class AbstractThresholdRenderer {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_enabled
-          .setKey("enabled")
-          .setName("Enabled")
-          .setValueAndDefault(true));
       add(range
           .setKey("range")
           .setName("Range")
           .setParamValuesAndDefaults(0, 0.1)
           .setParamRanges(0, 8));
+      setEnabledValueAndDefault(true);
     }
 
-    bool enabled() const { return _enabled.get(); }
-    void setEnabled(bool enabled) { _enabled.set(enabled); }
-
     FloatValueRange range;
-  private:
-    TParam<bool> _enabled;
   };
 
   AbstractThresholdRenderer(const Params& params, const ofFloatColor& color)
