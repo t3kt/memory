@@ -28,9 +28,11 @@ public:
   class Params : public ::Params {
   public:
     Params() {
-      add(entities
-          .setKey("entities")
-          .setName("Occurrences"));
+      add(radius
+          .setKey("radius")
+          .setName("Radius Range")
+          .setParamValuesAndDefaults(0.4, 1.3)
+          .setParamRanges(0, 4));
       add(spawnInterval
           .setKey("spawnInterval")
           .setName("Spawning"));
@@ -46,8 +48,8 @@ public:
           .setKey("connectorRenderer")
           .setName("Connector Renderer"));
     }
-    
-    OccurrenceEntity::Params entities;
+
+    RandomValueSupplier<float> radius;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;

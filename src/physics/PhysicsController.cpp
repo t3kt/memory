@@ -31,13 +31,42 @@ void PhysicsController::setup(ObserversController& observers,
                                           occurrences);
 }
 
+void PhysicsController::beginEntityUpdate(ParticleObject *entity,
+                                          const EntityPhysicsParams& params) {
+  if (!entity->alive()) {
+    return;
+  }
+  entity->resetForce();
+}
+
+void PhysicsController::endEntityUpdate(ParticleObject *entity,
+                                        const EntityPhysicsParams& params) {
+  if (!entity->alive()) {
+    return;
+  }
+  entity->addDampingForce(params.damping());
+  entity->updateVelocityAndPosition(_world->state(), params.speed());
+}
+
 void PhysicsController::update() {
+  for (auto entity : _world->observers()) {
+    beginEntityUpdate(entity.get(), _params.observers);
+  }
+  for (auto entity : _world->occurrences()) {
+    beginEntityUpdate(entity.get(), _params.occurrences);
+  }
   auto world = _world.get();
   _observerOccurrenceAttraction->applyToWorld(world);
   _occurrenceObserverAttraction->applyToWorld(world);
   _observerSpatialNoiseForce->applyToWorld(world);
   _occurrenceSpatialNoiseForce->applyToWorld(world);
   _rebound->applyToWorld(world);
+  for (auto entity : _world->observers()) {
+    endEntityUpdate(entity.get(), _params.observers);
+  }
+  for (auto entity : _world->occurrences()) {
+    endEntityUpdate(entity.get(), _params.occurrences);
+  }
 }
 
 void PhysicsController::draw() {

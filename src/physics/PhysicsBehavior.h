@@ -106,7 +106,13 @@ public:
     float lowMagnitude = _params.forceRange.lowValue();
     float highMagnitude = _params.forceRange.highValue();
     for (auto entity : world->getEntities<E>()) {
+      if (!entity->alive()) {
+        continue;
+      }
       for (auto other : getEntityOthers<E, O>(entity.get())) {
+        if (!other.second->alive()) {
+          continue;
+        }
         ofVec3f posDiff = other.second->position() - entity->position();
         float dist = posDiff.length();
         if (dist < lowBound || dist > highBound) {

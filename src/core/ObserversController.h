@@ -29,9 +29,11 @@ public:
   class Params : public ::Params {
   public:
     Params() {
-      add(entities
-          .setKey("entities")
-          .setName("Observers"));
+      add(lifetime
+          .setKey("lifetime")
+          .setName("Lifetime Range")
+          .setParamValuesAndDefaults(1, 4)
+          .setParamRanges(0, 240));
       add(spawnInterval
           .setKey("spawnInterval")
           .setName("Spawning"));
@@ -47,8 +49,8 @@ public:
           .setKey("threshold")
           .setName("Threshold"));
     }
-    
-    ObserverEntity::Params entities;
+
+    RandomValueSupplier<float> lifetime;
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;

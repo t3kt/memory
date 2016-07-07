@@ -27,8 +27,6 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
 
 void ObserversController::update(const State &state) {
   _observers.performAction([&](shared_ptr<ObserverEntity> observer) {
-    observer->resetForce();
-    observer->addDampingForce();
     observer->update(state);
   });
 
@@ -67,10 +65,9 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 
 void ObserversController::spawnObserver(const State &state) {
   ofVec3f pos = _bounds.randomPoint();
-  float life = _params.entities.lifetime.getValue();
+  float life = _params.lifetime.getValue();
   auto observer = std::make_shared<ObserverEntity>(pos,
                                                    life,
-                                                   _params.entities,
                                                    state);
   observer->setVelocity(_params.initialVelocity.getValue());
   _observers.add(observer);

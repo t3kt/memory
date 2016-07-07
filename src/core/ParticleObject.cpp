@@ -8,11 +8,10 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params, const State& state)
+ParticleObject::ParticleObject(ofVec3f pos, const State& state)
 : WorldObject(state)
 , _velocity(0)
-, _force(0)
-, _params(params) {
+, _force(0) {
   _position = pos;
 }
 
@@ -29,14 +28,15 @@ void ParticleObject::addForce(ofVec3f force) {
   _force += force;
 }
 
-void ParticleObject::addDampingForce() {
-  addForce(_velocity * -_params.damping());
+void ParticleObject::addDampingForce(float damping) {
+  addForce(-_velocity * damping);
 }
 
-void ParticleObject::update(const State &state) {
+void ParticleObject::updateVelocityAndPosition(const State &state,
+                                               float speed) {
   if (state.timeDelta > 0) {
     _velocity += _force * state.timeDelta;
-    _position += _velocity * _params.speed() * state.timeDelta;
+    _position += _velocity * speed * state.timeDelta;
   }
 }
 

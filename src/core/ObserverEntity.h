@@ -10,7 +10,6 @@
 #define ObserverEntity_h
 
 #include <ofTypes.h>
-#include "Params.h"
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
@@ -22,20 +21,7 @@ class OccurrenceEntity;
 class ObserverEntity
 : public ParticleObject {
 public:
-  class Params : public ParticleObject::Params {
-  public:
-    Params() {
-      add(lifetime
-          .setKey("lifetime")
-          .setName("Lifetime Range")
-          .setParamValuesAndDefaults(1, 4)
-          .setParamRanges(0, 240));
-    }
-    
-    RandomValueSupplier<float> lifetime;
-  };
-  
-  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
+  ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);

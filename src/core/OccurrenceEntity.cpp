@@ -10,8 +10,8 @@
 #include "ObserverEntity.h"
 #include <ofMain.h>
 
-OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state)
-: ParticleObject(pos, params, state)
+OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state)
+: ParticleObject(pos, state)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _startTime(state.time) {
@@ -43,7 +43,6 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
 
 void OccurrenceEntity::update(const State &state) {
   if (hasConnectedObservers()) {
-    ParticleObject::update(state);
     recalculateRadius();
   } else {
     kill();

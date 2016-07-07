@@ -20,11 +20,41 @@
 
 class DebugParams;
 
+class EntityPhysicsParams
+: public Params {
+public:
+  EntityPhysicsParams() {
+    add(_damping
+        .setKey("damping")
+        .setName("Damping")
+        .setValueAndDefault(0.01)
+        .setRange(0, 1));
+    add(_speed
+        .setKey("speed")
+        .setName("Speed")
+        .setValueAndDefault(1)
+        .setRange(0, 10));
+  }
+
+  float damping() const { return _damping.get(); }
+  float speed() const { return _speed.get(); }
+
+private:
+  TParam<float> _damping;
+  TParam<float> _speed;
+};
+
 class PhysicsController {
 public:
   class Params : public ::Params {
   public:
     Params() {
+      add(observers
+          .setKey("observers")
+          .setName("Observers"));
+      add(occurrences
+          .setKey("occurrences")
+          .setName("Occurrences"));
       add(rebound
           .setKey("rebound")
           .setName("Rebound"));
@@ -44,6 +74,8 @@ public:
       occurrenceObserverAttraction.setEnabled(false);
     }
 
+    EntityPhysicsParams observers;
+    EntityPhysicsParams occurrences;
     BoundsBehavior::Params rebound;
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
@@ -65,6 +97,9 @@ public:
   void draw();
 
 private:
+  void beginEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
+  void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
+
   const Params& _params;
   const Bounds& _bounds;
   const DebugParams& _debugParams;

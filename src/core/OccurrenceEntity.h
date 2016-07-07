@@ -13,7 +13,6 @@
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
-#include "Params.h"
 #include <iostream>
 #include "ValueSupplier.h"
 #include "State.h"
@@ -23,20 +22,7 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
-  class Params : public ParticleObject::Params {
-  public:
-    Params() {
-      add(radius
-          .setKey("radius")
-          .setName("Radius Range")
-          .setParamValuesAndDefaults(0.4, 1.3)
-          .setParamRanges(0, 4));
-    }
-    
-    RandomValueSupplier<float> radius;
-  };
-  
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
+  OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(shared_ptr<ObserverEntity> observer);

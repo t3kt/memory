@@ -33,6 +33,9 @@ void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
 
 void BoundsBehavior::applyToEntity(PhysicsWorld *world,
                                    ParticleObject *entity) {
+  if (!entity->alive()) {
+    return;
+  }
   if (_bounds.reflect(entity->velocityPtr(),
                       entity->positionPtr())) {
     ofLogNotice() << "Observer rebounded: " << *entity;
@@ -52,6 +55,9 @@ ofVec3f AbstractSpatialNoiseForceBehavior::getForceForEntity(PhysicsWorld *world
 }
 
 void AbstractSpatialNoiseForceBehavior::applyToEntity(PhysicsWorld* world, ParticleObject *entity) {
+  if (!entity->alive()) {
+    return;
+  }
   ofVec3f force = getForceForEntity(world, entity);
   entity->addForce(force);
 }
@@ -62,6 +68,9 @@ void AbstractSpatialNoiseForceBehavior::beginDebugDraw() {
 }
 
 void AbstractSpatialNoiseForceBehavior::debugDrawEntity(PhysicsWorld *world, ParticleObject *entity) {
+  if (!entity->alive()) {
+    return;
+  }
   ofVec3f force = getForceForEntity(world, entity);
   ofVec3f start = entity->position();
   ofVec3f end = start + force;
