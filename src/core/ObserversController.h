@@ -37,9 +37,9 @@ public:
     AbstractThresholdRenderer::Params threshold;
   };
   
-  ObserversController(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
+  ObserversController(const Params& params, const Bounds& bounds, const State& state);
   
-  void setup(const State& state);
+  void setup(const State& state, const ColorTheme& colors);
   void update(const State& state);
   void draw(const State& state);
   
@@ -63,7 +63,6 @@ private:
   
   const Params& _params;
   const Bounds& _bounds;
-  const ColorTheme& _colors;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ObserverRenderer> _observerRenderer;

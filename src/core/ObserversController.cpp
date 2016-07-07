@@ -32,16 +32,15 @@ ObserversController::Params::Params()
       .setName("Threshold"));
 }
 
-ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors)
+ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
 : _params(params)
 , _bounds(bounds)
-, _colors(colors)
 , _spawnInterval(params.spawnInterval, state) {
 }
 
-void ObserversController::setup(const State &state) {
-  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, _colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
-  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, _colors, _observers);
+void ObserversController::setup(const State &state, const ColorTheme& colors) {
+  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -88,7 +87,7 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
 }
 
 void ObserversController::spawnObserver(const State &state) {
-  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state, _colors.getColor(ColorId::OBSERVER_MARKER));
+  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state);
   observer->setVelocity(_params.initialVelocity.getValue());
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);

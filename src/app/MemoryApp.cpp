@@ -32,11 +32,11 @@ void MemoryApp::setup() {
 
   _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
   
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state, _appParams.colors);
-  _observers->setup(_state);
+  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state);
+  _observers->setup(_state, _appParams.colors);
   
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state, _appParams.colors);
-  _occurrences->setup(_state);
+  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state);
+  _occurrences->setup(_state, _appParams.colors);
   
   _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
   _animations->setup();

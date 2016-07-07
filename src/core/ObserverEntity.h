@@ -31,9 +31,9 @@ public:
     RandomValueSupplier<float> lifetime;
   };
   
-  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ofFloatColor& color);
+  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
-  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state, const ofFloatColor& color);
+  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
   virtual ~ObserverEntity() override {}
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
@@ -55,8 +55,6 @@ protected:
   void outputFields(std::ostream& os) const override;
   
 private:
-  const Params& _params;
-  const ofFloatColor& _color;
   const float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;

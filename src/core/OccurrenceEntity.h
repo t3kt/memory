@@ -19,7 +19,6 @@
 #include "ValueSupplier.h"
 #include "Bounds.h"
 #include "State.h"
-#include "Colors.h"
 #include "ObjectManager.h"
 
 class ObserverEntity;
@@ -33,9 +32,9 @@ public:
     
     RandomValueSupplier<float> radius;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state, const ColorTheme& colors);
+  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state, const ColorTheme& colors);
+  OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(shared_ptr<ObserverEntity> observer);
@@ -71,8 +70,6 @@ protected:
 private:
   void recalculateRadius();
   
-  const Params& _params;
-  const ColorTheme& _colors;
   const float _originalRadius;
   float _actualRadius;
   float _startTime;

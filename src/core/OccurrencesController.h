@@ -36,9 +36,9 @@ public:
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
   };
   
-  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors);
+  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
   
-  void setup(const State& state);
+  void setup(const State& state, const ColorTheme& colors);
   void update(const State& state);
   void draw(const State& state);
 
@@ -62,7 +62,6 @@ private:
   
   const Params& _params;
   const Bounds& _bounds;
-  const ColorTheme& _colors;
   Interval _spawnInterval;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;

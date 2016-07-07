@@ -31,17 +31,16 @@ OccurrencesController::Params::Params()
       .setName("Connector Renderer"));
 }
 
-OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state, const ColorTheme& colors)
+OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state)
 : _params(params)
 , _bounds(bounds)
-, _colors(colors)
 , _spawnInterval(params.spawnInterval, state)
 , _observers(observers) {
 }
 
-void OccurrencesController::setup(const State &state) {
-  _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, _colors, _occurrences);
-  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, _colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
+void OccurrencesController::setup(const State &state, const ColorTheme& colors) {
+  _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, colors, _occurrences);
+  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
   for (int i = 0; i < START_OCCURRENCES; i++) {
     spawnOccurrence(state);
   }
@@ -66,7 +65,7 @@ void OccurrencesController::draw(const State &state) {
 }
 
 void OccurrencesController::spawnOccurrence(const State &state) {
-  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state, _colors);
+  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state);
   
   bool connected = _observers.registerOccurrence(occurrence);
   

@@ -20,17 +20,15 @@ ObserverEntity::Params::Params()
       .setParamRanges(0, 240));
 }
 
-shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state, const ofFloatColor& color) {
+shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
   ofVec3f pos = bounds.randomPoint();
   float life = params.lifetime.getValue();
-  return std::make_shared<ObserverEntity>(pos, life, params, state, color);
+  return std::make_shared<ObserverEntity>(pos, life, params, state);
 }
 
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state, const ofFloatColor& color)
+ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
 : ParticleObject(pos, params, state)
 , _totalLifetime(life)
-, _params(params)
-, _color(color)
 , _lifeFraction(1) {
 }
 
