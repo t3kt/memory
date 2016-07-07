@@ -111,31 +111,28 @@
   },
   "core": {
     "bounds": {
-      "size": 3.0999999046325684
+      "size": 5.7653064727783203
     },
     "clock": {
       "paused": false,
-      "rate": 1
+      "rate": 1.6734694242477417
     },
     "debug": {
-      "showBounds": true,
+      "showBounds": false,
       "showLog": false,
+      "showPhysics": false,
       "showStatus": true
     },
-    "syphonEnabled": false
+    "syphonEnabled": true
   },
   "observers": {
-    "entities": {
-      "damping": 0.076530613005161285,
-      "lifetime": {
-        "high": 211.261962890625,
-        "low": 102.55726623535156
-      },
-      "speed": 1.3775509595870972
-    },
     "initialVelocity": {
-      "high": 0,
-      "low": 0
+      "high": 0.090306125581264496,
+      "low": 0.012755102477967739
+    },
+    "lifetime": {
+      "high": 187.34693908691406,
+      "low": 48.979595184326172
     },
     "renderer": {
       "fadeIn": {
@@ -171,17 +168,13 @@
       },
       "enabled": true
     },
-    "entities": {
-      "damping": 0,
-      "radius": {
-        "high": 1.2999999523162842,
-        "low": 0.40000000596046448
-      },
-      "speed": 1
-    },
     "initialVelocity": {
       "high": 0,
       "low": 0
+    },
+    "radius": {
+      "high": 1.8979592323303223,
+      "low": 0.40000000596046448
     },
     "renderer": {
       "connectionCountRange": {
@@ -225,6 +218,10 @@
       "rate": 0.10000000149011612,
       "scale": 1
     },
+    "observers": {
+      "damping": 0.0099999997764825821,
+      "speed": 1.2755101919174194
+    },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
         "high": 0.30000001192092896,
@@ -236,6 +233,10 @@
         "low": 9.9999997473787516e-05
       }
     },
+    "occurrences": {
+      "damping": 0.0099999997764825821,
+      "speed": 1.6326529979705811
+    },
     "rebound": {
       "enabled": true
     }
@@ -244,9 +245,9 @@
     "camera": {
       "spinEnabled": false,
       "spinRate": [
-        2,
-        4,
-        5
+        0.52478218078613281,
+        0.94127464294433594,
+        0.42065811157226562
       ]
     },
     "fog": {
@@ -255,7 +256,7 @@
         "high": 4.0016660690307617,
         "low": 3.3769264221191406
       },
-      "enabled": true,
+      "enabled": false,
       "useBackgroundColor": true
     },
     "postProc": {
@@ -273,7 +274,7 @@
         "hue": 0.5,
         "saturation": 0.5
       },
-      "enabled": true,
+      "enabled": false,
       "fxaa": {
         "enabled": true
       },
