@@ -140,6 +140,10 @@ void MemoryApp::keyPressed(int key) {
     case 'x':
       _physics->stopAllEntities();
       break;
+    case 'c':
+      ofLogNotice() << "Dumping config JSON:\n"
+        << prettyPrintJsonToString(_appParams.to_json());
+      break;
   }
 }
 

@@ -112,6 +112,12 @@ void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
   writer.write(value);
 }
 
+std::string prettyPrintJsonToString(const Json& value) {
+  std::ostringstream os;
+  prettyPrintJsonToStream(value, os);
+  return os.str();
+}
+
 static void assertHasShape(const Json& value, Json::shape shape) {
   std::string message;
   if (!value.has_shape(shape, message)) {

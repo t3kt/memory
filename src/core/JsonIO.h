@@ -22,4 +22,6 @@ public:
 
 void prettyPrintJsonToStream(const Json& value, std::ostream& os);
 
+std::string prettyPrintJsonToString(const Json& value);
+
 #endif /* JsonIO_h */
