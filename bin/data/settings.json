@@ -249,10 +249,10 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": false,
+      "spinEnabled": true,
       "spinRate": [
         0.52478218078613281,
-        0.94127464294433594,
+        2.1907539367675781,
         0.42065811157226562
       ]
     },
@@ -280,7 +280,7 @@
         "hue": 0.5,
         "saturation": 0.5
       },
-      "enabled": false,
+      "enabled": true,
       "fxaa": {
         "enabled": true
       },
