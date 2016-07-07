@@ -18,7 +18,15 @@
 class AbstractPhysicsBehavior {
 public:
   virtual void applyToWorld(PhysicsWorld* world) = 0;
-  virtual void debugDraw(PhysicsWorld* world) { }
+  virtual void debugDraw(PhysicsWorld* world) {
+    beginDebugDraw();
+    debugDrawBehavior(world);
+    endDebugDraw();
+  }
+protected:
+  virtual void beginDebugDraw() { }
+  virtual void debugDrawBehavior(PhysicsWorld* world) {}
+  virtual void endDebugDraw() { }
 };
 
 class BoundsBehavior
@@ -66,10 +74,50 @@ public:
   AbstractAttractionBehavior(const Params& params)
   : _params(params) { }
 
-  const Params& _params;
+  void applyToWorld(PhysicsWorld* world) override {
+    processWorld(world, ApplyMode::ADD_FORCE);
+  }
+
 protected:
-  template<typename E, typename O>
-  static EntityMap<O>& getEntityOthers(E *entity);
+  enum class ApplyMode {
+    ADD_FORCE,
+    DEBUG_DRAW,
+  };
+
+  void debugDrawBehavior(PhysicsWorld* world) override {
+    processWorld(world, ApplyMode::DEBUG_DRAW);
+  }
+
+  virtual void processWorld(PhysicsWorld* world,
+                            ApplyMode mode) = 0;
+
+  ofVec3f calcAttractionForce(ParticleObject* entity,
+                              const ParticleObject* other) {
+    ofVec3f posDiff = other->position() - entity->position();
+    float lowBound = _params.distanceBounds.lowValue();
+    float highBound = _params.distanceBounds.highValue();
+    float lowMagnitude = _params.forceRange.lowValue();
+    float highMagnitude = _params.forceRange.highValue();
+    float dist = posDiff.length();
+    if (dist < lowBound || dist > highBound) {
+      return ofVec3f(0);
+    }
+    float mag = ofMap(dist,
+                      lowBound, highBound,
+                      lowMagnitude, highMagnitude,
+                      true);
+    posDiff.normalize();
+    return posDiff * mag;
+  }
+
+  void beginDebugDraw() override;
+  void endDebugDraw() override;
+
+  void debugDrawEntity(ParticleObject* entity,
+                       const ofVec3f& force);
+
+  const Params& _params;
+
 };
 
 template<typename E, typename O>
@@ -78,34 +126,35 @@ class AttractionBehavior
 public:
   AttractionBehavior(const Params& params)
   : AbstractAttractionBehavior(params) { }
-public:
-  void applyToWorld(PhysicsWorld* world) override {
+
+protected:
+  void processWorld(PhysicsWorld* world, ApplyMode mode) override {
     if (!_params.enabled()) {
       return;
     }
-    float lowBound = _params.distanceBounds.lowValue();
-    float highBound = _params.distanceBounds.highValue();
-    float lowMagnitude = _params.forceRange.lowValue();
-    float highMagnitude = _params.forceRange.highValue();
     for (auto entity : world->getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }
-      for (auto other : getEntityOthers<E, O>(entity.get())) {
+      for (auto other : getEntityOthers(entity.get())) {
         if (!other.second->alive()) {
           continue;
         }
-        ofVec3f posDiff = other.second->position() - entity->position();
-        float dist = posDiff.length();
-        if (dist < lowBound || dist > highBound) {
-          continue;
+        ofVec3f force = calcAttractionForce(entity.get(),
+                                            other.second.get());
+        switch (mode) {
+          case ApplyMode::ADD_FORCE:
+            entity->addForce(force);
+            break;
+          case ApplyMode::DEBUG_DRAW:
+            debugDrawEntity(entity.get(), force);
+            break;
         }
-        float mag = ofMap(dist, lowBound, highBound, lowMagnitude, highMagnitude, true);
-        posDiff.normalize();
-        entity->addForce(posDiff * mag);
       }
     }
   }
+
+  EntityMap<O>& getEntityOthers(E *entity);
 };
 
 class AbstractSpatialNoiseForceBehavior
@@ -148,8 +197,8 @@ protected:
   ofVec3f getForceForEntity(PhysicsWorld* world, ParticleObject* entity);
   void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
   void debugDrawEntity(PhysicsWorld* world, ParticleObject* entity);
-  void beginDebugDraw();
-  void endDebugDraw();
+  void beginDebugDraw() override;
+  void endDebugDraw() override;
 
   const Params& _params;
 };
@@ -170,7 +219,8 @@ public:
     }
   }
 
-  void debugDraw(PhysicsWorld* world) override {
+protected:
+  void debugDrawBehavior(PhysicsWorld* world) override {
     if (!_params.enabled()) {
       return;
     }

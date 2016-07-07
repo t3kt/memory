@@ -11,15 +11,37 @@
 #include "OccurrenceEntity.h"
 #include <ofMain.h>
 
+static void drawForceArrow(ofVec3f position,
+                           ofVec3f force) {
+  force *= 70.0f;
+  ofDrawArrow(position,
+              position + force,
+              force.length() * 0.05f);
+}
 
 template<>
-EntityMap<OccurrenceEntity>& AbstractAttractionBehavior::getEntityOthers<ObserverEntity, OccurrenceEntity>(ObserverEntity *entity) {
+EntityMap<OccurrenceEntity>& AttractionBehavior<ObserverEntity, OccurrenceEntity>::getEntityOthers(ObserverEntity *entity) {
   return entity->getConnectedOccurrences();
 }
 
 template<>
-EntityMap<ObserverEntity>& AbstractAttractionBehavior::getEntityOthers<OccurrenceEntity, ObserverEntity>(OccurrenceEntity *entity) {
+EntityMap<ObserverEntity>& AttractionBehavior<OccurrenceEntity, ObserverEntity>::getEntityOthers(OccurrenceEntity *entity) {
   return entity->connectedObservers();
+}
+
+void AbstractAttractionBehavior::beginDebugDraw() {
+  ofPushStyle();
+  ofSetColor(ofFloatColor::green);
+}
+
+void AbstractAttractionBehavior::debugDrawEntity(ParticleObject *entity,
+                                                 const ofVec3f &force) {
+  drawForceArrow(entity->position(),
+                 force);
+}
+
+void AbstractAttractionBehavior::endDebugDraw() {
+  ofPopStyle();
 }
 
 void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
@@ -71,10 +93,8 @@ void AbstractSpatialNoiseForceBehavior::debugDrawEntity(PhysicsWorld *world, Par
   if (!entity->alive()) {
     return;
   }
-  ofVec3f force = getForceForEntity(world, entity) * 100.0f;
-  ofVec3f start = entity->position();
-  ofVec3f end = start + force;
-  ofDrawArrow(start, end, _params.magnitude() * 0.9f);
+  drawForceArrow(entity->position(),
+                 getForceForEntity(world, entity));
 }
 
 void AbstractSpatialNoiseForceBehavior::endDebugDraw() {
