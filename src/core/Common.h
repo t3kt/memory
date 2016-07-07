@@ -86,4 +86,11 @@ private:
   std::map<T, std::string> _enumToString;
 };
 
+class NonCopyable {
+public:
+  NonCopyable(const NonCopyable&) = delete;
+  NonCopyable& operator=(const NonCopyable&) = delete;
+  NonCopyable() {}
+};
+
 #endif /* defined(__behavior__Common__) */

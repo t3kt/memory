@@ -111,7 +111,8 @@ private:
 
 class Params
 : public ofParameterGroup
-, public TParamInfoBase {
+, public TParamInfoBase
+, public NonCopyable {
 public:
   Params() {}
   Params(std::string key, std::string label) {
