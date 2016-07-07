@@ -131,6 +131,12 @@ void MemoryApp::keyPressed(int key) {
     case '0':
       _observers->spawnObservers(5, _state);
       break;
+    case '(':
+      _occurrences->spawnOccurrences(100, _state);
+      break;
+    case ')':
+      _observers->spawnObservers(100, _state);
+      break;
     case 'r':
       loadSettings();
       break;
@@ -143,6 +149,12 @@ void MemoryApp::keyPressed(int key) {
     case 'c':
       ofLogNotice() << "Dumping config JSON:\n"
         << prettyPrintJsonToString(_appParams.to_json());
+      break;
+    case 'p':
+      _appParams.core.debug.setShowPhysics(!_appParams.core.debug.showPhysics());
+      break;
+    case 'b':
+      _appParams.core.debug.setShowBounds(!_appParams.core.debug.showBounds());
       break;
   }
 }

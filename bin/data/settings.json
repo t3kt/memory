@@ -82,7 +82,7 @@
       0.83673471212387085,
       0.63265305757522583,
       0.37244898080825806,
-      0.70408165454864502
+      1
     ],
     "occurrenceDied": [
       0.7662540078163147,
@@ -120,7 +120,7 @@
     "debug": {
       "showBounds": false,
       "showLog": false,
-      "showPhysics": true,
+      "showPhysics": false,
       "showStatus": true
     },
     "syphonEnabled": true
@@ -173,8 +173,8 @@
       "low": 0
     },
     "radius": {
-      "high": 1.8979592323303223,
-      "low": 0.40000000596046448
+      "high": 0.67346936464309692,
+      "low": 0.20408163964748383
     },
     "renderer": {
       "connectionCountRange": {
