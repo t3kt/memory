@@ -46,7 +46,7 @@ const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
 const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
 
 ofVec3f AbstractSpatialNoiseForceBehavior::getForceForEntity(PhysicsWorld *world, ParticleObject *entity) {
-  ofVec4f noisePos = ofVec4f(entity->position() * _params.scale());
+  ofVec4f noisePos = ofVec4f(entity->position() / _params.scale());
   noisePos.w = world->time() * _params.rate();
 
   return ofVec3f(ofSignedNoise(noisePos),
