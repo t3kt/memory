@@ -44,7 +44,12 @@ void OccurrencesController::draw(const State &state) {
 }
 
 void OccurrencesController::spawnOccurrence(const State &state) {
-  auto occurrence = OccurrenceEntity::spawn(_params.entities, _bounds, state);
+  ofVec3f pos = _bounds.randomPoint();
+  float radius = _params.entities.radius.getValue();
+  auto occurrence = std::make_shared<OccurrenceEntity>(pos,
+                                                       radius,
+                                                       _params.entities,
+                                                       state);
   
   bool connected = _observers.registerOccurrence(occurrence);
   

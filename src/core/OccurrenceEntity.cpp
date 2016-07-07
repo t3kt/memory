@@ -10,12 +10,6 @@
 #include "ObserverEntity.h"
 #include <ofMain.h>
 
-shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state) {
-  ofVec3f pos = bounds.randomPoint();
-  float radius = params.radius.getValue();
-  return std::make_shared<OccurrenceEntity>(pos, radius, params, state);
-}
-
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state)
 : ParticleObject(pos, params, state)
 , _actualRadius(0)

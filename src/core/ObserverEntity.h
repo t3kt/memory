@@ -14,10 +14,8 @@
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
-#include <vector>
 #include <iostream>
 #include "ValueSupplier.h"
-#include "Bounds.h"
 
 class OccurrenceEntity;
 
@@ -36,8 +34,6 @@ public:
     
     RandomValueSupplier<float> lifetime;
   };
-  
-  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
   ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
   virtual ~ObserverEntity() override {}

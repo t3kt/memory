@@ -10,16 +10,13 @@
 #define OccurrenceEntity_h
 
 #include <ofTypes.h>
-#include <map>
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
 #include "Params.h"
 #include <iostream>
 #include "ValueSupplier.h"
-#include "Bounds.h"
 #include "State.h"
-#include "ObjectManager.h"
 
 class ObserverEntity;
 
@@ -38,7 +35,6 @@ public:
     
     RandomValueSupplier<float> radius;
   };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
   
   OccurrenceEntity(ofVec3f pos, float radius, const Params& params, const State& state);
   virtual ~OccurrenceEntity() {}
