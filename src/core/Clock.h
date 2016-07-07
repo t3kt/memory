@@ -18,7 +18,17 @@ class Clock {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(_paused
+          .setKey("paused")
+          .setName("Paused")
+          .setValueAndDefault(false));
+      add(_rate
+          .setKey("rate")
+          .setName("Rate")
+          .setValueAndDefault(1)
+          .setRange(0, 4));
+    }
 
     bool paused() const { return _paused.get(); }
     float rate() const { return _rate.get(); }

@@ -9,18 +9,6 @@
 #include "OccurrenceEntity.h"
 #include "ObserverEntity.h"
 #include <ofMain.h>
-#include <algorithm>
-
-const float MAX_OBS_LEVEL = 4.0f;
-
-OccurrenceEntity::Params::Params()
-: ParticleObject::Params() {
-  add(radius
-      .setKey("radius")
-      .setName("Radius Range")
-      .setParamValuesAndDefaults(0.4, 1.3)
-      .setParamRanges(0, 4));
-}
 
 shared_ptr<OccurrenceEntity> OccurrenceEntity::spawn(const OccurrenceEntity::Params &params, const Bounds& bounds, const State& state) {
   ofVec3f pos = bounds.randomPoint();

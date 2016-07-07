@@ -22,8 +22,7 @@ EnumTypeInfo<ColorId> ColorIdType({
   {"fog", ColorId::FOG},
 });
 
-ColorTheme::ColorTheme()
-: ::Params() {
+ColorTheme::ColorTheme() {
   add(_background
       .setKey("background")
       .setName("Background")

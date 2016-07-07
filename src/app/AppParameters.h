@@ -24,7 +24,24 @@
 
 class DebugParams : public Params {
 public:
-  DebugParams();
+  DebugParams() {
+    add(_showLog
+        .setKey("showLog")
+        .setName("Show Log")
+        .setValueAndDefault(false));
+    add(_showBounds
+        .setKey("showBounds")
+        .setName("Show Bounds")
+        .setValueAndDefault(false));
+    add(_showStatus
+        .setKey("showStatus")
+        .setName("Show Status")
+        .setValueAndDefault(true));
+    add(_showPhysics
+        .setKey("showPhysics")
+        .setName("Show Physics")
+        .setValueAndDefault(false));
+  }
 
   bool showLog() const { return _showLog.get(); }
   bool showBounds() const { return _showBounds.get(); }
@@ -45,7 +62,23 @@ private:
 
 class CoreParams : public Params {
 public:
-  CoreParams();
+  CoreParams() {
+    add(clock
+        .setKey("clock")
+        .setName("Clock"));
+    add(bounds
+        .setKey("bounds")
+        .setName("Bounds"));
+    add(debug
+        .setKey("debug")
+        .setName("Debug"));
+#ifdef ENABLE_SYPHON
+    add(_syphonEnabled
+        .setKey("syphonEnabled")
+        .setName("Enable Syphon")
+        .setValueAndDefault(false));
+#endif
+  }
 
 #ifdef ENABLE_SYPHON
   bool syphonEnabled() const { return _syphonEnabled.get(); }
@@ -65,7 +98,29 @@ private:
 
 class MemoryAppParameters : public Params {
 public:
-  MemoryAppParameters();
+  MemoryAppParameters() {
+    add(core
+        .setKey("core")
+        .setName("Core"));
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(animations
+        .setKey("animations")
+        .setName("Animations"));
+    add(colors
+        .setKey("colors")
+        .setName("Colors"));
+    add(rendering
+        .setKey("rendering")
+        .setName("Rendering"));
+    add(physics
+        .setKey("physics")
+        .setName("Physics"));
+  }
 
   void readFromFile(std::string filepath);
   void writeToFile(std::string filepath) const;

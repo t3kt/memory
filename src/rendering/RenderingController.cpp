@@ -11,54 +11,6 @@
 #include <ofxPostProcessing.h>
 #include <ofMain.h>
 
-RenderingController::Params::Params()
-: ::Params() {
-  add(camera
-      .setKey("camera")
-      .setName("Camera"));
-  add(fog
-      .setKey("fog")
-      .setName("Fog"));
-  add(postProc
-      .setKey("postProc")
-      .setName("Post Processing"));
-}
-
-CameraParams::CameraParams()
-: ::Params() {
-  add(_spinEnabled
-      .setKey("spinEnabled")
-      .setName("Spin Enabled")
-      .setValueAndDefault(false));
-  add(_spinRate
-      .setKey("spinRate")
-      .setName("Spin Rate")
-      .setValueAndDefault(ofVec3f(2, 4, 5))
-      .setRange(ofVec3f(-10), ofVec3f(10)));
-}
-
-FogParams::FogParams()
-: ::Params() {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-  add(_density
-      .setKey("density")
-      .setName("Density")
-      .setValueAndDefault(0.001f)
-      .setRange(0, 0.004f));
-  add(_useBackgroundColor
-      .setKey("useBackgroundColor")
-      .setName("Use Background Color")
-      .setValueAndDefault(true));
-  add(distance
-      .setKey("distance")
-      .setName("Distance")
-      .setParamValuesAndDefaults(0.3, 0.9)
-      .setParamRanges(0, 8));
-}
-
 class RenderingControllerImpl
 : public RenderingController {
 public:

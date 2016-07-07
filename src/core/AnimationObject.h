@@ -24,7 +24,22 @@ class AnimationObject : public WorldObject {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(_enabled
+          .setKey("enabled")
+          .setName("Enabled")
+          .setValueAndDefault(true));
+      add(_delay
+          .setKey("delay")
+          .setName("Delay")
+          .setValueAndDefault(0)
+          .setRange(0, 2));
+      add(_duration
+          .setKey("duration")
+          .setName("Duration")
+          .setValueAndDefault(1)
+          .setRange(0, 8));
+    }
 
     bool enabled() const { return _enabled.get(); }
     float delay() const { return _delay.get(); }
@@ -69,7 +84,20 @@ class ExpandingSphereAnimation : public AnimationObject {
 public:
   class Params : public AnimationObject::Params {
   public:
-    Params();
+    Params() {
+      add(radius
+          .setKey("radius")
+          .setName("Radius")
+          .setParamNames("Start", "End")
+          .setParamRanges(0, 0.4)
+          .setParamValuesAndDefaults(0, 0.2));
+      add(alpha
+          .setKey("alpha")
+          .setName("Alpha")
+          .setParamNames("Start", "End")
+          .setParamRanges(0, 1)
+          .setParamValuesAndDefaults(0, 1));
+    }
 
     FloatValueRange radius;
     FloatValueRange alpha;
@@ -89,25 +117,28 @@ private:
   const ofFloatColor _color;
 };
 
-class AbstractAnimationSequenceFactory {
-public:
-  class Params : public ::Params {
-  public:
-    Params();
-  private:
-  };
-
-  AbstractAnimationSequenceFactory(const Params& params);
-protected:
-  const Params& _params;
-};
-
 template<typename T>
 class RampFactory {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(_duration
+          .setKey("duration")
+          .setName("Duration")
+          .setRange(0, 4)
+          .setValueAndDefault(1));
+      add(_startValue
+          .setKey("startValue")
+          .setName("Start Value")
+          .setRange(0, 1)
+          .setValueAndDefault(0));
+      add(_endValue
+          .setKey("endValue")
+          .setName("End Value")
+          .setRange(0, 1)
+          .setValueAndDefault(1));
+    }
 
     float duration() const { return _duration.get(); }
     const T& startValue() const { return _startValue.get(); }

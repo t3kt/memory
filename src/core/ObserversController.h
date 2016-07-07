@@ -28,7 +28,25 @@ class ObserversController {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(entities
+          .setKey("entities")
+          .setName("Observers"));
+      add(spawnInterval
+          .setKey("spawnInterval")
+          .setName("Spawning"));
+      add(initialVelocity
+          .setKey("initialVelocity")
+          .setName("Initial Velocity")
+          .setParamValuesAndDefaults(0, 0.01)
+          .setParamRanges(0, 0.1));
+      add(renderer
+          .setKey("renderer")
+          .setName("Renderer"));
+      add(threshold
+          .setKey("threshold")
+          .setName("Threshold"));
+    }
     
     ObserverEntity::Params entities;
     Interval::Params spawnInterval;

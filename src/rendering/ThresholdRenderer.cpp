@@ -9,20 +9,6 @@
 #include "ThresholdRenderer.h"
 #include <ofMath.h>
 
-AbstractThresholdRenderer::Params::Params()
-: ::Params() {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-//  add(color.set("Color", ofFloatColor(0.7, 0.7, 0.85, 0.4)));
-  add(range
-      .setKey("range")
-      .setName("Range")
-      .setParamValuesAndDefaults(0, 0.1)
-      .setParamRanges(0, 8));
-}
-
 ThreshData::ThreshData() {
   _mesh.setMode(OF_PRIMITIVE_LINES);
 }

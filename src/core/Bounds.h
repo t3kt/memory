@@ -14,15 +14,19 @@
 
 class Bounds : public Params {
 public:
-  Bounds();
-
   virtual bool reflect(ofVec3f* velocity, ofVec3f* position) const = 0;
   virtual ofVec3f randomPoint() const = 0;
 };
 
 class SimpleCubeBounds : public Bounds {
 public:
-  SimpleCubeBounds();
+  SimpleCubeBounds() {
+    add(_size
+        .setKey("size")
+        .setName("Size")
+        .setValueAndDefault(6)
+        .setRange(0, 10));
+  }
 
   SimpleCubeBounds& set(float sz) {
     _size.set(sz);

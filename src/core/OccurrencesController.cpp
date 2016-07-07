@@ -10,27 +10,6 @@
 
 const int START_OCCURRENCES = 5;
 
-OccurrencesController::Params::Params()
-: ::Params() {
-  add(entities
-      .setKey("entities")
-      .setName("Occurrences"));
-  add(spawnInterval
-      .setKey("spawnInterval")
-      .setName("Spawning"));
-  add(initialVelocity
-      .setKey("initialVelocity")
-      .setName("Initial Velocity")
-      .setParamValuesAndDefaults(0, 0.01)
-      .setParamRanges(0, 0.1));
-  add(renderer
-      .setKey("renderer")
-      .setName("Renderer"));
-  add(connectorRenderer
-      .setKey("connectorRenderer")
-      .setName("Connector Renderer"));
-}
-
 OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state)
 : _params(params)
 , _bounds(bounds)

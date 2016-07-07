@@ -11,27 +11,6 @@
 
 const int START_OBSERVERS = 60;
 
-ObserversController::Params::Params()
-: ::Params() {
-  add(entities
-      .setKey("entities")
-      .setName("Observers"));
-  add(spawnInterval
-      .setKey("spawnInterval")
-      .setName("Spawning"));
-  add(initialVelocity
-      .setKey("initialVelocity")
-      .setName("Initial Velocity")
-      .setParamValuesAndDefaults(0, 0.01)
-      .setParamRanges(0, 0.1));
-  add(renderer
-      .setKey("renderer")
-      .setName("Renderer"));
-  add(threshold
-      .setKey("threshold")
-      .setName("Threshold"));
-}
-
 ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
 : _params(params)
 , _bounds(bounds)

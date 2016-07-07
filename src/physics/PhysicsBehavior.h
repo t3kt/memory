@@ -19,8 +19,7 @@ class AbstractPhysicsBehavior {
 public:
   class Params : public ::Params {
   public:
-    Params()
-    : ::Params() {
+    Params() {
       add(_enabled
           .setKey("enabled")
           .setName("Enabled")
@@ -63,8 +62,7 @@ public:
   class Params
   : public AbstractPhysicsBehavior::Params {
   public:
-    Params()
-    : AbstractPhysicsBehavior::Params() {
+    Params() {
       add(distanceBounds
           .setKey("distanceBounds")
           .setName("Distance Bounds")
@@ -127,8 +125,7 @@ class AbstractSpatialNoiseForceBehavior
 public:
   class Params : public AbstractPhysicsBehavior::Params {
   public:
-    Params()
-    : AbstractPhysicsBehavior::Params() {
+    Params() {
       add(_scale
           .setKey("scale")
           .setName("Scale")

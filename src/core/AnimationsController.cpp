@@ -10,25 +10,6 @@
 #include <ofMain.h>
 #include <iostream>
 
-AnimationsController::Params::Params()
-: ::Params("animations", "Animations") {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-  add(observerDied
-      .setKey("observerDied")
-      .setName("Observer Died"));
-  add(occurrenceDied
-      .setKey("occurrenceDied")
-      .setName("Occurrence Died"));
-  add(occurrenceSpawnFailed
-      .setKey("occurrenceSpawnFailed")
-      .setName("Occurrence Spawn Failed"));
-  occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 0.01);
-  occurrenceSpawnFailed.setDuration(1);
-}
-
 AnimationsController::AnimationsController(const AnimationsController::Params& params, const ColorTheme& colors)
 : _params(params)
 , _colors(colors) {

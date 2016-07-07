@@ -15,7 +15,17 @@
 
 class CameraParams : public Params {
 public:
-  CameraParams();
+  CameraParams() {
+    add(_spinEnabled
+        .setKey("spinEnabled")
+        .setName("Spin Enabled")
+        .setValueAndDefault(false));
+    add(_spinRate
+        .setKey("spinRate")
+        .setName("Spin Rate")
+        .setValueAndDefault(ofVec3f(2, 4, 5))
+        .setRange(ofVec3f(-10), ofVec3f(10)));
+  }
 
   bool spinEnabled() const { return _spinEnabled.get(); }
   const ofVec3f& spinRate() const { return _spinRate.get(); }
@@ -27,7 +37,26 @@ private:
 
 class FogParams : public Params {
 public:
-  FogParams();
+  FogParams() {
+    add(_enabled
+        .setKey("enabled")
+        .setName("Enabled")
+        .setValueAndDefault(true));
+    add(_density
+        .setKey("density")
+        .setName("Density")
+        .setValueAndDefault(0.001f)
+        .setRange(0, 0.004f));
+    add(_useBackgroundColor
+        .setKey("useBackgroundColor")
+        .setName("Use Background Color")
+        .setValueAndDefault(true));
+    add(distance
+        .setKey("distance")
+        .setName("Distance")
+        .setParamValuesAndDefaults(0.3, 0.9)
+        .setParamRanges(0, 8));
+  }
 
   bool enabled() const { return _enabled.get(); }
   float density() const { return _density.get(); }
@@ -43,8 +72,7 @@ private:
 
 class RenderPassParams : public Params {
 public:
-  RenderPassParams()
-  : Params() {
+  RenderPassParams() {
     add(_enabled
         .setKey("enabled")
         .setName("Enabled")
@@ -63,8 +91,7 @@ private:
 
 class EdgePassParams : public RenderPassParams {
 public:
-  EdgePassParams()
-  : RenderPassParams() {
+  EdgePassParams() {
     add(_hue
         .setKey("hue")
         .setName("Hue")
@@ -87,8 +114,7 @@ private:
 
 class DofPassParams : public RenderPassParams {
 public:
-  DofPassParams()
-  : RenderPassParams() {
+  DofPassParams() {
     add(_focus
         .setKey("focus")
         .setName("Focus")
@@ -117,8 +143,7 @@ private:
 
 class PostProcParams : public RenderPassParams {
 public:
-  PostProcParams()
-  : RenderPassParams() {
+  PostProcParams() {
     add(fxaa
         .setKey("fxaa")
         .setName("FXAA"));
@@ -147,7 +172,17 @@ class RenderingController {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(camera
+          .setKey("camera")
+          .setName("Camera"));
+      add(fog
+          .setKey("fog")
+          .setName("Fog"));
+      add(postProc
+          .setKey("postProc")
+          .setName("Post Processing"));
+    }
 
     CameraParams camera;
     FogParams fog;

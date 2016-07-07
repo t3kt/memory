@@ -19,7 +19,13 @@ class Interval {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(interval
+          .setKey("interval")
+          .setName("Interval")
+          .setParamValuesAndDefaults(2, 6)
+          .setParamRanges(0, 20));
+    }
     
     RandomValueSupplier<float> interval;
   };

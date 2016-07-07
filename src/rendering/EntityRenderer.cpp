@@ -74,21 +74,6 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofPopStyle();
 }
 
-OccurrenceRenderer::Params::Params()
-: AbstractEntityRenderer::Params() {
-  add(showRange
-      .setKey("showRange")
-      .setName("Show Range")
-      .setValueAndDefault(true));
-  add(connectionCountRange
-      .setKey("connectionCountRange")
-      .setName("Connection Amount Scale")
-      .setParamValuesAndDefaults(0, 4)
-      .setParamRanges(0, 20));
-  _size.setValueAndDefault(0.1);
-  _size.setRange(0, 0.5);
-}
-
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
   auto count = entity.getAmountOfObservation(state);
   float alpha = ofMap(count,
@@ -137,19 +122,6 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
       ofPopStyle();
     }
   }
-}
-
-ObserverOccurrenceConnectorRenderer::Params::Params()
-: ::Params() {
-  add(_enabled
-      .setKey("enabled")
-      .setName("Enabled")
-      .setValueAndDefault(true));
-  add(connectionCountRange
-      .setKey("connectionCountRange")
-      .setName("Connection Count Range")
-      .setParamValuesAndDefaults(0, 4)
-      .setParamRanges(0, 20));
 }
 
 void ObserverOccurrenceConnectorRenderer::draw(const State& state) {

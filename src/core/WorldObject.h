@@ -10,7 +10,6 @@
 #define WorldObject_h
 
 #include "Common.h"
-#include "Params.h"
 #include "State.h"
 #include <iostream>
 #include <map>
@@ -23,8 +22,6 @@ class State;
 
 class WorldObject : public Outputable {
 public:
-  typedef ::Params Params;
-  
   WorldObject(const State& state);
   virtual ~WorldObject() {}
   

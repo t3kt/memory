@@ -8,19 +8,6 @@
 
 #include "Bounds.h"
 
-Bounds::Bounds()
-: Params() {
-}
-
-SimpleCubeBounds::SimpleCubeBounds()
-: Bounds() {
-  add(_size
-      .setKey("size")
-      .setName("Size")
-      .setValueAndDefault(6)
-      .setRange(0, 10));
-}
-
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   float newPos = *pos + *vel;
   if (newPos < minPos || newPos >= maxPos) {

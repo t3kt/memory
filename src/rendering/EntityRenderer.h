@@ -33,8 +33,7 @@ class AbstractEntityRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params()
-    : ::Params() {
+    Params() {
       add(_size
           .setKey("size")
           .setName("Draw Size")
@@ -134,7 +133,19 @@ class OccurrenceRenderer
 public:
   class Params : public AbstractEntityRenderer::Params {
   public:
-    Params();
+    Params() {
+      add(showRange
+          .setKey("showRange")
+          .setName("Show Range")
+          .setValueAndDefault(true));
+      add(connectionCountRange
+          .setKey("connectionCountRange")
+          .setName("Connection Amount Scale")
+          .setParamValuesAndDefaults(0, 4)
+          .setParamRanges(0, 20));
+      _size.setValueAndDefault(0.1);
+      _size.setRange(0, 0.5);
+    }
 
     TParam<bool> showRange;
     ValueRange<float> connectionCountRange;
@@ -167,7 +178,17 @@ class ObserverOccurrenceConnectorRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(_enabled
+          .setKey("enabled")
+          .setName("Enabled")
+          .setValueAndDefault(true));
+      add(connectionCountRange
+          .setKey("connectionCountRange")
+          .setName("Connection Count Range")
+          .setParamValuesAndDefaults(0, 4)
+          .setParamRanges(0, 20));
+    }
 
     bool enabled() const { return _enabled.get(); }
 

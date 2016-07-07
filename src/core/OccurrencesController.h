@@ -27,7 +27,25 @@ class OccurrencesController {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(entities
+          .setKey("entities")
+          .setName("Occurrences"));
+      add(spawnInterval
+          .setKey("spawnInterval")
+          .setName("Spawning"));
+      add(initialVelocity
+          .setKey("initialVelocity")
+          .setName("Initial Velocity")
+          .setParamValuesAndDefaults(0, 0.01)
+          .setParamRanges(0, 0.1));
+      add(renderer
+          .setKey("renderer")
+          .setName("Renderer"));
+      add(connectorRenderer
+          .setKey("connectorRenderer")
+          .setName("Connector Renderer"));
+    }
     
     OccurrenceEntity::Params entities;
     Interval::Params spawnInterval;

@@ -10,19 +10,6 @@
 #include <ofMain.h>
 
 
-Clock::Params::Params()
-: ::Params() {
-  add(_paused
-      .setKey("paused")
-      .setName("Paused")
-      .setValueAndDefault(false));
-  add(_rate
-      .setKey("rate")
-      .setName("Rate")
-      .setValueAndDefault(1)
-      .setRange(0, 4));
-}
-
 Clock::Clock(Clock::Params& params, State& state)
 : _params(params)
 , _state(state) {

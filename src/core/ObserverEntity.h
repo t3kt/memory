@@ -26,7 +26,13 @@ class ObserverEntity
 public:
   class Params : public ParticleObject::Params {
   public:
-    Params();
+    Params() {
+      add(lifetime
+          .setKey("lifetime")
+          .setName("Lifetime Range")
+          .setParamValuesAndDefaults(1, 4)
+          .setParamRanges(0, 240));
+    }
     
     RandomValueSupplier<float> lifetime;
   };

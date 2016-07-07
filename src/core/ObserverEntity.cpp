@@ -11,15 +11,6 @@
 #include "State.h"
 #include <ofMain.h>
 
-ObserverEntity::Params::Params()
-: ::ParticleObject::Params() {
-  add(lifetime
-      .setKey("lifetime")
-      .setName("Lifetime Range")
-      .setParamValuesAndDefaults(1, 4)
-      .setParamRanges(0, 240));
-}
-
 shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
   ofVec3f pos = bounds.randomPoint();
   float life = params.lifetime.getValue();

@@ -28,7 +28,13 @@ class OccurrenceEntity
 public:
   class Params : public ParticleObject::Params {
   public:
-    Params();
+    Params() {
+      add(radius
+          .setKey("radius")
+          .setName("Radius Range")
+          .setParamValuesAndDefaults(0.4, 1.3)
+          .setParamRanges(0, 4));
+    }
     
     RandomValueSupplier<float> radius;
   };

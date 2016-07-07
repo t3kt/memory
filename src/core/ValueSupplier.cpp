@@ -45,8 +45,7 @@ ofVec3f SimpleRandomVectorSupplier::getValue() const {
   return value;
 }
 
-RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier()
-: Params() {
+RandomHsbFloatColorSupplier::RandomHsbFloatColorSupplier() {
   add(hueRange
       .setKey("hueRange")
       .setName("Hue")

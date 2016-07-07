@@ -8,15 +8,6 @@
 
 #include "Interval.h"
 
-Interval::Params::Params()
-: ::Params() {
-  add(interval
-      .setKey("interval")
-      .setName("Interval")
-      .setParamValuesAndDefaults(2, 6)
-      .setParamRanges(0, 20));
-}
-
 Interval::Interval(const Interval::Params& params, const State& state)
 : _params(params) {
   loadNext(state);

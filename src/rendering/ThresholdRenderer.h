@@ -33,7 +33,17 @@ class AbstractThresholdRenderer {
 public:
   class Params : public ::Params {
   public:
-    Params();
+    Params() {
+      add(_enabled
+          .setKey("enabled")
+          .setName("Enabled")
+          .setValueAndDefault(true));
+      add(range
+          .setKey("range")
+          .setName("Range")
+          .setParamValuesAndDefaults(0, 0.1)
+          .setParamRanges(0, 8));
+    }
 
     bool enabled() const { return _enabled.get(); }
     void setEnabled(bool enabled) { _enabled.set(enabled); }
