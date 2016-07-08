@@ -9,7 +9,9 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
+#include "AttractionBehavior.h"
 #include "Bounds.h"
+#include "ForceFieldBehavior.h"
 #include "Params.h"
 #include "PhysicsWorld.h"
 #include "PhysicsBehavior.h"
@@ -80,8 +82,8 @@ public:
     ParamsWithEnabled rebound;
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
-    AbstractSpatialNoiseForceBehavior::Params observerSpatialNoiseForce;
-    AbstractSpatialNoiseForceBehavior::Params occurrenceSpatialNoiseForce;
+    AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
+    AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
   };
 
   PhysicsController(const Params& params,
@@ -111,8 +113,8 @@ private:
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;
   std::shared_ptr<AttractionBehavior<OccurrenceEntity, ObserverEntity>> _occurrenceObserverAttraction;
-  std::shared_ptr<SpatialNoiseForceBehavior<ObserverEntity>> _observerSpatialNoiseForce;
-  std::shared_ptr<SpatialNoiseForceBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
+  std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
+  std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
 };
 
 #endif /* PhysicsController_h */

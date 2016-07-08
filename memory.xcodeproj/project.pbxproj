@@ -28,6 +28,8 @@
 		3233366C1D2CC49000A000BD /* PhysicsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366A1D2CC49000A000BD /* PhysicsController.cpp */; };
 		3233366F1D2CC4DD00A000BD /* PhysicsBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366D1D2CC4DD00A000BD /* PhysicsBehavior.cpp */; };
 		323336721D2CC6A000A000BD /* PhysicsWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336701D2CC6A000A000BD /* PhysicsWorld.cpp */; };
+		3233367C1D2F6D9800A000BD /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233367A1D2F6D9800A000BD /* AttractionBehavior.cpp */; };
+		3233368C1D2F6EE300A000BD /* ForceFieldBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -187,6 +189,10 @@
 		3233366E1D2CC4DD00A000BD /* PhysicsBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsBehavior.h; path = physics/PhysicsBehavior.h; sourceTree = "<group>"; };
 		323336701D2CC6A000A000BD /* PhysicsWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsWorld.cpp; path = physics/PhysicsWorld.cpp; sourceTree = "<group>"; };
 		323336711D2CC6A000A000BD /* PhysicsWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsWorld.h; path = physics/PhysicsWorld.h; sourceTree = "<group>"; };
+		3233367A1D2F6D9800A000BD /* AttractionBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttractionBehavior.cpp; path = physics/AttractionBehavior.cpp; sourceTree = "<group>"; };
+		3233367B1D2F6D9800A000BD /* AttractionBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttractionBehavior.h; path = physics/AttractionBehavior.h; sourceTree = "<group>"; };
+		3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForceFieldBehavior.cpp; path = physics/ForceFieldBehavior.cpp; sourceTree = "<group>"; };
+		3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForceFieldBehavior.h; path = physics/ForceFieldBehavior.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -416,6 +422,10 @@
 				3233366E1D2CC4DD00A000BD /* PhysicsBehavior.h */,
 				323336701D2CC6A000A000BD /* PhysicsWorld.cpp */,
 				323336711D2CC6A000A000BD /* PhysicsWorld.h */,
+				3233367A1D2F6D9800A000BD /* AttractionBehavior.cpp */,
+				3233367B1D2F6D9800A000BD /* AttractionBehavior.h */,
+				3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */,
+				3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */,
 			);
 			name = physics;
 			sourceTree = "<group>";
@@ -1048,6 +1058,7 @@
 				9FF3497170D60884F112833A /* Timing.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
+				3233367C1D2F6D9800A000BD /* AttractionBehavior.cpp in Sources */,
 				D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */,
 				EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */,
 				8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */,
@@ -1110,6 +1121,7 @@
 				88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */,
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
+				3233368C1D2F6EE300A000BD /* ForceFieldBehavior.cpp in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
