@@ -78,6 +78,7 @@ public:
         .setName("Enable Syphon")
         .setValueAndDefault(false));
 #endif
+    bounds.setParamRange(0.5, 40);
   }
 
 #ifdef ENABLE_SYPHON
