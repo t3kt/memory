@@ -45,3 +45,8 @@ template<>
 const ObjectManager<OccurrenceEntity>& PhysicsWorld::getEntities<OccurrenceEntity>() const {
   return occurrences();
 }
+
+void PhysicsWorld::performActionOnAllEntities(EntityAction action) {
+  observers().performTypedAction(action);
+  occurrences().performTypedAction(action);
+};

@@ -12,13 +12,14 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <iterator>
 #include <list>
 #include <functional>
 #include "WorldObject.h"
 #include "State.h"
 #include "Events.h"
 
-template <class T>
+template <typename T>
 class ObjectManager {
 public:
   using StorageList = std::list<std::shared_ptr<T>>;
@@ -85,6 +86,20 @@ public:
   void performAction(std::function<void(shared_ptr<T>)> action) {
     for (auto entity : _objects) {
       action(entity);
+    }
+  }
+
+  template<typename Base>
+  void performTypedAction(std::function<void(Base*)> action) {
+    for (auto entity : _objects) {
+      action(entity.get());
+    }
+  }
+
+  template<typename Base>
+  void performTypedAction(std::function<void(const Base*)> action) const {
+    for (auto entity : _objects) {
+      action(entity.get());
     }
   }
   
