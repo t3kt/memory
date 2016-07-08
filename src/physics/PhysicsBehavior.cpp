@@ -13,10 +13,10 @@
 
 void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
                                              ofVec3f force) {
-  force *= 70.0f;
+  force *= 20.0f;
   ofDrawArrow(position,
               position + force,
-              force.length() * 0.05f);
+              force.length() * 0.1f);
 }
 
 void BoundsBehavior::applyToWorld(PhysicsWorld *world) {

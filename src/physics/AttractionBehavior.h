@@ -28,17 +28,29 @@ public:
           .setParamValuesAndDefaults(0.04, 0.3)
           .setParamRanges(0, 4)
           .setParamNames("Near", "Far"));
-      add(forceRange
-          .setKey("forceRange")
-          .setName("Force Range")
-          .setParamValuesAndDefaults(0.0001, 0)
-          .setParamRanges(-0.05, 0.05)
-          .setParamNames("Near", "Far"));
+      add(_magnitude
+          .setKey("magnitude")
+          .setName("Magnitude")
+          .setValueAndDefault(0.0001)
+          .setRange(0, 0.08));
+      add(_reverse
+          .setKey("reverse")
+          .setName("Reverse")
+          .setValueAndDefault(false));
       setEnabledValueAndDefault(true);
     }
 
+    float magnitude() const { return _magnitude.get(); }
+    bool reverse() const { return _reverse.get(); }
+
+    float signedMagnitude() const {
+      return magnitude() * (reverse() ? -1 : 1);
+    }
+
     FloatValueRange distanceBounds;
-    FloatValueRange forceRange;
+  protected:
+    TParam<float> _magnitude;
+    TParam<bool> _reverse;
   };
 
   AbstractAttractionBehavior(const Params& params)
@@ -66,17 +78,16 @@ protected:
     ofVec3f posDiff = other->position() - entity->position();
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
-    float lowMagnitude = _params.forceRange.lowValue();
-    float highMagnitude = _params.forceRange.highValue();
+    float magnitude = _params.signedMagnitude();
     float dist = posDiff.length();
     if (dist < lowBound || dist > highBound) {
       return ofVec3f(0);
     }
+    posDiff.normalize();
     float mag = ofMap(dist,
                       lowBound, highBound,
-                      lowMagnitude, highMagnitude,
+                      magnitude, 0,
                       true);
-    posDiff.normalize();
     return posDiff * mag;
   }
 

@@ -36,9 +36,9 @@ void AbstractAttractionBehavior::debugDrawEntity(ParticleObject *entity,
 void AbstractAttractionBehavior::debugDrawEntityRange(ParticleObject *entity) {
   ofPushStyle();
   ofEnableAlphaBlending();
-  ofSetColor(ofFloatColor(0.9, 0.1, 0.1, 0.6));
+  ofSetColor(ofFloatColor(0.9, 0.1, 0.1, 0.02));
   ofDrawSphere(entity->position(), _params.distanceBounds.lowValue());
-  ofSetColor(ofFloatColor(0.1, 0.1, 0.9, 0.4));
+  ofSetColor(ofFloatColor(0.1, 0.1, 0.9, 0.03));
   ofDrawSphere(entity->position(), _params.distanceBounds.highValue());
   ofPopStyle();
 }
