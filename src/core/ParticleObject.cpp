@@ -22,10 +22,6 @@ void ParticleObject::addForce(ofVec3f force) {
   _force += force;
 }
 
-void ParticleObject::addDampingForce(float damping) {
-  addForce(-_velocity * damping);
-}
-
 void ParticleObject::updateVelocityAndPosition(const State &state,
                                                float speed) {
   if (state.timeDelta > 0) {

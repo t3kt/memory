@@ -196,6 +196,7 @@
 		3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForceFieldBehavior.h; path = physics/ForceFieldBehavior.h; sourceTree = "<group>"; };
 		323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnchorPointBehavior.cpp; path = physics/AnchorPointBehavior.cpp; sourceTree = "<group>"; };
 		323336961D2F789E00A000BD /* AnchorPointBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnchorPointBehavior.h; path = physics/AnchorPointBehavior.h; sourceTree = "<group>"; };
+		323336991D2F8D5400A000BD /* DampingBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DampingBehavior.h; path = physics/DampingBehavior.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -431,6 +432,7 @@
 				3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */,
 				323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */,
 				323336961D2F789E00A000BD /* AnchorPointBehavior.h */,
+				323336991D2F8D5400A000BD /* DampingBehavior.h */,
 			);
 			name = physics;
 			sourceTree = "<group>";

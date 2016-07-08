@@ -35,6 +35,8 @@ protected:
 class BoundsBehavior
 : public AbstractPhysicsBehavior {
 public:
+  using Params = ::ParamsWithEnabled;
+
   BoundsBehavior(const Params& params, const Bounds& bounds)
   : _params(params)
   , _bounds(bounds) { }

@@ -12,6 +12,7 @@
 #include "AnchorPointBehavior.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
+#include "DampingBehavior.h"
 #include "ForceFieldBehavior.h"
 #include "Params.h"
 #include "PhysicsWorld.h"
@@ -27,11 +28,6 @@ class EntityPhysicsParams
 : public Params {
 public:
   EntityPhysicsParams() {
-    add(_damping
-        .setKey("damping")
-        .setName("Damping")
-        .setValueAndDefault(0.01)
-        .setRange(0, 1));
     add(_speed
         .setKey("speed")
         .setName("Speed")
@@ -39,11 +35,9 @@ public:
         .setRange(0, 10));
   }
 
-  float damping() const { return _damping.get(); }
   float speed() const { return _speed.get(); }
 
 private:
-  TParam<float> _damping;
   TParam<float> _speed;
 };
 
@@ -79,11 +73,19 @@ public:
       add(occurrenceAnchorPointAttraction
           .setKey("occurrenceAnchorPointAttraction")
           .setName("Occurrence Anchoring"));
+      add(observerDamping
+          .setKey("observerDamping")
+          .setName("Observer Damping"));
+      add(occurrenceDamping
+          .setKey("occurrenceDamping")
+          .setName("Occurrence Damping"));
       rebound.setEnabledValueAndDefault(true);
       observerSpatialNoiseForce.setEnabledValueAndDefault(false);
       occurrenceObserverAttraction.setEnabledValueAndDefault(false);
       observerAnchorPointAttraction.setEnabledValueAndDefault(false);
       occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
+      observerDamping.setEnabledValueAndDefault(true);
+      occurrenceDamping.setEnabledValueAndDefault(true);
     }
 
     EntityPhysicsParams observers;
@@ -95,6 +97,8 @@ public:
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
     AbstractAttractionBehavior::Params observerAnchorPointAttraction;
     AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
+    AbstractDampingBehavior::Params observerDamping;
+    AbstractDampingBehavior::Params occurrenceDamping;
   };
 
   PhysicsController(const Params& params,
@@ -128,6 +132,8 @@ private:
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
   std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;
   std::shared_ptr<AnchorPointBehavior<OccurrenceEntity>> _occurrenceAnchorPointAttraction;
+  std::shared_ptr<DampingBehavior<ObserverEntity>> _observerDamping;
+  std::shared_ptr<DampingBehavior<OccurrenceEntity>> _occurrenceDamping;
 };
 
 #endif /* PhysicsController_h */

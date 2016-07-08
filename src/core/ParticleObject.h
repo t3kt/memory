@@ -23,11 +23,11 @@ public:
 
   void resetForce();
   void addForce(ofVec3f force);
-  void addDampingForce(float damping);
 
   void updateVelocityAndPosition(const State& state, float speed);
 
   const ofVec3f& startPosition() const { return _startPosition; }
+  const ofVec3f& velocity() const { return _velocity; }
 
   ofVec3f* positionPtr() { return &_position; }
   ofVec3f* velocityPtr() { return &_velocity; }

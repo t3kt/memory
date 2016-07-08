@@ -210,12 +210,16 @@
       "magnitude": 9.9999997473787516e-05,
       "reverse": false
     },
+    "observerDamping": {
+      "enabled": true,
+      "magnitude": 0.066326528787612915
+    },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
         "high": 1.209496021270752,
         "low": 0.039999999105930328
       },
-      "enabled": false,
+      "enabled": true,
       "magnitude": 0.00897959154099226,
       "reverse": false
     },
@@ -226,7 +230,6 @@
       "scale": 1
     },
     "observers": {
-      "damping": 0.045918367803096771,
       "speed": 1.2755101919174194
     },
     "occurrenceAnchorPointAttraction": {
@@ -234,9 +237,13 @@
         "high": 1.2927947044372559,
         "low": 0.039999999105930328
       },
-      "enabled": true,
+      "enabled": false,
       "magnitude": 0.011836734600365162,
       "reverse": false
+    },
+    "occurrenceDamping": {
+      "enabled": true,
+      "magnitude": 0.0099999997764825821
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
@@ -248,13 +255,12 @@
       "reverse": false
     },
     "occurrenceSpatialNoiseForce": {
-      "enabled": false,
+      "enabled": true,
       "magnitude": 0.0071428576484322548,
       "rate": 0.028061224147677422,
       "scale": 1
     },
     "occurrences": {
-      "damping": 0.0099999997764825821,
       "speed": 1.6326529979705811
     },
     "rebound": {
@@ -263,7 +269,7 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": true,
+      "spinEnabled": false,
       "spinRate": [
         -0.20408153533935547,
         0.52478218078613281,
