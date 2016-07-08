@@ -115,6 +115,7 @@ protected:
 
   void debugDrawEntity(ParticleObject* entity,
                        const ofVec3f& force);
+  void debugDrawEntityRange(ParticleObject* entity);
 
   const Params& _params;
 
