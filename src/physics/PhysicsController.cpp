@@ -25,6 +25,8 @@ void PhysicsController::setup(ObserversController& observers,
   _occurrenceObserverAttraction = std::make_shared<AttractionBehavior<OccurrenceEntity, ObserverEntity>>(_params.occurrenceObserverAttraction);
   _observerSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<ObserverEntity>>(_params.observerSpatialNoiseForce);
   _occurrenceSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<OccurrenceEntity>>(_params.occurrenceSpatialNoiseForce);
+  _observerAnchorPointAttraction = std::make_shared<AnchorPointBehavior<ObserverEntity>>(_params.observerAnchorPointAttraction);
+  _occurrenceAnchorPointAttraction = std::make_shared<AnchorPointBehavior<OccurrenceEntity>>(_params.occurrenceAnchorPointAttraction);
 
   _world = std::make_shared<PhysicsWorld>(_state,
                                           observers,
@@ -60,6 +62,8 @@ void PhysicsController::update() {
   _occurrenceObserverAttraction->applyToWorld(world);
   _observerSpatialNoiseForce->applyToWorld(world);
   _occurrenceSpatialNoiseForce->applyToWorld(world);
+  _observerAnchorPointAttraction->applyToWorld(world);
+  _occurrenceAnchorPointAttraction->applyToWorld(world);
   _rebound->applyToWorld(world);
   for (auto entity : _world->observers()) {
     endEntityUpdate(entity.get(), _params.observers);
@@ -76,6 +80,8 @@ void PhysicsController::draw() {
     _occurrenceObserverAttraction->debugDraw(world);
     _observerSpatialNoiseForce->debugDraw(world);
     _occurrenceSpatialNoiseForce->debugDraw(world);
+    _observerAnchorPointAttraction->debugDraw(world);
+    _occurrenceAnchorPointAttraction->debugDraw(world);
     _rebound->debugDraw(world);
   }
 }

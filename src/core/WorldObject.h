@@ -23,6 +23,7 @@ class State;
 class WorldObject : public Outputable {
 public:
   WorldObject(const State& state);
+  WorldObject(const State& state, const ofVec3f& position);
   virtual ~WorldObject() {}
   
   const ObjectId id;

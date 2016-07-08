@@ -91,11 +91,9 @@ protected:
     if (!_params.enabled()) {
       return;
     }
-    beginDebugDraw();
     for (auto entity : world->getEntities<E>()) {
       debugDrawEntity(world, entity.get());
     }
-    endDebugDraw();
   }
 };
 

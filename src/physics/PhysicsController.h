@@ -9,6 +9,7 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
+#include "AnchorPointBehavior.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
 #include "ForceFieldBehavior.h"
@@ -72,9 +73,17 @@ public:
       add(occurrenceSpatialNoiseForce
           .setKey("occurrenceSpatialNoiseForce")
           .setName("Occurrence Spatial Noise"));
+      add(observerAnchorPointAttraction
+          .setKey("observerAnchorPointAttraction")
+          .setName("Observer Anchoring"));
+      add(occurrenceAnchorPointAttraction
+          .setKey("occurrenceAnchorPointAttraction")
+          .setName("Occurrence Anchoring"));
       rebound.setEnabledValueAndDefault(true);
       observerSpatialNoiseForce.setEnabledValueAndDefault(false);
       occurrenceObserverAttraction.setEnabledValueAndDefault(false);
+      observerAnchorPointAttraction.setEnabledValueAndDefault(false);
+      occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
     }
 
     EntityPhysicsParams observers;
@@ -84,6 +93,8 @@ public:
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
     AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
+    AbstractAttractionBehavior::Params observerAnchorPointAttraction;
+    AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
   };
 
   PhysicsController(const Params& params,
@@ -115,6 +126,8 @@ private:
   std::shared_ptr<AttractionBehavior<OccurrenceEntity, ObserverEntity>> _occurrenceObserverAttraction;
   std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
+  std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;
+  std::shared_ptr<AnchorPointBehavior<OccurrenceEntity>> _occurrenceAnchorPointAttraction;
 };
 
 #endif /* PhysicsController_h */

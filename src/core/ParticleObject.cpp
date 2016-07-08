@@ -9,16 +9,10 @@
 #include "ParticleObject.h"
 
 ParticleObject::ParticleObject(ofVec3f pos, const State& state)
-: WorldObject(state)
+: WorldObject(state, pos)
 , _velocity(0)
-, _force(0) {
-  _position = pos;
-}
-
-void ParticleObject::setInitialCondition(ofVec3f pos, ofVec3f vel) {
-  _position = pos;
-  _velocity = vel;
-}
+, _force(0)
+, _startPosition(pos) { }
 
 void ParticleObject::resetForce() {
   _force.set(0);

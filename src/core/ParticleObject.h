@@ -19,7 +19,6 @@ class ParticleObject : public WorldObject {
 public:
   ParticleObject(ofVec3f pos, const State& state);
 
-  void setInitialCondition(ofVec3f pos, ofVec3f vel);
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }
 
   void resetForce();
@@ -27,6 +26,8 @@ public:
   void addDampingForce(float damping);
 
   void updateVelocityAndPosition(const State& state, float speed);
+
+  const ofVec3f& startPosition() const { return _startPosition; }
 
   ofVec3f* positionPtr() { return &_position; }
   ofVec3f* velocityPtr() { return &_velocity; }
@@ -37,6 +38,7 @@ protected:
 private:
   ofVec3f _velocity;
   ofVec3f _force;
+  ofVec3f _startPosition;
 };
 
 #endif /* ParticleObject_h */

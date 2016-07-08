@@ -14,49 +14,53 @@
 #include "PhysicsBehavior.h"
 #include "PhysicsWorld.h"
 
+class RangedForceParams
+: public ParamsWithEnabled {
+public:
+  RangedForceParams() {
+    add(distanceBounds
+        .setKey("distanceBounds")
+        .setName("Distance Bounds")
+        .setParamValuesAndDefaults(0.04, 0.3)
+        .setParamRanges(0, 4)
+        .setParamNames("Near", "Far"));
+    add(_magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setValueAndDefault(0.0001)
+        .setRange(0, 0.08));
+    add(_reverse
+        .setKey("reverse")
+        .setName("Reverse")
+        .setValueAndDefault(false));
+    setEnabledValueAndDefault(true);
+  }
+
+  float magnitude() const { return _magnitude.get(); }
+  bool reverse() const { return _reverse.get(); }
+
+  float signedMagnitude() const {
+    return magnitude() * (reverse() ? -1 : 1);
+  }
+
+  FloatValueRange distanceBounds;
+protected:
+  TParam<float> _magnitude;
+  TParam<bool> _reverse;
+};
 
 class AbstractAttractionBehavior
 : public AbstractPhysicsBehavior {
 public:
-  class Params
-  : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(distanceBounds
-          .setKey("distanceBounds")
-          .setName("Distance Bounds")
-          .setParamValuesAndDefaults(0.04, 0.3)
-          .setParamRanges(0, 4)
-          .setParamNames("Near", "Far"));
-      add(_magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setValueAndDefault(0.0001)
-          .setRange(0, 0.08));
-      add(_reverse
-          .setKey("reverse")
-          .setName("Reverse")
-          .setValueAndDefault(false));
-      setEnabledValueAndDefault(true);
-    }
-
-    float magnitude() const { return _magnitude.get(); }
-    bool reverse() const { return _reverse.get(); }
-
-    float signedMagnitude() const {
-      return magnitude() * (reverse() ? -1 : 1);
-    }
-
-    FloatValueRange distanceBounds;
-  protected:
-    TParam<float> _magnitude;
-    TParam<bool> _reverse;
-  };
+  using Params = RangedForceParams;
 
   AbstractAttractionBehavior(const Params& params)
   : _params(params) { }
 
   void applyToWorld(PhysicsWorld* world) override {
+    if (!_params.enabled()) {
+      return;
+    }
     processWorld(world, ApplyMode::ADD_FORCE);
   }
 
@@ -67,35 +71,23 @@ protected:
   };
 
   void debugDrawBehavior(PhysicsWorld* world) override {
+    if (!_params.enabled()) {
+      return;
+    }
     processWorld(world, ApplyMode::DEBUG_DRAW);
   }
 
   virtual void processWorld(PhysicsWorld* world,
                             ApplyMode mode) = 0;
 
-  ofVec3f calcAttractionForce(ParticleObject* entity,
-                              const ParticleObject* other) {
-    ofVec3f posDiff = other->position() - entity->position();
-    float lowBound = _params.distanceBounds.lowValue();
-    float highBound = _params.distanceBounds.highValue();
-    float magnitude = _params.signedMagnitude();
-    float dist = posDiff.length();
-    if (dist < lowBound || dist > highBound) {
-      return ofVec3f(0);
-    }
-    posDiff.normalize();
-    float mag = ofMap(dist,
-                      lowBound, highBound,
-                      magnitude, 0,
-                      true);
-    return posDiff * mag;
-  }
+  virtual ofVec3f calcAttractionForce(ParticleObject* entity,
+                                      const ofVec3f& otherPosition);
 
   void beginDebugDraw() override;
   void endDebugDraw() override;
 
-  void debugDrawEntity(ParticleObject* entity,
-                       const ofVec3f& force);
+  virtual void debugDrawEntity(ParticleObject* entity,
+                               const ofVec3f& force);
   void debugDrawEntityRange(ParticleObject* entity);
 
   const Params& _params;
@@ -111,9 +103,6 @@ public:
 
 protected:
   void processWorld(PhysicsWorld* world, ApplyMode mode) override {
-    if (!_params.enabled()) {
-      return;
-    }
     for (auto entity : world->getEntities<E>()) {
       if (!entity->alive()) {
         continue;
@@ -123,7 +112,7 @@ protected:
           continue;
         }
         ofVec3f force = calcAttractionForce(entity.get(),
-                                            other.second.get());
+                                            other.second->position());
         switch (mode) {
           case ApplyMode::ADD_FORCE:
             entity->addForce(force);

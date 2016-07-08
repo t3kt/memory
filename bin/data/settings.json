@@ -120,7 +120,7 @@
     "debug": {
       "showBounds": false,
       "showLog": false,
-      "showPhysics": true,
+      "showPhysics": false,
       "showStatus": true
     },
     "syphonEnabled": true
@@ -201,24 +201,42 @@
     }
   },
   "physics": {
+    "observerAnchorPointAttraction": {
+      "distanceBounds": {
+        "high": 0.30000001192092896,
+        "low": 0.039999999105930328
+      },
+      "enabled": false,
+      "magnitude": 9.9999997473787516e-05,
+      "reverse": false
+    },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
         "high": 1.209496021270752,
         "low": 0.039999999105930328
       },
-      "enabled": true,
+      "enabled": false,
       "magnitude": 0.00897959154099226,
       "reverse": false
     },
     "observerSpatialNoiseForce": {
-      "enabled": false,
-      "magnitude": 0.0061224489472806454,
+      "enabled": true,
+      "magnitude": 0.0079081635922193527,
       "rate": 0.10000000149011612,
       "scale": 1
     },
     "observers": {
-      "damping": 0.0099999997764825821,
+      "damping": 0.045918367803096771,
       "speed": 1.2755101919174194
+    },
+    "occurrenceAnchorPointAttraction": {
+      "distanceBounds": {
+        "high": 1.2927947044372559,
+        "low": 0.039999999105930328
+      },
+      "enabled": true,
+      "magnitude": 0.011836734600365162,
+      "reverse": false
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
@@ -245,11 +263,11 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": false,
+      "spinEnabled": true,
       "spinRate": [
+        -0.20408153533935547,
         0.52478218078613281,
-        2.1907539367675781,
-        0.42065811157226562
+        -0.30820465087890625
       ]
     },
     "fog": {

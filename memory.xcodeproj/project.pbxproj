@@ -30,6 +30,7 @@
 		323336721D2CC6A000A000BD /* PhysicsWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336701D2CC6A000A000BD /* PhysicsWorld.cpp */; };
 		3233367C1D2F6D9800A000BD /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233367A1D2F6D9800A000BD /* AttractionBehavior.cpp */; };
 		3233368C1D2F6EE300A000BD /* ForceFieldBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */; };
+		323336971D2F789E00A000BD /* AnchorPointBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -193,6 +194,8 @@
 		3233367B1D2F6D9800A000BD /* AttractionBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttractionBehavior.h; path = physics/AttractionBehavior.h; sourceTree = "<group>"; };
 		3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForceFieldBehavior.cpp; path = physics/ForceFieldBehavior.cpp; sourceTree = "<group>"; };
 		3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForceFieldBehavior.h; path = physics/ForceFieldBehavior.h; sourceTree = "<group>"; };
+		323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnchorPointBehavior.cpp; path = physics/AnchorPointBehavior.cpp; sourceTree = "<group>"; };
+		323336961D2F789E00A000BD /* AnchorPointBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnchorPointBehavior.h; path = physics/AnchorPointBehavior.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -426,6 +429,8 @@
 				3233367B1D2F6D9800A000BD /* AttractionBehavior.h */,
 				3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */,
 				3233368B1D2F6EE300A000BD /* ForceFieldBehavior.h */,
+				323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */,
+				323336961D2F789E00A000BD /* AnchorPointBehavior.h */,
 			);
 			name = physics;
 			sourceTree = "<group>";
@@ -1077,6 +1082,7 @@
 				6A6DCC07458DC20B3A9FB114 /* ofxFpsPlotter.cpp in Sources */,
 				9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */,
 				C255A0483A81BF31B4EBCB2F /* ofxGuiGroupExtended.cpp in Sources */,
+				323336971D2F789E00A000BD /* AnchorPointBehavior.cpp in Sources */,
 				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
