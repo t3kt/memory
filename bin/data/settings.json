@@ -195,8 +195,8 @@
     },
     "spawnInterval": {
       "interval": {
-        "high": 6,
-        "low": 2
+        "high": 3.1320285797119141,
+        "low": 1.0495628118515015
       }
     }
   },
@@ -216,8 +216,8 @@
     },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
-        "high": 1.209496021270752,
-        "low": 0.039999999105930328
+        "high": 1.2719700336456299,
+        "low": 0.18908791244029999
       },
       "enabled": true,
       "magnitude": 0.00897959154099226,
@@ -269,11 +269,11 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": false,
+      "spinEnabled": true,
       "spinRate": [
         -0.20408153533935547,
-        0.52478218078613281,
-        -0.30820465087890625
+        0.83715057373046875,
+        -0.72469806671142578
       ]
     },
     "fog": {
