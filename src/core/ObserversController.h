@@ -67,6 +67,8 @@ public:
 
   void spawnObservers(int count, const State& state);
 
+  void killObservers(int count);
+
   ObjectManager<ObserverEntity>& entities() { return _observers; }
   const ObjectManager<ObserverEntity>& entities() const {
     return _observers;

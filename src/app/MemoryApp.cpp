@@ -137,6 +137,12 @@ void MemoryApp::keyPressed(int key) {
     case ')':
       _observers->spawnObservers(100, _state);
       break;
+    case '-':
+      _observers->killObservers(5);
+      break;
+    case '_':
+      _observers->killObservers(100);
+      break;
     case 'r':
       loadSettings();
       break;

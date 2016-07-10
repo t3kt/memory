@@ -81,3 +81,14 @@ void ObserversController::spawnObservers(int count, const State& state) {
     spawnObserver(state);
   }
 }
+
+void ObserversController::killObservers(int count) {
+  int i = 0;
+  for (auto observer : _observers) {
+    if (i >= count) {
+      return;
+    }
+    observer->kill();
+    i++;
+  }
+}
