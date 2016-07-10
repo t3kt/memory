@@ -10,20 +10,26 @@
 #include <ofxGuiExtended.h>
 
 class ActionsGui
-: public ofxGuiGroupExtended {
+: public ofxPanelExtended {
 public:
   ActionsGui(ofxLiquidEvent<void>& onLoad, ofxLiquidEvent<void>& onSave) {
     setup();
     setName("Actions");
+    _group.setup();
+    add(&_group);
 
     auto loadButton = new ofxMinimalButton("load");
     loadButton->addListener(&onLoad, &ofxLiquidEvent<void>::notifyListeners);
-    add(loadButton);
+    _group.add(loadButton);
 
     auto saveButton = new ofxMinimalButton("save");
     saveButton->addListener(&onSave, &ofxLiquidEvent<void>::notifyListeners);
-    add(saveButton);
+    _group.add(saveButton);
+
+    _group.minimize();
   }
+private:
+  ofxGuiGroupExtended _group;
 };
 
 class AppGuiImpl {
