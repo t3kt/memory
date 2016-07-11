@@ -19,9 +19,7 @@
 #include "Bounds.h"
 #include "Colors.h"
 #include "EntityRenderer.h"
-
-using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
+#include "SimulationEvents.h"
 
 class OccurrencesController {
 public:
@@ -56,7 +54,11 @@ public:
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
   };
   
-  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
+  OccurrencesController(const Params& params,
+                        const Bounds& bounds,
+                        ObserversController& observers,
+                        const State& state,
+                        SimulationEvents& events);
   
   void setup(const State& state, const ColorTheme& colors);
   void update(State& state);
@@ -83,10 +85,11 @@ private:
   const Params& _params;
   const Bounds& _bounds;
   Interval _spawnInterval;
+  SimulationEvents& _events;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
-  shared_ptr<OccurrenceRenderer> _renderer;
-  shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
+  std::shared_ptr<OccurrenceRenderer> _renderer;
+  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
 };
 
 #endif /* OccurrencesController_h */

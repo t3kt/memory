@@ -20,9 +20,7 @@
 #include "ThresholdRenderer.h"
 #include "EntityRenderer.h"
 #include "Colors.h"
-
-using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
-using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
+#include "SimulationEvents.h"
 
 class ObserversController {
 public:
@@ -57,7 +55,10 @@ public:
     AbstractThresholdRenderer::Params threshold;
   };
   
-  ObserversController(const Params& params, const Bounds& bounds, const State& state);
+  ObserversController(const Params& params,
+                      const Bounds& bounds,
+                      const State& state,
+                      SimulationEvents& events);
   
   void setup(const State& state, const ColorTheme& colors);
   void update(State& state);
@@ -78,13 +79,12 @@ public:
     return _observers.size();
   }
   
-  ObserverEvent observerSpawned;
-  ObserverEvent observerDied;
 private:
   void spawnObserver(const State& state);
   
   const Params& _params;
   const Bounds& _bounds;
+  SimulationEvents& _events;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ObserverRenderer> _observerRenderer;

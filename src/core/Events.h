@@ -42,4 +42,12 @@ private:
   T& _entity;
 };
 
+class OccurrenceEntity;
+using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
+using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
+
+class ObserverEntity;
+using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
+using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
+
 #endif /* Events_h */

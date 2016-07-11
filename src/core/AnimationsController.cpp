@@ -7,6 +7,8 @@
 //
 
 #include "AnimationsController.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 #include <ofMain.h>
 #include <iostream>
 
@@ -43,8 +45,8 @@ void AnimationsController::draw(const State &state) {
   _animations.draw(state);
 }
 
-void AnimationsController::attachTo(ObserversController &observers) {
-  observers.observerDied += [&](ObserverEventArgs e) {
+void AnimationsController::attachTo(SimulationEvents& events) {
+  events.observerDied += [&](ObserverEventArgs e) {
     if (!_params.enabled() || !_params.observerDied.enabled()) {
       return;
     }
@@ -53,10 +55,7 @@ void AnimationsController::attachTo(ObserversController &observers) {
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding observer died animation: " << *animation;
   };
-}
-
-void AnimationsController::attachTo(OccurrencesController &occurrences) {
-  occurrences.occurrenceDied += [&](OccurrenceEventArgs e) {
+  events.occurrenceDied += [&](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceDied.enabled()) {
       return;
     }
@@ -65,7 +64,7 @@ void AnimationsController::attachTo(OccurrencesController &occurrences) {
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
-  occurrences.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
+  events.occurrenceSpawnFailed += [&](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceSpawnFailed.enabled()) {
       return;
     }

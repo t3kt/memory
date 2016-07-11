@@ -52,8 +52,6 @@ private:
   void stop();
   void onPausedChanged(bool& paused);
 
-  void DUMP_STATE(std::string message) const;
-
   State& _state;
   Params& _params;
   float _lastTime;

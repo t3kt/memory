@@ -19,6 +19,7 @@
 #include "OccurrencesController.h"
 #include "PhysicsController.h"
 #include "RenderingController.h"
+#include "SimulationEvents.h"
 #include "State.h"
 #include "Status.h"
 
@@ -45,6 +46,7 @@ public:
 private:
   State _state;
   MemoryAppParameters& _appParams;
+  SimulationEvents _events;
   std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;

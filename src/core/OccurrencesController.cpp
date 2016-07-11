@@ -10,9 +10,14 @@
 
 const int START_OCCURRENCES = 5;
 
-OccurrencesController::OccurrencesController(const OccurrencesController::Params& params, const Bounds& bounds, ObserversController& observers, const State& state)
+OccurrencesController::OccurrencesController(const OccurrencesController::Params& params,
+                                             const Bounds& bounds,
+                                             ObserversController& observers,
+                                             const State& state,
+                                             SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
+, _events(events)
 , _spawnInterval(params.spawnInterval, state)
 , _observers(observers) {
 }

@@ -16,16 +16,24 @@ void SimulationApp::attachControls(std::shared_ptr<ControlApp> control) {
 void SimulationApp::setup() {
   _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
 
-  _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state);
+  _observers =
+  std::make_shared<ObserversController>(_appParams.observers,
+                                        _appParams.core.bounds,
+                                        _state,
+                                        _events);
   _observers->setup(_state, _appParams.colors);
 
-  _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state);
+  _occurrences =
+  std::make_shared<OccurrencesController>(_appParams.occurrences,
+                                          _appParams.core.bounds,
+                                          *_observers,
+                                          _state,
+                                          _events);
   _occurrences->setup(_state, _appParams.colors);
 
   _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
   _animations->setup();
-  _animations->attachTo(*_observers);
-  _animations->attachTo(*_occurrences);
+  _animations->attachTo(_events);
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,

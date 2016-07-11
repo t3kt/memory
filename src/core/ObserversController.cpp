@@ -11,9 +11,13 @@
 
 const int START_OBSERVERS = 60;
 
-ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
+ObserversController::ObserversController(const ObserversController::Params& params,
+                                         const Bounds& bounds,
+                                         const State& state,
+                                         SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
+, _events(events)
 , _spawnInterval(params.spawnInterval, state) {
 }
 
@@ -32,7 +36,7 @@ void ObserversController::update(State &state) {
 
   _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
     ObserverEventArgs e(state, *observer);
-    observerDied.notifyListeners(e);
+    _events.observerDied.notifyListeners(e);
   });
   
   if (_spawnInterval.check(state)) {
@@ -73,7 +77,7 @@ void ObserversController::spawnObserver(const State &state) {
   observer->setVelocity(_params.initialVelocity.getValue());
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
-  observerSpawned.notifyListeners(e);
+  _events.observerSpawned.notifyListeners(e);
   ofLogNotice() << "Spawned observer: " << *observer;
 }
 

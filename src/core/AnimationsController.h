@@ -14,10 +14,8 @@
 #include "Params.h"
 #include "Timing.h"
 #include "State.h"
-#include "Events.h"
-#include "OccurrencesController.h"
-#include "ObserversController.h"
 #include "Colors.h"
+#include "SimulationEvents.h"
 
 class AnimationsController {
 public:
@@ -49,9 +47,8 @@ public:
 
   void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
   void addTimedAction(shared_ptr<TimedAction> action);
-  
-  void attachTo(ObserversController& observers);
-  void attachTo(OccurrencesController& occurrences);
+
+  void attachTo(SimulationEvents& events);
   
   void update(State& state);
   void draw(const State& state);

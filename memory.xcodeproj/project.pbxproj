@@ -179,6 +179,7 @@
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		3230D9181D33631E00FE0562 /* SimulationEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimulationEvents.h; path = core/SimulationEvents.h; sourceTree = "<group>"; };
 		323336491D2BC4CC00A000BD /* RenderingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderingController.cpp; path = rendering/RenderingController.cpp; sourceTree = "<group>"; };
 		3233364A1D2BC4CC00A000BD /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = rendering/RenderingController.h; sourceTree = "<group>"; };
 		3233366A1D2CC49000A000BD /* PhysicsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsController.cpp; path = physics/PhysicsController.cpp; sourceTree = "<group>"; };
@@ -792,6 +793,7 @@
 				DCD5F898419E9A122FCFE280 /* ValueSupplier.h */,
 				4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */,
 				0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */,
+				3230D9181D33631E00FE0562 /* SimulationEvents.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
