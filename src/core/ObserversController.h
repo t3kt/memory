@@ -74,10 +74,6 @@ public:
   const ObjectManager<ObserverEntity>& entities() const {
     return _observers;
   }
-
-  std::size_t count() const {
-    return _observers.size();
-  }
   
 private:
   void spawnObserver(const State& state);

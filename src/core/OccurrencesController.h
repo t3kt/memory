@@ -70,10 +70,6 @@ public:
   const ObjectManager<OccurrenceEntity>& entities() const {
     return _occurrences;
   }
-
-  std::size_t count() const {
-    return _occurrences.size();
-  }
   
 private:
   void spawnOccurrence(const State& state);
