@@ -76,15 +76,16 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
 : _appParams(appParams)
 , _actions(onLoad, onSave) {
   _pages.setup();
-  _pages.setSize(250, 700);
+  _pages.setSize(290, 600);
   _pages.setShowHeader(false);
+  _pages.setPosition(0, 60);
 
   _corePage.setup("Core");
   _corePage.add(new ofxGuiGroupExtended(_appParams.core));
   _pages.add(&_corePage);
 
   _entityPages.setup();
-  _entityPages.setSize(240, 700);
+  _entityPages.setSize(270, 700);
   _entityPages.setShowHeader(false);
 
   _entityPage.setup();
@@ -93,7 +94,9 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _pages.add(&_entityPage);
 
   _observersPage.setup("Observers");
-  _observersPage.add(new ofxGuiGroupExtended(_appParams.observers));
+  auto observersGroup = new ofxGuiGroupExtended(_appParams.observers);
+  _observersPage.add(observersGroup);
+  observersGroup->setPosition(15, 100);
   _entityPages.add(&_observersPage);
 
   _occurrencesPage.setup("Occurrences");
@@ -116,7 +119,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _physicsPage.add(new ofxGuiGroupExtended(_appParams.physics));
   _pages.add(&_physicsPage);
 
-  _actions.setPosition(_pages.getWidth() + 10, 0);
+  _actions.setPosition(0, 0);
 
   setBackgroundAlpha(&_pages, 0.5);
   setBackgroundAlpha(&_entityPages, 0.7);

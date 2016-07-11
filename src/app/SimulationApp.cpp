@@ -1,38 +1,22 @@
 //
-//  MemoryApp.cpp
-//  memory-prototype-2
+//  SimulationApp.cpp
+//  memory
 //
-//  Created by tekt on 6/21/16.
+//  Created by tekt on 7/10/16.
 //
 //
 
-#include "MemoryApp.h"
-#include "Common.h"
-#include <memory>
-#include <iostream>
+#include "SimulationApp.h"
 
-void MemoryApp::setup() {
-  ofSetLogLevel(_appParams.core.debug.loggingEnabled()
-                ? OF_LOG_NOTICE : OF_LOG_ERROR);
-  loadSettings();
-
-  _gui = std::make_shared<AppGui>(_appParams);
-  _gui->setup();
-  _gui->onLoad += [&]() {
-    loadSettings();
-  };
-  _gui->onSave += [&]() {
-    saveSettings();
-  };
-
+void SimulationApp::setup() {
   _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
-  
+
   _observers = std::make_shared<ObserversController>(_appParams.observers, _appParams.core.bounds, _state);
   _observers->setup(_state, _appParams.colors);
-  
+
   _occurrences = std::make_shared<OccurrencesController>(_appParams.occurrences, _appParams.core.bounds, *_observers, _state);
   _occurrences->setup(_state, _appParams.colors);
-  
+
   _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
   _animations->setup();
   _animations->attachTo(*_observers);
@@ -57,21 +41,18 @@ void MemoryApp::setup() {
 #endif
 }
 
-void MemoryApp::update() {
-  ofSetLogLevel(_appParams.core.debug.loggingEnabled()
-                ? OF_LOG_NOTICE : OF_LOG_ERROR);
+void SimulationApp::update() {
   _clock->update();
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);
   _physics->update();
   _renderingController->update(_state);
-  _gui->update();
 }
 
-void MemoryApp::draw() {
+void SimulationApp::draw() {
   _renderingController->beginDraw(_state);
-  
+
   _observers->draw(_state);
   _occurrences->draw(_state);
   _animations->draw(_state);
@@ -92,73 +73,45 @@ void MemoryApp::draw() {
     _syphonServer.publishScreen();
   }
 #endif
-  
-  _gui->draw();
 
   if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
   }
 }
 
-void MemoryApp::keyPressed(int key) {
-  switch (key) {
-    case 'h':
+void SimulationApp::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::RESET_CAMERA:
       _renderingController->resetCamera();
       break;
-    case 'l':
+    case AppAction::TOGGLE_LOGGING:
       _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
       break;
-    case ' ':
+    case AppAction::TOGGLE_CLOCK_STATE:
       _clock->toggleState();
       break;
-    case '9':
+    case AppAction::SPAWN_FEW_OCCURRENCES:
       _occurrences->spawnOccurrences(5, _state);
       break;
-    case '0':
+    case AppAction::SPAWN_FEW_OBSERVERS:
       _observers->spawnObservers(5, _state);
       break;
-    case '(':
+    case AppAction::SPAWN_MANY_OCCURRENCES:
       _occurrences->spawnOccurrences(100, _state);
       break;
-    case ')':
+    case AppAction::SPAWN_MANY_OBSERVERS:
       _observers->spawnObservers(100, _state);
       break;
-    case '-':
+    case AppAction::KILL_FEW_OBSERVERS:
       _observers->killObservers(5);
       break;
-    case '_':
+    case AppAction::KILL_MANY_OBSERVERS:
       _observers->killObservers(100);
-      break;
-    case 'r':
-      loadSettings();
-      break;
-    case 'w':
-      saveSettings();
-      break;
-    case 'x':
+    case AppAction::STOP_ALL_ENTITIES:
       _physics->stopAllEntities();
       break;
-    case 'c':
-      ofLogNotice() << "Dumping config JSON:\n"
-        << prettyPrintJsonToString(_appParams.to_json());
-      break;
-    case 'p':
-      _appParams.core.debug.setShowPhysics(!_appParams.core.debug.showPhysics());
-      break;
-    case 'b':
-      _appParams.core.debug.setShowBounds(!_appParams.core.debug.showBounds());
+    default:
+      ofLogWarning() << "Action not supported by SimulationApp: " << AppActionType.toString(action);
       break;
   }
-}
-
-void MemoryApp::loadSettings() {
-  ofLogNotice() << "Reading JSON settings...";
-  _appParams.readFromFile("settings.json");
-  ofLogNotice() << ".. read from JSON finished\n\t" << _appParams;
-}
-
-void MemoryApp::saveSettings() {
-  ofLogNotice() << "Writing JSON settings...";
-  _appParams.writeToFile("settings.json");
-  ofLogNotice() << ".. write to JSON finished";
 }

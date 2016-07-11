@@ -31,6 +31,9 @@
 		3233367C1D2F6D9800A000BD /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233367A1D2F6D9800A000BD /* AttractionBehavior.cpp */; };
 		3233368C1D2F6EE300A000BD /* ForceFieldBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233368A1D2F6EE300A000BD /* ForceFieldBehavior.cpp */; };
 		323336971D2F789E00A000BD /* AnchorPointBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */; };
+		323336AD1D33375F00A000BD /* SimulationApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336AB1D33375F00A000BD /* SimulationApp.cpp */; };
+		323336B01D3337DD00A000BD /* ControlApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336AE1D3337DD00A000BD /* ControlApp.cpp */; };
+		323336B31D3339D400A000BD /* AppActions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336B21D3339D400A000BD /* AppActions.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -105,7 +108,6 @@
 		EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */; };
 		F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */; };
 		F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10E1EFE181FE634470793842 /* ofxLabel.cpp */; };
-		FC51CF98DA234C142DDDAF5F /* MemoryApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203D24998620B1B7C7970E9D /* MemoryApp.cpp */; };
 		FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +164,6 @@
 		1F05D9B2D4915D920A10BE4F /* Colors.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Colors.cpp; path = src/core/Colors.cpp; sourceTree = SOURCE_ROOT; };
 		1F8E99083CDB97599C3EDFDA /* Hold.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Hold.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Hold.hpp; sourceTree = SOURCE_ROOT; };
 		2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RGBShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.cpp; sourceTree = SOURCE_ROOT; };
-		203D24998620B1B7C7970E9D /* MemoryApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MemoryApp.cpp; path = src/app/MemoryApp.cpp; sourceTree = SOURCE_ROOT; };
 		21486E8D0CA688A2FC4DAA74 /* Colors.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Colors.h; path = src/core/Colors.h; sourceTree = SOURCE_ROOT; };
 		22F017FB9260290C5F3E590A /* KaleidoscopePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KaleidoscopePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.h; sourceTree = SOURCE_ROOT; };
 		2361E49D807B63833D9BCEC7 /* Ramp.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Ramp.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Ramp.hpp; sourceTree = SOURCE_ROOT; };
@@ -193,6 +194,12 @@
 		323336951D2F789E00A000BD /* AnchorPointBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnchorPointBehavior.cpp; path = physics/AnchorPointBehavior.cpp; sourceTree = "<group>"; };
 		323336961D2F789E00A000BD /* AnchorPointBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnchorPointBehavior.h; path = physics/AnchorPointBehavior.h; sourceTree = "<group>"; };
 		323336991D2F8D5400A000BD /* DampingBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DampingBehavior.h; path = physics/DampingBehavior.h; sourceTree = "<group>"; };
+		323336AB1D33375F00A000BD /* SimulationApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimulationApp.cpp; path = app/SimulationApp.cpp; sourceTree = "<group>"; };
+		323336AC1D33375F00A000BD /* SimulationApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulationApp.h; path = app/SimulationApp.h; sourceTree = "<group>"; };
+		323336AE1D3337DD00A000BD /* ControlApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControlApp.cpp; path = app/ControlApp.cpp; sourceTree = "<group>"; };
+		323336AF1D3337DD00A000BD /* ControlApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlApp.h; path = app/ControlApp.h; sourceTree = "<group>"; };
+		323336B11D3339B500A000BD /* AppActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppActions.h; path = app/AppActions.h; sourceTree = "<group>"; };
+		323336B21D3339D400A000BD /* AppActions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppActions.cpp; path = app/AppActions.cpp; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
@@ -281,7 +288,6 @@
 		9CC4FD2B31CCC6D024EAEDB3 /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NoiseWarpPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/NoiseWarpPass.cpp; sourceTree = SOURCE_ROOT; };
 		9D08CEDCB85EBCA6CF535214 /* BleachBypassPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BleachBypassPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/BleachBypassPass.h; sourceTree = SOURCE_ROOT; };
 		9DB506652351C4E71E488395 /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
-		9E6DE711E9DCEFA912FC8D56 /* MemoryApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MemoryApp.h; path = src/app/MemoryApp.h; sourceTree = SOURCE_ROOT; };
 		9F301F8761080999A4AD0AF0 /* ofxPanelExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPanelExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxPanelExtended.h; sourceTree = SOURCE_ROOT; };
 		A03571044EBB2DB95F16A0C2 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
 		A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ParticleObject.h; path = src/core/ParticleObject.h; sourceTree = SOURCE_ROOT; };
@@ -809,13 +815,17 @@
 		BE9DD360F550B0DF4D357E7B /* app */ = {
 			isa = PBXGroup;
 			children = (
+				323336B11D3339B500A000BD /* AppActions.h */,
+				323336B21D3339D400A000BD /* AppActions.cpp */,
 				4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */,
 				3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */,
 				7B1EA976C3295181487B1B58 /* AppParameters.cpp */,
 				5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */,
 				823FBC6F9791944E4D93726D /* main.cpp */,
-				203D24998620B1B7C7970E9D /* MemoryApp.cpp */,
-				9E6DE711E9DCEFA912FC8D56 /* MemoryApp.h */,
+				323336AB1D33375F00A000BD /* SimulationApp.cpp */,
+				323336AC1D33375F00A000BD /* SimulationApp.h */,
+				323336AE1D3337DD00A000BD /* ControlApp.cpp */,
+				323336AF1D3337DD00A000BD /* ControlApp.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -1018,7 +1028,6 @@
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
-				FC51CF98DA234C142DDDAF5F /* MemoryApp.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
 				A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */,
@@ -1062,6 +1071,7 @@
 				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
+				323336AD1D33375F00A000BD /* SimulationApp.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,
 				08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */,
 				0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */,
@@ -1106,11 +1116,13 @@
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
 				A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */,
+				323336B31D3339D400A000BD /* AppActions.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,
 				3233366C1D2CC49000A000BD /* PhysicsController.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */,
+				323336B01D3337DD00A000BD /* ControlApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
