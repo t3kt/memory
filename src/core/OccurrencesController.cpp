@@ -34,7 +34,7 @@ void OccurrencesController::update(State &state) {
   _occurrences.update(state);
   _occurrences.cullDeadObjects([&](shared_ptr<OccurrenceEntity> occurrence) {
     OccurrenceEventArgs e(state, *occurrence);
-    occurrenceDied.notifyListeners(e);
+    _events.occurrenceDied.notifyListeners(e);
   });
   
   if (_spawnInterval.check(state)) {
@@ -63,10 +63,10 @@ void OccurrencesController::spawnOccurrence(const State &state) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     ofLogNotice() << "Spawned occurrence: " << *occurrence;
     _occurrences.add(occurrence);
-    occurrenceSpawned.notifyListeners(e);
+    _events.occurrenceSpawned.notifyListeners(e);
   } else {
     ofLogNotice() << "Nothing in range of occurrence: " << *occurrence;
-    occurrenceSpawnFailed.notifyListeners(e);
+    _events.occurrenceSpawnFailed.notifyListeners(e);
   }
 }
 

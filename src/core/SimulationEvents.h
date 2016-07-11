@@ -14,6 +14,9 @@
 
 class SimulationEvents {
 public:
+  AnimationEvent animationSpawned;
+  AnimationEvent animationDied;
+
   ObserverEvent observerSpawned;
   ObserverEvent observerDied;
 

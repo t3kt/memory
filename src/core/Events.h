@@ -42,6 +42,10 @@ private:
   T& _entity;
 };
 
+class AnimationObject;
+using AnimationEventArgs = EntityEventArgs<AnimationObject>;
+using AnimationEvent = ofxLiquidEvent<AnimationEventArgs>;
+
 class OccurrenceEntity;
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;

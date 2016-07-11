@@ -1,13 +1,13 @@
 {
   "animations": {
-    "enabled": false,
+    "enabled": true,
     "observerDied": {
       "alpha": {
-        "high": 1,
-        "low": 0
+        "high": 0,
+        "low": 1
       },
       "delay": 0,
-      "duration": 1,
+      "duration": 2.3265306949615479,
       "enabled": true,
       "radius": {
         "high": 0.20000000298023224,
@@ -16,11 +16,11 @@
     },
     "occurrenceDied": {
       "alpha": {
-        "high": 1,
-        "low": 0
+        "high": 0,
+        "low": 1
       },
       "delay": 0,
-      "duration": 1,
+      "duration": 3.3469388484954834,
       "enabled": true,
       "radius": {
         "high": 0.20000000298023224,
@@ -29,14 +29,14 @@
     },
     "occurrenceSpawnFailed": {
       "alpha": {
-        "high": 1,
-        "low": 0
+        "high": 0,
+        "low": 1
       },
       "delay": 0,
       "duration": 1,
       "enabled": true,
       "radius": {
-        "high": 0.0099999997764825821,
+        "high": 0.17509371042251587,
         "low": 0
       }
     }
@@ -118,8 +118,8 @@
       "rate": 1.6734694242477417
     },
     "debug": {
+      "loggingEnabled": false,
       "showBounds": false,
-      "showLog": false,
       "showPhysics": false,
       "showStatus": true
     },
@@ -269,7 +269,7 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": true,
+      "spinEnabled": false,
       "spinRate": [
         -0.20408153533935547,
         0.83715057373046875,

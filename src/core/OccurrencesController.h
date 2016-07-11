@@ -75,10 +75,6 @@ public:
     return _occurrences.size();
   }
   
-  OccurrenceEvent occurrenceSpawned;
-  OccurrenceEvent occurrenceSpawnFailed;
-  OccurrenceEvent occurrenceDied;
-  
 private:
   void spawnOccurrence(const State& state);
   

@@ -41,14 +41,14 @@ public:
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;
   };
 
-  AnimationsController(const Params& params, const ColorTheme& colors);
+  AnimationsController(const Params& params,
+                       const ColorTheme& colors,
+                       SimulationEvents& events);
 
   void setup();
 
   void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
   void addTimedAction(shared_ptr<TimedAction> action);
-
-  void attachTo(SimulationEvents& events);
   
   void update(State& state);
   void draw(const State& state);
@@ -56,6 +56,9 @@ public:
   int count() const { return _animations.size(); }
   
 private:
+  void attachToEvents();
+
+  SimulationEvents& _events;
   const Params& _params;
   const ColorTheme& _colors;
   ObjectManager<AnimationObject> _animations;

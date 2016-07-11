@@ -31,9 +31,11 @@ void SimulationApp::setup() {
                                           _events);
   _occurrences->setup(_state, _appParams.colors);
 
-  _animations = std::make_shared<AnimationsController>(_appParams.animations, _appParams.colors);
+  _animations =
+  std::make_shared<AnimationsController>(_appParams.animations,
+                                         _appParams.colors,
+                                         _events);
   _animations->setup();
-  _animations->attachTo(_events);
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
