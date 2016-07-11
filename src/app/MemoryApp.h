@@ -10,10 +10,6 @@
 #define MemoryApp_h
 
 #include <ofMain.h>
-#include <ofxGui.h>
-#include <ofxScreenLoggerChannel.h>
-#include <ofxMultiLoggerChannel.h>
-#include <ofxPostProcessing.h>
 #include "State.h"
 #include "AppParameters.h"
 #include "ObserversController.h"
@@ -50,8 +46,6 @@ private:
   shared_ptr<RenderingController> _renderingController;
   shared_ptr<PhysicsController> _physics;
   shared_ptr<AppGui> _gui;
-  shared_ptr<ofxScreenLoggerChannel> _screenLoggerChannel;
-  shared_ptr<ofxMultiLoggerChannel> _multiLoggerChannel;
   shared_ptr<Clock> _clock;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;

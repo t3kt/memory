@@ -2,7 +2,6 @@ ofxChoreograph
 ofxGui
 ofxGuiExtended
 ofxLiquidEvent
-ofxLoggerChannel
 ofxPostProcessing
 ofxSyphon
 ofxTextAlign

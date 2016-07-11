@@ -12,13 +12,8 @@
 #include <iostream>
 
 void MemoryApp::setup() {
-  _screenLoggerChannel = std::make_shared<ofxScreenLoggerChannel>();
-  _screenLoggerChannel->setDrawBounds(ofRectangle(150, 0, ofGetScreenWidth() - 500, 250));
-  _multiLoggerChannel = std::make_shared<ofxMultiLoggerChannel>();
-  _multiLoggerChannel->addConsoleLoggerChannel();
-  _multiLoggerChannel->addLoggerChannel(_screenLoggerChannel);
-  ofSetLoggerChannel(_multiLoggerChannel);
-
+  ofSetLogLevel(_appParams.core.debug.loggingEnabled()
+                ? OF_LOG_NOTICE : OF_LOG_ERROR);
   loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams);
@@ -63,22 +58,14 @@ void MemoryApp::setup() {
 }
 
 void MemoryApp::update() {
+  ofSetLogLevel(_appParams.core.debug.loggingEnabled()
+                ? OF_LOG_NOTICE : OF_LOG_ERROR);
   _clock->update();
   _observers->update(_state);
   _occurrences->update(_state);
   _animations->update(_state);
   _physics->update();
   _renderingController->update(_state);
-
-  // Slide the logger screen in and out.
-  ofRectangle bounds = _screenLoggerChannel->getDrawBounds();
-  if (_appParams.core.debug.showLog()) {
-    bounds.y = ofLerp(bounds.y, 0, 0.2);
-  }
-  else {
-    bounds.y = ofLerp(bounds.y, -bounds.height, 0.2);
-  }
-  _screenLoggerChannel->setDrawBounds(bounds);
   _gui->update();
 }
 
@@ -107,7 +94,6 @@ void MemoryApp::draw() {
 #endif
   
   _gui->draw();
-  _screenLoggerChannel->draw();
 
   if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
@@ -120,7 +106,7 @@ void MemoryApp::keyPressed(int key) {
       _renderingController->resetCamera();
       break;
     case 'l':
-      _appParams.core.debug.setShowLog(!_appParams.core.debug.showLog());
+      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
       break;
     case ' ':
       _clock->toggleState();
