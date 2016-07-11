@@ -9,12 +9,15 @@
 #include "State.h"
 
 State::State()
-: time(0)
-, timeDelta(0) { }
+: running(true) { }
 
 void State::output(std::ostream &os) const {
   os << "State{time: " << time
       << ", timeDelta: " << timeDelta
+      << ", running: " << running
+      << ", observerCount: " << observerCount
+      << ", occurrenceCount: " << occurrenceCount
+      << ", animationCount: " << animationCount
       << "}";
 }
 

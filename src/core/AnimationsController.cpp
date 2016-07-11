@@ -30,12 +30,13 @@ void AnimationsController::addTimedAction(shared_ptr<TimedAction> action) {
   _timedActions.add(action);
 }
 
-void AnimationsController::update(const State &state) {
+void AnimationsController::update(State &state) {
   _animations.update(state);
   _timedActions.update(state.time);
   _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
     ofLogNotice() << "Animation ended: " << *animation;
   });
+  state.animationCount = _animations.size();
 }
 
 void AnimationsController::draw(const State &state) {

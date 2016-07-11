@@ -25,7 +25,7 @@ void OccurrencesController::setup(const State &state, const ColorTheme& colors) 
   }
 }
 
-void OccurrencesController::update(const State &state) {
+void OccurrencesController::update(State &state) {
   _occurrences.update(state);
   _occurrences.cullDeadObjects([&](shared_ptr<OccurrenceEntity> occurrence) {
     OccurrenceEventArgs e(state, *occurrence);
@@ -35,6 +35,7 @@ void OccurrencesController::update(const State &state) {
   if (_spawnInterval.check(state)) {
     spawnOccurrence(state);
   }
+  state.occurrenceCount = _occurrences.size();
   _renderer->update(state);
 }
 

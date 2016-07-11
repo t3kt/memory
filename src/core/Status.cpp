@@ -8,10 +8,6 @@
 
 #include "Status.h"
 #include <ofMain.h>
-#include "Clock.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-#include "AnimationsController.h"
 
 const float LABEL_WIDTH = 150;
 const float VALUE_WIDTH = 60;
@@ -20,19 +16,12 @@ const float TOP = 5;
 const float RIGHT = 5;
 const float LINE_HEIGHT = 15;
 
-StatusInfoController::StatusInfoController(const Clock& clock,
-                                           const ObserversController& observers,
-                                           const OccurrencesController& occurrences,
-                                           const AnimationsController& animations)
-: _clock(clock)
-, _observers(observers)
-, _occurrences(occurrences)
-, _animations(animations) {
+StatusInfoController::StatusInfoController() {
   _text.load(OF_TTF_MONO, 12);
   _text.setMinHeight(LINE_HEIGHT);
 }
 
-void StatusInfoController::draw() {
+void StatusInfoController::draw(const State& state) {
   float y = TOP;
   float xValue = ofGetWidth() - VALUE_WIDTH - RIGHT;
   float xLabel = xValue - PADDING;
@@ -40,12 +29,12 @@ void StatusInfoController::draw() {
   std::vector<std::pair<std::string, std::string>> lines;
 
   lines.emplace_back("State:",
-                     _clock.isRunning() ? "Playing" : "Paused");
-  lines.emplace_back("Time:", ofToString(_clock.time(), 2));
+                     state.running ? "Playing" : "Paused");
+  lines.emplace_back("Time:", ofToString(state.time, 2));
   lines.emplace_back("FPS:", ofToString(ofGetFrameRate(), 2));
-  lines.emplace_back("Observers:", ofToString(_observers.count()));
-  lines.emplace_back("Occurrences:", ofToString(_occurrences.count()));
-  lines.emplace_back("Animations:", ofToString(_animations.count()));
+  lines.emplace_back("Observers:", ofToString(state.observerCount));
+  lines.emplace_back("Occurrences:", ofToString(state.occurrenceCount));
+  lines.emplace_back("Animations:", ofToString(state.animationCount));
 
   ofPushStyle();
   ofFill();

@@ -59,7 +59,7 @@ public:
   OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
   
   void setup(const State& state, const ColorTheme& colors);
-  void update(const State& state);
+  void update(State& state);
   void draw(const State& state);
 
   void spawnOccurrences(int count, const State& state);

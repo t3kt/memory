@@ -25,7 +25,7 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
   }
 }
 
-void ObserversController::update(const State &state) {
+void ObserversController::update(State &state) {
   _observers.performAction([&](shared_ptr<ObserverEntity> observer) {
     observer->update(state);
   });
@@ -38,6 +38,7 @@ void ObserversController::update(const State &state) {
   if (_spawnInterval.check(state)) {
     spawnObserver(state);
   }
+  state.observerCount = _observers.size();
 
   _observerRenderer->update(state);
   _thresholdRenderer->update(state);

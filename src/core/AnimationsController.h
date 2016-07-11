@@ -53,7 +53,7 @@ public:
   void attachTo(ObserversController& observers);
   void attachTo(OccurrencesController& occurrences);
   
-  void update(const State& state);
+  void update(State& state);
   void draw(const State& state);
 
   int count() const { return _animations.size(); }

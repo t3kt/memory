@@ -17,18 +17,18 @@ Clock::Clock(Clock::Params& params, State& state)
 
 void Clock::setup() {
   _lastTime = ofGetElapsedTimef();
-  _isRunning = true;
+  _state.running = true;
   _state.time = 0;
   _state.timeDelta = 0;
 }
 
 void Clock::start() {
   _lastTime = ofGetElapsedTimef();
-  _isRunning = true;
+  _state.running = true;
 }
 
 void Clock::stop() {
-  _isRunning = false;
+  _state.running = false;
 }
 
 void Clock::toggleState() {
@@ -37,12 +37,12 @@ void Clock::toggleState() {
 
 void Clock::update() {
   if (_params.paused()) {
-    if (_isRunning) {
+    if (_state.running) {
       stop();
     }
     _state.timeDelta = 0;
   } else {
-    if (!_isRunning) {
+    if (!_state.running) {
       start();
     }
     float nowTime = ofGetElapsedTimef();

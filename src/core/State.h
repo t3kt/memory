@@ -20,6 +20,10 @@ public:
   
   float time;
   float timeDelta;
+  int observerCount;
+  int occurrenceCount;
+  int animationCount;
+  bool running;
 };
 
 class ChangeFlag : public Outputable {

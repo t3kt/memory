@@ -12,26 +12,14 @@
 #include <vector>
 #include <utility>
 #include <ofxTextAlignTTF.h>
-
-class Clock;
-class ObserversController;
-class OccurrencesController;
-class AnimationsController;
+#include "State.h"
 
 class StatusInfoController {
 public:
-  StatusInfoController(const Clock& clock,
-                       const ObserversController& observers,
-                       const OccurrencesController& occurrences,
-                       const AnimationsController& animations);
+  StatusInfoController();
 
-  void draw();
+  void draw(const State& state);
 private:
-
-  const Clock& _clock;
-  const ObserversController& _observers;
-  const OccurrencesController& _occurrences;
-  const AnimationsController& _animations;
   ofxTextAlignTTF _text;
 };
 

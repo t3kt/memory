@@ -47,10 +47,6 @@ public:
   void toggleState();
 
   void update();
-
-  bool isRunning() const { return _isRunning; }
-
-  float time() const { return _state.time; }
 private:
   void start();
   void stop();
@@ -61,7 +57,6 @@ private:
   State& _state;
   Params& _params;
   float _lastTime;
-  bool _isRunning;
 };
 
 #endif /* Clock_h */

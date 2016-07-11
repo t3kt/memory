@@ -60,7 +60,7 @@ public:
   ObserversController(const Params& params, const Bounds& bounds, const State& state);
   
   void setup(const State& state, const ColorTheme& colors);
-  void update(const State& state);
+  void update(State& state);
   void draw(const State& state);
   
   bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
