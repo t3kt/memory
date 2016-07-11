@@ -26,7 +26,10 @@ int main( ){
 
   auto simApp = std::make_shared<SimulationApp>(appParams);
 
-  auto ctrlApp = std::make_shared<ControlApp>(appParams, *simApp);
+  auto ctrlApp = std::make_shared<ControlApp>(appParams);
+
+  simApp->attachControls(ctrlApp);
+  ctrlApp->attachSimulation(simApp);
 
   ofRunApp(ctrlWindow, ctrlApp);
   ofRunApp(simWindow, simApp);

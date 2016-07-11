@@ -26,19 +26,26 @@
 #include <ofxSyphon.h>
 #endif
 
+class ControlApp;
+
 class SimulationApp : public ofBaseApp {
 public:
   SimulationApp(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
 
+  void attachControls(std::shared_ptr<ControlApp> control);
+
   void setup() override;
   void update() override;
   void draw() override;
+
+  void keyPressed(int key) override;
 
   void performAction(AppAction action);
 private:
   State _state;
   MemoryAppParameters& _appParams;
+  std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;

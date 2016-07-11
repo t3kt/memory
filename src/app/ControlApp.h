@@ -15,15 +15,16 @@
 #include "AppGui.h"
 #include "AppParameters.h"
 #include "Common.h"
-#include "SimulationApp.h"
 #include "State.h"
+
+class SimulationApp;
 
 class ControlApp : public ofBaseApp {
 public:
-  ControlApp(MemoryAppParameters& appParams,
-             SimulationApp& simulation)
-  : _appParams(appParams)
-  , _simulation(simulation) { }
+  ControlApp(MemoryAppParameters& appParams)
+  : _appParams(appParams) { }
+
+  void attachSimulation(std::shared_ptr<SimulationApp> simulation);
 
   void setup() override;
   void update() override;
@@ -37,7 +38,7 @@ private:
   void saveSettings();
 
   MemoryAppParameters& _appParams;
-  SimulationApp& _simulation;
+  std::shared_ptr<SimulationApp> _simulation;
   std::shared_ptr<AppGui> _gui;
 };
 

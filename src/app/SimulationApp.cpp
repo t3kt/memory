@@ -7,6 +7,11 @@
 //
 
 #include "SimulationApp.h"
+#include "ControlApp.h"
+
+void SimulationApp::attachControls(std::shared_ptr<ControlApp> control) {
+  _control = control;
+}
 
 void SimulationApp::setup() {
   _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
@@ -79,6 +84,10 @@ void SimulationApp::draw() {
   }
 }
 
+void SimulationApp::keyPressed(int key) {
+  _control->keyPressed(key);
+}
+
 void SimulationApp::performAction(AppAction action) {
   switch (action) {
     case AppAction::RESET_CAMERA:
@@ -109,6 +118,12 @@ void SimulationApp::performAction(AppAction action) {
       _observers->killObservers(100);
     case AppAction::STOP_ALL_ENTITIES:
       _physics->stopAllEntities();
+      break;
+    case AppAction::TOGGLE_SHOW_BOUNDS:
+      _appParams.core.debug.setShowBounds(!_appParams.core.debug.showBounds());
+      break;
+    case AppAction::TOGGLE_SHOW_PHYSICS:
+      _appParams.core.debug.setShowPhysics(!_appParams.core.debug.showPhysics());
       break;
     default:
       ofLogWarning() << "Action not supported by SimulationApp: " << AppActionType.toString(action);

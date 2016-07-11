@@ -7,6 +7,7 @@
 //
 
 #include "ControlApp.h"
+#include "SimulationApp.h"
 #include <map>
 
 static std::map<int, AppAction> KEY_TO_ACTION = {
@@ -25,6 +26,10 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'p', AppAction::TOGGLE_SHOW_PHYSICS},
   {'b', AppAction::TOGGLE_SHOW_BOUNDS},
 };
+
+void ControlApp::attachSimulation(std::shared_ptr<SimulationApp> simulation) {
+  _simulation = simulation;
+}
 
 void ControlApp::setup() {
   ofSetLogLevel(_appParams.core.debug.loggingEnabled()
@@ -68,7 +73,7 @@ void ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     default:
-      _simulation.performAction(action);
+      _simulation->performAction(action);
   }
 }
 
