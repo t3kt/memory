@@ -47,7 +47,7 @@ void AbstractAttractionBehavior::debugDrawEntity(ParticleObject *entity,
                                                  const ofVec3f &force) {
   drawForceArrow(entity->position(),
                  force);
-  debugDrawEntityRange(entity);
+//  debugDrawEntityRange(entity);
 }
 
 void AbstractAttractionBehavior::debugDrawEntityRange(ParticleObject *entity) {

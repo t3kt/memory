@@ -100,7 +100,7 @@
       0.5,
       0.5,
       0.5,
-      0.12244898080825806
+      0.13775509595870972
     ],
     "occurrenceSpawnFailed": [
       0.81406599283218384,
@@ -114,13 +114,13 @@
       "size": 5.7653064727783203
     },
     "clock": {
-      "paused": false,
+      "paused": true,
       "rate": 1.6734694242477417
     },
     "debug": {
       "loggingEnabled": false,
       "showBounds": false,
-      "showPhysics": false,
+      "showPhysics": true,
       "showStatus": true
     },
     "syphonEnabled": true
@@ -173,7 +173,7 @@
       "low": 0
     },
     "radius": {
-      "high": 0.67346936464309692,
+      "high": 1.8367346525192261,
       "low": 0.20408163964748383
     },
     "renderer": {
@@ -191,7 +191,7 @@
       "wireBrightness": 1.5,
       "wireEnabled": true,
       "wireSaturation": 0.19897958636283875,
-      "wireScale": 1.2030612230300903
+      "wireScale": 1.0928571224212646
     },
     "spawnInterval": {
       "interval": {
@@ -224,7 +224,7 @@
       "reverse": false
     },
     "observerSpatialNoiseForce": {
-      "enabled": true,
+      "enabled": false,
       "magnitude": 0.0079081635922193527,
       "rate": 0.10000000149011612,
       "scale": 1
@@ -237,8 +237,8 @@
         "high": 1.2927947044372559,
         "low": 0.039999999105930328
       },
-      "enabled": false,
-      "magnitude": 0.011836734600365162,
+      "enabled": true,
+      "magnitude": 0.023265305906534195,
       "reverse": false
     },
     "occurrenceDamping": {
@@ -255,7 +255,7 @@
       "reverse": false
     },
     "occurrenceSpatialNoiseForce": {
-      "enabled": true,
+      "enabled": false,
       "magnitude": 0.0071428576484322548,
       "rate": 0.028061224147677422,
       "scale": 1
