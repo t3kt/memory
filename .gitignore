@@ -32,3 +32,9 @@ build/*.build
 xcuserdata
 
 memory.xcodeproj/project.xcworkspace/xcuserdata/tekt.xcuserdatad/UserInterfaceState.xcuserstate
+obj/
+.vs/
+memory.VC*
+*.ilk
+*.exp
+*.pdb

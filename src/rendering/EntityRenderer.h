@@ -9,6 +9,7 @@
 #ifndef EntityRenderer_h
 #define EntityRenderer_h
 
+#include <ofGraphics.h>
 #include <ofTypes.h>
 #include <ofVboMesh.h>
 #include <of3dPrimitives.h>
@@ -101,7 +102,19 @@ public:
                  const ofFloatColor& color)
   : AbstractEntityRenderer(params, color) { }
 
-  void draw(const State& state) override;
+  void draw(const State& state) override {
+    ofFloatColor baseColor(_color);
+    float size = _baseParams.size();
+    ofPushStyle();
+    ofFill();
+    for (shared_ptr<T> entity : *this) {
+      if (!entity->visible()) {
+        continue;
+      }
+      drawEntity(*entity, baseColor, size, state);
+    }
+    ofPopStyle();
+  }
 protected:
   virtual typename ObjectManager<T>::StorageList::iterator begin() = 0;
   virtual typename ObjectManager<T>::StorageList::iterator end() = 0;

@@ -20,21 +20,6 @@ void AbstractEntityRenderer::update(const State &state) {
   _fadeIn.update(state);
 }
 
-template<typename T>
-void EntityRenderer<T>::draw(const State& state) {
-  ofFloatColor baseColor(_color);
-  float size = _baseParams.size();
-  ofPushStyle();
-  ofFill();
-  for (shared_ptr<T> entity : *this) {
-    if (!entity->visible()) {
-      continue;
-    }
-    drawEntity(*entity, baseColor, size, state);
-  }
-  ofPopStyle();
-}
-
 ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
 : EntityRenderer<ObserverEntity>(params,
                                  colors.getColor(ColorId::OBSERVER_MARKER))

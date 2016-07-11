@@ -22,9 +22,9 @@ int RandomValueSupplier<int>::getValue() const {
 }
 
 template<>
-uint8 RandomValueSupplier<uint8>::getValue() const {
+uint8_t RandomValueSupplier<uint8_t>::getValue() const {
   float value = ofRandom(lowValue(), highValue());
-  return static_cast<uint8>(std::round(value));
+  return static_cast<uint8_t>(std::round(value));
 }
 
 template<>
