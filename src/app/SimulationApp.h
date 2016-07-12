@@ -27,18 +27,25 @@
 #include <ofxSyphon.h>
 #endif
 
+#ifdef ENABLE_SPOUT
+#include <ofxSpout2Sender.h>
+#endif
+
 class ControlApp;
 
 class SimulationApp : public ofBaseApp {
 public:
-  SimulationApp(MemoryAppParameters& appParams)
-  : _appParams(appParams) { }
+  SimulationApp(MemoryAppParameters& appParams,
+                std::shared_ptr<ofAppBaseWindow> window)
+  : _appParams(appParams)
+  , _window(window) { }
 
   void attachControls(std::shared_ptr<ControlApp> control);
 
   void setup() override;
   void update() override;
   void draw() override;
+  void exit() override;
 
   void keyPressed(int key) override;
 
@@ -47,6 +54,7 @@ private:
   State _state;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
+  std::shared_ptr<ofAppBaseWindow> _window;
   std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
@@ -55,8 +63,12 @@ private:
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<PhysicsController> _physics;
   std::shared_ptr<Clock> _clock;
+  ofFbo _fbo;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
+#endif
+#ifdef ENABLE_SPOUT
+  ofxSpout2::Sender _spoutSender;
 #endif
 };
 

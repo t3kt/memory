@@ -24,7 +24,7 @@ int main( ){
 
   MemoryAppParameters appParams;
 
-  auto simApp = std::make_shared<SimulationApp>(appParams);
+  auto simApp = std::make_shared<SimulationApp>(appParams, simWindow);
 
   auto ctrlApp = std::make_shared<ControlApp>(appParams);
 

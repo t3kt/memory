@@ -48,6 +48,8 @@ void SimulationApp::setup() {
 
   _statusController = std::make_shared<StatusInfoController>();
 
+  _fbo.allocate(_window->getWidth(), _window->getHeight());
+
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
@@ -63,6 +65,7 @@ void SimulationApp::update() {
 }
 
 void SimulationApp::draw() {
+  //_fbo.begin();
   _renderingController->beginDraw(_state);
 
   _observers->draw(_state);
@@ -80,15 +83,38 @@ void SimulationApp::draw() {
 
   _renderingController->endDraw(_state);
 
+  //_fbo.end();
+/*  ofBaseGLRenderer* renderer = static_cast<ofBaseGLRenderer*>(_window->renderer().get());
+ renderer->draw(_fbo.getTexture(),
+    0,
+    0,
+    0,
+    _fbo.getWidth(),
+    _fbo.getHeight(),
+    0,
+    0,
+    _fbo.getWidth(),
+    _fbo.getHeight());*/
+//  _fbo.draw(0, 0);
+
+  if (_appParams.core.externalSendEnabled()) {
 #ifdef ENABLE_SYPHON
-  if (_appParams.core.syphonEnabled()) {
     _syphonServer.publishScreen();
-  }
 #endif
+#ifdef ENABLE_SPOUT
+    _spoutSender.sendTexture(_fbo.getTexture(), "Memory");
+#endif
+  }
 
   if (_appParams.core.debug.showStatus()) {
     _statusController->draw(_state);
   }
+}
+
+void SimulationApp::exit() {
+#ifdef ENABLE_SPOUT
+  _spoutSender.exit();
+#endif
 }
 
 void SimulationApp::keyPressed(int key) {

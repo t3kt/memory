@@ -3,6 +3,7 @@ ofxGui
 ofxGuiExtended
 ofxLiquidEvent
 ofxPostProcessing
+ofxSpout2
 ofxSyphon
 ofxTextAlign
 ofxXmlSettings

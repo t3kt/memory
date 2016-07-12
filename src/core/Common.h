@@ -19,6 +19,9 @@
 #ifdef TARGET_OSX
 #define ENABLE_SYPHON
 #endif
+#ifdef TARGET_WIN32
+#define ENABLE_SPOUT
+#endif
 
 using Time = choreograph::Time;
 

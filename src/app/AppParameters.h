@@ -72,27 +72,21 @@ public:
     add(debug
         .setKey("debug")
         .setName("Debug"));
-#ifdef ENABLE_SYPHON
-    add(_syphonEnabled
-        .setKey("syphonEnabled")
-        .setName("Enable Syphon")
+    add(_externalSendEnabled
+        .setKey("externalSendEnabled")
+        .setName("Enable External Send")
         .setValueAndDefault(false));
-#endif
     bounds.setParamRange(0.5, 40);
   }
 
-#ifdef ENABLE_SYPHON
-  bool syphonEnabled() const { return _syphonEnabled.get(); }
-#endif
+  bool externalSendEnabled() const { return _externalSendEnabled.get(); }
 
   Clock::Params clock;
   SimpleCubeBounds bounds;
   DebugParams debug;
 
 private:
-#ifdef ENABLE_SYPHON
-  TParam<bool> _syphonEnabled;
-#endif
+  TParam<bool> _externalSendEnabled;
 
   friend class AppGuiImpl;
 };
