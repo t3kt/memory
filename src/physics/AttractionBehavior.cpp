@@ -33,7 +33,7 @@ ofVec3f AbstractAttractionBehavior::calcAttractionForce(ParticleObject *entity, 
   posDiff.normalize();
   float mag = ofMap(dist,
                     lowBound, highBound,
-                    magnitude, 0,
+                    0, magnitude,
                     true);
   return posDiff * mag;
 }

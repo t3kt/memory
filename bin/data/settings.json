@@ -1,6 +1,6 @@
 {
   "animations": {
-    "enabled": true,
+    "enabled": false,
     "observerDied": {
       "alpha": {
         "high": 0,
@@ -114,25 +114,24 @@
       "size": 5.7653064727783203
     },
     "clock": {
-      "paused": true,
+      "paused": false,
       "rate": 1.6734694242477417
     },
     "debug": {
       "loggingEnabled": false,
       "showBounds": false,
-      "showPhysics": true,
+      "showPhysics": false,
       "showStatus": true
-    },
-    "syphonEnabled": true
+    }
   },
   "observers": {
     "initialVelocity": {
-      "high": 0.090306125581264496,
-      "low": 0.012755102477967739
+      "high": 0,
+      "low": 0
     },
     "lifetime": {
-      "high": 187.34693908691406,
-      "low": 48.979595184326172
+      "high": 240,
+      "low": 113.87755584716797
     },
     "renderer": {
       "fadeIn": {
@@ -216,8 +215,8 @@
     },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
-        "high": 1.2719700336456299,
-        "low": 0.18908791244029999
+        "high": 2.542273998260498,
+        "low": 0.39733448624610901
       },
       "enabled": true,
       "magnitude": 0.00897959154099226,
@@ -225,7 +224,7 @@
     },
     "observerSpatialNoiseForce": {
       "enabled": false,
-      "magnitude": 0.0079081635922193527,
+      "magnitude": 0.0020408162381500006,
       "rate": 0.10000000149011612,
       "scale": 1
     },
@@ -238,12 +237,12 @@
         "low": 0.039999999105930328
       },
       "enabled": true,
-      "magnitude": 0.023265305906534195,
+      "magnitude": 0.059591837227344513,
       "reverse": false
     },
     "occurrenceDamping": {
       "enabled": true,
-      "magnitude": 0.0099999997764825821
+      "magnitude": 0.34183672070503235
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
