@@ -43,6 +43,9 @@ public:
       add(renderer
           .setKey("renderer")
           .setName("Renderer"));
+      add(connectorRenderer
+          .setKey("connectorRenderer")
+          .setName("Connector Renderer"));
       add(threshold
           .setKey("threshold")
           .setName("Threshold"));
@@ -52,6 +55,7 @@ public:
     Interval::Params spawnInterval;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;
+    ObserverObserverConnectorRenderer::Params connectorRenderer;
     AbstractThresholdRenderer::Params threshold;
   };
   
@@ -84,6 +88,7 @@ private:
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
   shared_ptr<ObserverRenderer> _observerRenderer;
+  shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
   shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 };
 

@@ -61,6 +61,9 @@ public:
       add(occurrenceObserverAttraction
           .setKey("occurrenceObserverAttraction")
           .setName("Occurrence to Observer"));
+      add(observerObserverAttraction
+          .setKey("observerObserverAttraction")
+          .setName("Observer to Observer"));
       add(observerSpatialNoiseForce
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
@@ -84,6 +87,7 @@ public:
       occurrenceObserverAttraction.setEnabledValueAndDefault(false);
       observerAnchorPointAttraction.setEnabledValueAndDefault(false);
       occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
+      observerObserverAttraction.setEnabledValueAndDefault(false);
       observerDamping.setEnabledValueAndDefault(true);
       occurrenceDamping.setEnabledValueAndDefault(true);
     }
@@ -93,6 +97,7 @@ public:
     ParamsWithEnabled rebound;
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
+    AbstractAttractionBehavior::Params observerObserverAttraction;
     AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
     AbstractAttractionBehavior::Params observerAnchorPointAttraction;
@@ -128,6 +133,7 @@ private:
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;
   std::shared_ptr<AttractionBehavior<OccurrenceEntity, ObserverEntity>> _occurrenceObserverAttraction;
+  std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
   std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
   std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;

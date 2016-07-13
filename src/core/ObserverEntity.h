@@ -25,9 +25,21 @@ public:
   virtual ~ObserverEntity() override {}
   
   void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+
+  void addObserver(shared_ptr<ObserverEntity> observer) {
+    _connectedObservers.add(observer);
+  }
+
+  void removeObserver(ObjectId otherId) {
+    _connectedObservers.remove(otherId);
+  }
   
   EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
     return _connectedOccurrences;
+  }
+
+  WeakEntityMap<ObserverEntity>& getConnectedObservers() {
+    return _connectedObservers;
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
@@ -46,6 +58,7 @@ private:
   const float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
+  WeakEntityMap<ObserverEntity> _connectedObservers;
 };
 
 #endif /* ObserverEntity_h */

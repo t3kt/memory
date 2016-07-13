@@ -106,4 +106,57 @@ private:
   Storage _map;
 };
 
+template<typename E>
+class WeakEntityMap {
+public:
+  using EntityPtr = std::shared_ptr<E>;
+  using EntityWeakPtr = std::weak_ptr<E>;
+  using Storage = std::map<ObjectId, EntityWeakPtr>;
+  using Iterator = typename Storage::iterator;
+  using ConstIterator = typename Storage::const_iterator;
+
+  WeakEntityMap() {}
+
+  void add(EntityPtr entity) {
+    _map[entity->id] = EntityWeakPtr(entity);
+  }
+
+  bool remove(EntityPtr entity) {
+    return remove(entity->id);
+  }
+
+  bool remove(ObjectId id) {
+    auto iter = _map.find(id);
+    if (iter == _map.end()) {
+      return false;
+    }
+    _map.erase(iter);
+    return true;
+  }
+
+  bool containsId(ObjectId entityId) const {
+    return _map.find(entityId) != _map.end();
+  }
+
+  void cullDeadPointers() {
+    for (auto iter = _map.begin();
+         iter != _map.end();) {
+      auto weakPtr = iter->second;
+      if (weakPtr.expired()) {
+        iter = _map.erase(iter);
+      } else {
+        iter++;
+      }
+    }
+  }
+
+  Iterator begin() { return _map.begin(); }
+  Iterator end() { return _map.end(); }
+  ConstIterator begin() const { return _map.begin(); }
+  ConstIterator end() const { return _map.end(); }
+
+private:
+  Storage _map;
+};
+
 #endif /* WorldObject_h */

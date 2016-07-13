@@ -215,4 +215,23 @@ private:
   const ObjectManager<OccurrenceEntity>& _occurrences;
 };
 
+class ObserverObserverConnectorRenderer {
+public:
+  using Params = ParamsWithEnabled;
+
+  ObserverObserverConnectorRenderer(const Params& params,
+                                    const ofFloatColor& color,
+                                    const ObjectManager<ObserverEntity>& observers)
+  : _params(params)
+  , _color(color)
+  , _observers(observers) { }
+
+  void draw(const State& state);
+
+private:
+  const Params& _params;
+  const ofFloatColor& _color;
+  const ObjectManager<ObserverEntity>& _observers;
+};
+
 #endif /* EntityRenderer_h */

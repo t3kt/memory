@@ -24,6 +24,7 @@ ObserversController::ObserversController(const ObserversController::Params& para
 void ObserversController::setup(const State &state, const ColorTheme& colors) {
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
+  _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
   for (int i = 0; i < START_OBSERVERS; i++) {
     spawnObserver(state);
   }
@@ -50,6 +51,7 @@ void ObserversController::update(State &state) {
 
 void ObserversController::draw(const State &state) {
   _observerRenderer->draw(state);
+  _observerConnectorRenderer->draw(state);
   _thresholdRenderer->draw(state);
 }
 

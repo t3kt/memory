@@ -16,6 +16,7 @@ EnumTypeInfo<ColorId> ColorIdType({
   {"occurrenceMarker", ColorId::OCCURRENCE_MARKER},
   {"occurrenceRange", ColorId::OCCURRENCE_RANGE},
   {"occurrenceConnector", ColorId::OCCURRENCE_CONNECTOR},
+  {"observerConnector", ColorId::OBSERVER_CONNECTOR},
   {"observerDied", ColorId::OBSERVER_DIED},
   {"occurrenceDied", ColorId::OCCURRENCE_DIED},
   {"occurrenceSpawnFailed", ColorId::OCCURRENCE_SPAWN_FAILED},
@@ -39,6 +40,10 @@ ColorTheme::ColorTheme() {
       .setKey("observerThresholdConnector")
       .setName("Observer Threshold Connector")
       .setValueAndDefault(ofFloatColor(0.7, 0.7, 0.85, 0.4)));
+  add(_observerConnector
+      .setKey("observerConnector")
+      .setName("Observer Connector")
+      .setValueAndDefault(ofFloatColor(0.2, 0.5, 0.7, 1)));
   add(_occurrenceMarker
       .setKey("occurrenceMarker")
       .setName("Occurrence Marker")
@@ -72,6 +77,7 @@ ColorTheme::ColorTheme() {
     _bounds,
     _observerMarker,
     _observerThresholdConnector,
+    _observerConnector,
     _occurrenceMarker,
     _occurrenceRange,
     _occurrenceConnector,

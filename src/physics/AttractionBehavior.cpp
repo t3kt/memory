@@ -7,8 +7,6 @@
 //
 
 #include "AttractionBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
 #include <ofMain.h>
 
 template<>

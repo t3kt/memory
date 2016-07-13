@@ -19,6 +19,9 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
   _connectedOccurrences.add(occurrence);
+  for (auto other : occurrence->connectedObservers()) {
+    addObserver(other.second);
+  }
 }
 
 void ObserverEntity::update(const State &state) {
@@ -29,12 +32,18 @@ void ObserverEntity::update(const State &state) {
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
   }
+  _connectedObservers.cullDeadPointers();
 }
 
 void ObserverEntity::handleDeath() {
   ofLogNotice() << "Observer died: " << *this;
   for (auto occurrence : _connectedOccurrences) {
     occurrence.second->removeObserver(id);
+  }
+  for (auto observerEntry : _connectedObservers) {
+    if (auto observer = observerEntry.second.lock()) {
+      observer->removeObserver(id);
+    }
   }
 }
 
