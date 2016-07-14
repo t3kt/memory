@@ -25,6 +25,12 @@ public:
     _cam.reset();
   }
 
+#ifdef ENABLE_SYPHON
+  void pushToSyphon(ofxSyphonServer& syphonServer) override {
+    _postProc->pushToSyphon(syphonServer);
+  }
+#endif
+
 private:
   void beginFog();
   void endFog();

@@ -56,3 +56,13 @@ void PostProcController::endDraw(ofCamera& cam) {
     cam.end();
   }
 }
+
+#ifdef ENABLE_SYPHON
+void PostProcController::pushToSyphon(ofxSyphonServer &syphonServer) {
+  if (_params.enabled()) {
+    syphonServer.publishTexture(&_postProc.getProcessedTextureReference());
+  } else {
+    syphonServer.publishScreen();
+  }
+}
+#endif

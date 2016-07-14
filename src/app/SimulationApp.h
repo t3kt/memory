@@ -33,8 +33,10 @@ class SimulationApp
 : public ofBaseApp
 , public AppActionHandler {
 public:
-  SimulationApp(MemoryAppParameters& appParams)
-  : _appParams(appParams) { }
+  SimulationApp(MemoryAppParameters& appParams,
+                std::shared_ptr<ofAppBaseWindow> window)
+  : _appParams(appParams)
+  , _window(window) { }
 
   void attachControls(std::shared_ptr<ControlApp> control);
 
@@ -51,6 +53,7 @@ private:
   State _state;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
+  std::shared_ptr<ofAppBaseWindow> _window;
   std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;

@@ -11,9 +11,14 @@
 
 #include <ofEasyCam.h>
 #include "Colors.h"
+#include "Common.h"
 #include "Params.h"
 #include "PostProcController.h"
 #include "State.h"
+
+#ifdef ENABLE_SYPHON
+#include <ofxSyphon.h>
+#endif
 
 class CameraParams : public Params {
 public:
@@ -94,6 +99,9 @@ public:
   virtual void beginDraw(const State& state) = 0;
   virtual void endDraw(const State& state) = 0;
   virtual void resetCamera() = 0;
+#ifdef ENABLE_SYPHON
+  virtual void pushToSyphon(ofxSyphonServer& syphonServer) = 0;
+#endif
 };
 
 #endif /* RenderingController_h */

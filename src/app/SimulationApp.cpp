@@ -82,7 +82,7 @@ void SimulationApp::draw() {
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.syphonEnabled()) {
-    _syphonServer.publishScreen();
+    _renderingController->pushToSyphon(_syphonServer);
   }
 #endif
 

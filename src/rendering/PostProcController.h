@@ -12,8 +12,13 @@
 #include <memory>
 #include <ofCamera.h>
 #include <ofxPostProcessing.h>
+#include "Common.h"
 #include "Params.h"
 #include "State.h"
+
+#ifdef ENABLE_SYPHON
+#include <ofxSyphon.h>
+#endif
 
 class EdgePassParams : public ParamsWithEnabled {
 public:
@@ -112,6 +117,10 @@ public:
 
   void beginDraw(ofCamera& cam);
   void endDraw(ofCamera& cam);
+  
+#ifdef ENABLE_SYPHON
+  void pushToSyphon(ofxSyphonServer& syphonServer);
+#endif
 
 private:
   const Params& _params;
