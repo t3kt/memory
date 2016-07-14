@@ -14,12 +14,14 @@
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
-#include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
 #include "Colors.h"
 #include "EntityRenderer.h"
 #include "SimulationEvents.h"
+#include "Spawner.h"
+
+class IntervalOccurrenceSpawner;
 
 class OccurrencesController {
 public:
@@ -31,9 +33,9 @@ public:
           .setName("Radius Range")
           .setParamValuesAndDefaults(0.4, 1.3)
           .setParamRanges(0, 4));
-      add(spawnInterval
-          .setKey("spawnInterval")
-          .setName("Spawning"));
+      add(spawner
+          .setKey("spawner")
+          .setName("Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
@@ -48,7 +50,7 @@ public:
     }
 
     RandomValueSupplier<float> radius;
-    Interval::Params spawnInterval;
+    IntervalSpawnerParams spawner;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
@@ -72,16 +74,18 @@ public:
   }
   
 private:
-  void spawnOccurrence(const State& state);
+  void spawnRandomOccurrence(const State& state);
   
   const Params& _params;
   const Bounds& _bounds;
-  Interval _spawnInterval;
   SimulationEvents& _events;
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
+  std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
   std::shared_ptr<OccurrenceRenderer> _renderer;
   std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
+
+  friend class IntervalOccurrenceSpawner;
 };
 
 #endif /* OccurrencesController_h */

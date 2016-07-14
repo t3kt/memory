@@ -25,6 +25,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		3230D92F1D375BBA00FE0562 /* PostProcController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3230D92E1D375BBA00FE0562 /* PostProcController.cpp */; };
+		3230D9341D37722D00FE0562 /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3230D9321D37722D00FE0562 /* Spawner.cpp */; };
 		3233364B1D2BC4CC00A000BD /* RenderingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336491D2BC4CC00A000BD /* RenderingController.cpp */; };
 		3233366C1D2CC49000A000BD /* PhysicsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366A1D2CC49000A000BD /* PhysicsController.cpp */; };
 		3233366F1D2CC4DD00A000BD /* PhysicsBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3233366D1D2CC4DD00A000BD /* PhysicsBehavior.cpp */; };
@@ -61,7 +62,6 @@
 		75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F05D9B2D4915D920A10BE4F /* Colors.cpp */; };
 		78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB66CE88C2B47C1925F8C /* ofxPanel.cpp */; };
 		7DE30FC333652825841CEBCD /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36B95376ECF45981665C19E8 /* State.cpp */; };
-		7F4DAE7D88443C43EA6E0EF9 /* Interval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */; };
 		7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AA7876E8AE07A41B33AD46E /* tinyxml.cpp */; };
 		7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3672BB2E4E3BEE27769838D5 /* ofxValuePlotter.cpp */; };
 		820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */; };
@@ -181,6 +181,8 @@
 		3230D9181D33631E00FE0562 /* SimulationEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimulationEvents.h; path = core/SimulationEvents.h; sourceTree = "<group>"; };
 		3230D92D1D375BA300FE0562 /* PostProcController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PostProcController.h; path = rendering/PostProcController.h; sourceTree = "<group>"; };
 		3230D92E1D375BBA00FE0562 /* PostProcController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PostProcController.cpp; path = rendering/PostProcController.cpp; sourceTree = "<group>"; };
+		3230D9321D37722D00FE0562 /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spawner.cpp; path = core/Spawner.cpp; sourceTree = "<group>"; };
+		3230D9331D37722D00FE0562 /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = core/Spawner.h; sourceTree = "<group>"; };
 		323336491D2BC4CC00A000BD /* RenderingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderingController.cpp; path = rendering/RenderingController.cpp; sourceTree = "<group>"; };
 		3233364A1D2BC4CC00A000BD /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = rendering/RenderingController.h; sourceTree = "<group>"; };
 		3233366A1D2CC49000A000BD /* PhysicsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsController.cpp; path = physics/PhysicsController.cpp; sourceTree = "<group>"; };
@@ -212,7 +214,6 @@
 		36B95376ECF45981665C19E8 /* State.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = State.cpp; path = src/core/State.cpp; sourceTree = SOURCE_ROOT; };
 		37AAD52AEE519A889E5A8B9D /* ofxTextAlign.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlign.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlign.cpp; sourceTree = SOURCE_ROOT; };
 		37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FakeSSSPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FakeSSSPass.cpp; sourceTree = SOURCE_ROOT; };
-		3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Interval.cpp; path = src/core/Interval.cpp; sourceTree = SOURCE_ROOT; };
 		3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppGui.h; path = src/app/AppGui.h; sourceTree = SOURCE_ROOT; };
 		3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = KaleidoscopePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.cpp; sourceTree = SOURCE_ROOT; };
 		4188857B0399E72060D74E0D /* Retime.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Retime.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Retime.hpp; sourceTree = SOURCE_ROOT; };
@@ -330,7 +331,6 @@
 		D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlignTTF.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.cpp; sourceTree = SOURCE_ROOT; };
 		D9C3827264F0C34537CE0F6E /* Clock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Clock.h; path = src/core/Clock.h; sourceTree = SOURCE_ROOT; };
 		DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RenderPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.cpp; sourceTree = SOURCE_ROOT; };
-		DA37F0EB85A2C8ABCF7DCC58 /* Interval.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Interval.h; path = src/core/Interval.h; sourceTree = SOURCE_ROOT; };
 		DA74967980DD7E2289059D81 /* ofxValuePlotter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxValuePlotter.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxValuePlotter.h; sourceTree = SOURCE_ROOT; };
 		DCBEBF66C39747BD1534C1B5 /* Status.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Status.cpp; path = src/core/Status.cpp; sourceTree = SOURCE_ROOT; };
 		DCD5F898419E9A122FCFE280 /* ValueSupplier.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ValueSupplier.h; path = src/core/ValueSupplier.h; sourceTree = SOURCE_ROOT; };
@@ -768,8 +768,6 @@
 				8AEEEA82825BAC378C9E347D /* Common.h */,
 				E714069016FC9AE5D8E239FB /* Events.cpp */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
-				3891F6F7B2BC0BE17DB2E69E /* Interval.cpp */,
-				DA37F0EB85A2C8ABCF7DCC58 /* Interval.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
@@ -794,6 +792,8 @@
 				4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */,
 				0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */,
 				3230D9181D33631E00FE0562 /* SimulationEvents.h */,
+				3230D9321D37722D00FE0562 /* Spawner.cpp */,
+				3230D9331D37722D00FE0562 /* Spawner.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1037,7 +1037,6 @@
 				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */,
-				7F4DAE7D88443C43EA6E0EF9 /* Interval.cpp in Sources */,
 				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,
@@ -1086,6 +1085,7 @@
 				7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */,
 				181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */,
 				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
+				3230D9341D37722D00FE0562 /* Spawner.cpp in Sources */,
 				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
 				8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */,
 				6732E5D0B6ADA39649B35494 /* ConvolutionPass.cpp in Sources */,

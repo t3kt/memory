@@ -14,13 +14,15 @@
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
-#include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
 #include "EntityRenderer.h"
 #include "Colors.h"
 #include "SimulationEvents.h"
+#include "Spawner.h"
+
+class IntervalObserverSpawner;
 
 class ObserversController {
 public:
@@ -32,9 +34,9 @@ public:
           .setName("Lifetime Range")
           .setParamValuesAndDefaults(1, 4)
           .setParamRanges(0, 240));
-      add(spawnInterval
-          .setKey("spawnInterval")
-          .setName("Spawning"));
+      add(spawner
+          .setKey("spawner")
+          .setName("Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
@@ -52,7 +54,7 @@ public:
     }
 
     RandomValueSupplier<float> lifetime;
-    Interval::Params spawnInterval;
+    IntervalSpawnerParams spawner;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;
     ObserverObserverConnectorRenderer::Params connectorRenderer;
@@ -80,16 +82,18 @@ public:
   }
   
 private:
-  void spawnObserver(const State& state);
+  void spawnRandomObserver(const State& state);
   
   const Params& _params;
   const Bounds& _bounds;
   SimulationEvents& _events;
-  Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
+  std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<ObserverRenderer> _observerRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
   std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
+
+  friend class IntervalObserverSpawner;
 };
 
 #endif /* ObserversController_h */
