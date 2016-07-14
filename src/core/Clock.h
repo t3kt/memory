@@ -27,7 +27,7 @@ public:
           .setKey("rate")
           .setName("Rate")
           .setValueAndDefault(1)
-          .setRange(0, 4));
+          .setRange(0, 10));
     }
 
     bool paused() const { return _paused.get(); }
