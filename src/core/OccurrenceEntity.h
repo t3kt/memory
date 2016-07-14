@@ -25,7 +25,7 @@ public:
   OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
   
-  void addObserver(shared_ptr<ObserverEntity> observer) {
+  void addObserver(std::shared_ptr<ObserverEntity> observer) {
     _connectedObservers.add(observer);
   }
   

@@ -24,7 +24,7 @@ void AnimationsController::setup() {
   attachToEvents();
 }
 
-void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, const State& state) {
+void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animation, const State& state) {
   AnimationEventArgs e(state, *animation);
   _events.animationSpawned.notifyListeners(e);
   
@@ -33,7 +33,7 @@ void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, c
 
 void AnimationsController::update(State &state) {
   _animations.update(state);
-  _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
+  _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(state, *animation);
     _events.animationDied.notifyListeners(e);
   });

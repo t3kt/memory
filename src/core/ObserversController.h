@@ -68,7 +68,7 @@ public:
   void update(State& state);
   void draw(const State& state);
   
-  bool registerOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+  bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
   void spawnObservers(int count, const State& state);
 
@@ -87,9 +87,9 @@ private:
   SimulationEvents& _events;
   Interval _spawnInterval;
   ObjectManager<ObserverEntity> _observers;
-  shared_ptr<ObserverRenderer> _observerRenderer;
-  shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
+  std::shared_ptr<ObserverRenderer> _observerRenderer;
+  std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
+  std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 };
 
 #endif /* ObserversController_h */

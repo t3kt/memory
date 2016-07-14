@@ -46,7 +46,7 @@ public:
 
   void setup();
 
-  void addAnimation(shared_ptr<AnimationObject> animation,
+  void addAnimation(std::shared_ptr<AnimationObject> animation,
                     const State& state);
   
   void update(State& state);

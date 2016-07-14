@@ -34,7 +34,7 @@ private:
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
   ofEasyCam _cam;
-  shared_ptr<PostProcController> _postProc;
+  std::shared_ptr<PostProcController> _postProc;
 //  ofLight _light;
   ofVec3f _rotation;
 };
@@ -123,6 +123,6 @@ void RenderingControllerImpl::endFog() {
   glDisable(GL_FOG);
 }
 
-shared_ptr<RenderingController> RenderingController::create(const Params& params, const ColorTheme& colors) {
+std::shared_ptr<RenderingController> RenderingController::create(const Params& params, const ColorTheme& colors) {
   return std::shared_ptr<RenderingController>(new RenderingControllerImpl(params, colors));
 }

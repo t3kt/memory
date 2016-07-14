@@ -10,11 +10,9 @@
 #define WorldObject_h
 
 #include "Common.h"
-#include "State.h"
 #include <iostream>
 #include <map>
 #include <memory>
-#include <ofVec3f.h>
 
 typedef long ObjectId;
 
@@ -69,10 +67,6 @@ public:
     }
     _map.erase(iter);
     return true;
-  }
-
-  bool contains(EntityPtr entity) const {
-    return _map.find(entity->id) != _map.end();
   }
 
   std::size_t size() const {

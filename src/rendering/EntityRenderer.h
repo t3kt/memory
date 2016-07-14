@@ -80,7 +80,7 @@ public:
     float size = _baseParams.size();
     ofPushStyle();
     ofFill();
-    for (shared_ptr<T> entity : *this) {
+    for (std::shared_ptr<T> entity : *this) {
       if (!entity->visible()) {
         continue;
       }

@@ -40,10 +40,10 @@ public:
     return deadObjects;
   }
   
-  void cullDeadObjects(std::function<void(shared_ptr<T>)> callback) {
+  void cullDeadObjects(std::function<void(std::shared_ptr<T>)> callback) {
     for (auto i = std::begin(_objects);
          i != std::end(_objects);) {
-      shared_ptr<T>& object = *i;
+      std::shared_ptr<T>& object = *i;
       if (object->alive()) {
         i++;
       } else {
@@ -61,12 +61,12 @@ public:
     }
   }
   
-  void add(shared_ptr<T> object) {
+  void add(std::shared_ptr<T> object) {
     _objects.push_back(object);
   }
 
   template<typename ...Args>
-  void add(shared_ptr<T> object, Args&... others) {
+  void add(std::shared_ptr<T> object, Args&... others) {
     add(object);
     add(others...);
   }
@@ -83,7 +83,7 @@ public:
     return false;
   }
   
-  void performAction(std::function<void(shared_ptr<T>)> action) {
+  void performAction(std::function<void(std::shared_ptr<T>)> action) {
     for (auto& entity : _objects) {
       action(entity);
     }

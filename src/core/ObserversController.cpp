@@ -31,11 +31,11 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
 }
 
 void ObserversController::update(State &state) {
-  _observers.performAction([&](shared_ptr<ObserverEntity> observer) {
+  _observers.performAction([&](std::shared_ptr<ObserverEntity> observer) {
     observer->update(state);
   });
 
-  _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
+  _observers.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
     ObserverEventArgs e(state, *observer);
     _events.observerDied.notifyListeners(e);
@@ -56,10 +56,10 @@ void ObserversController::draw(const State &state) {
   _thresholdRenderer->draw(state);
 }
 
-bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
+bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   bool connected = false;
   
-  _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
+  _observers.performAction([&] (std::shared_ptr<ObserverEntity> observer) {
     float dist = occurrence->position().distance(observer->position());
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);

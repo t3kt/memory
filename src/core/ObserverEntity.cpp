@@ -18,7 +18,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 , _startTime(state.time) {
 }
 
-void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
+void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   for (auto& other : occurrence->connectedObservers()) {
     if (other.first == id) {
       continue;

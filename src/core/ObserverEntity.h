@@ -24,9 +24,9 @@ public:
   ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
   
-  void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
+  void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
-  void addObserver(shared_ptr<ObserverEntity> observer) {
+  void addObserver(std::shared_ptr<ObserverEntity> observer) {
     _connectedObservers.add(observer);
   }
 
