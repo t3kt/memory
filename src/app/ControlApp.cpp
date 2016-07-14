@@ -32,8 +32,11 @@ void ControlApp::attachSimulation(std::shared_ptr<SimulationApp> simulation) {
 }
 
 void ControlApp::setup() {
-  ofSetLogLevel(_appParams.core.debug.loggingEnabled()
-                ? OF_LOG_NOTICE : OF_LOG_ERROR);
+  _appParams.core.debug.loggingEnabledChanged += [this]() {
+    updateLogLevel();
+  };
+
+  updateLogLevel();
   loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams);
@@ -46,10 +49,9 @@ void ControlApp::setup() {
   };
 }
 
-void ControlApp::update() {
+void ControlApp::updateLogLevel() {
   ofSetLogLevel(_appParams.core.debug.loggingEnabled()
                 ? OF_LOG_NOTICE : OF_LOG_ERROR);
-  _gui->update();
 }
 
 void ControlApp::draw() {

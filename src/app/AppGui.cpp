@@ -38,9 +38,6 @@ public:
              ofxLiquidEvent<void>& onLoad,
              ofxLiquidEvent<void>& onSave);
 
-  void update() {
-    _fps.update();
-  }
   void draw() {
     _pages.draw();
     _actions.draw();
@@ -63,7 +60,6 @@ private:
   ofxTabbedPages _entityPages;
 
   ActionsGui _actions;
-  ofxFpsPlotter _fps;
 };
 
 static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
@@ -130,10 +126,6 @@ AppGui::AppGui(MemoryAppParameters& appParams)
 
 void AppGui::setup() {
   _impl = std::make_shared<AppGuiImpl>(_appParams, onLoad, onSave);
-}
-
-void AppGui::update() {
-  _impl->update();
 }
 
 void AppGui::draw() {

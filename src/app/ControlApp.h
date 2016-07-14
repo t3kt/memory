@@ -27,13 +27,14 @@ public:
   void attachSimulation(std::shared_ptr<SimulationApp> simulation);
 
   void setup() override;
-  void update() override;
   void draw() override;
 
   void keyPressed(int key) override;
 
   void performAction(AppAction action);
 private:
+  void updateLogLevel();
+
   void loadSettings();
   void saveSettings();
 
