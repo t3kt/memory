@@ -75,7 +75,6 @@
 		96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38907EC6905E539FB6235FC /* ParticleObject.cpp */; };
 		98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */; };
 		9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */; };
-		9FF3497170D60884F112833A /* Timing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */; };
 		A014A6C6A8E9AB567F67CF47 /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */; };
 		A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CE452C77AF7B96205848C7E /* ofxGuiGroup.cpp */; };
 		A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */; };
@@ -173,7 +172,6 @@
 		27E603A09371D4F201E7AB74 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		27F7A6AF265FCB06BA639098 /* State.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = State.h; path = src/core/State.h; sourceTree = SOURCE_ROOT; };
 		29FA0CD0CDD5CBDBF8B0AE8E /* EdgePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EdgePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/EdgePass.cpp; sourceTree = SOURCE_ROOT; };
-		2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Timing.cpp; path = src/core/Timing.cpp; sourceTree = SOURCE_ROOT; };
 		2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AnimationsController.cpp; path = src/core/AnimationsController.cpp; sourceTree = SOURCE_ROOT; };
 		2F8E0972EBAD194019AAE430 /* HorizontalTiltShifPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = HorizontalTiltShifPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HorizontalTiltShifPass.cpp; sourceTree = SOURCE_ROOT; };
 		3085A7C9897B49320258786A /* TimelineItem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimelineItem.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineItem.h; sourceTree = SOURCE_ROOT; };
@@ -327,7 +325,6 @@
 		CF69DC4C4778D5EFF36391BF /* FakeSSSPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FakeSSSPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FakeSSSPass.h; sourceTree = SOURCE_ROOT; };
 		D1C8C692F0FE0C551B9AB957 /* FxaaPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FxaaPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FxaaPass.cpp; sourceTree = SOURCE_ROOT; };
 		D4A3A7A1C623F8F54F2A7E3B /* ofxFpsPlotter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxFpsPlotter.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxFpsPlotter.h; sourceTree = SOURCE_ROOT; };
-		D53E9332C9AE72A5C90B70F3 /* Timing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Timing.h; path = src/core/Timing.h; sourceTree = SOURCE_ROOT; };
 		D58D1EA565612E787A738D06 /* VectorManipulation.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VectorManipulation.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/detail/VectorManipulation.hpp; sourceTree = SOURCE_ROOT; };
 		D58DCB2C0AEFDE6171E29540 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Syphon.framework; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/lib/osx/Syphon.framework; sourceTree = "<group>"; };
 		D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlignTTF.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.cpp; sourceTree = SOURCE_ROOT; };
@@ -792,8 +789,6 @@
 				27F7A6AF265FCB06BA639098 /* State.h */,
 				DCBEBF66C39747BD1534C1B5 /* Status.cpp */,
 				52DA674F75908A4AD4029805 /* Status.h */,
-				2F31AD800AC5506AE2F4DFC5 /* Timing.cpp */,
-				D53E9332C9AE72A5C90B70F3 /* Timing.h */,
 				0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */,
 				DCD5F898419E9A122FCFE280 /* ValueSupplier.h */,
 				4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */,
@@ -1052,7 +1047,6 @@
 				96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */,
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,
 				D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */,
-				9FF3497170D60884F112833A /* Timing.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
 				3233367C1D2F6D9800A000BD /* AttractionBehavior.cpp in Sources */,

@@ -10,12 +10,9 @@
 #define AnimationObject_h
 
 #include <string>
-#include <ofParameter.h>
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
 #include "WorldObject.h"
-#include "ObjectManager.h"
-#include "Timing.h"
 #include "State.h"
 #include "Params.h"
 #include "ValueSupplier.h"
@@ -41,7 +38,9 @@ public:
     TParam<float> _duration;
   };
 
-  AnimationObject(const Params& params);
+  AnimationObject(const Params& params, const State& state);
+
+  virtual void update(const State& state) override;
 
   ofVec3f position() const { return _position; }
   
@@ -51,9 +50,6 @@ public:
   virtual bool visible() const override {
     return alive() && _visible;
   }
-  
-  shared_ptr<DurationAction>
-  createUpdaterAction(float time, ObjectManager<AnimationObject>& animations);
 protected:
   virtual std::string typeName() const override {
     return "Animation";
@@ -64,6 +60,7 @@ protected:
 
   ofVec3f _position;
 private:
+  float _startTime;
   bool _visible;
   float _duration;
   float _percentage;
@@ -94,7 +91,10 @@ public:
     FloatValueRange alpha;
   };
 
-  ExpandingSphereAnimation(ofVec3f position, const Params& params, const ofFloatColor& color);
+  ExpandingSphereAnimation(ofVec3f position,
+                           const Params& params,
+                           const ofFloatColor& color,
+                           const State& state);
 
   virtual void draw(const State& state) override;
 

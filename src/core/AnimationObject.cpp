@@ -9,51 +9,21 @@
 #include "AnimationObject.h"
 #include <ofMain.h>
 
-class AnimationUpdater : public DurationAction {
-public:
-  AnimationUpdater(float start, float end,
-                   AnimationObject& animation,
-                   ObjectManager<AnimationObject>& animationManager)
-  : DurationAction(start, end)
-  , _animation(animation)
-  , _animationManager(animationManager) { }
-  
-  virtual void call(float time, float percentage) override;
-  
-protected:
-  virtual void start() override;
-  virtual void end() override;
-private:
-  AnimationObject& _animation;
-  ObjectManager<AnimationObject>& _animationManager;
-};
-
-void AnimationUpdater::call(float time, float percentage) {
-  _animation._percentage = percentage;
-}
-
-void AnimationUpdater::start() {
-  DurationAction::start();
-  _animation.show();
-}
-
-void AnimationUpdater::end() {
-  DurationAction::end();
-  _animation.hide();
-  _animationManager.eraseById(_animation.id);
-}
-
-AnimationObject::AnimationObject(const AnimationObject::Params& params)
+AnimationObject::AnimationObject(const Params& params,
+                                 const State& state)
 : _duration(params.duration())
 , _visible(true)
-, _percentage(0) {
-}
+, _percentage(0)
+, _startTime(state.time) {}
 
-shared_ptr<DurationAction>
-AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>& animationManager) {
-  float start = time;
-  return std::make_shared<AnimationUpdater>(start, start + _duration,
-                                            *this, animationManager);
+void AnimationObject::update(const State &state) {
+  float age = state.time - _startTime;
+  if (age >= _duration) {
+    _percentage = 1;
+    kill();
+  } else {
+    _percentage = age / _duration;
+  }
 }
 
 void AnimationObject::outputFields(std::ostream &os) const {
@@ -61,8 +31,11 @@ void AnimationObject::outputFields(std::ostream &os) const {
   os << ", position: " << _position;
 }
 
-ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, const ofFloatColor& color)
-: AnimationObject(params)
+ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position,
+                                                   const Params& params,
+                                                   const ofFloatColor& color,
+                                                   const State& state)
+: AnimationObject(params, state)
 , _params(params)
 , _color(color) {
   _position = position;

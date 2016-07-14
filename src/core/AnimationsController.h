@@ -12,7 +12,6 @@
 #include "AnimationObject.h"
 #include "ObjectManager.h"
 #include "Params.h"
-#include "Timing.h"
 #include "State.h"
 #include "Colors.h"
 #include "SimulationEvents.h"
@@ -47,8 +46,8 @@ public:
 
   void setup();
 
-  void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
-  void addTimedAction(shared_ptr<TimedAction> action);
+  void addAnimation(shared_ptr<AnimationObject> animation,
+                    const State& state);
   
   void update(State& state);
   void draw(const State& state);
@@ -62,7 +61,6 @@ private:
   const Params& _params;
   const ColorTheme& _colors;
   ObjectManager<AnimationObject> _animations;
-  TimedActionSet _timedActions;
 };
 
 #endif /* AnimationsController_h */

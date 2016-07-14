@@ -30,17 +30,10 @@ void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, c
   _events.animationSpawned.notifyListeners(e);
   
   _animations.add(animation);
-  auto updater = animation->createUpdaterAction(state.time, _animations);
-  addTimedAction(updater);
-}
-
-void AnimationsController::addTimedAction(shared_ptr<TimedAction> action) {
-  _timedActions.add(action);
 }
 
 void AnimationsController::update(State &state) {
   _animations.update(state);
-  _timedActions.update(state.time);
   _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(state, *animation);
     _events.animationDied.notifyListeners(e);
@@ -59,7 +52,7 @@ void AnimationsController::attachToEvents() {
       return;
     }
     auto observer = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.getColor(ColorId::OBSERVER_DIED));
+    auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.getColor(ColorId::OBSERVER_DIED), e.state);
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding observer died animation: " << *animation;
   };
@@ -68,7 +61,7 @@ void AnimationsController::attachToEvents() {
       return;
     }
     auto occurrence = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.getColor(ColorId::OCCURRENCE_DIED));
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.getColor(ColorId::OCCURRENCE_DIED), e.state);
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
@@ -77,7 +70,7 @@ void AnimationsController::attachToEvents() {
       return;
     }
     auto occurrence = e.entity();
-    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.getColor(ColorId::OCCURRENCE_SPAWN_FAILED));
+    auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.getColor(ColorId::OCCURRENCE_SPAWN_FAILED), e.state);
     addAnimation(animation, e.state);
     ofLogNotice() << "Adding occurrence spawn failed animation: " << *animation;
   };
