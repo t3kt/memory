@@ -50,6 +50,8 @@ public:
   };
 
   AnimationObject(const Params& params, const State& state);
+
+  ofVec3f position() const { return _position; }
   
   void show() { _visible = true; }
   void hide() { _visible = false; }
@@ -64,7 +66,11 @@ protected:
   virtual std::string typeName() const override {
     return "Animation";
   }
+  void outputFields(std::ostream& os) const override;
+
   inline float percentage() const { return _percentage; }
+
+  ofVec3f _position;
 private:
   bool _visible;
   float _delay;

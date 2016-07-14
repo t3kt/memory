@@ -19,12 +19,6 @@ WorldObject::WorldObject(const State& state)
 , _alive(true)
 , _startTime(state.time) { }
 
-WorldObject::WorldObject(const State& state,
-                         const ofVec3f& position)
-: WorldObject(state) {
-  _position = position;
-}
-
 void WorldObject::output(std::ostream &os) const {
   os << typeName() << "{";
   outputFields(os);
@@ -38,6 +32,5 @@ std::string WorldObject::typeName() const {
 void WorldObject::outputFields(std::ostream& os) const {
   os << "id: " << id
   << ", alive: " << _alive
-  << ", position: " << _position
   << ", startTime: " << _startTime;
 }

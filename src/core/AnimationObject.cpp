@@ -59,6 +59,11 @@ AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>&
                                             *this, animationManager);
 }
 
+void AnimationObject::outputFields(std::ostream &os) const {
+  WorldObject::outputFields(os);
+  os << ", position: " << _position;
+}
+
 ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, ofFloatColor color, const State& state)
 : AnimationObject(params, state)
 , _params(params)

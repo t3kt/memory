@@ -9,7 +9,8 @@
 #include "ParticleObject.h"
 
 ParticleObject::ParticleObject(ofVec3f pos, const State& state)
-: WorldObject(state, pos)
+: WorldObject(state)
+, _position(pos)
 , _velocity(0)
 , _force(0)
 , _startPosition(pos) { }
@@ -32,7 +33,8 @@ void ParticleObject::updateVelocityAndPosition(const State &state,
 
 void ParticleObject::outputFields(std::ostream &os) const {
   WorldObject::outputFields(os);
-  os << ", velocity: " << _velocity
+  os << ", position: " << _position
+      << ", velocity: " << _velocity
       << ", force: " << _force;
 }
 

@@ -23,7 +23,6 @@ class State;
 class WorldObject : public Outputable {
 public:
   WorldObject(const State& state);
-  WorldObject(const State& state, const ofVec3f& position);
   virtual ~WorldObject() {}
   
   const ObjectId id;
@@ -43,8 +42,6 @@ public:
   
   virtual bool visible() const { return this->alive(); }
 
-  ofVec3f position() const { return _position; }
-
   virtual void handleDeath() {}
 
   float getAge(const State& state) const { return state.time - _startTime; }
@@ -53,7 +50,6 @@ protected:
   virtual std::string typeName() const;
   virtual void outputFields(std::ostream& os) const;
 
-  ofVec3f _position;
   const float _startTime;
 private:
   bool _alive;

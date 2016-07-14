@@ -26,6 +26,8 @@ public:
 
   void updateVelocityAndPosition(const State& state, float speed);
 
+  ofVec3f position() const { return _position; }
+
   const ofVec3f& startPosition() const { return _startPosition; }
   const ofVec3f& velocity() const { return _velocity; }
 
@@ -36,6 +38,7 @@ public:
 protected:
   virtual void outputFields(std::ostream& os) const override;
 private:
+  ofVec3f _position;
   ofVec3f _velocity;
   ofVec3f _force;
   ofVec3f _startPosition;
