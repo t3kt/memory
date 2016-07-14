@@ -11,7 +11,7 @@
 #include <ofMain.h>
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state)
-: ParticleObject(pos, state)
+: ParticleObject(pos)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _startTime(state.time)

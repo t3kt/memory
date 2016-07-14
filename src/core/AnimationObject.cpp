@@ -43,9 +43,8 @@ void AnimationUpdater::end() {
   _animationManager.eraseById(_animation.id);
 }
 
-AnimationObject::AnimationObject(const AnimationObject::Params& params, const State& state)
-: WorldObject(state)
-, _delay(params.delay())
+AnimationObject::AnimationObject(const AnimationObject::Params& params)
+: _delay(params.delay())
 , _duration(params.duration())
 , _visible(true)
 , _percentage(0) {
@@ -64,8 +63,8 @@ void AnimationObject::outputFields(std::ostream &os) const {
   os << ", position: " << _position;
 }
 
-ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, ofFloatColor color, const State& state)
-: AnimationObject(params, state)
+ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position, const ExpandingSphereAnimation::Params& params, const ofFloatColor& color)
+: AnimationObject(params)
 , _params(params)
 , _color(color) {
   _position = position;

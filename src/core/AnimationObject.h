@@ -49,7 +49,7 @@ public:
     TParam<float> _duration;
   };
 
-  AnimationObject(const Params& params, const State& state);
+  AnimationObject(const Params& params);
 
   ofVec3f position() const { return _position; }
   
@@ -103,7 +103,7 @@ public:
     FloatValueRange alpha;
   };
 
-  ExpandingSphereAnimation(ofVec3f position, const Params& params, ofFloatColor color, const State& state);
+  ExpandingSphereAnimation(ofVec3f position, const Params& params, const ofFloatColor& color);
 
   virtual void draw(const State& state) override;
 
@@ -114,7 +114,7 @@ protected:
 
 private:
   const Params& _params;
-  const ofFloatColor _color;
+  const ofFloatColor& _color;
 };
 
 template<typename T>

@@ -22,7 +22,7 @@ class State;
 
 class WorldObject : public Outputable {
 public:
-  WorldObject(const State& state);
+  WorldObject();
   virtual ~WorldObject() {}
   
   const ObjectId id;
@@ -32,25 +32,19 @@ public:
   
   virtual void output(std::ostream& os) const override;
 
-  virtual bool alive() const { return _alive; }
+  bool alive() const { return _alive; }
 
   void kill() {
     _alive = false;
     handleDeath();
   }
-  void revive() { _alive = true; }
   
   virtual bool visible() const { return this->alive(); }
 
   virtual void handleDeath() {}
-
-  float getAge(const State& state) const { return state.time - _startTime; }
-
 protected:
   virtual std::string typeName() const;
   virtual void outputFields(std::ostream& os) const;
-
-  const float _startTime;
 private:
   bool _alive;
 };

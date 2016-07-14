@@ -12,9 +12,10 @@
 #include <ofMain.h>
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
-: ParticleObject(pos, state)
+: ParticleObject(pos)
 , _totalLifetime(life)
-, _lifeFraction(1) {
+, _lifeFraction(1)
+, _startTime(state.time) {
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {

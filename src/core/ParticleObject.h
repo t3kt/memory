@@ -17,7 +17,7 @@
 
 class ParticleObject : public WorldObject {
 public:
-  ParticleObject(ofVec3f pos, const State& state);
+  ParticleObject(ofVec3f pos);
 
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }
 

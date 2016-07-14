@@ -43,18 +43,21 @@ public:
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
-  
+
+  float getAge(const State& state) const { return state.time - _startTime; }
+
   void update(const State& state) override;
-  
+
   void handleDeath() override;
-  
+
   float lifetime() const { return _totalLifetime; };
 
 protected:
   std::string typeName() const override { return "ObserverEntity"; }
   void outputFields(std::ostream& os) const override;
-  
+
 private:
+  float _startTime;
   const float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;

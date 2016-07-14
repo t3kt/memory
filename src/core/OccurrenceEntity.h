@@ -38,6 +38,8 @@ public:
   }
   
   float getAmountOfObservation() const { return _amountOfObservation; }
+
+  float getAge(const State& state) const { return state.time - _startTime; }
   
   void handleDeath() override;
   

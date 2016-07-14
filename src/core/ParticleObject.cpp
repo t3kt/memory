@@ -8,9 +8,8 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::ParticleObject(ofVec3f pos, const State& state)
-: WorldObject(state)
-, _position(pos)
+ParticleObject::ParticleObject(ofVec3f pos)
+: _position(pos)
 , _velocity(0)
 , _force(0)
 , _startPosition(pos) { }
