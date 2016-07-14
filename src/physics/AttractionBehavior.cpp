@@ -19,11 +19,13 @@ EntityMap<ObserverEntity>& AttractionBehavior<OccurrenceEntity, ObserverEntity>:
   return entity->connectedObservers();
 }
 
-ofVec3f AbstractAttractionBehavior::calcAttractionForce(ParticleObject *entity, const ofVec3f &otherPosition) {
-  ofVec3f posDiff = otherPosition - entity->position();
-  float lowBound = _params.distanceBounds.lowValue();
-  float highBound = _params.distanceBounds.highValue();
-  float magnitude = _params.signedMagnitude();
+ofVec3f AbstractAttractionBehavior
+::calcAttractionForce(const ofVec3f&entityPosition,
+                      const ofVec3f &otherPosition,
+                      float lowBound,
+                      float highBound,
+                      float magnitude) {
+  ofVec3f posDiff = otherPosition - entityPosition;
   float dist = posDiff.length();
   if (dist < lowBound || dist > highBound) {
     return ofVec3f(0);

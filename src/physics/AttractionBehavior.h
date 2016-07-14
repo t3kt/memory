@@ -82,8 +82,11 @@ protected:
   virtual void processWorld(PhysicsWorld* world,
                             ApplyMode mode) = 0;
 
-  virtual ofVec3f calcAttractionForce(ParticleObject* entity,
-                                      const ofVec3f& otherPosition);
+  ofVec3f calcAttractionForce(const ofVec3f& entityPosition,
+                              const ofVec3f& otherPosition,
+                              float lowBound,
+                              float highBound,
+                              float magnitude);
 
   void beginDebugDraw() override;
   void endDebugDraw() override;
@@ -105,6 +108,9 @@ public:
 
 protected:
   void processWorld(PhysicsWorld* world, ApplyMode mode) override {
+    float lowBound = _params.distanceBounds.lowValue();
+    float highBound = _params.distanceBounds.highValue();
+    float magnitude = _params.signedMagnitude();
     for (auto entity : world->getEntities<E>()) {
       if (!entity->alive()) {
         continue;
@@ -113,8 +119,14 @@ protected:
         if (!other.second->alive()) {
           continue;
         }
-        ofVec3f force = calcAttractionForce(entity.get(),
-                                            other.second->position());
+        ofVec3f force = calcAttractionForce(entity->position(),
+                                            other.second->position(),
+                                            lowBound,
+                                            highBound,
+                                            magnitude);
+        if (force.length() == 0) {
+          continue;
+        }
         switch (mode) {
           case ApplyMode::ADD_FORCE:
             entity->addForce(force);
@@ -139,6 +151,9 @@ public:
 
 protected:
   void processWorld(PhysicsWorld* world, ApplyMode mode) override {
+    float lowBound = _params.distanceBounds.lowValue();
+    float highBound = _params.distanceBounds.highValue();
+    float magnitude = _params.signedMagnitude();
     for (auto entity : world->getEntities<ObserverEntity>()) {
       if (!entity->alive()) {
         continue;
@@ -147,9 +162,14 @@ protected:
         if (!other.second->alive()) {
           continue;
         }
-        ofVec3f force = calcAttractionForce(entity.get(),
-                                            other.second->position());
-
+        ofVec3f force = calcAttractionForce(entity->position(),
+                                            other.second->position(),
+                                            lowBound,
+                                            highBound,
+                                            magnitude);
+        if (force.length() == 0) {
+          continue;
+        }
         switch (mode) {
           case ApplyMode::ADD_FORCE:
             entity->addForce(force);
