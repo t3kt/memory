@@ -41,18 +41,6 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
   }
 }
 
-void OccurrenceEntity::update(const State &state) {
-  _amountOfObservation = 0;
-  for (auto observer : _connectedObservers) {
-    _amountOfObservation += observer.second->getRemainingLifetimeFraction();
-  }
-  if (hasConnectedObservers()) {
-    recalculateRadius();
-  } else {
-    kill();
-  }
-}
-
 void OccurrenceEntity::handleDeath() {
   ofLogNotice() << "Occurrence died: " << *this;
 }

@@ -35,8 +35,6 @@ public:
   
   float getAmountOfObservation() const { return _amountOfObservation; }
   
-  void update(const State& state) override;
-  
   void handleDeath() override;
   
   float originalRadius() const { return _originalRadius; }
@@ -56,6 +54,10 @@ protected:
   void outputFields(std::ostream& os) const override;
   
 private:
+  void setAmountOfObservation(float amount) {
+    _amountOfObservation = amount;
+  }
+
   void recalculateRadius();
   
   const float _originalRadius;
@@ -63,6 +65,8 @@ private:
   float _startTime;
   float _amountOfObservation;
   EntityMap<ObserverEntity> _connectedObservers;
+
+  friend class OccurrencesController;
 };
 
 #endif /* OccurrenceEntity_h */

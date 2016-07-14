@@ -26,7 +26,19 @@ void OccurrencesController::setup(const State &state, const ColorTheme& colors) 
 }
 
 void OccurrencesController::update(State &state) {
-  _occurrences.update(state);
+  for (auto& occurrence : _occurrences) {
+    if (!occurrence->hasConnectedObservers()) {
+      occurrence->kill();
+      occurrence->setAmountOfObservation(0);
+      continue;
+    }
+    occurrence->recalculateRadius();
+    float amount = 0;
+    for (auto observer : occurrence->connectedObservers()) {
+      amount += observer.second->getRemainingLifetimeFraction();
+    }
+    occurrence->setAmountOfObservation(amount);
+  }
   _occurrences.cullDeadObjects([&](shared_ptr<OccurrenceEntity> occurrence) {
     OccurrenceEventArgs e(state, *occurrence);
     _events.occurrenceDied.notifyListeners(e);
