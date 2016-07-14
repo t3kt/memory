@@ -8,7 +8,6 @@
 
 #include "EntityRenderer.h"
 #include <ofMain.h>
-#include <set>
 
 using namespace ofxChoreograph;
 
@@ -153,30 +152,23 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
   ofPushStyle();
   ofEnableAlphaBlending();
   ofMesh connectorMesh;
-  std::set<ObjectId> processedIds;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (auto observer : _observers) {
-    processedIds.insert(observer->id);
     if (!observer->alive()) {
       continue;
     }
     float observerLife = observer->getRemainingLifetimeFraction();
     ofFloatColor connectorStartColor(_color, _color.a * observerLife);
-    for (auto otherEntry : observer->getConnectedObservers()) {
-      if (processedIds.find(otherEntry.first) != processedIds.end()) {
+    for (auto other : observer->getConnectedObservers()) {
+      if (!other.second->alive()) {
         continue;
       }
-      if (auto other = otherEntry.second.lock()) {
-        if (!other->alive()) {
-          continue;
-        }
-        float otherLife = other->getRemainingLifetimeFraction();
-        connectorMesh.addVertex(observer->position());
-        connectorMesh.addColor(connectorStartColor);
-        connectorMesh.addVertex(other->position());
-        connectorMesh.addColor(ofFloatColor(_color,
-                                            _color.a * otherLife));
-      }
+      float otherLife = other.second->getRemainingLifetimeFraction();
+      connectorMesh.addVertex(observer->position());
+      connectorMesh.addColor(connectorStartColor);
+      connectorMesh.addVertex(other.second->position());
+      connectorMesh.addColor(ofFloatColor(_color,
+                                          _color.a * otherLife));
     }
   }
   connectorMesh.draw();

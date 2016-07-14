@@ -140,22 +140,23 @@ public:
 protected:
   void processWorld(PhysicsWorld* world, ApplyMode mode) override {
     for (auto entity : world->getEntities<ObserverEntity>()) {
-      if (entity->alive()) {
+      if (!entity->alive()) {
         continue;
       }
-      for (auto otherEntry : entity->getConnectedObservers()) {
-        if (auto other = otherEntry.second.lock()) {
-          ofVec3f force = calcAttractionForce(entity.get(),
-                                              other->position());
+      for (auto other : entity->getConnectedObservers()) {
+        if (!other.second->alive()) {
+          continue;
+        }
+        ofVec3f force = calcAttractionForce(entity.get(),
+                                            other.second->position());
 
-          switch (mode) {
-            case ApplyMode::ADD_FORCE:
-              entity->addForce(force);
-              break;
-            case ApplyMode::DEBUG_DRAW:
-              debugDrawEntity(entity.get(), force);
-              break;
-          }
+        switch (mode) {
+          case ApplyMode::ADD_FORCE:
+            entity->addForce(force);
+            break;
+          case ApplyMode::DEBUG_DRAW:
+            debugDrawEntity(entity.get(), force);
+            break;
         }
       }
     }

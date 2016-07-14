@@ -150,6 +150,10 @@ public:
     }
   }
 
+  std::size_t size() const {
+    return _map.size();
+  }
+
   Iterator begin() { return _map.begin(); }
   Iterator end() { return _map.end(); }
   ConstIterator begin() const { return _map.begin(); }

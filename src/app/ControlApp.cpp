@@ -51,7 +51,7 @@ void ControlApp::setup() {
 
 void ControlApp::updateLogLevel() {
   ofSetLogLevel(_appParams.core.debug.loggingEnabled()
-                ? OF_LOG_NOTICE : OF_LOG_ERROR);
+                ? OF_LOG_VERBOSE : OF_LOG_ERROR);
 }
 
 void ControlApp::draw() {

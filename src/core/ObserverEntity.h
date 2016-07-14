@@ -38,7 +38,7 @@ public:
     return _connectedOccurrences;
   }
 
-  WeakEntityMap<ObserverEntity>& getConnectedObservers() {
+  EntityMap<ObserverEntity>& getConnectedObservers() {
     return _connectedObservers;
   }
   
@@ -58,7 +58,7 @@ private:
   const float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
-  WeakEntityMap<ObserverEntity> _connectedObservers;
+  EntityMap<ObserverEntity> _connectedObservers;
 };
 
 #endif /* ObserverEntity_h */

@@ -60,6 +60,12 @@
       0.60000002384185791,
       0.5
     ],
+    "observerConnector": [
+      0.38265305757522583,
+      0.70918369293212891,
+      0.33163264393806458,
+      0.20408163964748383
+    ],
     "observerDied": [
       0.66000598669052124,
       0.64406800270080566,
@@ -111,7 +117,7 @@
   },
   "core": {
     "bounds": {
-      "size": 5.7653064727783203
+      "size": 11.584182739257812
     },
     "clock": {
       "paused": false,
@@ -122,9 +128,13 @@
       "showBounds": false,
       "showPhysics": false,
       "showStatus": true
-    }
+    },
+    "syphonEnabled": false
   },
   "observers": {
+    "connectorRenderer": {
+      "enabled": true
+    },
     "initialVelocity": {
       "high": 0,
       "low": 0
@@ -212,6 +222,15 @@
     "observerDamping": {
       "enabled": true,
       "magnitude": 0.066326528787612915
+    },
+    "observerObserverAttraction": {
+      "distanceBounds": {
+        "high": 1.0845481157302856,
+        "low": 0.039999999105930328
+      },
+      "enabled": true,
+      "magnitude": 0.0097959181293845177,
+      "reverse": true
     },
     "observerOccurrenceAttraction": {
       "distanceBounds": {

@@ -18,10 +18,16 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 }
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
-  _connectedOccurrences.add(occurrence);
+  ofLogVerbose() << "BEGIN Observer[" << id << "]: adding Occurrence[" << occurrence->id << "]";
   for (auto other : occurrence->connectedObservers()) {
+    if (other.first == id) {
+      continue;
+    }
     addObserver(other.second);
   }
+  _connectedOccurrences.add(occurrence);
+  ofLogVerbose() << "  after adds: " << *this;
+  ofLogVerbose() << "END Observer[" << id << "]: adding Occurrence[" << occurrence->id << "]";
 }
 
 void ObserverEntity::update(const State &state) {
@@ -32,7 +38,6 @@ void ObserverEntity::update(const State &state) {
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
   }
-  _connectedObservers.cullDeadPointers();
 }
 
 void ObserverEntity::handleDeath() {
@@ -40,15 +45,18 @@ void ObserverEntity::handleDeath() {
   for (auto occurrence : _connectedOccurrences) {
     occurrence.second->removeObserver(id);
   }
-  for (auto observerEntry : _connectedObservers) {
-    if (auto observer = observerEntry.second.lock()) {
-      observer->removeObserver(id);
+  for (auto observer : _connectedObservers) {
+    if (!observer.second) {
+      continue;
     }
+    observer.second->removeObserver(id);
   }
 }
 
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
   os << ", totalLifetime: " << _totalLifetime
-      << ", lifeFraction: " << _lifeFraction;
+      << ", lifeFraction: " << _lifeFraction
+      << ", connectedOccurrences: " << _connectedOccurrences.size()
+      << ", connectedObservers: " << _connectedObservers.size();
 }
