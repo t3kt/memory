@@ -54,10 +54,6 @@ void ControlApp::updateLogLevel() {
                 ? OF_LOG_NOTICE : OF_LOG_ERROR);
 }
 
-void ControlApp::update() {
-  _gui->update();
-}
-
 void ControlApp::draw() {
   _gui->draw();
 }

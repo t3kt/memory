@@ -22,7 +22,6 @@ public:
   AppGui(MemoryAppParameters& appParams);
 
   void setup();
-  void update();
   void draw();
 
   ofxLiquidEvent<void> onLoad;
