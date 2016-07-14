@@ -38,3 +38,4 @@ memory.VC*
 *.ilk
 *.exp
 *.pdb
+*.trace
