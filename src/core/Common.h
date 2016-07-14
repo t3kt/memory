@@ -9,9 +9,6 @@
 #ifndef __behavior__Common__
 #define __behavior__Common__
 
-#include <ofVec3f.h>
-#include <ofColor.h>
-#include <ofxChoreograph.h>
 #include <iostream>
 #include <map>
 #include <stdexcept>
@@ -19,14 +16,6 @@
 #ifdef TARGET_OSX
 #define ENABLE_SYPHON
 #endif
-
-using Time = choreograph::Time;
-
-ofVec3f createSignedNoiseVec3f(const ofVec3f& position);
-ofVec3f createRandomVec3f(const ofVec3f& mins,
-                          const ofVec3f& maxs);
-ofVec3f createRandomVec3f(float max);
-ofVec3f wrapVec(ofVec3f vec, float min, float max);
 
 template<typename T>
 T getInterpolated(const T& a, const T& b, float amount);
