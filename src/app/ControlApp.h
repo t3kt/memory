@@ -34,6 +34,8 @@ public:
 
   void performAction(AppAction action);
 private:
+  void updateLogLevel();
+
   void loadSettings();
   void saveSettings();
 

@@ -10,7 +10,7 @@
 #define __behavior__AppParameters__
 
 #include <ofParameterGroup.h>
-#include <ofxGui.h>
+#include <ofxLiquidEvent.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -41,6 +41,8 @@ public:
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
+    _loggingEnabled.addListener(this,
+                                &DebugParams::onLoggingEnabledChanged);
   }
 
   bool loggingEnabled() const { return _loggingEnabled.get(); }
@@ -53,7 +55,13 @@ public:
   void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
   void setShowPhysics(bool showPhysics) { _showPhysics.set(showPhysics); }
 
+  ofxLiquidEvent<void> loggingEnabledChanged;
+
 private:
+  void onLoggingEnabledChanged(bool& value) {
+    loggingEnabledChanged.notifyListeners();
+  }
+
   TParam<bool> _loggingEnabled;
   TParam<bool> _showBounds;
   TParam<bool> _showStatus;
