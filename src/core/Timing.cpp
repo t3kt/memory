@@ -9,35 +9,6 @@
 #include "Timing.h"
 #include <ofMath.h>
 
-bool OnceAction::update(float time) {
-  if (_called)
-    return true;
-  if (time < _triggerTime)
-    return false;
-  this->call(time);
-  _called = true;
-  return true;
-}
-
-class FunctionOnceAction : public OnceAction {
-public:
-  FunctionOnceAction(float triggerTime, TimedFunction fn)
-  : OnceAction(triggerTime)
-  , _function(fn) {}
-  
-  void call(float time) override {
-    _function(time);
-    _called = true;
-  }
-private:
-  const TimedFunction _function;
-};
-
-std::shared_ptr<OnceAction> OnceAction::newOnceAction(float triggerTime, TimedFunction fn) {
-  return std::make_shared<FunctionOnceAction>(triggerTime, fn);
-}
-
-
 bool DurationAction::update(float time) {
   if (_ended)
     return true;
@@ -55,22 +26,6 @@ bool DurationAction::update(float time) {
   float percentage = ofMap(time, _startTime, _endTime, 0, 1);
   call(time, percentage);
   return false;
-}
-
-class FunctionDurationAction : public DurationAction {
-public:
-  FunctionDurationAction(float start, float end, TimedPercentageFunction fn)
-  : DurationAction(start, end), _function(fn) { }
-  virtual void call(float time, float percentage) override {
-    _function(time, percentage);
-  }
-private:
-  const TimedPercentageFunction _function;
-};
-
-std::shared_ptr<DurationAction>
-DurationAction::newDurationAction(float start, float end, TimedPercentageFunction fn) {
-  return std::make_shared<FunctionDurationAction>(start, end, fn);
 }
 
 bool TimedActionSet::done() const {
