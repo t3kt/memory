@@ -30,4 +30,9 @@ enum class AppAction {
 
 extern EnumTypeInfo<AppAction> AppActionType;
 
+class AppActionHandler {
+public:
+  virtual void performAction(AppAction action) = 0;
+};
+
 #endif /* AppActions_h */

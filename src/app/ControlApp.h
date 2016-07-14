@@ -19,7 +19,9 @@
 
 class SimulationApp;
 
-class ControlApp : public ofBaseApp {
+class ControlApp
+: public ofBaseApp
+, public AppActionHandler {
 public:
   ControlApp(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
@@ -31,7 +33,7 @@ public:
 
   void keyPressed(int key) override;
 
-  void performAction(AppAction action);
+  void performAction(AppAction action) override;
 private:
   void updateLogLevel();
 

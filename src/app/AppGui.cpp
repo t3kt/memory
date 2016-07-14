@@ -12,31 +12,40 @@
 class ActionsGui
 : public ofxPanelExtended {
 public:
-  ActionsGui(ofxLiquidEvent<void>& onLoad, ofxLiquidEvent<void>& onSave) {
+  ActionsGui(AppActionHandler& actionHandler)
+  : _actionHandler(actionHandler) {
     setup();
     setName("Actions");
     _group.setup();
     add(&_group);
 
     auto loadButton = new ofxMinimalButton("load");
-    loadButton->addListener(&onLoad, &ofxLiquidEvent<void>::notifyListeners);
+    loadButton->addListener(this, &ActionsGui::onLoad);
     _group.add(loadButton);
 
     auto saveButton = new ofxMinimalButton("save");
-    saveButton->addListener(&onSave, &ofxLiquidEvent<void>::notifyListeners);
+    saveButton->addListener(this, &ActionsGui::onSave);
     _group.add(saveButton);
 
     _group.minimize();
   }
 private:
+  void onLoad() {
+    _actionHandler.performAction(AppAction::LOAD_SETTINGS);
+  }
+
+  void onSave() {
+    _actionHandler.performAction(AppAction::SAVE_SETTINGS);
+  }
+
+  AppActionHandler& _actionHandler;
   ofxGuiGroupExtended _group;
 };
 
 class AppGuiImpl {
 public:
   AppGuiImpl(MemoryAppParameters& appParams,
-             ofxLiquidEvent<void>& onLoad,
-             ofxLiquidEvent<void>& onSave);
+             AppActionHandler& actionHandler);
 
   void draw() {
     _pages.draw();
@@ -67,10 +76,9 @@ static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
 }
 
 AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
-                       ofxLiquidEvent<void>& onLoad,
-                       ofxLiquidEvent<void>& onSave)
+                       AppActionHandler& actionHandler)
 : _appParams(appParams)
-, _actions(onLoad, onSave) {
+, _actions(actionHandler) {
   _pages.setup();
   _pages.setSize(290, 600);
   _pages.setShowHeader(false);
@@ -121,12 +129,9 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   setBackgroundAlpha(&_entityPages, 0.7);
 }
 
-AppGui::AppGui(MemoryAppParameters& appParams)
-: _appParams(appParams) { }
-
-void AppGui::setup() {
-  _impl = std::make_shared<AppGuiImpl>(_appParams, onLoad, onSave);
-}
+AppGui::AppGui(MemoryAppParameters& appParams,
+               AppActionHandler& actionHandler)
+: _impl(new AppGuiImpl(appParams, actionHandler)) {}
 
 void AppGui::draw() {
   _impl->draw();

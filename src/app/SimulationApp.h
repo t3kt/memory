@@ -29,7 +29,9 @@
 
 class ControlApp;
 
-class SimulationApp : public ofBaseApp {
+class SimulationApp
+: public ofBaseApp
+, public AppActionHandler {
 public:
   SimulationApp(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
@@ -42,7 +44,7 @@ public:
 
   void keyPressed(int key) override;
 
-  void performAction(AppAction action);
+  void performAction(AppAction action) override;
 private:
   State _state;
   MemoryAppParameters& _appParams;

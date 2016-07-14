@@ -39,14 +39,7 @@ void ControlApp::setup() {
   updateLogLevel();
   loadSettings();
 
-  _gui = std::make_shared<AppGui>(_appParams);
-  _gui->setup();
-  _gui->onLoad += [&]() {
-    loadSettings();
-  };
-  _gui->onSave += [&]() {
-    saveSettings();
-  };
+  _gui = std::make_shared<AppGui>(_appParams, *this);
 }
 
 void ControlApp::updateLogLevel() {

@@ -10,25 +10,19 @@
 #define AppGui_h
 
 #include <memory>
-#include <vector>
-#include <ofxLiquidEvent.h>
 
 #include "AppParameters.h"
+#include "AppActions.h"
 
 class AppGuiImpl;
 
 class AppGui {
 public:
-  AppGui(MemoryAppParameters& appParams);
+  AppGui(MemoryAppParameters& appParams,
+         AppActionHandler& actionHandler);
 
-  void setup();
   void draw();
-
-  ofxLiquidEvent<void> onLoad;
-  ofxLiquidEvent<void> onSave;
-
 private:
-  MemoryAppParameters& _appParams;
   std::shared_ptr<AppGuiImpl> _impl;
 };
 
