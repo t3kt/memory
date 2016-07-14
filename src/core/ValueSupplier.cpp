@@ -22,12 +22,6 @@ int RandomValueSupplier<int>::getValue() const {
 }
 
 template<>
-uint8_t RandomValueSupplier<uint8_t>::getValue() const {
-  float value = ofRandom(lowValue(), highValue());
-  return static_cast<uint8_t>(std::round(value));
-}
-
-template<>
 ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
   ofVec3f minVal = lowValue();
   ofVec3f maxVal = highValue();
