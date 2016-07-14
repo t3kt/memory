@@ -111,11 +111,11 @@ protected:
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto entity : world->getEntities<E>()) {
+    for (auto& entity : world->getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }
-      for (auto other : getEntityOthers(entity.get())) {
+      for (const auto& other : getEntityOthers(entity.get())) {
         if (!other.second->alive()) {
           continue;
         }
@@ -154,11 +154,11 @@ protected:
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto entity : world->getEntities<ObserverEntity>()) {
+    for (auto& entity : world->getEntities<ObserverEntity>()) {
       if (!entity->alive()) {
         continue;
       }
-      for (auto other : entity->getConnectedObservers()) {
+      for (const auto& other : entity->getConnectedObservers()) {
         if (!other.second->alive()) {
           continue;
         }

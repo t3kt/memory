@@ -53,10 +53,10 @@ void PhysicsController::endEntityUpdate(ParticleObject *entity,
 }
 
 void PhysicsController::update() {
-  for (auto entity : _world->observers()) {
+  for (auto& entity : _world->observers()) {
     beginEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto entity : _world->occurrences()) {
+  for (auto& entity : _world->occurrences()) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
   auto world = _world.get();
@@ -70,10 +70,10 @@ void PhysicsController::update() {
   _observerDamping->applyToWorld(world);
   _occurrenceDamping->applyToWorld(world);
   _rebound->applyToWorld(world);
-  for (auto entity : _world->observers()) {
+  for (auto& entity : _world->observers()) {
     endEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto entity : _world->occurrences()) {
+  for (auto& entity : _world->occurrences()) {
     endEntityUpdate(entity.get(), _params.occurrences);
   }
 }
@@ -95,10 +95,10 @@ void PhysicsController::draw() {
 }
 
 void PhysicsController::stopAllEntities() {
-  for (auto entity : _world->observers()) {
+  for (auto& entity : _world->observers()) {
     entity->setVelocity(ofVec3f::zero());
   }
-  for (auto entity : _world->occurrences()) {
+  for (auto& entity : _world->occurrences()) {
     entity->setVelocity(ofVec3f::zero());
   }
 }

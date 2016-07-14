@@ -91,7 +91,7 @@ void ObserversController::spawnObservers(int count, const State& state) {
 
 void ObserversController::killObservers(int count) {
   int i = 0;
-  for (auto observer : _observers) {
+  for (auto& observer : _observers) {
     if (i >= count) {
       return;
     }

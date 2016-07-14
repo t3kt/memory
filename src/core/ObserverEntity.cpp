@@ -19,7 +19,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 
 void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
   ofLogVerbose() << "BEGIN Observer[" << id << "]: adding Occurrence[" << occurrence->id << "]";
-  for (auto other : occurrence->connectedObservers()) {
+  for (auto& other : occurrence->connectedObservers()) {
     if (other.first == id) {
       continue;
     }
@@ -42,10 +42,10 @@ void ObserverEntity::update(const State &state) {
 
 void ObserverEntity::handleDeath() {
   ofLogNotice() << "Observer died: " << *this;
-  for (auto occurrence : _connectedOccurrences) {
+  for (auto& occurrence : _connectedOccurrences) {
     occurrence.second->removeObserver(id);
   }
-  for (auto observer : _connectedObservers) {
+  for (auto& observer : _connectedObservers) {
     if (!observer.second) {
       continue;
     }

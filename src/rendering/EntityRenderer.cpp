@@ -119,7 +119,7 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
   float lowCount = _params.connectionCountRange.lowValue();
   float highCount = _params.connectionCountRange.highValue();
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (auto occurrence : _occurrences) {
+  for (const auto& occurrence : _occurrences) {
     float occurrenceLife = occurrence->getAmountOfObservation();
     float occurrenceAlpha = ofMap(occurrenceLife,
                                   lowCount,
@@ -129,7 +129,7 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
       continue;
     }
     ofFloatColor connectorStartColor(_color, _color.a * occurrenceAlpha);
-    for (auto entry : occurrence->connectedObservers()) {
+    for (const auto& entry : occurrence->connectedObservers()) {
       auto observer = entry.second;
       float observerLife = observer->getRemainingLifetimeFraction();
       if (observerLife <= 0) {
@@ -153,13 +153,13 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
   ofEnableAlphaBlending();
   ofMesh connectorMesh;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (auto observer : _observers) {
+  for (const auto& observer : _observers) {
     if (!observer->alive()) {
       continue;
     }
     float observerLife = observer->getRemainingLifetimeFraction();
     ofFloatColor connectorStartColor(_color, _color.a * observerLife);
-    for (auto other : observer->getConnectedObservers()) {
+    for (const auto& other : observer->getConnectedObservers()) {
       if (!other.second->alive()) {
         continue;
       }

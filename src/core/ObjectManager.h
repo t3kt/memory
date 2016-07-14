@@ -27,7 +27,7 @@ public:
   using ConstIterator = typename StorageList::const_iterator;
   
   void update(const State& state) {
-    for (auto entity : _objects) {
+    for (auto& entity : _objects) {
       entity->update(state);
     }
   }
@@ -54,7 +54,7 @@ public:
   }
   
   void draw(const State& state) {
-    for (auto entity : _objects) {
+    for (const auto& entity : _objects) {
       if (entity->visible()) {
         entity->draw(state);
       }
@@ -84,21 +84,21 @@ public:
   }
   
   void performAction(std::function<void(shared_ptr<T>)> action) {
-    for (auto entity : _objects) {
+    for (auto& entity : _objects) {
       action(entity);
     }
   }
 
   template<typename Base>
   void performTypedAction(std::function<void(Base*)> action) {
-    for (auto entity : _objects) {
+    for (auto& entity : _objects) {
       action(entity.get());
     }
   }
 
   template<typename Base>
   void performTypedAction(std::function<void(const Base*)> action) const {
-    for (auto entity : _objects) {
+    for (const auto& entity : _objects) {
       action(entity.get());
     }
   }

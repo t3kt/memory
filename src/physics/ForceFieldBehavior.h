@@ -81,7 +81,7 @@ public:
     if (!_params.enabled()) {
       return;
     }
-    for (auto entity : world->getEntities<E>()) {
+    for (auto& entity : world->getEntities<E>()) {
       applyToEntity(world, entity.get());
     }
   }
@@ -91,7 +91,7 @@ protected:
     if (!_params.enabled()) {
       return;
     }
-    for (auto entity : world->getEntities<E>()) {
+    for (auto& entity : world->getEntities<E>()) {
       debugDrawEntity(world, entity.get());
     }
   }
