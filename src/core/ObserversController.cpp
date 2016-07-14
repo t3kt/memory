@@ -36,6 +36,7 @@ void ObserversController::update(State &state) {
   });
 
   _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
+    observer->detachConnections();
     ObserverEventArgs e(state, *observer);
     _events.observerDied.notifyListeners(e);
   });

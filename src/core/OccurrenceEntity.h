@@ -41,8 +41,6 @@ public:
 
   float getAge(const State& state) const { return state.time - _startTime; }
   
-  void handleDeath() override;
-  
   float originalRadius() const { return _originalRadius; }
 
   float actualRadius() const { return _actualRadius; }

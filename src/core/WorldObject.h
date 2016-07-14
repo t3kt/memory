@@ -30,18 +30,13 @@ public:
   virtual void update(const State& state) {}
   virtual void draw(const State& state) {}
   
-  virtual void output(std::ostream& os) const override;
+  void output(std::ostream& os) const override;
 
   bool alive() const { return _alive; }
 
-  void kill() {
-    _alive = false;
-    handleDeath();
-  }
+  void kill() { _alive = false; }
   
   virtual bool visible() const { return this->alive(); }
-
-  virtual void handleDeath() {}
 protected:
   virtual std::string typeName() const;
   virtual void outputFields(std::ostream& os) const;

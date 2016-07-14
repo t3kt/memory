@@ -46,9 +46,9 @@ public:
 
   float getAge(const State& state) const { return state.time - _startTime; }
 
-  void update(const State& state) override;
+  void detachConnections();
 
-  void handleDeath() override;
+  void update(const State& state) override;
 
   float lifetime() const { return _totalLifetime; };
 

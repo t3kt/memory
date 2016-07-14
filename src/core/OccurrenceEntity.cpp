@@ -17,9 +17,6 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state
 , _startTime(state.time)
 , _amountOfObservation(0) {}
 
-void OccurrenceEntity::handleDeath() {
-}
-
 void OccurrenceEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
   os << ", originalRadius: " << _originalRadius

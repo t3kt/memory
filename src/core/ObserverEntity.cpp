@@ -38,7 +38,7 @@ void ObserverEntity::update(const State &state) {
   }
 }
 
-void ObserverEntity::handleDeath() {
+void ObserverEntity::detachConnections() {
   for (auto& occurrence : _connectedOccurrences) {
     occurrence.second->removeObserver(id);
   }
