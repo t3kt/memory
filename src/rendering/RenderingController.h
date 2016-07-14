@@ -9,9 +9,11 @@
 #ifndef RenderingController_h
 #define RenderingController_h
 
-#include "Params.h"
-#include "State.h"
+#include <ofEasyCam.h>
 #include "Colors.h"
+#include "Params.h"
+#include "PostProcController.h"
+#include "State.h"
 
 class CameraParams : public Params {
 public:
@@ -65,90 +67,6 @@ private:
   TParam<bool> _useBackgroundColor;
 };
 
-class EdgePassParams : public ParamsWithEnabled {
-public:
-  EdgePassParams() {
-    add(_hue
-        .setKey("hue")
-        .setName("Hue")
-        .setValueAndDefault(0.5)
-        .setRange(0, 1));
-    add(_saturation
-        .setKey("saturation")
-        .setName("Saturation")
-        .setValueAndDefault(0.5)
-        .setRange(0, 1));
-    setEnabledValueAndDefault(false);
-  }
-
-  float hue() const { return _hue.get(); }
-  float saturation() const { return _saturation.get(); }
-private:
-  TParam<float> _hue;
-  TParam<float> _saturation;
-};
-
-class DofPassParams : public ParamsWithEnabled {
-public:
-  DofPassParams() {
-    add(_focus
-        .setKey("focus")
-        .setName("Focus")
-        .setValueAndDefault(0.985)
-        .setRange(0.9, 1.1));
-    add(_aperture
-        .setKey("aperture")
-        .setName("Aperture")
-        .setValueAndDefault(0.8)
-        .setRange(0, 1.2));
-    add(_maxBlur
-        .setKey("maxBlur")
-        .setName("Max Blur")
-        .setValueAndDefault(0.6)
-        .setRange(0, 1));
-    setEnabledValueAndDefault(false);
-  }
-
-  float focus() const { return _focus.get(); }
-  float aperture() const { return _aperture.get(); }
-  float maxBlur() const { return _maxBlur.get(); }
-private:
-  TParam<float> _focus;
-  TParam<float> _aperture;
-  TParam<float> _maxBlur;
-};
-
-class PostProcParams : public ParamsWithEnabled {
-public:
-  PostProcParams() {
-    add(fxaa
-        .setKey("fxaa")
-        .setName("FXAA"));
-    add(edge
-        .setKey("edge")
-        .setName("Edge"));
-    add(dof
-        .setKey("dof")
-        .setName("Depth of Field"));
-    add(rimHighlight
-        .setKey("rimHighlight")
-        .setName("Rim Highlight"));
-    add(bloom
-        .setKey("bloom")
-        .setName("Bloom"));
-    setEnabledValueAndDefault(true);
-    fxaa.setEnabledValueAndDefault(true);
-    rimHighlight.setEnabledValueAndDefault(false);
-    bloom.setEnabledValueAndDefault(true);
-  }
-
-  ParamsWithEnabled fxaa;
-  EdgePassParams edge;
-  DofPassParams dof;
-  ParamsWithEnabled rimHighlight;
-  ParamsWithEnabled bloom;
-};
-
 class RenderingController {
 public:
   class Params : public ::Params {
@@ -167,7 +85,7 @@ public:
 
     CameraParams camera;
     FogParams fog;
-    PostProcParams postProc;
+    PostProcController::Params postProc;
   };
 
   static shared_ptr<RenderingController> create(const Params& params, const ColorTheme& colors);

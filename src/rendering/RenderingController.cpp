@@ -7,8 +7,6 @@
 //
 
 #include "RenderingController.h"
-#include <ofEasyCam.h>
-#include <ofxPostProcessing.h>
 #include <ofMain.h>
 
 class RenderingControllerImpl
@@ -36,12 +34,7 @@ private:
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
   ofEasyCam _cam;
-  ofxPostProcessing _postProc;
-  shared_ptr<FxaaPass> _fxaaPass;
-  shared_ptr<EdgePass> _edgePass;
-  shared_ptr<DofPass> _dofPass;
-  shared_ptr<RimHighlightingPass> _rimHighlightPass;
-  shared_ptr<BloomPass> _bloomPass;
+  shared_ptr<PostProcController> _postProc;
 //  ofLight _light;
   ofVec3f _rotation;
 };
@@ -53,12 +46,8 @@ RenderingControllerImpl::RenderingControllerImpl(const Params& params, const Col
 , _fogColor(colors.getColor(ColorId::FOG)) {
 
   ofEnableAlphaBlending();
-  _postProc.init();
-  _fxaaPass = _postProc.createPass<FxaaPass>();
-  _edgePass = _postProc.createPass<EdgePass>();
-  _dofPass = _postProc.createPass<DofPass>();
-  _rimHighlightPass = _postProc.createPass<RimHighlightingPass>();
-  _bloomPass = _postProc.createPass<BloomPass>();
+  _postProc = std::make_shared<PostProcController>(params.postProc);
+  _postProc->setup();
 //  _light.setDirectional();
 //  _light.setPosition(ofVec3f(0, 3, 0));
 //  _light.setDiffuseColor(ofFloatColor::red);
@@ -69,26 +58,7 @@ void RenderingControllerImpl::update(const State &state) {
   if (_params.camera.spinEnabled()) {
     _rotation += _params.camera.spinRate() * state.timeDelta;
   }
-  if (_params.postProc.enabled()) {
-    _fxaaPass->setEnabled(_params.postProc.fxaa.enabled());
-    if (_params.postProc.edge.enabled()) {
-      _edgePass->setEnabled(true);
-      _edgePass->setHue(_params.postProc.edge.hue());
-      _edgePass->setSaturation(_params.postProc.edge.saturation());
-    } else {
-      _edgePass->setEnabled(false);
-    }
-    if (_params.postProc.dof.enabled()) {
-      _dofPass->setEnabled(true);
-      _dofPass->setFocus(_params.postProc.dof.focus());
-      _dofPass->setAperture(_params.postProc.dof.aperture());
-      _dofPass->setMaxBlur(_params.postProc.dof.maxBlur());
-    } else {
-      _dofPass->setEnabled(false);
-    }
-    _rimHighlightPass->setEnabled(_params.postProc.rimHighlight.enabled());
-    _bloomPass->setEnabled(_params.postProc.bloom.enabled());
-  }
+  _postProc->update(state);
 }
 
 void RenderingControllerImpl::beginDraw(const State &state) {
@@ -99,11 +69,7 @@ void RenderingControllerImpl::beginDraw(const State &state) {
 //  ofEnableLighting();
   glEnable(GL_CULL_FACE);
 //  _light.enable();
-  if (_params.postProc.enabled()) {
-    _postProc.begin(_cam);
-  } else {
-    _cam.begin();
-  }
+  _postProc->beginDraw(_cam);
   if (_params.fog.enabled()) {
     beginFog();
   }
@@ -124,11 +90,7 @@ void RenderingControllerImpl::endDraw(const State &state) {
   if (_params.fog.enabled()) {
     endFog();
   }
-  if (_params.postProc.enabled()) {
-    _postProc.end();
-  } else {
-    _cam.end();
-  }
+  _postProc->endDraw(_cam);
 //  ofDisableDepthTest();
 //  ofDisableLighting();
   glPopAttrib();
