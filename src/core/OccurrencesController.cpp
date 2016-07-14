@@ -8,8 +8,6 @@
 
 #include "OccurrencesController.h"
 
-const int START_OCCURRENCES = 5;
-
 OccurrencesController::OccurrencesController(const OccurrencesController::Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,
@@ -25,9 +23,6 @@ OccurrencesController::OccurrencesController(const OccurrencesController::Params
 void OccurrencesController::setup(const State &state, const ColorTheme& colors) {
   _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, colors, _occurrences);
   _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
-  for (int i = 0; i < START_OCCURRENCES; i++) {
-    spawnOccurrence(state);
-  }
 }
 
 void OccurrencesController::update(State &state) {

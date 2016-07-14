@@ -9,8 +9,6 @@
 #include <ofLog.h>
 #include "ObserversController.h"
 
-const int START_OBSERVERS = 60;
-
 ObserversController::ObserversController(const ObserversController::Params& params,
                                          const Bounds& bounds,
                                          const State& state,
@@ -24,9 +22,6 @@ ObserversController::ObserversController(const ObserversController::Params& para
 void ObserversController::setup(const State &state, const ColorTheme& colors) {
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
-  for (int i = 0; i < START_OBSERVERS; i++) {
-    spawnObserver(state);
-  }
 }
 
 void ObserversController::update(State &state) {
