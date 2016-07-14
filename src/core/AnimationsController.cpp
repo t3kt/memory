@@ -32,7 +32,9 @@ void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animati
 }
 
 void AnimationsController::update(State &state) {
-  _animations.update(state);
+  for (auto& animation : _animations) {
+    animation->update(state);
+  }
   _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(state, *animation);
     _events.animationDied.notifyListeners(e);
@@ -41,7 +43,11 @@ void AnimationsController::update(State &state) {
 }
 
 void AnimationsController::draw(const State &state) {
-  _animations.draw(state);
+  for (auto& animation : _animations) {
+    if (animation->visible()) {
+      animation->draw(state);
+    }
+  }
 }
 
 void AnimationsController::attachToEvents() {

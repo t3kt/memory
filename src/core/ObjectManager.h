@@ -11,7 +11,6 @@
 
 #include <map>
 #include <memory>
-#include <vector>
 #include <iterator>
 #include <list>
 #include <functional>
@@ -26,20 +25,6 @@ public:
   using Iterator = typename StorageList::iterator;
   using ConstIterator = typename StorageList::const_iterator;
   
-  void update(const State& state) {
-    for (auto& entity : _objects) {
-      entity->update(state);
-    }
-  }
-  
-  std::vector<std::shared_ptr<T>> extractDeadObjects() {
-    std::vector<std::shared_ptr<T>> deadObjects;
-    cullDeadObjects([&](std::shared_ptr<T> entity) {
-      deadObjects.push_back(entity);
-    });
-    return deadObjects;
-  }
-  
   void cullDeadObjects(std::function<void(std::shared_ptr<T>)> callback) {
     for (auto i = std::begin(_objects);
          i != std::end(_objects);) {
@@ -53,34 +38,8 @@ public:
     }
   }
   
-  void draw(const State& state) {
-    for (const auto& entity : _objects) {
-      if (entity->visible()) {
-        entity->draw(state);
-      }
-    }
-  }
-  
   void add(std::shared_ptr<T> object) {
     _objects.push_back(object);
-  }
-
-  template<typename ...Args>
-  void add(std::shared_ptr<T> object, Args&... others) {
-    add(object);
-    add(others...);
-  }
-  
-  bool eraseById(ObjectId id) {
-    for (auto i = std::begin(_objects);
-         i != std::end(_objects);
-         i++) {
-      if ((*i)->id == id) {
-        _objects.erase(i);
-        return true;
-      }
-    }
-    return false;
   }
   
   void performAction(std::function<void(std::shared_ptr<T>)> action) {

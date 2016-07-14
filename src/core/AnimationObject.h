@@ -40,7 +40,8 @@ public:
 
   AnimationObject(const Params& params, const State& state);
 
-  virtual void update(const State& state) override;
+  virtual void update(const State& state);
+  virtual void draw(const State& state) = 0;
 
   ofVec3f position() const { return _position; }
   
@@ -64,8 +65,6 @@ private:
   bool _visible;
   float _duration;
   float _percentage;
-  
-  friend class AnimationUpdater;
 };
 
 class ExpandingSphereAnimation : public AnimationObject {

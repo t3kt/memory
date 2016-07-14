@@ -30,7 +30,7 @@ public:
   }
   
   void removeObserver(ObjectId id) {
-    _connectedObservers.remove(id);
+    _connectedObservers.erase(id);
   }
   
   bool hasConnectedObservers() const {

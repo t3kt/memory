@@ -31,7 +31,7 @@ public:
   }
 
   void removeObserver(ObjectId otherId) {
-    _connectedObservers.remove(otherId);
+    _connectedObservers.erase(otherId);
   }
   
   EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
@@ -48,7 +48,7 @@ public:
 
   void detachConnections();
 
-  void update(const State& state) override;
+  void update(const State& state);
 
   float lifetime() const { return _totalLifetime; };
 
