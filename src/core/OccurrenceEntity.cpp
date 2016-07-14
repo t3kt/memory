@@ -14,8 +14,8 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state
 : ParticleObject(pos, state)
 , _actualRadius(0)
 , _originalRadius(radius)
-, _startTime(state.time) {
-}
+, _startTime(state.time)
+, _amountOfObservation(0) {}
 
 void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
   _connectedObservers.add(observer);
@@ -42,19 +42,15 @@ void OccurrenceEntity::removeObserver(ObjectId id) {
 }
 
 void OccurrenceEntity::update(const State &state) {
+  _amountOfObservation = 0;
+  for (auto observer : _connectedObservers) {
+    _amountOfObservation += observer.second->getRemainingLifetimeFraction();
+  }
   if (hasConnectedObservers()) {
     recalculateRadius();
   } else {
     kill();
   }
-}
-
-float OccurrenceEntity::getAmountOfObservation(const State& state) const {
-  float result = 0;
-  for (auto observer : _connectedObservers) {
-    result += observer.second->getRemainingLifetimeFraction();
-  }
-  return result;
 }
 
 void OccurrenceEntity::handleDeath() {

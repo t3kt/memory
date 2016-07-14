@@ -60,7 +60,7 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
 }
 
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
-  auto count = entity.getAmountOfObservation(state);
+  auto count = entity.getAmountOfObservation();
   float alpha = ofMap(count,
                       _params.connectionCountRange.lowValue(),
                       _params.connectionCountRange.highValue(),
@@ -120,7 +120,7 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
   float highCount = _params.connectionCountRange.highValue();
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (auto occurrence : _occurrences) {
-    float occurrenceLife = occurrence->getAmountOfObservation(state);
+    float occurrenceLife = occurrence->getAmountOfObservation();
     float occurrenceAlpha = ofMap(occurrenceLife,
                                   lowCount,
                                   highCount,

@@ -33,7 +33,7 @@ public:
     return !_connectedObservers.empty();
   }
   
-  float getAmountOfObservation(const State& state) const;
+  float getAmountOfObservation() const { return _amountOfObservation; }
   
   void update(const State& state) override;
   
@@ -61,6 +61,7 @@ private:
   const float _originalRadius;
   float _actualRadius;
   float _startTime;
+  float _amountOfObservation;
   EntityMap<ObserverEntity> _connectedObservers;
 };
 
