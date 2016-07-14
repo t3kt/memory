@@ -44,16 +44,14 @@ void AnimationUpdater::end() {
 }
 
 AnimationObject::AnimationObject(const AnimationObject::Params& params)
-: _delay(params.delay())
-, _duration(params.duration())
+: _duration(params.duration())
 , _visible(true)
 , _percentage(0) {
 }
 
 shared_ptr<DurationAction>
 AnimationObject::createUpdaterAction(float time, ObjectManager<AnimationObject>& animationManager) {
-  float now = time;
-  float start = now + _delay;
+  float start = time;
   return std::make_shared<AnimationUpdater>(start, start + _duration,
                                             *this, animationManager);
 }

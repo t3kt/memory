@@ -25,11 +25,6 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_delay
-          .setKey("delay")
-          .setName("Delay")
-          .setValueAndDefault(0)
-          .setRange(0, 2));
       add(_duration
           .setKey("duration")
           .setName("Duration")
@@ -38,14 +33,11 @@ public:
       setEnabledValueAndDefault(true);
     }
 
-    float delay() const { return _delay.get(); }
     float duration() const { return _duration.get(); }
 
-    void setDelay(float delay) { _delay.set(delay); }
     void setDuration(float duration) { _duration.set(duration); }
 
   private:
-    TParam<float> _delay;
     TParam<float> _duration;
   };
 
@@ -73,7 +65,6 @@ protected:
   ofVec3f _position;
 private:
   bool _visible;
-  float _delay;
   float _duration;
   float _percentage;
   
