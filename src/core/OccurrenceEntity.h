@@ -25,9 +25,13 @@ public:
   OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
   
-  void addObserver(shared_ptr<ObserverEntity> observer);
+  void addObserver(shared_ptr<ObserverEntity> observer) {
+    _connectedObservers.add(observer);
+  }
   
-  void removeObserver(ObjectId id);
+  void removeObserver(ObjectId id) {
+    _connectedObservers.remove(id);
+  }
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
@@ -58,7 +62,9 @@ private:
     _amountOfObservation = amount;
   }
 
-  void recalculateRadius();
+  void setActualRadius(float radius) {
+    _actualRadius = radius;
+  }
   
   const float _originalRadius;
   float _actualRadius;

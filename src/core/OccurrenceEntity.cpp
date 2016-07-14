@@ -17,30 +17,6 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state
 , _startTime(state.time)
 , _amountOfObservation(0) {}
 
-void OccurrenceEntity::addObserver(shared_ptr<ObserverEntity> observer) {
-  _connectedObservers.add(observer);
-  float dist = _position.distance(observer->position());
-  if (dist > _actualRadius) {
-    _actualRadius = dist;
-  }
-}
-
-void OccurrenceEntity::recalculateRadius() {
-  _actualRadius = 0;
-  for (auto observer : _connectedObservers) {
-    float dist = _position.distance(observer.second->position());
-    if (dist > _actualRadius) {
-      _actualRadius = dist;
-    }
-  }
-}
-
-void OccurrenceEntity::removeObserver(ObjectId id) {
-  if (_connectedObservers.remove(id)) {
-    recalculateRadius();
-  }
-}
-
 void OccurrenceEntity::handleDeath() {
   ofLogNotice() << "Occurrence died: " << *this;
 }

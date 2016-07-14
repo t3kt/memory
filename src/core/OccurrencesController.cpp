@@ -32,12 +32,17 @@ void OccurrencesController::update(State &state) {
       occurrence->setAmountOfObservation(0);
       continue;
     }
-    occurrence->recalculateRadius();
     float amount = 0;
+    float radius = 0;
     for (auto observer : occurrence->connectedObservers()) {
       amount += observer.second->getRemainingLifetimeFraction();
+      float dist = occurrence->position().distance(observer.second->position());
+      if (dist > radius) {
+        radius = dist;
+      }
     }
     occurrence->setAmountOfObservation(amount);
+    occurrence->setActualRadius(radius);
   }
   _occurrences.cullDeadObjects([&](shared_ptr<OccurrenceEntity> occurrence) {
     OccurrenceEventArgs e(state, *occurrence);
