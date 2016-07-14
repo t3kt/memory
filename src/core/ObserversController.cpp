@@ -80,7 +80,6 @@ void ObserversController::spawnObserver(const State &state) {
   _observers.add(observer);
   ObserverEventArgs e(state, *observer);
   _events.observerSpawned.notifyListeners(e);
-  ofLogNotice() << "Spawned observer: " << *observer;
 }
 
 void ObserversController::spawnObservers(int count, const State& state) {

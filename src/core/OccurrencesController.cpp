@@ -73,11 +73,9 @@ void OccurrencesController::spawnOccurrence(const State &state) {
   OccurrenceEventArgs e(state, *occurrence);
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
-    ofLogNotice() << "Spawned occurrence: " << *occurrence;
     _occurrences.add(occurrence);
     _events.occurrenceSpawned.notifyListeners(e);
   } else {
-    ofLogNotice() << "Nothing in range of occurrence: " << *occurrence;
     _events.occurrenceSpawnFailed.notifyListeners(e);
   }
 }

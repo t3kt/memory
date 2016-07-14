@@ -18,7 +18,6 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state
 , _amountOfObservation(0) {}
 
 void OccurrenceEntity::handleDeath() {
-  ofLogNotice() << "Occurrence died: " << *this;
 }
 
 void OccurrenceEntity::outputFields(std::ostream &os) const {

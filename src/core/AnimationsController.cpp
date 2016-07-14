@@ -25,7 +25,6 @@ void AnimationsController::setup() {
 }
 
 void AnimationsController::addAnimation(shared_ptr<AnimationObject> animation, const State& state) {
-  ofLogNotice() << "Adding animation: " << *animation;
   AnimationEventArgs e(state, *animation);
   _events.animationSpawned.notifyListeners(e);
   
@@ -37,7 +36,6 @@ void AnimationsController::update(State &state) {
   _animations.cullDeadObjects([&](shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(state, *animation);
     _events.animationDied.notifyListeners(e);
-    ofLogNotice() << "Animation ended: " << *animation;
   });
   state.animationCount = _animations.size();
 }
@@ -54,7 +52,6 @@ void AnimationsController::attachToEvents() {
     auto observer = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.getColor(ColorId::OBSERVER_DIED), e.state);
     addAnimation(animation, e.state);
-    ofLogNotice() << "Adding observer died animation: " << *animation;
   };
   _events.occurrenceDied += [this](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceDied.enabled()) {
@@ -63,7 +60,6 @@ void AnimationsController::attachToEvents() {
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.getColor(ColorId::OCCURRENCE_DIED), e.state);
     addAnimation(animation, e.state);
-    ofLogNotice() << "Adding occurrence died animation: " << *animation;
   };
   _events.occurrenceSpawnFailed += [this](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceSpawnFailed.enabled()) {
@@ -72,6 +68,5 @@ void AnimationsController::attachToEvents() {
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.getColor(ColorId::OCCURRENCE_SPAWN_FAILED), e.state);
     addAnimation(animation, e.state);
-    ofLogNotice() << "Adding occurrence spawn failed animation: " << *animation;
   };
 }

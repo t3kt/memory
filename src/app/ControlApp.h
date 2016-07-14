@@ -18,6 +18,7 @@
 #include "State.h"
 
 class SimulationApp;
+class EventLoggers;
 
 class ControlApp
 : public ofBaseApp
@@ -35,13 +36,14 @@ public:
 
   void performAction(AppAction action) override;
 private:
-  void updateLogLevel();
+  void updateLogState();
 
   void loadSettings();
   void saveSettings();
 
   MemoryAppParameters& _appParams;
   std::shared_ptr<SimulationApp> _simulation;
+  std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
 };
 

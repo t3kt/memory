@@ -4,6 +4,7 @@
 #include "AppParameters.h"
 #include "ControlApp.h"
 #include "SimulationApp.h"
+#include "SimulationEvents.h"
 
 const int CONTROLS_WIDTH = 300;
 

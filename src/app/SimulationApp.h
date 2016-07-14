@@ -45,6 +45,8 @@ public:
   void keyPressed(int key) override;
 
   void performAction(AppAction action) override;
+
+  SimulationEvents& getEvents() { return _events; }
 private:
   State _state;
   MemoryAppParameters& _appParams;
