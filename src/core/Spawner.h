@@ -67,8 +67,14 @@ public:
           .setRange(0, 30));
     }
 
-    void setRateValueAndDefault(float rate) {
+    Params& setRateValueAndDefault(float rate) {
       _rate.setValueAndDefault(rate);
+      return *this;
+    }
+
+    Params& setRateRange(float low, float high) {
+      _rate.setRange(low, high);
+      return *this;
     }
 
     float rate() const { return _rate.get(); }

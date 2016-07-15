@@ -23,6 +23,7 @@
 #include "Spawner.h"
 
 class IntervalObserverSpawner;
+class RateObserverSpawner;
 
 class ObserversController {
 public:
@@ -36,7 +37,12 @@ public:
           .setParamRanges(0, 240));
       add(spawner
           .setKey("spawner")
-          .setName("Spawner"));
+          .setName("Interval Spawner"));
+      add(rateSpawner
+          .setRateRange(0, 80)
+          .setRateValueAndDefault(10)
+          .setKey("rateSpawner")
+          .setName("Rate Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
@@ -55,6 +61,7 @@ public:
 
     RandomValueSupplier<float> lifetime;
     IntervalSpawner::Params spawner;
+    RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;
     ObserverObserverConnectorRenderer::Params connectorRenderer;
@@ -89,11 +96,13 @@ private:
   SimulationEvents& _events;
   ObjectManager<ObserverEntity> _observers;
   std::shared_ptr<IntervalObserverSpawner> _spawner;
+  std::shared_ptr<RateObserverSpawner> _rateSpawner;
   std::shared_ptr<ObserverRenderer> _observerRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
   std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 
   friend class IntervalObserverSpawner;
+  friend class RateObserverSpawner;
 };
 
 #endif /* ObserversController_h */

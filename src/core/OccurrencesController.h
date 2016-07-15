@@ -36,8 +36,10 @@ public:
           .setParamRanges(0, 4));
       add(spawner
           .setKey("spawner")
-          .setName("Spawner"));
+          .setName("Inteval Spawner"));
       add(rateSpawner
+          .setRateRange(0, 40)
+          .setRateValueAndDefault(4)
           .setKey("rateSpawner")
           .setName("Rate Spawner"));
       add(initialVelocity

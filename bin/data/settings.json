@@ -6,7 +6,6 @@
         "high": 0,
         "low": 1
       },
-      "delay": 0,
       "duration": 2.3265306949615479,
       "enabled": true,
       "radius": {
@@ -19,7 +18,6 @@
         "high": 0,
         "low": 1
       },
-      "delay": 0,
       "duration": 3.3469388484954834,
       "enabled": true,
       "radius": {
@@ -32,7 +30,6 @@
         "high": 0,
         "low": 1
       },
-      "delay": 0,
       "duration": 1,
       "enabled": true,
       "radius": {
@@ -143,23 +140,21 @@
       "high": 240,
       "low": 113.87755584716797
     },
+    "rateSpawner": {
+      "enabled": true,
+      "rate": 11.020407676696777
+    },
     "renderer": {
       "fadeIn": {
         "duration": 1,
         "endValue": 1,
         "startValue": 0
       },
-      "size": 0.029999999329447746,
-      "wireBrightness": 1.0561224222183228,
-      "wireEnabled": false,
-      "wireSaturation": 0.5,
-      "wireScale": 1.125
+      "size": 0.029999999329447746
     },
-    "spawnInterval": {
-      "interval": {
-        "high": 6,
-        "low": 2
-      }
+    "spawner": {
+      "enabled": false,
+      "interval": 4
     },
     "threshold": {
       "enabled": false,
@@ -185,6 +180,10 @@
       "high": 1.8367346525192261,
       "low": 0.20408163964748383
     },
+    "rateSpawner": {
+      "enabled": true,
+      "rate": 3.2653059959411621
+    },
     "renderer": {
       "connectionCountRange": {
         "high": 4,
@@ -202,11 +201,9 @@
       "wireSaturation": 0.19897958636283875,
       "wireScale": 1.0928571224212646
     },
-    "spawnInterval": {
-      "interval": {
-        "high": 3.1320285797119141,
-        "low": 1.0495628118515015
-      }
+    "spawner": {
+      "enabled": false,
+      "interval": 4
     }
   },
   "physics": {
