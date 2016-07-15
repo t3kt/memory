@@ -41,6 +41,10 @@ void PostProcController::update(const State &state) {
   _bloomPass->setEnabled(_params.bloom.enabled());
 }
 
+void PostProcController::updateResolution(ofVec2f size) {
+  _postProc.init(size.x, size.y);
+}
+
 void PostProcController::beginDraw(ofCamera &cam) {
   if (_params.enabled()) {
     _postProc.begin(cam);

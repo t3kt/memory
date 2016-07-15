@@ -112,6 +112,7 @@ public:
   : _params(params) {}
 
   void setup();
+  void updateResolution(ofVec2f size);
 
   void update(const State& state);
 

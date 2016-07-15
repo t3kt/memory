@@ -10,6 +10,7 @@
 #define RenderingController_h
 
 #include <ofEasyCam.h>
+#include <ofAppGLFWWindow.h>
 #include "Colors.h"
 #include "Common.h"
 #include "Params.h"
@@ -94,6 +95,7 @@ public:
   };
 
   RenderingController(const Params& params,
+                      ofAppGLFWWindow& window,
                       const ColorTheme& colors);
 
   void setup();
@@ -101,6 +103,8 @@ public:
   void beginDraw(const State& state);
   void endDraw(const State& state);
   void resetCamera();
+  void updateResolution();
+
 #ifdef ENABLE_SYPHON
   void pushToSyphon(ofxSyphonServer& syphonServer);
 #endif
@@ -113,6 +117,7 @@ private:
   const ColorTheme& _colors;
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
+  ofAppGLFWWindow& _window;
   ofEasyCam _cam;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;

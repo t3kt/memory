@@ -10,8 +10,10 @@
 #include <ofMain.h>
 
 RenderingController::RenderingController(const Params& params,
+                                         ofAppGLFWWindow& window,
                                          const ColorTheme& colors)
 : _params(params)
+, _window(window)
 , _colors(colors)
 , _backgroundColor(colors.getColor(ColorId::BACKGROUND))
 , _fogColor(colors.getColor(ColorId::FOG)) {
@@ -25,6 +27,11 @@ void RenderingController::setup() {
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
+}
+
+void RenderingController::updateResolution() {
+  auto size = ofVec2f(_window.getWidth(), _window.getHeight());
+  _postProc->updateResolution(size);
 }
 
 void RenderingController::resetCamera() {

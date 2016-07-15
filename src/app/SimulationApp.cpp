@@ -14,14 +14,16 @@ void SimulationApp::attachControls(std::shared_ptr<ControlApp> control) {
 }
 
 void SimulationApp::setup() {
-  _appParams.core.output.fullscreenChanged += [&](bool fullscreen) {
-    _window->setFullscreen(fullscreen);
-  };
-
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
+                                        getWindow(),
                                         _appParams.colors);
   _renderingController->setup();
+
+  _appParams.core.output.fullscreenChanged += [&](bool fullscreen) {
+    _window->setFullscreen(fullscreen);
+    _renderingController->updateResolution();
+  };
 
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
