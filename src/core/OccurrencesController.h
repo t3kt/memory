@@ -55,6 +55,9 @@ public:
       add(connectorRenderer
           .setKey("connectorRenderer")
           .setName("Connector Renderer"));
+      add(occurrenceConnectorRenderer
+          .setKey("occurrenceConnectorRenderer")
+          .setName("Occurrence Connector Renderer"));
     }
 
     RandomValueSupplier<float> radius;
@@ -63,6 +66,7 @@ public:
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
+    OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
   };
   
   OccurrencesController(const Params& params,
@@ -96,6 +100,7 @@ private:
   std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
   std::shared_ptr<OccurrenceRenderer> _renderer;
   std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
+  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
 
   friend class IntervalOccurrenceSpawner;
   friend class RateOccurrenceSpawner;

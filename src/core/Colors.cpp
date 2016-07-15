@@ -16,6 +16,7 @@ EnumTypeInfo<ColorId> ColorIdType({
   {"occurrenceMarker", ColorId::OCCURRENCE_MARKER},
   {"occurrenceRange", ColorId::OCCURRENCE_RANGE},
   {"occurrenceConnector", ColorId::OCCURRENCE_CONNECTOR},
+  {"occurrenceObserverConnector", ColorId::OCCURRENCE_OBSERVER_CONNECTOR},
   {"observerConnector", ColorId::OBSERVER_CONNECTOR},
   {"observerDied", ColorId::OBSERVER_DIED},
   {"occurrenceDied", ColorId::OCCURRENCE_DIED},
@@ -52,10 +53,14 @@ ColorTheme::ColorTheme() {
       .setKey("occurrenceRange")
       .setName("Occurrence Range")
       .setValueAndDefault(ofFloatColor(0.5, 0.5, 0.5, 0.58)));
+  add(_occurrenceObserverConnector
+      .setKey("occurrenceObserverConnector")
+      .setName("Occurrence Observer Connector")
+      .setValueAndDefault(ofFloatColor(0.5, 0.5, 0.5, 1)));
   add(_occurrenceConnector
       .setKey("occurrenceConnector")
       .setName("Occurrence Connector")
-      .setValueAndDefault(ofFloatColor(0.5, 0.5, 0.5, 1)));
+      .setValueAndDefault(ofFloatColor(1, 0.5, 0.34, 1)));
   add(_observerDied
       .setKey("observerDied")
       .setName("Observer Died")
@@ -80,6 +85,7 @@ ColorTheme::ColorTheme() {
     _observerConnector,
     _occurrenceMarker,
     _occurrenceRange,
+    _occurrenceObserverConnector,
     _occurrenceConnector,
     _observerDied,
     _occurrenceDied,

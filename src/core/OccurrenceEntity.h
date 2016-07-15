@@ -63,11 +63,11 @@ public:
     return _connectedObservers;
   }
 
-  const EntityMap<OccurrenceEntity>& connectedOccurrences() const {
+  const EntityMap<OccurrenceEntity>& getConnectedOccurrences() const {
     return _connectedOccurrences;
   }
 
-  EntityMap<OccurrenceEntity>& connectedOccurrences() {
+  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
     return _connectedOccurrences;
   }
 
