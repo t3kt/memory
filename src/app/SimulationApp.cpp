@@ -104,15 +104,6 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
-    case AppAction::STOP_ALL_ENTITIES:
-      _physics->stopAllEntities();
-      break;
-    case AppAction::TOGGLE_SHOW_BOUNDS:
-      _appParams.core.debug.setShowBounds(!_appParams.core.debug.showBounds());
-      break;
-    case AppAction::TOGGLE_SHOW_PHYSICS:
-      _appParams.core.debug.setShowPhysics(!_appParams.core.debug.showPhysics());
-      break;
     default:
       return false;
   }

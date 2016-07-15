@@ -25,7 +25,7 @@ public:
 
   void main();
 
-  MemoryAppParameters& params() { return _appParams; }
+  MemoryAppParameters* params() { return &_appParams; }
 
   std::shared_ptr<ofAppGLFWWindow>& simulationWindow() {
     return _simulationWindow;

@@ -6,12 +6,12 @@
 //
 //
 
-#include "PhysicsController.h"
 #include "AppParameters.h"
+#include "PhysicsController.h"
 
-PhysicsController::PhysicsController(const PhysicsController::Params& params,
-                                     const Bounds& bounds,
-                                     const DebugParams& debugParams,
+PhysicsController::PhysicsController(PhysicsController::Params& params,
+                                     Bounds& bounds,
+                                     DebugParams& debugParams,
                                      const State& state)
 : _params(params)
 , _bounds(bounds)
@@ -34,6 +34,25 @@ void PhysicsController::setup(ObserversController& observers,
   _world = std::make_shared<PhysicsWorld>(_state,
                                           observers,
                                           occurrences);
+
+  registerAsActionHandler();
+}
+
+bool PhysicsController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::STOP_ALL_ENTITIES:
+      stopAllEntities();
+      break;
+    case AppAction::TOGGLE_SHOW_BOUNDS:
+      _debugParams.setShowBounds(!_debugParams.showBounds());
+      break;
+    case AppAction::TOGGLE_SHOW_PHYSICS:
+      _debugParams.setShowPhysics(!_debugParams.showPhysics());
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
 
 void PhysicsController::beginEntityUpdate(ParticleObject *entity,

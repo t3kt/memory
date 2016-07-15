@@ -9,6 +9,7 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
+#include "AppActions.h"
 #include "AnchorPointBehavior.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
@@ -41,7 +42,8 @@ private:
   TParam<float> _speed;
 };
 
-class PhysicsController {
+class PhysicsController
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
@@ -106,9 +108,9 @@ public:
     AbstractDampingBehavior::Params occurrenceDamping;
   };
 
-  PhysicsController(const Params& params,
-                    const Bounds& bounds,
-                    const DebugParams& debugParams,
+  PhysicsController(Params& params,
+                    Bounds& bounds,
+                    DebugParams& debugParams,
                     const State& state);
 
   void stopAllEntities();
@@ -119,13 +121,15 @@ public:
   void update();
   void draw();
 
+  bool performAction(AppAction action) override;
+
 private:
   void beginEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
-  const Params& _params;
-  const Bounds& _bounds;
-  const DebugParams& _debugParams;
+  Params& _params;
+  Bounds& _bounds;
+  DebugParams& _debugParams;
   const State& _state;
 
   std::shared_ptr<PhysicsWorld> _world;

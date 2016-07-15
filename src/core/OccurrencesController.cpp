@@ -6,7 +6,9 @@
 //
 //
 
+#include "AppSystem.h"
 #include "OccurrencesController.h"
+#include "SimulationApp.h"
 
 class IntervalOccurrenceSpawner
 : public IntervalSpawner {
@@ -61,12 +63,13 @@ void OccurrencesController::setup(const State &state, const ColorTheme& colors) 
 }
 
 bool OccurrencesController::performAction(AppAction action) {
+  const auto& state = AppSystem::get().simulation()->state();
   switch (action) {
     case AppAction::SPAWN_FEW_OCCURRENCES:
-      spawnOccurrences(5, _state);
+      spawnOccurrences(5, state);
       break;
     case AppAction::SPAWN_MANY_OCCURRENCES:
-      spawnOccurrences(100, _state);
+      spawnOccurrences(100, state);
       break;
     default:
       return false;

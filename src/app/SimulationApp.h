@@ -49,6 +49,8 @@ public:
   ofAppGLFWWindow& getWindow() {
     return static_cast<ofAppGLFWWindow&>(*_window);
   }
+
+  const State& state() const { return _state; }
 private:
   State _state;
   MemoryAppParameters& _appParams;

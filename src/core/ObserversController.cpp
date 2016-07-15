@@ -7,7 +7,9 @@
 //
 
 #include <ofLog.h>
+#include "AppSystem.h"
 #include "ObserversController.h"
+#include "SimulationApp.h"
 
 class IntervalObserverSpawner
 : public IntervalSpawner {
@@ -59,12 +61,13 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
 }
 
 bool ObserversController::performAction(AppAction action) {
+  const auto& state = AppSystem::get().simulation()->state();
   switch (action) {
     case AppAction::SPAWN_FEW_OBSERVERS:
-      spawnObservers(5, _state);
+      spawnObservers(5, state);
       break;
     case AppAction::SPAWN_MANY_OBSERVERS:
-      spawnObservers(100, _state);
+      spawnObservers(100, state);
       break;
     case AppAction::KILL_FEW_OBSERVERS:
       killObservers(5);
