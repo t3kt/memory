@@ -42,6 +42,10 @@ protected:
   OccurrencesController& _controller;
 };
 
+class DescendantOccurrenceSpawner {
+  
+};
+
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,

@@ -109,5 +109,34 @@ protected:
   float _lastTime;
 };
 
+class AbstractDescendantSpawner {
+public:
+  class Params : public SpawnerParams {
+  public:
+    Params() {
+      add(_threshold
+          .setKey("threshold")
+          .setName("Spawn Threshold"));
+      add(childCountRange
+          .setKey("childCountRange")
+          .setName("Child Count Range")
+          .setParamValuesAndDefaults(0, 3)
+          .setParamRanges(0, 15));
+    }
+
+    float threshold() const { return _threshold.get(); }
+
+    ValueRange<int> childCountRange;
+
+  private:
+    TParam<float> _threshold;
+  };
+
+  AbstractDescendantSpawner(const Params& params)
+  : _params(params) { }
+
+protected:
+  const Params& _params;
+};
 
 #endif /* Spawner_h */

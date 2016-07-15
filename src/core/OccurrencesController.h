@@ -24,6 +24,7 @@
 
 class IntervalOccurrenceSpawner;
 class RateOccurrenceSpawner;
+class DescendantOccurrenceSpawner;
 
 class OccurrencesController
 : public AppActionHandler {
@@ -104,6 +105,7 @@ private:
 
   friend class IntervalOccurrenceSpawner;
   friend class RateOccurrenceSpawner;
+  friend class DescendantOccurrenceSpawner;
 };
 
 #endif /* OccurrencesController_h */
