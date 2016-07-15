@@ -23,6 +23,23 @@ protected:
   OccurrencesController& _controller;
 };
 
+class RateOccurrenceSpawner
+: public RateSpawner {
+public:
+  RateOccurrenceSpawner(OccurrencesController& controller)
+  : RateSpawner(controller._params.rateSpawner)
+  , _controller(controller) { }
+
+protected:
+  void spawnEntities(const State& state, int count) override {
+    for (int i = 0; i < count; ++i) {
+      _controller.spawnRandomOccurrence(state);
+    }
+  }
+
+  OccurrencesController& _controller;
+};
+
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,
@@ -38,6 +55,7 @@ void OccurrencesController::setup(const State &state, const ColorTheme& colors) 
   _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, colors, _occurrences);
   _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
   _spawner = std::make_shared<IntervalOccurrenceSpawner>(*this);
+  _rateSpawner = std::make_shared<RateOccurrenceSpawner>(*this);
 }
 
 void OccurrencesController::update(State &state) {
@@ -65,6 +83,7 @@ void OccurrencesController::update(State &state) {
   });
 
   _spawner->update(state);
+  _rateSpawner->update(state);
   state.occurrenceCount = _occurrences.size();
   _renderer->update(state);
 }

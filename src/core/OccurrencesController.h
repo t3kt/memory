@@ -22,6 +22,7 @@
 #include "Spawner.h"
 
 class IntervalOccurrenceSpawner;
+class RateOccurrenceSpawner;
 
 class OccurrencesController {
 public:
@@ -36,6 +37,9 @@ public:
       add(spawner
           .setKey("spawner")
           .setName("Spawner"));
+      add(rateSpawner
+          .setKey("rateSpawner")
+          .setName("Rate Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
@@ -51,6 +55,7 @@ public:
 
     RandomValueSupplier<float> radius;
     IntervalSpawner::Params spawner;
+    RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
@@ -82,10 +87,12 @@ private:
   ObserversController& _observers;
   ObjectManager<OccurrenceEntity> _occurrences;
   std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
+  std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
   std::shared_ptr<OccurrenceRenderer> _renderer;
   std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
 
   friend class IntervalOccurrenceSpawner;
+  friend class RateOccurrenceSpawner;
 };
 
 #endif /* OccurrencesController_h */
