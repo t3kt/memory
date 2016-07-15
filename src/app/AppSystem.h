@@ -18,9 +18,12 @@ class ControlApp;
 
 class AppSystem {
 public:
-  void setup();
-  void run();
+  static AppSystem& get();
+
+  void main();
 private:
+  void setup();
+
   MemoryAppParameters _appParams;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
   std::shared_ptr<ofAppGLFWWindow> _controlWindow;

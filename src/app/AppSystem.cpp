@@ -12,6 +12,12 @@
 
 const int CONTROLS_WIDTH = 250;
 
+static AppSystem instance;
+
+AppSystem& AppSystem::get() {
+  return instance;
+}
+
 void AppSystem::setup() {
   ofGLFWWindowSettings simWinSettings;
   simWinSettings.width = 1100;
@@ -38,7 +44,9 @@ void AppSystem::setup() {
   _controlApp->attachSimulation(_simulationApp);
 }
 
-void AppSystem::run() {
+void AppSystem::main() {
+  setup();
+
   ofRunApp(_controlWindow, _controlApp);
   ofRunApp(_simulationWindow, _simulationApp);
   ofRunMainLoop();

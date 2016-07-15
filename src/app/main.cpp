@@ -1,7 +1,5 @@
 #include "AppSystem.h"
 
-int main( ){
-  AppSystem appSystem;
-  appSystem.setup();
-  appSystem.run();
+int main() {
+  AppSystem::get().main();
 }
