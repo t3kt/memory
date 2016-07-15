@@ -34,7 +34,7 @@ class SimulationApp
 , public AppActionHandler {
 public:
   SimulationApp(MemoryAppParameters& appParams,
-                std::shared_ptr<ofAppBaseWindow> window)
+                std::shared_ptr<ofAppGLFWWindow> window)
   : _appParams(appParams)
   , _window(window) { }
 
@@ -57,7 +57,7 @@ private:
   State _state;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
-  std::shared_ptr<ofAppBaseWindow> _window;
+  std::shared_ptr<ofAppGLFWWindow> _window;
   std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;

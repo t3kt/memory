@@ -81,17 +81,18 @@ template<typename ArgType>
 class TEvent
 : public ofxLiquidEvent<ArgType> {
 public:
-  void notifyListenersUntilHandled(ArgType& args) {
+  bool notifyListenersUntilHandled(ArgType& args) {
     for (auto listener : this->listeners) {
       listener.second(args);
       if (args.handled()) {
-        return;
+        return true;
       }
     }
+    return false;
   }
 
-  void operator()(ArgType& args) {
-    notifyListenersUntilHandled(args);
+  bool operator()(ArgType& args) {
+    return notifyListenersUntilHandled(args);
   }
 };
 

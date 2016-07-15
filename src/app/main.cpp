@@ -1,39 +1,7 @@
-#include <memory>
-#include <ofMain.h>
-#include <ofAppGLFWWindow.h>
-#include "AppParameters.h"
-#include "ControlApp.h"
-#include "SimulationApp.h"
-#include "SimulationEvents.h"
-
-const int CONTROLS_WIDTH = 250;
+#include "AppSystem.h"
 
 int main( ){
-  ofGLFWWindowSettings simWinSettings;
-  simWinSettings.width = 1100;
-  simWinSettings.height = 800;
-  simWinSettings.resizable = false;
-  simWinSettings.setPosition(ofVec3f(CONTROLS_WIDTH + 5, 0));
-  auto simWindow = ofCreateWindow(simWinSettings);
-
-  ofGLFWWindowSettings ctrlWinSettings;
-  ctrlWinSettings.width = CONTROLS_WIDTH;
-  ctrlWinSettings.height = 800;
-  ctrlWinSettings.resizable = true;
-  ctrlWinSettings.setPosition(ofVec3f(0, 0));
-  auto ctrlWindow = ofCreateWindow(ctrlWinSettings);
-
-  MemoryAppParameters appParams;
-
-  auto simApp = std::make_shared<SimulationApp>(appParams,
-                                                simWindow);
-
-  auto ctrlApp = std::make_shared<ControlApp>(appParams);
-
-  simApp->attachControls(ctrlApp);
-  ctrlApp->attachSimulation(simApp);
-
-  ofRunApp(ctrlWindow, ctrlApp);
-  ofRunApp(simWindow, simApp);
-  ofRunMainLoop();
+  AppSystem appSystem;
+  appSystem.setup();
+  appSystem.run();
 }

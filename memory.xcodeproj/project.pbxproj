@@ -35,6 +35,7 @@
 		323336AD1D33375F00A000BD /* SimulationApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336AB1D33375F00A000BD /* SimulationApp.cpp */; };
 		323336B01D3337DD00A000BD /* ControlApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336AE1D3337DD00A000BD /* ControlApp.cpp */; };
 		323336B31D3339D400A000BD /* AppActions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323336B21D3339D400A000BD /* AppActions.cpp */; };
+		32DAAF401D38AEAE00113278 /* AppSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF3E1D38AEAE00113278 /* AppSystem.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -204,6 +205,8 @@
 		323336B11D3339B500A000BD /* AppActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppActions.h; path = app/AppActions.h; sourceTree = "<group>"; };
 		323336B21D3339D400A000BD /* AppActions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppActions.cpp; path = app/AppActions.cpp; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
+		32DAAF3E1D38AEAE00113278 /* AppSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppSystem.cpp; path = app/AppSystem.cpp; sourceTree = "<group>"; };
+		32DAAF3F1D38AEAE00113278 /* AppSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSystem.h; path = app/AppSystem.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -820,6 +823,8 @@
 				3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */,
 				7B1EA976C3295181487B1B58 /* AppParameters.cpp */,
 				5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */,
+				32DAAF3F1D38AEAE00113278 /* AppSystem.h */,
+				32DAAF3E1D38AEAE00113278 /* AppSystem.cpp */,
 				823FBC6F9791944E4D93726D /* main.cpp */,
 				323336AB1D33375F00A000BD /* SimulationApp.cpp */,
 				323336AC1D33375F00A000BD /* SimulationApp.h */,
@@ -1101,6 +1106,7 @@
 				6F86A7380B683E0ABEF29AE1 /* PixelatePass.cpp in Sources */,
 				4BCEEA9B13F89A3E9FAD69BC /* PostProcessing.cpp in Sources */,
 				4EE8E2766DD8D1E01C0BB2CB /* RenderPass.cpp in Sources */,
+				32DAAF401D38AEAE00113278 /* AppSystem.cpp in Sources */,
 				C11106AFBC3CD6F479EDB075 /* RGBShiftPass.cpp in Sources */,
 				2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */,
 				5A73BE78B916F134FC0AE416 /* SSAOPass.cpp in Sources */,
