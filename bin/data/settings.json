@@ -155,10 +155,6 @@
       },
       "size": 0.029999999329447746
     },
-    "spawner": {
-      "enabled": false,
-      "interval": 4
-    },
     "threshold": {
       "enabled": false,
       "range": {

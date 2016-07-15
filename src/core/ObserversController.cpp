@@ -11,20 +11,6 @@
 #include "ObserversController.h"
 #include "SimulationApp.h"
 
-class IntervalObserverSpawner
-: public IntervalSpawner {
-public:
-  IntervalObserverSpawner(ObserversController& controller)
-  : IntervalSpawner(controller._params.spawner)
-  , _controller(controller) { }
-protected:
-  void spawnEntities(const State& state) override {
-    _controller.spawnRandomObserver(state);
-  }
-
-  ObserversController& _controller;
-};
-
 class RateObserverSpawner
 : public RateSpawner {
 public:
@@ -54,7 +40,6 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
   _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
-  _spawner = std::make_shared<IntervalObserverSpawner>(*this);
   _rateSpawner = std::make_shared<RateObserverSpawner>(*this);
 
   registerAsActionHandler();
@@ -92,7 +77,6 @@ void ObserversController::update(State &state) {
     _events.observerDied.notifyListeners(e);
   });
 
-  _spawner->update(state);
   _rateSpawner->update(state);
   state.observerCount = _observers.size();
 
