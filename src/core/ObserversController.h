@@ -54,7 +54,7 @@ public:
     }
 
     RandomValueSupplier<float> lifetime;
-    IntervalSpawnerParams spawner;
+    IntervalSpawner::Params spawner;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;
     ObserverObserverConnectorRenderer::Params connectorRenderer;

@@ -10,7 +10,7 @@
 #include "ObserversController.h"
 
 class IntervalObserverSpawner
-: public IntervalSpawner<ObserverEntity> {
+: public IntervalSpawner {
 public:
   IntervalObserverSpawner(ObserversController& controller)
   : IntervalSpawner(controller._params.spawner)

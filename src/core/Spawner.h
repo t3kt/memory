@@ -15,29 +15,26 @@
 
 using SpawnerParams = ParamsWithEnabled;
 
-class IntervalSpawnerParams : public SpawnerParams {
-public:
-  IntervalSpawnerParams() {
-    add(_interval
-        .setKey("interval")
-        .setName("Interval")
-        .setValueAndDefault(4)
-        .setRange(0, 60));
-  }
-
-  void setIntervalValueAndDefault(float interval) {
-    _interval.setValueAndDefault(interval);
-  }
-
-  float interval() const { return _interval.get(); }
-private:
-  TParam<float> _interval;
-};
-
-template<typename E>
 class IntervalSpawner {
 public:
-  using Params = IntervalSpawnerParams;
+  class Params : public SpawnerParams {
+  public:
+    Params() {
+      add(_interval
+          .setKey("interval")
+          .setName("Interval")
+          .setValueAndDefault(4)
+          .setRange(0, 30));
+    }
+
+    void setIntervalValueAndDefault(float interval) {
+      _interval.setValueAndDefault(interval);
+    }
+
+    float interval() const { return _interval.get(); }
+  private:
+    TParam<float> _interval;
+  };
 
   IntervalSpawner(const Params& params)
   : _params(params) {}
@@ -54,5 +51,7 @@ protected:
   const Params& _params;
   float _nextTime;
 };
+
+
 
 #endif /* Spawner_h */

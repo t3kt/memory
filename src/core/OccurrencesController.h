@@ -50,7 +50,7 @@ public:
     }
 
     RandomValueSupplier<float> radius;
-    IntervalSpawnerParams spawner;
+    IntervalSpawner::Params spawner;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;
     ObserverOccurrenceConnectorRenderer::Params connectorRenderer;

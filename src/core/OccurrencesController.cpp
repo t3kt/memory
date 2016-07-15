@@ -9,7 +9,7 @@
 #include "OccurrencesController.h"
 
 class IntervalOccurrenceSpawner
-: public IntervalSpawner<OccurrenceEntity> {
+: public IntervalSpawner {
 public:
   IntervalOccurrenceSpawner(OccurrencesController& controller)
   : IntervalSpawner(controller._params.spawner)
