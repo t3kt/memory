@@ -14,6 +14,10 @@ void SimulationApp::attachControls(std::shared_ptr<ControlApp> control) {
 }
 
 void SimulationApp::setup() {
+  _appParams.core.output.fullscreenChanged += [&](bool fullscreen) {
+    _window->setFullscreen(fullscreen);
+  };
+
   _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
 
   _observers =
@@ -81,7 +85,7 @@ void SimulationApp::draw() {
   _renderingController->endDraw(_state);
 
 #ifdef ENABLE_SYPHON
-  if (_appParams.core.syphonEnabled()) {
+  if (_appParams.core.output.syphonEnabled()) {
     _renderingController->pushToSyphon(_syphonServer);
   }
 #endif

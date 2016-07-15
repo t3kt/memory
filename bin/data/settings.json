@@ -126,7 +126,10 @@
       "showPhysics": false,
       "showStatus": true
     },
-    "syphonEnabled": false
+    "output": {
+      "fullscreen": false,
+      "syphonEnabled": true
+    }
   },
   "observers": {
     "connectorRenderer": {

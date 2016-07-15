@@ -49,6 +49,10 @@ public:
   void performAction(AppAction action) override;
 
   SimulationEvents& getEvents() { return _events; }
+
+  ofAppGLFWWindow& getWindow() {
+    return static_cast<ofAppGLFWWindow&>(*_window);
+  }
 private:
   State _state;
   MemoryAppParameters& _appParams;

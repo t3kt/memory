@@ -68,6 +68,42 @@ private:
   TParam<bool> _showPhysics;
 };
 
+class OutputParams : public Params {
+public:
+  OutputParams() {
+    add(_fullscreen
+        .setKey("fullscreen")
+        .setName("Fullscreen"));
+#ifdef ENABLE_SYPHON
+    add(_syphonEnabled
+        .setKey("syphonEnabled")
+        .setName("Enable Syphon")
+        .setValueAndDefault(false));
+#endif
+    _fullscreen.addListener(this,
+                            &OutputParams::onFullscreenChanged);
+  }
+
+  bool fullscreen() const { return _fullscreen.get(); }
+  void setFullscreen(bool fullscreen) { _fullscreen.set(fullscreen); }
+
+#ifdef ENABLE_SYPHON
+  bool syphonEnabled() const { return _syphonEnabled.get(); }
+#endif
+
+  ofxLiquidEvent<bool> fullscreenChanged;
+private:
+  void onFullscreenChanged(bool& value) {
+    fullscreenChanged.notifyListeners(value);
+  }
+
+  TParam<bool> _fullscreen;
+
+#ifdef ENABLE_SYPHON
+  TParam<bool> _syphonEnabled;
+#endif
+};
+
 class CoreParams : public Params {
 public:
   CoreParams() {
@@ -80,29 +116,16 @@ public:
     add(debug
         .setKey("debug")
         .setName("Debug"));
-#ifdef ENABLE_SYPHON
-    add(_syphonEnabled
-        .setKey("syphonEnabled")
-        .setName("Enable Syphon")
-        .setValueAndDefault(false));
-#endif
+    add(output
+        .setKey("output")
+        .setName("Output"));
     bounds.setParamRange(0.5, 40);
   }
-
-#ifdef ENABLE_SYPHON
-  bool syphonEnabled() const { return _syphonEnabled.get(); }
-#endif
 
   Clock::Params clock;
   SimpleCubeBounds bounds;
   DebugParams debug;
-
-private:
-#ifdef ENABLE_SYPHON
-  TParam<bool> _syphonEnabled;
-#endif
-
-  friend class AppGuiImpl;
+  OutputParams output;
 };
 
 class MemoryAppParameters : public Params {
