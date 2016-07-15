@@ -9,7 +9,6 @@
 #ifndef SimulationEvents_h
 #define SimulationEvents_h
 
-#include <ofxLiquidEvent.h>
 #include "Events.h"
 
 class SimulationEvents {

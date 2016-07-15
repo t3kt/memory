@@ -16,11 +16,27 @@
 
 #include <ofxLiquidEvent.h>
 
-class StateEventArgs : public Outputable {
+class EventArgs {
+public:
+  EventArgs() : _handled(false) {}
+
+  bool handled() const { return _handled; }
+  void markHandled() { _handled = true; }
+private:
+  bool _handled;
+};
+
+class StateEventArgs
+: public Outputable
+, public EventArgs {
 public:
   StateEventArgs(const State& s) : state(s) {}
   
-  void output(std::ostream& os) const override;
+  void output(std::ostream& os) const override {
+    os << "StateEventArgs{"
+      << state
+      << "}";
+  }
   
   const State& state;
 };
@@ -42,16 +58,53 @@ private:
   T& _entity;
 };
 
+template<typename T>
+class ValueEventArgs
+: public EventArgs
+, public Outputable {
+public:
+  ValueEventArgs(T& value)
+  : _value(value) { }
+
+  void output(std::ostream& os) const override {
+    os << "ValueEventArgs{"
+    << "value: " << _value
+    << "}";
+  }
+
+  T& value() { return _value; }
+private:
+  T& _value;
+};
+
+template<typename ArgType>
+class TEvent
+: public ofxLiquidEvent<ArgType> {
+public:
+  void notifyListenersUntilHandled(ArgType& args) {
+    for (auto listener : this->listeners) {
+      listener.second(args);
+      if (args.handled()) {
+        return;
+      }
+    }
+  }
+
+  void operator()(ArgType& args) {
+    notifyListenersUntilHandled(args);
+  }
+};
+
 class AnimationObject;
 using AnimationEventArgs = EntityEventArgs<AnimationObject>;
-using AnimationEvent = ofxLiquidEvent<AnimationEventArgs>;
+using AnimationEvent = TEvent<AnimationEventArgs>;
 
 class OccurrenceEntity;
 using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
+using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
 
 class ObserverEntity;
 using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
-using ObserverEvent = ofxLiquidEvent<ObserverEventArgs>;
+using ObserverEvent = TEvent<ObserverEventArgs>;
 
 #endif /* Events_h */

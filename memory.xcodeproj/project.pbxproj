@@ -11,7 +11,6 @@
 		08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484B5A3E7BFD42517F620D1A /* ofxLabelExtended.cpp */; };
 		0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7660658A2B3CABCBAF09C220 /* ofxMasterSlaveControl.cpp */; };
 		11CDA691B113223FE4302083 /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4FD2B31CCC6D024EAEDB3 /* NoiseWarpPass.cpp */; };
-		16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E714069016FC9AE5D8E239FB /* Events.cpp */; };
 		17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AAD52AEE519A889E5A8B9D /* ofxTextAlign.cpp */; };
 		181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6F3AEC223A54C1B2D6C337 /* ofxVerticalSlider.cpp */; };
 		1C4A992F17CCCCB30E0D6BEC /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 889A11393A3D0B658184BE4E /* GodRaysPass.cpp */; };
@@ -348,7 +347,6 @@
 		E4EC3CD2F359FDA848765167 /* RimHighlightingPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RimHighlightingPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RimHighlightingPass.h; sourceTree = SOURCE_ROOT; };
 		E64D341064775BD3E3B680FC /* JsonIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JsonIO.h; path = src/core/JsonIO.h; sourceTree = SOURCE_ROOT; };
 		E6FA95564CAB1A6A26998186 /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
-		E714069016FC9AE5D8E239FB /* Events.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Events.cpp; path = src/core/Events.cpp; sourceTree = SOURCE_ROOT; };
 		E7D54477D3F31295AD3C7A14 /* PixelatePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PixelatePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PixelatePass.cpp; sourceTree = SOURCE_ROOT; };
 		EB976889384E808C423CE477 /* ofxSyphonServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServer.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServer.h; sourceTree = SOURCE_ROOT; };
 		ED1E236F3CF91768C675C432 /* OccurrenceEntity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OccurrenceEntity.cpp; path = src/core/OccurrenceEntity.cpp; sourceTree = SOURCE_ROOT; };
@@ -766,7 +764,6 @@
 				21486E8D0CA688A2FC4DAA74 /* Colors.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
-				E714069016FC9AE5D8E239FB /* Events.cpp */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
@@ -1036,7 +1033,6 @@
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
 				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
-				16AA3A3C23CDC5941D43516D /* Events.cpp in Sources */,
 				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,

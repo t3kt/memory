@@ -10,6 +10,7 @@
 #define AppActions_h
 
 #include "Common.h"
+#include "Events.h"
 
 enum class AppAction {
   RESET_CAMERA,
@@ -27,6 +28,9 @@ enum class AppAction {
   TOGGLE_SHOW_PHYSICS,
   TOGGLE_SHOW_BOUNDS,
 };
+
+using AppActionEventArgs = ValueEventArgs<AppAction>;
+using AppActionEvent = TEvent<AppActionEventArgs>;
 
 extern EnumTypeInfo<AppAction> AppActionType;
 
