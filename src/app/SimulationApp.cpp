@@ -18,7 +18,10 @@ void SimulationApp::setup() {
     _window->setFullscreen(fullscreen);
   };
 
-  _renderingController = RenderingController::create(_appParams.rendering, _appParams.colors);
+  _renderingController =
+  std::make_shared<RenderingController>(_appParams.rendering,
+                                        _appParams.colors);
+  _renderingController->setup();
 
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,

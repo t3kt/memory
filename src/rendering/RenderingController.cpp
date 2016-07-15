@@ -9,65 +9,36 @@
 #include "RenderingController.h"
 #include <ofMain.h>
 
-class RenderingControllerImpl
-: public RenderingController {
-public:
-  RenderingControllerImpl(const Params& params,
-                          const ColorTheme& colors);
-
-  void update(const State& state) override;
-
-  void beginDraw(const State& state) override;
-
-  void endDraw(const State& state) override;
-
-  void resetCamera() override {
-    _cam.reset();
-  }
-
-#ifdef ENABLE_SYPHON
-  void pushToSyphon(ofxSyphonServer& syphonServer) override {
-    _postProc->pushToSyphon(syphonServer);
-  }
-#endif
-
-private:
-  void beginFog();
-  void endFog();
-
-  const Params& _params;
-  const ColorTheme& _colors;
-  const ofFloatColor& _backgroundColor;
-  const ofFloatColor& _fogColor;
-  ofEasyCam _cam;
-  std::shared_ptr<PostProcController> _postProc;
-//  ofLight _light;
-  ofVec3f _rotation;
-};
-
-RenderingControllerImpl::RenderingControllerImpl(const Params& params, const ColorTheme& colors)
+RenderingController::RenderingController(const Params& params,
+                                         const ColorTheme& colors)
 : _params(params)
 , _colors(colors)
 , _backgroundColor(colors.getColor(ColorId::BACKGROUND))
 , _fogColor(colors.getColor(ColorId::FOG)) {
-
-  ofEnableAlphaBlending();
-  _postProc = std::make_shared<PostProcController>(params.postProc);
-  _postProc->setup();
-//  _light.setDirectional();
-//  _light.setPosition(ofVec3f(0, 3, 0));
-//  _light.setDiffuseColor(ofFloatColor::red);
-//  _light.setAttenuation(4);
 }
 
-void RenderingControllerImpl::update(const State &state) {
+void RenderingController::setup() {
+  ofEnableAlphaBlending();
+  _postProc = std::make_shared<PostProcController>(_params.postProc);
+  _postProc->setup();
+  //  _light.setDirectional();
+  //  _light.setPosition(ofVec3f(0, 3, 0));
+  //  _light.setDiffuseColor(ofFloatColor::red);
+  //  _light.setAttenuation(4);
+}
+
+void RenderingController::resetCamera() {
+  _cam.reset();
+}
+
+void RenderingController::update(const State &state) {
   if (_params.camera.spinEnabled()) {
     _rotation += _params.camera.spinRate() * state.timeDelta;
   }
   _postProc->update(state);
 }
 
-void RenderingControllerImpl::beginDraw(const State &state) {
+void RenderingController::beginDraw(const State &state) {
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
@@ -91,7 +62,7 @@ void RenderingControllerImpl::beginDraw(const State &state) {
   ofScale(size, size, size);
 }
 
-void RenderingControllerImpl::endDraw(const State &state) {
+void RenderingController::endDraw(const State &state) {
   ofPopMatrix();
   if (_params.fog.enabled()) {
     endFog();
@@ -102,7 +73,7 @@ void RenderingControllerImpl::endDraw(const State &state) {
   glPopAttrib();
 }
 
-void RenderingControllerImpl::beginFog() {
+void RenderingController::beginFog() {
   GLfloat fogCol[4];
   if (_params.fog.useBackgroundColor()) {
     fogCol[0] = _backgroundColor.r;
@@ -125,10 +96,12 @@ void RenderingControllerImpl::beginFog() {
   glEnable(GL_FOG);
 }
 
-void RenderingControllerImpl::endFog() {
+void RenderingController::endFog() {
   glDisable(GL_FOG);
 }
 
-std::shared_ptr<RenderingController> RenderingController::create(const Params& params, const ColorTheme& colors) {
-  return std::shared_ptr<RenderingController>(new RenderingControllerImpl(params, colors));
+#ifdef ENABLE_SYPHON
+void RenderingController::pushToSyphon(ofxSyphonServer& syphonServer) {
+  _postProc->pushToSyphon(syphonServer);
 }
+#endif

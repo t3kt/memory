@@ -93,15 +93,30 @@ public:
     PostProcController::Params postProc;
   };
 
-  static shared_ptr<RenderingController> create(const Params& params, const ColorTheme& colors);
+  RenderingController(const Params& params,
+                      const ColorTheme& colors);
 
-  virtual void update(const State& state) = 0;
-  virtual void beginDraw(const State& state) = 0;
-  virtual void endDraw(const State& state) = 0;
-  virtual void resetCamera() = 0;
+  void setup();
+  void update(const State& state);
+  void beginDraw(const State& state);
+  void endDraw(const State& state);
+  void resetCamera();
 #ifdef ENABLE_SYPHON
-  virtual void pushToSyphon(ofxSyphonServer& syphonServer) = 0;
+  void pushToSyphon(ofxSyphonServer& syphonServer);
 #endif
+
+private:
+  void beginFog();
+  void endFog();
+
+  const Params& _params;
+  const ColorTheme& _colors;
+  const ofFloatColor& _backgroundColor;
+  const ofFloatColor& _fogColor;
+  ofEasyCam _cam;
+  std::shared_ptr<PostProcController> _postProc;
+  //  ofLight _light;
+  ofVec3f _rotation;
 };
 
 #endif /* RenderingController_h */
