@@ -6,7 +6,7 @@
 #include "SimulationApp.h"
 #include "SimulationEvents.h"
 
-const int CONTROLS_WIDTH = 300;
+const int CONTROLS_WIDTH = 250;
 
 int main( ){
   ofGLFWWindowSettings simWinSettings;

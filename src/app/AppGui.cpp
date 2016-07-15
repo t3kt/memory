@@ -80,7 +80,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
 : _appParams(appParams)
 , _actions(actionHandler) {
   _pages.setup();
-  _pages.setSize(290, 600);
+  _pages.setSize(240, 700);
   _pages.setShowHeader(false);
   _pages.setPosition(0, 60);
 
@@ -89,7 +89,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _pages.add(&_corePage);
 
   _entityPages.setup();
-  _entityPages.setSize(270, 700);
+  _entityPages.setSize(230, 700);
   _entityPages.setShowHeader(false);
 
   _entityPage.setup();
@@ -100,11 +100,13 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _observersPage.setup("Observers");
   auto observersGroup = new ofxGuiGroupExtended(_appParams.observers);
   _observersPage.add(observersGroup);
+  _observersPage.setSize(230, 700);
   observersGroup->setPosition(15, 100);
   _entityPages.add(&_observersPage);
 
   _occurrencesPage.setup("Occurrences");
   _occurrencesPage.add(new ofxGuiGroupExtended(_appParams.occurrences));
+  _occurrencesPage.setSize(230, 700);
   _entityPages.add(&_occurrencesPage);
 
   _animationsPage.setup("Anim");
