@@ -11,6 +11,7 @@
 
 #include <ofEasyCam.h>
 #include <ofAppGLFWWindow.h>
+#include "AppActions.h"
 #include "Colors.h"
 #include "Common.h"
 #include "Params.h"
@@ -73,7 +74,8 @@ private:
   TParam<bool> _useBackgroundColor;
 };
 
-class RenderingController {
+class RenderingController
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
@@ -104,6 +106,8 @@ public:
   void endDraw(const State& state);
   void resetCamera();
   void updateResolution();
+
+  bool performAction(AppAction action) override;
 
 #ifdef ENABLE_SYPHON
   void pushToSyphon(ofxSyphonServer& syphonServer);

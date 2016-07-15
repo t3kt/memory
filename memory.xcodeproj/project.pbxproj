@@ -817,8 +817,8 @@
 		BE9DD360F550B0DF4D357E7B /* app */ = {
 			isa = PBXGroup;
 			children = (
-				323336B11D3339B500A000BD /* AppActions.h */,
 				323336B21D3339D400A000BD /* AppActions.cpp */,
+				323336B11D3339B500A000BD /* AppActions.h */,
 				4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */,
 				3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */,
 				7B1EA976C3295181487B1B58 /* AppParameters.cpp */,

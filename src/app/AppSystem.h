@@ -19,8 +19,7 @@
 class SimulationApp;
 class ControlApp;
 
-class AppSystem
-: public AppActionHandler {
+class AppSystem {
 public:
   static AppSystem& get();
 
@@ -40,7 +39,7 @@ public:
 
   ControlApp* control() { return _controlApp.get(); }
 
-  bool performAction(AppAction action) override;
+  bool performAction(AppAction action);
 
   bool handleKeyPressed(ofKeyEventArgs& event);
 

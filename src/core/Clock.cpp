@@ -20,6 +20,19 @@ void Clock::setup() {
   _state.running = true;
   _state.time = 0;
   _state.timeDelta = 0;
+
+  registerWithAppSystem();
+}
+
+bool Clock::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::TOGGLE_CLOCK_STATE:
+      toggleState();
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
 
 void Clock::start() {

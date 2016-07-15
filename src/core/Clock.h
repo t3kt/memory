@@ -11,10 +11,12 @@
 
 #include <memory>
 #include <ofParameter.h>
-#include "State.h"
+#include "AppActions.h"
 #include "Params.h"
+#include "State.h"
 
-class Clock {
+class Clock
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
@@ -47,6 +49,8 @@ public:
   void toggleState();
 
   void update();
+
+  bool performAction(AppAction action) override;
 private:
   void start();
   void stop();

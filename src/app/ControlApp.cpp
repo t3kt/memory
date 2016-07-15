@@ -85,11 +85,7 @@ void ControlApp::setup() {
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
 
-  AppSystem::get().appActionTriggered += [&](AppActionEventArgs event) {
-    if (performAction(event.value())) {
-      event.markHandled();
-    }
-  };
+  registerWithAppSystem();
 }
 
 void ControlApp::updateLogState() {
@@ -118,6 +114,9 @@ bool ControlApp::performAction(AppAction action) {
       break;
     case AppAction::SAVE_SETTINGS:
       saveSettings();
+      break;
+    case AppAction::TOGGLE_LOGGING:
+      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
       break;
     default:
       return false;

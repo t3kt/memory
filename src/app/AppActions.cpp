@@ -7,8 +7,10 @@
 //
 
 #include "AppActions.h"
+#include "AppSystem.h"
 
 EnumTypeInfo<AppAction> AppActionType({
+  {"(none)", AppAction::NONE},
   {"resetCamera", AppAction::RESET_CAMERA},
   {"toggleLogging", AppAction::TOGGLE_LOGGING},
   {"toggleClockState", AppAction::TOGGLE_CLOCK_STATE},
@@ -27,4 +29,12 @@ EnumTypeInfo<AppAction> AppActionType({
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action) {
   os << AppActionType.toString(action);
+}
+
+void AppActionHandler::registerWithAppSystem() {
+  AppSystem::get().appActionTriggered += [&](AppActionEventArgs& event) {
+    if (performAction(event.value())) {
+      event.markHandled();
+    }
+  };
 }

@@ -21,11 +21,7 @@ void SimulationApp::setup() {
     _renderingController->updateResolution();
   };
 
-  AppSystem::get().appActionTriggered += [&](AppActionEventArgs event) {
-    if (performAction(event.value())) {
-      event.markHandled();
-    }
-  };
+  registerWithAppSystem();
 
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
@@ -108,15 +104,6 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
-    case AppAction::RESET_CAMERA:
-      _renderingController->resetCamera();
-      break;
-    case AppAction::TOGGLE_LOGGING:
-      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
-      break;
-    case AppAction::TOGGLE_CLOCK_STATE:
-      _clock->toggleState();
-      break;
     case AppAction::SPAWN_FEW_OCCURRENCES:
       _occurrences->spawnOccurrences(5, _state);
       break;

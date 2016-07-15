@@ -27,6 +27,7 @@ void RenderingController::setup() {
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
+  registerWithAppSystem();
 }
 
 void RenderingController::updateResolution() {
@@ -36,6 +37,17 @@ void RenderingController::updateResolution() {
 
 void RenderingController::resetCamera() {
   _cam.reset();
+}
+
+bool RenderingController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::RESET_CAMERA:
+      resetCamera();
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
 
 void RenderingController::update(const State &state) {

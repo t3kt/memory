@@ -14,6 +14,7 @@
 #include "Events.h"
 
 enum class AppAction {
+  NONE,
   RESET_CAMERA,
   TOGGLE_LOGGING,
   TOGGLE_CLOCK_STATE,
@@ -38,6 +39,9 @@ extern EnumTypeInfo<AppAction> AppActionType;
 class AppActionHandler {
 public:
   virtual bool performAction(AppAction action) = 0;
+
+protected:
+  void registerWithAppSystem();
 };
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action);
