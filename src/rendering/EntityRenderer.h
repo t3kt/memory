@@ -222,17 +222,36 @@ public:
 
   ObserverObserverConnectorRenderer(const Params& params,
                                     const ofFloatColor& color,
-                                    const ObjectManager<ObserverEntity>& observers)
+                                    const ObjectManager<ObserverEntity>& entities)
   : _params(params)
   , _color(color)
-  , _observers(observers) { }
+  , _entities(entities) { }
 
   void draw(const State& state);
 
 private:
   const Params& _params;
   const ofFloatColor& _color;
-  const ObjectManager<ObserverEntity>& _observers;
+  const ObjectManager<ObserverEntity>& _entities;
+};
+
+class OccurrenceOccurrenceConnectorRenderer {
+public:
+  using Params = ParamsWithEnabled;
+
+  OccurrenceOccurrenceConnectorRenderer(const Params& params,
+                                    const ofFloatColor& color,
+                                    const ObjectManager<OccurrenceEntity>& entities)
+  : _params(params)
+  , _color(color)
+  , _entities(entities) { }
+
+  void draw(const State& state);
+
+private:
+  const Params& _params;
+  const ofFloatColor& _color;
+  const ObjectManager<OccurrenceEntity>& _entities;
 };
 
 #endif /* EntityRenderer_h */

@@ -141,7 +141,7 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
   ofEnableAlphaBlending();
   ofMesh connectorMesh;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (const auto& observer : _observers) {
+  for (const auto& observer : _entities) {
     if (!observer->alive()) {
       continue;
     }
@@ -153,6 +153,36 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
       }
       float otherLife = other.second->getRemainingLifetimeFraction();
       connectorMesh.addVertex(observer->position());
+      connectorMesh.addColor(connectorStartColor);
+      connectorMesh.addVertex(other.second->position());
+      connectorMesh.addColor(ofFloatColor(_color,
+                                          _color.a * otherLife));
+    }
+  }
+  connectorMesh.draw();
+  ofPopStyle();
+}
+
+void OccurrenceOccurrenceConnectorRenderer::draw(const State& state) {
+  if (!_params.enabled()) {
+    return;
+  }
+  ofPushStyle();
+  ofEnableAlphaBlending();
+  ofMesh connectorMesh;
+  connectorMesh.setMode(OF_PRIMITIVE_LINES);
+  for (const auto& occurrence : _entities) {
+    if (!occurrence->alive()) {
+      continue;
+    }
+    float occurrenceLife = occurrence->getAmountOfObservation();
+    ofFloatColor connectorStartColor(_color, _color.a * occurrenceLife);
+    for (const auto& other : occurrence->getConnectedOccurrences()) {
+      if (!other.second->alive()) {
+        continue;
+      }
+      float otherLife = other.second->getAmountOfObservation();
+      connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
       connectorMesh.addVertex(other.second->position());
       connectorMesh.addColor(ofFloatColor(_color,

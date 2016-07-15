@@ -43,9 +43,6 @@ void ObserverEntity::detachConnections() {
     occurrence.second->removeObserver(id);
   }
   for (auto& observer : _connectedObservers) {
-    if (!observer.second) {
-      continue;
-    }
     observer.second->removeObserver(id);
   }
 }

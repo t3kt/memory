@@ -23,6 +23,7 @@ enum class ColorId {
   OBSERVER_THRESHOLD_CONNECTOR,
   OCCURRENCE_MARKER,
   OCCURRENCE_RANGE,
+  OCCURRENCE_OBSERVER_CONNECTOR,
   OCCURRENCE_CONNECTOR,
   OBSERVER_CONNECTOR,
   OBSERVER_DIED,
@@ -49,6 +50,7 @@ private:
   TParam<ofFloatColor> _observerConnector;
   TParam<ofFloatColor> _occurrenceMarker;
   TParam<ofFloatColor> _occurrenceRange;
+  TParam<ofFloatColor> _occurrenceObserverConnector;
   TParam<ofFloatColor> _occurrenceConnector;
   TParam<ofFloatColor> _observerDied;
   TParam<ofFloatColor> _occurrenceDied;
