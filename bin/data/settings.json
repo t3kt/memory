@@ -124,10 +124,10 @@
       "loggingEnabled": false,
       "showBounds": false,
       "showPhysics": false,
-      "showStatus": true
+      "showStatus": false
     },
     "output": {
-      "fullscreen": false,
+      "fullscreen": true,
       "syphonEnabled": true
     }
   },
@@ -265,12 +265,12 @@
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
-        "high": 1.5635151863098145,
+        "high": 1.917534351348877,
         "low": 0.039999999105930328
       },
-      "enabled": false,
-      "magnitude": 9.9999997473787516e-05,
-      "reverse": false
+      "enabled": true,
+      "magnitude": 0.0069387755356729031,
+      "reverse": true
     },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,
@@ -295,12 +295,12 @@
       ]
     },
     "fog": {
-      "density": 0.0008367347763851285,
+      "density": 0.00014285715587902814,
       "distance": {
         "high": 4.0016660690307617,
         "low": 3.3769264221191406
       },
-      "enabled": false,
+      "enabled": true,
       "useBackgroundColor": true
     },
     "postProc": {
@@ -309,8 +309,8 @@
       },
       "dof": {
         "aperture": 0.33161184191703796,
-        "enabled": false,
-        "focus": 1.0010828971862793,
+        "enabled": true,
+        "focus": 1.0063556432723999,
         "maxBlur": 0.67721784114837646
       },
       "edge": {

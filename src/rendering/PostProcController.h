@@ -50,7 +50,7 @@ public:
         .setKey("focus")
         .setName("Focus")
         .setValueAndDefault(0.985)
-        .setRange(0.9, 1.1));
+        .setRange(0.99, 1.01));
     add(_aperture
         .setKey("aperture")
         .setName("Aperture")
