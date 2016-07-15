@@ -97,6 +97,7 @@ void OccurrencesController::update(State &state) {
     occurrence->setActualRadius(radius);
   }
   _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
+    occurrence->detachConnections();
     OccurrenceEventArgs e(state, *occurrence);
     _events.occurrenceDied.notifyListeners(e);
   });

@@ -32,10 +32,20 @@ public:
   void removeObserver(ObjectId id) {
     _connectedObservers.erase(id);
   }
+
+  void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
+    _connectedOccurrences.add(occurrence);
+  }
+
+  void removeOccurrence(ObjectId id) {
+    _connectedOccurrences.erase(id);
+  }
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
   }
+
+  void detachConnections();
   
   float getAmountOfObservation() const { return _amountOfObservation; }
 
@@ -51,6 +61,14 @@ public:
 
   EntityMap<ObserverEntity>& connectedObservers() {
     return _connectedObservers;
+  }
+
+  const EntityMap<OccurrenceEntity>& connectedOccurrences() const {
+    return _connectedOccurrences;
+  }
+
+  EntityMap<OccurrenceEntity>& connectedOccurrences() {
+    return _connectedOccurrences;
   }
 
 protected:
@@ -71,6 +89,7 @@ private:
   float _startTime;
   float _amountOfObservation;
   EntityMap<ObserverEntity> _connectedObservers;
+  EntityMap<OccurrenceEntity> _connectedOccurrences;
 
   friend class OccurrencesController;
 };
