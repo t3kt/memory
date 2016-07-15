@@ -21,7 +21,7 @@ void SimulationApp::setup() {
     _renderingController->updateResolution();
   };
 
-  registerWithAppSystem();
+  registerAsActionHandler();
 
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
@@ -104,23 +104,6 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
-    case AppAction::SPAWN_FEW_OCCURRENCES:
-      _occurrences->spawnOccurrences(5, _state);
-      break;
-    case AppAction::SPAWN_FEW_OBSERVERS:
-      _observers->spawnObservers(5, _state);
-      break;
-    case AppAction::SPAWN_MANY_OCCURRENCES:
-      _occurrences->spawnOccurrences(100, _state);
-      break;
-    case AppAction::SPAWN_MANY_OBSERVERS:
-      _observers->spawnObservers(100, _state);
-      break;
-    case AppAction::KILL_FEW_OBSERVERS:
-      _observers->killObservers(5);
-      break;
-    case AppAction::KILL_MANY_OBSERVERS:
-      _observers->killObservers(100);
     case AppAction::STOP_ALL_ENTITIES:
       _physics->stopAllEntities();
       break;

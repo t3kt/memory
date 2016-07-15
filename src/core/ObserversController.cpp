@@ -54,6 +54,28 @@ void ObserversController::setup(const State &state, const ColorTheme& colors) {
   _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
   _spawner = std::make_shared<IntervalObserverSpawner>(*this);
   _rateSpawner = std::make_shared<RateObserverSpawner>(*this);
+
+  registerAsActionHandler();
+}
+
+bool ObserversController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SPAWN_FEW_OBSERVERS:
+      spawnObservers(5, _state);
+      break;
+    case AppAction::SPAWN_MANY_OBSERVERS:
+      spawnObservers(100, _state);
+      break;
+    case AppAction::KILL_FEW_OBSERVERS:
+      killObservers(5);
+      break;
+    case AppAction::KILL_MANY_OBSERVERS:
+      killObservers(100);
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
 
 void ObserversController::update(State &state) {

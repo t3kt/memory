@@ -85,7 +85,7 @@ void ControlApp::setup() {
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
 
-  registerWithAppSystem();
+  registerAsActionHandler();
 }
 
 void ControlApp::updateLogState() {

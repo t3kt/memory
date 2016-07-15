@@ -41,7 +41,7 @@ public:
   virtual bool performAction(AppAction action) = 0;
 
 protected:
-  void registerWithAppSystem();
+  void registerAsActionHandler();
 };
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action);

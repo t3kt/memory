@@ -56,6 +56,22 @@ void OccurrencesController::setup(const State &state, const ColorTheme& colors) 
   _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
   _spawner = std::make_shared<IntervalOccurrenceSpawner>(*this);
   _rateSpawner = std::make_shared<RateOccurrenceSpawner>(*this);
+
+  registerAsActionHandler();
+}
+
+bool OccurrencesController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SPAWN_FEW_OCCURRENCES:
+      spawnOccurrences(5, _state);
+      break;
+    case AppAction::SPAWN_MANY_OCCURRENCES:
+      spawnOccurrences(100, _state);
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
 
 void OccurrencesController::update(State &state) {

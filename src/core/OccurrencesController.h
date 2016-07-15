@@ -9,6 +9,7 @@
 #ifndef OccurrencesController_h
 #define OccurrencesController_h
 
+#include "AppActions.h"
 #include "OccurrenceEntity.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
@@ -24,7 +25,8 @@
 class IntervalOccurrenceSpawner;
 class RateOccurrenceSpawner;
 
-class OccurrencesController {
+class OccurrencesController
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
@@ -79,6 +81,8 @@ public:
   const ObjectManager<OccurrenceEntity>& entities() const {
     return _occurrences;
   }
+
+  bool performAction(AppAction action) override;
   
 private:
   void spawnRandomOccurrence(const State& state);

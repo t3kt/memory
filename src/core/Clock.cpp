@@ -21,7 +21,7 @@ void Clock::setup() {
   _state.time = 0;
   _state.timeDelta = 0;
 
-  registerWithAppSystem();
+  registerAsActionHandler();
 }
 
 bool Clock::performAction(AppAction action) {

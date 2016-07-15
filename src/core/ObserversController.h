@@ -9,6 +9,7 @@
 #ifndef ObserversController_h
 #define ObserversController_h
 
+#include "AppActions.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "ObjectManager.h"
@@ -25,7 +26,8 @@
 class IntervalObserverSpawner;
 class RateObserverSpawner;
 
-class ObserversController {
+class ObserversController
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
@@ -87,6 +89,8 @@ public:
   const ObjectManager<ObserverEntity>& entities() const {
     return _observers;
   }
+
+  bool performAction(AppAction action) override;
   
 private:
   void spawnRandomObserver(const State& state);

@@ -27,7 +27,7 @@ void RenderingController::setup() {
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
-  registerWithAppSystem();
+  registerAsActionHandler();
 }
 
 void RenderingController::updateResolution() {
