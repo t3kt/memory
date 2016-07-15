@@ -11,16 +11,41 @@
 
 #include <memory>
 #include <ofAppGLFWWindow.h>
+#include <ofEvents.h>
+#include "AppActions.h"
 #include "AppParameters.h"
+#include "Events.h"
 
 class SimulationApp;
 class ControlApp;
 
-class AppSystem {
+class AppSystem
+: public AppActionHandler {
 public:
   static AppSystem& get();
 
   void main();
+
+  MemoryAppParameters& params() { return _appParams; }
+
+  std::shared_ptr<ofAppGLFWWindow>& simulationWindow() {
+    return _simulationWindow;
+  }
+
+  std::shared_ptr<ofAppGLFWWindow>& controlWindow() {
+    return _controlWindow;
+  }
+
+  SimulationApp* simulation() { return _simulationApp.get(); }
+
+  ControlApp* control() { return _controlApp.get(); }
+
+  bool performAction(AppAction action) override;
+
+  bool handleKeyPressed(ofKeyEventArgs& event);
+
+  AppActionEvent appActionTriggered;
+
 private:
   void setup();
 

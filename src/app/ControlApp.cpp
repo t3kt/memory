@@ -6,26 +6,10 @@
 //
 //
 
+#include <map>
+#include "AppSystem.h"
 #include "ControlApp.h"
 #include "SimulationApp.h"
-#include <map>
-
-static std::map<int, AppAction> KEY_TO_ACTION = {
-  {'h', AppAction::RESET_CAMERA},
-  {'l', AppAction::TOGGLE_LOGGING},
-  {' ', AppAction::TOGGLE_CLOCK_STATE},
-  {'9', AppAction::SPAWN_FEW_OCCURRENCES},
-  {'0', AppAction::SPAWN_FEW_OBSERVERS},
-  {'(', AppAction::SPAWN_MANY_OCCURRENCES},
-  {')', AppAction::SPAWN_MANY_OBSERVERS},
-  {'-', AppAction::KILL_FEW_OBSERVERS},
-  {'_', AppAction::KILL_MANY_OBSERVERS},
-  {'r', AppAction::LOAD_SETTINGS},
-  {'w', AppAction::SAVE_SETTINGS},
-  {'x', AppAction::STOP_ALL_ENTITIES},
-  {'p', AppAction::TOGGLE_SHOW_PHYSICS},
-  {'b', AppAction::TOGGLE_SHOW_BOUNDS},
-};
 
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(const std::string message) {
@@ -89,10 +73,6 @@ private:
   std::function<void(OccurrenceEventArgs&)> _occurrenceDied;
 };
 
-void ControlApp::attachSimulation(std::shared_ptr<SimulationApp> simulation) {
-  _simulation = simulation;
-}
-
 void ControlApp::setup() {
   _eventLoggers = std::make_shared<EventLoggers>();
 
@@ -104,15 +84,22 @@ void ControlApp::setup() {
   loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
+
+  AppSystem::get().appActionTriggered += [&](AppActionEventArgs event) {
+    if (performAction(event.value())) {
+      event.markHandled();
+    }
+  };
 }
 
 void ControlApp::updateLogState() {
   bool enabled = _appParams.core.debug.loggingEnabled();
   ofSetLogLevel(enabled ? OF_LOG_NOTICE : OF_LOG_ERROR);
+  auto simulation = AppSystem::get().simulation();
   if (enabled) {
-    _eventLoggers->attach(_simulation->getEvents());
+    _eventLoggers->attach(simulation->getEvents());
   } else {
-    _eventLoggers->detach(_simulation->getEvents());
+    _eventLoggers->detach(simulation->getEvents());
   }
 }
 
@@ -120,15 +107,11 @@ void ControlApp::draw() {
   _gui->draw();
 }
 
-void ControlApp::keyPressed(int key) {
-  auto iter = KEY_TO_ACTION.find(key);
-  if (iter == KEY_TO_ACTION.end()) {
-    return;
-  }
-  performAction(iter->second);
+void ControlApp::keyPressed(ofKeyEventArgs& event) {
+  AppSystem::get().handleKeyPressed(event);
 }
 
-void ControlApp::performAction(AppAction action) {
+bool ControlApp::performAction(AppAction action) {
   switch (action) {
     case AppAction::LOAD_SETTINGS:
       loadSettings();
@@ -137,8 +120,9 @@ void ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     default:
-      _simulation->performAction(action);
+      return false;
   }
+  return true;
 }
 
 void ControlApp::loadSettings() {

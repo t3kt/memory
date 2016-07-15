@@ -25,3 +25,6 @@ EnumTypeInfo<AppAction> AppActionType({
   {"toggleShowBounds", AppAction::TOGGLE_SHOW_BOUNDS},
 });
 
+std::ostream& operator<<(std::ostream& os, const AppAction& action) {
+  os << AppActionType.toString(action);
+}

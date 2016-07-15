@@ -27,8 +27,6 @@
 #include <ofxSyphon.h>
 #endif
 
-class ControlApp;
-
 class SimulationApp
 : public ofBaseApp
 , public AppActionHandler {
@@ -38,15 +36,13 @@ public:
   : _appParams(appParams)
   , _window(window) { }
 
-  void attachControls(std::shared_ptr<ControlApp> control);
-
   void setup() override;
   void update() override;
   void draw() override;
 
-  void keyPressed(int key) override;
+  void keyPressed(ofKeyEventArgs& eventl) override;
 
-  void performAction(AppAction action) override;
+  bool performAction(AppAction action) override;
 
   SimulationEvents& getEvents() { return _events; }
 
@@ -58,7 +54,6 @@ private:
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
   std::shared_ptr<ofAppGLFWWindow> _window;
-  std::shared_ptr<ControlApp> _control;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;

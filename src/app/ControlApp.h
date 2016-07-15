@@ -17,7 +17,6 @@
 #include "Common.h"
 #include "State.h"
 
-class SimulationApp;
 class EventLoggers;
 
 class ControlApp
@@ -27,14 +26,12 @@ public:
   ControlApp(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
 
-  void attachSimulation(std::shared_ptr<SimulationApp> simulation);
-
   void setup() override;
   void draw() override;
 
-  void keyPressed(int key) override;
+  void keyPressed(ofKeyEventArgs& event) override;
 
-  void performAction(AppAction action) override;
+  bool performAction(AppAction action) override;
 private:
   void updateLogState();
 
@@ -42,7 +39,6 @@ private:
   void saveSettings();
 
   MemoryAppParameters& _appParams;
-  std::shared_ptr<SimulationApp> _simulation;
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
 };

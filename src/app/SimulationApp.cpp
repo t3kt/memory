@@ -6,12 +6,8 @@
 //
 //
 
+#include "AppSystem.h"
 #include "SimulationApp.h"
-#include "ControlApp.h"
-
-void SimulationApp::attachControls(std::shared_ptr<ControlApp> control) {
-  _control = control;
-}
 
 void SimulationApp::setup() {
   _renderingController =
@@ -23,6 +19,12 @@ void SimulationApp::setup() {
   _appParams.core.output.fullscreenChanged += [&](bool fullscreen) {
     _window->setFullscreen(fullscreen);
     _renderingController->updateResolution();
+  };
+
+  AppSystem::get().appActionTriggered += [&](AppActionEventArgs event) {
+    if (performAction(event.value())) {
+      event.markHandled();
+    }
   };
 
   _observers =
@@ -100,11 +102,11 @@ void SimulationApp::draw() {
   }
 }
 
-void SimulationApp::keyPressed(int key) {
-  _control->keyPressed(key);
+void SimulationApp::keyPressed(ofKeyEventArgs& event) {
+  AppSystem::get().handleKeyPressed(event);
 }
 
-void SimulationApp::performAction(AppAction action) {
+bool SimulationApp::performAction(AppAction action) {
   switch (action) {
     case AppAction::RESET_CAMERA:
       _renderingController->resetCamera();
@@ -142,7 +144,7 @@ void SimulationApp::performAction(AppAction action) {
       _appParams.core.debug.setShowPhysics(!_appParams.core.debug.showPhysics());
       break;
     default:
-      ofLogWarning() << "Action not supported by SimulationApp: " << AppActionType.toString(action);
-      break;
+      return false;
   }
+  return true;
 }

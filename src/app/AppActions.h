@@ -9,6 +9,7 @@
 #ifndef AppActions_h
 #define AppActions_h
 
+#include <iostream>
 #include "Common.h"
 #include "Events.h"
 
@@ -36,7 +37,9 @@ extern EnumTypeInfo<AppAction> AppActionType;
 
 class AppActionHandler {
 public:
-  virtual void performAction(AppAction action) = 0;
+  virtual bool performAction(AppAction action) = 0;
 };
+
+std::ostream& operator<<(std::ostream& os, const AppAction& action);
 
 #endif /* AppActions_h */
