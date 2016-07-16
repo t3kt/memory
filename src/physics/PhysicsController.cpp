@@ -44,10 +44,10 @@ bool PhysicsController::performAction(AppAction action) {
       stopAllEntities();
       break;
     case AppAction::TOGGLE_SHOW_BOUNDS:
-      _debugParams.setShowBounds(!_debugParams.showBounds());
+      toggleBoolParam(_debugParams.showBounds);
       break;
     case AppAction::TOGGLE_SHOW_PHYSICS:
-      _debugParams.setShowPhysics(!_debugParams.showPhysics());
+      toggleBoolParam(_debugParams.showPhysics);
       break;
     default:
       return false;

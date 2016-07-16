@@ -130,6 +130,10 @@ private:
   T _defaultValue;
 };
 
+inline void toggleBoolParam(TParam<bool>& param) {
+  param.set(!param.get());
+}
+
 class Params
 : public ofParameterGroup
 , public TParamInfoBase

@@ -1,13 +1,13 @@
 //
 //  AppParameters.h
-//  behavior
+//  memory
 //
 //  Created by tekt on 1/25/15.
 //
 //
 
-#ifndef __behavior__AppParameters__
-#define __behavior__AppParameters__
+#ifndef AppParameters_h
+#define AppParameters_h
 
 #include <ofParameterGroup.h>
 
@@ -25,73 +25,49 @@
 
 class DebugParams : public Params {
 public:
-  DebugParams()
-  : loggingEnabledChanged(_loggingEnabled.changed) {
-    add(_loggingEnabled
+  DebugParams() {
+    add(loggingEnabled
         .setKey("loggingEnabled")
         .setName("Logging Enabled")
         .setValueAndDefault(false));
-    add(_showBounds
+    add(showBounds
         .setKey("showBounds")
         .setName("Show Bounds")
         .setValueAndDefault(false));
-    add(_showStatus
+    add(showStatus
         .setKey("showStatus")
         .setName("Show Status")
         .setValueAndDefault(true));
-    add(_showPhysics
+    add(showPhysics
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
   }
 
-  bool loggingEnabled() const { return _loggingEnabled.get(); }
-  bool showBounds() const { return _showBounds.get(); }
-  bool showStatus() const { return _showStatus.get(); }
-  bool showPhysics() const { return _showPhysics.get(); }
-
-  void setLoggingEnabled(bool loggingEnabled) { _loggingEnabled.set(loggingEnabled); }
-  void setShowBounds(bool showBounds) { _showBounds.set(showBounds); }
-  void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
-  void setShowPhysics(bool showPhysics) { _showPhysics.set(showPhysics); }
-
-  TEvent<bool&>& loggingEnabledChanged;
-
-private:
-  TParam<bool> _loggingEnabled;
-  TParam<bool> _showBounds;
-  TParam<bool> _showStatus;
-  TParam<bool> _showPhysics;
+  TParam<bool> loggingEnabled;
+  TParam<bool> showBounds;
+  TParam<bool> showStatus;
+  TParam<bool> showPhysics;
 };
 
 class OutputParams : public Params {
 public:
-  OutputParams()
-  : fullscreenChanged(_fullscreen.changed) {
-    add(_fullscreen
+  OutputParams() {
+    add(fullscreen
         .setKey("fullscreen")
         .setName("Fullscreen"));
 #ifdef ENABLE_SYPHON
-    add(_syphonEnabled
+    add(syphonEnabled
         .setKey("syphonEnabled")
         .setName("Enable Syphon")
         .setValueAndDefault(false));
 #endif
   }
 
-  bool fullscreen() const { return _fullscreen.get(); }
-  void setFullscreen(bool fullscreen) { _fullscreen.set(fullscreen); }
+  TParam<bool> fullscreen;
 
 #ifdef ENABLE_SYPHON
-  bool syphonEnabled() const { return _syphonEnabled.get(); }
-#endif
-
-  TEvent<bool&>& fullscreenChanged;
-private:
-  TParam<bool> _fullscreen;
-
-#ifdef ENABLE_SYPHON
-  TParam<bool> _syphonEnabled;
+  TParam<bool> syphonEnabled;
 #endif
 };
 
@@ -113,7 +89,7 @@ public:
     add(midi
         .setKey("midi")
         .setName("Midi"));
-    bounds.setParamRange(0.5, 40);
+    bounds.size.setRange(0.5, 40);
   }
 
   Clock::Params clock;
@@ -161,4 +137,4 @@ public:
   PhysicsController::Params physics;
 };
 
-#endif /* defined(__behavior__AppParameters__) */
+#endif /* AppParameters_h */

@@ -45,8 +45,8 @@ void addMapping(MidiRouter::MappingArray& mappings,
 
 
 void MidiRouter::setup() {
-  addMapping(_mappings, 0, _appParams.core.clock._rate);
-  addMapping(_mappings, 64, _appParams.core.clock._paused);
+  addMapping(_mappings, 0, _appParams.core.clock.rate);
+  addMapping(_mappings, 64, _appParams.core.clock.paused);
 }
 
 void MidiRouter::attachTo(std::shared_ptr<ofxMidiFighterTwister> twister) {

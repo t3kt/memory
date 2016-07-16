@@ -76,7 +76,7 @@ private:
 void ControlApp::setup() {
   _eventLoggers = std::make_shared<EventLoggers>();
 
-  _appParams.core.debug.loggingEnabledChanged += [this]() {
+  _appParams.core.debug.loggingEnabled.changed += [this]() {
     updateLogState();
   };
 
@@ -123,7 +123,7 @@ bool ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
+      toggleBoolParam(_appParams.core.debug.loggingEnabled);
       break;
     default:
       return false;

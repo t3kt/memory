@@ -21,27 +21,19 @@ public:
   class Params : public ::Params {
   public:
     Params() {
-      add(_paused
+      add(paused
           .setKey("paused")
           .setName("Paused")
           .setValueAndDefault(false));
-      add(_rate
+      add(rate
           .setKey("rate")
           .setName("Rate")
           .setValueAndDefault(1)
           .setRange(0, 10));
     }
 
-    bool paused() const { return _paused.get(); }
-    float rate() const { return _rate.get(); }
-
-    void setPaused(bool paused) { _paused.set(paused); }
-
-  private:
-    TParam<bool> _paused;
-    TParam<float> _rate;
-
-    friend class MidiRouter;
+    TParam<bool> paused;
+    TParam<float> rate;
   };
 
   Clock(Params& params, State& state);

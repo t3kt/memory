@@ -20,20 +20,18 @@ public:
   class Params : public SpawnerParams {
   public:
     Params() {
-      add(_interval
+      add(interval
           .setKey("interval")
           .setName("Interval")
           .setValueAndDefault(4)
           .setRange(0, 30));
     }
 
-    void setIntervalValueAndDefault(float interval) {
-      _interval.setValueAndDefault(interval);
+    void setIntervalValueAndDefault(float val) {
+      interval.setValueAndDefault(val);
     }
 
-    float interval() const { return _interval.get(); }
-  private:
-    TParam<float> _interval;
+    TParam<float> interval;
   };
 
   IntervalSpawner(const Params& params)
