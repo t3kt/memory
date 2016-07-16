@@ -21,14 +21,11 @@ void MidiController::setup() {
   _params.enabledChanged += [&](ValueEventArgs<bool>) {
     initOrDestroyTwister();
   };
-  _params.twisterEnabledChanged += [&](ValueEventArgs<bool>) {
-    initOrDestroyTwister();
-  };
   initOrDestroyTwister();
 }
 
 void MidiController::initOrDestroyTwister() {
-  if (_params.enabled() && _params.twisterEnabled()) {
+  if (_params.enabled()) {
     initializeTwister();
   } else {
     destroyTwister();

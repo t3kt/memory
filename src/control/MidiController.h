@@ -19,30 +19,7 @@ class MidiRouter;
 
 class MidiController {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(_twisterEnabled
-          .setKey("twisterEnabled")
-          .setName("MF Twister Enabled")
-          .setValueAndDefault(false));
-      setEnabledValueAndDefault(false);
-      _twisterEnabled.addListener(this,
-                                  &Params::onTwisterEnabledChanged);
-    }
-
-    ValueEvent<bool> twisterEnabledChanged;
-
-    bool twisterEnabled() const { return _twisterEnabled.get(); }
-
-  private:
-    void onTwisterEnabledChanged(bool& value) {
-      ValueEventArgs<bool> e(value);
-      twisterEnabledChanged.notifyListenersUntilHandled(e);
-    }
-
-    TParam<bool> _twisterEnabled;
-  };
+  using Params = ParamsWithEnabled;
 
   MidiController(MemoryAppParameters& appParams);
 
