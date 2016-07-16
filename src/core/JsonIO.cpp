@@ -250,7 +250,7 @@ void TParam<ofFloatColor>::read_json(const Json& val) {
   set(ofFloatColorFromJsonValue(val));
 }
 
-void readJsonIntoParams(const Json& obj, std::initializer_list<std::reference_wrapper<TParamInfoBase>> params) {
+void readJsonIntoParams(const Json& obj, std::initializer_list<std::reference_wrapper<TParamBase>> params) {
   for (auto iter = params.begin();
        iter != params.end();
        iter++) {
@@ -258,7 +258,7 @@ void readJsonIntoParams(const Json& obj, std::initializer_list<std::reference_wr
   }
 }
 
-Json paramsToObject(std::initializer_list<std::reference_wrapper<const TParamInfoBase>> params) {
+Json paramsToObject(std::initializer_list<std::reference_wrapper<const TParamBase>> params) {
   Json::object obj;
   for (auto iter = params.begin();
        iter != params.end();

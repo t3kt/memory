@@ -17,7 +17,7 @@
 #include "Events.h"
 #include "JsonIO.h"
 
-class TParamInfoBase {
+class TParamBase {
 public:
   virtual std::string getKey() const = 0;
   virtual Json to_json() const = 0; // json11 library requires this naming
@@ -28,12 +28,15 @@ public:
   virtual void readJsonField(const Json& obj) = 0;
   virtual void resetToDefault() = 0;
   virtual bool hasDefault() const = 0;
+  virtual bool isGroup() const = 0;
+
+  virtual std::string asString() const = 0;
 };
 
 template<typename T>
 class TParam
 : public ofParameter<T>
-, public TParamInfoBase {
+, public TParamBase {
 public:
   TParam() {
     ofParameter<T>::addListener(this,
@@ -109,6 +112,10 @@ public:
     }
   }
 
+  bool isGroup() const override { return false; }
+
+  std::string asString() const override { return ofParameter<T>::toString(); }
+
   TEvent<T&> changed;
 
   Json to_json() const override;
@@ -142,7 +149,7 @@ inline void toggleBoolParam(TParam<bool>& param) {
 
 class Params
 : public ofParameterGroup
-, public TParamInfoBase
+, public TParamBase
 , public NonCopyable {
 public:
   Params() {}
@@ -193,9 +200,17 @@ public:
   }
 
   virtual bool hasDefault() const override { return true; }
+
+  bool isGroup() const override { return true; }
+
+  std::string asString() const override { return ofParameterGroup::toString(); }
+
+  TParamBase* findKey(const std::string& key);
+
+  TParamBase* lookupPath(const std::string& path);
 private:
   std::string _key;
-  std::vector<TParamInfoBase*> _paramBases;
+  std::vector<TParamBase*> _paramBases;
 };
 
 class ParamsWithEnabled : public Params {
