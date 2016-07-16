@@ -120,9 +120,6 @@ public:
         .setName("Physics"));
   }
 
-  void readFromFile(std::string filepath);
-  void writeToFile(std::string filepath) const;
-
   CoreParams core;
   ColorTheme colors;
   AnimationsController::Params animations;
