@@ -14,10 +14,14 @@
 
 const int CONTROLS_WIDTH = 250;
 
-static AppSystem instance;
+static std::unique_ptr<AppSystem> instance;
+
+void AppSystem::initialize() {
+  instance = std::make_unique<AppSystem>();
+}
 
 AppSystem& AppSystem::get() {
-  return instance;
+  return *instance;
 }
 
 static std::map<int, AppAction> KEY_TO_ACTION = {

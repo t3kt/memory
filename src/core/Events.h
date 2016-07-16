@@ -96,6 +96,9 @@ public:
   }
 };
 
+template<typename T>
+using ValueEvent = TEvent<ValueEventArgs<T>>;
+
 class AnimationObject;
 using AnimationEventArgs = EntityEventArgs<AnimationObject>;
 using AnimationEvent = TEvent<AnimationEventArgs>;

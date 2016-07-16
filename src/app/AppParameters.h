@@ -21,6 +21,7 @@
 #include "Bounds.h"
 #include "Clock.h"
 #include "Colors.h"
+#include "MidiController.h"
 
 class DebugParams : public Params {
 public:
@@ -119,6 +120,9 @@ public:
     add(output
         .setKey("output")
         .setName("Output"));
+    add(midi
+        .setKey("midi")
+        .setName("Midi"));
     bounds.setParamRange(0.5, 40);
   }
 
@@ -126,6 +130,7 @@ public:
   SimpleCubeBounds bounds;
   DebugParams debug;
   OutputParams output;
+  MidiController::Params midi;
 };
 
 class MemoryAppParameters : public Params {

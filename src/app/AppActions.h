@@ -32,7 +32,7 @@ enum class AppAction {
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
-using AppActionEvent = TEvent<AppActionEventArgs>;
+using AppActionEvent = ValueEvent<AppAction>;
 
 extern EnumTypeInfo<AppAction> AppActionType;
 

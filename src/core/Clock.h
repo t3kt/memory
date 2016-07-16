@@ -40,6 +40,8 @@ public:
   private:
     TParam<bool> _paused;
     TParam<float> _rate;
+
+    friend class MidiRouter;
   };
 
   Clock(Params& params, State& state);

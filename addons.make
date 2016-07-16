@@ -2,6 +2,8 @@ ofxChoreograph
 ofxGui
 ofxGuiExtended
 ofxLiquidEvent
+ofxMidi
+ofxMidiFighterTwister
 ofxPostProcessing
 ofxSyphon
 ofxTextAlign

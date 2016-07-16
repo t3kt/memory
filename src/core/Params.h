@@ -14,6 +14,7 @@
 #include <ofUtils.h>
 #include <vector>
 #include "Common.h"
+#include "Events.h"
 #include "JsonIO.h"
 
 class TParamInfoBase {
@@ -174,7 +175,11 @@ public:
         .setKey("enabled")
         .setName("Enabled")
         .setValueAndDefault(true));
+    _enabled.addListener(this,
+                         &ParamsWithEnabled::onEnabledChanged);
   }
+
+  ValueEvent<bool> enabledChanged;
 
   bool enabled() const { return _enabled.get(); }
   void setEnabled(bool enabled) { _enabled.set(enabled); }
@@ -182,6 +187,11 @@ public:
     _enabled.setValueAndDefault(enabled);
   }
 private:
+  void onEnabledChanged(bool& value) {
+    ValueEventArgs<bool> e(value);
+    enabledChanged.notifyListenersUntilHandled(e);
+  }
+
   TParam<bool> _enabled;
 };
 

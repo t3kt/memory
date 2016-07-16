@@ -85,6 +85,9 @@ void ControlApp::setup() {
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
 
+  _midi = std::make_shared<MidiController>(_appParams);
+  _midi->setup();
+
   registerAsActionHandler();
 }
 
@@ -97,6 +100,10 @@ void ControlApp::updateLogState() {
   } else {
     _eventLoggers->detach(simulation->getEvents());
   }
+}
+
+void ControlApp::update() {
+  _midi->update();
 }
 
 void ControlApp::draw() {

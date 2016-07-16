@@ -21,6 +21,7 @@ class ControlApp;
 
 class AppSystem {
 public:
+  static void initialize();
   static AppSystem& get();
 
   void main();
