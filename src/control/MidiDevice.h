@@ -17,16 +17,19 @@
 class MidiDevice
 : public ofxMidiListener {
 public:
-  using Params = ParamsWithEnabled;
+  using Params = MidiDeviceParams;
 
   MidiDevice(std::string name,
              std::string inputPortName,
              std::string outputPortName,
              Params& params);
 
-  virtual ~MidiDevice();
+  virtual ~MidiDevice() {
+    handleClose(false);
+  }
 
   const MidiDeviceId& id() const { return _id; }
+  const std::string& name() const { return _name; }
 
   void open() {
     _params.enabled.set(true);
@@ -42,7 +45,7 @@ public:
 
 private:
   void handleOpen();
-  void handleClose();
+  void handleClose(bool updateParams);
 
   const MidiDeviceId _id;
   const std::string _name;

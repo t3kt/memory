@@ -12,6 +12,7 @@
 #include <string>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <typeinfo>
 #include <vector>
 #include "Common.h"
 #include "Events.h"
@@ -31,6 +32,7 @@ public:
   virtual bool isGroup() const = 0;
 
   virtual std::string asString() const = 0;
+  virtual const std::type_info& getTypeInfo() const = 0;
 };
 
 template<typename T>
@@ -113,6 +115,10 @@ public:
   }
 
   bool isGroup() const override { return false; }
+
+  const std::type_info& getTypeInfo() const override {
+    return typeid(T);
+  }
 
   std::string asString() const override { return ofParameter<T>::toString(); }
 
@@ -206,6 +212,9 @@ public:
   virtual bool hasDefault() const override { return true; }
 
   bool isGroup() const override { return true; }
+  const std::type_info& getTypeInfo() const override {
+    return typeid(Params);
+  }
 
   std::string asString() const override { return ofParameterGroup::toString(); }
 

@@ -11,15 +11,16 @@
 
 #include <memory>
 #include "Events.h"
+#include "MidiCommon.h"
 #include "Params.h"
 
 class MemoryAppParameters;
-class ofxMidiFighterTwister;
+class MidiDevice;
 class MidiRouter;
 
 class MidiController {
 public:
-  using Params = ParamsWithEnabled;
+  using Params = MidiParams;
 
   MidiController(MemoryAppParameters& appParams);
 
@@ -27,14 +28,10 @@ public:
   void update();
 
 private:
-  void initializeTwister();
-  void destroyTwister();
-  void initOrDestroyTwister();
-
   MemoryAppParameters& _appParams;
   Params& _params;
   std::shared_ptr<MidiRouter> _router;
-  std::shared_ptr<ofxMidiFighterTwister> _twister;
+  std::shared_ptr<MidiDevice> _twister;
 };
 
 #endif /* MidiController_h */

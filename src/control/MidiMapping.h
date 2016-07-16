@@ -24,6 +24,9 @@ public:
   : _key(key)
   , _path(path) {}
 
+  const MidiMappingKey& key() const { return _key; }
+  const std::string& path() const { return _path; }
+
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
@@ -46,10 +49,15 @@ public:
   void read_json(const Json& obj) override;
   void output(std::ostream& os) const override;
 
+  void add(MidiMapping&& mapping) { _mappings.push_back(mapping); }
+
   iterator begin() { return _mappings.begin(); }
   iterator end() { return _mappings.end(); }
   const_iterator begin() const { return _mappings.begin(); }
   const_iterator end() const { return _mappings.end(); }
+
+  std::size_t size() const { return _mappings.size(); }
+  bool empty() const { return _mappings.empty(); }
 private:
   Storage _mappings;
 };

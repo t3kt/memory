@@ -8,6 +8,7 @@
 
 #include "Common.h"
 
+#include <cmath>
 #include <ofTypes.h>
 #include <ofMath.h>
 
@@ -28,6 +29,10 @@ float getInterpolated(const float& a, const float& b, float amount) {
   return ofLerp(a, b, amount);
 }
 
+template<>
+int getInterpolated(const int& a, const int& b, float amount) {
+  return static_cast<int>(std::round(ofLerp(a, b, amount)));
+}
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj) {
   obj.output(os);

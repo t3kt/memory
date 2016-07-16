@@ -16,6 +16,7 @@
 #include "Common.h"
 #include "Events.h"
 #include "JsonIO.h"
+#include "Params.h"
 
 using MidiDeviceId = int;
 using MidiChannel = int;
@@ -110,5 +111,19 @@ public:
 };
 
 using MidiReceivedEvent = TEvent<MidiReceivedEventArgs>;
+
+using MidiDeviceParams = ParamsWithEnabled;
+
+class MidiParams
+: public ParamsWithEnabled {
+public:
+  MidiParams() {
+    add(twister
+        .setKey("twister")
+        .setName("MF Twister"));
+  }
+
+  MidiDeviceParams twister;
+};
 
 #endif /* MidiCommon_h */

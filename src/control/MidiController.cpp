@@ -9,6 +9,7 @@
 #include "AppParameters.h"
 #include "Common.h"
 #include "MidiController.h"
+#include "MidiDevice.h"
 #include "MidiRouter.h"
 
 MidiController::MidiController(MemoryAppParameters& appParams)
@@ -17,40 +18,12 @@ MidiController::MidiController(MemoryAppParameters& appParams)
 
 void MidiController::setup() {
   _router = std::make_shared<MidiRouter>(_appParams);
-  _router->setup();
-  _params.enabled.changed += [&]() {
-    initOrDestroyTwister();
-  };
-  initOrDestroyTwister();
-}
-
-void MidiController::initOrDestroyTwister() {
-  if (_params.enabled()) {
-    initializeTwister();
-  } else {
-    destroyTwister();
-  }
-}
-
-void MidiController::initializeTwister() {
-  if (_twister) {
-    destroyTwister();
-  }
-  _twister = std::make_shared<ofxMidiFighterTwister>();
-  _twister->setup();
-  _router->attachTo(_twister);
-}
-
-void MidiController::destroyTwister() {
-  if (!_twister) {
-    return;
-  }
-  _router->detachFrom(_twister);
-  _twister.reset();
+  _twister = std::make_shared<MidiDevice>("twister",
+                                          "Midi Fighter Twister",
+                                          "Midi Fighter Twister",
+                                          _params.twister);
+  _router->setup({_twister});
 }
 
 void MidiController::update() {
-  if (_twister) {
-    _twister->update();
-  }
 }

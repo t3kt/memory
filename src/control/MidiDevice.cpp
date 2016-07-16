@@ -34,9 +34,12 @@ MidiDevice::MidiDevice(std::string name,
     if (enabled) {
       handleOpen();
     } else {
-      handleClose();
+      handleClose(true);
     }
   }, this);
+  if (params.enabled) {
+    handleOpen();
+  }
 }
 
 void MidiDevice::handleOpen() {
@@ -47,7 +50,7 @@ void MidiDevice::handleOpen() {
   _params.enabled.setWithoutEventNotifications(true);
 }
 
-void MidiDevice::handleClose() {
+void MidiDevice::handleClose(bool updateParams) {
   if (_midiIn.isOpen()) {
     _midiIn.removeListener(this);
     _midiIn.closePort();
@@ -55,7 +58,9 @@ void MidiDevice::handleClose() {
   if (_midiOut.isOpen()) {
     _midiOut.closePort();
   }
-  _params.enabled.setWithoutEventNotifications(false);
+  if (updateParams) {
+    _params.enabled.setWithoutEventNotifications(false);
+  }
 }
 
 void MidiDevice::newMidiMessage(ofxMidiMessage &message) {
