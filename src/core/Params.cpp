@@ -40,3 +40,30 @@ TParamBase* Params::lookupPath(const std::string &path) {
   auto subpath = path.substr(pos + 1);
   return group->lookupPath(subpath);
 }
+
+void Params::readJsonField(const Json& obj) {
+  const Json& val = obj[getKey()];
+  if (!val.is_null()) {
+    JsonUtil::assertHasType(val, Json::OBJECT);
+    read_json(val);
+  } else if (hasDefault()) {
+    resetToDefault();
+  } else {
+    throw JsonException("Required field missing: " + getKey());
+  }
+}
+
+Json Params::to_json() const {
+  Json::object obj;
+  for (auto param : _paramBases) {
+    obj.insert(param->toJsonField());
+  }
+  return obj;
+}
+
+void Params::read_json(const Json &val) {
+  JsonUtil::assertHasType(val, Json::OBJECT);
+  for (auto param : _paramBases) {
+    param->readJsonField(val);
+  }
+}
