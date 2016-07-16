@@ -13,15 +13,43 @@
 #include <memory>
 #include <ofEventUtils.h>
 #include <ofxMidiFighterTwister.h>
+#include <vector>
 #include "AppParameters.h"
 #include "Events.h"
+#include "JsonIO.h"
 #include "MidiDevice.h"
 #include "Params.h"
 
 class MidiMapping {
 public:
-  MidiMappingKey key;
-  const std::string target;
+  MidiMapping() {}
+  MidiMapping(MidiMappingKey key, std::string path)
+  : _key(key)
+  , _path(path) {}
+
+  Json to_json() const;
+  void read_json(const Json& obj);
+
+private:
+  MidiMappingKey _key;
+  std::string _path;
+};
+
+class MidiMappingSet {
+public:
+  using Storage = std::vector<MidiMapping>;
+  using iterator = Storage::iterator;
+  using const_iterator = Storage::const_iterator;
+
+  Json to_json() const;
+  void read_json(const Json& obj);
+
+  iterator begin() { return _mappings.begin(); }
+  iterator end() { return _mappings.end(); }
+  const_iterator begin() const { return _mappings.begin(); }
+  const_iterator end() const { return _mappings.end(); }
+private:
+  Storage _mappings;
 };
 
 class AbstractMidiBinding;

@@ -19,6 +19,8 @@
 using MidiDeviceId = long;
 using MidiChannel = int;
 
+const MidiDeviceId NO_MIDI_DEVICE = -1;
+
 enum class MidiMessageType {
   CONTROL_CHANGE,
   NOTE_ON,
@@ -37,6 +39,12 @@ class MidiMappingKey
 public:
   static MidiMappingKey create(const MidiDeviceId& device,
                                const ofxMidiMessage& message);
+
+  MidiMappingKey()
+  : _device(NO_MIDI_DEVICE)
+  , _type(MidiMessageType::OTHER)
+  , _channel(0)
+  , _cc(0) {}
 
   MidiMappingKey(MidiDeviceId device,
                  MidiMessageType type,
