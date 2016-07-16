@@ -16,5 +16,23 @@
       "type": "cc"
     },
     "path": "core.clock.paused"
+  },
+  {
+    "key": {
+      "cc": 1,
+      "channel": 1,
+      "device": 1,
+      "type": "cc"
+    },
+    "path": "observers.rateSpawner.rate"
+  },
+  {
+    "key": {
+      "cc": 2,
+      "channel": 1,
+      "device": 1,
+      "type": "cc"
+    },
+    "path": "occurrences.rateSpawner.rate"
   }
 ]

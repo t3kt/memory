@@ -11,12 +11,6 @@
 #include "Common.h"
 #include "MidiRouter.h"
 
-class MappingKey {
-public:
-  MidiDeviceId deviceId;
-
-};
-
 class AbstractMidiBinding {
 public:
   virtual void receiveValue(int value) = 0;
@@ -77,21 +71,6 @@ void MidiRouter::addDevice(std::shared_ptr<MidiDevice> device) {
 
 void MidiRouter::loadMappings() {
   _mappings.readFromFile("mappings.json");
-  if (_mappings.empty()) {
-    //... some default mappings
-    _mappings
-    .add(MidiMapping(MidiMappingKey(_deviceNameToId["twister"],
-                                    MidiMessageType::CONTROL_CHANGE,
-                                    1,
-                                    0),
-                     "core.clock.rate"));
-    _mappings
-    .add(MidiMapping(MidiMappingKey(_deviceNameToId["twister"],
-                                    MidiMessageType::CONTROL_CHANGE,
-                                    1,
-                                    64),
-                     "core.clock.paused"));
-  }
   initBindings();
 }
 
