@@ -10,12 +10,14 @@
 #define MidiMapping_h
 
 #include <string>
+#include "Common.h"
 #include "JsonIO.h"
 #include "MidiCommon.h"
 
 class MidiMapping
 : public JsonReadable
-, public JsonWritable {
+, public JsonWritable
+, public Outputable {
 public:
   MidiMapping() {}
   MidiMapping(MidiMappingKey key, std::string path)
@@ -25,6 +27,7 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
+  void output(std::ostream& os) const override;
 private:
   MidiMappingKey _key;
   std::string _path;
@@ -32,7 +35,8 @@ private:
 
 class MidiMappingSet
 : public JsonReadable
-, public JsonWritable {
+, public JsonWritable
+, public Outputable {
 public:
   using Storage = std::vector<MidiMapping>;
   using iterator = Storage::iterator;
@@ -40,6 +44,7 @@ public:
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
+  void output(std::ostream& os) const override;
 
   iterator begin() { return _mappings.begin(); }
   iterator end() { return _mappings.end(); }

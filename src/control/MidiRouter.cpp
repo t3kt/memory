@@ -34,17 +34,18 @@ protected:
   TParam<T>& _param;
 };
 
-template<typename T>
-void addMapping(MidiRouter::BindingArray& bindings,
-                int cc,
-                TParam<T>& param) {
-  bindings[cc] = std::make_shared<MidiBinding<T>>(param);
+void MidiRouter::setup() {
+//  addMapping(_bindings, 0, _appParams.core.clock.rate);
+//  addMapping(_bindings, 64, _appParams.core.clock.paused);
+  loadMappings();
 }
 
+void MidiRouter::loadMappings() {
+  //...
+}
 
-void MidiRouter::setup() {
-  addMapping(_bindings, 0, _appParams.core.clock.rate);
-  addMapping(_bindings, 64, _appParams.core.clock.paused);
+void MidiRouter::addBinding(const MidiMapping& mapping) {
+  //...
 }
 
 void MidiRouter::attachTo(std::shared_ptr<ofxMidiFighterTwister> twister) {
@@ -64,8 +65,9 @@ void MidiRouter::onTwisterEncoder(ofxMidiFighterTwister::EncoderEventArgs& event
 }
 
 void MidiRouter::receiveValue(int cc, int value) {
-  auto& binding = _bindings[cc];
-  if (binding) {
-    binding->receiveValue(value);
-  }
+//  auto& binding = _bindings[cc];
+//  if (binding) {
+//    binding->receiveValue(value);
+//  }
+  //...
 }

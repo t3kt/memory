@@ -38,3 +38,17 @@ void MidiMappingSet::read_json(const Json& arr) {
     _mappings.push_back(mapping);
   }
 }
+
+void MidiMapping::output(std::ostream& os) const {
+  os << "{key: " << _key
+  << ", path: " << _path
+  << "}";
+}
+
+void MidiMappingSet::output(std::ostream& os) const {
+  os << "MidiMappingSet{";
+  for (const auto& mapping : _mappings) {
+    os << mapping << ", ";
+  }
+  os << "}";
+}

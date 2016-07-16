@@ -9,22 +9,22 @@
 #ifndef MidiRouter_h
 #define MidiRouter_h
 
-#include <array>
 #include <memory>
 #include <ofEventUtils.h>
 #include <ofxMidiFighterTwister.h>
-#include <vector>
+#include <unordered_map>
 #include "AppParameters.h"
 #include "Events.h"
 #include "JsonIO.h"
 #include "MidiDevice.h"
+#include "MidiMapping.h"
 #include "Params.h"
 
 class AbstractMidiBinding;
 
 class MidiRouter {
 public:
-  using BindingArray = std::array<std::shared_ptr<AbstractMidiBinding>, 128>;
+  using BindingMap = std::unordered_map<MidiMappingKey, std::shared_ptr<AbstractMidiBinding>>;
 
   MidiRouter(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
@@ -34,12 +34,16 @@ public:
   void attachTo(std::shared_ptr<ofxMidiFighterTwister> twister);
   void detachFrom(std::shared_ptr<ofxMidiFighterTwister> twister);
 private:
+  void loadMappings();
+  void addBinding(const MidiMapping& mapping);
+
   void receiveValue(int cc, int value);
 
   void onTwisterEncoder(ofxMidiFighterTwister::EncoderEventArgs& event);
 
   MemoryAppParameters& _appParams;
-  BindingArray _bindings;
+  MidiMappingSet _mappings;
+  BindingMap _bindings;
 };
 
 #endif /* MidiRouter_h */
