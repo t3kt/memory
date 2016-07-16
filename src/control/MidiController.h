@@ -1,5 +1,5 @@
 //
-//  MidiController.hpp
+//  MidiController.h
 //  memory
 //
 //  Created by tekt on 7/15/16.

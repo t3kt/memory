@@ -26,7 +26,8 @@
 		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
-		32DAAF4E1D39D36000113278 /* MidiController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF4C1D39D36000113278 /* MidiController.cpp */; };
+		32DAAF531D39E39500113278 /* MidiController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF511D39E39500113278 /* MidiController.cpp */; };
+		32DAAF561D39E3BD00113278 /* MidiRouter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF541D39E3BD00113278 /* MidiRouter.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -205,8 +206,10 @@
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
-		32DAAF4C1D39D36000113278 /* MidiController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiController.cpp; path = app/MidiController.cpp; sourceTree = "<group>"; };
-		32DAAF4D1D39D36000113278 /* MidiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiController.h; path = app/MidiController.h; sourceTree = "<group>"; };
+		32DAAF511D39E39500113278 /* MidiController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiController.cpp; path = control/MidiController.cpp; sourceTree = "<group>"; };
+		32DAAF521D39E39500113278 /* MidiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiController.h; path = control/MidiController.h; sourceTree = "<group>"; };
+		32DAAF541D39E3BD00113278 /* MidiRouter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiRouter.cpp; path = control/MidiRouter.cpp; sourceTree = "<group>"; };
+		32DAAF551D39E3BD00113278 /* MidiRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiRouter.h; path = control/MidiRouter.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -471,6 +474,17 @@
 				E320776B6C2379AA9622439F /* CinderSpecialization.hpp */,
 			);
 			name = specialization;
+			sourceTree = "<group>";
+		};
+		32DAAF501D39E37100113278 /* control */ = {
+			isa = PBXGroup;
+			children = (
+				32DAAF511D39E39500113278 /* MidiController.cpp */,
+				32DAAF521D39E39500113278 /* MidiController.h */,
+				32DAAF541D39E3BD00113278 /* MidiRouter.cpp */,
+				32DAAF551D39E3BD00113278 /* MidiRouter.h */,
+			);
+			name = control;
 			sourceTree = "<group>";
 		};
 		36D7EC7EF50E326EAC88A0AD /* frameworks */ = {
@@ -950,8 +964,6 @@
 				823FBC6F9791944E4D93726D /* main.cpp */,
 				2644BC4B5A561E6D39FDB990 /* SimulationApp.cpp */,
 				8C23CBB813797A86DA3D0E1F /* SimulationApp.h */,
-				32DAAF4C1D39D36000113278 /* MidiController.cpp */,
-				32DAAF4D1D39D36000113278 /* MidiController.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -1006,6 +1018,7 @@
 			isa = PBXGroup;
 			children = (
 				BE9DD360F550B0DF4D357E7B /* app */,
+				32DAAF501D39E37100113278 /* control */,
 				BC405D98CD8417CE9E222B0C /* core */,
 				965168FECD51AAD1D9169011 /* lib */,
 				8EB304E39B119DD2D764E269 /* physics */,
@@ -1205,6 +1218,7 @@
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,
+				32DAAF561D39E3BD00113278 /* MidiRouter.cpp in Sources */,
 				08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */,
 				0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */,
 				64FAD181AA2FEB345A37B089 /* ofxMinimalButton.cpp in Sources */,
@@ -1226,7 +1240,7 @@
 				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
 				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
 				8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */,
-				32DAAF4E1D39D36000113278 /* MidiController.cpp in Sources */,
+				32DAAF531D39E39500113278 /* MidiController.cpp in Sources */,
 				6732E5D0B6ADA39649B35494 /* ConvolutionPass.cpp in Sources */,
 				B2236F1E65E160763BEADCEC /* DofAltPass.cpp in Sources */,
 				740191FE5076F6FA5E83F4CC /* DofPass.cpp in Sources */,
