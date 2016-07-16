@@ -9,16 +9,22 @@
 #include "Common.h"
 #include "MidiRouter.h"
 
-class AbstractMidiMapping {
+class MappingKey {
+public:
+  MidiDeviceId deviceId;
+
+};
+
+class AbstractMidiBinding {
 public:
   virtual void receiveValue(int value) = 0;
 };
 
 template<typename T>
-class MidiMapping
-: public AbstractMidiMapping {
+class MidiBinding
+: public AbstractMidiBinding {
 public:
-  MidiMapping(TParam<T>& param)
+  MidiBinding(TParam<T>& param)
   : _param(param) {}
 
   void receiveValue(int value) override {
@@ -29,16 +35,16 @@ protected:
 };
 
 template<typename T>
-void addMapping(MidiRouter::MappingArray& mappings,
+void addMapping(MidiRouter::BindingArray& bindings,
                 int cc,
                 TParam<T>& param) {
-  mappings[cc] = std::make_shared<MidiMapping<T>>(param);
+  bindings[cc] = std::make_shared<MidiBinding<T>>(param);
 }
 
 
 void MidiRouter::setup() {
-  addMapping(_mappings, 0, _appParams.core.clock.rate);
-  addMapping(_mappings, 64, _appParams.core.clock.paused);
+  addMapping(_bindings, 0, _appParams.core.clock.rate);
+  addMapping(_bindings, 64, _appParams.core.clock.paused);
 }
 
 void MidiRouter::attachTo(std::shared_ptr<ofxMidiFighterTwister> twister) {
@@ -58,8 +64,8 @@ void MidiRouter::onTwisterEncoder(ofxMidiFighterTwister::EncoderEventArgs& event
 }
 
 void MidiRouter::receiveValue(int cc, int value) {
-  auto& mapping = _mappings[cc];
-  if (mapping) {
-    mapping->receiveValue(value);
+  auto& binding = _bindings[cc];
+  if (binding) {
+    binding->receiveValue(value);
   }
 }

@@ -28,6 +28,8 @@
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		32DAAF531D39E39500113278 /* MidiController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF511D39E39500113278 /* MidiController.cpp */; };
 		32DAAF561D39E3BD00113278 /* MidiRouter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF541D39E3BD00113278 /* MidiRouter.cpp */; };
+		32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF591D39FC8C00113278 /* MidiDevice.cpp */; };
+		32DAAF611D3A08B900113278 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -210,6 +212,10 @@
 		32DAAF521D39E39500113278 /* MidiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiController.h; path = control/MidiController.h; sourceTree = "<group>"; };
 		32DAAF541D39E3BD00113278 /* MidiRouter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiRouter.cpp; path = control/MidiRouter.cpp; sourceTree = "<group>"; };
 		32DAAF551D39E3BD00113278 /* MidiRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiRouter.h; path = control/MidiRouter.h; sourceTree = "<group>"; };
+		32DAAF591D39FC8C00113278 /* MidiDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiDevice.cpp; path = control/MidiDevice.cpp; sourceTree = "<group>"; };
+		32DAAF5A1D39FC8C00113278 /* MidiDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiDevice.h; path = control/MidiDevice.h; sourceTree = "<group>"; };
+		32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiCommon.cpp; path = control/MidiCommon.cpp; sourceTree = "<group>"; };
+		32DAAF601D3A08B900113278 /* MidiCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiCommon.h; path = control/MidiCommon.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -483,6 +489,10 @@
 				32DAAF521D39E39500113278 /* MidiController.h */,
 				32DAAF541D39E3BD00113278 /* MidiRouter.cpp */,
 				32DAAF551D39E3BD00113278 /* MidiRouter.h */,
+				32DAAF591D39FC8C00113278 /* MidiDevice.cpp */,
+				32DAAF5A1D39FC8C00113278 /* MidiDevice.h */,
+				32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */,
+				32DAAF601D3A08B900113278 /* MidiCommon.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -1198,6 +1208,7 @@
 				EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */,
 				4A11364C587650CFFFEB00B8 /* PostProcController.cpp in Sources */,
 				AC65CBF6F38E677411466D3D /* RenderingController.cpp in Sources */,
+				32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */,
 				8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */,
 				C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */,
 				E915AD058D8CFBCF94867948 /* MotionGroup.cpp in Sources */,
@@ -1205,6 +1216,7 @@
 				318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */,
 				EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */,
 				F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */,
+				32DAAF611D3A08B900113278 /* MidiCommon.cpp in Sources */,
 				A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */,
 				F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */,
 				78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */,

@@ -15,13 +15,20 @@
 #include <ofxMidiFighterTwister.h>
 #include "AppParameters.h"
 #include "Events.h"
+#include "MidiDevice.h"
 #include "Params.h"
 
-class AbstractMidiMapping;
+class MidiMapping {
+public:
+  MidiMappingKey key;
+  const std::string target;
+};
+
+class AbstractMidiBinding;
 
 class MidiRouter {
 public:
-  using MappingArray = std::array<std::shared_ptr<AbstractMidiMapping>, 128>;
+  using BindingArray = std::array<std::shared_ptr<AbstractMidiBinding>, 128>;
 
   MidiRouter(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
@@ -36,7 +43,7 @@ private:
   void onTwisterEncoder(ofxMidiFighterTwister::EncoderEventArgs& event);
 
   MemoryAppParameters& _appParams;
-  MappingArray _mappings;
+  BindingArray _bindings;
 };
 
 #endif /* MidiRouter_h */
