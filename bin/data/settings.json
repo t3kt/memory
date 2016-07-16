@@ -133,12 +133,11 @@
       "showStatus": false
     },
     "midi": {
-      "enabled": true,
-      "twisterEnabled": true
+      "enabled": true
     },
     "output": {
-      "fullscreen": true,
-      "syphonEnabled": true
+      "externalEnabled": true,
+      "fullscreen": true
     }
   },
   "observers": {

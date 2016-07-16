@@ -88,7 +88,7 @@ void SimulationApp::draw() {
   _renderingController->endDraw(_state);
 
 #ifdef ENABLE_SYPHON
-  if (_appParams.core.output.syphonEnabled()) {
+  if (_appParams.core.output.externalEnabled()) {
     _renderingController->pushToSyphon(_syphonServer);
   }
 #endif

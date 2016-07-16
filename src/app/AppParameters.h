@@ -56,19 +56,14 @@ public:
     add(fullscreen
         .setKey("fullscreen")
         .setName("Fullscreen"));
-#ifdef ENABLE_SYPHON
-    add(syphonEnabled
-        .setKey("syphonEnabled")
-        .setName("Enable Syphon")
+    add(externalEnabled
+        .setKey("externalEnabled")
+        .setName("Enable External Send")
         .setValueAndDefault(false));
-#endif
   }
 
   TParam<bool> fullscreen;
-
-#ifdef ENABLE_SYPHON
-  TParam<bool> syphonEnabled;
-#endif
+  TParam<bool> externalEnabled;
 };
 
 class CoreParams : public Params {
