@@ -22,19 +22,11 @@ public:
   : _param(param) {}
 
   void receiveValue(int value) override {
-    float percent = value / 128.0f;
-    _param.set(getInterpolated(_param.getMin(),
-                               _param.getMax(),
-                               percent));
+    _param.setNormalizedValue(value / 128.0f);
   }
 protected:
   TParam<T>& _param;
 };
-
-template<>
-void MidiMapping<bool>::receiveValue(int value) {
-  _param.set(value > 0);
-}
 
 template<typename T>
 void addMapping(MidiRouter::MappingArray& mappings,

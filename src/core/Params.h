@@ -76,6 +76,12 @@ public:
     return ofParameter<T>::get();
   }
 
+  void setNormalizedValue(float normVal) {
+    ofParameter<T>::set(getInterpolated(ofParameter<T>::getMin(),
+                                        ofParameter<T>::getMax(),
+                                        normVal));
+  }
+
   bool hasDefault() const override {
     return _hasDefaultValue;
   }

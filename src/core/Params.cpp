@@ -7,3 +7,8 @@
 //
 
 #include "Params.h"
+
+template<>
+void TParam<bool>::setNormalizedValue(float normVal) {
+  ofParameter<bool>::set(normVal > 0);
+}
