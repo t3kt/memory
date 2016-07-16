@@ -132,6 +132,10 @@
       "showPhysics": false,
       "showStatus": false
     },
+    "midi": {
+      "enabled": true,
+      "twisterEnabled": true
+    },
     "output": {
       "fullscreen": true,
       "syphonEnabled": true

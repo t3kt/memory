@@ -9,17 +9,44 @@
 #include "Common.h"
 #include "MidiRouter.h"
 
+class AbstractMidiMapping {
+public:
+  virtual void receiveValue(int value) = 0;
+};
+
 template<typename T>
-static void applyMidiValueToParam(TParam<T>& param, int value) {
-  float percent = value / 128.0f;
-  param.set(getInterpolated(param.getMin(),
-                            param.getMax(),
-                            percent));
-}
+class MidiMapping
+: public AbstractMidiMapping {
+public:
+  MidiMapping(TParam<T>& param)
+  : _param(param) {}
+
+  void receiveValue(int value) override {
+    float percent = value / 128.0f;
+    _param.set(getInterpolated(_param.getMin(),
+                               _param.getMax(),
+                               percent));
+  }
+protected:
+  TParam<T>& _param;
+};
 
 template<>
-void applyMidiValueToParam(TParam<bool>& param, int value) {
-  param.set(value > 0);
+void MidiMapping<bool>::receiveValue(int value) {
+  _param.set(value > 0);
+}
+
+template<typename T>
+void addMapping(MidiRouter::MappingArray& mappings,
+                int cc,
+                TParam<T>& param) {
+  mappings[cc] = std::make_shared<MidiMapping<T>>(param);
+}
+
+
+void MidiRouter::setup() {
+  addMapping(_mappings, 0, _appParams.core.clock._rate);
+  addMapping(_mappings, 64, _appParams.core.clock._paused);
 }
 
 void MidiRouter::attachTo(std::shared_ptr<ofxMidiFighterTwister> twister) {
@@ -35,12 +62,12 @@ void MidiRouter::detachFrom(std::shared_ptr<ofxMidiFighterTwister> twister) {
 }
 
 void MidiRouter::onTwisterEncoder(ofxMidiFighterTwister::EncoderEventArgs& event) {
-  switch (event.ID) {
-    case 0:
-      applyMidiValueToParam(_appParams.core.clock._rate, event.value);
-      break;
-    case 64:
-      applyMidiValueToParam(_appParams.core.clock._paused, event.value);
-      break;
+  receiveValue(event.ID, event.value);
+}
+
+void MidiRouter::receiveValue(int cc, int value) {
+  auto& mapping = _mappings[cc];
+  if (mapping) {
+    mapping->receiveValue(value);
   }
 }
