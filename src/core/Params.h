@@ -17,14 +17,14 @@
 #include "Events.h"
 #include "JsonIO.h"
 
-class TParamBase {
+class TParamBase
+: public JsonReadable
+, public JsonWritable {
 public:
   virtual std::string getKey() const = 0;
-  virtual Json to_json() const = 0; // json11 library requires this naming
   virtual Json::object::value_type toJsonField() const {
     return { getKey(), to_json() };
   }
-  virtual void read_json(const Json& val) = 0;
   virtual void readJsonField(const Json& obj) = 0;
   virtual void resetToDefault() = 0;
   virtual bool hasDefault() const = 0;
@@ -112,9 +112,13 @@ public:
 
   TEvent<T&> changed;
 
-  Json to_json() const override;
+  Json to_json() const override {
+    return JsonUtil::toJson(ofParameter<T>::get());
+  }
 
-  void read_json(const Json& val) override;
+  void read_json(const Json& val) override {
+    this->set(JsonUtil::fromJson<T>(val));
+  }
 
   void readJsonField(const Json& obj) override {
     Json val = obj[getKey()];
