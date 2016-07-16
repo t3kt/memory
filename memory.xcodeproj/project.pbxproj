@@ -30,6 +30,7 @@
 		32DAAF561D39E3BD00113278 /* MidiRouter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF541D39E3BD00113278 /* MidiRouter.cpp */; };
 		32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF591D39FC8C00113278 /* MidiDevice.cpp */; };
 		32DAAF611D3A08B900113278 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */; };
+		32DAAF6C1D3A2AE000113278 /* MidiMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -216,6 +217,8 @@
 		32DAAF5A1D39FC8C00113278 /* MidiDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiDevice.h; path = control/MidiDevice.h; sourceTree = "<group>"; };
 		32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiCommon.cpp; path = control/MidiCommon.cpp; sourceTree = "<group>"; };
 		32DAAF601D3A08B900113278 /* MidiCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiCommon.h; path = control/MidiCommon.h; sourceTree = "<group>"; };
+		32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiMapping.cpp; path = control/MidiMapping.cpp; sourceTree = "<group>"; };
+		32DAAF6B1D3A2AE000113278 /* MidiMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiMapping.h; path = control/MidiMapping.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -493,6 +496,8 @@
 				32DAAF5A1D39FC8C00113278 /* MidiDevice.h */,
 				32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */,
 				32DAAF601D3A08B900113278 /* MidiCommon.h */,
+				32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */,
+				32DAAF6B1D3A2AE000113278 /* MidiMapping.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -1251,6 +1256,7 @@
 				9736DE8A862FEACDFD5899D9 /* ofxMidiFighterTwister.cpp in Sources */,
 				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
 				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
+				32DAAF6C1D3A2AE000113278 /* MidiMapping.cpp in Sources */,
 				8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */,
 				32DAAF531D39E39500113278 /* MidiController.cpp in Sources */,
 				6732E5D0B6ADA39649B35494 /* ConvolutionPass.cpp in Sources */,

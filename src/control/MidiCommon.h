@@ -15,8 +15,9 @@
 #include <ofxMidi.h>
 #include "Common.h"
 #include "Events.h"
+#include "JsonIO.h"
 
-using MidiDeviceId = long;
+using MidiDeviceId = int;
 using MidiChannel = int;
 
 const MidiDeviceId NO_MIDI_DEVICE = -1;
@@ -35,7 +36,9 @@ std::ostream& operator<<(std::ostream& os,
 MidiMessageType statusToMessageType(const MidiStatus& status);
 
 class MidiMappingKey
-: public Outputable {
+: public Outputable
+, public JsonReadable
+, public JsonWritable {
 public:
   static MidiMappingKey create(const MidiDeviceId& device,
                                const ofxMidiMessage& message);
@@ -59,10 +62,10 @@ public:
   const MidiMessageType& type() const { return _type; }
   const MidiChannel& channel() const { return _channel; }
 
-  void output(std::ostream& os) const;
+  void output(std::ostream& os) const override;
 
-  Json to_json() const;
-  void read_json(const Json& obj);
+  Json to_json() const override;
+  void read_json(const Json& obj) override;
 
   std::size_t hash() const;
 private:
