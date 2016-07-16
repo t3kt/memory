@@ -145,6 +145,10 @@ static Json toJsonValue(const ofFloatColor& value) {
   return Json::array { value.r, value.g, value.b, value.a };
 }
 
+static Json toJsonValue(const std::string& value) {
+  return value;
+}
+
 static ofVec3f ofVec3fFromJsonValue(const Json& value) {
   assertHasType(value, Json::ARRAY);
   assertHasLength(value, 3);
@@ -208,6 +212,11 @@ Json TParam<int>::to_json() const {
 }
 
 template<>
+Json TParam<std::string>::to_json() const {
+  return get();
+}
+
+template<>
 void TParam<float>::read_json(const Json& val) {
   assertHasType(val, Json::NUMBER);
   set(val.number_value());
@@ -223,6 +232,12 @@ template<>
 void TParam<bool>::read_json(const Json& val) {
   assertHasType(val, Json::BOOL);
   set(val.bool_value());
+}
+
+template<>
+void TParam<std::string>::read_json(const Json &val) {
+  assertHasType(val, Json::STRING);
+  set(val.string_value());
 }
 
 template<>
