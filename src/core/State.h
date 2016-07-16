@@ -10,7 +10,6 @@
 #define __behavior__State__
 
 #include "Common.h"
-#include <ofxLiquidEvent.h>
 
 class State : public Outputable {
 public:
@@ -40,13 +39,6 @@ public:
   operator bool() const { return _status; }
 
   void output(std::ostream& os) const override;
-
-  template<typename T>
-  void bindToEvent(ofxLiquidEvent<T>& event) {
-    event += [&](T e) {
-      set();
-    };
-  }
 private:
   const std::string _name;
   bool _status;

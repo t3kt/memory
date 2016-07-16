@@ -35,6 +35,16 @@ class TParam
 : public ofParameter<T>
 , public TParamInfoBase {
 public:
+  TParam() {
+    ofParameter<T>::addListener(this,
+                                &TParam<T>::onChanged);
+  }
+
+  virtual ~TParam() override {
+    ofParameter<T>::removeListener(this,
+                                   &TParam<T>::onChanged);
+  }
+
   TParam<T>& setKey(std::string key) {
     _key = key;
     return *this;
@@ -60,6 +70,10 @@ public:
   TParam<T>& setValueAndDefault(T value) {
     ofParameter<T>::set(value);
     return setDefaultValue(value);
+  }
+
+  const T& operator()() const {
+    return ofParameter<T>::get();
   }
 
   bool hasDefault() const override {
@@ -89,6 +103,8 @@ public:
     }
   }
 
+  TEvent<T&> changed;
+
   Json to_json() const override;
 
   void read_json(const Json& val) override;
@@ -105,6 +121,10 @@ public:
   }
   
 private:
+  void onChanged(T& value) {
+    changed.notifyListeners(value);
+  }
+
   std::string _key;
   bool _hasDefaultValue;
   T _defaultValue;
@@ -171,28 +191,17 @@ private:
 class ParamsWithEnabled : public Params {
 public:
   ParamsWithEnabled() {
-    add(_enabled
+    add(enabled
         .setKey("enabled")
         .setName("Enabled")
         .setValueAndDefault(true));
-    _enabled.addListener(this,
-                         &ParamsWithEnabled::onEnabledChanged);
   }
 
-  ValueEvent<bool> enabledChanged;
-
-  bool enabled() const { return _enabled.get(); }
-  void setEnabled(bool enabled) { _enabled.set(enabled); }
-  void setEnabledValueAndDefault(bool enabled) {
-    _enabled.setValueAndDefault(enabled);
-  }
-private:
-  void onEnabledChanged(bool& value) {
-    ValueEventArgs<bool> e(value);
-    enabledChanged.notifyListenersUntilHandled(e);
+  void setEnabledValueAndDefault(bool val) {
+    enabled.setValueAndDefault(val);
   }
 
-  TParam<bool> _enabled;
+  TParam<bool> enabled;
 };
 
 template<typename T>
@@ -200,10 +209,10 @@ class ValueRange : public Params {
 public:
   ValueRange()
   : Params() {
-    add(_lowValue
+    add(lowValue
         .setKey("low")
         .setName("Low"));
-    add(_highValue
+    add(highValue
         .setKey("high")
         .setName("High"));
   }
@@ -219,34 +228,34 @@ public:
   }
 
   ValueRange<T>& setParamKeys(std::string lowKey, std::string highKey) {
-    _lowValue.setKey(lowKey);
-    _highValue.setKey(highKey);
+    lowValue.setKey(lowKey);
+    highValue.setKey(highKey);
     return *this;
   }
 
   ValueRange<T>& setParamNames(std::string lowName, std::string highName) {
-    _lowValue.setName(lowName);
-    _highValue.setName(highName);
+    lowValue.setName(lowName);
+    highValue.setName(highName);
     return *this;
   }
 
   ValueRange<T>& setParamValues(T low, T high) {
-    _lowValue.set(low);
-    _highValue.set(high);
+    lowValue.set(low);
+    highValue.set(high);
     return *this;
   }
 
   ValueRange<T>& setParamValuesAndDefaults(T low, T high) {
-    _lowValue.setValueAndDefault(low);
-    _highValue.setValueAndDefault(high);
+    lowValue.setValueAndDefault(low);
+    highValue.setValueAndDefault(high);
     return *this;
   }
 
   ValueRange<T>& setParamRanges(T minVal, T maxVal) {
-    _lowValue.setMin(minVal);
-    _lowValue.setMax(maxVal);
-    _highValue.setMin(minVal);
-    _highValue.setMax(maxVal);
+    lowValue.setMin(minVal);
+    lowValue.setMax(maxVal);
+    highValue.setMin(minVal);
+    highValue.setMax(maxVal);
     return *this;
   }
 
@@ -254,12 +263,8 @@ public:
     return getInterpolated(lowValue(), highValue(), amount);
   }
 
-  const T& lowValue() const { return _lowValue.get(); }
-  const T& highValue() const { return _highValue.get(); }
-
-protected:
-  TParam<T> _lowValue;
-  TParam<T> _highValue;
+  TParam<T> lowValue;
+  TParam<T> highValue;
 };
 
 using FloatValueRange = ValueRange<float>;

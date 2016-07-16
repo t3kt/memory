@@ -10,7 +10,6 @@
 #define __behavior__AppParameters__
 
 #include <ofParameterGroup.h>
-#include <ofxLiquidEvent.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -21,11 +20,13 @@
 #include "Bounds.h"
 #include "Clock.h"
 #include "Colors.h"
+#include "Events.h"
 #include "MidiController.h"
 
 class DebugParams : public Params {
 public:
-  DebugParams() {
+  DebugParams()
+  : loggingEnabledChanged(_loggingEnabled.changed) {
     add(_loggingEnabled
         .setKey("loggingEnabled")
         .setName("Logging Enabled")
@@ -42,8 +43,6 @@ public:
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
-    _loggingEnabled.addListener(this,
-                                &DebugParams::onLoggingEnabledChanged);
   }
 
   bool loggingEnabled() const { return _loggingEnabled.get(); }
@@ -56,13 +55,9 @@ public:
   void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
   void setShowPhysics(bool showPhysics) { _showPhysics.set(showPhysics); }
 
-  ofxLiquidEvent<void> loggingEnabledChanged;
+  TEvent<bool&>& loggingEnabledChanged;
 
 private:
-  void onLoggingEnabledChanged(bool& value) {
-    loggingEnabledChanged.notifyListeners();
-  }
-
   TParam<bool> _loggingEnabled;
   TParam<bool> _showBounds;
   TParam<bool> _showStatus;
@@ -71,7 +66,8 @@ private:
 
 class OutputParams : public Params {
 public:
-  OutputParams() {
+  OutputParams()
+  : fullscreenChanged(_fullscreen.changed) {
     add(_fullscreen
         .setKey("fullscreen")
         .setName("Fullscreen"));
@@ -81,8 +77,6 @@ public:
         .setName("Enable Syphon")
         .setValueAndDefault(false));
 #endif
-    _fullscreen.addListener(this,
-                            &OutputParams::onFullscreenChanged);
   }
 
   bool fullscreen() const { return _fullscreen.get(); }
@@ -92,12 +86,8 @@ public:
   bool syphonEnabled() const { return _syphonEnabled.get(); }
 #endif
 
-  ofxLiquidEvent<bool> fullscreenChanged;
+  TEvent<bool&>& fullscreenChanged;
 private:
-  void onFullscreenChanged(bool& value) {
-    fullscreenChanged.notifyListeners(value);
-  }
-
   TParam<bool> _fullscreen;
 
 #ifdef ENABLE_SYPHON

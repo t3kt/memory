@@ -18,7 +18,7 @@ MidiController::MidiController(MemoryAppParameters& appParams)
 void MidiController::setup() {
   _router = std::make_shared<MidiRouter>(_appParams);
   _router->setup();
-  _params.enabledChanged += [&](ValueEventArgs<bool>) {
+  _params.enabled.changed += [&]() {
     initOrDestroyTwister();
   };
   initOrDestroyTwister();
