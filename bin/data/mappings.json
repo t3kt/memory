@@ -1,0 +1,20 @@
+[
+  {
+    "key": {
+      "cc": 0,
+      "channel": 1,
+      "device": 1,
+      "type": "cc"
+    },
+    "path": "core.clock.rate"
+  },
+  {
+    "key": {
+      "cc": 64,
+      "channel": 1,
+      "device": 1,
+      "type": "cc"
+    },
+    "path": "core.clock.paused"
+  }
+]
