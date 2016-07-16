@@ -21,17 +21,14 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_magnitude
+      add(magnitude
           .setKey("magnitude")
           .setName("Magnitude")
           .setValueAndDefault(0.01)
           .setRange(0, 1));
     }
 
-    float magnitude() const { return _magnitude.get(); }
-
-  private:
-    TParam<float> _magnitude;
+    TParam<float> magnitude;
   };
 
   AbstractDampingBehavior(const Params& params)

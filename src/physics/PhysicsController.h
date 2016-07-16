@@ -29,17 +29,14 @@ class EntityPhysicsParams
 : public Params {
 public:
   EntityPhysicsParams() {
-    add(_speed
+    add(speed
         .setKey("speed")
         .setName("Speed")
         .setValueAndDefault(1)
         .setRange(0, 10));
   }
 
-  float speed() const { return _speed.get(); }
-
-private:
-  TParam<float> _speed;
+  TParam<float> speed;
 };
 
 class PhysicsController
