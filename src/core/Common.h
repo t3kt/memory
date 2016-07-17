@@ -82,4 +82,13 @@ public:
   NonCopyable() {}
 };
 
+class NOT_IMPLEMENTED
+: public std::runtime_error {
+public:
+  NOT_IMPLEMENTED(std::string description)
+  : std::runtime_error("NOT IMPLEMENTED: " + description) { }
+  NOT_IMPLEMENTED()
+  : std::runtime_error("NOT IMPLEMENTED") { }
+};
+
 #endif /* defined(__behavior__Common__) */
