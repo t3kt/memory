@@ -6,25 +6,10 @@
 //
 //
 
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
+#include "ParticleObject.h"
 #include "PhysicsWorld.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-
-ObjectManager<ObserverEntity>& PhysicsWorld::observers() {
-  return _observers.entities();
-}
-
-const ObjectManager<ObserverEntity>& PhysicsWorld::observers() const {
-  return _observers.entities();
-}
-
-ObjectManager<OccurrenceEntity>& PhysicsWorld::occurrences() {
-  return _occurrences.entities();
-}
-
-const ObjectManager<OccurrenceEntity>& PhysicsWorld::occurrences() const {
-  return _occurrences.entities();
-}
 
 template<>
 ObjectManager<ObserverEntity>& PhysicsWorld::getEntities<ObserverEntity>() {

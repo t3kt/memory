@@ -13,8 +13,6 @@
 #include "ObjectManager.h"
 #include "State.h"
 
-class ObserversController;
-class OccurrencesController;
 class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
@@ -24,8 +22,8 @@ public:
   using EntityAction = std::function<void(ParticleObject*)>;
 
   PhysicsWorld(const State& state,
-               ObserversController& observers,
-               OccurrencesController& occurrences)
+               ObjectManager<ObserverEntity>& observers,
+               ObjectManager<OccurrenceEntity>& occurrences)
   : _state(state)
   , _observers(observers)
   , _occurrences(occurrences) { }
@@ -34,11 +32,19 @@ public:
 
   float time() const { return _state.time; }
 
-  ObjectManager<ObserverEntity>& observers();
-  const ObjectManager<ObserverEntity>& observers() const;
+  ObjectManager<ObserverEntity>& observers() {
+    return _observers;
+  }
+  const ObjectManager<ObserverEntity>& observers() const {
+    return _observers;
+  }
 
-  ObjectManager<OccurrenceEntity>& occurrences();
-  const ObjectManager<OccurrenceEntity>& occurrences() const;
+  ObjectManager<OccurrenceEntity>& occurrences() {
+    return _occurrences;
+  }
+  const ObjectManager<OccurrenceEntity>& occurrences() const {
+    return _occurrences;
+  }
 
   template<typename E>
   ObjectManager<E>& getEntities();
@@ -54,8 +60,8 @@ public:
   }
 private:
   const State& _state;
-  ObserversController& _observers;
-  OccurrencesController& _occurrences;
+  ObjectManager<ObserverEntity>& _observers;
+  ObjectManager<OccurrenceEntity>& _occurrences;
 };
 
 #endif /* PhysicsWorld_h */

@@ -32,8 +32,8 @@ void PhysicsController::setup(ObserversController& observers,
   _occurrenceDamping = std::make_shared<DampingBehavior<OccurrenceEntity>>(_params.occurrenceDamping);
 
   _world = std::make_shared<PhysicsWorld>(_state,
-                                          observers,
-                                          occurrences);
+                                          observers.entities(),
+                                          occurrences.entities());
 
   registerAsActionHandler();
 }
