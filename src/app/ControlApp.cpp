@@ -76,7 +76,7 @@ private:
 void ControlApp::setup() {
   _eventLoggers = std::make_shared<EventLoggers>();
 
-  _appParams.core.debug.loggingEnabledChanged += [this]() {
+  _appParams.core.debug.loggingEnabled.changed += [this]() {
     updateLogState();
   };
 
@@ -84,6 +84,9 @@ void ControlApp::setup() {
   loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
+
+  _midi = std::make_shared<MidiController>(_appParams);
+  _midi->setup();
 
   registerAsActionHandler();
 }
@@ -97,6 +100,10 @@ void ControlApp::updateLogState() {
   } else {
     _eventLoggers->detach(simulation->getEvents());
   }
+}
+
+void ControlApp::update() {
+  _midi->update();
 }
 
 void ControlApp::draw() {
@@ -116,7 +123,7 @@ bool ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
+      toggleBoolParam(_appParams.core.debug.loggingEnabled);
       break;
     default:
       return false;

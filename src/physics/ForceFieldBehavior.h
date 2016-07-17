@@ -33,31 +33,26 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(_scale
+      add(scale
           .setKey("scale")
           .setName("Scale")
           .setValueAndDefault(1)
           .setRange(0, 4));
-      add(_rate
+      add(rate
           .setKey("rate")
           .setName("Rate")
           .setValueAndDefault(0.1)
           .setRange(0, 0.5));
-      add(_magnitude
+      add(magnitude
           .setKey("magnitude")
           .setName("Magnitude")
           .setValueAndDefault(0.001)
           .setRange(0, 0.05));
     }
 
-    float scale() const { return _scale.get(); }
-    float rate() const { return _rate.get(); }
-    float magnitude() const { return _magnitude.get(); }
-
-  private:
-    TParam<float> _scale;
-    TParam<float> _rate;
-    TParam<float> _magnitude;
+    TParam<float> scale;
+    TParam<float> rate;
+    TParam<float> magnitude;
   };
 
   AbstractNoiseForceFieldBehavior(const Params& params)

@@ -1,16 +1,15 @@
 //
 //  AppParameters.h
-//  behavior
+//  memory
 //
 //  Created by tekt on 1/25/15.
 //
 //
 
-#ifndef __behavior__AppParameters__
-#define __behavior__AppParameters__
+#ifndef AppParameters_h
+#define AppParameters_h
 
 #include <ofParameterGroup.h>
-#include <ofxLiquidEvent.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -21,87 +20,50 @@
 #include "Bounds.h"
 #include "Clock.h"
 #include "Colors.h"
+#include "Events.h"
+#include "MidiController.h"
 
 class DebugParams : public Params {
 public:
   DebugParams() {
-    add(_loggingEnabled
+    add(loggingEnabled
         .setKey("loggingEnabled")
         .setName("Logging Enabled")
         .setValueAndDefault(false));
-    add(_showBounds
+    add(showBounds
         .setKey("showBounds")
         .setName("Show Bounds")
         .setValueAndDefault(false));
-    add(_showStatus
+    add(showStatus
         .setKey("showStatus")
         .setName("Show Status")
         .setValueAndDefault(true));
-    add(_showPhysics
+    add(showPhysics
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
-    _loggingEnabled.addListener(this,
-                                &DebugParams::onLoggingEnabledChanged);
   }
 
-  bool loggingEnabled() const { return _loggingEnabled.get(); }
-  bool showBounds() const { return _showBounds.get(); }
-  bool showStatus() const { return _showStatus.get(); }
-  bool showPhysics() const { return _showPhysics.get(); }
-
-  void setLoggingEnabled(bool loggingEnabled) { _loggingEnabled.set(loggingEnabled); }
-  void setShowBounds(bool showBounds) { _showBounds.set(showBounds); }
-  void setShowStatus(bool showStatus) { _showStatus.set(showStatus); }
-  void setShowPhysics(bool showPhysics) { _showPhysics.set(showPhysics); }
-
-  ofxLiquidEvent<void> loggingEnabledChanged;
-
-private:
-  void onLoggingEnabledChanged(bool& value) {
-    loggingEnabledChanged.notifyListeners();
-  }
-
-  TParam<bool> _loggingEnabled;
-  TParam<bool> _showBounds;
-  TParam<bool> _showStatus;
-  TParam<bool> _showPhysics;
+  TParam<bool> loggingEnabled;
+  TParam<bool> showBounds;
+  TParam<bool> showStatus;
+  TParam<bool> showPhysics;
 };
 
 class OutputParams : public Params {
 public:
   OutputParams() {
-    add(_fullscreen
+    add(fullscreen
         .setKey("fullscreen")
         .setName("Fullscreen"));
-#ifdef ENABLE_SYPHON
-    add(_syphonEnabled
-        .setKey("syphonEnabled")
-        .setName("Enable Syphon")
+    add(externalEnabled
+        .setKey("externalEnabled")
+        .setName("Enable External Send")
         .setValueAndDefault(false));
-#endif
-    _fullscreen.addListener(this,
-                            &OutputParams::onFullscreenChanged);
   }
 
-  bool fullscreen() const { return _fullscreen.get(); }
-  void setFullscreen(bool fullscreen) { _fullscreen.set(fullscreen); }
-
-#ifdef ENABLE_SYPHON
-  bool syphonEnabled() const { return _syphonEnabled.get(); }
-#endif
-
-  ofxLiquidEvent<bool> fullscreenChanged;
-private:
-  void onFullscreenChanged(bool& value) {
-    fullscreenChanged.notifyListeners(value);
-  }
-
-  TParam<bool> _fullscreen;
-
-#ifdef ENABLE_SYPHON
-  TParam<bool> _syphonEnabled;
-#endif
+  TParam<bool> fullscreen;
+  TParam<bool> externalEnabled;
 };
 
 class CoreParams : public Params {
@@ -119,13 +81,17 @@ public:
     add(output
         .setKey("output")
         .setName("Output"));
-    bounds.setParamRange(0.5, 40);
+    add(midi
+        .setKey("midi")
+        .setName("Midi"));
+    bounds.size.setRange(0.5, 40);
   }
 
   Clock::Params clock;
   SimpleCubeBounds bounds;
   DebugParams debug;
   OutputParams output;
+  MidiController::Params midi;
 };
 
 class MemoryAppParameters : public Params {
@@ -154,9 +120,6 @@ public:
         .setName("Physics"));
   }
 
-  void readFromFile(std::string filepath);
-  void writeToFile(std::string filepath) const;
-
   CoreParams core;
   ColorTheme colors;
   AnimationsController::Params animations;
@@ -166,4 +129,4 @@ public:
   PhysicsController::Params physics;
 };
 
-#endif /* defined(__behavior__AppParameters__) */
+#endif /* AppParameters_h */

@@ -25,34 +25,30 @@
 class CameraParams : public Params {
 public:
   CameraParams() {
-    add(_spinEnabled
+    add(spinEnabled
         .setKey("spinEnabled")
         .setName("Spin Enabled")
         .setValueAndDefault(false));
-    add(_spinRate
+    add(spinRate
         .setKey("spinRate")
         .setName("Spin Rate")
         .setValueAndDefault(ofVec3f(2, 4, 5))
         .setRange(ofVec3f(-10), ofVec3f(10)));
   }
 
-  bool spinEnabled() const { return _spinEnabled.get(); }
-  const ofVec3f& spinRate() const { return _spinRate.get(); }
-
-private:
-  TParam<bool> _spinEnabled;
-  TParam<ofVec3f> _spinRate;
+  TParam<bool> spinEnabled;
+  TParam<ofVec3f> spinRate;
 };
 
 class FogParams : public ParamsWithEnabled {
 public:
   FogParams() {
-    add(_density
+    add(density
         .setKey("density")
         .setName("Density")
         .setValueAndDefault(0.001f)
         .setRange(0, 0.004f));
-    add(_useBackgroundColor
+    add(useBackgroundColor
         .setKey("useBackgroundColor")
         .setName("Use Background Color")
         .setValueAndDefault(true));
@@ -64,14 +60,9 @@ public:
     setEnabledValueAndDefault(true);
   }
 
-  float density() const { return _density.get(); }
-  bool useBackgroundColor() const { return _useBackgroundColor.get(); }
-
   ValueRange<float> distance;
-
-private:
-  TParam<float> _density;
-  TParam<bool> _useBackgroundColor;
+  TParam<float> density;
+  TParam<bool> useBackgroundColor;
 };
 
 class RenderingController

@@ -132,9 +132,12 @@
       "showPhysics": false,
       "showStatus": false
     },
+    "midi": {
+      "enabled": true
+    },
     "output": {
-      "fullscreen": true,
-      "syphonEnabled": true
+      "externalEnabled": true,
+      "fullscreen": true
     }
   },
   "observers": {

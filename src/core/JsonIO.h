@@ -20,8 +20,33 @@ public:
   std::string message;
 };
 
-void prettyPrintJsonToStream(const Json& value, std::ostream& os);
+class JsonReadable {
+public:
+  virtual void read_json(const Json& val) = 0;
+  void readFromFile(std::string filepath);
+};
 
-std::string prettyPrintJsonToString(const Json& value);
+class JsonWritable {
+public:
+  virtual Json to_json() const = 0; // json11 library requires this naming
+
+  std::string toJsonString() const;
+  void writeJsonTo(std::ostream& os) const;
+  void writeToFile(std::string filepath) const;
+};
+
+namespace JsonUtil {
+  void assertHasShape(const Json& value, Json::shape shape);
+  void assertHasType(const Json& value, Json::Type type);
+  void assertHasLength(const Json& value, int length);
+
+  template<typename T>
+  Json toJson(const T& value);
+
+  template<typename T>
+  T fromJson(const Json& value);
+
+  Json merge(const Json obj1, const Json obj2);
+}
 
 #endif /* JsonIO_h */

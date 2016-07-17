@@ -35,7 +35,7 @@ public:
   class Params : public ::Params {
   public:
     Params() {
-      add(_size
+      add(size
           .setKey("size")
           .setName("Draw Size")
           .setValueAndDefault(0.03)
@@ -45,13 +45,8 @@ public:
           .setName("Fade In"));
     }
 
-    float size() const { return _size.get(); }
-    void setSize(float size) { _size.set(size); }
-
     RampFactory<float>::Params fadeIn;
-
-  protected:
-    TParam<float> _size;
+    TParam<float> size;
   };
 
   AbstractEntityRenderer(const Params& params, const ofFloatColor& color)
@@ -128,41 +123,35 @@ public:
           .setName("Connection Amount Scale")
           .setParamValuesAndDefaults(0, 4)
           .setParamRanges(0, 20));
-      add(_wireEnabled
+      add(wireEnabled
           .setKey("wireEnabled")
           .setName("Wireframe Enabled")
           .setValueAndDefault(false));
-      add(_wireScale
+      add(wireScale
           .setKey("wireScale")
           .setName("Wire Scale")
           .setValueAndDefault(1.2)
           .setRange(0.9, 1.8));
-      add(_wireSaturation
+      add(wireSaturation
           .setKey("wireSaturation")
           .setName("Wire Saturation")
           .setValueAndDefault(0.5)
           .setRange(0, 1.5));
-      add(_wireBrightness
+      add(wireBrightness
           .setKey("wireBrightness")
           .setName("Wire Brightness")
           .setValueAndDefault(1.1)
           .setRange(0.5, 1.5));
-      _size.setValueAndDefault(0.1);
-      _size.setRange(0, 0.5);
+      size.setValueAndDefault(0.1);
+      size.setRange(0, 0.5);
     }
-
-    bool wireEnabled() const { return _wireEnabled.get(); }
-    float wireScale() const { return _wireScale.get(); }
-    float wireSaturation() const { return _wireSaturation.get(); }
-    float wireBrightness() const {return _wireBrightness.get(); }
 
     TParam<bool> showRange;
     ValueRange<float> connectionCountRange;
-  private:
-    TParam<bool> _wireEnabled;
-    TParam<float> _wireScale;
-    TParam<float> _wireSaturation;
-    TParam<float> _wireBrightness;
+    TParam<bool> wireEnabled;
+    TParam<float> wireScale;
+    TParam<float> wireSaturation;
+    TParam<float> wireBrightness;
   };
 
   OccurrenceRenderer(const Params& params,

@@ -26,29 +26,25 @@ public:
         .setParamValuesAndDefaults(0.04, 0.3)
         .setParamRanges(0, 4)
         .setParamNames("Near", "Far"));
-    add(_magnitude
+    add(magnitude
         .setKey("magnitude")
         .setName("Magnitude")
         .setValueAndDefault(0.0001)
         .setRange(0, 0.08));
-    add(_reverse
+    add(reverse
         .setKey("reverse")
         .setName("Reverse")
         .setValueAndDefault(false));
     setEnabledValueAndDefault(true);
   }
 
-  float magnitude() const { return _magnitude.get(); }
-  bool reverse() const { return _reverse.get(); }
-
   float signedMagnitude() const {
     return magnitude() * (reverse() ? -1 : 1);
   }
 
   FloatValueRange distanceBounds;
-protected:
-  TParam<float> _magnitude;
-  TParam<bool> _reverse;
+  TParam<float> magnitude;
+  TParam<bool> reverse;
 };
 
 class AbstractAttractionBehavior

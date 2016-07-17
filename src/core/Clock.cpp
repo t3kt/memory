@@ -45,7 +45,7 @@ void Clock::stop() {
 }
 
 void Clock::toggleState() {
-  _params.setPaused(!_params.paused());
+  toggleBoolParam(_params.paused);
 }
 
 void Clock::update() {
