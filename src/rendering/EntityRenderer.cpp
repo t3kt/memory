@@ -21,11 +21,13 @@ class EntityModels {
 public:
   void setup() {
     _occurrenceMarkerLoader.loadModel("occurrence-marker.stl", false);
-    auto meshNames = _occurrenceMarkerLoader.getMeshNames();
-    _occurrenceMarkerModel = _occurrenceMarkerLoader.getMesh(meshNames[0]);
+    _occurrenceMarkerMesh = _occurrenceMarkerLoader.getMesh(0);
+    _observerMarkerLoader.loadModel("observer-marker.stl", false);
+    _observerMarkerMesh = _observerMarkerLoader.getMesh(0);
   }
 
-  const ofMesh& occurrenceMarker() { return _occurrenceMarkerModel; }
+  const ofMesh& occurrenceMarker() { return _occurrenceMarkerMesh; }
+  const ofMesh& observerMarker() { return _observerMarkerMesh; }
 
   static EntityModels& get() {
     if (!_instance) {
@@ -37,7 +39,9 @@ public:
 
 private:
   ofxAssimpModelLoader _occurrenceMarkerLoader;
-  ofMesh _occurrenceMarkerModel;
+  ofMesh _occurrenceMarkerMesh;
+  ofxAssimpModelLoader _observerMarkerLoader;
+  ofMesh _observerMarkerMesh;
 
   static std::shared_ptr<EntityModels> _instance;
 };
@@ -69,7 +73,10 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofPushMatrix();
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-  ofDrawSphere(entity.position(), size);
+  //  ofDrawSphere(entity.position(), size);
+  ofTranslate(entity.position());
+  ofScale(ofVec3f(size));
+  EntityModels::get().observerMarker().draw();
 
   ofPopMatrix();
   ofPopStyle();
