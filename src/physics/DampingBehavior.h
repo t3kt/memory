@@ -9,11 +9,11 @@
 #ifndef DampingBehavior_h
 #define DampingBehavior_h
 
+#include "Context.h"
 #include "ForceFieldBehavior.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "PhysicsWorld.h"
 
 class AbstractDampingBehavior
 : public AbstractForceFieldBehavior {
@@ -35,7 +35,7 @@ public:
   : _params(params) { }
 
 protected:
-  ofVec3f getForceForEntity(PhysicsWorld* world,
+  ofVec3f getForceForEntity(Context& context,
                             ParticleObject* entity) override {
     return -entity->velocity() * _params.magnitude();
   }
@@ -50,22 +50,22 @@ public:
   DampingBehavior(const Params& params)
   : AbstractDampingBehavior(params) { }
 
-  void applyToWorld(PhysicsWorld* world) override {
+  void applyToWorld(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->context().getEntities<E>()) {
-      applyToEntity(world, entity.get());
+    for (auto& entity : context.getEntities<E>()) {
+      applyToEntity(context, entity.get());
     }
   }
 
 protected:
-  void debugDrawBehavior(PhysicsWorld* world) override {
+  void debugDrawBehavior(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->context().getEntities<E>()) {
-      debugDrawEntity(world, entity.get());
+    for (auto& entity : context.getEntities<E>()) {
+      debugDrawEntity(context, entity.get());
     }
   }
 };

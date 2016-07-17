@@ -9,20 +9,20 @@
 #ifndef ForceFieldBehavior_h
 #define ForceFieldBehavior_h
 
+#include "Context.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "PhysicsWorld.h"
 
 class AbstractForceFieldBehavior
 : public AbstractPhysicsBehavior {
 public:
 
 protected:
-  virtual ofVec3f getForceForEntity(PhysicsWorld* world,
+  virtual ofVec3f getForceForEntity(Context& context,
                                     ParticleObject* entity) = 0;
-  void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
-  void debugDrawEntity(PhysicsWorld* world, ParticleObject* entity);
+  void applyToEntity(Context& context, ParticleObject* entity);
+  void debugDrawEntity(Context& context, ParticleObject* entity);
   void beginDebugDraw() override;
   void endDebugDraw() override;
 };
@@ -59,7 +59,7 @@ public:
   : _params(params) { }
 
 protected:
-  ofVec3f getForceForEntity(PhysicsWorld* world,
+  ofVec3f getForceForEntity(Context& context,
                             ParticleObject* entity) override;
 
   const Params& _params;
@@ -72,22 +72,22 @@ public:
   NoiseForceFieldBehavior(const Params& params)
   : AbstractNoiseForceFieldBehavior(params) { }
 
-  void applyToWorld(PhysicsWorld* world) override {
+  void applyToWorld(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->context().getEntities<E>()) {
-      applyToEntity(world, entity.get());
+    for (auto& entity : context.getEntities<E>()) {
+      applyToEntity(context, entity.get());
     }
   }
 
 protected:
-  void debugDrawBehavior(PhysicsWorld* world) override {
+  void debugDrawBehavior(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->context().getEntities<E>()) {
-      debugDrawEntity(world, entity.get());
+    for (auto& entity : context.getEntities<E>()) {
+      debugDrawEntity(context, entity.get());
     }
   }
 };

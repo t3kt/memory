@@ -10,10 +10,10 @@
 #define AnchorPointBehavior_h
 
 #include "AttractionBehavior.h"
+#include "Context.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "PhysicsWorld.h"
 
 class AbstractAnchorPointBehavior
 : public AbstractAttractionBehavior {
@@ -40,12 +40,12 @@ public:
   : AbstractAnchorPointBehavior(params) { }
 
 protected:
-  void processWorld(PhysicsWorld* world, ApplyMode mode) override {
+  void processWorld(Context& context, ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
     float midDist = getInterpolated(lowBound, highBound, 0.5);
-    for (auto& entity : world->context().getEntities<E>()) {
+    for (auto& entity : context.getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }

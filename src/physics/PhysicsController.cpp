@@ -15,7 +15,6 @@ PhysicsController::PhysicsController(PhysicsController::Params& params,
                                      Context& context)
 : _params(params)
 , _context(context)
-, _world(context)
 , _bounds(bounds)
 , _debugParams(debugParams) {}
 
@@ -74,16 +73,16 @@ void PhysicsController::update() {
   for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  _observerOccurrenceAttraction->applyToWorld(&_world);
-  _occurrenceObserverAttraction->applyToWorld(&_world);
-  _observerObserverAttraction->applyToWorld(&_world);
-  _observerSpatialNoiseForce->applyToWorld(&_world);
-  _occurrenceSpatialNoiseForce->applyToWorld(&_world);
-  _observerAnchorPointAttraction->applyToWorld(&_world);
-  _occurrenceAnchorPointAttraction->applyToWorld(&_world);
-  _observerDamping->applyToWorld(&_world);
-  _occurrenceDamping->applyToWorld(&_world);
-  _rebound->applyToWorld(&_world);
+  _observerOccurrenceAttraction->applyToWorld(_context);
+  _occurrenceObserverAttraction->applyToWorld(_context);
+  _observerObserverAttraction->applyToWorld(_context);
+  _observerSpatialNoiseForce->applyToWorld(_context);
+  _occurrenceSpatialNoiseForce->applyToWorld(_context);
+  _observerAnchorPointAttraction->applyToWorld(_context);
+  _occurrenceAnchorPointAttraction->applyToWorld(_context);
+  _observerDamping->applyToWorld(_context);
+  _occurrenceDamping->applyToWorld(_context);
+  _rebound->applyToWorld(_context);
   for (auto& entity : _context.observers) {
     endEntityUpdate(entity.get(), _params.observers);
   }
@@ -94,16 +93,16 @@ void PhysicsController::update() {
 
 void PhysicsController::draw() {
   if (_debugParams.showPhysics()) {
-    _observerOccurrenceAttraction->debugDraw(&_world);
-    _occurrenceObserverAttraction->debugDraw(&_world);
-    _observerObserverAttraction->debugDraw(&_world);
-    _observerSpatialNoiseForce->debugDraw(&_world);
-    _occurrenceSpatialNoiseForce->debugDraw(&_world);
-    _observerAnchorPointAttraction->debugDraw(&_world);
-    _occurrenceAnchorPointAttraction->debugDraw(&_world);
-    _observerDamping->debugDraw(&_world);
-    _occurrenceDamping->debugDraw(&_world);
-    _rebound->debugDraw(&_world);
+    _observerOccurrenceAttraction->debugDraw(_context);
+    _occurrenceObserverAttraction->debugDraw(_context);
+    _observerObserverAttraction->debugDraw(_context);
+    _observerSpatialNoiseForce->debugDraw(_context);
+    _occurrenceSpatialNoiseForce->debugDraw(_context);
+    _observerAnchorPointAttraction->debugDraw(_context);
+    _occurrenceAnchorPointAttraction->debugDraw(_context);
+    _observerDamping->debugDraw(_context);
+    _occurrenceDamping->debugDraw(_context);
+    _rebound->debugDraw(_context);
   }
 }
 

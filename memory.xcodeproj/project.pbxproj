@@ -109,7 +109,6 @@
 		CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5CE2B494B5EBDE056DBBC17 /* ofxSyphonServer.mm */; };
 		CB2F1BB8D1EC09DEBB0052ED /* ofxBaseMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2592EBF46F7DE5BF02FF899D /* ofxBaseMidi.cpp */; };
 		CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 088D20E7FB38937AE60F997D /* ofxSliderGroup.cpp */; };
-		D076420E70C1EAE24412F175 /* PhysicsWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25671390BB0A90141734ACAC /* PhysicsWorld.cpp */; };
 		D265D6207B2184FB12FD93AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 823FBC6F9791944E4D93726D /* main.cpp */; };
 		D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E19D04C1AD1A7DF029A38221 /* json11.cpp */; };
 		D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCBEBF66C39747BD1534C1B5 /* Status.cpp */; };
@@ -183,7 +182,6 @@
 		1871276E2C2105C9C717619A /* ofxLiquidEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLiquidEvent.h; path = ../../of_v0.9.3_osx_release/addons/ofxLiquidEvent/src/ofxLiquidEvent.h; sourceTree = SOURCE_ROOT; };
 		18FDAA884F43D6CF3A92BA3B /* ofxGuiGroupExtended.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroupExtended.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiGroupExtended.cpp; sourceTree = SOURCE_ROOT; };
 		1A5C23DAFEE4E3049A5BA4BE /* SyphonNameboundClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SyphonNameboundClient.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src/SyphonNameboundClient.h; sourceTree = SOURCE_ROOT; };
-		1E92AD4FE8AC621E7A9EF74B /* PhysicsWorld.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PhysicsWorld.h; path = src/physics/PhysicsWorld.h; sourceTree = SOURCE_ROOT; };
 		1F05D9B2D4915D920A10BE4F /* Colors.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Colors.cpp; path = src/core/Colors.cpp; sourceTree = SOURCE_ROOT; };
 		1F8E99083CDB97599C3EDFDA /* Hold.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Hold.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Hold.hpp; sourceTree = SOURCE_ROOT; };
 		2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RGBShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.cpp; sourceTree = SOURCE_ROOT; };
@@ -192,7 +190,6 @@
 		22F017FB9260290C5F3E590A /* KaleidoscopePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KaleidoscopePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.h; sourceTree = SOURCE_ROOT; };
 		2361E49D807B63833D9BCEC7 /* Ramp.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Ramp.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Ramp.hpp; sourceTree = SOURCE_ROOT; };
 		256465114FA04BE629E19AC8 /* ForceFieldBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ForceFieldBehavior.cpp; path = src/physics/ForceFieldBehavior.cpp; sourceTree = SOURCE_ROOT; };
-		25671390BB0A90141734ACAC /* PhysicsWorld.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PhysicsWorld.cpp; path = src/physics/PhysicsWorld.cpp; sourceTree = SOURCE_ROOT; };
 		2592EBF46F7DE5BF02FF899D /* ofxBaseMidi.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseMidi.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxMidi/src/ofxBaseMidi.cpp; sourceTree = SOURCE_ROOT; };
 		261D64D03197C5EBC148884A /* PostProcessing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PostProcessing.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PostProcessing.cpp; sourceTree = SOURCE_ROOT; };
 		2644BC4B5A561E6D39FDB990 /* SimulationApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SimulationApp.cpp; path = src/app/SimulationApp.cpp; sourceTree = SOURCE_ROOT; };
@@ -704,8 +701,6 @@
 				1324084D010EA3700F964757 /* PhysicsBehavior.h */,
 				03D6AC75A420CA1A8047336C /* PhysicsController.cpp */,
 				A6A6B15324518B653B697491 /* PhysicsController.h */,
-				25671390BB0A90141734ACAC /* PhysicsWorld.cpp */,
-				1E92AD4FE8AC621E7A9EF74B /* PhysicsWorld.h */,
 			);
 			name = physics;
 			sourceTree = "<group>";
@@ -1198,7 +1193,6 @@
 				6B3B09ED7D2F80D519ABF2CE /* ForceFieldBehavior.cpp in Sources */,
 				4D93988C4818BD27BE899E23 /* PhysicsBehavior.cpp in Sources */,
 				1518C0B3AAD2C1012B1FE216 /* PhysicsController.cpp in Sources */,
-				D076420E70C1EAE24412F175 /* PhysicsWorld.cpp in Sources */,
 				EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */,
 				4A11364C587650CFFFEB00B8 /* PostProcController.cpp in Sources */,
 				AC65CBF6F38E677411466D3D /* RenderingController.cpp in Sources */,

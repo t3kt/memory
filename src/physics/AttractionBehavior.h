@@ -9,12 +9,12 @@
 #ifndef AttractionBehavior_h
 #define AttractionBehavior_h
 
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "Context.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "PhysicsWorld.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 
 class RangedForceParams
 : public ParamsWithEnabled {
@@ -55,11 +55,11 @@ public:
   AbstractAttractionBehavior(const Params& params)
   : _params(params) { }
 
-  void applyToWorld(PhysicsWorld* world) override {
+  void applyToWorld(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    processWorld(world, ApplyMode::ADD_FORCE);
+    processWorld(context, ApplyMode::ADD_FORCE);
   }
 
 protected:
@@ -68,14 +68,14 @@ protected:
     DEBUG_DRAW,
   };
 
-  void debugDrawBehavior(PhysicsWorld* world) override {
+  void debugDrawBehavior(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
-    processWorld(world, ApplyMode::DEBUG_DRAW);
+    processWorld(context, ApplyMode::DEBUG_DRAW);
   }
 
-  virtual void processWorld(PhysicsWorld* world,
+  virtual void processWorld(Context& context,
                             ApplyMode mode) = 0;
 
   ofVec3f calcAttractionForce(const ofVec3f& entityPosition,
@@ -103,11 +103,11 @@ public:
   : AbstractAttractionBehavior(params) { }
 
 protected:
-  void processWorld(PhysicsWorld* world, ApplyMode mode) override {
+  void processWorld(Context& context, ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto& entity : world->context().getEntities<E>()) {
+    for (auto& entity : context.getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }
@@ -146,11 +146,11 @@ public:
   : AbstractAttractionBehavior(params) { }
 
 protected:
-  void processWorld(PhysicsWorld* world, ApplyMode mode) override {
+  void processWorld(Context& context, ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto& entity : world->context().getEntities<ObserverEntity>()) {
+    for (auto& entity : context.getEntities<ObserverEntity>()) {
       if (!entity->alive()) {
         continue;
       }

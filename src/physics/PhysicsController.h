@@ -17,7 +17,6 @@
 #include "DampingBehavior.h"
 #include "ForceFieldBehavior.h"
 #include "Params.h"
-#include "PhysicsWorld.h"
 #include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
@@ -126,8 +125,6 @@ private:
   Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-
-  PhysicsWorld _world;
 
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;
