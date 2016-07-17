@@ -7,8 +7,13 @@
 //
 
 #include <ofMath.h>
+#include "AppSystem.h"
 #include "Common.h"
 #include "Navigator.h"
+
+static ofVec3f randomPointInBounds() {
+  return AppSystem::get().params()->core.bounds.randomPoint();
+}
 
 class PointLocation
 : public NavLocation {
@@ -22,8 +27,12 @@ public:
   Type type() const override { return Type::POINT; }
 
   NavStep nextStep(NavContext& context) override {
+    const float STEP_RATE = 8;
     //.....
-    return NavStep();
+    auto nextPoint = randomPointInBounds();
+    auto dist = (nextPoint - _point).length();
+    return NavStep(std::make_shared<PointLocation>(nextPoint),
+                   context.time() + (dist * STEP_RATE));
   }
 
 private:
@@ -32,6 +41,10 @@ private:
 
 void Navigator::setup() {
   jumpTo(ofVec3f::zero());
+}
+
+void Navigator::jumpToRandomPoint() {
+  jumpTo(randomPointInBounds());
 }
 
 void Navigator::jumpTo(const ofVec3f &point) {

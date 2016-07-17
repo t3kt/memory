@@ -55,6 +55,11 @@ void SimulationApp::setup() {
 
   _statusController = std::make_shared<StatusInfoController>();
 
+  _highlightNavigator = std::make_shared<Navigator>(_state);
+  _highlightNavigator->setup();
+
+  _highlightNavigator->jumpToRandomPoint();
+
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
@@ -66,6 +71,7 @@ void SimulationApp::update() {
   _occurrences->update(_state);
   _animations->update(_state);
   _physics->update();
+  _highlightNavigator->update();
   _renderingController->update(_state);
 }
 
@@ -84,6 +90,13 @@ void SimulationApp::draw() {
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
   }
+
+  ofPushStyle();
+//  ofNoFill();
+  ofSetColor(ofFloatColor(ofFloatColor::orange, 0.3));
+//  ofSetLineWidth(4);
+  ofDrawBox(_highlightNavigator->position(), 0.5);
+  ofPopStyle();
 
   _renderingController->endDraw(_state);
 

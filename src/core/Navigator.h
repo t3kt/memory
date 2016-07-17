@@ -69,7 +69,7 @@ public:
   float time() const { return _time; }
   const ofVec3f& position() const { return _location->position(); }
 
-  operator bool() const { return !_location; }
+  operator bool() const { return !!_location; }
 private:
   NavLocationPtr _location;
   float _time;
@@ -88,6 +88,7 @@ public:
   void jumpTo(ObserverEntity& entity);
   void jumpTo(OccurrenceEntity& entity);
   void jumpTo(const ofVec3f& point);
+  void jumpToRandomPoint();
 
   const NavLocation* prevLocation() const {
     return _prevStep.location().get();
