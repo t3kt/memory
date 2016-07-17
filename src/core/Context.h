@@ -16,6 +16,7 @@
 
 class AnimationObject;
 class MemoryAppParameters;
+class NavigatorEntity;
 class ObserverEntity;
 class OccurrenceEntity;
 
@@ -46,6 +47,7 @@ public:
   MemoryAppParameters& appParams;
   State state;
   ObjectManager<AnimationObject> animations;
+  ObjectManager<NavigatorEntity> navigators;
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
 };

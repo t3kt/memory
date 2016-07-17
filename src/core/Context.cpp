@@ -21,6 +21,18 @@ Context::getEntities<AnimationObject>() const {
 }
 
 template<>
+ObjectManager<NavigatorEntity>&
+Context::getEntities<NavigatorEntity>() {
+  return navigators;
+}
+
+template<>
+const ObjectManager<NavigatorEntity>&
+Context::getEntities<NavigatorEntity>() const {
+  return navigators;
+}
+
+template<>
 ObjectManager<ObserverEntity>&
 Context::getEntities<ObserverEntity>() {
   return observers;

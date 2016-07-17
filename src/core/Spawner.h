@@ -15,9 +15,17 @@
 
 using SpawnerParams = ParamsWithEnabled;
 
-class IntervalSpawner {
+class Spawner {
 public:
-  class Params : public SpawnerParams {
+  using Params = ParamsWithEnabled;
+
+  virtual void update(Context& context) = 0;
+};
+
+class IntervalSpawner
+: public Spawner {
+public:
+  class Params : public Spawner::Params {
   public:
     Params() {
       add(interval
@@ -37,7 +45,7 @@ public:
   IntervalSpawner(const Params& params)
   : _params(params) {}
 
-  void update(Context& context) {
+  void update(Context& context) override {
     if (!_params.enabled()) {
       return;
     }
@@ -54,9 +62,10 @@ protected:
   float _nextTime;
 };
 
-class RateSpawner {
+class RateSpawner
+: public Spawner {
 public:
-  class Params : public SpawnerParams {
+  class Params : public Spawner::Params {
   public:
     Params() {
       add(_rate
@@ -85,7 +94,7 @@ public:
   : _params(params)
   , _lastTime(-1) { }
 
-  void update(Context& context) {
+  void update(Context& context) override {
     if (!_params.enabled()) {
       return;
     }

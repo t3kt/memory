@@ -19,6 +19,7 @@ typedef long ObjectId;
 
 enum class EntityType {
   ANIMATION,
+  NAVIGATOR,
   OBSERVER,
   OCCURRENCE,
 };
