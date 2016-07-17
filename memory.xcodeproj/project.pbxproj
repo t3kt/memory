@@ -31,6 +31,7 @@
 		32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF591D39FC8C00113278 /* MidiDevice.cpp */; };
 		32DAAF611D3A08B900113278 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */; };
 		32DAAF6C1D3A2AE000113278 /* MidiMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */; };
+		32DAAF851D3B12B100113278 /* CameraController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF831D3B12B100113278 /* CameraController.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -218,6 +219,8 @@
 		32DAAF601D3A08B900113278 /* MidiCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiCommon.h; path = control/MidiCommon.h; sourceTree = "<group>"; };
 		32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiMapping.cpp; path = control/MidiMapping.cpp; sourceTree = "<group>"; };
 		32DAAF6B1D3A2AE000113278 /* MidiMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiMapping.h; path = control/MidiMapping.h; sourceTree = "<group>"; };
+		32DAAF831D3B12B100113278 /* CameraController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraController.cpp; path = rendering/CameraController.cpp; sourceTree = "<group>"; };
+		32DAAF841D3B12B100113278 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraController.h; path = rendering/CameraController.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -574,6 +577,8 @@
 		5533A127DD65323EB591F7AD /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				32DAAF831D3B12B100113278 /* CameraController.cpp */,
+				32DAAF841D3B12B100113278 /* CameraController.h */,
 				1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
 				3EEDD94E96E3A4D29CC0A83A /* PostProcController.cpp */,
@@ -1256,6 +1261,7 @@
 				C11106AFBC3CD6F479EDB075 /* RGBShiftPass.cpp in Sources */,
 				2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */,
 				5A73BE78B916F134FC0AE416 /* SSAOPass.cpp in Sources */,
+				32DAAF851D3B12B100113278 /* CameraController.cpp in Sources */,
 				23234C9FA76CB202C47F4199 /* ToonPass.cpp in Sources */,
 				A4CB0D937943452F112F31A4 /* VerticalTiltShifPass.cpp in Sources */,
 				88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */,

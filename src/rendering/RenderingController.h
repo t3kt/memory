@@ -9,9 +9,9 @@
 #ifndef RenderingController_h
 #define RenderingController_h
 
-#include <ofEasyCam.h>
 #include <ofAppGLFWWindow.h>
 #include "AppActions.h"
+#include "CameraController.h"
 #include "Colors.h"
 #include "Common.h"
 #include "Params.h"
@@ -21,24 +21,6 @@
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
 #endif
-
-class CameraParams : public Params {
-public:
-  CameraParams() {
-    add(spinEnabled
-        .setKey("spinEnabled")
-        .setName("Spin Enabled")
-        .setValueAndDefault(false));
-    add(spinRate
-        .setKey("spinRate")
-        .setName("Spin Rate")
-        .setValueAndDefault(ofVec3f(2, 4, 5))
-        .setRange(ofVec3f(-10), ofVec3f(10)));
-  }
-
-  TParam<bool> spinEnabled;
-  TParam<ofVec3f> spinRate;
-};
 
 class FogParams : public ParamsWithEnabled {
 public:
@@ -82,12 +64,12 @@ public:
           .setName("Post Processing"));
     }
 
-    CameraParams camera;
+    CameraController::Params camera;
     FogParams fog;
     PostProcController::Params postProc;
   };
 
-  RenderingController(const Params& params,
+  RenderingController(Params& params,
                       ofAppGLFWWindow& window,
                       const ColorTheme& colors);
 
@@ -95,7 +77,6 @@ public:
   void update(const State& state);
   void beginDraw(const State& state);
   void endDraw(const State& state);
-  void resetCamera();
   void updateResolution();
 
   bool performAction(AppAction action) override;
@@ -108,15 +89,14 @@ private:
   void beginFog();
   void endFog();
 
-  const Params& _params;
+  Params& _params;
   const ColorTheme& _colors;
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
-  ofEasyCam _cam;
+  std::shared_ptr<CameraController> _camera;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;
-  ofVec3f _rotation;
 };
 
 #endif /* RenderingController_h */
