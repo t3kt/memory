@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <ofVec3f.h>
+#include <ofxAssimpModelLoader.h>
 #include "AnimationObject.h"
 #include "Context.h"
 #include "ObserverEntity.h"
@@ -81,6 +82,7 @@ public:
   Navigator(Context& context)
   : _context(context) { }
 
+  void setup();
   void update();
 
   void jumpTo(AnimationObject& entity);
@@ -107,10 +109,15 @@ public:
     return _nextStep ? _nextStep.position() : _context.position();
   }
 
+  void draw();
+
   bool hasLocation() const { return !!_prevStep; }
   bool hasNextLocation() const { return !!_nextStep; }
 private:
   void jumpTo(NavLocationPtr location);
+
+  ofxAssimpModelLoader _modelLoader;
+  ofMesh _mesh;
 
   NavContext _context;
   NavStep _prevStep;

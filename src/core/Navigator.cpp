@@ -92,6 +92,40 @@ public:
                    context.time() + (dist * STEP_RATE));
   }
 };
+
+void Navigator::setup() {
+  _modelLoader.loadModel("nav-marker.stl", false);
+  _mesh = _modelLoader.getMesh(0);
+}
+
+void Navigator::draw() {
+  if (!hasLocation()) {
+    return;
+  }
+  ofPushStyle();
+  ofPushMatrix();
+
+  //  ofNoFill();
+  ofSetColor(ofFloatColor(ofFloatColor::orange, 0.3));
+  //  ofSetLineWidth(4);
+  ofScale(ofVec3f(0.6));
+  _mesh.draw(OF_MESH_FILL);
+  //ofDrawBox(position(), 0.2);
+
+  ofSetColor(ofFloatColor(ofFloatColor::darkorange, 0.5));
+  ofDrawBox(prevPosition(), 0.1);
+
+  if (hasNextLocation()) {
+    ofDrawSphere(nextPosition(), 0.1);
+    ofDrawArrow(prevPosition(),
+                nextPosition(),
+                0.2);
+  }
+
+  ofPopMatrix();
+  ofPopStyle();
+}
+
 void Navigator::jumpToRandomPoint() {
   jumpTo(randomPointInBounds());
 }
