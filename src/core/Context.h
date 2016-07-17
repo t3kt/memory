@@ -15,12 +15,16 @@
 #include "State.h"
 
 class AnimationObject;
+class MemoryAppParameters;
 class ObserverEntity;
 class OccurrenceEntity;
 
 class Context
 : public NonCopyable {
 public:
+  Context(MemoryAppParameters& appPars)
+  : appParams(appPars) { }
+
   float time() const { return state.time; }
 
   template<typename E>
@@ -39,6 +43,7 @@ public:
     getEntities<E>().performTypedAction(action);
   }
 
+  MemoryAppParameters& appParams;
   State state;
   ObjectManager<AnimationObject> animations;
   ObjectManager<ObserverEntity> observers;

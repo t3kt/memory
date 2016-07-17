@@ -26,6 +26,9 @@ public:
   static void initialize();
   static AppSystem& get();
 
+  AppSystem()
+  : _context(_appParams) {}
+
   void main();
 
   MemoryAppParameters* params() { return &_appParams; }
