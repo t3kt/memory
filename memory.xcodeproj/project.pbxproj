@@ -31,6 +31,7 @@
 		32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF591D39FC8C00113278 /* MidiDevice.cpp */; };
 		32DAAF611D3A08B900113278 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF5F1D3A08B900113278 /* MidiCommon.cpp */; };
 		32DAAF6C1D3A2AE000113278 /* MidiMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */; };
+		32DAAF8A1D3B16EB00113278 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF881D3B16EB00113278 /* Navigator.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -218,6 +219,8 @@
 		32DAAF601D3A08B900113278 /* MidiCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiCommon.h; path = control/MidiCommon.h; sourceTree = "<group>"; };
 		32DAAF6A1D3A2AE000113278 /* MidiMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiMapping.cpp; path = control/MidiMapping.cpp; sourceTree = "<group>"; };
 		32DAAF6B1D3A2AE000113278 /* MidiMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiMapping.h; path = control/MidiMapping.h; sourceTree = "<group>"; };
+		32DAAF881D3B16EB00113278 /* Navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Navigator.cpp; path = core/Navigator.cpp; sourceTree = "<group>"; };
+		32DAAF891D3B16EB00113278 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Navigator.h; path = core/Navigator.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -898,6 +901,8 @@
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
+				32DAAF881D3B16EB00113278 /* Navigator.cpp */,
+				32DAAF891D3B16EB00113278 /* Navigator.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
 				060B900FD66542BB0792E633 /* ObserverEntity.cpp */,
 				73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */,
@@ -1231,6 +1236,7 @@
 				4EADE30301A27524B8FC9385 /* ofxMidiIn.cpp in Sources */,
 				BF840C01D1947A7AFE6F3E5B /* ofxMidiMessage.cpp in Sources */,
 				758C8807E87953B9A29F1F34 /* ofxMidiOut.cpp in Sources */,
+				32DAAF8A1D3B16EB00113278 /* Navigator.cpp in Sources */,
 				134F29CB662FC7D3B493C8E7 /* RtMidi.cpp in Sources */,
 				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
 				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
