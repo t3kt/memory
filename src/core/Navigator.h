@@ -18,25 +18,7 @@
 #include "State.h"
 #include "WorldObject.h"
 
-class NavLocation;
-using NavLocationPtr = std::shared_ptr<NavLocation>;
-
-class NavStep {
-public:
-  static NavStep none() { return NavStep(nullptr, 0); }
-
-  NavStep(NavLocationPtr location, float duration)
-  : _location(location)
-  , _duration(duration) { }
-
-  NavLocationPtr location() { return _location; }
-  float duration() const { return _duration; }
-
-  bool isNone() const { return !_location; }
-private:
-  NavLocationPtr _location;
-  float _duration;
-};
+class NavStep;
 
 class NavContext {
 public:
@@ -44,25 +26,53 @@ public:
   : _state(state) { }
 
   const State& state() const { return _state; }
+  float time() const { return _state.time; }
+  const ofVec3f& position() const { return _position; }
+  void setPosition(ofVec3f position) { _position = position; }
+  ofVec3f* positionPtr() { return &_position; }
 private:
   const State& _state;
-};
-
-enum class NavLocationType {
-  ANIMATION,
-  OBSERVER,
-  OCCURRENCE,
-  POINT,
+  ofVec3f _position;
 };
 
 class NavLocation {
 public:
+  enum class Type {
+    ANIMATION,
+    OBSERVER,
+    OCCURRENCE,
+    POINT,
+  };
+
   virtual WorldObject* object() = 0;
   virtual const WorldObject* object() const = 0;
   virtual const ofVec3f& position() const = 0;
-  virtual NavLocationType type() const = 0;
+  virtual Type type() const = 0;
 
   virtual NavStep nextStep(NavContext& context) = 0;
+};
+
+using NavLocationPtr = std::shared_ptr<NavLocation>;
+
+class NavStep {
+public:
+  NavStep()
+  : _location(nullptr)
+  , _time(0) { }
+
+  NavStep(NavLocationPtr location, float time)
+  : _location(location)
+  , _time(time) { }
+
+  NavLocationPtr location() { return _location; }
+  const NavLocationPtr location() const { return _location; }
+  float time() const { return _time; }
+  const ofVec3f& position() const { return _location->position(); }
+
+  operator bool() const { return !_location; }
+private:
+  NavLocationPtr _location;
+  float _time;
 };
 
 class Navigator {
@@ -74,20 +84,33 @@ public:
 
   void update();
 
-  void jumpTo(const AnimationObject& entity);
-  void jumpTo(const ObserverEntity& entity);
-  void jumpTo(const OccurrenceEntity& entity);
+  void jumpTo(AnimationObject& entity);
+  void jumpTo(ObserverEntity& entity);
+  void jumpTo(OccurrenceEntity& entity);
   void jumpTo(const ofVec3f& point);
 
-  const NavLocation& currentLocation() const {
-    return *_currentLocation;
+  const NavLocation* prevLocation() const {
+    return _prevStep.location().get();
+  }
+
+  const NavLocation* nextLocation() const {
+    return _nextStep.location().get();
+  }
+
+  const ofVec3f& position() const { return _context.position(); }
+  const ofVec3f& prevPosition() const {
+    return _prevStep ? _prevStep.position() : _context.position();
+  }
+
+  const ofVec3f& nextPosition() const {
+    return _nextStep ? _nextStep.position() : _context.position();
   }
 private:
   void jumpTo(NavLocationPtr location);
 
   NavContext _context;
-  NavLocationPtr _currentLocation;
-  NavLocationPtr _nextLocation;
+  NavStep _prevStep;
+  NavStep _nextStep;
 };
 
 #endif /* Navigator_h */

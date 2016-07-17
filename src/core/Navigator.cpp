@@ -6,25 +6,60 @@
 //
 //
 
+#include <ofMath.h>
+#include "Common.h"
 #include "Navigator.h"
 
 class PointLocation
 : public NavLocation {
 public:
+  PointLocation(ofVec3f point)
+  : _point(point) {}
+
   WorldObject* object() override { return nullptr; }
   const WorldObject* object() const override { return nullptr; }
   const ofVec3f& position() const override { return _point; }
-  NavLocationType type() const override {
-    return NavLocationType::POINT;
-  }
+  Type type() const override { return Type::POINT; }
 
-  NavStep nextStep(NavContext& context) override;
+  NavStep nextStep(NavContext& context) override {
+    //.....
+    return NavStep();
+  }
 
 private:
   ofVec3f _point;
 };
 
-NavStep PointLocation::nextStep(NavContext &context) {
-  //.....
-  return NavStep::none();
+void Navigator::setup() {
+  jumpTo(ofVec3f::zero());
+}
+
+void Navigator::jumpTo(const ofVec3f &point) {
+  jumpTo(std::make_shared<PointLocation>(point));
+}
+
+void Navigator::jumpTo(NavLocationPtr location) {
+  _prevStep = NavStep(location, _context.state().time);
+  _context.setPosition(location->position());
+  _nextStep = location->nextStep(_context);
+}
+
+void Navigator::update() {
+  if (!_prevStep || !_nextStep) {
+    return;
+  }
+  float now = _context.time();
+  float nextTime = _nextStep.time();
+
+  if (now >= nextTime) {
+    jumpTo(_nextStep.location());
+  } else {
+    float prevTime = _prevStep.time();
+    float percent = ofMap(now,
+                          prevTime, nextTime,
+                          0, 1);
+    _context.setPosition(getInterpolated(prevPosition(),
+                                         nextPosition(),
+                                         percent));
+  }
 }
