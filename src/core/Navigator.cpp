@@ -58,8 +58,11 @@ void Navigator::jumpTo(NavLocationPtr location) {
 }
 
 void Navigator::update() {
-  if (!_prevStep || !_nextStep) {
+  if (!_prevStep) {
     return;
+  }
+  if (!_nextStep) {
+    _nextStep = _prevStep.location()->nextStep(_context);
   }
   float now = _context.time();
   float nextTime = _nextStep.time();
