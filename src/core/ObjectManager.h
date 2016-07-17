@@ -24,11 +24,12 @@ class AbstractObjectView {
 public:
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
+  using EntityPtr = std::shared_ptr<T>;
 
   AbstractObjectView(Storage objects)
   : _objects(objects) { }
 
-  void performAction(std::function<void(std::shared_ptr<T>)> action) {
+  void performAction(std::function<void(EntityPtr)> action) {
     for (auto& entity : _objects) {
       action(entity);
     }
@@ -70,6 +71,17 @@ public:
 
   const_iterator end() const {
     return _objects.cend();
+  }
+
+  EntityPtr getAtIndex(std::size_t index) {
+    if (index >= size()) {
+      return EntityPtr();
+    }
+    auto iter = std::next(begin(), index);
+    if (iter != end()) {
+      return *iter;
+    }
+    return EntityPtr();
   }
 
 protected:

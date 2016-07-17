@@ -26,7 +26,7 @@ public:
 
   void updateVelocityAndPosition(const State& state, float speed);
 
-  ofVec3f position() const { return _position; }
+  const ofVec3f& position() const { return _position; }
 
   const ofVec3f& startPosition() const { return _startPosition; }
   const ofVec3f& velocity() const { return _velocity; }

@@ -12,6 +12,7 @@
 #include <memory>
 #include <ofVec3f.h>
 #include "AnimationObject.h"
+#include "Context.h"
 #include "ObserverEntity.h"
 #include "ObjectManager.h"
 #include "OccurrenceEntity.h"
@@ -22,16 +23,16 @@ class NavStep;
 
 class NavContext {
 public:
-  NavContext(const State& state)
-  : _state(state) { }
+  NavContext(Context& context)
+  : _context(context) { }
 
-  const State& state() const { return _state; }
-  float time() const { return _state.time; }
+  Context& context() { return _context; }
+  float time() const { return _context.time(); }
   const ofVec3f& position() const { return _position; }
   void setPosition(ofVec3f position) { _position = position; }
   ofVec3f* positionPtr() { return &_position; }
 private:
-  const State& _state;
+  Context& _context;
   ofVec3f _position;
 };
 
@@ -77,10 +78,8 @@ private:
 
 class Navigator {
 public:
-  Navigator(const State& state)
-  : _context(state) { }
-
-  void setup();
+  Navigator(Context& context)
+  : _context(context) { }
 
   void update();
 
@@ -89,6 +88,7 @@ public:
   void jumpTo(OccurrenceEntity& entity);
   void jumpTo(const ofVec3f& point);
   void jumpToRandomPoint();
+  void jumpToRandomObserver();
 
   const NavLocation* prevLocation() const {
     return _prevStep.location().get();
@@ -106,6 +106,9 @@ public:
   const ofVec3f& nextPosition() const {
     return _nextStep ? _nextStep.position() : _context.position();
   }
+
+  bool hasLocation() const { return !!_prevStep; }
+  bool hasNextLocation() const { return !!_nextStep; }
 private:
   void jumpTo(NavLocationPtr location);
 

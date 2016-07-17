@@ -6,6 +6,7 @@
 //
 //
 
+#include <iterator>
 #include <ofMath.h>
 #include "AppSystem.h"
 #include "Common.h"
@@ -13,6 +14,24 @@
 
 static ofVec3f randomPointInBounds() {
   return AppSystem::get().params()->core.bounds.randomPoint();
+}
+
+template<typename E>
+std::shared_ptr<E> getRandomEntity(EntityMap<E>& entities) {
+  if (entities.empty()) {
+    return std::shared_ptr<E>();
+  }
+  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
+  return entities.getAtIndex(index);
+}
+
+template<typename E>
+std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
+  if (entities.empty()) {
+    return std::shared_ptr<E>();
+  }
+  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
+  return entities.getAtIndex(index);
 }
 
 class PointLocation
@@ -27,7 +46,7 @@ public:
   Type type() const override { return Type::POINT; }
 
   NavStep nextStep(NavContext& context) override {
-    const float STEP_RATE = 8;
+    const float STEP_RATE = 30;
     //.....
     auto nextPoint = randomPointInBounds();
     auto dist = (nextPoint - _point).length();
@@ -39,10 +58,40 @@ private:
   ofVec3f _point;
 };
 
-void Navigator::setup() {
-  jumpTo(ofVec3f::zero());
-}
+template <typename E, NavLocation::Type T>
+class EntityLocation
+: public NavLocation {
+public:
+  EntityLocation(std::shared_ptr<E> entity)
+  : _entity(entity) { }
 
+  WorldObject* object() override { return _entity.get(); }
+  const WorldObject* object() const override { return _entity.get(); }
+  const ofVec3f& position() const override { return _entity->position(); }
+  Type type() const override { return T; }
+
+protected:
+  std::shared_ptr<E> _entity;
+};
+
+class ObserverLocation
+: public EntityLocation<ObserverEntity, NavLocation::Type::OBSERVER> {
+public:
+  ObserverLocation(std::shared_ptr<ObserverEntity> entity)
+  : EntityLocation(entity) { }
+
+  NavStep nextStep(NavContext& context) override {
+    const float STEP_RATE = 8;
+
+    auto other = getRandomEntity(_entity->getConnectedObservers());
+    if (!other) {
+      return NavStep();
+    }
+    auto dist = (other->position() - _entity->position()).length();
+    return NavStep(std::make_shared<ObserverLocation>(other),
+                   context.time() + (dist * STEP_RATE));
+  }
+};
 void Navigator::jumpToRandomPoint() {
   jumpTo(randomPointInBounds());
 }
@@ -51,8 +100,18 @@ void Navigator::jumpTo(const ofVec3f &point) {
   jumpTo(std::make_shared<PointLocation>(point));
 }
 
+void Navigator::jumpToRandomObserver() {
+  if (_context.context().observers.empty()) {
+    return;
+  }
+  auto entity = getRandomEntity(_context.context().observers);
+  if (entity) {
+    jumpTo(std::make_shared<ObserverLocation>(entity));
+  }
+}
+
 void Navigator::jumpTo(NavLocationPtr location) {
-  _prevStep = NavStep(location, _context.state().time);
+  _prevStep = NavStep(location, _context.context().time());
   _context.setPosition(location->position());
   _nextStep = location->nextStep(_context);
 }
@@ -61,8 +120,9 @@ void Navigator::update() {
   if (!_prevStep) {
     return;
   }
+  _nextStep = _prevStep.location()->nextStep(_context);
   if (!_nextStep) {
-    _nextStep = _prevStep.location()->nextStep(_context);
+    return;
   }
   float now = _context.time();
   float nextTime = _nextStep.time();

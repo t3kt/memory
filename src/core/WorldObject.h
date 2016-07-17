@@ -9,10 +9,11 @@
 #ifndef WorldObject_h
 #define WorldObject_h
 
-#include "Common.h"
+#include <iterator>
 #include <iostream>
-#include <map>
 #include <memory>
+#include <unordered_map>
+#include "Common.h"
 
 typedef long ObjectId;
 
@@ -52,11 +53,22 @@ template<typename E>
 class EntityMap {
 public:
   using EntityPtr = std::shared_ptr<E>;
-  using Storage = std::map<ObjectId, EntityPtr>;
+  using Storage = std::unordered_map<ObjectId, EntityPtr>;
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
   void add(EntityPtr entity) { _map[entity->id] = entity; }
+
+  EntityPtr getAtIndex(std::size_t index) {
+    if (index >= size()) {
+      return EntityPtr();
+    }
+    auto iter = std::next(begin(), index);
+    if (iter != end()) {
+      return iter->second;
+    }
+    return EntityPtr();
+  }
 
   std::size_t erase(ObjectId id) { return _map.erase(id); }
 

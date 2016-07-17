@@ -57,10 +57,7 @@ void SimulationApp::setup() {
 
   _statusController = std::make_shared<StatusInfoController>();
 
-  _highlightNavigator = std::make_shared<Navigator>(_context.state);
-  _highlightNavigator->setup();
-
-  _highlightNavigator->jumpToRandomPoint();
+  _highlightNavigator = std::make_shared<Navigator>(_context);
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
@@ -75,6 +72,10 @@ void SimulationApp::update() {
   _physics->update();
   _highlightNavigator->update();
   _renderingController->update();
+
+  if (!_highlightNavigator->hasLocation()) {
+    _highlightNavigator->jumpToRandomObserver();
+  }
 }
 
 void SimulationApp::draw() {
@@ -93,12 +94,25 @@ void SimulationApp::draw() {
     ofPopStyle();
   }
 
-  ofPushStyle();
-//  ofNoFill();
-  ofSetColor(ofFloatColor(ofFloatColor::orange, 0.3));
-//  ofSetLineWidth(4);
-  ofDrawBox(_highlightNavigator->position(), 0.5);
-  ofPopStyle();
+  if (_highlightNavigator->hasLocation()) {
+    ofPushStyle();
+    //  ofNoFill();
+    ofSetColor(ofFloatColor(ofFloatColor::orange, 0.3));
+    //  ofSetLineWidth(4);
+    ofDrawBox(_highlightNavigator->position(), 0.2);
+
+    ofSetColor(ofFloatColor(ofFloatColor::darkorange, 0.5));
+    ofDrawBox(_highlightNavigator->prevPosition(), 0.1);
+
+    if (_highlightNavigator->hasNextLocation()) {
+      ofDrawSphere(_highlightNavigator->nextPosition(), 0.1);
+      ofDrawArrow(_highlightNavigator->prevPosition(),
+                 _highlightNavigator->nextPosition(),
+                  0.2);
+    }
+
+    ofPopStyle();
+  }
 
   _renderingController->endDraw();
 
