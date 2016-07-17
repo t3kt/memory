@@ -79,7 +79,6 @@
 		929A03C47EC36B0C9514C249 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345E4E8CF2291EB7DCE2AB4 /* Timeline.cpp */; };
 		95295DFC21749761D7BF9B18 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 581F497F9FA3425721AEB3DC /* Params.cpp */; };
 		96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38907EC6905E539FB6235FC /* ParticleObject.cpp */; };
-		9736DE8A862FEACDFD5899D9 /* ofxMidiFighterTwister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B86D964586BD7DAB65266 /* ofxMidiFighterTwister.cpp */; };
 		98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */; };
 		9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */; };
 		A014A6C6A8E9AB567F67CF47 /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */; };
@@ -302,7 +301,6 @@
 		8C23CBB813797A86DA3D0E1F /* SimulationApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SimulationApp.h; path = src/app/SimulationApp.h; sourceTree = SOURCE_ROOT; };
 		8DF242C4518B8602BC224D0D /* PhysicsBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PhysicsBehavior.cpp; path = src/physics/PhysicsBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		8E09789CA94CD1A0E1BA92B0 /* LimbDarkeningPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LimbDarkeningPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/LimbDarkeningPass.h; sourceTree = SOURCE_ROOT; };
-		8F0B86D964586BD7DAB65266 /* ofxMidiFighterTwister.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMidiFighterTwister.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxMidiFighterTwister/src/ofxMidiFighterTwister.cpp; sourceTree = SOURCE_ROOT; };
 		8F8C2ABAE30E1C5AC125D366 /* NoiseWarpPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NoiseWarpPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/NoiseWarpPass.h; sourceTree = SOURCE_ROOT; };
 		8FC228FDBD8EBDF3566FFA28 /* ofxLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLabel.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxLabel.h; sourceTree = SOURCE_ROOT; };
 		900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ofxSyphonServerDirectory.mm; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServerDirectory.mm; sourceTree = SOURCE_ROOT; };
@@ -392,7 +390,6 @@
 		E64D341064775BD3E3B680FC /* JsonIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JsonIO.h; path = src/core/JsonIO.h; sourceTree = SOURCE_ROOT; };
 		E6FA95564CAB1A6A26998186 /* ofxBaseGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseGui.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.h; sourceTree = SOURCE_ROOT; };
 		E7D54477D3F31295AD3C7A14 /* PixelatePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PixelatePass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/PixelatePass.cpp; sourceTree = SOURCE_ROOT; };
-		E827470C61F5BA776544B52C /* ofxMidiFighterTwister.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiFighterTwister.h; path = ../../of_v0.9.3_osx_release/addons/ofxMidiFighterTwister/src/ofxMidiFighterTwister.h; sourceTree = SOURCE_ROOT; };
 		EB976889384E808C423CE477 /* ofxSyphonServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServer.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonServer.h; sourceTree = SOURCE_ROOT; };
 		ED1E236F3CF91768C675C432 /* OccurrenceEntity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OccurrenceEntity.cpp; path = src/core/OccurrenceEntity.cpp; sourceTree = SOURCE_ROOT; };
 		EF3A3B4184C0BD92ED93C143 /* Params.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Params.h; path = src/core/Params.h; sourceTree = SOURCE_ROOT; };
@@ -439,15 +436,6 @@
 				F40E13E17B3F01D833ABDF2E /* OFSpecialization.h */,
 			);
 			name = specialization;
-			sourceTree = "<group>";
-		};
-		0C287C11E084135BA344B4EE /* src */ = {
-			isa = PBXGroup;
-			children = (
-				8F0B86D964586BD7DAB65266 /* ofxMidiFighterTwister.cpp */,
-				E827470C61F5BA776544B52C /* ofxMidiFighterTwister.h */,
-			);
-			name = src;
 			sourceTree = "<group>";
 		};
 		1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */ = {
@@ -809,14 +797,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		ABC5123E2929C5438D237753 /* ofxMidiFighterTwister */ = {
-			isa = PBXGroup;
-			children = (
-				0C287C11E084135BA344B4EE /* src */,
-			);
-			name = ofxMidiFighterTwister;
-			sourceTree = "<group>";
-		};
 		AFF78A8EB1A778F89BAD1809 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,7 +872,6 @@
 				DFCCF8BDC58AFA44D27F9F11 /* ofxGuiExtended */,
 				CF1B72478A403C7607813DC5 /* ofxLiquidEvent */,
 				2413C01760B1811BED0F502D /* ofxMidi */,
-				ABC5123E2929C5438D237753 /* ofxMidiFighterTwister */,
 				BD52EC6DCE402D90869A80A1 /* ofxPostProcessing */,
 				7F3C04577424427D348B1425 /* ofxSyphon */,
 				73252C2D4C7012665A9367CD /* ofxTextAlign */,
@@ -1253,7 +1232,6 @@
 				BF840C01D1947A7AFE6F3E5B /* ofxMidiMessage.cpp in Sources */,
 				758C8807E87953B9A29F1F34 /* ofxMidiOut.cpp in Sources */,
 				134F29CB662FC7D3B493C8E7 /* RtMidi.cpp in Sources */,
-				9736DE8A862FEACDFD5899D9 /* ofxMidiFighterTwister.cpp in Sources */,
 				E7EE936FBBEC776059A87C90 /* BleachBypassPass.cpp in Sources */,
 				68CCEF06A8797BFE5B30A9B0 /* BloomPass.cpp in Sources */,
 				32DAAF6C1D3A2AE000113278 /* MidiMapping.cpp in Sources */,
