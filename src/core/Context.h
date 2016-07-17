@@ -9,6 +9,7 @@
 #ifndef Context_h
 #define Context_h
 
+#include "Common.h"
 #include "ObjectManager.h"
 #include "State.h"
 
@@ -16,7 +17,8 @@ class AnimationObject;
 class ObserverEntity;
 class OccurrenceEntity;
 
-class Context {
+class Context
+: public NonCopyable {
 public:
   State state;
   ObjectManager<AnimationObject> animations;

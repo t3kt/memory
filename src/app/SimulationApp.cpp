@@ -36,7 +36,7 @@ void SimulationApp::setup() {
                                           *_observers,
                                           _context,
                                           _events);
-  _occurrences->setup(_context.state, _appParams.colors);
+  _occurrences->setup(_appParams.colors);
 
   _animations =
   std::make_shared<AnimationsController>(_appParams.animations,
@@ -64,7 +64,7 @@ void SimulationApp::setup() {
 void SimulationApp::update() {
   _clock->update();
   _observers->update(_context.state);
-  _occurrences->update(_context.state);
+  _occurrences->update();
   _animations->update(_context.state);
   _physics->update();
   _renderingController->update(_context.state);
@@ -74,7 +74,7 @@ void SimulationApp::draw() {
   _renderingController->beginDraw(_context.state);
 
   _observers->draw(_context.state);
-  _occurrences->draw(_context.state);
+  _occurrences->draw();
   _animations->draw(_context.state);
   _physics->draw();
 

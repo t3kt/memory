@@ -76,11 +76,11 @@ public:
                         Context& context,
                         SimulationEvents& events);
   
-  void setup(const State& state, const ColorTheme& colors);
-  void update(State& state);
-  void draw(const State& state);
+  void setup(const ColorTheme& colors);
+  void update();
+  void draw();
 
-  void spawnOccurrences(int count, const State& state);
+  void spawnOccurrences(int count);
 
   ObjectManager<OccurrenceEntity>& entities() { return _occurrences; }
   const ObjectManager<OccurrenceEntity>& entities() const {
@@ -90,9 +90,10 @@ public:
   bool performAction(AppAction action) override;
   
 private:
-  void spawnRandomOccurrence(const State& state);
+  void spawnRandomOccurrence();
   
   const Params& _params;
+  Context& _context;
   const Bounds& _bounds;
   SimulationEvents& _events;
   ObserversController& _observers;
