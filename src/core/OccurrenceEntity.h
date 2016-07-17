@@ -71,6 +71,8 @@ public:
     return _connectedOccurrences;
   }
 
+  EntityType entityType() const override { return EntityType::OCCURRENCE; }
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
@@ -93,5 +95,8 @@ private:
 
   friend class OccurrencesController;
 };
+
+template<>
+EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
 
 #endif /* OccurrenceEntity_h */

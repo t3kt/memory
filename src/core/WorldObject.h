@@ -16,6 +16,15 @@
 
 typedef long ObjectId;
 
+enum class EntityType {
+  ANIMATION,
+  OBSERVER,
+  OCCURRENCE,
+};
+
+template<typename T>
+EntityType getEntityType();
+
 class WorldObject : public Outputable {
 public:
   WorldObject();
@@ -30,6 +39,8 @@ public:
   void kill() { _alive = false; }
   
   virtual bool visible() const { return this->alive(); }
+
+  virtual EntityType entityType() const = 0;
 protected:
   virtual std::string typeName() const;
   virtual void outputFields(std::ostream& os) const;
