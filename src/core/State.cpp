@@ -8,9 +8,6 @@
 
 #include "State.h"
 
-State::State()
-: running(true) { }
-
 void State::output(std::ostream &os) const {
   os << "State{time: " << time
       << ", timeDelta: " << timeDelta

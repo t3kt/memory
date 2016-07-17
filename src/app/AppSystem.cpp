@@ -67,6 +67,7 @@ void AppSystem::setup() {
   std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(ctrlWinSettings));
 
   _simulationApp = std::make_shared<SimulationApp>(_appParams,
+                                                   _context,
                                                    _simulationWindow);
 
   _controlApp = std::make_shared<ControlApp>(_appParams);

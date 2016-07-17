@@ -14,7 +14,9 @@
 #include <ofEvents.h>
 #include "AppActions.h"
 #include "AppParameters.h"
+#include "Context.h"
 #include "Events.h"
+#include "State.h"
 
 class SimulationApp;
 class ControlApp;
@@ -40,6 +42,12 @@ public:
 
   ControlApp* control() { return _controlApp.get(); }
 
+  State& state() { return _context.state; }
+  const State& state() const { return _context.state; }
+
+  Context& context() { return _context; }
+  const Context& context() const { return _context; }
+
   bool performAction(AppAction action);
 
   bool handleKeyPressed(ofKeyEventArgs& event);
@@ -50,6 +58,7 @@ private:
   void setup();
 
   MemoryAppParameters _appParams;
+  Context _context;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
   std::shared_ptr<ofAppGLFWWindow> _controlWindow;
   std::shared_ptr<SimulationApp> _simulationApp;

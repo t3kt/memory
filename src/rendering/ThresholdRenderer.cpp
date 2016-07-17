@@ -35,7 +35,7 @@ bool ThreshData::tryAdd(ofVec3f pos1, ofVec3f pos2) {
   return true;
 }
 
-void AbstractThresholdRenderer::update(const State &state) {
+void AbstractThresholdRenderer::update() {
   if (!_params.enabled()) {
     return;
   }
@@ -45,7 +45,7 @@ void AbstractThresholdRenderer::update(const State &state) {
   populateThreshData(&_data);
 }
 
-void AbstractThresholdRenderer::draw(const State &state) {
+void AbstractThresholdRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }

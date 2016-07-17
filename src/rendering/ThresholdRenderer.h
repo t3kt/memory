@@ -10,7 +10,6 @@
 #define ThresholdRenderer_h
 
 #include "Params.h"
-#include "State.h"
 #include "ObjectManager.h"
 #include <ofColor.h>
 #include <ofMesh.h>
@@ -49,8 +48,8 @@ public:
   : _params(params)
   , _color(color) {}
 
-  void update(const State& state);
-  void draw(const State& state);
+  void update();
+  void draw();
 protected:
   virtual void populateThreshData(ThreshData* data) = 0;
 private:

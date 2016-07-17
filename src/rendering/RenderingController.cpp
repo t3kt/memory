@@ -9,18 +9,23 @@
 #include "RenderingController.h"
 #include <ofMain.h>
 
-RenderingController::RenderingController(const Params& params,
+RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,
-                                         const ColorTheme& colors)
+                                         const ColorTheme& colors,
+                                         Context& context)
 : _params(params)
 , _window(window)
 , _colors(colors)
+, _context(context)
 , _backgroundColor(colors.getColor(ColorId::BACKGROUND))
 , _fogColor(colors.getColor(ColorId::FOG)) {
 }
 
 void RenderingController::setup() {
   ofEnableAlphaBlending();
+  _camera = std::make_shared<CameraController>(_params.camera,
+                                               _context);
+  _camera->setup();
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();
@@ -35,29 +40,16 @@ void RenderingController::updateResolution() {
   _postProc->updateResolution(size);
 }
 
-void RenderingController::resetCamera() {
-  _cam.reset();
-}
-
 bool RenderingController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::RESET_CAMERA:
-      resetCamera();
-      break;
-    default:
-      return false;
-  }
-  return true;
+  return false;
 }
 
-void RenderingController::update(const State &state) {
-  if (_params.camera.spinEnabled()) {
-    _rotation += _params.camera.spinRate() * state.timeDelta;
-  }
-  _postProc->update(state);
+void RenderingController::update() {
+  _camera->update();
+  _postProc->update();
 }
 
-void RenderingController::beginDraw(const State &state) {
+void RenderingController::beginDraw() {
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
@@ -65,15 +57,13 @@ void RenderingController::beginDraw(const State &state) {
 //  ofEnableLighting();
   glEnable(GL_CULL_FACE);
 //  _light.enable();
-  _postProc->beginDraw(_cam);
+  _postProc->beginDraw(_camera->getCamera());
   if (_params.fog.enabled()) {
     beginFog();
   }
 
   ofPushMatrix();
-  ofRotateX(_rotation.x);
-  ofRotateY(_rotation.y);
-  ofRotateZ(_rotation.z);
+  _camera->applyTransform();
 
   auto winSize = ofGetWindowSize();
   auto size = ::min(winSize.x, winSize.y) / 2;
@@ -81,12 +71,12 @@ void RenderingController::beginDraw(const State &state) {
   ofScale(size, size, size);
 }
 
-void RenderingController::endDraw(const State &state) {
+void RenderingController::endDraw() {
   ofPopMatrix();
   if (_params.fog.enabled()) {
     endFog();
   }
-  _postProc->endDraw(_cam);
+  _postProc->endDraw(_camera->getCamera());
 //  ofDisableDepthTest();
 //  ofDisableLighting();
   glPopAttrib();

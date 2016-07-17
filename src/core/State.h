@@ -11,9 +11,12 @@
 
 #include "Common.h"
 
-class State : public Outputable {
+class State
+: public Outputable
+, public NonCopyable {
 public:
-  State();
+  State()
+  : running(true) { }
   
   void output(std::ostream& os) const override;
   

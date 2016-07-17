@@ -15,6 +15,7 @@
 #include "AppParameters.h"
 #include "Clock.h"
 #include "Common.h"
+#include "Context.h"
 #include "Navigator.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
@@ -33,8 +34,10 @@ class SimulationApp
 , public AppActionHandler {
 public:
   SimulationApp(MemoryAppParameters& appParams,
+                Context& context,
                 std::shared_ptr<ofAppGLFWWindow> window)
   : _appParams(appParams)
+  , _context(context)
   , _window(window) { }
 
   void setup() override;
@@ -51,9 +54,9 @@ public:
     return static_cast<ofAppGLFWWindow&>(*_window);
   }
 
-  const State& state() const { return _state; }
+  const State& state() const { return _context.state; }
 private:
-  State _state;
+  Context& _context;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
   std::shared_ptr<ofAppGLFWWindow> _window;

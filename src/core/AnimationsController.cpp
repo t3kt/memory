@@ -14,38 +14,41 @@
 
 AnimationsController::AnimationsController(const Params& params,
                                            const ColorTheme& colors,
-                                           SimulationEvents& events)
+                                           SimulationEvents& events,
+                                           Context& context)
 : _params(params)
+, _context(context)
 , _colors(colors)
-, _events(events) {
+, _events(events)
+, _animations(context.animations) {
 }
 
 void AnimationsController::setup() {
   attachToEvents();
 }
 
-void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animation, const State& state) {
-  AnimationEventArgs e(state, *animation);
+void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animation) {
+  AnimationEventArgs e(_context.state, *animation);
   _events.animationSpawned.notifyListeners(e);
   
   _animations.add(animation);
 }
 
-void AnimationsController::update(State &state) {
+void AnimationsController::update() {
   for (auto& animation : _animations) {
-    animation->update(state);
+    animation->update(_context.state);
   }
   _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
-    AnimationEventArgs e(state, *animation);
+    AnimationEventArgs e(_context.state, *animation);
     _events.animationDied.notifyListeners(e);
   });
-  state.animationCount = _animations.size();
+  _context.state.animationCount = _animations.size();
 }
 
-void AnimationsController::draw(const State &state) {
+void AnimationsController::draw() {
   for (auto& animation : _animations) {
     if (animation->visible()) {
-      animation->draw(state);
+      animation->draw(_context.state);
     }
   }
 }
@@ -57,7 +60,7 @@ void AnimationsController::attachToEvents() {
     }
     auto observer = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.getColor(ColorId::OBSERVER_DIED), e.state);
-    addAnimation(animation, e.state);
+    addAnimation(animation);
   };
   _events.occurrenceDied += [this](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceDied.enabled()) {
@@ -65,7 +68,7 @@ void AnimationsController::attachToEvents() {
     }
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.getColor(ColorId::OCCURRENCE_DIED), e.state);
-    addAnimation(animation, e.state);
+    addAnimation(animation);
   };
   _events.occurrenceSpawnFailed += [this](OccurrenceEventArgs e) {
     if (!_params.enabled() || !_params.occurrenceSpawnFailed.enabled()) {
@@ -73,6 +76,6 @@ void AnimationsController::attachToEvents() {
     }
     auto occurrence = e.entity();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.getColor(ColorId::OCCURRENCE_SPAWN_FAILED), e.state);
-    addAnimation(animation, e.state);
+    addAnimation(animation);
   };
 }

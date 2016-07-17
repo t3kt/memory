@@ -19,7 +19,7 @@ public:
 
 protected:
   void spawnEntities(const State& state) override {
-    _controller.spawnRandomOccurrence(state);
+    _controller.spawnRandomOccurrence();
   }
 
   OccurrencesController& _controller;
@@ -35,7 +35,7 @@ public:
 protected:
   void spawnEntities(const State& state, int count) override {
     for (int i = 0; i < count; ++i) {
-      _controller.spawnRandomOccurrence(state);
+      _controller.spawnRandomOccurrence();
     }
   }
 
@@ -45,15 +45,17 @@ protected:
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,
-                                             const State& state,
+                                             Context& context,
                                              SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
 , _events(events)
-, _observers(observers) {
+, _occurrences(context.occurrences)
+, _observers(observers)
+, _context(context) {
 }
 
-void OccurrencesController::setup(const State &state, const ColorTheme& colors) {
+void OccurrencesController::setup(const ColorTheme& colors) {
   _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, colors, _occurrences);
   _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR), _occurrences);
   _occurrenceOccurrenceConnectorRenderer = std::make_shared<OccurrenceOccurrenceConnectorRenderer>(_params.occurrenceConnectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
@@ -67,10 +69,10 @@ bool OccurrencesController::performAction(AppAction action) {
   const auto& state = AppSystem::get().simulation()->state();
   switch (action) {
     case AppAction::SPAWN_FEW_OCCURRENCES:
-      spawnOccurrences(5, state);
+      spawnOccurrences(5);
       break;
     case AppAction::SPAWN_MANY_OCCURRENCES:
-      spawnOccurrences(100, state);
+      spawnOccurrences(100);
       break;
     default:
       return false;
@@ -78,7 +80,7 @@ bool OccurrencesController::performAction(AppAction action) {
   return true;
 }
 
-void OccurrencesController::update(State &state) {
+void OccurrencesController::update() {
   for (auto& occurrence : _occurrences) {
     if (!occurrence->hasConnectedObservers()) {
       occurrence->kill();
@@ -99,32 +101,32 @@ void OccurrencesController::update(State &state) {
   }
   _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
-    OccurrenceEventArgs e(state, *occurrence);
+    OccurrenceEventArgs e(_context.state, *occurrence);
     _events.occurrenceDied.notifyListeners(e);
   });
 
-  _spawner->update(state);
-  _rateSpawner->update(state);
-  state.occurrenceCount = _occurrences.size();
-  _renderer->update(state);
+  _spawner->update(_context.state);
+  _rateSpawner->update(_context.state);
+  _context.state.occurrenceCount = _occurrences.size();
+  _renderer->update(_context.state);
 }
 
-void OccurrencesController::draw(const State &state) {
-  _renderer->draw(state);
-  _observerOccurrenceConnectorRenderer->draw(state);
-  _occurrenceOccurrenceConnectorRenderer->draw(state);
+void OccurrencesController::draw() {
+  _renderer->draw(_context.state);
+  _observerOccurrenceConnectorRenderer->draw(_context.state);
+  _occurrenceOccurrenceConnectorRenderer->draw(_context.state);
 }
 
-void OccurrencesController::spawnRandomOccurrence(const State &state) {
+void OccurrencesController::spawnRandomOccurrence() {
   ofVec3f pos = _bounds.randomPoint();
   float radius = _params.radius.getValue();
   auto occurrence = std::make_shared<OccurrenceEntity>(pos,
                                                        radius,
-                                                       state);
+                                                       _context.state);
   
   bool connected = _observers.registerOccurrence(occurrence);
   
-  OccurrenceEventArgs e(state, *occurrence);
+  OccurrenceEventArgs e(_context.state, *occurrence);
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     _occurrences.add(occurrence);
@@ -134,9 +136,8 @@ void OccurrencesController::spawnRandomOccurrence(const State &state) {
   }
 }
 
-void OccurrencesController::spawnOccurrences(int count,
-                                             const State &state) {
+void OccurrencesController::spawnOccurrences(int count) {
   for (int i = 0; i < count; ++i) {
-    spawnRandomOccurrence(state);
+    spawnRandomOccurrence();
   }
 }
