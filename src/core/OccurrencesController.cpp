@@ -18,7 +18,7 @@ public:
   , _controller(controller) { }
 
 protected:
-  void spawnEntities(const State& state) override {
+  void spawnEntities(Context& context) override {
     _controller.spawnRandomOccurrence();
   }
 
@@ -33,7 +33,7 @@ public:
   , _controller(controller) { }
 
 protected:
-  void spawnEntities(const State& state, int count) override {
+  void spawnEntities(Context& context, int count) override {
     for (int i = 0; i < count; ++i) {
       _controller.spawnRandomOccurrence();
     }
@@ -105,8 +105,8 @@ void OccurrencesController::update() {
     _events.occurrenceDied.notifyListeners(e);
   });
 
-  _spawner->update(_context.state);
-  _rateSpawner->update(_context.state);
+  _spawner->update(_context);
+  _rateSpawner->update(_context);
   _context.state.occurrenceCount = _occurrences.size();
   _renderer->update(_context.state);
 }

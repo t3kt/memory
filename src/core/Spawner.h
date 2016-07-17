@@ -10,8 +10,8 @@
 #define Spawner_h
 
 #include <memory>
+#include "Context.h"
 #include "Params.h"
-#include "State.h"
 
 using SpawnerParams = ParamsWithEnabled;
 
@@ -37,17 +37,18 @@ public:
   IntervalSpawner(const Params& params)
   : _params(params) {}
 
-  void update(const State& state) {
+  void update(Context& context) {
     if (!_params.enabled()) {
       return;
     }
-    if (_nextTime < 0 || state.time >= _nextTime) {
-      spawnEntities(state);
-      _nextTime = state.time + _params.interval();
+    float now = context.time();
+    if (_nextTime < 0 || now >= _nextTime) {
+      spawnEntities(context);
+      _nextTime = now + _params.interval();
     }
   }
 protected:
-  virtual void spawnEntities(const State& state) = 0;
+  virtual void spawnEntities(Context& context) = 0;
 
   const Params& _params;
   float _nextTime;
@@ -84,24 +85,25 @@ public:
   : _params(params)
   , _lastTime(-1) { }
 
-  void update(const State& state) {
+  void update(Context& context) {
     if (!_params.enabled()) {
       return;
     }
+    float now = context.time();
     if (_lastTime == -1) {
-      _lastTime = state.time;
+      _lastTime = now;
       return;
     }
-    float elapsed = state.time - _lastTime;
+    float elapsed = now - _lastTime;
     float count = elapsed * _params.rate();
     if (count > 1) {
-      spawnEntities(state, static_cast<int>(count));
-      _lastTime = state.time;
+      spawnEntities(context, static_cast<int>(count));
+      _lastTime = now;
     }
   }
 
 protected:
-  virtual void spawnEntities(const State& state, int count) = 0;
+  virtual void spawnEntities(Context& context, int count) = 0;
 
   const Params& _params;
   float _lastTime;

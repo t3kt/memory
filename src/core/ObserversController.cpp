@@ -18,7 +18,7 @@ public:
   : IntervalSpawner(controller._params.spawner)
   , _controller(controller) { }
 protected:
-  void spawnEntities(const State& state) override {
+  void spawnEntities(Context& context) override {
     _controller.spawnRandomObserver();
   }
 
@@ -32,7 +32,7 @@ public:
   : RateSpawner(controller._params.rateSpawner)
   , _controller(controller) { }
 protected:
-  void spawnEntities(const State& state, int count) override {
+  void spawnEntities(Context& context, int count) override {
     for (int i = 0; i < count; ++i) {
       _controller.spawnRandomObserver();
     }
@@ -94,8 +94,8 @@ void ObserversController::update() {
     _events.observerDied.notifyListeners(e);
   });
 
-  _spawner->update(_context.state);
-  _rateSpawner->update(_context.state);
+  _spawner->update(_context);
+  _rateSpawner->update(_context);
   _context.state.observerCount = _observers.size();
 
   _observerRenderer->update(_context.state);
