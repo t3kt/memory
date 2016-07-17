@@ -99,13 +99,13 @@ void ObserversController::update() {
   _context.state.observerCount = _observers.size();
 
   _observerRenderer->update(_context.state);
-  _thresholdRenderer->update(_context.state);
+  _thresholdRenderer->update();
 }
 
 void ObserversController::draw() {
   _observerRenderer->draw(_context.state);
   _observerConnectorRenderer->draw(_context.state);
-  _thresholdRenderer->draw(_context.state);
+  _thresholdRenderer->draw();
 }
 
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {

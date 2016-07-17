@@ -46,7 +46,7 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
-  _postProc->update(_context.state);
+  _postProc->update();
 }
 
 void RenderingController::beginDraw() {

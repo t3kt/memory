@@ -14,7 +14,6 @@
 #include <ofxPostProcessing.h>
 #include "Common.h"
 #include "Params.h"
-#include "State.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -107,7 +106,7 @@ public:
   void setup();
   void updateResolution(ofVec2f size);
 
-  void update(const State& state);
+  void update();
 
   void beginDraw(ofCamera& cam);
   void endDraw(ofCamera& cam);
