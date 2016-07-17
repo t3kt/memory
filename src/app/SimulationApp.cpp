@@ -26,31 +26,32 @@ void SimulationApp::setup() {
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
                                         _appParams.core.bounds,
-                                        _state,
+                                        _context,
                                         _events);
-  _observers->setup(_state, _appParams.colors);
+  _observers->setup(_context.state, _appParams.colors);
 
   _occurrences =
   std::make_shared<OccurrencesController>(_appParams.occurrences,
                                           _appParams.core.bounds,
                                           *_observers,
-                                          _state,
+                                          _context,
                                           _events);
-  _occurrences->setup(_state, _appParams.colors);
+  _occurrences->setup(_context.state, _appParams.colors);
 
   _animations =
   std::make_shared<AnimationsController>(_appParams.animations,
                                          _appParams.colors,
-                                         _events);
+                                         _events,
+                                         _context);
   _animations->setup();
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
                                                  _appParams.core.debug,
-                                                 _state);
+                                                 _context.state);
   _physics->setup(*_observers, *_occurrences);
 
-  _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
+  _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
 
   _statusController = std::make_shared<StatusInfoController>();
@@ -62,19 +63,19 @@ void SimulationApp::setup() {
 
 void SimulationApp::update() {
   _clock->update();
-  _observers->update(_state);
-  _occurrences->update(_state);
-  _animations->update(_state);
+  _observers->update(_context.state);
+  _occurrences->update(_context.state);
+  _animations->update(_context.state);
   _physics->update();
-  _renderingController->update(_state);
+  _renderingController->update(_context.state);
 }
 
 void SimulationApp::draw() {
-  _renderingController->beginDraw(_state);
+  _renderingController->beginDraw(_context.state);
 
-  _observers->draw(_state);
-  _occurrences->draw(_state);
-  _animations->draw(_state);
+  _observers->draw(_context.state);
+  _occurrences->draw(_context.state);
+  _animations->draw(_context.state);
   _physics->draw();
 
   if (_appParams.core.debug.showBounds()) {
@@ -85,7 +86,7 @@ void SimulationApp::draw() {
     ofPopStyle();
   }
 
-  _renderingController->endDraw(_state);
+  _renderingController->endDraw(_context.state);
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {
@@ -94,7 +95,7 @@ void SimulationApp::draw() {
 #endif
 
   if (_appParams.core.debug.showStatus()) {
-    _statusController->draw(_state);
+    _statusController->draw(_context.state);
   }
 }
 

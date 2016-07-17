@@ -26,6 +26,7 @@
 		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		320E9E691D3B301700AA1FD2 /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 320E9E671D3B301700AA1FD2 /* Context.cpp */; };
 		32DAAF531D39E39500113278 /* MidiController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF511D39E39500113278 /* MidiController.cpp */; };
 		32DAAF561D39E3BD00113278 /* MidiRouter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF541D39E3BD00113278 /* MidiRouter.cpp */; };
 		32DAAF5B1D39FC8C00113278 /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DAAF591D39FC8C00113278 /* MidiDevice.cpp */; };
@@ -208,6 +209,8 @@
 		315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AttractionBehavior.cpp; path = src/physics/AttractionBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		320E9E671D3B301700AA1FD2 /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Context.cpp; path = core/Context.cpp; sourceTree = "<group>"; };
+		320E9E681D3B301700AA1FD2 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = core/Context.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32DAAF511D39E39500113278 /* MidiController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiController.cpp; path = control/MidiController.cpp; sourceTree = "<group>"; };
 		32DAAF521D39E39500113278 /* MidiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiController.h; path = control/MidiController.h; sourceTree = "<group>"; };
@@ -900,6 +903,8 @@
 				21486E8D0CA688A2FC4DAA74 /* Colors.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
+				320E9E671D3B301700AA1FD2 /* Context.cpp */,
+				320E9E681D3B301700AA1FD2 /* Context.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
@@ -1255,6 +1260,7 @@
 				2B3926B6C2FA56994ECDED98 /* LimbDarkeningPass.cpp in Sources */,
 				744A99D255BA21E0823917E3 /* LUTPass.cpp in Sources */,
 				11CDA691B113223FE4302083 /* NoiseWarpPass.cpp in Sources */,
+				320E9E691D3B301700AA1FD2 /* Context.cpp in Sources */,
 				6F86A7380B683E0ABEF29AE1 /* PixelatePass.cpp in Sources */,
 				4BCEEA9B13F89A3E9FAD69BC /* PostProcessing.cpp in Sources */,
 				4EE8E2766DD8D1E01C0BB2CB /* RenderPass.cpp in Sources */,

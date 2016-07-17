@@ -18,6 +18,7 @@
 #include "Events.h"
 #include "Bounds.h"
 #include "Colors.h"
+#include "Context.h"
 #include "EntityRenderer.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
@@ -72,7 +73,7 @@ public:
   OccurrencesController(const Params& params,
                         const Bounds& bounds,
                         ObserversController& observers,
-                        const State& state,
+                        Context& context,
                         SimulationEvents& events);
   
   void setup(const State& state, const ColorTheme& colors);
@@ -95,7 +96,7 @@ private:
   const Bounds& _bounds;
   SimulationEvents& _events;
   ObserversController& _observers;
-  ObjectManager<OccurrenceEntity> _occurrences;
+  ObjectManager<OccurrenceEntity>& _occurrences;
   std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
   std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
   std::shared_ptr<OccurrenceRenderer> _renderer;

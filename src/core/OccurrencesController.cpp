@@ -45,11 +45,12 @@ protected:
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,
-                                             const State& state,
+                                             Context& context,
                                              SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
 , _events(events)
+, _occurrences(context.occurrences)
 , _observers(observers) {
 }
 

@@ -43,11 +43,12 @@ protected:
 
 ObserversController::ObserversController(const ObserversController::Params& params,
                                          const Bounds& bounds,
-                                         const State& state,
+                                         Context& context,
                                          SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
-, _events(events) {
+, _events(events)
+, _observers(context.observers) {
 }
 
 void ObserversController::setup(const State &state, const ColorTheme& colors) {

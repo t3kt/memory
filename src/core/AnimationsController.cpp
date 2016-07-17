@@ -14,10 +14,12 @@
 
 AnimationsController::AnimationsController(const Params& params,
                                            const ColorTheme& colors,
-                                           SimulationEvents& events)
+                                           SimulationEvents& events,
+                                           Context& context)
 : _params(params)
 , _colors(colors)
-, _events(events) {
+, _events(events)
+, _animations(context.animations) {
 }
 
 void AnimationsController::setup() {

@@ -9,14 +9,15 @@
 #ifndef ObjectManager_h
 #define ObjectManager_h
 
-#include <map>
-#include <memory>
+#include <functional>
 #include <iterator>
 #include <list>
-#include <functional>
-#include "WorldObject.h"
-#include "State.h"
+#include <map>
+#include <memory>
+#include "Common.h"
 #include "Events.h"
+#include "State.h"
+#include "WorldObject.h"
 
 template<typename T, typename Storage>
 class AbstractObjectView {
@@ -77,14 +78,16 @@ protected:
 
 template <typename T>
 class ObjectManager
-: public AbstractObjectView<T, std::list<std::shared_ptr<T>>> {
+: public AbstractObjectView<T, std::list<std::shared_ptr<T>>>
+, public NonCopyable {
 public:
   using Manager = ObjectManager<T>;
   using StorageList = std::list<std::shared_ptr<T>>;
   using BaseView = AbstractObjectView<T, StorageList>;
 
   class View
-  : public AbstractObjectView<T, Manager&> {
+  : public AbstractObjectView<T, Manager&>
+  , public NonCopyable {
   public:
     using BaseView = AbstractObjectView<T, Manager&>;
 

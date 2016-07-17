@@ -20,6 +20,7 @@
 #include "ThresholdRenderer.h"
 #include "EntityRenderer.h"
 #include "Colors.h"
+#include "Context.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
 
@@ -72,7 +73,7 @@ public:
   
   ObserversController(const Params& params,
                       const Bounds& bounds,
-                      const State& state,
+                      Context& context,
                       SimulationEvents& events);
   
   void setup(const State& state, const ColorTheme& colors);
@@ -98,7 +99,7 @@ private:
   const Params& _params;
   const Bounds& _bounds;
   SimulationEvents& _events;
-  ObjectManager<ObserverEntity> _observers;
+  ObjectManager<ObserverEntity>& _observers;
   std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
   std::shared_ptr<ObserverRenderer> _observerRenderer;

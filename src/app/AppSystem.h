@@ -14,6 +14,7 @@
 #include <ofEvents.h>
 #include "AppActions.h"
 #include "AppParameters.h"
+#include "Context.h"
 #include "Events.h"
 #include "State.h"
 
@@ -41,8 +42,11 @@ public:
 
   ControlApp* control() { return _controlApp.get(); }
 
-  State& state() { return _state; }
-  const State& state() const { return _state; }
+  State& state() { return _context.state; }
+  const State& state() const { return _context.state; }
+
+  Context& context() { return _context; }
+  const Context& context() const { return _context; }
 
   bool performAction(AppAction action);
 
@@ -54,7 +58,7 @@ private:
   void setup();
 
   MemoryAppParameters _appParams;
-  State _state;
+  Context _context;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
   std::shared_ptr<ofAppGLFWWindow> _controlWindow;
   std::shared_ptr<SimulationApp> _simulationApp;
