@@ -6,6 +6,7 @@
 //
 //
 
+#include <algorithm>
 #include "MidiDevice.h"
 
 
@@ -42,12 +43,26 @@ MidiDevice::MidiDevice(std::string name,
   }
 }
 
+template<typename M>
+bool tryOpenPort(M& midi, const std::string& portName) {
+  auto portNames = M::getPortList();
+  if (std::find(portNames.begin(), portNames.end(), portName) == portNames.end()) {
+    return false;
+  }
+  return midi.openPort(portName);
+}
+
 void MidiDevice::handleOpen() {
-  if (_midiIn.openPort(_inputPortName)) {
+  auto hasIn = tryOpenPort(_midiIn, _inputPortName);
+  auto hasOut = tryOpenPort(_midiOut, _outputPortName);
+  if (hasIn) {
     _midiIn.addListener(this);
   }
-  _midiOut.openPort(_outputPortName);
-  _params.enabled.setWithoutEventNotifications(true);
+  if (hasIn || hasOut) {
+    _params.enabled.setWithoutEventNotifications(true);
+  } else {
+    close();
+  }
 }
 
 void MidiDevice::handleClose(bool updateParams) {
