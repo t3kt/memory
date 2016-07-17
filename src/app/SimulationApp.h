@@ -32,8 +32,10 @@ class SimulationApp
 , public AppActionHandler {
 public:
   SimulationApp(MemoryAppParameters& appParams,
+                State& state,
                 std::shared_ptr<ofAppGLFWWindow> window)
   : _appParams(appParams)
+  , _state(state)
   , _window(window) { }
 
   void setup() override;
@@ -52,7 +54,7 @@ public:
 
   const State& state() const { return _state; }
 private:
-  State _state;
+  State& _state;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
   std::shared_ptr<ofAppGLFWWindow> _window;
