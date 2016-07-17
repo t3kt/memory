@@ -19,7 +19,7 @@ public:
   , _controller(controller) { }
 protected:
   void spawnEntities(const State& state) override {
-    _controller.spawnRandomObserver(state);
+    _controller.spawnRandomObserver();
   }
 
   ObserversController& _controller;
@@ -34,7 +34,7 @@ public:
 protected:
   void spawnEntities(const State& state, int count) override {
     for (int i = 0; i < count; ++i) {
-      _controller.spawnRandomObserver(state);
+      _controller.spawnRandomObserver();
     }
   }
 
@@ -48,10 +48,11 @@ ObserversController::ObserversController(const ObserversController::Params& para
 : _params(params)
 , _bounds(bounds)
 , _events(events)
-, _observers(context.observers) {
+, _observers(context.observers)
+, _context(context) {
 }
 
-void ObserversController::setup(const State &state, const ColorTheme& colors) {
+void ObserversController::setup(const ColorTheme& colors) {
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
   _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
@@ -65,10 +66,10 @@ bool ObserversController::performAction(AppAction action) {
   const auto& state = AppSystem::get().simulation()->state();
   switch (action) {
     case AppAction::SPAWN_FEW_OBSERVERS:
-      spawnObservers(5, state);
+      spawnObservers(5);
       break;
     case AppAction::SPAWN_MANY_OBSERVERS:
-      spawnObservers(100, state);
+      spawnObservers(100);
       break;
     case AppAction::KILL_FEW_OBSERVERS:
       killObservers(5);
@@ -82,29 +83,29 @@ bool ObserversController::performAction(AppAction action) {
   return true;
 }
 
-void ObserversController::update(State &state) {
+void ObserversController::update() {
   _observers.performAction([&](std::shared_ptr<ObserverEntity> observer) {
-    observer->update(state);
+    observer->update(_context.state);
   });
 
   _observers.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
-    ObserverEventArgs e(state, *observer);
+    ObserverEventArgs e(_context.state, *observer);
     _events.observerDied.notifyListeners(e);
   });
 
-  _spawner->update(state);
-  _rateSpawner->update(state);
-  state.observerCount = _observers.size();
+  _spawner->update(_context.state);
+  _rateSpawner->update(_context.state);
+  _context.state.observerCount = _observers.size();
 
-  _observerRenderer->update(state);
-  _thresholdRenderer->update(state);
+  _observerRenderer->update(_context.state);
+  _thresholdRenderer->update(_context.state);
 }
 
-void ObserversController::draw(const State &state) {
-  _observerRenderer->draw(state);
-  _observerConnectorRenderer->draw(state);
-  _thresholdRenderer->draw(state);
+void ObserversController::draw() {
+  _observerRenderer->draw(_context.state);
+  _observerConnectorRenderer->draw(_context.state);
+  _thresholdRenderer->draw(_context.state);
 }
 
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
@@ -122,21 +123,21 @@ bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> o
   return connected;
 }
 
-void ObserversController::spawnRandomObserver(const State &state) {
+void ObserversController::spawnRandomObserver() {
   ofVec3f pos = _bounds.randomPoint();
   float life = _params.lifetime.getValue();
   auto observer = std::make_shared<ObserverEntity>(pos,
                                                    life,
-                                                   state);
+                                                   _context.state);
   observer->setVelocity(_params.initialVelocity.getValue());
   _observers.add(observer);
-  ObserverEventArgs e(state, *observer);
+  ObserverEventArgs e(_context.state, *observer);
   _events.observerSpawned.notifyListeners(e);
 }
 
-void ObserversController::spawnObservers(int count, const State& state) {
+void ObserversController::spawnObservers(int count) {
   for (int i = 0; i < count; ++i) {
-    spawnRandomObserver(state);
+    spawnRandomObserver();
   }
 }
 

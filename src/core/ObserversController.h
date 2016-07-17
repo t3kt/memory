@@ -76,13 +76,13 @@ public:
                       Context& context,
                       SimulationEvents& events);
   
-  void setup(const State& state, const ColorTheme& colors);
-  void update(State& state);
-  void draw(const State& state);
+  void setup(const ColorTheme& colors);
+  void update();
+  void draw();
   
   bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
-  void spawnObservers(int count, const State& state);
+  void spawnObservers(int count);
 
   void killObservers(int count);
 
@@ -94,9 +94,10 @@ public:
   bool performAction(AppAction action) override;
   
 private:
-  void spawnRandomObserver(const State& state);
+  void spawnRandomObserver();
   
   const Params& _params;
+  Context& _context;
   const Bounds& _bounds;
   SimulationEvents& _events;
   ObjectManager<ObserverEntity>& _observers;
