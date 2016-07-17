@@ -11,8 +11,8 @@
 
 #include <ofEasyCam.h>
 #include "AppActions.h"
+#include "Context.h"
 #include "Params.h"
-#include "State.h"
 
 class CameraController
 : public AppActionHandler {
@@ -35,11 +35,12 @@ public:
     TParam<ofVec3f> spinRate;
   };
 
-  CameraController(Params& params)
-  : _params(params) {}
+  CameraController(Params& params, Context& context)
+  : _params(params)
+  , _context(context) {}
 
   void setup();
-  void update(const State& state);
+  void update();
 
   void applyTransform();
 
@@ -51,6 +52,7 @@ private:
   void resetCamera();
 
   Params& _params;
+  Context& _context;
   ofEasyCam _cam;
   ofVec3f _rotation;
 };

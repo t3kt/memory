@@ -11,17 +11,20 @@
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,
-                                         const ColorTheme& colors)
+                                         const ColorTheme& colors,
+                                         Context& context)
 : _params(params)
 , _window(window)
 , _colors(colors)
+, _context(context)
 , _backgroundColor(colors.getColor(ColorId::BACKGROUND))
 , _fogColor(colors.getColor(ColorId::FOG)) {
 }
 
 void RenderingController::setup() {
   ofEnableAlphaBlending();
-  _camera = std::make_shared<CameraController>(_params.camera);
+  _camera = std::make_shared<CameraController>(_params.camera,
+                                               _context);
   _camera->setup();
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
@@ -41,12 +44,12 @@ bool RenderingController::performAction(AppAction action) {
   return false;
 }
 
-void RenderingController::update(const State &state) {
-  _camera->update(state);
-  _postProc->update(state);
+void RenderingController::update() {
+  _camera->update();
+  _postProc->update(_context.state);
 }
 
-void RenderingController::beginDraw(const State &state) {
+void RenderingController::beginDraw() {
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
@@ -68,7 +71,7 @@ void RenderingController::beginDraw(const State &state) {
   ofScale(size, size, size);
 }
 
-void RenderingController::endDraw(const State &state) {
+void RenderingController::endDraw() {
   ofPopMatrix();
   if (_params.fog.enabled()) {
     endFog();

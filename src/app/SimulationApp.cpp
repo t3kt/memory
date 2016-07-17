@@ -13,7 +13,8 @@ void SimulationApp::setup() {
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
-                                        _appParams.colors);
+                                        _appParams.colors,
+                                        _context);
   _renderingController->setup();
 
   _appParams.core.output.fullscreen.changed += [&](bool& fullscreen) {
@@ -65,17 +66,17 @@ void SimulationApp::update() {
   _clock->update();
   _observers->update();
   _occurrences->update();
-  _animations->update(_context.state);
+  _animations->update();
   _physics->update();
-  _renderingController->update(_context.state);
+  _renderingController->update();
 }
 
 void SimulationApp::draw() {
-  _renderingController->beginDraw(_context.state);
+  _renderingController->beginDraw();
 
   _observers->draw();
   _occurrences->draw();
-  _animations->draw(_context.state);
+  _animations->draw();
   _physics->draw();
 
   if (_appParams.core.debug.showBounds()) {
@@ -86,7 +87,7 @@ void SimulationApp::draw() {
     ofPopStyle();
   }
 
-  _renderingController->endDraw(_context.state);
+  _renderingController->endDraw();
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {

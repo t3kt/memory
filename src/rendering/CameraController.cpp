@@ -28,9 +28,9 @@ bool CameraController::performAction(AppAction action) {
   return true;
 }
 
-void CameraController::update(const State& state) {
+void CameraController::update() {
   if (_params.spinEnabled) {
-    _rotation += _params.spinRate.get() * state.timeDelta;
+    _rotation += _params.spinRate.get() * _context.state.timeDelta;
   }
 }
 

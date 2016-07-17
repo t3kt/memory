@@ -10,6 +10,7 @@
 #define AnimationsController_h
 
 #include "AnimationObject.h"
+#include "Context.h"
 #include "ObjectManager.h"
 #include "Params.h"
 #include "State.h"
@@ -48,11 +49,10 @@ public:
 
   void setup();
 
-  void addAnimation(std::shared_ptr<AnimationObject> animation,
-                    const State& state);
+  void addAnimation(std::shared_ptr<AnimationObject> animation);
   
-  void update(State& state);
-  void draw(const State& state);
+  void update();
+  void draw();
 
   int count() const { return _animations.size(); }
   
@@ -61,6 +61,7 @@ private:
 
   SimulationEvents& _events;
   const Params& _params;
+  Context& _context;
   const ColorTheme& _colors;
   ObjectManager<AnimationObject>& _animations;
 };

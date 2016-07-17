@@ -14,9 +14,9 @@
 #include "CameraController.h"
 #include "Colors.h"
 #include "Common.h"
+#include "Context.h"
 #include "Params.h"
 #include "PostProcController.h"
-#include "State.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -71,12 +71,13 @@ public:
 
   RenderingController(Params& params,
                       ofAppGLFWWindow& window,
-                      const ColorTheme& colors);
+                      const ColorTheme& colors,
+                      Context& context);
 
   void setup();
-  void update(const State& state);
-  void beginDraw(const State& state);
-  void endDraw(const State& state);
+  void update();
+  void beginDraw();
+  void endDraw();
   void updateResolution();
 
   bool performAction(AppAction action) override;
@@ -90,6 +91,7 @@ private:
   void endFog();
 
   Params& _params;
+  Context& _context;
   const ColorTheme& _colors;
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
