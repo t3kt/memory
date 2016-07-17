@@ -45,7 +45,7 @@ protected:
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
     float midDist = getInterpolated(lowBound, highBound, 0.5);
-    for (auto& entity : world->getEntities<E>()) {
+    for (auto& entity : world->context().getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }

@@ -20,9 +20,11 @@ void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
 }
 
 void BoundsBehavior::applyToWorld(PhysicsWorld *world) {
-  world->performActionOnAllEntities([&](ParticleObject* entity) {
+  std::function<void(ParticleObject*)> action = [&](ParticleObject* entity) {
     applyToEntity(world, entity);
-  });
+  };
+  world->context().observers.performTypedAction(action);
+  world->context().occurrences.performTypedAction(action);
 }
 
 void BoundsBehavior::applyToEntity(PhysicsWorld *world,

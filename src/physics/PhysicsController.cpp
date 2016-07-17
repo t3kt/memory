@@ -12,14 +12,14 @@
 PhysicsController::PhysicsController(PhysicsController::Params& params,
                                      Bounds& bounds,
                                      DebugParams& debugParams,
-                                     const State& state)
+                                     Context& context)
 : _params(params)
+, _context(context)
+, _world(context)
 , _bounds(bounds)
-, _debugParams(debugParams)
-, _state(state) {}
+, _debugParams(debugParams) {}
 
-void PhysicsController::setup(ObserversController& observers,
-                              OccurrencesController& occurrences) {
+void PhysicsController::setup() {
   _rebound = std::make_shared<BoundsBehavior>(_params.rebound, _bounds);
   _observerOccurrenceAttraction = std::make_shared<AttractionBehavior<ObserverEntity, OccurrenceEntity>>(_params.observerOccurrenceAttraction);
   _occurrenceObserverAttraction = std::make_shared<AttractionBehavior<OccurrenceEntity, ObserverEntity>>(_params.occurrenceObserverAttraction);
@@ -30,10 +30,6 @@ void PhysicsController::setup(ObserversController& observers,
   _occurrenceAnchorPointAttraction = std::make_shared<AnchorPointBehavior<OccurrenceEntity>>(_params.occurrenceAnchorPointAttraction);
   _observerDamping = std::make_shared<DampingBehavior<ObserverEntity>>(_params.observerDamping);
   _occurrenceDamping = std::make_shared<DampingBehavior<OccurrenceEntity>>(_params.occurrenceDamping);
-
-  _world = std::make_shared<PhysicsWorld>(_state,
-                                          observers.entities(),
-                                          occurrences.entities());
 
   registerAsActionHandler();
 }
@@ -68,56 +64,54 @@ void PhysicsController::endEntityUpdate(ParticleObject *entity,
   if (!entity->alive()) {
     return;
   }
-  entity->updateVelocityAndPosition(_world->state(), params.speed());
+  entity->updateVelocityAndPosition(_context.state, params.speed());
 }
 
 void PhysicsController::update() {
-  for (auto& entity : _world->observers()) {
+  for (auto& entity : _context.observers) {
     beginEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  auto world = _world.get();
-  _observerOccurrenceAttraction->applyToWorld(world);
-  _occurrenceObserverAttraction->applyToWorld(world);
-  _observerObserverAttraction->applyToWorld(world);
-  _observerSpatialNoiseForce->applyToWorld(world);
-  _occurrenceSpatialNoiseForce->applyToWorld(world);
-  _observerAnchorPointAttraction->applyToWorld(world);
-  _occurrenceAnchorPointAttraction->applyToWorld(world);
-  _observerDamping->applyToWorld(world);
-  _occurrenceDamping->applyToWorld(world);
-  _rebound->applyToWorld(world);
-  for (auto& entity : _world->observers()) {
+  _observerOccurrenceAttraction->applyToWorld(&_world);
+  _occurrenceObserverAttraction->applyToWorld(&_world);
+  _observerObserverAttraction->applyToWorld(&_world);
+  _observerSpatialNoiseForce->applyToWorld(&_world);
+  _occurrenceSpatialNoiseForce->applyToWorld(&_world);
+  _observerAnchorPointAttraction->applyToWorld(&_world);
+  _occurrenceAnchorPointAttraction->applyToWorld(&_world);
+  _observerDamping->applyToWorld(&_world);
+  _occurrenceDamping->applyToWorld(&_world);
+  _rebound->applyToWorld(&_world);
+  for (auto& entity : _context.observers) {
     endEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     endEntityUpdate(entity.get(), _params.occurrences);
   }
 }
 
 void PhysicsController::draw() {
   if (_debugParams.showPhysics()) {
-    auto world = _world.get();
-    _observerOccurrenceAttraction->debugDraw(world);
-    _occurrenceObserverAttraction->debugDraw(world);
-    _observerObserverAttraction->debugDraw(world);
-    _observerSpatialNoiseForce->debugDraw(world);
-    _occurrenceSpatialNoiseForce->debugDraw(world);
-    _observerAnchorPointAttraction->debugDraw(world);
-    _occurrenceAnchorPointAttraction->debugDraw(world);
-    _observerDamping->debugDraw(world);
-    _occurrenceDamping->debugDraw(world);
-    _rebound->debugDraw(world);
+    _observerOccurrenceAttraction->debugDraw(&_world);
+    _occurrenceObserverAttraction->debugDraw(&_world);
+    _observerObserverAttraction->debugDraw(&_world);
+    _observerSpatialNoiseForce->debugDraw(&_world);
+    _occurrenceSpatialNoiseForce->debugDraw(&_world);
+    _observerAnchorPointAttraction->debugDraw(&_world);
+    _occurrenceAnchorPointAttraction->debugDraw(&_world);
+    _observerDamping->debugDraw(&_world);
+    _occurrenceDamping->debugDraw(&_world);
+    _rebound->debugDraw(&_world);
   }
 }
 
 void PhysicsController::stopAllEntities() {
-  for (auto& entity : _world->observers()) {
+  for (auto& entity : _context.observers) {
     entity->setVelocity(ofVec3f::zero());
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     entity->setVelocity(ofVec3f::zero());
   }
 }

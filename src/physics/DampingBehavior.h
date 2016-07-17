@@ -54,7 +54,7 @@ public:
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->getEntities<E>()) {
+    for (auto& entity : world->context().getEntities<E>()) {
       applyToEntity(world, entity.get());
     }
   }
@@ -64,7 +64,7 @@ protected:
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : world->getEntities<E>()) {
+    for (auto& entity : world->context().getEntities<E>()) {
       debugDrawEntity(world, entity.get());
     }
   }

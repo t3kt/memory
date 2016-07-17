@@ -48,8 +48,8 @@ void SimulationApp::setup() {
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
                                                  _appParams.core.debug,
-                                                 _context.state);
-  _physics->setup(*_observers, *_occurrences);
+                                                 _context);
+  _physics->setup();
 
   _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
