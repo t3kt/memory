@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: nav-marker.ma
-//Last modified: Sun, Jul 17, 2016 12:54:46 AM
+//Last modified: Sun, Jul 17, 2016 01:30:49 AM
 //Codeset: UTF-8
 requires maya "2014";
 currentUnit -l centimeter -a degree -t film;
@@ -11,12 +11,12 @@ fileInfo "cutIdentifier" "201310090106-890429";
 fileInfo "osv" "Mac OS X 10.9.5";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.42574137830785297 1.8883909605473037 -3.2780270344608824 ;
-	setAttr ".r" -type "double3" -29.738352729608742 172.59999999999314 0 ;
+	setAttr ".t" -type "double3" -18.396048167568438 15.571823930949629 -14.8968260799868 ;
+	setAttr ".r" -type "double3" 146.66164727039143 -50.999999999992724 179.99999999999989 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 3.8069328047310318;
+	setAttr ".coi" 28.33393223640881;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -68,10 +68,81 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 52 ".uvst[0].uvsp[0:51]" -type "float2" 0.375 0 0.4375 0
+		 0.5625 0 0.625 0 0.375 0.0625 0.625 0.0625 0.375 0.1875 0.625 0.1875 0.375 0.25 0.4375
+		 0.25 0.5625 0.25 0.625 0.25 0.375 0.3125 0.625 0.3125 0.375 0.4375 0.625 0.4375 0.375
+		 0.5 0.4375 0.5 0.5625 0.5 0.625 0.5 0.375 0.5625 0.625 0.5625 0.375 0.6875 0.625
+		 0.6875 0.375 0.75 0.4375 0.75 0.5625 0.75 0.625 0.75 0.375 0.8125 0.625 0.8125 0.375
+		 0.9375 0.625 0.9375 0.375 1 0.4375 1 0.5625 1 0.625 1 0.875 0 0.8125 0 0.6875 0 0.875
+		 0.0625 0.875 0.1875 0.875 0.25 0.8125 0.25 0.6875 0.25 0.125 0 0.1875 0 0.3125 0
+		 0.125 0.0625 0.125 0.1875 0.125 0.25 0.1875 0.25 0.3125 0.25;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 32 ".vt[0:31]"  -0.5 -0.5 0.5 -0.25 -0.5 0.5 0.25 -0.5 0.5
+		 0.5 -0.5 0.5 -0.5 -0.25 0.5 0.5 -0.25 0.5 -0.5 0.25 0.5 0.5 0.25 0.5 -0.5 0.5 0.5
+		 -0.25 0.5 0.5 0.25 0.5 0.5 0.5 0.5 0.5 -0.5 0.5 0.25 0.5 0.5 0.25 -0.5 0.5 -0.25
+		 0.5 0.5 -0.25 -0.5 0.5 -0.5 -0.25 0.5 -0.5 0.25 0.5 -0.5 0.5 0.5 -0.5 -0.5 0.25 -0.5
+		 0.5 0.25 -0.5 -0.5 -0.25 -0.5 0.5 -0.25 -0.5 -0.5 -0.5 -0.5 -0.25 -0.5 -0.5 0.25 -0.5 -0.5
+		 0.5 -0.5 -0.5 -0.5 -0.5 -0.25 0.5 -0.5 -0.25 -0.5 -0.5 0.25 0.5 -0.5 0.25;
+	setAttr -s 48 ".ed[0:47]"  0 1 0 2 3 0 8 9 0 10 11 0 16 17 0 18 19 0
+		 24 25 0 26 27 0 0 4 0 3 5 0 6 8 0 7 11 0 8 12 0 11 13 0 14 16 0 15 19 0 16 20 0 19 21 0
+		 22 24 0 23 27 0 24 28 0 27 29 0 30 0 0 31 3 0 12 9 0 9 6 0 6 12 0 14 20 0 20 17 0
+		 17 14 0 15 18 0 18 21 0 21 15 0 13 7 0 7 10 0 10 13 0 31 2 0 2 5 0 5 31 0 25 28 0
+		 28 22 0 22 25 0 30 1 0 1 4 0 4 30 0 29 23 0 23 26 0 26 29 0;
+	setAttr -s 24 -ch 72 ".fc[0:23]" -type "polyFaces" 
+		f 3 0 43 -9
+		mu 0 3 0 1 4
+		f 3 41 -7 -19
+		mu 0 3 22 25 24
+		f 3 6 39 -21
+		mu 0 3 24 25 28
+		f 3 42 -1 -23
+		mu 0 3 30 33 32
+		f 3 20 40 18
+		mu 0 3 44 45 47
+		f 3 22 8 44
+		mu 0 3 46 0 4
+		f 3 2 -25 -13
+		mu 0 3 8 9 12
+		f 3 -26 -3 -11
+		mu 0 3 6 9 8
+		f 3 -27 10 12
+		mu 0 3 51 6 8
+		f 3 -28 14 16
+		mu 0 3 48 50 49
+		f 3 4 -29 -17
+		mu 0 3 16 17 20
+		f 3 -30 -5 -15
+		mu 0 3 14 17 16
+		f 3 -31 15 -6
+		mu 0 3 18 15 19
+		f 3 5 17 -32
+		mu 0 3 18 19 21
+		f 3 -33 -18 -16
+		mu 0 3 42 40 41
+		f 3 -34 -14 -12
+		mu 0 3 7 43 11
+		f 3 -35 11 -4
+		mu 0 3 10 7 11
+		f 3 3 13 -36
+		mu 0 3 10 11 13
+		f 3 -37 23 -2
+		mu 0 3 34 31 35
+		f 3 1 9 -38
+		mu 0 3 2 3 5
+		f 3 -24 -39 -10
+		mu 0 3 3 38 5
+		f 3 -22 -20 -46
+		mu 0 3 37 36 39
+		f 3 -47 19 -8
+		mu 0 3 26 23 27
+		f 3 7 21 -48
+		mu 0 3 26 27 29;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
@@ -80,63 +151,6 @@ createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
 createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
-createNode polyCube -n "polyCube1";
-	setAttr ".sw" 4;
-	setAttr ".sh" 4;
-	setAttr ".sd" 4;
-	setAttr ".cuv" 4;
-createNode deleteComponent -n "deleteComponent1";
-	setAttr ".dc" -type "componentList" 18 "f[1:2]" "f[4:11]" "f[13:14]" "f[17:18]" "f[20:27]" "f[29:30]" "f[33:34]" "f[36:43]" "f[45:46]" "f[49:50]" "f[52:59]" "f[61:62]" "f[65:66]" "f[68:75]" "f[77:78]" "f[81:82]" "f[84:91]" "f[93:94]";
-createNode polySplit -n "polySplit1";
-	setAttr -s 4 ".e[0:3]"  0 1 0 1;
-	setAttr -s 4 ".d[0:3]"  -2147483640 -2147483642 -2147483620 -2147483616;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit2";
-	setAttr -s 4 ".e[0:3]"  1 1 1 0;
-	setAttr -s 4 ".d[0:3]"  -2147483578 -2147483608 -2147483636 -2147483612;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit3";
-	setAttr -s 4 ".e[0:3]"  1 0 1 0;
-	setAttr -s 4 ".d[0:3]"  -2147483637 -2147483635 -2147483605 -2147483609;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit4";
-	setAttr -s 4 ".e[0:3]"  1 0 0 1;
-	setAttr -s 4 ".d[0:3]"  -2147483585 -2147483617 -2147483641 -2147483613;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit5";
-	setAttr -s 4 ".e[0:3]"  1 0 1 0;
-	setAttr -s 4 ".d[0:3]"  -2147483625 -2147483647 -2147483621 -2147483593;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit6";
-	setAttr -s 4 ".e[0:3]"  1 0 0 1;
-	setAttr -s 4 ".d[0:3]"  -2147483630 -2147483628 -2147483584 -2147483603;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit7";
-	setAttr -s 4 ".e[0:3]"  0 1 0 0;
-	setAttr -s 4 ".d[0:3]"  -2147483596 -2147483595 -2147483646 -2147483579;
-	setAttr ".sma" 180;
-createNode polySplit -n "polySplit8";
-	setAttr -s 4 ".e[0:3]"  0 0 0 1;
-	setAttr -s 4 ".d[0:3]"  -2147483588 -2147483601 -2147483629 -2147483597;
-	setAttr ".sma" 180;
-createNode deleteComponent -n "deleteComponent2";
-	setAttr ".dc" -type "componentList" 1 "f[13]";
-createNode deleteComponent -n "deleteComponent3";
-	setAttr ".dc" -type "componentList" 1 "f[7]";
-createNode deleteComponent -n "deleteComponent4";
-	setAttr ".dc" -type "componentList" 2 "f[6]" "f[37]";
-createNode deleteComponent -n "deleteComponent5";
-	setAttr ".dc" -type "componentList" 1 "f[38:40]";
-createNode deleteComponent -n "deleteComponent6";
-	setAttr ".dc" -type "componentList" 1 "f[36:37]";
-createNode deleteComponent -n "deleteComponent7";
-	setAttr ".dc" -type "componentList" 1 "f[13]";
-createNode deleteComponent -n "deleteComponent8";
-	setAttr ".dc" -type "componentList" 1 "f[9]";
-createNode deleteComponent -n "deleteComponent9";
-	setAttr ".dc" -type "componentList" 2 "f[1]" "f[11:12]";
-createNode deleteComponent -n "deleteComponent10";
-	setAttr ".dc" -type "componentList" 3 "f[1:6]" "f[10:11]" "f[14:15]";
 createNode script -n "uiConfigurationScriptNode";
 	setAttr ".b" -type "string" (
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"top\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n"
@@ -228,31 +242,14 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "deleteComponent10.og" "pCubeShape1.i";
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
-connectAttr "polyCube1.out" "deleteComponent1.ig";
-connectAttr "deleteComponent1.og" "polySplit1.ip";
-connectAttr "polySplit1.out" "polySplit2.ip";
-connectAttr "polySplit2.out" "polySplit3.ip";
-connectAttr "polySplit3.out" "polySplit4.ip";
-connectAttr "polySplit4.out" "polySplit5.ip";
-connectAttr "polySplit5.out" "polySplit6.ip";
-connectAttr "polySplit6.out" "polySplit7.ip";
-connectAttr "polySplit7.out" "polySplit8.ip";
-connectAttr "polySplit8.out" "deleteComponent2.ig";
-connectAttr "deleteComponent2.og" "deleteComponent3.ig";
-connectAttr "deleteComponent3.og" "deleteComponent4.ig";
-connectAttr "deleteComponent4.og" "deleteComponent5.ig";
-connectAttr "deleteComponent5.og" "deleteComponent6.ig";
-connectAttr "deleteComponent6.og" "deleteComponent7.ig";
-connectAttr "deleteComponent7.og" "deleteComponent8.ig";
-connectAttr "deleteComponent8.og" "deleteComponent9.ig";
-connectAttr "deleteComponent9.og" "deleteComponent10.ig";
 connectAttr "pCubeShape1.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 // End of nav-marker.ma
