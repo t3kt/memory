@@ -8,6 +8,7 @@
 
 #include "EntityRenderer.h"
 #include <ofMain.h>
+#include <ofxAssimpModelLoader.h>
 
 using namespace ofxChoreograph;
 
@@ -15,6 +16,33 @@ EnumTypeInfo<EntityShape> EntityShapeType({
   {"sphere", EntityShape::SPHERE},
   {"box", EntityShape::BOX},
 });
+
+class EntityModels {
+public:
+  void setup() {
+    _occurrenceMarkerLoader.loadModel("occurrence-marker.stl", false);
+    auto meshNames = _occurrenceMarkerLoader.getMeshNames();
+    _occurrenceMarkerModel = _occurrenceMarkerLoader.getMesh(meshNames[0]);
+  }
+
+  const ofMesh& occurrenceMarker() { return _occurrenceMarkerModel; }
+
+  static EntityModels& get() {
+    if (!_instance) {
+      _instance = std::make_shared<EntityModels>();
+      _instance->setup();
+    }
+    return *_instance;
+  }
+
+private:
+  ofxAssimpModelLoader _occurrenceMarkerLoader;
+  ofMesh _occurrenceMarkerModel;
+
+  static std::shared_ptr<EntityModels> _instance;
+};
+
+std::shared_ptr<EntityModels> EntityModels::_instance;
 
 void AbstractEntityRenderer::update(const State &state) {
   _fadeIn.update(state);
@@ -68,7 +96,8 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
-  _markerMesh.draw();
+//  _markerMesh.draw();
+  EntityModels::get().occurrenceMarker().draw();
 
   if (_params.wireEnabled()) {
     ofScale(ofVec3f(_params.wireScale()));
