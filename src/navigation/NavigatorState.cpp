@@ -9,24 +9,6 @@
 #include "AppParameters.h"
 #include "NavigatorState.h"
 
-template<typename E>
-std::shared_ptr<E> getRandomEntity(EntityMap<E>& entities) {
-  if (entities.empty()) {
-    return std::shared_ptr<E>();
-  }
-  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
-  return entities.getAtIndex(index);
-}
-
-template<typename E>
-std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
-  if (entities.empty()) {
-    return std::shared_ptr<E>();
-  }
-  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
-  return entities.getAtIndex(index);
-}
-
 void PointNavState::outputFields(std::ostream& os) const {
   os << "point: " << _point;
 }

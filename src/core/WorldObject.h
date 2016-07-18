@@ -12,6 +12,7 @@
 #include <iterator>
 #include <iostream>
 #include <memory>
+#include <ofMath.h>
 #include <unordered_map>
 #include "Common.h"
 
@@ -84,5 +85,14 @@ public:
 private:
   Storage _map;
 };
+
+template<typename E>
+std::shared_ptr<E> getRandomEntity(EntityMap<E>& entities) {
+  if (entities.empty()) {
+    return std::shared_ptr<E>();
+  }
+  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
+  return entities.getAtIndex(index);
+}
 
 #endif /* WorldObject_h */

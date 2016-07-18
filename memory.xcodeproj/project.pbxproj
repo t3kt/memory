@@ -113,7 +113,6 @@
 		C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70EF35D871A701061ABEFFEB /* Cue.cpp */; };
 		C9A120BFEC3FCDAA49B97863 /* ofxMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52D14AB9B6D5C7DF8219B07 /* ofxMidi.cpp */; };
 		CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F5CE2B494B5EBDE056DBBC17 /* ofxSyphonServer.mm */; };
-		CAE69C5CBBD12259C806B0A6 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6147AB85CF3EDFF2CEDD746C /* Navigator.cpp */; };
 		CB2F1BB8D1EC09DEBB0052ED /* ofxBaseMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2592EBF46F7DE5BF02FF899D /* ofxBaseMidi.cpp */; };
 		CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 088D20E7FB38937AE60F997D /* ofxSliderGroup.cpp */; };
 		D265D6207B2184FB12FD93AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 823FBC6F9791944E4D93726D /* main.cpp */; };
@@ -278,7 +277,6 @@
 		52DA674F75908A4AD4029805 /* Status.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Status.h; path = src/core/Status.h; sourceTree = SOURCE_ROOT; };
 		55A8F82130278C2A892A5A61 /* ofxGuiExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiExtended.h; sourceTree = SOURCE_ROOT; };
 		581F497F9FA3425721AEB3DC /* Params.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Params.cpp; path = src/core/Params.cpp; sourceTree = SOURCE_ROOT; };
-		59F259480B599E51C43E883A /* Navigator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Navigator.h; path = src/core/Navigator.h; sourceTree = SOURCE_ROOT; };
 		59FB4B4048C04F08C0A1FA98 /* ControlApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlApp.cpp; path = src/app/ControlApp.cpp; sourceTree = SOURCE_ROOT; };
 		5A5B1087DCFC03442468411E /* AppSystem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppSystem.h; path = src/app/AppSystem.h; sourceTree = SOURCE_ROOT; };
 		5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiBaseDraws.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiBaseDraws.cpp; sourceTree = SOURCE_ROOT; };
@@ -287,7 +285,6 @@
 		5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppParameters.h; path = src/app/AppParameters.h; sourceTree = SOURCE_ROOT; };
 		5FA23DCEA507C2123B618CF6 /* DofPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DofPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/DofPass.cpp; sourceTree = SOURCE_ROOT; };
 		6014E97001061DE71AB7D5C4 /* metadata.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = metadata.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/metadata.h; sourceTree = SOURCE_ROOT; };
-		6147AB85CF3EDFF2CEDD746C /* Navigator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Navigator.cpp; path = src/core/Navigator.cpp; sourceTree = SOURCE_ROOT; };
 		64066E60379BD93047A905EA /* RenderPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RenderPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.h; sourceTree = SOURCE_ROOT; };
 		6477C34ACC12C364A027E364 /* ContrastPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ContrastPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ContrastPass.cpp; sourceTree = SOURCE_ROOT; };
 		6649B1C272AD238D68E1145B /* ConvolutionPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ConvolutionPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ConvolutionPass.cpp; sourceTree = SOURCE_ROOT; };
@@ -1062,8 +1059,6 @@
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
-				6147AB85CF3EDFF2CEDD746C /* Navigator.cpp */,
-				59F259480B599E51C43E883A /* Navigator.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
 				060B900FD66542BB0792E633 /* ObserverEntity.cpp */,
 				73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */,
@@ -1361,7 +1356,6 @@
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
 				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
-				CAE69C5CBBD12259C806B0A6 /* Navigator.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,
 				EA6C3001ABA7EFDC59645D80 /* OccurrenceEntity.cpp in Sources */,

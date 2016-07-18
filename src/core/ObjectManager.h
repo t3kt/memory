@@ -14,6 +14,7 @@
 #include <list>
 #include <map>
 #include <memory>
+#include <ofMath.h>
 #include "Common.h"
 #include "Events.h"
 #include "State.h"
@@ -136,5 +137,14 @@ public:
 private:
   std::shared_ptr<View> _view;
 };
+
+template<typename E>
+std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
+  if (entities.empty()) {
+    return std::shared_ptr<E>();
+  }
+  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
+  return entities.getAtIndex(index);
+}
 
 #endif /* ObjectManager_h */

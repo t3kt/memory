@@ -22,6 +22,7 @@
 #include "ObserverEntity.h"
 #include "ObjectManager.h"
 #include "AnimationObject.h"
+#include "NavigatorEntity.h"
 
 enum class EntityShape {
   SPHERE,
@@ -107,6 +108,11 @@ protected:
 private:
   ObjectManager<ObserverEntity>& _entities;
 };
+
+//class NavigatorRenderer
+//: public EntityRenderer<NavigatorEntity> {
+//
+//}
 
 class OccurrenceRenderer
 : public EntityRenderer<OccurrenceEntity> {

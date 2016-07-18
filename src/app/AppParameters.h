@@ -13,6 +13,7 @@
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "NavigatorsController.h"
 #include "AnimationsController.h"
 #include "RenderingController.h"
 #include "PhysicsController.h"
@@ -106,6 +107,9 @@ public:
     add(occurrences
         .setKey("occurrences")
         .setName("Occurrences"));
+    add(navigators
+        .setKey("navigators")
+        .setName("Navigators"));
     add(animations
         .setKey("animations")
         .setName("Animations"));
@@ -125,6 +129,7 @@ public:
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
+  NavigatorsController::Params navigators;
   RenderingController::Params rendering;
   PhysicsController::Params physics;
 };

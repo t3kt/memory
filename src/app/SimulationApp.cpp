@@ -57,8 +57,10 @@ void SimulationApp::setup() {
 
   _statusController = std::make_shared<StatusInfoController>();
 
-  _highlightNavigator = std::make_shared<Navigator>(_context);
-  _highlightNavigator->setup();
+  _navigators =
+  std::make_shared<NavigatorsController>(_context,
+                                         _appParams.navigators);
+  _navigators->setup();
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
@@ -71,13 +73,8 @@ void SimulationApp::update() {
   _occurrences->update();
   _animations->update();
   _physics->update();
-  _highlightNavigator->update();
+  _navigators->update();
   _renderingController->update();
-
-  if (!_highlightNavigator->hasLocation()) {
-    _highlightNavigator->jumpToRandomObserver();
-  }
-  _highlightNavigator->update();
 }
 
 void SimulationApp::draw() {
@@ -86,6 +83,7 @@ void SimulationApp::draw() {
   _observers->draw();
   _occurrences->draw();
   _animations->draw();
+  _navigators->draw();
   _physics->draw();
 
   if (_appParams.core.debug.showBounds()) {
@@ -95,8 +93,6 @@ void SimulationApp::draw() {
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
   }
-
-  _highlightNavigator->draw();
 
   _renderingController->endDraw();
 

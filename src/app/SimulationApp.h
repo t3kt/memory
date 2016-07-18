@@ -16,7 +16,7 @@
 #include "Clock.h"
 #include "Common.h"
 #include "Context.h"
-#include "Navigator.h"
+#include "NavigatorsController.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "PhysicsController.h"
@@ -63,11 +63,11 @@ private:
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
+  std::shared_ptr<NavigatorsController> _navigators;
   std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<PhysicsController> _physics;
   std::shared_ptr<Clock> _clock;
-  std::shared_ptr<Navigator> _highlightNavigator;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
 #endif
