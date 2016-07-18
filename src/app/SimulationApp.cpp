@@ -100,6 +100,11 @@ void SimulationApp::draw() {
     ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
+    ofDrawGrid(
+               _appParams.core.bounds.size.get() / 2 / 4, // step size
+               4, // number of steps
+               true // labels
+               );
   }
 
   _renderingController->endDraw();

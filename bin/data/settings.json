@@ -132,7 +132,7 @@
         "enabled": true
       },
       "loggingEnabled": false,
-      "showBounds": true,
+      "showBounds": false,
       "showPhysics": false,
       "showStatus": true
     },
