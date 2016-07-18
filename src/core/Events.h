@@ -32,13 +32,13 @@ class StateEventArgs
 public:
   StateEventArgs(const State& s) : state(s) {}
   
-  void output(std::ostream& os) const override {
-    os << "StateEventArgs{"
-      << state
-      << "}";
-  }
-  
   const State& state;
+
+protected:
+  std::string typeName() const override { return "StateEventArgs"; }
+  void outputFields(std::ostream& os) const override {
+    os << "state: " << state;
+  }
 };
 
 template<typename T>
@@ -46,14 +46,14 @@ class EntityEventArgs : public StateEventArgs {
 public:
   EntityEventArgs(const State& s, T& entity) : StateEventArgs(s), _entity(entity) {}
   
-  void output(std::ostream& os) const override {
-    os << "EntityEventArgs{"
-        << "entity: " << _entity
-        << "state: " << state
-        << "}";
-  }
-  
   T& entity() { return _entity; }
+
+protected:
+  std::string typeName() const override { return "EntityEventArgs"; }
+  void outputFields(std::ostream& os) const override {
+    os << "entity: " << _entity;
+    os << "state: " << state;
+  }
 private:
   T& _entity;
 };
@@ -66,13 +66,13 @@ public:
   ValueEventArgs(T& value)
   : _value(value) { }
 
-  void output(std::ostream& os) const override {
-    os << "ValueEventArgs{"
-    << "value: " << _value
-    << "}";
-  }
-
   T& value() { return _value; }
+
+protected:
+  std::string typeName() const override { return "ValueEventArgs"; }
+  void outputFields(std::ostream& os) const override {
+    os << "value: " << _value;
+  }
 private:
   T& _value;
 };

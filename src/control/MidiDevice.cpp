@@ -15,12 +15,6 @@ static MidiDeviceId nextId() {
   return ++lastId;
 }
 
-void MidiReceivedEventArgs::output(std::ostream &os) const {
-  os << "MidiReceivedEventArgs{dev:" << device
-     << ", msg: " << const_cast<ofxMidiMessage&>(message).toString()
-     << "}";
-}
-
 MidiDevice::MidiDevice(std::string name,
                        std::string inputPortName,
                        std::string outputPortName,

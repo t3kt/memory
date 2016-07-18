@@ -23,7 +23,10 @@ T getInterpolated(const T& a, const T& b, float amount);
 class Outputable {
 public:
   virtual ~Outputable() {}
-  virtual void output(std::ostream& os) const = 0;
+  void output(std::ostream& os) const;
+protected:
+  virtual std::string typeName() const = 0;
+  virtual void outputFields(std::ostream& os) const { }
 };
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);

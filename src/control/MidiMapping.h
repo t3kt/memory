@@ -30,7 +30,9 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  void output(std::ostream& os) const override;
+protected:
+  std::string typeName() const override { return "MidiMapping"; }
+  void outputFields(std::ostream& os) const override;
 private:
   MidiMappingKey _key;
   std::string _path;
@@ -47,7 +49,6 @@ public:
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
-  void output(std::ostream& os) const override;
 
   void add(MidiMapping&& mapping) { _mappings.push_back(mapping); }
 
@@ -58,6 +59,10 @@ public:
 
   std::size_t size() const { return _mappings.size(); }
   bool empty() const { return _mappings.empty(); }
+
+protected:
+  std::string typeName() const override { return "MidiMappingSet"; }
+  void outputFields(std::ostream& os) const override;
 private:
   Storage _mappings;
 };

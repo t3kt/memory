@@ -34,8 +34,6 @@ public:
   virtual ~WorldObject() {}
   
   const ObjectId id;
-  
-  void output(std::ostream& os) const override;
 
   bool alive() const { return _alive; }
 
@@ -45,8 +43,8 @@ public:
 
   virtual EntityType entityType() const = 0;
 protected:
-  virtual std::string typeName() const;
-  virtual void outputFields(std::ostream& os) const;
+  virtual std::string typeName() const override;
+  virtual void outputFields(std::ostream& os) const override;
 private:
   bool _alive;
 };

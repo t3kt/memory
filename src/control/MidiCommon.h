@@ -63,12 +63,13 @@ public:
   const MidiMessageType& type() const { return _type; }
   const MidiChannel& channel() const { return _channel; }
 
-  void output(std::ostream& os) const override;
-
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
   std::size_t hash() const;
+protected:
+  std::string typeName() const override { return "MidiMappingKey"; }
+  void outputFields(std::ostream& os) const override;
 private:
   MidiDeviceId _device;
   MidiMessageType _type;
@@ -103,11 +104,13 @@ public:
   , message(msg)
   , key(MidiMappingKey::create(dev, msg)) { }
 
-  void output(std::ostream& os) const override;
-
   const MidiDeviceId device;
   const ofxMidiMessage& message;
   const MidiMappingKey key;
+
+protected:
+  std::string typeName() const override { return "MidiReceivedEventArgs"; }
+  void outputFields(std::ostream& os) const override;
 };
 
 using MidiReceivedEvent = TEvent<MidiReceivedEventArgs>;

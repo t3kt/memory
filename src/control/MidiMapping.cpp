@@ -39,16 +39,13 @@ void MidiMappingSet::read_json(const Json& arr) {
   }
 }
 
-void MidiMapping::output(std::ostream& os) const {
-  os << "{key: " << _key
-  << ", path: " << _path
-  << "}";
+void MidiMapping::outputFields(std::ostream& os) const {
+  os << "key: " << _key
+  << ", path: " << _path;
 }
 
-void MidiMappingSet::output(std::ostream& os) const {
-  os << "MidiMappingSet{";
+void MidiMappingSet::outputFields(std::ostream& os) const {
   for (const auto& mapping : _mappings) {
     os << mapping << ", ";
   }
-  os << "}";
 }
