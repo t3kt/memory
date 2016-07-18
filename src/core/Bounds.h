@@ -14,13 +14,7 @@
 
 class Bounds : public Params {
 public:
-  virtual bool reflect(ofVec3f* velocity, ofVec3f* position) const = 0;
-  virtual ofVec3f randomPoint() const = 0;
-};
-
-class SimpleCubeBounds : public Bounds {
-public:
-  SimpleCubeBounds() {
+  Bounds() {
     add(size
         .setKey("size")
         .setName("Size")
@@ -28,9 +22,9 @@ public:
         .setRange(0, 1000));
   }
 
-  bool reflect(ofVec3f* velocity, ofVec3f* position) const override;
+  bool reflect(ofVec3f* velocity, ofVec3f* position) const;
 
-  ofVec3f randomPoint() const override;
+  ofVec3f randomPoint() const;
 
   TParam<float> size;
 };

@@ -93,7 +93,7 @@ public:
   }
 
   Clock::Params clock;
-  SimpleCubeBounds bounds;
+  Bounds bounds;
   DebugParams debug;
   OutputParams output;
   MidiController::Params midi;
