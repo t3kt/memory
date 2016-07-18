@@ -38,7 +38,11 @@ public:
           .setName("Reach Range")
           .setValueAndDefault(0.0005)
           .setRange(0, 0.5));
+      observerNavigatorSpawner.setEnabledValueAndDefault(false);
+      observerNavigatorSpawner.setRateValueAndDefault(0.04);
+      observerNavigatorSpawner.setRateRange(0, 2);
     }
+
     RateSpawner::Params observerNavigatorSpawner;
     TParam<float> moveRate;
     TParam<float> reachRange;

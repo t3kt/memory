@@ -130,15 +130,26 @@
       "loggingEnabled": false,
       "showBounds": false,
       "showPhysics": false,
-      "showStatus": false
+      "showStatus": true
     },
     "midi": {
-      "enabled": true
+      "enabled": true,
+      "twister": {
+        "enabled": false
+      }
     },
     "output": {
       "externalEnabled": true,
       "fullscreen": true
     }
+  },
+  "navigators": {
+    "moveRate": 1,
+    "observerNavigatorSpawner": {
+      "enabled": true,
+      "rate": 0.091836735606193542
+    },
+    "reachRange": 0.00050000002374872565
   },
   "observers": {
     "connectorRenderer": {

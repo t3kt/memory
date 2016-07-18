@@ -15,8 +15,18 @@ NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState)
 
 void NavigatorEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
-  os << ", prev: " << *_prevState
-     << ", next: " << *_nextState;
+  os << ", prev: ";
+  if (_prevState) {
+    os << *_prevState;
+  } else {
+    os << "(none)";
+  }
+  os << ", next: ";
+  if (_nextState) {
+    os << *_nextState;
+  } else {
+    os << "(none)";
+  }
 }
 
 const ofVec3f& NavigatorEntity::prevPosition() const {

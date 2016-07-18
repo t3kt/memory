@@ -7,6 +7,7 @@
 //
 
 #include <algorithm>
+#include <ofLog.h>
 #include <random>
 #include "Context.h"
 #include "NavigatorEntity.h"
@@ -66,6 +67,7 @@ void NavigatorsController::update() {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
     } else {
+      ofLogNotice() << "Updating navigator: " << *navigator;
       navigator->updateNextState(_context);
       const ofVec3f& targetPoint = navigator->targetPoint();
       const ofVec3f& currentPosition = navigator->position();
@@ -73,9 +75,12 @@ void NavigatorsController::update() {
       float dist = diff.length();
       if (dist > _params.reachRange.get()) {
         diff.normalize();
-        navigator->setVelocity(diff
-                               * _params.moveRate.get()
-                               * _context.state.timeDelta);
+        ofVec3f velocity = diff * _params.moveRate.get() * _context.state.timeDelta;
+        if (velocity.length() > dist) {
+          velocity.normalize();
+          velocity *= dist;
+        }
+        navigator->setVelocity(velocity);
         navigator->updateVelocityAndPosition(_context.state, 1);
 
         diff = targetPoint - navigator->position();
@@ -85,6 +90,7 @@ void NavigatorsController::update() {
         navigator->reachNextState(_context);
       }
     }
+    ofLogNotice() << "Updated navigator: " << *navigator;
   });
   _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
     //...
@@ -95,19 +101,18 @@ void NavigatorsController::update() {
 
 void NavigatorsController::draw() {
   ofPushStyle();
-  ofPushMatrix();
-//  ofScale(ofVec3f(0.2));
-  ofSetColor(ofFloatColor::lightSteelBlue, 1);
+  ofSetColor(ofFloatColor(ofFloatColor::lightSteelBlue, 1.0));
   ofFill();
   for (const auto& navigator : _navigators) {
     if (!navigator->visible()) {
       continue;
     }
+    ofPushMatrix();
     ofTranslate(navigator->position());
-//    _mesh.draw();
-    ofDrawCylinder(2, 2);
+    ofScale(ofVec3f(0.2));
+    _mesh.draw();
+    ofPopMatrix();
   }
-  ofPopMatrix();
   ofPopStyle();
 }
 
