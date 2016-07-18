@@ -10,9 +10,6 @@
 #define Events_h
 
 #include "Common.h"
-#include "State.h"
-
-#include <vector>
 
 #include <ofxLiquidEvent.h>
 
@@ -27,38 +24,6 @@ private:
   bool _handled;
 };
 
-class StateEventArgs
-: public Outputable
-, public EventArgs {
-public:
-  StateEventArgs(const State& s) : state(s) {}
-
-
-protected:
-  const State& state;
-  std::string typeName() const override { return "StateEventArgs"; }
-  void outputFields(std::ostream& os) const override {
-    os << "state: " << state;
-  }
-};
-
-template<typename T>
-class EntityEventArgs
-: public EventArgs {
-public:
-  EntityEventArgs(T& entity) : _entity(entity) {}
-  
-  T& entity() { return _entity; }
-
-protected:
-  std::string typeName() const override { return "EntityEventArgs"; }
-  void outputFields(std::ostream& os) const override {
-    os << "entity: " << _entity;
-  }
-private:
-  T& _entity;
-};
-
 template<typename T>
 class ValueEventArgs
 : public EventArgs {
@@ -71,7 +36,7 @@ public:
 protected:
   std::string typeName() const override { return "ValueEventArgs"; }
   void outputFields(std::ostream& os) const override {
-    os << "value: " << _value;
+    os << _value;
   }
 private:
   T& _value;
@@ -113,15 +78,15 @@ template<typename T>
 using ValueEvent = TEvent<ValueEventArgs<T>>;
 
 class AnimationObject;
-using AnimationEventArgs = EntityEventArgs<AnimationObject>;
+using AnimationEventArgs = ValueEventArgs<AnimationObject>;
 using AnimationEvent = TEvent<AnimationEventArgs>;
 
 class OccurrenceEntity;
-using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
+using OccurrenceEventArgs = ValueEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
 
 class ObserverEntity;
-using ObserverEventArgs = EntityEventArgs<ObserverEntity>;
+using ObserverEventArgs = ValueEventArgs<ObserverEntity>;
 using ObserverEvent = TEvent<ObserverEventArgs>;
 
 #endif /* Events_h */

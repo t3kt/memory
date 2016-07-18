@@ -95,8 +95,7 @@ namespace std {
 }
 
 class MidiReceivedEventArgs
-: public Outputable
-, public EventArgs {
+: public EventArgs {
 public:
   MidiReceivedEventArgs(const MidiDeviceId& dev,
                         const ofxMidiMessage& msg)

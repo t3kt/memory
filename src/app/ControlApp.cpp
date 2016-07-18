@@ -14,7 +14,7 @@
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(const std::string message) {
   return [=](A& e) {
-    ofLogNotice() << message << e.entity();
+    ofLogNotice() << message << e.value();
   };
 }
 
