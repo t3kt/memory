@@ -115,7 +115,7 @@ void NavigatorsController::draw() {
     }
     ofPushMatrix();
     ofTranslate(navigator->position());
-    ofScale(ofVec3f(30));
+//    ofScale(ofVec3f(1));
     ofRotate(_context.time() * 8);
     _mesh.draw();
     ofPopMatrix();

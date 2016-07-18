@@ -150,7 +150,7 @@
   "navigators": {
     "moveRate": 23.25,
     "observerNavigatorSpawner": {
-      "enabled": true,
+      "enabled": false,
       "rate": 0.55102038383483887
     },
     "reachRange": 8.25
