@@ -28,6 +28,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
+		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */; };
 		32E58A3A1D3C2FC7001AA5E4 /* NavigatorsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A371D3C2FC7001AA5E4 /* NavigatorsController.cpp */; };
 		32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A3B1D3C3006001AA5E4 /* NavigatorState.cpp */; };
@@ -227,6 +228,10 @@
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
+		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
+		324CF6F81D3CA2ED003DD487 /* nav-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nav-marker.stl"; path = "res/nav-marker.stl"; sourceTree = "<group>"; };
+		324CF6F91D3CA2ED003DD487 /* observer-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "observer-marker.stl"; path = "res/observer-marker.stl"; sourceTree = "<group>"; };
+		324CF6FA1D3CA2ED003DD487 /* occurrence-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "occurrence-marker.stl"; path = "res/occurrence-marker.stl"; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NavigatorEntity.cpp; path = navigation/NavigatorEntity.cpp; sourceTree = "<group>"; };
 		32E58A361D3C2FC7001AA5E4 /* NavigatorEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigatorEntity.h; path = navigation/NavigatorEntity.h; sourceTree = "<group>"; };
@@ -561,6 +566,17 @@
 				C721A9AF1157766AFE54645E /* libs */,
 			);
 			name = ofxAssimpModelLoader;
+			sourceTree = "<group>";
+		};
+		324CF6F61D3CA2D6003DD487 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				324CF6F71D3CA2ED003DD487 /* icon.icns */,
+				324CF6F81D3CA2ED003DD487 /* nav-marker.stl */,
+				324CF6F91D3CA2ED003DD487 /* observer-marker.stl */,
+				324CF6FA1D3CA2ED003DD487 /* occurrence-marker.stl */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		32E58A341D3C2F5A001AA5E4 /* navigation */ = {
@@ -1174,6 +1190,7 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				324CF6F61D3CA2D6003DD487 /* resources */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -1264,6 +1281,7 @@
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
+				324CF6FB1D3CA396003DD487 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1318,6 +1336,17 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		324CF6FB1D3CA396003DD487 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		E4B6FFFD0C3F9AB9008CF71C /* ShellScript */ = {
