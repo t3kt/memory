@@ -12,14 +12,15 @@
 #include <vector>
 #include <utility>
 #include <ofxTextAlignTTF.h>
-#include "State.h"
+#include "Context.h"
 
 class StatusInfoController {
 public:
-  StatusInfoController();
+  StatusInfoController(const Context& context);
 
-  void draw(const State& state);
+  void draw();
 private:
+  const Context& _context;
   ofxTextAlignTTF _text;
 };
 

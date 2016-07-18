@@ -55,7 +55,7 @@ void SimulationApp::setup() {
   _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
 
-  _statusController = std::make_shared<StatusInfoController>();
+  _statusController = std::make_shared<StatusInfoController>(_context);
 
   _navigators =
   std::make_shared<NavigatorsController>(_context,
@@ -103,7 +103,7 @@ void SimulationApp::draw() {
 #endif
 
   if (_appParams.core.debug.showStatus()) {
-    _statusController->draw(_context.state);
+    _statusController->draw();
   }
 }
 
