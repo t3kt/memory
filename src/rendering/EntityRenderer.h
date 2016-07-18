@@ -39,8 +39,8 @@ public:
       add(size
           .setKey("size")
           .setName("Draw Size")
-          .setValueAndDefault(0.03)
-          .setRange(0, 0.1));
+          .setValueAndDefault(10)
+          .setRange(0, 100));
       add(fadeIn
           .setKey("fadeIn")
           .setName("Fade In"));
@@ -148,8 +148,7 @@ public:
           .setName("Wire Brightness")
           .setValueAndDefault(1.1)
           .setRange(0.5, 1.5));
-      size.setValueAndDefault(0.1);
-      size.setRange(0, 0.5);
+      size.setValueAndDefault(20);
     }
 
     TParam<bool> showRange;

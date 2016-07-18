@@ -24,8 +24,8 @@ public:
       add(magnitude
           .setKey("magnitude")
           .setName("Magnitude")
-          .setValueAndDefault(0.01)
-          .setRange(0, 1));
+          .setValueAndDefault(2)
+          .setRange(0, 20));
     }
 
     TParam<float> magnitude;

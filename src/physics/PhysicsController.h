@@ -30,8 +30,8 @@ public:
     add(speed
         .setKey("speed")
         .setName("Speed")
-        .setValueAndDefault(1)
-        .setRange(0, 10));
+        .setValueAndDefault(10)
+        .setRange(0, 50));
   }
 
   TParam<float> speed;

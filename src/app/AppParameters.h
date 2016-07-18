@@ -90,7 +90,6 @@ public:
     add(midi
         .setKey("midi")
         .setName("Midi"));
-    bounds.size.setRange(0.5, 40);
   }
 
   Clock::Params clock;

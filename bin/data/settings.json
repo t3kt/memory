@@ -120,15 +120,19 @@
   },
   "core": {
     "bounds": {
-      "size": 11.584182739257812
+      "size": 846.93878173828125
     },
     "clock": {
       "paused": false,
       "rate": 1.6734694242477417
     },
     "debug": {
+      "inspect": {
+        "clickRange": 10,
+        "enabled": true
+      },
       "loggingEnabled": false,
-      "showBounds": false,
+      "showBounds": true,
       "showPhysics": false,
       "showStatus": true
     },
@@ -144,19 +148,19 @@
     }
   },
   "navigators": {
-    "moveRate": 1,
+    "moveRate": 23.25,
     "observerNavigatorSpawner": {
       "enabled": true,
-      "rate": 0.091836735606193542
+      "rate": 0.55102038383483887
     },
-    "reachRange": 0.00050000002374872565
+    "reachRange": 8.25
   },
   "observers": {
     "connectorRenderer": {
       "enabled": true
     },
     "initialVelocity": {
-      "high": 0,
+      "high": 6.0204081535339355,
       "low": 0
     },
     "lifetime": {
@@ -165,7 +169,7 @@
     },
     "rateSpawner": {
       "enabled": true,
-      "rate": 11.020407676696777
+      "rate": 0.84693849086761475
     },
     "renderer": {
       "fadeIn": {
@@ -173,7 +177,7 @@
         "endValue": 1,
         "startValue": 0
       },
-      "size": 0.029999999329447746
+      "size": 9.1836738586425781
     },
     "spawner": {
       "enabled": false,
@@ -203,7 +207,7 @@
       "enabled": true
     },
     "radius": {
-      "high": 1.8367346525192261,
+      "high": 181.63264465332031,
       "low": 0.20408163964748383
     },
     "rateSpawner": {
@@ -221,7 +225,7 @@
         "startValue": 0
       },
       "showRange": false,
-      "size": 0.096938773989677429,
+      "size": 25,
       "wireBrightness": 1.5,
       "wireEnabled": true,
       "wireSaturation": 0.19897958636283875,

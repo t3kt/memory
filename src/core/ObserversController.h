@@ -42,15 +42,15 @@ public:
           .setKey("spawner")
           .setName("Interval Spawner"));
       add(rateSpawner
-          .setRateRange(0, 80)
-          .setRateValueAndDefault(10)
+          .setRateRange(0, 5)
+          .setRateValueAndDefault(0.5)
           .setKey("rateSpawner")
           .setName("Rate Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
-          .setParamValuesAndDefaults(0, 0.01)
-          .setParamRanges(0, 0.1));
+          .setParamValuesAndDefaults(0, 4)
+          .setParamRanges(0, 20));
       add(renderer
           .setKey("renderer")
           .setName("Renderer"));

@@ -32,13 +32,13 @@ public:
       add(moveRate
           .setKey("moveRate")
           .setName("Move Rate")
-          .setValueAndDefault(1)
-          .setRange(0, 10));
+          .setValueAndDefault(10)
+          .setRange(0, 50));
       add(reachRange
           .setKey("reachRange")
           .setName("Reach Range")
-          .setValueAndDefault(0.0005)
-          .setRange(0, 0.5));
+          .setValueAndDefault(10)
+          .setRange(0, 50));
       observerNavigatorSpawner.setEnabledValueAndDefault(false);
       observerNavigatorSpawner.setRateValueAndDefault(0.04);
       observerNavigatorSpawner.setRateRange(0, 2);

@@ -23,14 +23,14 @@ public:
     add(distanceBounds
         .setKey("distanceBounds")
         .setName("Distance Bounds")
-        .setParamValuesAndDefaults(0.04, 0.3)
-        .setParamRanges(0, 4)
+        .setParamValuesAndDefaults(5, 100)
+        .setParamRanges(0, 500)
         .setParamNames("Near", "Far"));
     add(magnitude
         .setKey("magnitude")
         .setName("Magnitude")
-        .setValueAndDefault(0.0001)
-        .setRange(0, 0.08));
+        .setValueAndDefault(4)
+        .setRange(0, 20));
     add(reverse
         .setKey("reverse")
         .setName("Reverse")

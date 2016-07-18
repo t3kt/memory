@@ -24,8 +24,8 @@ public:
     add(size
         .setKey("size")
         .setName("Size")
-        .setValueAndDefault(6)
-        .setRange(0, 10));
+        .setValueAndDefault(500)
+        .setRange(0, 1000));
   }
 
   bool reflect(ofVec3f* velocity, ofVec3f* position) const override;

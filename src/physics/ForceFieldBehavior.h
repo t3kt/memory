@@ -36,8 +36,8 @@ public:
       add(scale
           .setKey("scale")
           .setName("Scale")
-          .setValueAndDefault(1)
-          .setRange(0, 4));
+          .setValueAndDefault(10)
+          .setRange(0, 200));
       add(rate
           .setKey("rate")
           .setName("Rate")
@@ -46,8 +46,8 @@ public:
       add(magnitude
           .setKey("magnitude")
           .setName("Magnitude")
-          .setValueAndDefault(0.001)
-          .setRange(0, 0.05));
+          .setValueAndDefault(5)
+          .setRange(0, 20));
     }
 
     TParam<float> scale;

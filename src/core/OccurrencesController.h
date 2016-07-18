@@ -35,21 +35,21 @@ public:
       add(radius
           .setKey("radius")
           .setName("Radius Range")
-          .setParamValuesAndDefaults(0.4, 1.3)
-          .setParamRanges(0, 4));
+          .setParamValuesAndDefaults(0, 80)
+          .setParamRanges(0, 400));
       add(spawner
           .setKey("spawner")
           .setName("Inteval Spawner"));
       add(rateSpawner
-          .setRateRange(0, 40)
-          .setRateValueAndDefault(4)
+          .setRateRange(0, 5)
+          .setRateValueAndDefault(0.5)
           .setKey("rateSpawner")
           .setName("Rate Spawner"));
       add(initialVelocity
           .setKey("initialVelocity")
           .setName("Initial Velocity")
-          .setParamValuesAndDefaults(0, 0.01)
-          .setParamRanges(0, 0.1));
+          .setParamValuesAndDefaults(0, 2)
+          .setParamRanges(0, 20));
       add(renderer
           .setKey("renderer")
           .setName("Renderer"));

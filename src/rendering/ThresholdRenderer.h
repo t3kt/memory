@@ -36,8 +36,8 @@ public:
       add(range
           .setKey("range")
           .setName("Range")
-          .setParamValuesAndDefaults(0, 0.1)
-          .setParamRanges(0, 8));
+          .setParamValuesAndDefaults(0, 20)
+          .setParamRanges(0, 100));
       setEnabledValueAndDefault(true);
     }
 
