@@ -13,6 +13,7 @@
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "ObjectManager.h"
+#include "ObserverRenderer.h"
 #include "State.h"
 #include "Params.h"
 #include "Events.h"

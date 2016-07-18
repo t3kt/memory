@@ -11,6 +11,7 @@
 
 #include "AppActions.h"
 #include "OccurrenceEntity.h"
+#include "OccurrenceRenderer.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
 #include "State.h"
