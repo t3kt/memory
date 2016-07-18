@@ -59,7 +59,8 @@ void SimulationApp::setup() {
 
   _navigators =
   std::make_shared<NavigatorsController>(_context,
-                                         _appParams.navigators);
+                                         _appParams.navigators,
+                                         _events);
   _navigators->setup();
 
 #ifdef ENABLE_SYPHON

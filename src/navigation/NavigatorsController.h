@@ -19,6 +19,7 @@ class Context;
 class NavigatorEntity;
 class NavigatorState;
 class ObserverEntity;
+class SimulationEvents;
 
 class NavigatorsController {
 public:
@@ -49,7 +50,8 @@ public:
   };
 
   NavigatorsController(Context& context,
-                       Params& params);
+                       Params& params,
+                       SimulationEvents& events);
 
   void setup();
   void update();
@@ -59,6 +61,7 @@ private:
 
   Context& _context;
   Params& _params;
+  SimulationEvents& _events;
   ObjectManager<NavigatorEntity>& _navigators;
   std::shared_ptr<Spawner> _observerNavSpawner;
 

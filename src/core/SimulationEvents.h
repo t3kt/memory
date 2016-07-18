@@ -22,6 +22,10 @@ public:
   OccurrenceEvent occurrenceSpawned;
   OccurrenceEvent occurrenceSpawnFailed;
   OccurrenceEvent occurrenceDied;
+
+  NavigatorEvent navigatorSpawned;
+  NavigatorEvent navigatorReachedLocation;
+  NavigatorEvent navigatorDied;
 };
 
 #endif /* SimulationEvents_h */

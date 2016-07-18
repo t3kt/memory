@@ -14,6 +14,7 @@
 #include "NavigatorsController.h"
 #include "NavigatorState.h"
 #include "ObserverEntity.h"
+#include "SimulationEvents.h"
 
 using NavEntityPtr = std::shared_ptr<NavigatorEntity>;
 
@@ -49,9 +50,11 @@ private:
 };
 
 NavigatorsController::NavigatorsController(Context& context,
-                                           Params& params)
+                                           Params& params,
+                                           SimulationEvents& events)
 : _context(context)
 , _params(params)
+, _events(events)
 , _navigators(context.navigators) { }
 
 void NavigatorsController::setup() {
@@ -88,12 +91,15 @@ void NavigatorsController::update() {
       }
       if (navigator->nextState() && dist <= _params.reachRange.get()) {
         navigator->reachNextState(_context);
+        NavigatorEventArgs e(*navigator);
+        _events.navigatorReachedLocation.notifyListeners(e);
       }
     }
     ofLogNotice() << "Updated navigator: " << *navigator;
   });
   _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
-    //...
+    NavigatorEventArgs e(*navigator);
+    _events.navigatorDied.notifyListenersUntilHandled(e);
   });
 
   _observerNavSpawner->update(_context);
@@ -121,5 +127,6 @@ void NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   auto startState = std::make_shared<ObserverNavState>(entity);
   auto navigator = std::make_shared<NavigatorEntity>(startState);
   _navigators.add(navigator);
-  //...
+  NavigatorEventArgs e(*navigator);
+  _events.navigatorSpawned.notifyListenersUntilHandled(e);
 }

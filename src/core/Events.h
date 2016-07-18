@@ -89,4 +89,8 @@ class ObserverEntity;
 using ObserverEventArgs = ValueEventArgs<ObserverEntity>;
 using ObserverEvent = TEvent<ObserverEventArgs>;
 
+class NavigatorEntity;
+using NavigatorEventArgs = ValueEventArgs<NavigatorEntity>;
+using NavigatorEvent = TEvent<NavigatorEventArgs>;
+
 #endif /* Events_h */
