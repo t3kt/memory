@@ -63,12 +63,12 @@ void RenderingController::beginDraw() {
   }
 
   ofPushMatrix();
-  _camera->applyTransform();
+//  _camera->applyTransform();
 
-  auto winSize = ofGetWindowSize();
-  auto size = ::min(winSize.x, winSize.y) / 2;
-  size *= 0.4;
-  ofScale(size, size, size);
+//  auto winSize = ofGetWindowSize();
+//  auto size = ::min(winSize.x, winSize.y) / 2;
+//  size *= 0.4;
+//  ofScale(size, size, size);
 }
 
 void RenderingController::endDraw() {

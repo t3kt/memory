@@ -39,12 +39,13 @@ void InspectionController::detachFromEvents() {
                    &InspectionController::onMousePressed);
 }
 
-// must be called while camera is active
+// must be called after camera has ended
 void InspectionController::update() {
   if (!_params.enabled.get()) {
     return;
   }
   if (_hasClick) {
+    _camera.begin();
     float closestDist = -1;
     float range = _params.clickRange.get();
     _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
@@ -59,6 +60,7 @@ void InspectionController::update() {
       }
     });
     _hasClick = false;
+    _camera.end();
   }
   if (_selectedEntity) {
     if (!_selectedEntity->alive()) {
@@ -69,7 +71,7 @@ void InspectionController::update() {
   }
 }
 
-// must be called after camera is inactive
+// must be called after camera has ended
 void InspectionController::draw() {
   if (!_params.enabled.get()) {
     return;

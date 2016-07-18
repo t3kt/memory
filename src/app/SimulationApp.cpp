@@ -102,9 +102,9 @@ void SimulationApp::draw() {
     ofPopStyle();
   }
 
-  _inspectionController->update();
-
   _renderingController->endDraw();
+
+  _inspectionController->update();
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {
