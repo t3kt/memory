@@ -32,10 +32,20 @@ public:
   void removeObserver(ObjectId id) {
     _connectedObservers.erase(id);
   }
+
+  void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
+    _connectedOccurrences.add(occurrence);
+  }
+
+  void removeOccurrence(ObjectId id) {
+    _connectedOccurrences.erase(id);
+  }
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
   }
+
+  void detachConnections();
   
   float getAmountOfObservation() const { return _amountOfObservation; }
 
@@ -52,6 +62,16 @@ public:
   EntityMap<ObserverEntity>& connectedObservers() {
     return _connectedObservers;
   }
+
+  const EntityMap<OccurrenceEntity>& getConnectedOccurrences() const {
+    return _connectedOccurrences;
+  }
+
+  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
+    return _connectedOccurrences;
+  }
+
+  EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
@@ -71,8 +91,12 @@ private:
   float _startTime;
   float _amountOfObservation;
   EntityMap<ObserverEntity> _connectedObservers;
+  EntityMap<OccurrenceEntity> _connectedOccurrences;
 
   friend class OccurrencesController;
 };
+
+template<>
+EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
 
 #endif /* OccurrenceEntity_h */

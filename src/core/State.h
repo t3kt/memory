@@ -10,13 +10,13 @@
 #define __behavior__State__
 
 #include "Common.h"
-#include <ofxLiquidEvent.h>
 
-class State : public Outputable {
+class State
+: public Outputable
+, public NonCopyable {
 public:
-  State();
-  
-  void output(std::ostream& os) const override;
+  State()
+  : running(true) { }
   
   float time;
   float timeDelta;
@@ -24,6 +24,9 @@ public:
   int occurrenceCount;
   int animationCount;
   bool running;
+protected:
+  std::string typeName() const override { return "State"; }
+  void outputFields(std::ostream& os) const override;
 };
 
 class ChangeFlag : public Outputable {
@@ -39,14 +42,9 @@ public:
 
   operator bool() const { return _status; }
 
-  void output(std::ostream& os) const override;
-
-  template<typename T>
-  void bindToEvent(ofxLiquidEvent<T>& event) {
-    event += [&](T e) {
-      set();
-    };
-  }
+protected:
+  std::string typeName() const override { return "ChangeFlag"; }
+  void outputFields(std::ostream& os) const override;
 private:
   const std::string _name;
   bool _status;
@@ -58,9 +56,11 @@ public:
 
   void clear();
 
-  void output(std::ostream& os) const override;
-
   ChangeFlag boundsChanged;
+
+protected:
+  std::string typeName() const override { return "ChangeFlags"; }
+  void outputFields(std::ostream& os) const override;
 };
 
 #endif /* defined(__behavior__State__) */

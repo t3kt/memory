@@ -14,7 +14,7 @@
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(const std::string message) {
   return [=](A& e) {
-    ofLogNotice() << message << e.entity();
+    ofLogNotice() << message << e.value();
   };
 }
 
@@ -33,6 +33,11 @@ makeOccurrenceLogger(const std::string message) {
   return makeEntityEventLogger<OccurrenceEventArgs>(message);
 }
 
+std::function<void(NavigatorEventArgs&)>
+makeNavigatorLogger(const std::string message) {
+  return makeEntityEventLogger<NavigatorEventArgs>(message);
+}
+
 class EventLoggers {
 public:
   EventLoggers()
@@ -42,7 +47,10 @@ public:
   , _observerDied(makeObserverLogger("Observer died: "))
   , _occurrenceSpawned(makeOccurrenceLogger("Occurrence spawned: "))
   , _occurrenceSpawnFailed(makeOccurrenceLogger("Occurrence spawn failed: "))
-  , _occurrenceDied(makeOccurrenceLogger("Occurrence died: ")) {}
+  , _occurrenceDied(makeOccurrenceLogger("Occurrence died: "))
+  , _navigatorSpawned(makeNavigatorLogger("Navigator spawned: "))
+  , _navigatorReachedLocation(makeNavigatorLogger("Navigator reached location: "))
+  , _navigatorDied(makeNavigatorLogger("Navigator died: ")) {}
 
   void attach(SimulationEvents& events) {
     detach(events);
@@ -53,6 +61,9 @@ public:
     events.occurrenceSpawned.addListener(_occurrenceSpawned, this);
     events.occurrenceSpawnFailed.addListener(_occurrenceSpawnFailed, this);
     events.occurrenceDied.addListener(_occurrenceDied, this);
+    events.navigatorSpawned.addListener(_navigatorSpawned, this);
+    events.navigatorReachedLocation.addListener(_navigatorReachedLocation, this);
+    events.navigatorDied.addListener(_navigatorDied, this);
   }
   void detach(SimulationEvents& events) {
     events.animationSpawned.removeListeners(this);
@@ -62,6 +73,9 @@ public:
     events.occurrenceSpawned.removeListeners(this);
     events.occurrenceSpawnFailed.removeListeners(this);
     events.occurrenceDied.removeListeners(this);
+    events.navigatorSpawned.removeListeners(this);
+    events.navigatorReachedLocation.removeListeners(this);
+    events.navigatorDied.removeListeners(this);
   }
 private:
   std::function<void(AnimationEventArgs&)> _animationSpawned;
@@ -71,12 +85,15 @@ private:
   std::function<void(OccurrenceEventArgs&)> _occurrenceSpawned;
   std::function<void(OccurrenceEventArgs&)> _occurrenceSpawnFailed;
   std::function<void(OccurrenceEventArgs&)> _occurrenceDied;
+  std::function<void(NavigatorEventArgs&)> _navigatorSpawned;
+  std::function<void(NavigatorEventArgs&)> _navigatorReachedLocation;
+  std::function<void(NavigatorEventArgs&)> _navigatorDied;
 };
 
 void ControlApp::setup() {
   _eventLoggers = std::make_shared<EventLoggers>();
 
-  _appParams.core.debug.loggingEnabledChanged += [this]() {
+  _appParams.core.debug.loggingEnabled.changed += [this]() {
     updateLogState();
   };
 
@@ -84,6 +101,9 @@ void ControlApp::setup() {
   loadSettings();
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
+
+  _midi = std::make_shared<MidiController>(_appParams);
+  _midi->setup();
 
   registerAsActionHandler();
 }
@@ -97,6 +117,10 @@ void ControlApp::updateLogState() {
   } else {
     _eventLoggers->detach(simulation->getEvents());
   }
+}
+
+void ControlApp::update() {
+  _midi->update();
 }
 
 void ControlApp::draw() {
@@ -116,7 +140,7 @@ bool ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      _appParams.core.debug.setLoggingEnabled(!_appParams.core.debug.loggingEnabled());
+      toggleBoolParam(_appParams.core.debug.loggingEnabled);
       break;
     default:
       return false;

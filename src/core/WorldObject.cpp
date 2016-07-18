@@ -18,12 +18,6 @@ WorldObject::WorldObject()
 : id(nextId())
 , _alive(true) { }
 
-void WorldObject::output(std::ostream &os) const {
-  os << typeName() << "{";
-  outputFields(os);
-  os << "}";
-}
-
 std::string WorldObject::typeName() const {
   return "WorldObject";
 }

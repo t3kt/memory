@@ -51,6 +51,8 @@ public:
   virtual bool visible() const override {
     return alive() && _visible;
   }
+
+  EntityType entityType() const override { return EntityType::ANIMATION; }
 protected:
   virtual std::string typeName() const override {
     return "Animation";
@@ -66,6 +68,9 @@ private:
   float _duration;
   float _percentage;
 };
+
+template<>
+EntityType getEntityType<AnimationObject>() { return EntityType::ANIMATION; }
 
 class ExpandingSphereAnimation : public AnimationObject {
 public:

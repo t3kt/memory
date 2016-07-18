@@ -8,6 +8,7 @@
 
 #include "EntityRenderer.h"
 #include <ofMain.h>
+#include <ofxAssimpModelLoader.h>
 
 using namespace ofxChoreograph;
 
@@ -15,6 +16,37 @@ EnumTypeInfo<EntityShape> EntityShapeType({
   {"sphere", EntityShape::SPHERE},
   {"box", EntityShape::BOX},
 });
+
+class EntityModels {
+public:
+  void setup() {
+    _occurrenceMarkerLoader.loadModel("occurrence-marker.stl", false);
+    _occurrenceMarkerMesh = _occurrenceMarkerLoader.getMesh(0);
+    _observerMarkerLoader.loadModel("observer-marker.stl", false);
+    _observerMarkerMesh = _observerMarkerLoader.getMesh(0);
+  }
+
+  const ofMesh& occurrenceMarker() { return _occurrenceMarkerMesh; }
+  const ofMesh& observerMarker() { return _observerMarkerMesh; }
+
+  static EntityModels& get() {
+    if (!_instance) {
+      _instance = std::make_shared<EntityModels>();
+      _instance->setup();
+    }
+    return *_instance;
+  }
+
+private:
+  ofxAssimpModelLoader _occurrenceMarkerLoader;
+  ofMesh _occurrenceMarkerMesh;
+  ofxAssimpModelLoader _observerMarkerLoader;
+  ofMesh _observerMarkerMesh;
+
+  static std::shared_ptr<EntityModels> _instance;
+};
+
+std::shared_ptr<EntityModels> EntityModels::_instance;
 
 void AbstractEntityRenderer::update(const State &state) {
   _fadeIn.update(state);
@@ -41,7 +73,10 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofPushMatrix();
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-  ofDrawSphere(entity.position(), size);
+  //  ofDrawSphere(entity.position(), size);
+  ofTranslate(entity.position());
+  ofScale(ofVec3f(size));
+  EntityModels::get().observerMarker().draw();
 
   ofPopMatrix();
   ofPopStyle();
@@ -68,7 +103,8 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
-  _markerMesh.draw();
+//  _markerMesh.draw();
+  EntityModels::get().occurrenceMarker().draw();
 
   if (_params.wireEnabled()) {
     ofScale(ofVec3f(_params.wireScale()));
@@ -141,7 +177,7 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
   ofEnableAlphaBlending();
   ofMesh connectorMesh;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (const auto& observer : _observers) {
+  for (const auto& observer : _entities) {
     if (!observer->alive()) {
       continue;
     }
@@ -153,6 +189,36 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
       }
       float otherLife = other.second->getRemainingLifetimeFraction();
       connectorMesh.addVertex(observer->position());
+      connectorMesh.addColor(connectorStartColor);
+      connectorMesh.addVertex(other.second->position());
+      connectorMesh.addColor(ofFloatColor(_color,
+                                          _color.a * otherLife));
+    }
+  }
+  connectorMesh.draw();
+  ofPopStyle();
+}
+
+void OccurrenceOccurrenceConnectorRenderer::draw(const State& state) {
+  if (!_params.enabled()) {
+    return;
+  }
+  ofPushStyle();
+  ofEnableAlphaBlending();
+  ofMesh connectorMesh;
+  connectorMesh.setMode(OF_PRIMITIVE_LINES);
+  for (const auto& occurrence : _entities) {
+    if (!occurrence->alive()) {
+      continue;
+    }
+    float occurrenceLife = occurrence->getAmountOfObservation();
+    ofFloatColor connectorStartColor(_color, _color.a * occurrenceLife);
+    for (const auto& other : occurrence->getConnectedOccurrences()) {
+      if (!other.second->alive()) {
+        continue;
+      }
+      float otherLife = other.second->getAmountOfObservation();
+      connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
       connectorMesh.addVertex(other.second->position());
       connectorMesh.addColor(ofFloatColor(_color,

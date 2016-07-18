@@ -6,19 +6,16 @@
 //
 //
 
-#include "JsonIO.h"
-
-#include "AppParameters.h"
-
-#include <ofTypes.h>
-#include <ofUtils.h>
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <initializer_list>
 #include <functional>
+#include <ofTypes.h>
+#include <ofUtils.h>
+#include <sstream>
+#include "JsonIO.h"
 
 using json11::JsonParse;
+using namespace JsonUtil;
 
 class JsonWriter {
 public:
@@ -107,188 +104,137 @@ private:
   std::ostream& _out;
 };
 
-void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
+static void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
   JsonWriter writer(os);
   writer.write(value);
 }
 
-std::string prettyPrintJsonToString(const Json& value) {
+static std::string prettyPrintJsonToString(const Json& value) {
   std::ostringstream os;
   prettyPrintJsonToStream(value, os);
   return os.str();
 }
 
-static void assertHasShape(const Json& value, Json::shape shape) {
-  std::string message;
-  if (!value.has_shape(shape, message)) {
-    throw JsonException(message);
+namespace JsonUtil {
+
+  void assertHasShape(const Json& value, Json::shape shape) {
+    std::string message;
+    if (!value.has_shape(shape, message)) {
+      throw JsonException(message);
+    }
+  }
+
+  void assertHasType(const Json& value, Json::Type type) {
+    if (value.type() != type) {
+      throw JsonException("Incorrect json type: " + value.dump());
+    }
+  }
+
+  void assertHasLength(const Json& value, int length) {
+    if (value.array_items().size() != length) {
+      throw JsonException("Incorrect length (should be " + ofToString(length) + "): " + value.dump());
+    }
+  }
+
+  template<>
+  Json toJson(const float& value) {
+    return value;
+  }
+
+  template<>
+  Json toJson(const int& value) {
+    return value;
+  }
+
+  template<>
+  Json toJson(const bool& value) {
+    return value;
+  }
+
+  template<>
+  Json toJson(const std::string& value) {
+    return value;
+  }
+
+  template<>
+  Json toJson(const ofVec3f& value) {
+    return Json::array { value.x, value.y, value.z };
+  }
+
+  template<>
+  Json toJson(const ofFloatColor& value) {
+    return Json::array { value.r, value.g, value.b, value.a };
+  }
+
+  template<>
+  ofVec3f fromJson<ofVec3f>(const Json& value) {
+    assertHasType(value, Json::ARRAY);
+    assertHasLength(value, 3);
+    const Json& x = value[0];
+    const Json& y = value[1];
+    const Json& z = value[2];
+    assertHasType(x, Json::NUMBER);
+    assertHasType(y, Json::NUMBER);
+    assertHasType(z, Json::NUMBER);
+    return ofVec3f(x.number_value(),
+                   y.number_value(),
+                   z.number_value());
+  }
+
+  template<>
+  ofFloatColor fromJson<ofFloatColor>(const Json& value) {
+    assertHasType(value, Json::ARRAY);
+    assertHasLength(value, 4);
+    const Json& r = value[0];
+    const Json& g = value[1];
+    const Json& b = value[2];
+    const Json& a = value[3];
+    assertHasType(r, Json::NUMBER);
+    assertHasType(g, Json::NUMBER);
+    assertHasType(b, Json::NUMBER);
+    assertHasType(a, Json::NUMBER);
+    return ofFloatColor(r.number_value(),
+                        g.number_value(),
+                        b.number_value(),
+                        a.number_value());
+  }
+
+  template<>
+  float fromJson<float>(const Json& value) {
+    assertHasType(value, Json::NUMBER);
+    return value.number_value();
+  }
+
+  template<>
+  int fromJson<int>(const Json& value) {
+    assertHasType(value, Json::NUMBER);
+    return value.number_value();
+  }
+
+  template<>
+  bool fromJson<bool>(const Json& value) {
+    assertHasType(value, Json::BOOL);
+    return value.bool_value();
+  }
+
+  template<>
+  std::string fromJson<std::string>(const Json& value) {
+    assertHasType(value, Json::STRING);
+    return value.string_value();
+  }
+
+  Json merge(const Json obj1, const Json obj2) {
+    Json::object out(obj1.object_items());
+    out.insert(obj2.object_items().begin(), obj2.object_items().end());
+    return out;
   }
 }
 
-static void assertHasType(const Json& value, Json::Type type) {
-  if (value.type() != type) {
-    throw JsonException("Incorrect json type: " + value.dump());
-  }
-}
-
-static void assertHasLength(const Json& value, int length) {
-  if (value.array_items().size() != length) {
-    throw JsonException("Incorrect length (should be " + ofToString(length) + "): " + value.dump());
-  }
-}
-
-static Json toJsonValue(const ofVec3f& value) {
-  return Json::array { value.x, value.y, value.z };
-}
-
-static Json toJsonValue(const ofFloatColor& value) {
-  return Json::array { value.r, value.g, value.b, value.a };
-}
-
-static ofVec3f ofVec3fFromJsonValue(const Json& value) {
-  assertHasType(value, Json::ARRAY);
-  assertHasLength(value, 3);
-  const Json& x = value[0];
-  const Json& y = value[1];
-  const Json& z = value[2];
-  assertHasType(x, Json::NUMBER);
-  assertHasType(y, Json::NUMBER);
-  assertHasType(z, Json::NUMBER);
-  return ofVec3f(x.number_value(),
-                 y.number_value(),
-                 z.number_value());
-}
-
-static ofFloatColor ofFloatColorFromJsonValue(const Json& value) {
-  assertHasType(value, Json::ARRAY);
-  assertHasLength(value, 4);
-  const Json& r = value[0];
-  const Json& g = value[1];
-  const Json& b = value[2];
-  const Json& a = value[3];
-  assertHasType(r, Json::NUMBER);
-  assertHasType(g, Json::NUMBER);
-  assertHasType(b, Json::NUMBER);
-  assertHasType(a, Json::NUMBER);
-  return ofFloatColor(r.number_value(),
-                      g.number_value(),
-                      b.number_value(),
-                      a.number_value());
-}
-
-static Json merge(const Json obj1, const Json obj2) {
-  Json::object out(obj1.object_items());
-  out.insert(obj2.object_items().begin(), obj2.object_items().end());
-  return out;
-}
-
-template<>
-Json TParam<ofVec3f>::to_json() const {
-  return toJsonValue(get());
-}
-
-template<>
-Json TParam<ofFloatColor>::to_json() const {
-  return toJsonValue(get());
-}
-
-template<>
-Json TParam<float>::to_json() const {
-  return get();
-}
-
-template<>
-Json TParam<bool>::to_json() const {
-  return get();
-}
-
-template<>
-Json TParam<int>::to_json() const {
-  return get();
-}
-
-template<>
-void TParam<float>::read_json(const Json& val) {
-  assertHasType(val, Json::NUMBER);
-  set(val.number_value());
-}
-
-template<>
-void TParam<int>::read_json(const Json& val) {
-  assertHasType(val, Json::NUMBER);
-  set(val.number_value());
-}
-
-template<>
-void TParam<bool>::read_json(const Json& val) {
-  assertHasType(val, Json::BOOL);
-  set(val.bool_value());
-}
-
-template<>
-void TParam<ofVec3f>::read_json(const Json& val) {
-  set(ofVec3fFromJsonValue(val));
-}
-
-template<>
-void TParam<ofFloatColor>::read_json(const Json& val) {
-  set(ofFloatColorFromJsonValue(val));
-}
-
-void readJsonIntoParams(const Json& obj, std::initializer_list<std::reference_wrapper<TParamInfoBase>> params) {
-  for (auto iter = params.begin();
-       iter != params.end();
-       iter++) {
-    iter->get().readJsonField(obj);
-  }
-}
-
-Json paramsToObject(std::initializer_list<std::reference_wrapper<const TParamInfoBase>> params) {
-  Json::object obj;
-  for (auto iter = params.begin();
-       iter != params.end();
-       iter++) {
-    obj.insert(iter->get().toJsonField());
-  }
-  return obj;
-}
-
-void Params::readJsonField(const Json& obj) {
-  const Json& val = obj[getKey()];
-  if (!val.is_null()) {
-    assertHasType(val, Json::OBJECT);
-    read_json(val);
-  } else if (hasDefault()) {
-    resetToDefault();
-  } else {
-    throw JsonException("Required field missing: " + getKey());
-  }
-}
-
-Json Params::to_json() const {
-  Json::object obj;
-  for (auto iter = _paramBases.begin();
-       iter != _paramBases.end();
-       iter++) {
-    obj.insert((*iter)->toJsonField());
-  }
-  return obj;
-}
-
-void Params::read_json(const Json &val) {
-  assertHasType(val, Json::OBJECT);
-  for (auto iter = _paramBases.begin();
-       iter != _paramBases.end();
-       iter++) {
-    (*iter)->readJsonField(val);
-  }
-}
-
-void MemoryAppParameters::readFromFile(std::string filepath) {
+static bool tryReadJsonFromFile(std::string filepath, Json* obj) {
   filepath = ofToDataPath(filepath);
   if (!ofFile::doesFileExist(filepath, true)) {
     ofLogWarning() << "can't find settings file: " << filepath;
-    return;
+    return false;
   }
   std::ifstream in(filepath.c_str());
   std::stringstream buf;
@@ -296,18 +242,35 @@ void MemoryAppParameters::readFromFile(std::string filepath) {
   in.close();
   std::string jsonstr = buf.str();
   std::string error;
-  Json obj = Json::parse(jsonstr, error, JsonParse::STANDARD);
+  *obj = Json::parse(jsonstr, error, JsonParse::STANDARD);
   if (!error.empty()) {
     throw JsonException(error);
+  }
+  return true;
+}
+
+void JsonReadable::readFromFile(std::string filepath) {
+  Json obj;
+  if (!tryReadJsonFromFile(filepath, &obj)) {
+    ofLogWarning() << "can't find settings file: " << filepath;
+    return;
   }
   read_json(obj);
 }
 
-void MemoryAppParameters::writeToFile(std::string filepath) const {
+void JsonWritable::writeToFile(std::string filepath) const {
   Json obj = to_json();
   filepath = ofToDataPath(filepath);
   std::ofstream out(filepath.c_str());
   prettyPrintJsonToStream(obj, out);
   out.close();
+}
+
+void JsonWritable::writeJsonTo(std::ostream& os) const {
+  prettyPrintJsonToStream(to_json(), os);
+}
+
+std::string JsonWritable::toJsonString() const {
+  return prettyPrintJsonToString(to_json());
 }
 

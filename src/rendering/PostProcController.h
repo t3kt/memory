@@ -14,7 +14,6 @@
 #include <ofxPostProcessing.h>
 #include "Common.h"
 #include "Params.h"
-#include "State.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -23,12 +22,12 @@
 class EdgePassParams : public ParamsWithEnabled {
 public:
   EdgePassParams() {
-    add(_hue
+    add(hue
         .setKey("hue")
         .setName("Hue")
         .setValueAndDefault(0.5)
         .setRange(0, 1));
-    add(_saturation
+    add(saturation
         .setKey("saturation")
         .setName("Saturation")
         .setValueAndDefault(0.5)
@@ -36,27 +35,24 @@ public:
     setEnabledValueAndDefault(false);
   }
 
-  float hue() const { return _hue.get(); }
-  float saturation() const { return _saturation.get(); }
-private:
-  TParam<float> _hue;
-  TParam<float> _saturation;
+  TParam<float> hue;
+  TParam<float> saturation;
 };
 
 class DofPassParams : public ParamsWithEnabled {
 public:
   DofPassParams() {
-    add(_focus
+    add(focus
         .setKey("focus")
         .setName("Focus")
         .setValueAndDefault(0.985)
         .setRange(0.99, 1.01));
-    add(_aperture
+    add(aperture
         .setKey("aperture")
         .setName("Aperture")
         .setValueAndDefault(0.8)
         .setRange(0, 1.2));
-    add(_maxBlur
+    add(maxBlur
         .setKey("maxBlur")
         .setName("Max Blur")
         .setValueAndDefault(0.6)
@@ -64,13 +60,9 @@ public:
     setEnabledValueAndDefault(false);
   }
 
-  float focus() const { return _focus.get(); }
-  float aperture() const { return _aperture.get(); }
-  float maxBlur() const { return _maxBlur.get(); }
-private:
-  TParam<float> _focus;
-  TParam<float> _aperture;
-  TParam<float> _maxBlur;
+  TParam<float> focus;
+  TParam<float> aperture;
+  TParam<float> maxBlur;
 };
 
 class PostProcParams : public ParamsWithEnabled {
@@ -114,7 +106,7 @@ public:
   void setup();
   void updateResolution(ofVec2f size);
 
-  void update(const State& state);
+  void update();
 
   void beginDraw(ofCamera& cam);
   void endDraw(ofCamera& cam);

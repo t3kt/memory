@@ -65,6 +65,7 @@ private:
 
   ofxGuiPage _observersPage;
   ofxGuiPage _occurrencesPage;
+  ofxGuiPage _navigatorsPage;
 
   ofxTabbedPages _entityPages;
 
@@ -97,17 +98,22 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _entityPage.add(&_entityPages);
   _pages.add(&_entityPage);
 
-  _observersPage.setup("Observers");
+  _observersPage.setup("Obs");
   auto observersGroup = new ofxGuiGroupExtended(_appParams.observers);
   _observersPage.add(observersGroup);
   _observersPage.setSize(230, 700);
   observersGroup->setPosition(15, 100);
   _entityPages.add(&_observersPage);
 
-  _occurrencesPage.setup("Occurrences");
+  _occurrencesPage.setup("Occ");
   _occurrencesPage.add(new ofxGuiGroupExtended(_appParams.occurrences));
   _occurrencesPage.setSize(230, 700);
   _entityPages.add(&_occurrencesPage);
+
+  _navigatorsPage.setup("Nav");
+  _navigatorsPage.add(new ofxGuiGroupExtended(_appParams.navigators));
+  _navigatorsPage.setSize(230, 700);
+  _entityPages.add(&_navigatorsPage);
 
   _animationsPage.setup("Anim");
   _animationsPage.add(new ofxGuiGroupExtended(_appParams.animations));

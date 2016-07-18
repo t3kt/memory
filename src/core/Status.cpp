@@ -16,12 +16,13 @@ const float TOP = 5;
 const float RIGHT = 5;
 const float LINE_HEIGHT = 15;
 
-StatusInfoController::StatusInfoController() {
+StatusInfoController::StatusInfoController(const Context& context)
+: _context(context) {
   _text.load(OF_TTF_MONO, 12);
   _text.setMinHeight(LINE_HEIGHT);
 }
 
-void StatusInfoController::draw(const State& state) {
+void StatusInfoController::draw() {
   float y = TOP;
   float xValue = ofGetWidth() - VALUE_WIDTH - RIGHT;
   float xLabel = xValue - PADDING;
@@ -29,12 +30,13 @@ void StatusInfoController::draw(const State& state) {
   std::vector<std::pair<std::string, std::string>> lines;
 
   lines.emplace_back("State:",
-                     state.running ? "Playing" : "Paused");
-  lines.emplace_back("Time:", ofToString(state.time, 2));
+                     _context.state.running ? "Playing" : "Paused");
+  lines.emplace_back("Time:", ofToString(_context.time(), 2));
   lines.emplace_back("FPS:", ofToString(ofGetFrameRate(), 2));
-  lines.emplace_back("Observers:", ofToString(state.observerCount));
-  lines.emplace_back("Occurrences:", ofToString(state.occurrenceCount));
-  lines.emplace_back("Animations:", ofToString(state.animationCount));
+  lines.emplace_back("Observers:", ofToString(_context.observers.size()));
+  lines.emplace_back("Occurrences:", ofToString(_context.occurrences.size()));
+  lines.emplace_back("Animations:", ofToString(_context.animations.size()));
+  lines.emplace_back("Navigators:", ofToString(_context.navigators.size()));
 
   ofPushStyle();
   ofFill();

@@ -9,50 +9,28 @@
 #ifndef RenderingController_h
 #define RenderingController_h
 
-#include <ofEasyCam.h>
 #include <ofAppGLFWWindow.h>
 #include "AppActions.h"
+#include "CameraController.h"
 #include "Colors.h"
 #include "Common.h"
+#include "Context.h"
 #include "Params.h"
 #include "PostProcController.h"
-#include "State.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
 #endif
 
-class CameraParams : public Params {
-public:
-  CameraParams() {
-    add(_spinEnabled
-        .setKey("spinEnabled")
-        .setName("Spin Enabled")
-        .setValueAndDefault(false));
-    add(_spinRate
-        .setKey("spinRate")
-        .setName("Spin Rate")
-        .setValueAndDefault(ofVec3f(2, 4, 5))
-        .setRange(ofVec3f(-10), ofVec3f(10)));
-  }
-
-  bool spinEnabled() const { return _spinEnabled.get(); }
-  const ofVec3f& spinRate() const { return _spinRate.get(); }
-
-private:
-  TParam<bool> _spinEnabled;
-  TParam<ofVec3f> _spinRate;
-};
-
 class FogParams : public ParamsWithEnabled {
 public:
   FogParams() {
-    add(_density
+    add(density
         .setKey("density")
         .setName("Density")
         .setValueAndDefault(0.001f)
         .setRange(0, 0.004f));
-    add(_useBackgroundColor
+    add(useBackgroundColor
         .setKey("useBackgroundColor")
         .setName("Use Background Color")
         .setValueAndDefault(true));
@@ -64,14 +42,9 @@ public:
     setEnabledValueAndDefault(true);
   }
 
-  float density() const { return _density.get(); }
-  bool useBackgroundColor() const { return _useBackgroundColor.get(); }
-
   ValueRange<float> distance;
-
-private:
-  TParam<float> _density;
-  TParam<bool> _useBackgroundColor;
+  TParam<float> density;
+  TParam<bool> useBackgroundColor;
 };
 
 class RenderingController
@@ -91,20 +64,22 @@ public:
           .setName("Post Processing"));
     }
 
-    CameraParams camera;
+    CameraController::Params camera;
     FogParams fog;
     PostProcController::Params postProc;
   };
 
-  RenderingController(const Params& params,
+  RenderingController(Params& params,
                       ofAppGLFWWindow& window,
-                      const ColorTheme& colors);
+                      const ColorTheme& colors,
+                      Context& context);
+
+  ofCamera& getCamera() { return _camera->getCamera(); }
 
   void setup();
-  void update(const State& state);
-  void beginDraw(const State& state);
-  void endDraw(const State& state);
-  void resetCamera();
+  void update();
+  void beginDraw();
+  void endDraw();
   void updateResolution();
 
   bool performAction(AppAction action) override;
@@ -117,15 +92,15 @@ private:
   void beginFog();
   void endFog();
 
-  const Params& _params;
+  Params& _params;
+  Context& _context;
   const ColorTheme& _colors;
   const ofFloatColor& _backgroundColor;
   const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
-  ofEasyCam _cam;
+  std::shared_ptr<CameraController> _camera;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;
-  ofVec3f _rotation;
 };
 
 #endif /* RenderingController_h */

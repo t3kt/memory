@@ -15,6 +15,7 @@
 #include "AppGui.h"
 #include "AppParameters.h"
 #include "Common.h"
+#include "MidiController.h"
 #include "State.h"
 
 class EventLoggers;
@@ -27,6 +28,7 @@ public:
   : _appParams(appParams) { }
 
   void setup() override;
+  void update() override;
   void draw() override;
 
   void keyPressed(ofKeyEventArgs& event) override;
@@ -41,6 +43,7 @@ private:
   MemoryAppParameters& _appParams;
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
+  std::shared_ptr<MidiController> _midi;
 };
 
 #endif /* ControlApp_h */

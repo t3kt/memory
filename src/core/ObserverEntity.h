@@ -52,6 +52,8 @@ public:
 
   float lifetime() const { return _totalLifetime; };
 
+  EntityType entityType() const override { return EntityType::OBSERVER; }
+
 protected:
   std::string typeName() const override { return "ObserverEntity"; }
   void outputFields(std::ostream& os) const override;
@@ -63,5 +65,8 @@ private:
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
 };
+
+template<>
+EntityType getEntityType<ObserverEntity>() { return EntityType::OBSERVER; }
 
 #endif /* ObserverEntity_h */

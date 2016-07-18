@@ -15,6 +15,9 @@
 #include "AppParameters.h"
 #include "Clock.h"
 #include "Common.h"
+#include "Context.h"
+#include "InspectionController.h"
+#include "NavigatorsController.h"
 #include "ObserversController.h"
 #include "OccurrencesController.h"
 #include "PhysicsController.h"
@@ -32,8 +35,10 @@ class SimulationApp
 , public AppActionHandler {
 public:
   SimulationApp(MemoryAppParameters& appParams,
+                Context& context,
                 std::shared_ptr<ofAppGLFWWindow> window)
   : _appParams(appParams)
+  , _context(context)
   , _window(window) { }
 
   void setup() override;
@@ -50,17 +55,19 @@ public:
     return static_cast<ofAppGLFWWindow&>(*_window);
   }
 
-  const State& state() const { return _state; }
+  const State& state() const { return _context.state; }
 private:
-  State _state;
+  Context& _context;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
   std::shared_ptr<ofAppGLFWWindow> _window;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
+  std::shared_ptr<NavigatorsController> _navigators;
   std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<RenderingController> _renderingController;
+  std::shared_ptr<InspectionController> _inspectionController;
   std::shared_ptr<PhysicsController> _physics;
   std::shared_ptr<Clock> _clock;
 #ifdef ENABLE_SYPHON

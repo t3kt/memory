@@ -17,7 +17,7 @@ void PostProcController::setup() {
   _bloomPass = _postProc.createPass<BloomPass>();
 }
 
-void PostProcController::update(const State &state) {
+void PostProcController::update() {
   if (!_params.enabled()) {
     return;
   }

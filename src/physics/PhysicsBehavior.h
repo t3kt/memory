@@ -9,23 +9,23 @@
 #ifndef PhysicsBehavior_h
 #define PhysicsBehavior_h
 
+#include "Bounds.h"
+#include "Context.h"
 #include "Params.h"
 #include "State.h"
-#include "PhysicsWorld.h"
 #include "ParticleObject.h"
-#include "Bounds.h"
 
 class AbstractPhysicsBehavior {
 public:
-  virtual void applyToWorld(PhysicsWorld* world) = 0;
-  virtual void debugDraw(PhysicsWorld* world) {
+  virtual void applyToWorld(Context& context) = 0;
+  virtual void debugDraw(Context& context) {
     beginDebugDraw();
-    debugDrawBehavior(world);
+    debugDrawBehavior(context);
     endDebugDraw();
   }
 protected:
   virtual void beginDebugDraw() { }
-  virtual void debugDrawBehavior(PhysicsWorld* world) {}
+  virtual void debugDrawBehavior(Context& context) {}
   virtual void endDebugDraw() { }
 
   static void drawForceArrow(ofVec3f position,
@@ -41,10 +41,10 @@ public:
   : _params(params)
   , _bounds(bounds) { }
 
-  void applyToWorld(PhysicsWorld* world) override;
+  void applyToWorld(Context& context) override;
 
 private:
-  void applyToEntity(PhysicsWorld* world, ParticleObject* entity);
+  void applyToEntity(Context& context, ParticleObject* entity);
 
   const Params& _params;
   const Bounds& _bounds;

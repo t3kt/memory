@@ -8,8 +8,15 @@
 
 #include "Common.h"
 
+#include <cmath>
 #include <ofTypes.h>
 #include <ofMath.h>
+
+void Outputable::output(std::ostream &os) const {
+  os << typeName() << "{";
+  outputFields(os);
+  os << "}";
+}
 
 template<>
 ofVec2f getInterpolated(const ofVec2f& a, const ofVec2f& b, float amount) {
@@ -28,6 +35,10 @@ float getInterpolated(const float& a, const float& b, float amount) {
   return ofLerp(a, b, amount);
 }
 
+template<>
+int getInterpolated(const int& a, const int& b, float amount) {
+  return static_cast<int>(std::round(ofLerp(a, b, amount)));
+}
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj) {
   obj.output(os);

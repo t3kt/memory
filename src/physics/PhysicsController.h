@@ -13,15 +13,13 @@
 #include "AnchorPointBehavior.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
+#include "Context.h"
 #include "DampingBehavior.h"
 #include "ForceFieldBehavior.h"
 #include "Params.h"
-#include "PhysicsWorld.h"
 #include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
 
 class DebugParams;
 
@@ -29,17 +27,14 @@ class EntityPhysicsParams
 : public Params {
 public:
   EntityPhysicsParams() {
-    add(_speed
+    add(speed
         .setKey("speed")
         .setName("Speed")
-        .setValueAndDefault(1)
-        .setRange(0, 10));
+        .setValueAndDefault(10)
+        .setRange(0, 50));
   }
 
-  float speed() const { return _speed.get(); }
-
-private:
-  TParam<float> _speed;
+  TParam<float> speed;
 };
 
 class PhysicsController
@@ -111,12 +106,11 @@ public:
   PhysicsController(Params& params,
                     Bounds& bounds,
                     DebugParams& debugParams,
-                    const State& state);
+                    Context& context);
 
   void stopAllEntities();
 
-  void setup(ObserversController& observers,
-             OccurrencesController& occurrences);
+  void setup();
 
   void update();
   void draw();
@@ -128,11 +122,9 @@ private:
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
   Params& _params;
+  Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-  const State& _state;
-
-  std::shared_ptr<PhysicsWorld> _world;
 
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;

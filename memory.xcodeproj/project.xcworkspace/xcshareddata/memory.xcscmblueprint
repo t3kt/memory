@@ -5,20 +5,20 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0,
+    "90E2F969A762FB62C413A0C44D1F334E6EC3F531" : 0,
     "886341EB263A49F7CBA1642BA1C0B5444E645742" : 0,
     "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : 0,
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : 0,
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : 0,
     "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : 0,
     "95F70890EFD46183734FEDFE52CF53391DE6937E" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "254E31AC-835E-4762-B7E1-AB5DD847C381",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CCD2B218-CC48-4CD8-903B-26E08A41CFFB",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
+    "90E2F969A762FB62C413A0C44D1F334E6EC3F531" : "..\/of_v0.9.3_osx_release\/addons\/ofxMidi",
     "886341EB263A49F7CBA1642BA1C0B5444E645742" : "..\/of_v0.9.3_osx_release\/addons\/ofxChoreograph",
     "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : "..\/of_v0.9.3_osx_release\/addons\/ofxSyphon",
-    "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534" : "..\/of_v0.9.3_osx_release\/addons\/ofxLoggerChannel",
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory\/",
     "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/of_v0.9.3_osx_release\/addons\/ofxTextAlign",
     "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : "..\/of_v0.9.3_osx_release\/addons\/ofxGuiExtended",
@@ -39,14 +39,14 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C4F98D1E32128123613498B488D73B56E9A53F8"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/prisonerjohn\/ofxLoggerChannel.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "80193D34DCFE4E8CEEB9B6F159D95D2FA32C0534"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/daitomanabe\/ofxChoreograph.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "886341EB263A49F7CBA1642BA1C0B5444E645742"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/github.com\/danomatika\/ofxMidi.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "90E2F969A762FB62C413A0C44D1F334E6EC3F531"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/neilmendoza\/ofxPostProcessing.git",
