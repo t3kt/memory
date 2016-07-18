@@ -248,42 +248,42 @@
     },
     "observerDamping": {
       "enabled": true,
-      "magnitude": 0.066326528787612915
+      "magnitude": 0.10204081237316132
     },
     "observerObserverAttraction": {
       "distanceBounds": {
-        "high": 1.0845481157302856,
-        "low": 0.039999999105930328
+        "high": 130.36235046386719,
+        "low": 21.032907485961914
       },
       "enabled": true,
-      "magnitude": 0.0097959181293845177,
+      "magnitude": 2.1428570747375488,
       "reverse": true
     },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
-        "high": 2.542273998260498,
+        "high": 122.55310821533203,
         "low": 0.39733448624610901
       },
       "enabled": true,
-      "magnitude": 0.00897959154099226,
+      "magnitude": 2.9591836929321289,
       "reverse": false
     },
     "observerSpatialNoiseForce": {
       "enabled": false,
-      "magnitude": 0.0020408162381500006,
+      "magnitude": 2.0408163070678711,
       "rate": 0.10000000149011612,
-      "scale": 1
+      "scale": 40.816326141357422
     },
     "observers": {
       "speed": 1.2755101919174194
     },
     "occurrenceAnchorPointAttraction": {
       "distanceBounds": {
-        "high": 1.2927947044372559,
-        "low": 0.039999999105930328
+        "high": 174.61474609375,
+        "low": 39.254482269287109
       },
       "enabled": true,
-      "magnitude": 0.059591837227344513,
+      "magnitude": 2.8571429252624512,
       "reverse": false
     },
     "occurrenceDamping": {
@@ -292,18 +292,18 @@
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
-        "high": 1.917534351348877,
-        "low": 0.039999999105930328
+        "high": 96.522285461425781,
+        "low": 26.239070892333984
       },
       "enabled": true,
-      "magnitude": 0.0069387755356729031,
+      "magnitude": 1.4285714626312256,
       "reverse": true
     },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,
-      "magnitude": 0.0071428576484322548,
+      "magnitude": 4.5918364524841309,
       "rate": 0.028061224147677422,
-      "scale": 1
+      "scale": 20.408163070678711
     },
     "occurrences": {
       "speed": 1.6326529979705811
