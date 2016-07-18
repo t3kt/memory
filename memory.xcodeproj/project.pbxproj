@@ -27,6 +27,7 @@
 		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */; };
 		32E58A3A1D3C2FC7001AA5E4 /* NavigatorsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A371D3C2FC7001AA5E4 /* NavigatorsController.cpp */; };
 		32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A3B1D3C3006001AA5E4 /* NavigatorState.cpp */; };
@@ -224,6 +225,8 @@
 		315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AttractionBehavior.cpp; path = src/physics/AttractionBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
+		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NavigatorEntity.cpp; path = navigation/NavigatorEntity.cpp; sourceTree = "<group>"; };
 		32E58A361D3C2FC7001AA5E4 /* NavigatorEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigatorEntity.h; path = navigation/NavigatorEntity.h; sourceTree = "<group>"; };
@@ -1057,6 +1060,8 @@
 				A9ADD6203ACA4F47673ED063 /* Context.cpp */,
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
+				324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */,
+				324CF6ED1D3C7A81003DD487 /* InspectionController.h */,
 				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
 				E64D341064775BD3E3B680FC /* JsonIO.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
@@ -1355,6 +1360,7 @@
 				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
+				324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */,
 				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
 				303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */,

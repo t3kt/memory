@@ -7,6 +7,10 @@
 //
 
 #include "Context.h"
+#include "NavigatorEntity.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
+#include "ParticleObject.h"
 
 template<>
 ObjectManager<AnimationObject>&
@@ -54,4 +58,16 @@ template<>
 const ObjectManager<OccurrenceEntity>&
 Context::getEntities<OccurrenceEntity>() const {
   return occurrences;
+}
+
+void Context::performActionOnParticleEntityPtrs(std::function<void (std::shared_ptr<ParticleObject>)> action) {
+  for (auto& entity : navigators) {
+    action(entity);
+  }
+  for (auto& entity : observers) {
+    action(entity);
+  }
+  for (auto& entity : occurrences) {
+    action(entity);
+  }
 }

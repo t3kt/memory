@@ -23,6 +23,7 @@
 #include "Colors.h"
 #include "Events.h"
 #include "MidiController.h"
+#include "InspectionController.h"
 
 class DebugParams : public Params {
 public:
@@ -43,12 +44,16 @@ public:
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
+    add(inspect
+        .setKey("inspect")
+        .setName("Inspect"));
   }
 
   TParam<bool> loggingEnabled;
   TParam<bool> showBounds;
   TParam<bool> showStatus;
   TParam<bool> showPhysics;
+  InspectionController::Params inspect;
 };
 
 class OutputParams : public Params {

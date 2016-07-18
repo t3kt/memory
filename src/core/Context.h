@@ -19,6 +19,7 @@ class MemoryAppParameters;
 class NavigatorEntity;
 class ObserverEntity;
 class OccurrenceEntity;
+class ParticleObject;
 
 class Context
 : public NonCopyable {
@@ -43,6 +44,16 @@ public:
   void performTypedActionOnEntities(std::function<void(T*)> action) {
     getEntities<E>().performTypedAction(action);
   }
+
+  template<typename T>
+  void performTypedActionOnAllEntities(std::function<void(T*)> action) {
+    performTypedActionOnEntities<AnimationObject>(action);
+    performTypedActionOnEntities<NavigatorEntity>(action);
+    performTypedActionOnEntities<ObserverEntity>(action);
+    performTypedActionOnEntities<OccurrenceEntity>(action);
+  }
+
+  void performActionOnParticleEntityPtrs(std::function<void(std::shared_ptr<ParticleObject>)> action);
 
   MemoryAppParameters& appParams;
   State state;

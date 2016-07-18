@@ -57,6 +57,13 @@ void SimulationApp::setup() {
 
   _statusController = std::make_shared<StatusInfoController>(_context);
 
+  _inspectionController =
+  std::make_shared<InspectionController>(_appParams.core.debug.inspect,
+                                         _context,
+                                         _renderingController->getCamera(),
+                                         *_window);
+  _inspectionController->setup();
+
   _navigators =
   std::make_shared<NavigatorsController>(_context,
                                          _appParams.navigators,
@@ -95,6 +102,8 @@ void SimulationApp::draw() {
     ofPopStyle();
   }
 
+  _inspectionController->update();
+
   _renderingController->endDraw();
 
 #ifdef ENABLE_SYPHON
@@ -106,6 +115,8 @@ void SimulationApp::draw() {
   if (_appParams.core.debug.showStatus()) {
     _statusController->draw();
   }
+
+  _inspectionController->draw();
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
