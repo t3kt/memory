@@ -6,9 +6,9 @@
 //
 //
 
+#include "AppAssets.h"
 #include "EntityRenderer.h"
 #include <ofMain.h>
-#include <ofxAssimpModelLoader.h>
 
 using namespace ofxChoreograph;
 
@@ -16,37 +16,6 @@ EnumTypeInfo<EntityShape> EntityShapeType({
   {"sphere", EntityShape::SPHERE},
   {"box", EntityShape::BOX},
 });
-
-class EntityModels {
-public:
-  void setup() {
-    _occurrenceMarkerLoader.loadModel("occurrence-marker.stl", false);
-    _occurrenceMarkerMesh = _occurrenceMarkerLoader.getMesh(0);
-    _observerMarkerLoader.loadModel("observer-marker.stl", false);
-    _observerMarkerMesh = _observerMarkerLoader.getMesh(0);
-  }
-
-  const ofMesh& occurrenceMarker() { return _occurrenceMarkerMesh; }
-  const ofMesh& observerMarker() { return _observerMarkerMesh; }
-
-  static EntityModels& get() {
-    if (!_instance) {
-      _instance = std::make_shared<EntityModels>();
-      _instance->setup();
-    }
-    return *_instance;
-  }
-
-private:
-  ofxAssimpModelLoader _occurrenceMarkerLoader;
-  ofMesh _occurrenceMarkerMesh;
-  ofxAssimpModelLoader _observerMarkerLoader;
-  ofMesh _observerMarkerMesh;
-
-  static std::shared_ptr<EntityModels> _instance;
-};
-
-std::shared_ptr<EntityModels> EntityModels::_instance;
 
 void AbstractEntityRenderer::update(const State &state) {
   _fadeIn.update(state);
@@ -73,10 +42,9 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofPushMatrix();
 
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
-  //  ofDrawSphere(entity.position(), size);
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
-  EntityModels::get().observerMarker().draw();
+  AppAssets::observerMarkerMesh().draw();
 
   ofPopMatrix();
   ofPopStyle();
@@ -103,8 +71,7 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
   ofTranslate(entity.position());
   ofScale(ofVec3f(size));
-//  _markerMesh.draw();
-  EntityModels::get().occurrenceMarker().draw();
+  AppAssets::occurrenceMarkerMesh().draw();
 
   if (_params.wireEnabled()) {
     ofScale(ofVec3f(_params.wireScale()));

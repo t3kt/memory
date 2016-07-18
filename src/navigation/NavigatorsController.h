@@ -10,7 +10,6 @@
 #define NavigatorsController_h
 
 #include <memory>
-#include <ofxAssimpModelLoader.h>
 #include "ObjectManager.h"
 #include "Params.h"
 #include "Spawner.h"
@@ -64,9 +63,6 @@ private:
   SimulationEvents& _events;
   ObjectManager<NavigatorEntity>& _navigators;
   std::shared_ptr<Spawner> _observerNavSpawner;
-
-  ofxAssimpModelLoader _modelLoader;
-  ofMesh _mesh;
 
   friend class ObserverNavSpawner;
 };

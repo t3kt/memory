@@ -7,8 +7,9 @@
 //
 
 #include <algorithm>
-#include <ofLog.h>
+#include <ofMain.h>
 #include <random>
+#include "AppAssets.h"
 #include "Context.h"
 #include "NavigatorEntity.h"
 #include "NavigatorsController.h"
@@ -61,8 +62,6 @@ void NavigatorsController::setup() {
   _observerNavSpawner =
   std::make_shared<ObserverNavSpawner>(*this,
                                        _params.observerNavigatorSpawner);
-  _modelLoader.loadModel("nav-marker.stl");
-  _mesh = _modelLoader.getMesh(0);
 }
 
 void NavigatorsController::update() {
@@ -117,7 +116,7 @@ void NavigatorsController::draw() {
     ofTranslate(navigator->position());
 //    ofScale(ofVec3f(1));
     ofRotate(_context.time() * 8);
-    _mesh.draw();
+    AppAssets::navMarkerMesh().draw();
     ofPopMatrix();
   }
   ofPopStyle();

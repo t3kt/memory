@@ -29,6 +29,7 @@
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
+		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
 		32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */; };
 		32E58A3A1D3C2FC7001AA5E4 /* NavigatorsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A371D3C2FC7001AA5E4 /* NavigatorsController.cpp */; };
 		32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A3B1D3C3006001AA5E4 /* NavigatorState.cpp */; };
@@ -232,6 +233,8 @@
 		324CF6F81D3CA2ED003DD487 /* nav-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "nav-marker.stl"; path = "res/nav-marker.stl"; sourceTree = "<group>"; };
 		324CF6F91D3CA2ED003DD487 /* observer-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "observer-marker.stl"; path = "res/observer-marker.stl"; sourceTree = "<group>"; };
 		324CF6FA1D3CA2ED003DD487 /* occurrence-marker.stl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "occurrence-marker.stl"; path = "res/occurrence-marker.stl"; sourceTree = "<group>"; };
+		324CF7031D3CAE1C003DD487 /* AppAssets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppAssets.cpp; path = app/AppAssets.cpp; sourceTree = "<group>"; };
+		324CF7041D3CAE1C003DD487 /* AppAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppAssets.h; path = app/AppAssets.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NavigatorEntity.cpp; path = navigation/NavigatorEntity.cpp; sourceTree = "<group>"; };
 		32E58A361D3C2FC7001AA5E4 /* NavigatorEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigatorEntity.h; path = navigation/NavigatorEntity.h; sourceTree = "<group>"; };
@@ -1129,6 +1132,8 @@
 			children = (
 				0BD70E18A6F64136478D47F2 /* AppActions.cpp */,
 				D73CD9932CEE37242016A9C3 /* AppActions.h */,
+				324CF7031D3CAE1C003DD487 /* AppAssets.cpp */,
+				324CF7041D3CAE1C003DD487 /* AppAssets.h */,
 				4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */,
 				3CA2A0283E5CE2AA4D5F6C0B /* AppGui.h */,
 				7B1EA976C3295181487B1B58 /* AppParameters.cpp */,
@@ -1483,6 +1488,7 @@
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
+				324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
 				A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */,
