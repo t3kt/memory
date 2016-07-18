@@ -101,7 +101,7 @@ void OccurrencesController::update() {
   }
   _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
-    OccurrenceEventArgs e(_context.state, *occurrence);
+    OccurrenceEventArgs e(*occurrence);
     _events.occurrenceDied.notifyListeners(e);
   });
 
@@ -126,7 +126,7 @@ void OccurrencesController::spawnRandomOccurrence() {
   
   bool connected = _observers.registerOccurrence(occurrence);
   
-  OccurrenceEventArgs e(_context.state, *occurrence);
+  OccurrenceEventArgs e(*occurrence);
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     _occurrences.add(occurrence);

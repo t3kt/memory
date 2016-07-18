@@ -90,7 +90,7 @@ void ObserversController::update() {
 
   _observers.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
-    ObserverEventArgs e(_context.state, *observer);
+    ObserverEventArgs e(*observer);
     _events.observerDied.notifyListeners(e);
   });
 
@@ -131,7 +131,7 @@ void ObserversController::spawnRandomObserver() {
                                                    _context.state);
   observer->setVelocity(_params.initialVelocity.getValue());
   _observers.add(observer);
-  ObserverEventArgs e(_context.state, *observer);
+  ObserverEventArgs e(*observer);
   _events.observerSpawned.notifyListeners(e);
 }
 

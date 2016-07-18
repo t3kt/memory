@@ -16,7 +16,8 @@
 
 #include <ofxLiquidEvent.h>
 
-class EventArgs {
+class EventArgs
+: public Outputable {
 public:
   EventArgs() : _handled(false) {}
 
@@ -31,10 +32,10 @@ class StateEventArgs
 , public EventArgs {
 public:
   StateEventArgs(const State& s) : state(s) {}
-  
-  const State& state;
+
 
 protected:
+  const State& state;
   std::string typeName() const override { return "StateEventArgs"; }
   void outputFields(std::ostream& os) const override {
     os << "state: " << state;
@@ -42,9 +43,10 @@ protected:
 };
 
 template<typename T>
-class EntityEventArgs : public StateEventArgs {
+class EntityEventArgs
+: public EventArgs {
 public:
-  EntityEventArgs(const State& s, T& entity) : StateEventArgs(s), _entity(entity) {}
+  EntityEventArgs(T& entity) : _entity(entity) {}
   
   T& entity() { return _entity; }
 
@@ -52,7 +54,6 @@ protected:
   std::string typeName() const override { return "EntityEventArgs"; }
   void outputFields(std::ostream& os) const override {
     os << "entity: " << _entity;
-    os << "state: " << state;
   }
 private:
   T& _entity;
@@ -60,8 +61,7 @@ private:
 
 template<typename T>
 class ValueEventArgs
-: public EventArgs
-, public Outputable {
+: public EventArgs {
 public:
   ValueEventArgs(T& value)
   : _value(value) { }
