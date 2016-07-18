@@ -6,6 +6,7 @@
 //
 //
 
+#include "AppParameters.h"
 #include "RenderingController.h"
 #include <ofMain.h>
 
@@ -65,10 +66,12 @@ void RenderingController::beginDraw() {
   ofPushMatrix();
 //  _camera->applyTransform();
 
-//  auto winSize = ofGetWindowSize();
-//  auto size = ::min(winSize.x, winSize.y) / 2;
-//  size *= 0.4;
-//  ofScale(size, size, size);
+  if (!_context.appParams.core.debug.inspect.enabled.get()) {
+    auto winSize = ofGetWindowSize();
+    auto size = ::min(winSize.x, winSize.y) / 2;
+    size *= 0.4;
+    ofScale(size, size, size);
+  }
 }
 
 void RenderingController::endDraw() {

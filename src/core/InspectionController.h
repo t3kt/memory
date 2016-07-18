@@ -28,6 +28,7 @@ public:
           .setName("Click Range")
           .setValueAndDefault(10)
           .setRange(0, 100));
+      setEnabledValueAndDefault(false);
     }
     TParam<float> clickRange;
   };
