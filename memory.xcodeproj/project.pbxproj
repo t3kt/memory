@@ -33,6 +33,8 @@
 		324CF7081D3CB1E9003DD487 /* ObserverRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */; };
 		324CF70B1D3CB279003DD487 /* OccurrenceRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
+		32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */; };
+		32DB79E91D3DD81600ED4EB7 /* marker-shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */; };
 		32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */; };
 		32E58A3A1D3C2FC7001AA5E4 /* NavigatorsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A371D3C2FC7001AA5E4 /* NavigatorsController.cpp */; };
 		32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A3B1D3C3006001AA5E4 /* NavigatorState.cpp */; };
@@ -245,6 +247,8 @@
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectorRenderer.cpp; path = rendering/ConnectorRenderer.cpp; sourceTree = "<group>"; };
 		32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectorRenderer.h; path = rendering/ConnectorRenderer.h; sourceTree = "<group>"; };
+		32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "marker-shader.vert"; path = "res/marker-shader.vert"; sourceTree = SOURCE_ROOT; };
+		32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "marker-shader.frag"; path = "res/marker-shader.frag"; sourceTree = SOURCE_ROOT; };
 		32E58A351D3C2FC7001AA5E4 /* NavigatorEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NavigatorEntity.cpp; path = navigation/NavigatorEntity.cpp; sourceTree = "<group>"; };
 		32E58A361D3C2FC7001AA5E4 /* NavigatorEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigatorEntity.h; path = navigation/NavigatorEntity.h; sourceTree = "<group>"; };
 		32E58A371D3C2FC7001AA5E4 /* NavigatorsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NavigatorsController.cpp; path = navigation/NavigatorsController.cpp; sourceTree = "<group>"; };
@@ -688,6 +692,8 @@
 		5533A127DD65323EB591F7AD /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */,
+				32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */,
 				264FBA0D0F7C55AE0316D615 /* CameraController.cpp */,
 				E3EF9EBE32865BF7425A7088 /* CameraController.h */,
 				32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */,
@@ -1362,7 +1368,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DB79E91D3DD81600ED4EB7 /* marker-shader.frag in Resources */,
 				324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */,
+				32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

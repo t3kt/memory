@@ -20,7 +20,7 @@
 
 class AbstractEntityRenderer {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(size
@@ -59,6 +59,9 @@ public:
   : AbstractEntityRenderer(params, color) { }
 
   void draw(const State& state) override {
+    if (!_baseParams.enabled.get()) {
+      return;
+    }
     ofFloatColor baseColor(_color);
     float size = _baseParams.size();
     ofPushStyle();

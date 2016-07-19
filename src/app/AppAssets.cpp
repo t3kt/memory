@@ -17,6 +17,7 @@ public:
   ofMesh navMarkerMesh;
   ofMesh observerMarkerMesh;
   ofMesh occurrenceMarkerMesh;
+  ofShader markerInstanceShader;
 };
 
 std::shared_ptr<AssetData> assetData;
@@ -40,6 +41,10 @@ const ofMesh& AppAssets::occurrenceMarkerMesh() {
   return getData().occurrenceMarkerMesh;
 }
 
+const ofShader& AppAssets::markerInstanceShader() {
+  return getData().markerInstanceShader;
+}
+
 AssetData::AssetData() {
   ofxAssimpModelLoader loader;
   loader.loadModel("nav-marker.stl", false);
@@ -48,4 +53,5 @@ AssetData::AssetData() {
   observerMarkerMesh = loader.getMesh(0);
   loader.loadModel("occurrence-marker.stl", false);
   occurrenceMarkerMesh = loader.getMesh(0);
+  markerInstanceShader.load("marker-shader.vert", "marker-shader-frag");
 }

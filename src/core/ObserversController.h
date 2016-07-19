@@ -56,6 +56,9 @@ public:
       add(renderer
           .setKey("renderer")
           .setName("Renderer"));
+      add(instancedRenderer
+          .setKey("instancedRenderer")
+          .setName("Instanced Renderer"));
       add(connectorRenderer
           .setKey("connectorRenderer")
           .setName("Connector Renderer"));
@@ -69,6 +72,7 @@ public:
     RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;
+    InstancedObserverRenderer::Params instancedRenderer;
     ObserverObserverConnectorRenderer::Params connectorRenderer;
     AbstractThresholdRenderer::Params threshold;
   };
@@ -106,6 +110,7 @@ private:
   std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
   std::shared_ptr<ObserverRenderer> _observerRenderer;
+  std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
   std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 
