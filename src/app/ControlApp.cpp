@@ -141,7 +141,7 @@ bool ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      toggleBoolParam(_appParams.core.debug.loggingEnabled);
+      _appParams.core.debug.loggingEnabled.toggle();
       break;
     default:
       return false;

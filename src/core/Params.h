@@ -35,56 +35,50 @@ public:
   virtual const std::type_info& getTypeInfo() const = 0;
 };
 
-template<typename T>
-class TParam
+template<typename T, typename ParT>
+class TTypedParamBase
 : public ofParameter<T>
 , public TParamBase {
 public:
-  TParam() {
+  TTypedParamBase() {
     ofParameter<T>::addListener(this,
-                                &TParam<T>::onChanged);
+                                &TTypedParamBase::onChanged);
   }
 
-  virtual ~TParam() override {
+  virtual ~TTypedParamBase() override {
     ofParameter<T>::removeListener(this,
-                                   &TParam<T>::onChanged);
+                                   &TTypedParamBase::onChanged);
   }
 
-  TParam<T>& setKey(std::string key) {
+  ParT& setKey(std::string key) {
     _key = key;
-    return *this;
+    return selfRef();
   }
 
-  TParam<T>& setName(std::string name) {
+  ParT& setName(std::string name) {
     ofParameter<T>::setName(name);
-    return *this;
+    return selfRef();
   }
 
-  TParam<T>& setRange(T minValue, T maxValue) {
+  ParT& setRange(T minValue, T maxValue) {
     ofParameter<T>::setMin(minValue);
     ofParameter<T>::setMax(maxValue);
-    return *this;
+    return selfRef();
   }
 
-  TParam<T>& setDefaultValue(T defaultValue) {
+  ParT& setDefaultValue(T defaultValue) {
     _defaultValue = defaultValue;
     _hasDefaultValue = true;
-    return *this;
+    return selfRef();
   }
 
-  TParam<T>& setValueAndDefault(T value) {
+  ParT& setValueAndDefault(T value) {
     ofParameter<T>::set(value);
     return setDefaultValue(value);
   }
 
   const T& operator()() const {
     return ofParameter<T>::get();
-  }
-
-  void setNormalizedValue(float normVal) {
-    ofParameter<T>::set(getInterpolated(ofParameter<T>::getMin(),
-                                        ofParameter<T>::getMax(),
-                                        normVal));
   }
 
   bool hasDefault() const override {
@@ -143,6 +137,9 @@ public:
     }
   }
   
+protected:
+  virtual ParT& selfRef() = 0;
+
 private:
   void onChanged(T& value) {
     changed.notifyListeners(value);
@@ -153,9 +150,37 @@ private:
   T _defaultValue;
 };
 
-inline void toggleBoolParam(TParam<bool>& param) {
-  param.set(!param.get());
-}
+template<typename T>
+class TParam
+: public TTypedParamBase<T, TParam<T>> {
+public:
+
+  void setNormalizedValue(float normVal) {
+    ofParameter<T>::set(getInterpolated(ofParameter<T>::getMin(),
+                                        ofParameter<T>::getMax(),
+                                        normVal));
+  }
+
+protected:
+  TParam<T>& selfRef() override { return *this; }
+};
+
+template<>
+class TParam<bool>
+: public TTypedParamBase<bool, TParam<bool>> {
+public:
+
+  void setNormalizedValue(float normVal) {
+    ofParameter<bool>::set(normVal > 0);
+  }
+
+  void toggle() {
+    ofParameter<bool>::set(!ofParameter<bool>::get());
+  }
+
+protected:
+  TParam<bool>& selfRef() override { return *this; }
+};
 
 class Params
 : public ofParameterGroup
