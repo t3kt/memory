@@ -9,6 +9,7 @@
 #include <map>
 #include "AppSystem.h"
 #include "ControlApp.h"
+#include "NavigatorEntity.h"
 #include "SimulationApp.h"
 
 template<typename A>

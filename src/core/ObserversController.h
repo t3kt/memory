@@ -10,6 +10,7 @@
 #define ObserversController_h
 
 #include "AppActions.h"
+#include "ConnectorRenderer.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "ObjectManager.h"

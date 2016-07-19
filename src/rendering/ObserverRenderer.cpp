@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "ObserverEntity.h"
 #include "ObserverRenderer.h"
 
 ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
