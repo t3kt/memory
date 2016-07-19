@@ -39,6 +39,7 @@
 		2FD33611407580C3266D3925 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BB1A268C020202BB5F23828 /* OscReceivedElements.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		32F9EBE01D3E05E400ABF33B /* CoreParamsGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -286,6 +287,8 @@
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
+		32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreParamsGui.cpp; path = gui/CoreParamsGui.cpp; sourceTree = "<group>"; };
+		32F9EBDF1D3E05E400ABF33B /* CoreParamsGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreParamsGui.h; path = gui/CoreParamsGui.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -716,6 +719,15 @@
 				FCF02C7CEF17598E87CE5A2D /* OscTypes.h */,
 			);
 			name = osc;
+			sourceTree = "<group>";
+		};
+		32F9EBDD1D3E059200ABF33B /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */,
+				32F9EBDF1D3E05E400ABF33B /* CoreParamsGui.h */,
+			);
+			name = gui;
 			sourceTree = "<group>";
 		};
 		36D7EC7EF50E326EAC88A0AD /* frameworks */ = {
@@ -1449,6 +1461,7 @@
 				BE9DD360F550B0DF4D357E7B /* app */,
 				102C17DAD08FCB5A66E3A9C0 /* control */,
 				BC405D98CD8417CE9E222B0C /* core */,
+				32F9EBDD1D3E059200ABF33B /* gui */,
 				965168FECD51AAD1D9169011 /* lib */,
 				FE3477CB45F1D13FBDF8C3A2 /* navigation */,
 				8EB304E39B119DD2D764E269 /* physics */,
@@ -1677,6 +1690,7 @@
 				74BB3894F03B76512006BA7D /* AnchorPointBehavior.cpp in Sources */,
 				BC76686ED7C0FA7007B25DCB /* AttractionBehavior.cpp in Sources */,
 				6B3B09ED7D2F80D519ABF2CE /* ForceFieldBehavior.cpp in Sources */,
+				32F9EBE01D3E05E400ABF33B /* CoreParamsGui.cpp in Sources */,
 				4D93988C4818BD27BE899E23 /* PhysicsBehavior.cpp in Sources */,
 				1518C0B3AAD2C1012B1FE216 /* PhysicsController.cpp in Sources */,
 				D40AED9187D21FE8E9B98573 /* CameraController.cpp in Sources */,

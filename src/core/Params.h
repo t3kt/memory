@@ -9,9 +9,11 @@
 #ifndef Params_h
 #define Params_h
 
-#include <string>
+#include <memory>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <ofxControlParameter.h>
+#include <string>
 #include <typeinfo>
 #include <vector>
 #include "Common.h"
@@ -40,6 +42,8 @@ class TTypedParamBase
 : public ofParameter<T>
 , public TParamBase {
 public:
+  using CtrlParT = ofxControlParameter<T>;
+
   TTypedParamBase() {
     ofParameter<T>::addListener(this,
                                 &TTypedParamBase::onChanged);
@@ -136,15 +140,38 @@ public:
       throw JsonException("Required field missing: " + getKey());
     }
   }
+
+  CtrlParT* getControlPar() {
+    if (!_controlPar) {
+      initializeControlPar();
+    }
+    return _controlPar.get();
+  }
   
 protected:
   virtual ParT& selfRef() = 0;
 
+  virtual void initializeControlPar() {
+    _controlParRelayValue = ofParameter<T>::get();
+    _controlPar =
+    std::make_shared<CtrlParT>(ofParameter<T>::getName(),
+                               &_controlParRelayValue,
+                               ofParameter<T>::getMin(),
+                               ofParameter<T>::getMax());
+  }
+
+  std::shared_ptr<CtrlParT> _controlPar;
+
 private:
   void onChanged(T& value) {
     changed.notifyListeners(value);
+    _controlParRelayValue = value;
+    if (_controlPar) {
+      _controlPar->valueChanged();
+    }
   }
 
+  T _controlParRelayValue;
   std::string _key;
   bool _hasDefaultValue;
   T _defaultValue;
