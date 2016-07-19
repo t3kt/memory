@@ -10,6 +10,7 @@
 #define OccurrencesController_h
 
 #include "AppActions.h"
+#include "ConnectorRenderer.h"
 #include "OccurrenceEntity.h"
 #include "OccurrenceRenderer.h"
 #include "ObserversController.h"

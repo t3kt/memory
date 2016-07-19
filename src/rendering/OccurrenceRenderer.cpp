@@ -8,6 +8,8 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 #include "OccurrenceRenderer.h"
 
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
