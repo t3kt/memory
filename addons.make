@@ -1,9 +1,11 @@
 ofxAssimpModelLoader
 ofxChoreograph
+ofxControl
 ofxGui
 ofxGuiExtended
 ofxLiquidEvent
 ofxMidi
+ofxOsc
 ofxPostProcessing
 ofxSyphon
 ofxTextAlign
