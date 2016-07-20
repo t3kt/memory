@@ -40,6 +40,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		32F9EBE01D3E05E400ABF33B /* CoreParamsGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */; };
+		32F9EBE51D3F452F00ABF33B /* ParamsGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F9EBE31D3F452F00ABF33B /* ParamsGui.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -289,6 +290,8 @@
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreParamsGui.cpp; path = gui/CoreParamsGui.cpp; sourceTree = "<group>"; };
 		32F9EBDF1D3E05E400ABF33B /* CoreParamsGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreParamsGui.h; path = gui/CoreParamsGui.h; sourceTree = "<group>"; };
+		32F9EBE31D3F452F00ABF33B /* ParamsGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamsGui.cpp; path = gui/ParamsGui.cpp; sourceTree = "<group>"; };
+		32F9EBE41D3F452F00ABF33B /* ParamsGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamsGui.h; path = gui/ParamsGui.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -726,6 +729,8 @@
 			children = (
 				32F9EBDE1D3E05E400ABF33B /* CoreParamsGui.cpp */,
 				32F9EBDF1D3E05E400ABF33B /* CoreParamsGui.h */,
+				32F9EBE31D3F452F00ABF33B /* ParamsGui.cpp */,
+				32F9EBE41D3F452F00ABF33B /* ParamsGui.h */,
 			);
 			name = gui;
 			sourceTree = "<group>";
@@ -1755,6 +1760,7 @@
 				98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */,
 				01A3B7EF0252EA16E181B49D /* ofxTabbedPages.cpp in Sources */,
 				7FF15516B3863DC711D18956 /* ofxValuePlotter.cpp in Sources */,
+				32F9EBE51D3F452F00ABF33B /* ParamsGui.cpp in Sources */,
 				181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */,
 				5DB01AD86B2EF04AC056AAE8 /* ofxRtMidiIn.cpp in Sources */,
 				DE842250EDC2CC68811C21A2 /* ofxRtMidiOut.cpp in Sources */,

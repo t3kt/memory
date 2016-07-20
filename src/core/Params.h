@@ -214,6 +214,8 @@ class Params
 , public TParamBase
 , public NonCopyable {
 public:
+  using ParamBaseList = std::vector<TParamBase*>;
+
   Params() {}
   Params(std::string key, std::string label) {
     setKey(key);
@@ -273,9 +275,11 @@ public:
   TParamBase* findKey(const std::string& key);
 
   TParamBase* lookupPath(const std::string& path);
+
+  ParamBaseList& paramBases() { return _paramBases; }
 private:
   std::string _key;
-  std::vector<TParamBase*> _paramBases;
+  ParamBaseList _paramBases;
 };
 
 class ParamsWithEnabled : public Params {
