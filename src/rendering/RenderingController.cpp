@@ -59,6 +59,7 @@ void RenderingController::beginDraw() {
   glEnable(GL_CULL_FACE);
 //  _light.enable();
   _postProc->beginDraw(_camera->getCamera());
+  _camera->applyTransform();
   if (_params.fog.enabled()) {
     beginFog();
   }
