@@ -172,6 +172,7 @@
       "rate": 0.84693849086761475
     },
     "renderer": {
+      "enabled": true,
       "fadeIn": {
         "duration": 1,
         "endValue": 1,
@@ -195,7 +196,7 @@
     "connectorRenderer": {
       "connectionCountRange": {
         "high": 4,
-        "low": 0
+        "low": 0.0052061639726161957
       },
       "enabled": true
     },
@@ -219,6 +220,7 @@
         "high": 4,
         "low": 0
       },
+      "enabled": true,
       "fadeIn": {
         "duration": 1,
         "endValue": 1,
@@ -227,7 +229,7 @@
       "showRange": false,
       "size": 25,
       "wireBrightness": 1.5,
-      "wireEnabled": true,
+      "wireEnabled": false,
       "wireSaturation": 0.19897958636283875,
       "wireScale": 1.0928571224212646
     },
@@ -322,7 +324,7 @@
       ]
     },
     "fog": {
-      "density": 0.00014285715587902814,
+      "density": 0.0013061225181445479,
       "distance": {
         "high": 4.0016660690307617,
         "low": 3.3769264221191406
@@ -335,10 +337,10 @@
         "enabled": true
       },
       "dof": {
-        "aperture": 0.33161184191703796,
+        "aperture": 0.33785924315452576,
         "enabled": true,
-        "focus": 1.0063556432723999,
-        "maxBlur": 0.67721784114837646
+        "focus": 0.99490213394165039,
+        "maxBlur": 0.70324862003326416
       },
       "edge": {
         "enabled": false,
