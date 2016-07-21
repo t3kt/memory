@@ -21,7 +21,7 @@ TParamBase* Params::lookupPath(const std::string &path) {
   if (path.empty()) {
     return nullptr;
   }
-  auto pos = path.find('.');
+  auto pos = path.find(TParamBase::PATH_SEP);
   if (pos == std::string::npos) {
     return findKey(path);
   }

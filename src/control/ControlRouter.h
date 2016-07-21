@@ -1,13 +1,13 @@
 //
-//  MidiRouter.h
+//  ControlRouter.hControlRouter
 //  memory
 //
 //  Created by tekt on 7/15/16.
 //
 //
 
-#ifndef MidiRouter_h
-#define MidiRouter_h
+#ifndef ControlRouter_h
+#define ControlRouter_h
 
 #include <initializer_list>
 #include <map>
@@ -23,13 +23,13 @@
 
 class AbstractMidiBinding;
 
-class MidiRouter {
+class ControlRouter {
 public:
   using DeviceMap = std::unordered_map<ControlDeviceId, std::shared_ptr<MidiDevice>>;
   using BindingMap = std::unordered_map<ControlMappingKey, std::shared_ptr<AbstractMidiBinding>>;
   using DeviceIdMap = std::unordered_map<std::string, ControlDeviceId>;
 
-  MidiRouter(MemoryAppParameters& appParams)
+  ControlRouter(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
 
   void setup(std::initializer_list<std::shared_ptr<MidiDevice>> devices);
@@ -49,4 +49,4 @@ private:
   DeviceIdMap _deviceNameToId;
 };
 
-#endif /* MidiRouter_h */
+#endif /* ControlRouter_h */

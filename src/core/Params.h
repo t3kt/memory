@@ -22,6 +22,8 @@ class TParamBase
 : public JsonReadable
 , public JsonWritable {
 public:
+  const char PATH_SEP = '/';
+
   virtual std::string getKey() const = 0;
   virtual Json::object::value_type toJsonField() const {
     return { getKey(), to_json() };

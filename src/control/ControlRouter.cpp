@@ -1,5 +1,5 @@
 //
-//  MidiRouter.cpp
+//  ControlRouter.cpp
 //  memory
 //
 //  Created by tekt on 7/15/16.
@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <typeinfo>
 #include "Common.h"
-#include "MidiRouter.h"
+#include "ControlRouter.h"
 
 class AbstractMidiBinding {
 public:
@@ -54,14 +54,14 @@ createBinding(TParamBase& param) {
   }
 }
 
-void MidiRouter::setup(std::initializer_list<std::shared_ptr<MidiDevice>> devices) {
+void ControlRouter::setup(std::initializer_list<std::shared_ptr<MidiDevice>> devices) {
   for (auto& device : devices) {
     addDevice(device);
   }
   loadMappings();
 }
 
-void MidiRouter::addDevice(std::shared_ptr<MidiDevice> device) {
+void ControlRouter::addDevice(std::shared_ptr<MidiDevice> device) {
   _deviceNameToId[device->name()] = device->id();
   _devices[device->id()] = device;
   device->messageReceived += [&](MidiReceivedEventArgs& event) {
@@ -69,19 +69,19 @@ void MidiRouter::addDevice(std::shared_ptr<MidiDevice> device) {
   };
 }
 
-void MidiRouter::loadMappings() {
+void ControlRouter::loadMappings() {
   _mappings.readFromFile("mappings.json");
   initBindings();
 }
 
-void MidiRouter::initBindings() {
+void ControlRouter::initBindings() {
   _bindings.clear();
   for (const auto& mapping : _mappings) {
     addBinding(mapping);
   }
 }
 
-void MidiRouter::addBinding(const MidiMapping& mapping) {
+void ControlRouter::addBinding(const MidiMapping& mapping) {
   const auto& path = mapping.path();
   if (path.empty()) {
     return;
@@ -101,8 +101,9 @@ void MidiRouter::addBinding(const MidiMapping& mapping) {
   _bindings[key] = binding;
 }
 
-void MidiRouter::onInputMessage(MidiReceivedEventArgs &event) {
-  if (!_appParams.core.midi.enabled) {
+void ControlRouter::onInputMessage(MidiReceivedEventArgs &event) {
+  if (!_appParams.core.control.enabled
+      || !_appParams.core.control.midi.enabled) {
     return;
   }
   auto iter = _bindings.find(event.key);

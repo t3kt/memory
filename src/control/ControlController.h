@@ -1,13 +1,13 @@
 //
-//  MidiController.h
+//  ControlController.h
 //  memory
 //
 //  Created by tekt on 7/15/16.
 //
 //
 
-#ifndef MidiController_h
-#define MidiController_h
+#ifndef ControlController_h
+#define ControlController_h
 
 #include <memory>
 #include "ControlCommon.h"
@@ -16,13 +16,13 @@
 
 class MemoryAppParameters;
 class MidiDevice;
-class MidiRouter;
+class ControlRouter;
 
-class MidiController {
+class ControlController {
 public:
-  using Params = MidiParams;
+  using Params = ControlParams;
 
-  MidiController(MemoryAppParameters& appParams);
+  ControlController(MemoryAppParameters& appParams);
 
   void setup();
   void update();
@@ -30,8 +30,8 @@ public:
 private:
   MemoryAppParameters& _appParams;
   Params& _params;
-  std::shared_ptr<MidiRouter> _router;
+  std::shared_ptr<ControlRouter> _router;
   std::shared_ptr<MidiDevice> _twister;
 };
 
-#endif /* MidiController_h */
+#endif /* ControlController_h */

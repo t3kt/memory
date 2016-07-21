@@ -103,7 +103,7 @@ void ControlApp::setup() {
 
   _gui = std::make_shared<AppGui>(_appParams, *this);
 
-  _midi = std::make_shared<MidiController>(_appParams);
+  _midi = std::make_shared<ControlController>(_appParams);
   _midi->setup();
 
   registerAsActionHandler();

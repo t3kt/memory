@@ -117,6 +117,8 @@ using MidiReceivedEvent = TEvent<MidiReceivedEventArgs>;
 
 using MidiDeviceParams = ParamsWithEnabled;
 
+using OscParams = ParamsWithEnabled;
+
 class MidiParams
 : public ParamsWithEnabled {
 public:
@@ -127,6 +129,22 @@ public:
   }
 
   MidiDeviceParams twister;
+};
+
+class ControlParams
+: public ParamsWithEnabled {
+public:
+  ControlParams() {
+    add(midi
+        .setKey("midi")
+        .setName("Midi"));
+    add(osc
+        .setKey("osc")
+        .setName("OSC"));
+  }
+
+  MidiParams midi;
+  OscParams osc;
 };
 
 #endif /* ControlCommon_h */

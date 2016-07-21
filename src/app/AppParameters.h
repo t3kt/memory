@@ -22,7 +22,7 @@
 #include "Clock.h"
 #include "Colors.h"
 #include "Events.h"
-#include "MidiController.h"
+#include "ControlController.h"
 #include "InspectionController.h"
 
 class DebugParams : public Params {
@@ -87,16 +87,16 @@ public:
     add(output
         .setKey("output")
         .setName("Output"));
-    add(midi
-        .setKey("midi")
-        .setName("Midi"));
+    add(control
+        .setKey("control")
+        .setName("Control"));
   }
 
   Clock::Params clock;
   Bounds bounds;
   DebugParams debug;
   OutputParams output;
-  MidiController::Params midi;
+  ControlController::Params control;
 };
 
 class MemoryAppParameters : public Params {

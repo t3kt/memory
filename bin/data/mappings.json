@@ -7,7 +7,7 @@
       "deviceType": "midi",
       "midiType": "cc"
     },
-    "path": "core.clock.rate"
+    "path": "core/clock/rate"
   },
   {
     "key": {
@@ -17,7 +17,7 @@
       "deviceType": "midi",
       "midiType": "cc"
     },
-    "path": "core.clock.paused"
+    "path": "core/clock/paused"
   },
   {
     "key": {
@@ -27,7 +27,7 @@
       "deviceType": "midi",
       "midiType": "cc"
     },
-    "path": "observers.rateSpawner.rate"
+    "path": "observers/rateSpawner/rate"
   },
   {
     "key": {
@@ -37,6 +37,6 @@
       "deviceType": "midi",
       "midiType": "cc"
     },
-    "path": "occurrences.rateSpawner.rate"
+    "path": "occurrences/rateSpawner/rate"
   }
 ]

@@ -15,7 +15,7 @@
 #include "AppGui.h"
 #include "AppParameters.h"
 #include "Common.h"
-#include "MidiController.h"
+#include "ControlController.h"
 #include "State.h"
 
 class EventLoggers;
@@ -43,7 +43,7 @@ private:
   MemoryAppParameters& _appParams;
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
-  std::shared_ptr<MidiController> _midi;
+  std::shared_ptr<ControlController> _midi;
 };
 
 #endif /* ControlApp_h */
