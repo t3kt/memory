@@ -28,7 +28,7 @@ public:
     handleClose(false);
   }
 
-  const MidiDeviceId& id() const { return _id; }
+  const ControlDeviceId& id() const { return _id; }
   const std::string& name() const { return _name; }
 
   void open() {
@@ -47,7 +47,7 @@ private:
   void handleOpen();
   void handleClose(bool updateParams);
 
-  const MidiDeviceId _id;
+  const ControlDeviceId _id;
   const std::string _name;
   const std::string _inputPortName;
   const std::string _outputPortName;

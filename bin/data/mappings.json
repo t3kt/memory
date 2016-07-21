@@ -4,7 +4,8 @@
       "cc": 0,
       "channel": 1,
       "device": 1,
-      "type": "cc"
+      "deviceType": "midi",
+      "midiType": "cc"
     },
     "path": "core.clock.rate"
   },
@@ -13,7 +14,8 @@
       "cc": 64,
       "channel": 1,
       "device": 1,
-      "type": "cc"
+      "deviceType": "midi",
+      "midiType": "cc"
     },
     "path": "core.clock.paused"
   },
@@ -22,7 +24,8 @@
       "cc": 1,
       "channel": 1,
       "device": 1,
-      "type": "cc"
+      "deviceType": "midi",
+      "midiType": "cc"
     },
     "path": "observers.rateSpawner.rate"
   },
@@ -31,7 +34,8 @@
       "cc": 2,
       "channel": 1,
       "device": 1,
-      "type": "cc"
+      "deviceType": "midi",
+      "midiType": "cc"
     },
     "path": "occurrences.rateSpawner.rate"
   }

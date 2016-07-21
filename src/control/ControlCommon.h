@@ -18,10 +18,19 @@
 #include "JsonIO.h"
 #include "Params.h"
 
-using MidiDeviceId = int;
+enum class ControlDeviceType {
+  MIDI,
+  OSC,
+};
+
+extern EnumTypeInfo<ControlDeviceType> ControlDeviceTypeType;
+std::ostream& operator<<(std::ostream& os,
+                         const ControlDeviceType& value);
+
+using ControlDeviceId = int;
 using MidiChannel = int;
 
-const MidiDeviceId NO_MIDI_DEVICE = -1;
+const ControlDeviceId NO_CONTROL_DEVICE = -1;
 
 enum class MidiMessageType {
   CONTROL_CHANGE,
@@ -36,56 +45,48 @@ std::ostream& operator<<(std::ostream& os,
 
 MidiMessageType statusToMessageType(const MidiStatus& status);
 
-class MidiMappingKey
+class ControlMappingKey
 : public Outputable
 , public JsonReadable
 , public JsonWritable {
 public:
-  static MidiMappingKey create(const MidiDeviceId& device,
-                               const ofxMidiMessage& message);
-
-  MidiMappingKey()
-  : _device(NO_MIDI_DEVICE)
-  , _type(MidiMessageType::OTHER)
+  ControlMappingKey()
+  : _deviceType(ControlDeviceType::MIDI)
+  , _device(NO_CONTROL_DEVICE)
+  , _midiType(MidiMessageType::OTHER)
   , _channel(0)
   , _cc(0) {}
 
-  MidiMappingKey(MidiDeviceId device,
-                 MidiMessageType type,
-                 MidiChannel channel,
-                 int cc)
-  : _device(device)
-  , _type(type)
-  , _channel(channel)
-  , _cc(cc) {}
+  static ControlMappingKey createMidi(const ControlDeviceId& device,
+                                      const ofxMidiMessage& message);
 
-  const MidiDeviceId& device() const { return _device; }
-  const MidiMessageType& type() const { return _type; }
-  const MidiChannel& channel() const { return _channel; }
+  const ControlDeviceId& device() const { return _device; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
   std::size_t hash() const;
 protected:
-  std::string typeName() const override { return "MidiMappingKey"; }
+  std::string typeName() const override { return "ControlMappingKey"; }
   void outputFields(std::ostream& os) const override;
 private:
-  MidiDeviceId _device;
-  MidiMessageType _type;
+  ControlDeviceType _deviceType;
+  ControlDeviceId _device;
+  MidiMessageType _midiType;
   MidiChannel _channel;
   int _cc;
 
-  friend bool operator==(const MidiMappingKey& lha,
-                         const MidiMappingKey& rha);
+  friend bool operator==(const ControlMappingKey& lha,
+                         const ControlMappingKey& rha);
 };
 
-bool operator==(const MidiMappingKey& lha, const MidiMappingKey& rha);
+bool operator==(const ControlMappingKey& lha,
+                const ControlMappingKey& rha);
 
 namespace std {
   template<>
-  struct hash<MidiMappingKey> {
-    typedef MidiMappingKey argument_type;
+  struct hash<ControlMappingKey> {
+    typedef ControlMappingKey argument_type;
     typedef std::size_t result_type;
 
     result_type operator()(const argument_type& mapping) const {
@@ -97,15 +98,15 @@ namespace std {
 class MidiReceivedEventArgs
 : public EventArgs {
 public:
-  MidiReceivedEventArgs(const MidiDeviceId& dev,
+  MidiReceivedEventArgs(const ControlDeviceId& dev,
                         const ofxMidiMessage& msg)
   : device(dev)
   , message(msg)
-  , key(MidiMappingKey::create(dev, msg)) { }
+  , key(ControlMappingKey::createMidi(dev, msg)) { }
 
-  const MidiDeviceId device;
+  const ControlDeviceId device;
   const ofxMidiMessage& message;
-  const MidiMappingKey key;
+  const ControlMappingKey key;
 
 protected:
   std::string typeName() const override { return "MidiReceivedEventArgs"; }

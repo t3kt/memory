@@ -20,11 +20,11 @@ class MidiMapping
 , public Outputable {
 public:
   MidiMapping() {}
-  MidiMapping(MidiMappingKey key, std::string path)
+  MidiMapping(ControlMappingKey key, std::string path)
   : _key(key)
   , _path(path) {}
 
-  const MidiMappingKey& key() const { return _key; }
+  const ControlMappingKey& key() const { return _key; }
   const std::string& path() const { return _path; }
 
   Json to_json() const override;
@@ -34,7 +34,7 @@ protected:
   std::string typeName() const override { return "MidiMapping"; }
   void outputFields(std::ostream& os) const override;
 private:
-  MidiMappingKey _key;
+  ControlMappingKey _key;
   std::string _path;
 };
 

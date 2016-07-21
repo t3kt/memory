@@ -10,8 +10,8 @@
 #include "MidiDevice.h"
 
 
-static MidiDeviceId nextId() {
-  static MidiDeviceId lastId = 0;
+static ControlDeviceId nextId() {
+  static ControlDeviceId lastId = 0;
   return ++lastId;
 }
 

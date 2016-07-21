@@ -25,9 +25,9 @@ class AbstractMidiBinding;
 
 class MidiRouter {
 public:
-  using DeviceMap = std::unordered_map<MidiDeviceId, std::shared_ptr<MidiDevice>>;
-  using BindingMap = std::unordered_map<MidiMappingKey, std::shared_ptr<AbstractMidiBinding>>;
-  using DeviceIdMap = std::unordered_map<std::string, MidiDeviceId>;
+  using DeviceMap = std::unordered_map<ControlDeviceId, std::shared_ptr<MidiDevice>>;
+  using BindingMap = std::unordered_map<ControlMappingKey, std::shared_ptr<AbstractMidiBinding>>;
+  using DeviceIdMap = std::unordered_map<std::string, ControlDeviceId>;
 
   MidiRouter(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
