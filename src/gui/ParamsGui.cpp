@@ -13,11 +13,34 @@
 std::shared_ptr<ParamGui> createParamGuiControl(TParamBase& param) {
   const auto& type = param.getTypeInfo();
   if (type == typeid(bool)) {
-    return std::make_shared<ParamGuiControl<bool>>(static_cast<TParam<bool>&>(param));
-  } else {
-    ofLogWarning() << "Unsupported param type: " << type.name();
-    return std::shared_ptr<ParamGui>();
+    return std::make_shared<ParamGuiToggle>(dynamic_cast<TParam<bool>&>(param));
+  } else if (type == typeid(float)) {
+    return std::make_shared<ParamGuiSlider<float>>(dynamic_cast<TParam<float>&>(param));
+  } else if (type == typeid(int)) {
+    return std::make_shared<ParamGuiSlider<int>>(dynamic_cast<TParam<int>&>(param));
   }
+  ofLogWarning() << "Unsupported param type: " << type.name();
+  return std::shared_ptr<ParamGui>();
+}
+
+void ParamGuiToggle::addToParent(ofxControlWidget *parent) {
+  _toggle =
+  parent->addToggle(_param.getName(),
+                    &_storage,
+                    this,
+                    &ParamGuiToggle::onToggleEvent);
+}
+
+template<typename T>
+void ParamGuiSlider<T>::addToParent(ofxControlWidget *parent) {
+  const auto& param = AbstractParamGuiControl<T>::_param;
+  _slider =
+  parent->addSlider(param.getName(),
+                    &_storage,
+                    param.getMin(),
+                    param.getMax(),
+                    this,
+                    &ParamGuiSlider<T>::onSliderEvent);
 }
 
 void AbstractParamsGui::addControlsForParams(Params& params) {

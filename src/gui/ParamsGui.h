@@ -45,25 +45,12 @@ protected:
   TParam<T>& _param;
 };
 
-template<typename T>
-class ParamGuiControl;
-
-template<>
-class ParamGuiControl<bool>
+class ParamGuiToggle
 : public AbstractParamGuiControl<bool> {
 public:
-  using ParamT = TParam<bool>;
-
-  ParamGuiControl(ParamT& param)
-  : AbstractParamGuiControl<bool>(param) { }
-
-  void addToParent(ofxControlWidget* parent) override {
-    _toggle =
-    parent->addToggle(_param.getName(),
-                      &_storage,
-                      this,
-                      &ParamGuiControl<bool>::onToggleEvent);
-  }
+  ParamGuiToggle(TParam<bool>& param)
+  : AbstractParamGuiControl(param) {}
+  void addToParent(ofxControlWidget* parent) override;
 private:
   void onToggleEvent(ofxControlButtonEventArgs& e) {
     _param.set(e.value);
@@ -72,6 +59,24 @@ private:
     _toggle->setValue(value);
   }
   ofxControlToggle* _toggle;
+};
+
+template<typename T>
+class ParamGuiSlider
+: public AbstractParamGuiControl<T> {
+public:
+  ParamGuiSlider(TParam<T>& param)
+  : AbstractParamGuiControl<T>(param) {}
+  void addToParent(ofxControlWidget* parent) override;
+private:
+  void onSliderEvent(ofxControlSliderEventArgs<T>& e) {
+    AbstractParamGuiControl<T>::_param.set(e.value);
+  }
+  void setControlValue(const T& value) override {
+    _slider->setValue(value);
+  }
+  T _storage;
+  ofxControlSlider<T>* _slider;
 };
 
 std::shared_ptr<ParamGui> createParamGuiControl(TParamBase& param);
