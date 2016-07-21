@@ -23,7 +23,9 @@ public:
 
   void draw();
 private:
-  std::shared_ptr<AppGuiImpl> _impl;
+  // intentionally leak this on destruction as a hack to get around
+  // problems in the ofxControl desctructors
+  AppGuiImpl* _impl;
 };
 
 #endif /* AppGui_h */
