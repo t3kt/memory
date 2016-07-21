@@ -1,13 +1,13 @@
 //
-//  MidiCommon.h
+//  ControlCommon.h
 //  memory
 //
 //  Created by tekt on 7/15/16.
 //
 //
 
-#ifndef MidiCommon_h
-#define MidiCommon_h
+#ifndef ControlCommon_h
+#define ControlCommon_h
 
 #include <functional>
 #include <iostream>
@@ -128,4 +128,4 @@ public:
   MidiDeviceParams twister;
 };
 
-#endif /* MidiCommon_h */
+#endif /* ControlCommon_h */

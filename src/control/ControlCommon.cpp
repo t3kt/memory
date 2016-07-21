@@ -1,5 +1,5 @@
 //
-//  MidiCommon.cpp
+//  ControlCommon.cpp
 //  memory
 //
 //  Created by tekt on 7/15/16.
@@ -7,7 +7,7 @@
 //
 
 #include <boost/functional/hash.hpp>
-#include "MidiCommon.h"
+#include "ControlCommon.h"
 
 EnumTypeInfo<MidiMessageType> MidiMessageTypeType {
   {"cc", MidiMessageType::CONTROL_CHANGE},

@@ -11,7 +11,7 @@
 
 #include <ofxMidi.h>
 #include <string>
-#include "MidiCommon.h"
+#include "ControlCommon.h"
 #include "Params.h"
 
 class MidiDevice

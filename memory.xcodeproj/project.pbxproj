@@ -104,7 +104,7 @@
 		96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F38907EC6905E539FB6235FC /* ParticleObject.cpp */; };
 		98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F78D808D42FE8716F76F1BF0 /* ofxRotarySlider.cpp */; };
 		9E3D4E659A623E2606FB176E /* ofxAssimpAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18DE921BF914656DCB005729 /* ofxAssimpAnimation.cpp */; };
-		9EBFB565EFF37317583CA299 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */; };
+		9EBFB565EFF37317583CA299 /* ControlCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7E6B29DAC5898C967F29633 /* ControlCommon.cpp */; };
 		9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */; };
 		A014A6C6A8E9AB567F67CF47 /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE961D91584C2D211984884 /* KaleidoscopePass.cpp */; };
 		A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CE452C77AF7B96205848C7E /* ofxGuiGroup.cpp */; };
@@ -443,7 +443,7 @@
 		B01E1D9D70BE4D90B76CD672 /* ofxAssimpTexture.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAssimpTexture.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpTexture.cpp; sourceTree = SOURCE_ROOT; };
 		B10D9A4C4D69F318E4DF5F5B /* Common.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Common.cpp; path = src/core/Common.cpp; sourceTree = SOURCE_ROOT; };
 		B180CA9E7B4C68CB29835E51 /* HorizontalTiltShifPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = HorizontalTiltShifPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HorizontalTiltShifPass.h; sourceTree = SOURCE_ROOT; };
-		B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MidiCommon.h; path = src/control/MidiCommon.h; sourceTree = SOURCE_ROOT; };
+		B1CAC3FDCCFDEC2C41E50D24 /* ControlCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlCommon.h; path = src/control/ControlCommon.h; sourceTree = SOURCE_ROOT; };
 		B235D09E719D526194402149 /* Bounds.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Bounds.h; path = src/core/Bounds.h; sourceTree = SOURCE_ROOT; };
 		B296BDCCBAE08BED2CE65583 /* ofxRotarySlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxRotarySlider.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxRotarySlider.h; sourceTree = SOURCE_ROOT; };
 		B321549FC189E33A362D6C95 /* ofxGuiBaseDraws.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiBaseDraws.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiBaseDraws.h; sourceTree = SOURCE_ROOT; };
@@ -454,7 +454,7 @@
 		B5557E4DE42EB7CCBFC1D7CD /* ofxSyphonClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonClient.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/src/ofxSyphonClient.h; sourceTree = SOURCE_ROOT; };
 		B67B11BF7B9AF64A644DDD6C /* ToonPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ToonPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ToonPass.h; sourceTree = SOURCE_ROOT; };
 		B7D940FA20BA3C63C0163141 /* DampingBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DampingBehavior.h; path = src/physics/DampingBehavior.h; sourceTree = SOURCE_ROOT; };
-		B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MidiCommon.cpp; path = src/control/MidiCommon.cpp; sourceTree = SOURCE_ROOT; };
+		B7E6B29DAC5898C967F29633 /* ControlCommon.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlCommon.cpp; path = src/control/ControlCommon.cpp; sourceTree = SOURCE_ROOT; };
 		B90F1B9ECDEE2CB4F825B794 /* LogStream.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LogStream.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/LogStream.hpp; sourceTree = SOURCE_ROOT; };
 		B9693CBFC15DAD29D7FDEC99 /* types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/types.h; sourceTree = SOURCE_ROOT; };
 		BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationObject.h; path = src/core/AnimationObject.h; sourceTree = SOURCE_ROOT; };
@@ -570,8 +570,8 @@
 		102C17DAD08FCB5A66E3A9C0 /* control */ = {
 			isa = PBXGroup;
 			children = (
-				B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */,
-				B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */,
+				B7E6B29DAC5898C967F29633 /* ControlCommon.cpp */,
+				B1CAC3FDCCFDEC2C41E50D24 /* ControlCommon.h */,
 				1CCB588E74FE34D369788C45 /* MidiController.cpp */,
 				0C37EB00EECE5690B2BF3F78 /* MidiController.h */,
 				7F96463E5281CD1FEBA25AA7 /* MidiDevice.cpp */,
@@ -1546,7 +1546,7 @@
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
 				8363E3A3FB38459F28C32F67 /* SimulationApp.cpp in Sources */,
 				32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */,
-				9EBFB565EFF37317583CA299 /* MidiCommon.cpp in Sources */,
+				9EBFB565EFF37317583CA299 /* ControlCommon.cpp in Sources */,
 				684827C1C4E22CB31E360F24 /* MidiController.cpp in Sources */,
 				1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */,
 				BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */,

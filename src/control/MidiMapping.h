@@ -11,8 +11,8 @@
 
 #include <string>
 #include "Common.h"
+#include "ControlCommon.h"
 #include "JsonIO.h"
-#include "MidiCommon.h"
 
 class MidiMapping
 : public JsonReadable
