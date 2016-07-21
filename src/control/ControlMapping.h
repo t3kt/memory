@@ -1,26 +1,26 @@
 //
-//  MidiMapping.h
+//  ControlMapping.h
 //  memory
 //
 //  Created by tekt on 7/16/16.
 //
 //
 
-#ifndef MidiMapping_h
-#define MidiMapping_h
+#ifndef ControlMapping_h
+#define ControlMapping_h
 
 #include <string>
 #include "Common.h"
 #include "ControlCommon.h"
 #include "JsonIO.h"
 
-class MidiMapping
+class ControlMapping
 : public JsonReadable
 , public JsonWritable
 , public Outputable {
 public:
-  MidiMapping() {}
-  MidiMapping(ControlMappingKey key, std::string path)
+  ControlMapping() {}
+  ControlMapping(ControlMappingKey key, std::string path)
   : _key(key)
   , _path(path) {}
 
@@ -31,26 +31,26 @@ public:
   void read_json(const Json& obj) override;
 
 protected:
-  std::string typeName() const override { return "MidiMapping"; }
+  std::string typeName() const override { return "ControlMapping"; }
   void outputFields(std::ostream& os) const override;
 private:
   ControlMappingKey _key;
   std::string _path;
 };
 
-class MidiMappingSet
+class ControlMappingSet
 : public JsonReadable
 , public JsonWritable
 , public Outputable {
 public:
-  using Storage = std::vector<MidiMapping>;
+  using Storage = std::vector<ControlMapping>;
   using iterator = Storage::iterator;
   using const_iterator = Storage::const_iterator;
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-  void add(MidiMapping&& mapping) { _mappings.push_back(mapping); }
+  void add(ControlMapping&& mapping) { _mappings.push_back(mapping); }
 
   iterator begin() { return _mappings.begin(); }
   iterator end() { return _mappings.end(); }
@@ -61,10 +61,10 @@ public:
   bool empty() const { return _mappings.empty(); }
 
 protected:
-  std::string typeName() const override { return "MidiMappingSet"; }
+  std::string typeName() const override { return "ControlMappingSet"; }
   void outputFields(std::ostream& os) const override;
 private:
   Storage _mappings;
 };
 
-#endif /* MidiMapping_h */
+#endif /* ControlMapping_h */

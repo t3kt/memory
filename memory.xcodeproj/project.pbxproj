@@ -50,6 +50,7 @@
 		32F74A6A1D409C0600C1A911 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F74A581D409C0600C1A911 /* ofxOscParameterSync.cpp */; };
 		32F74A6B1D409C0600C1A911 /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F74A5A1D409C0600C1A911 /* ofxOscReceiver.cpp */; };
 		32F74A6C1D409C0600C1A911 /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F74A5C1D409C0600C1A911 /* ofxOscSender.cpp */; };
+		32F74A751D40B1E100C1A911 /* OscDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32F74A731D40B1E100C1A911 /* OscDevice.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -124,7 +125,7 @@
 		BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B435F280334BE688BF136963 /* Clock.cpp */; };
 		BC1D9F2A3CC0258742E5ABE8 /* HsbShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82727736FE3D22A1F49338A /* HsbShiftPass.cpp */; };
 		BC76686ED7C0FA7007B25DCB /* AttractionBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */; };
-		BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6C0A7AF0AD8C3CC222F12F0 /* MidiMapping.cpp */; };
+		BD93D57F60AD9B51EB56EDF8 /* ControlMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6C0A7AF0AD8C3CC222F12F0 /* ControlMapping.cpp */; };
 		BEC7011B31196451456DBC43 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2DFEDC5C804323DDDAA56B1 /* ofxToggle.cpp */; };
 		BF840C01D1947A7AFE6F3E5B /* ofxMidiMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3250744A986B01C9F1CC5B0 /* ofxMidiMessage.cpp */; };
 		C11106AFBC3CD6F479EDB075 /* RGBShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */; };
@@ -299,6 +300,8 @@
 		32F74A5B1D409C0600C1A911 /* ofxOscReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscReceiver.h; sourceTree = "<group>"; };
 		32F74A5C1D409C0600C1A911 /* ofxOscSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscSender.cpp; sourceTree = "<group>"; };
 		32F74A5D1D409C0600C1A911 /* ofxOscSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscSender.h; sourceTree = "<group>"; };
+		32F74A731D40B1E100C1A911 /* OscDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscDevice.cpp; path = control/OscDevice.cpp; sourceTree = "<group>"; };
+		32F74A741D40B1E100C1A911 /* OscDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OscDevice.h; path = control/OscDevice.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -469,11 +472,11 @@
 		C39D8902FEE22BC10E3DAC9F /* ofxTabbedPages.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTabbedPages.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxTabbedPages.h; sourceTree = SOURCE_ROOT; };
 		C4D495C481B54072D1AEA87F /* Sequence.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Sequence.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Sequence.hpp; sourceTree = SOURCE_ROOT; };
 		C61E6252FE237B3F16BFBC43 /* ofxSliderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSliderGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxSliderGroup.h; sourceTree = SOURCE_ROOT; };
-		C6C0A7AF0AD8C3CC222F12F0 /* MidiMapping.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MidiMapping.cpp; path = src/control/MidiMapping.cpp; sourceTree = SOURCE_ROOT; };
+		C6C0A7AF0AD8C3CC222F12F0 /* ControlMapping.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMapping.cpp; path = src/control/ControlMapping.cpp; sourceTree = SOURCE_ROOT; };
 		C7E1536C3978261C377DBA1D /* MotionGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MotionGroup.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/MotionGroup.h; sourceTree = SOURCE_ROOT; };
 		C82727736FE3D22A1F49338A /* HsbShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = HsbShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HsbShiftPass.cpp; sourceTree = SOURCE_ROOT; };
 		C879DBC13EA245429B3ED367 /* config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = config.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/config.h; sourceTree = SOURCE_ROOT; };
-		C8A492AF1C4B575E8CE8BD6C /* MidiMapping.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MidiMapping.h; path = src/control/MidiMapping.h; sourceTree = SOURCE_ROOT; };
+		C8A492AF1C4B575E8CE8BD6C /* ControlMapping.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlMapping.h; path = src/control/ControlMapping.h; sourceTree = SOURCE_ROOT; };
 		CD556EBA3E75A59B07B1DCBE /* Output.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Output.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/Output.hpp; sourceTree = SOURCE_ROOT; };
 		CE2C9FDB26DB9F29B0989312 /* ofxTextAlign.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextAlign.h; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlign.h; sourceTree = SOURCE_ROOT; };
 		CF69DC4C4778D5EFF36391BF /* FakeSSSPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FakeSSSPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FakeSSSPass.h; sourceTree = SOURCE_ROOT; };
@@ -572,14 +575,16 @@
 			children = (
 				B7E6B29DAC5898C967F29633 /* ControlCommon.cpp */,
 				B1CAC3FDCCFDEC2C41E50D24 /* ControlCommon.h */,
-				7CCDC852A1960FB9A51DF1B9 /* ControlRouter.cpp */,
-				0F6CC7B53C156FC973DBA2E5 /* ControlRouter.h */,
 				1CCB588E74FE34D369788C45 /* ControlController.cpp */,
 				0C37EB00EECE5690B2BF3F78 /* ControlController.h */,
+				C6C0A7AF0AD8C3CC222F12F0 /* ControlMapping.cpp */,
+				C8A492AF1C4B575E8CE8BD6C /* ControlMapping.h */,
+				7CCDC852A1960FB9A51DF1B9 /* ControlRouter.cpp */,
+				0F6CC7B53C156FC973DBA2E5 /* ControlRouter.h */,
 				7F96463E5281CD1FEBA25AA7 /* MidiDevice.cpp */,
 				F9F5853C23CC6366F75034EC /* MidiDevice.h */,
-				C6C0A7AF0AD8C3CC222F12F0 /* MidiMapping.cpp */,
-				C8A492AF1C4B575E8CE8BD6C /* MidiMapping.h */,
+				32F74A731D40B1E100C1A911 /* OscDevice.cpp */,
+				32F74A741D40B1E100C1A911 /* OscDevice.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -1549,7 +1554,7 @@
 				9EBFB565EFF37317583CA299 /* ControlCommon.cpp in Sources */,
 				684827C1C4E22CB31E360F24 /* ControlController.cpp in Sources */,
 				1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */,
-				BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */,
+				BD93D57F60AD9B51EB56EDF8 /* ControlMapping.cpp in Sources */,
 				B6C962E732C4D744A2600D32 /* ControlRouter.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
@@ -1615,6 +1620,7 @@
 				32F74A601D409C0600C1A911 /* NetworkingUtils.cpp in Sources */,
 				32F74A671D409C0600C1A911 /* OscTypes.cpp in Sources */,
 				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
+				32F74A751D40B1E100C1A911 /* OscDevice.cpp in Sources */,
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,

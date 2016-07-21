@@ -55,12 +55,16 @@ public:
   , _device(NO_CONTROL_DEVICE)
   , _midiType(MidiMessageType::OTHER)
   , _channel(0)
-  , _cc(0) {}
+  , _cc(0)
+  , _oscPath("") {}
 
   static ControlMappingKey createMidi(const ControlDeviceId& device,
                                       const ofxMidiMessage& message);
 
+  const ControlDeviceType& deviceType() const { return _deviceType; }
   const ControlDeviceId& device() const { return _device; }
+
+  const std::string& oscPath() const { return _oscPath; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
@@ -75,6 +79,7 @@ private:
   MidiMessageType _midiType;
   MidiChannel _channel;
   int _cc;
+  std::string _oscPath;
 
   friend bool operator==(const ControlMappingKey& lha,
                          const ControlMappingKey& rha);

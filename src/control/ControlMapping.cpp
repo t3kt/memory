@@ -1,27 +1,27 @@
 //
-//  MidiMapping.cpp
+//  ControlMapping.cpp
 //  memory
 //
 //  Created by tekt on 7/16/16.
 //
 //
 
-#include "MidiMapping.h"
+#include "ControlMapping.h"
 
-Json MidiMapping::to_json() const {
+Json ControlMapping::to_json() const {
   return Json::object {
     {"key", _key},
     {"path", _path},
   };
 }
 
-void MidiMapping::read_json(const Json &obj) {
+void ControlMapping::read_json(const Json &obj) {
   JsonUtil::assertHasType(obj, Json::OBJECT);
   _key.read_json(obj["key"]);
   _path = JsonUtil::fromJson<std::string>(obj["path"]);
 }
 
-Json MidiMappingSet::to_json() const {
+Json ControlMappingSet::to_json() const {
   Json::array arr;
   for (const auto& mapping : _mappings) {
     arr.push_back(mapping.to_json());
@@ -29,22 +29,22 @@ Json MidiMappingSet::to_json() const {
   return arr;
 }
 
-void MidiMappingSet::read_json(const Json& arr) {
+void ControlMappingSet::read_json(const Json& arr) {
   JsonUtil::assertHasType(arr, Json::ARRAY);
   _mappings.clear();
   for (const auto& val : arr.array_items()) {
-    MidiMapping mapping;
+    ControlMapping mapping;
     mapping.read_json(val);
     _mappings.push_back(mapping);
   }
 }
 
-void MidiMapping::outputFields(std::ostream& os) const {
+void ControlMapping::outputFields(std::ostream& os) const {
   os << "key: " << _key
   << ", path: " << _path;
 }
 
-void MidiMappingSet::outputFields(std::ostream& os) const {
+void ControlMappingSet::outputFields(std::ostream& os) const {
   for (const auto& mapping : _mappings) {
     os << mapping << ", ";
   }

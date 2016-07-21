@@ -81,7 +81,7 @@ void ControlRouter::initBindings() {
   }
 }
 
-void ControlRouter::addBinding(const MidiMapping& mapping) {
+void ControlRouter::addBinding(const ControlMapping& mapping) {
   const auto& path = mapping.path();
   if (path.empty()) {
     return;

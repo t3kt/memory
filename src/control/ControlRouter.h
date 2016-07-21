@@ -18,7 +18,7 @@
 #include "Events.h"
 #include "JsonIO.h"
 #include "MidiDevice.h"
-#include "MidiMapping.h"
+#include "ControlMapping.h"
 #include "Params.h"
 
 class AbstractMidiBinding;
@@ -38,12 +38,12 @@ private:
 
   void loadMappings();
   void initBindings();
-  void addBinding(const MidiMapping& mapping);
+  void addBinding(const ControlMapping& mapping);
 
   void onInputMessage(MidiReceivedEventArgs& event);
 
   MemoryAppParameters& _appParams;
-  MidiMappingSet _mappings;
+  ControlMappingSet _mappings;
   BindingMap _bindings;
   DeviceMap _devices;
   DeviceIdMap _deviceNameToId;
