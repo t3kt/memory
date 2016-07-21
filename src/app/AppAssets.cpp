@@ -53,5 +53,5 @@ AssetData::AssetData() {
   observerMarkerMesh = loader.getMesh(0);
   loader.loadModel("occurrence-marker.stl", false);
   occurrenceMarkerMesh = loader.getMesh(0);
-  markerInstanceShader.load("marker-shader.vert", "marker-shader-frag");
+//  markerInstanceShader.load("marker-shader.vert", "marker-shader-frag");
 }
