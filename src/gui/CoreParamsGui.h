@@ -12,14 +12,16 @@
 #include <memory>
 #include <ofxControl.h>
 #include "AppParameters.h"
+#include "ParamsGui.h"
 
-class DebugParamsGui {
+class DebugParamsGui
+: public ParamGui {
 public:
   DebugParamsGui(DebugParams& params)
   : _params(params)
   , _root(params.getName()) { }
 
-  void setup(ofxControlWidget& parent);
+  void addToParent(ofxControlWidget* parent) override;
 private:
   void onToggleEvent(ofxControlButtonEventArgs& event);
   ofxControlToggle* addToggle(TParam<bool>& param,
@@ -41,6 +43,27 @@ private:
   ofxControlToggle* _showStatusToggle;
   ofxControlToggle* _showPhysicsToggle;
 //  ofxControlToggle* _inspectToggle;
+};
+
+class DebugParamsGui_2
+: public ParamGui {
+public:
+  DebugParamsGui_2(DebugParams& params)
+  : _params(params)
+  , _root(params.getName())
+  , _loggingEnabled(params.loggingEnabled)
+  , _showBounds(params.showBounds)
+  , _showStatus(params.showStatus)
+  , _showPhysics(params.showPhysics) { }
+
+  void addToParent(ofxControlWidget* parent) override;
+private:
+  DebugParams& _params;
+  ofxControlWidget _root;
+  ParamGuiControl<bool> _loggingEnabled;
+  ParamGuiControl<bool> _showBounds;
+  ParamGuiControl<bool> _showStatus;
+  ParamGuiControl<bool> _showPhysics;
 };
 
 class CoreParamsGui {

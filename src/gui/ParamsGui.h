@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <ofxControl.h>
+#include <vector>
 #include "Params.h"
 
 class ParamGui {
@@ -21,16 +22,18 @@ public:
   virtual void addToParent(ofxControlWidget* parent) = 0;
 };
 
+using ParamGuiList = std::vector<std::shared_ptr<ParamGui>>;
+
 template<typename T>
 class AbstractParamGuiControl
 : public ParamGui {
 public:
-  using ParamT = TParam<T>;
-
-  AbstractParamGuiControl(ParamT& param) : _param(param) { }
+  AbstractParamGuiControl(TParam<T>& param)
+  : _param(param)
+  , _storage(param.get()) { }
 protected:
   T _storage;
-  ParamT& _param;
+  TParam<T>& _param;
 };
 
 template<typename T>
@@ -67,9 +70,11 @@ public:
   virtual void addToParent(ofxControlWidget* parent) override;
 protected:
   virtual void build();
+  void addControlsForParams();
 
   ofxControlWidget _root;
   Params& _params;
+  ParamGuiList _controls;
 };
 
 template<typename ParamsT>

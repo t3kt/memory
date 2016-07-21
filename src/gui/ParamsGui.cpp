@@ -13,18 +13,19 @@
 std::shared_ptr<ParamGui> createParamGuiControl(TParamBase& param) {
   const auto& type = param.getTypeInfo();
   if (type == typeid(bool)) {
-    return std::make_shared<ParamGuiControl<bool>>(dynamic_cast<TParam<bool>&>(param));
+    return std::make_shared<ParamGuiControl<bool>>(static_cast<TParam<bool>&>(param));
   } else {
     ofLogWarning() << "Unsupported param type: " << type.name();
     return std::shared_ptr<ParamGui>();
   }
 }
 
-static void addGuiControlsForParams(Params& params, ofxControlWidget* parent) {
-  for (auto param : params.paramBases()) {
+void ParamsGui::addControlsForParams() {
+  for (auto param : _params.paramBases()) {
     auto ctrl = createParamGuiControl(*param);
     if (ctrl) {
-      ctrl->addToParent(parent);
+      ctrl->addToParent(&_root);
+      _controls.push_back(ctrl);
     }
   }
 }
@@ -36,5 +37,5 @@ void ParamsGui::addToParent(ofxControlWidget* parent) {
 }
 
 void ParamsGui::build() {
-  addGuiControlsForParams(_params, &_root);
+  addControlsForParams();
 }
