@@ -7,39 +7,3 @@
 //
 
 #include "CoreParamsGui.h"
-
-ofxControlToggle* DebugParamsGui::addToggle(TParam<bool> &param,
-                                            bool &storage) {
-  return _root.addToggle(param.getName(),
-                         &storage,
-                         this,
-                         &DebugParamsGui::onToggleEvent);
-}
-
-void DebugParamsGui::onToggleEvent(ofxControlButtonEventArgs& event) {
-  if (event.button == _loggingEnabledToggle) {
-    _params.loggingEnabled.set(event.value);
-  }
-}
-
-void DebugParamsGui::addToParent(ofxControlWidget* parent) {
-  parent->addWidget(&_root);
-  _loggingEnabledToggle = addToggle(_params.loggingEnabled,
-                                    _storage.loggingEnabled);
-  _showBoundsToggle = addToggle(_params.showBounds,
-                                _storage.showBounds);
-  _showStatusToggle = addToggle(_params.showStatus,
-                                _storage.showStatus);
-  _showPhysicsToggle = addToggle(_params.showPhysics,
-                                 _storage.showPhysics);
-//  _inspectToggle = addToggle(_params.inspect,
-//                             _storage.inspect);
-}
-
-void DebugParamsGui_2::addToParent(ofxControlWidget* parent) {
-  parent->addWidget(&_root);
-  _loggingEnabled.addToParent(&_root);
-  _showBounds.addToParent(&_root);
-  _showStatus.addToParent(&_root);
-  _showPhysics.addToParent(&_root);
-}

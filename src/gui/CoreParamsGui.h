@@ -14,64 +14,29 @@
 #include "AppParameters.h"
 #include "ParamsGui.h"
 
-class DebugParamsGui
-: public ParamGui {
+using DebugParamsGui = ParamsGui<DebugParams>;
+using ClockParamsGui = ParamsGui<Clock::Params>;
+using BoundsGui = ParamsGui<Bounds>;
+
+
+class CoreParamsGui
+: public ParamsGui<CoreParams> {
 public:
-  DebugParamsGui(DebugParams& params)
-  : _params(params)
-  , _root(params.getName()) { }
+  CoreParamsGui(CoreParams& params)
+  : ParamsGui(params)
+  , _clock(params.clock)
+  , _bounds(params.bounds)
+  , _debug(params.debug) { }
+protected:
+  virtual void build() override {
+    _clock.addToParent(&_root);
+    _bounds.addToParent(&_root);
+    _debug.addToParent(&_root);
+  }
 
-  void addToParent(ofxControlWidget* parent) override;
-private:
-  void onToggleEvent(ofxControlButtonEventArgs& event);
-  ofxControlToggle* addToggle(TParam<bool>& param,
-                              bool& storage);
-
-  DebugParams& _params;
-
-  struct {
-    bool loggingEnabled;
-    bool showBounds;
-    bool showStatus;
-    bool showPhysics;
-//    bool inspect;
-  } _storage;
-
-  ofxControlWidget _root;
-  ofxControlToggle* _loggingEnabledToggle;
-  ofxControlToggle* _showBoundsToggle;
-  ofxControlToggle* _showStatusToggle;
-  ofxControlToggle* _showPhysicsToggle;
-//  ofxControlToggle* _inspectToggle;
-};
-
-class DebugParamsGui_2
-: public ParamGui {
-public:
-  DebugParamsGui_2(DebugParams& params)
-  : _params(params)
-  , _root(params.getName())
-  , _loggingEnabled(params.loggingEnabled)
-  , _showBounds(params.showBounds)
-  , _showStatus(params.showStatus)
-  , _showPhysics(params.showPhysics) { }
-
-  void addToParent(ofxControlWidget* parent) override;
-private:
-  DebugParams& _params;
-  ofxControlWidget _root;
-  ParamGuiControl<bool> _loggingEnabled;
-  ParamGuiControl<bool> _showBounds;
-  ParamGuiControl<bool> _showStatus;
-  ParamGuiControl<bool> _showPhysics;
-};
-
-class CoreParamsGui {
-public:
-  void setup();
-  void addTo(ofxControlWidget& parent);
-private:
-  ofxControlWidget _root;
+  ClockParamsGui _clock;
+  BoundsGui _bounds;
+  DebugParamsGui _debug;
 };
 
 #endif /* CoreParamsGui_h */

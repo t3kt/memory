@@ -74,7 +74,7 @@ private:
   ActionsGui _actions;
 
   ofxControlPanel _panel;
-  ParamsGui _debugGui;
+  CoreParamsGui _coreParamsGui;
 };
 
 static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
@@ -87,7 +87,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
                        AppActionHandler& actionHandler)
 : _appParams(appParams)
 , _actions(actionHandler)
-, _debugGui(appParams.core.debug) {
+, _coreParamsGui(appParams.core) {
 //  _pages.setup();
 //  _pages.setSize(240, PANEL_HEIGHT);
 //  _pages.setShowHeader(false);
@@ -144,7 +144,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
 //  setBackgroundAlpha(&_pages, 0.5);
 //  setBackgroundAlpha(&_entityPages, 0.7);
 
-  _debugGui.addToParent(&_panel);
+  _coreParamsGui.addToParent(&_panel);
 }
 
 AppGui::AppGui(MemoryAppParameters& appParams,

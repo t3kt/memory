@@ -30,8 +30,17 @@ class AbstractParamGuiControl
 public:
   AbstractParamGuiControl(TParam<T>& param)
   : _param(param)
-  , _storage(param.get()) { }
+  , _storage(param.get()) {
+    param.changed.addListener([this](T& e) {
+      setControlValue(e);
+    }, this);
+  }
+
+  ~AbstractParamGuiControl() override {
+    _param.changed.removeListeners(this);
+  }
 protected:
+  virtual void setControlValue(const T& value) = 0;
   T _storage;
   TParam<T>& _param;
 };
@@ -49,6 +58,7 @@ public:
   : AbstractParamGuiControl<bool>(param) { }
 
   void addToParent(ofxControlWidget* parent) override {
+    _toggle =
     parent->addToggle(_param.getName(),
                       &_storage,
                       this,
@@ -58,41 +68,39 @@ private:
   void onToggleEvent(ofxControlButtonEventArgs& e) {
     _param.set(e.value);
   }
+  void setControlValue(const bool& value) override {
+    _toggle->setValue(value);
+  }
+  ofxControlToggle* _toggle;
 };
 
 std::shared_ptr<ParamGui> createParamGuiControl(TParamBase& param);
 
-class ParamsGui
+class AbstractParamsGui
 : public ParamGui {
 public:
-  ParamsGui(Params& params) : _params(params) { }
-
   virtual void addToParent(ofxControlWidget* parent) override;
 protected:
-  virtual void build();
-  void addControlsForParams();
+  virtual void build() = 0;
+  void addControlsForParams(Params& params);
 
   ofxControlWidget _root;
-  Params& _params;
   ParamGuiList _controls;
 };
 
 template<typename ParamsT>
-class TypedParamsGui
-: public ParamGui {
+class ParamsGui
+: public AbstractParamsGui {
 public:
-  TypedParamsGui(ParamsT& params)
+  ParamsGui(ParamsT& params)
   : _params(params) {}
 
-  void addToParent(ofxControlWidget* parent) override {
-    parent->addWidget(&_root);
-    build();
+protected:
+  virtual void build() override {
+    _root.setName(_params.getName());
+    addControlsForParams(_params);
   }
 
-protected:
-  virtual void build() = 0;
-
-  ofxControlWidget _root;
   ParamsT& _params;
 };
 

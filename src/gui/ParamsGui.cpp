@@ -20,8 +20,8 @@ std::shared_ptr<ParamGui> createParamGuiControl(TParamBase& param) {
   }
 }
 
-void ParamsGui::addControlsForParams() {
-  for (auto param : _params.paramBases()) {
+void AbstractParamsGui::addControlsForParams(Params& params) {
+  for (auto param : params.paramBases()) {
     auto ctrl = createParamGuiControl(*param);
     if (ctrl) {
       ctrl->addToParent(&_root);
@@ -30,12 +30,7 @@ void ParamsGui::addControlsForParams() {
   }
 }
 
-void ParamsGui::addToParent(ofxControlWidget* parent) {
-  _root.setName(_params.getName());
+void AbstractParamsGui::addToParent(ofxControlWidget* parent) {
   parent->addWidget(&_root);
   build();
-}
-
-void ParamsGui::build() {
-  addControlsForParams();
 }
