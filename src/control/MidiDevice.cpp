@@ -9,17 +9,11 @@
 #include <algorithm>
 #include "MidiDevice.h"
 
-
-static ControlDeviceId nextId() {
-  static ControlDeviceId lastId = 0;
-  return ++lastId;
-}
-
 MidiDevice::MidiDevice(std::string name,
                        std::string inputPortName,
                        std::string outputPortName,
                        Params& params)
-: _id(nextId())
+: _id(nextDeviceId())
 , _name(name)
 , _inputPortName(inputPortName)
 , _outputPortName(outputPortName)

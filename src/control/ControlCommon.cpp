@@ -9,6 +9,11 @@
 #include <boost/functional/hash.hpp>
 #include "ControlCommon.h"
 
+ControlDeviceId nextDeviceId() {
+  static ControlDeviceId lastId = 0;
+  return ++lastId;
+}
+
 EnumTypeInfo<ControlDeviceType> ControlDeviceTypeType {
   {"midi", ControlDeviceType::MIDI},
   {"osc", ControlDeviceType::OSC},

@@ -32,6 +32,8 @@ using MidiChannel = int;
 
 const ControlDeviceId NO_CONTROL_DEVICE = -1;
 
+ControlDeviceId nextDeviceId();
+
 enum class MidiMessageType {
   CONTROL_CHANGE,
   NOTE_ON,
