@@ -27,6 +27,7 @@
 		2EC189C67EDCF96289216A47 /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F446206658787E98874D7BE /* RimHighlightingPass.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
+		321380F61D4310BC005B27F9 /* OscController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321380F41D4310BC005B27F9 /* OscController.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -244,6 +245,8 @@
 		315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AttractionBehavior.cpp; path = src/physics/AttractionBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
+		321380F41D4310BC005B27F9 /* OscController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscController.cpp; path = control/OscController.cpp; sourceTree = "<group>"; };
+		321380F51D4310BC005B27F9 /* OscController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OscController.h; path = control/OscController.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				C8A492AF1C4B575E8CE8BD6C /* MidiMapping.h */,
 				7CCDC852A1960FB9A51DF1B9 /* MidiRouter.cpp */,
 				0F6CC7B53C156FC973DBA2E5 /* MidiRouter.h */,
+				321380F41D4310BC005B27F9 /* OscController.cpp */,
+				321380F51D4310BC005B27F9 /* OscController.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -1645,6 +1650,7 @@
 				2C764E115EEBBDAF3D04B4F1 /* EdgePass.cpp in Sources */,
 				3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */,
 				B9EEB7E04A7A95BE29C7C543 /* FxaaPass.cpp in Sources */,
+				321380F61D4310BC005B27F9 /* OscController.cpp in Sources */,
 				1C4A992F17CCCCB30E0D6BEC /* GodRaysPass.cpp in Sources */,
 				4BC7B83CAC8C09629FEB6BCE /* HorizontalTiltShifPass.cpp in Sources */,
 				BC1D9F2A3CC0258742E5ABE8 /* HsbShiftPass.cpp in Sources */,

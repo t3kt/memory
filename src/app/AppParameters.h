@@ -24,6 +24,7 @@
 #include "Events.h"
 #include "MidiController.h"
 #include "InspectionController.h"
+#include "OscController.h"
 
 class DebugParams : public Params {
 public:
@@ -90,6 +91,9 @@ public:
     add(midi
         .setKey("midi")
         .setName("Midi"));
+    add(osc
+        .setKey("osc")
+        .setName("OSC"));
   }
 
   Clock::Params clock;
@@ -97,6 +101,7 @@ public:
   DebugParams debug;
   OutputParams output;
   MidiController::Params midi;
+  OscController::Params osc;
 };
 
 class MemoryAppParameters : public Params {

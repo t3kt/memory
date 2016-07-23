@@ -64,9 +64,13 @@ public:
   }
 
   void operator+=(VoidFunctor functor) {
+    addVoidListener(functor, 0);
+  }
+
+  void addVoidListener(VoidFunctor functor, void* owner) {
     this->addListener([functor](ArgType&) {
       functor();
-    }, 0);
+    }, owner);
   }
 
   bool operator()(ArgType& args) {
