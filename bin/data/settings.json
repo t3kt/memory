@@ -142,6 +142,15 @@
         "enabled": false
       }
     },
+    "osc": {
+      "enabled": true,
+      "inputEnabled": false,
+      "inputPort": 9999,
+      "outputEnabled": true,
+      "outputHost": "localhost",
+      "outputPort": 9000,
+      "paramPrefix": "/param/"
+    },
     "output": {
       "externalEnabled": true,
       "fullscreen": true

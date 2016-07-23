@@ -177,7 +177,7 @@ void OscController::handleOpen() {
     hello.setAddress("/hi");
     hello.addBoolArg(true);
     hello.addFloatArg(ofGetElapsedTimef());
-    _sender->sendMessage(hello);
+    _sender->sendMessage(hello, false);
   }
   loadBindings(_appParams, _params.paramPrefix.get());
 }
@@ -239,9 +239,8 @@ void OscController::update() {
 //  _outputBundle.clear();
   if (_receiver) {
     _receiving = true;
-    auto receiver = *_receiver;
     ofxOscMessage message;
-    while (receiver.getNextMessage(message)) {
+    while (_receiver->getNextMessage(message)) {
       handleMessage(message);
     }
     _receiving = false;
