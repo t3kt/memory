@@ -16,6 +16,7 @@
 #include "AppParameters.h"
 #include "Common.h"
 #include "MidiController.h"
+#include "OscController.h"
 #include "State.h"
 
 class EventLoggers;
@@ -44,6 +45,7 @@ private:
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
   std::shared_ptr<MidiController> _midi;
+  std::shared_ptr<OscController> _osc;
 };
 
 #endif /* ControlApp_h */

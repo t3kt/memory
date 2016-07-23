@@ -30,9 +30,9 @@ public:
       add(inputPort
           .setKey("inputPort")
           .setName("Input Port")
-          .setValueAndDefault(9001)
+          .setValueAndDefault(9999)
           .setRange(0, 65535));
-      add(inputEnabled
+      add(outputEnabled
           .setKey("outputEnabled")
           .setName("Output Enabled"));
       add(outputHost
@@ -68,14 +68,15 @@ private:
   void handleClose(bool updateParams);
   void loadBindings(::Params& params, const std::string& basePath);
   void handleMessage(const ofxOscMessage& message);
-  void queueOutputMessage(ofxOscMessage message);
+//  void queueOutputMessage(const ofxOscMessage& message);
+  void sendMessage(ofxOscMessage message);
 
   Params& _params;
   MemoryAppParameters& _appParams;
   std::shared_ptr<ofxOscSender> _sender;
   std::shared_ptr<ofxOscReceiver> _receiver;
   BindingMap _bindings;
-  ofxOscBundle _outputBundle;
+//  ofxOscBundle _outputBundle;
   bool _receiving;
 
   friend class AbstractOscBinding;

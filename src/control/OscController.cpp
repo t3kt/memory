@@ -21,8 +21,13 @@ public:
 
   virtual void handleMessage(const ofxOscMessage& message) = 0;
 protected:
-  inline void queueMessage(ofxOscMessage message) {
-    _controller.queueOutputMessage(message);
+//  inline void queueMessage(ofxOscMessage& message) {
+//    message.setRemoteEndpoint(_controller._params.outputHost.get(),
+//                              _controller._params.outputPort.get());
+//    _controller.queueOutputMessage(message);
+//  }
+  inline void sendMessage(const ofxOscMessage& message) {
+    _controller.sendMessage(message);
   }
 
   const std::string _path;
@@ -57,7 +62,7 @@ protected:
     ofxOscMessage message;
     message.setAddress(_path);
     setMessageValue(message, value);
-    queueMessage(message);
+    sendMessage(message);
   }
 
   T getMessageValue(const ofxOscMessage& message) const;
@@ -154,7 +159,7 @@ OscController::~OscController() {
 void OscController::handleOpen() {
   handleClose(false);
   if (!_params.enabled.get()) {
-    _params.enabled.set(false);
+    return;
   }
   if (_params.inputEnabled.get()) {
     _receiver = std::make_shared<ofxOscReceiver>();
@@ -167,6 +172,12 @@ void OscController::handleOpen() {
     }
     _sender = std::make_shared<ofxOscSender>();
     _sender->setup(host, _params.outputPort.get());
+
+    ofxOscMessage hello;
+    hello.setAddress("/hi");
+    hello.addBoolArg(true);
+    hello.addFloatArg(ofGetElapsedTimef());
+    _sender->sendMessage(hello);
   }
   loadBindings(_appParams, _params.paramPrefix.get());
 }
@@ -201,18 +212,31 @@ void OscController::loadBindings(::Params &params,
   }
 }
 
-void OscController::queueOutputMessage(ofxOscMessage message) {
+//void OscController::queueOutputMessage(const ofxOscMessage& message) {
+//  if (_receiving) {
+//    return;
+//  }
+//  _outputBundle.addMessage(message);
+//}
+
+void OscController::sendMessage(ofxOscMessage message) {
   if (_receiving) {
     return;
   }
-  _outputBundle.addMessage(message);
+  if (!_sender) {
+    ofLogWarning() << "Unable to send osc message " << message.getAddress() << ", sender not initialized";
+    return;
+  }
+  message.setRemoteEndpoint(_params.outputHost.get(),
+                            _params.outputPort.get());
+  _sender->sendMessage(message, false);
 }
 
 void OscController::update() {
-  if (_sender && _outputBundle.getMessageCount() > 0) {
-    _sender->sendBundle(_outputBundle);
-  }
-  _outputBundle.clear();
+//  if (_sender && _outputBundle.getMessageCount() > 0) {
+//    _sender->sendBundle(_outputBundle);
+//  }
+//  _outputBundle.clear();
   if (_receiver) {
     _receiving = true;
     auto receiver = *_receiver;
