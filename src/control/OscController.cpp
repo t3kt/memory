@@ -11,8 +11,126 @@
 
 class AbstractOscBinding {
 public:
+  AbstractOscBinding(std::string path, OscController& controller)
+  : _path(path)
+  , _controller(controller) { }
+
+  virtual ~AbstractOscBinding() {}
+
+  const std::string& path() const { return _path; }
+
+  virtual void handleMessage(const ofxOscMessage& message) = 0;
 protected:
+  inline void queueMessage(ofxOscMessage message) {
+    _controller.queueOutputMessage(message);
+  }
+
+  const std::string _path;
+  OscController& _controller;
 };
+
+template<typename T>
+class OscBinding
+: public AbstractOscBinding {
+public:
+  OscBinding(TParam<T>& param,
+             std::string path,
+             OscController& controller)
+  : AbstractOscBinding(path, controller)
+  , _param(param) {
+    _param.changed.addListener([this](T& value) {
+      onParamChanged(value);
+    }, this);
+  }
+
+  ~OscBinding() override {
+    _param.changed.removeListeners(this);
+  }
+
+  void handleMessage(const ofxOscMessage& message) override {
+    auto value = getMessageValue(message);
+    _param.set(value);
+  }
+
+protected:
+  void onParamChanged(T& value) {
+    ofxOscMessage message;
+    message.setAddress(_path);
+    setMessageValue(message, value);
+    queueMessage(message);
+  }
+
+  T getMessageValue(const ofxOscMessage& message) const;
+  void setMessageValue(ofxOscMessage& message, const T& value) const;
+
+  TParam<T>& _param;
+};
+
+template<>
+float OscBinding<float>::getMessageValue(const ofxOscMessage &message) const {
+  return message.getArgAsFloat(0);
+}
+
+template<>
+int OscBinding<int>::getMessageValue(const ofxOscMessage &message) const {
+  return message.getArgAsInt(0);
+}
+
+template<>
+bool OscBinding<bool>::getMessageValue(const ofxOscMessage &message) const {
+  return message.getArgAsBool(0);
+}
+
+template<>
+void OscBinding<float>::setMessageValue(ofxOscMessage &message,
+                                        const float &value) const {
+  message.addFloatArg(value);
+}
+
+template<>
+void OscBinding<int>::setMessageValue(ofxOscMessage &message,
+                                      const int &value) const {
+  message.addIntArg(value);
+}
+
+template<>
+void OscBinding<bool>::setMessageValue(ofxOscMessage &message,
+                                       const bool &value) const {
+  message.addBoolArg(value);
+}
+
+template<typename T>
+static std::shared_ptr<AbstractOscBinding>
+createTypedBinding(TParamBase& param,
+                   const std::string& path,
+                   OscController& controller) {
+  TParam<T>& typedParam = dynamic_cast<TParam<T>&>(param);
+  auto binding = new OscBinding<T>(typedParam,
+                                   path,
+                                   controller);
+  return std::shared_ptr<AbstractOscBinding>(binding);
+}
+
+static std::shared_ptr<AbstractOscBinding>
+createBinding(TParamBase& param,
+              const std::string& basePath,
+              OscController& controller) {
+  auto path = basePath + param.getKey();
+  if (param.isGroup()) {
+    throw std::invalid_argument("Cannot bind to group " + path);
+  }
+  const auto& type = param.getTypeInfo();
+  if (type == typeid(float)) {
+    return createTypedBinding<float>(param, path, controller);
+  } else if (type == typeid(int)) {
+    return createTypedBinding<int>(param, path, controller);
+  } else if (type == typeid(bool)) {
+    return createTypedBinding<bool>(param, path, controller);
+  } else {
+    throw std::invalid_argument("Cannot bind to param " + path
+                                + " of type " + type.name());
+  }
+}
 
 OscController::OscController(MemoryAppParameters& appParams)
 : _params(appParams.core.osc)
@@ -50,17 +168,40 @@ void OscController::handleOpen() {
     _sender = std::make_shared<ofxOscSender>();
     _sender->setup(host, _params.outputPort.get());
   }
+  loadBindings(_appParams, _params.paramPrefix.get());
 }
 
 void OscController::handleClose(bool updateParams) {
   _sender.reset();
   _receiver.reset();
+  _bindings.clear();
   if (updateParams) {
     _params.enabled.setWithoutEventNotifications(false);
   }
 }
 
-void OscController::queueOutputMessage(const ofxOscMessage &message) {
+void OscController::loadBindings(::Params &params,
+                                 const std::string& basePath) {
+  for (auto param : params.getParamBases()) {
+    if (param->isGroup()) {
+      std::string subBasePath = basePath + param->getKey() + '/';
+      loadBindings(dynamic_cast<::Params&>(*param), subBasePath);
+    } else {
+      std::shared_ptr<AbstractOscBinding> binding;
+      try {
+        binding = createBinding(*param,
+                                basePath,
+                                *this);
+      } catch (std::invalid_argument ex) {
+        ofLogWarning() << "Unable to create binding: " << ex.what();
+        continue;
+      }
+      _bindings[binding->path()] = binding;
+    }
+  }
+}
+
+void OscController::queueOutputMessage(ofxOscMessage message) {
   if (_receiving) {
     return;
   }
@@ -81,4 +222,12 @@ void OscController::update() {
     }
     _receiving = false;
   }
+}
+
+void OscController::handleMessage(const ofxOscMessage &message) {
+  auto iter = _bindings.find(message.getAddress());
+  if (iter == _bindings.end()) {
+    return;
+  }
+  iter->second->handleMessage(message);
 }

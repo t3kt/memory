@@ -66,9 +66,9 @@ public:
 private:
   void handleOpen();
   void handleClose(bool updateParams);
-  void loadBindings(Params& params);
+  void loadBindings(::Params& params, const std::string& basePath);
   void handleMessage(const ofxOscMessage& message);
-  void queueOutputMessage(const ofxOscMessage& message);
+  void queueOutputMessage(ofxOscMessage message);
 
   Params& _params;
   MemoryAppParameters& _appParams;
@@ -77,6 +77,8 @@ private:
   BindingMap _bindings;
   ofxOscBundle _outputBundle;
   bool _receiving;
+
+  friend class AbstractOscBinding;
 };
 
 #endif /* OscController_h */

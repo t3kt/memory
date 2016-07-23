@@ -246,6 +246,8 @@ public:
   TParamBase* findKey(const std::string& key);
 
   TParamBase* lookupPath(const std::string& path);
+
+  std::vector<TParamBase*>& getParamBases() { return _paramBases; }
 private:
   std::string _key;
   std::vector<TParamBase*> _paramBases;
