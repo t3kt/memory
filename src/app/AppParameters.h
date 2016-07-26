@@ -24,6 +24,7 @@
 #include "Events.h"
 #include "MidiController.h"
 #include "InspectionController.h"
+#include "Logging.h"
 
 class DebugParams : public Params {
 public:
@@ -47,6 +48,9 @@ public:
     add(inspect
         .setKey("inspect")
         .setName("Inspect"));
+    add(logging
+        .setKey("logging")
+        .setName("Logging"));
   }
 
   TParam<bool> loggingEnabled;
@@ -54,6 +58,7 @@ public:
   TParam<bool> showStatus;
   TParam<bool> showPhysics;
   InspectionController::Params inspect;
+  LoggingController::Params logging;
 };
 
 class OutputParams : public Params {

@@ -31,6 +31,8 @@ protected:
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);
 
+std::string ofToString(const Outputable& obj);
+
 template<typename T>
 class EnumTypeInfo {
 public:

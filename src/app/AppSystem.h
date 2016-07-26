@@ -17,6 +17,7 @@
 #include "Context.h"
 #include "Events.h"
 #include "State.h"
+#include "Logging.h"
 
 class SimulationApp;
 class ControlApp;
@@ -27,7 +28,8 @@ public:
   static AppSystem& get();
 
   AppSystem()
-  : _context(_appParams) {}
+  : _context(_appParams)
+  , _log(_appParams.core.debug.logging) { }
 
   void main();
 
@@ -51,6 +53,8 @@ public:
   Context& context() { return _context; }
   const Context& context() const { return _context; }
 
+  LoggingController& log() { return _log; }
+
   bool performAction(AppAction action);
 
   bool handleKeyPressed(ofKeyEventArgs& event);
@@ -66,6 +70,7 @@ private:
   std::shared_ptr<ofAppGLFWWindow> _controlWindow;
   std::shared_ptr<SimulationApp> _simulationApp;
   std::shared_ptr<ControlApp> _controlApp;
+  LoggingController _log;
 };
 
 #endif /* AppSystem_h */

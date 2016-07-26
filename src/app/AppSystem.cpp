@@ -85,7 +85,7 @@ bool AppSystem::performAction(AppAction action) {
   auto args = AppActionEventArgs(action);
   bool handled = appActionTriggered.notifyListenersUntilHandled(args);
   if (!handled) {
-    ofLogWarning() << "App action not handled: " << AppActionType.toString(action);
+    _log.app().logWarning("App action not handled: " + AppActionType.toString(action));
   }
   return handled;
 }
