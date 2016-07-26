@@ -194,6 +194,9 @@ void OscController::handleClose(bool updateParams) {
 void OscController::loadBindings(::Params &params,
                                  const std::string& basePath) {
   for (auto param : params.getParamBases()) {
+    if (!param->supportsOsc()) {
+      continue;
+    }
     if (param->isGroup()) {
       std::string subBasePath = basePath + param->getKey() + '/';
       loadBindings(dynamic_cast<::Params&>(*param), subBasePath);
