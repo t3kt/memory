@@ -1,4 +1,10 @@
+ofxAssimpModelLoader
+ofxChoreograph
 ofxGui
+ofxGuiExtended
 ofxLiquidEvent
-ofxLoggerChannel
+ofxMidi
+ofxPostProcessing
+ofxSyphon
+ofxTextAlign
 ofxXmlSettings

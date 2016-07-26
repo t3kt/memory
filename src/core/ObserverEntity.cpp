@@ -11,45 +11,21 @@
 #include "State.h"
 #include <ofMain.h>
 
-ObserverEntity::Params::Params()
-: ::ParticleObject::Params("Observers")
-, lifetime("Lifetime Range") {
-  add(lifetime);
-  lifetime.set(1, 4);
-  lifetime.setParamRange(0, 240);
-  add(color.set("Color", ofFloatColor::fromHsb(0.25, 0.5, 0.7, 1.0)));
-  add(drawRadius.set("Draw Radius", 0.03, 0, 0.1));
-}
-
-ObserverOccurrenceAttraction::Params::Params()
-: ::Params("Occurrence Attraction")
-, distanceBounds("Distance Bounds")
-, forceRange("Force Range") {
-  add(distanceBounds.set(0.04, 0.3).setParamRange(0, 1));
-  add(forceRange.set(0, 0.002).setParamRange(-0.04, 0.04));
-}
-
-void ObserverEntity::Params::initPanel(ofxGuiGroup &panel) {
-//  panel.getGroup("Spawn Area").minimize();
-//  panel.getGroup("Color").minimize();
-}
-
-shared_ptr<ObserverEntity> ObserverEntity::spawn(const ObserverEntity::Params &params, const Bounds& bounds, const State& state) {
-  ofVec3f pos = bounds.randomPoint();
-  float life = params.lifetime.getValue();
-  return shared_ptr<ObserverEntity>(new ObserverEntity(pos, life, params, state));
-}
-
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const ObserverEntity::Params& params, const State& state)
-: ParticleObject(pos, params)
-, _startTime(state.time)
+ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
+: ParticleObject(pos)
 , _totalLifetime(life)
-, _params(params)
-{
+, _lifeFraction(1)
+, _startTime(state.time) {
 }
 
-void ObserverEntity::addOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
-  _connectedOccurrences.push_back(occurrence);
+void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
+  for (auto& other : occurrence->connectedObservers()) {
+    if (other.first == id) {
+      continue;
+    }
+    addObserver(other.second);
+  }
+  _connectedOccurrences.add(occurrence);
 }
 
 void ObserverEntity::update(const State &state) {
@@ -59,36 +35,22 @@ void ObserverEntity::update(const State &state) {
     kill();
   } else {
     _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
-    _behaviors.update(*this, state);
-    ParticleObject::update(state);
   }
 }
 
-void ObserverEntity::handleDeath() {
-  ofLogNotice() << "Observer died: " << *this;
-  for (auto occurrence : _connectedOccurrences) {
-    occurrence->removeObserver(id);
+void ObserverEntity::detachConnections() {
+  for (auto& occurrence : _connectedOccurrences) {
+    occurrence.second->removeObserver(id);
   }
-}
-
-void ObserverEntity::draw(const State &state) {
-  float alpha = _lifeFraction;
-  if (alpha <= 0) {
-    return;
+  for (auto& observer : _connectedObservers) {
+    observer.second->removeObserver(id);
   }
-  ofFloatColor color = _params.color.get();
-  color.a *= alpha;
-  
-  ofPushStyle();
-  ofFill();
-  ofSetColor(color);
-  ofDrawSphere(_position, _params.drawRadius.get());
-  ofPopStyle();
 }
 
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
-  os << ", startTime: " << _startTime
-      << ", totalLifetime: " << _totalLifetime
-      << ", lifeFraction: " << _lifeFraction;
+  os << ", totalLifetime: " << _totalLifetime
+      << ", lifeFraction: " << _lifeFraction
+      << ", connectedOccurrences: " << _connectedOccurrences.size()
+      << ", connectedObservers: " << _connectedObservers.size();
 }

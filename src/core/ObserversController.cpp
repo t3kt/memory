@@ -7,70 +7,118 @@
 //
 
 #include <ofLog.h>
+#include "AppSystem.h"
 #include "ObserversController.h"
+#include "SimulationApp.h"
 
-const int START_OBSERVERS = 20;
+class IntervalObserverSpawner
+: public IntervalSpawner {
+public:
+  IntervalObserverSpawner(ObserversController& controller)
+  : IntervalSpawner(controller._params.spawner)
+  , _controller(controller) { }
+protected:
+  void spawnEntities(Context& context) override {
+    _controller.spawnRandomObserver();
+  }
 
-ObserversController::Params::Params()
-: ::Params("Observers")
-, spawnInterval("Spawning")
-, initialVelocity("Initial Velocity") {
-  add(entities);
-  add(spawnInterval);
-  add(initialVelocity
-      .set(0, 0.01)
-      .setParamRange(0, 0.1));
-  add(occurrenceAttraction);
-}
+  ObserversController& _controller;
+};
 
-void ObserversController::Params::initPanel(ofxGuiGroup &panel) {
-  entities.initPanel(panel);
-  spawnInterval.initPanel(panel);
-}
+class RateObserverSpawner
+: public RateSpawner {
+public:
+  RateObserverSpawner(ObserversController& controller)
+  : RateSpawner(controller._params.rateSpawner)
+  , _controller(controller) { }
+protected:
+  void spawnEntities(Context& context, int count) override {
+    for (int i = 0; i < count; ++i) {
+      _controller.spawnRandomObserver();
+    }
+  }
 
-ObserversController::ObserversController(const ObserversController::Params& params, const Bounds& bounds, const State& state)
+  ObserversController& _controller;
+};
+
+ObserversController::ObserversController(const ObserversController::Params& params,
+                                         const Bounds& bounds,
+                                         Context& context,
+                                         SimulationEvents& events)
 : _params(params)
 , _bounds(bounds)
-, _spawnInterval(params.spawnInterval, state) {
+, _events(events)
+, _observers(context.observers)
+, _context(context) {
 }
 
-void ObserversController::setup(const State &state) {
-  _reboundBehavior = std::make_shared<ReboundBehavior<ObserverEntity>>(_bounds);
-  _reboundBehavior->entityRebounded += [&](ObserverEventArgs e) {
-    observerRebounded.notifyListeners(e);
-    ofLogNotice() << "Observer rebounded: " << e.entity();
-  };
-  _occurrenceAttraction = std::make_shared<ObserverOccurrenceAttraction>(_params.occurrenceAttraction);
-  for (int i = 0; i < START_OBSERVERS; i++) {
-    spawnObserver(state);
+void ObserversController::setup(const ColorTheme& colors) {
+  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
+//  _instancedObserverRenderer =
+//  std::make_shared<InstancedObserverRenderer>(_params.instancedRenderer,
+//                                              colors,
+//                                              _context);
+//  _instancedObserverRenderer->setup();
+  _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
+  _spawner = std::make_shared<IntervalObserverSpawner>(*this);
+  _rateSpawner = std::make_shared<RateObserverSpawner>(*this);
+
+  registerAsActionHandler();
+}
+
+bool ObserversController::performAction(AppAction action) {
+  const auto& state = AppSystem::get().simulation()->state();
+  switch (action) {
+    case AppAction::SPAWN_FEW_OBSERVERS:
+      spawnObservers(5);
+      break;
+    case AppAction::SPAWN_MANY_OBSERVERS:
+      spawnObservers(100);
+      break;
+    case AppAction::KILL_FEW_OBSERVERS:
+      killObservers(5);
+      break;
+    case AppAction::KILL_MANY_OBSERVERS:
+      killObservers(100);
+      break;
+    default:
+      return false;
   }
+  return true;
 }
 
-void ObserversController::update(const State &state) {
-  _observers.performAction([&](shared_ptr<ObserverEntity> observer) {
-    observer->resetForce();
-    observer->addDampingForce();
-    observer->update(state);
+void ObserversController::update() {
+  _observers.performAction([&](std::shared_ptr<ObserverEntity> observer) {
+    observer->update(_context.state);
   });
 
-  _observers.cullDeadObjects([&](shared_ptr<ObserverEntity> observer) {
-    ObserverEventArgs e(state, *observer);
-    observerDied.notifyListeners(e);
+  _observers.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
+    observer->detachConnections();
+    ObserverEventArgs e(*observer);
+    _events.observerDied.notifyListeners(e);
   });
-  
-  if (_spawnInterval.check(state)) {
-    spawnObserver(state);
-  }
+
+  _spawner->update(_context);
+  _rateSpawner->update(_context);
+  _context.state.observerCount = _observers.size();
+
+  _observerRenderer->update(_context.state);
+//  _instancedObserverRenderer->update();
+  _thresholdRenderer->update();
 }
 
-void ObserversController::draw(const State &state) {
-  _observers.draw(state);
+void ObserversController::draw() {
+  _observerRenderer->draw(_context.state);
+//  _instancedObserverRenderer->draw();
+  _observerConnectorRenderer->draw(_context.state);
+  _thresholdRenderer->draw();
 }
 
-bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurrence) {
+bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   bool connected = false;
   
-  _observers.performAction([&] (shared_ptr<ObserverEntity> observer) {
+  _observers.performAction([&] (std::shared_ptr<ObserverEntity> observer) {
     float dist = occurrence->position().distance(observer->position());
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);
@@ -82,13 +130,31 @@ bool ObserversController::registerOccurrence(shared_ptr<OccurrenceEntity> occurr
   return connected;
 }
 
-void ObserversController::spawnObserver(const State &state) {
-  auto observer = ObserverEntity::spawn(_params.entities, _bounds, state);
+void ObserversController::spawnRandomObserver() {
+  ofVec3f pos = _bounds.randomPoint();
+  float life = _params.lifetime.getValue();
+  auto observer = std::make_shared<ObserverEntity>(pos,
+                                                   life,
+                                                   _context.state);
   observer->setVelocity(_params.initialVelocity.getValue());
-  observer->addBehavior(_reboundBehavior);
-  observer->addBehavior(_occurrenceAttraction);
   _observers.add(observer);
-  ObserverEventArgs e(state, *observer);
-  observerSpawned.notifyListeners(e);
-  ofLogNotice() << "Spawned observer: " << *observer;
+  ObserverEventArgs e(*observer);
+  _events.observerSpawned.notifyListeners(e);
+}
+
+void ObserversController::spawnObservers(int count) {
+  for (int i = 0; i < count; ++i) {
+    spawnRandomObserver();
+  }
+}
+
+void ObserversController::killObservers(int count) {
+  int i = 0;
+  for (auto& observer : _observers) {
+    if (i >= count) {
+      return;
+    }
+    observer->kill();
+    i++;
+  }
 }

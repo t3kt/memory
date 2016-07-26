@@ -9,57 +9,105 @@
 #ifndef OccurrencesController_h
 #define OccurrencesController_h
 
+#include "AppActions.h"
+#include "ConnectorRenderer.h"
 #include "OccurrenceEntity.h"
+#include "OccurrenceRenderer.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
 #include "State.h"
 #include "Params.h"
-#include "Interval.h"
 #include "Events.h"
 #include "Bounds.h"
-#include "Behavior.h"
+#include "Colors.h"
+#include "Context.h"
+#include "EntityRenderer.h"
+#include "SimulationEvents.h"
+#include "Spawner.h"
 
-using OccurrenceEventArgs = EntityEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = ofxLiquidEvent<OccurrenceEventArgs>;
+class IntervalOccurrenceSpawner;
+class RateOccurrenceSpawner;
 
-class OccurrencesController {
+class OccurrencesController
+: public AppActionHandler {
 public:
   class Params : public ::Params {
   public:
-    Params();
-    
-    void initPanel(ofxGuiGroup& panel) override;
-    
-    OccurrenceEntity::Params entities;
-    Interval::Params spawnInterval;
+    Params() {
+      add(radius
+          .setKey("radius")
+          .setName("Radius Range")
+          .setParamValuesAndDefaults(0, 80)
+          .setParamRanges(0, 400));
+      add(spawner
+          .setKey("spawner")
+          .setName("Inteval Spawner"));
+      add(rateSpawner
+          .setRateRange(0, 5)
+          .setRateValueAndDefault(0.5)
+          .setKey("rateSpawner")
+          .setName("Rate Spawner"));
+      add(initialVelocity
+          .setKey("initialVelocity")
+          .setName("Initial Velocity")
+          .setParamValuesAndDefaults(0, 2)
+          .setParamRanges(0, 20));
+      add(renderer
+          .setKey("renderer")
+          .setName("Renderer"));
+      add(connectorRenderer
+          .setKey("connectorRenderer")
+          .setName("Connector Renderer"));
+      add(occurrenceConnectorRenderer
+          .setKey("occurrenceConnectorRenderer")
+          .setName("Occurrence Connector Renderer"));
+    }
+
+    RandomValueSupplier<float> radius;
+    IntervalSpawner::Params spawner;
+    RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
-    OccurrenceObserverAttraction::Params observerAttraction;
+    OccurrenceRenderer::Params renderer;
+    ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
+    OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
   };
   
-  OccurrencesController(const Params& params, const Bounds& bounds, ObserversController& observers, const State& state);
+  OccurrencesController(const Params& params,
+                        const Bounds& bounds,
+                        ObserversController& observers,
+                        Context& context,
+                        SimulationEvents& events);
   
-  void setup(const State& state);
-  void update(const State& state);
-  void draw(const State& state);
+  void setup(const ColorTheme& colors);
+  void update();
+  void draw();
 
-  std::size_t count() const {
-    return _occurrences.size();
+  void spawnOccurrences(int count);
+
+  ObjectManager<OccurrenceEntity>& entities() { return _occurrences; }
+  const ObjectManager<OccurrenceEntity>& entities() const {
+    return _occurrences;
   }
-  
-  OccurrenceEvent occurrenceSpawned;
-  OccurrenceEvent occurrenceSpawnFailed;
-  OccurrenceEvent occurrenceDied;
+
+  bool performAction(AppAction action) override;
   
 private:
-  void spawnOccurrence(const State& state);
+  void spawnRandomOccurrence();
   
   const Params& _params;
+  Context& _context;
   const Bounds& _bounds;
-  Interval _spawnInterval;
+  SimulationEvents& _events;
   ObserversController& _observers;
-  ObjectManager<OccurrenceEntity> _occurrences;
-  shared_ptr<ReboundBehavior<OccurrenceEntity>> _reboundBehavior;
-  shared_ptr<OccurrenceObserverAttraction> _observerAttraction;
+  ObjectManager<OccurrenceEntity>& _occurrences;
+  std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
+  std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
+  std::shared_ptr<OccurrenceRenderer> _renderer;
+  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
+  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
+
+  friend class IntervalOccurrenceSpawner;
+  friend class RateOccurrenceSpawner;
 };
 
 #endif /* OccurrencesController_h */

@@ -9,91 +9,142 @@
 #ifndef ObjectManager_h
 #define ObjectManager_h
 
+#include <functional>
+#include <iterator>
+#include <list>
 #include <map>
 #include <memory>
-#include <vector>
-#include <functional>
-#include "WorldObject.h"
-#include "State.h"
+#include <ofMath.h>
+#include "Common.h"
 #include "Events.h"
+#include "State.h"
+#include "WorldObject.h"
 
-template <class T>
-class ObjectManager {
+template<typename T, typename Storage>
+class AbstractObjectView {
 public:
-  using StorageType = std::map<ObjectId, std::shared_ptr<T>>;
-  
-  void update(const State& state) {
-    for (auto entry : _objects) {
-      entry.second->update(state);
+  using iterator = typename Storage::iterator;
+  using const_iterator = typename Storage::const_iterator;
+  using EntityPtr = std::shared_ptr<T>;
+
+  AbstractObjectView(Storage objects)
+  : _objects(objects) { }
+
+  void performAction(std::function<void(EntityPtr)> action) {
+    for (auto& entity : _objects) {
+      action(entity);
     }
   }
-  
-  std::vector<std::shared_ptr<T>> extractDeadObjects() {
-    std::vector<std::shared_ptr<T>> deadObjects;
-    cullDeadObjects([&](std::shared_ptr<T> entity) {
-      deadObjects.push_back(entity);
-    });
-    return deadObjects;
+
+  template<typename Base>
+  void performTypedAction(std::function<void(Base*)> action) {
+    for (auto& entity : _objects) {
+      action(entity.get());
+    }
   }
-  
-  void cullDeadObjects(std::function<void(shared_ptr<T>)> callback) {
-    for (auto i = std::begin(_objects);
-         i != std::end(_objects);) {
-      shared_ptr<T>& object = i->second;
+
+  template<typename Base>
+  void performTypedAction(std::function<void(const Base*)> action) const {
+    for (const auto& entity : _objects) {
+      action(entity.get());
+    }
+  }
+
+  std::size_t size() const {
+    return _objects.size();
+  }
+
+  bool empty() const {
+    return _objects.empty();
+  }
+
+  iterator begin() {
+    return _objects.begin();
+  }
+
+  iterator end() {
+    return _objects.end();
+  }
+
+  const_iterator begin() const {
+    return _objects.cbegin();
+  }
+
+  const_iterator end() const {
+    return _objects.cend();
+  }
+
+  EntityPtr getAtIndex(std::size_t index) {
+    if (index >= size()) {
+      return EntityPtr();
+    }
+    auto iter = std::next(begin(), index);
+    if (iter != end()) {
+      return *iter;
+    }
+    return EntityPtr();
+  }
+
+protected:
+  Storage _objects;
+};
+
+template <typename T>
+class ObjectManager
+: public AbstractObjectView<T, std::list<std::shared_ptr<T>>>
+, public NonCopyable {
+public:
+  using Manager = ObjectManager<T>;
+  using StorageList = std::list<std::shared_ptr<T>>;
+  using BaseView = AbstractObjectView<T, StorageList>;
+
+  class View
+  : public AbstractObjectView<T, Manager&>
+  , public NonCopyable {
+  public:
+    using BaseView = AbstractObjectView<T, Manager&>;
+
+    View(Manager& manager) : BaseView(manager) { }
+  };
+
+  ObjectManager()
+  : BaseView(StorageList()) { }
+
+  void cullDeadObjects(std::function<void(std::shared_ptr<T>)> callback) {
+    for (auto i = this->begin();
+         i != this->end();) {
+      auto& object = *i;
       if (object->alive()) {
         i++;
       } else {
         callback(object);
-        i = _objects.erase(i);
+        i = this->_objects.erase(i);
       }
     }
   }
   
-  void draw(const State& state) {
-    for (auto entry : _objects) {
-      if (entry.second->visible()) {
-        entry.second->draw(state);
-      }
-    }
-  }
-  
-  void add(shared_ptr<T> object) {
-    _objects.insert(std::make_pair(object->id, object));
+  void add(std::shared_ptr<T> object) {
+    this->_objects.push_back(object);
   }
 
-  template<typename ...Args>
-  void add(shared_ptr<T> object, Args&... others) {
-    add(object);
-    add(others...);
-  }
-  
-  bool eraseById(ObjectId id) {
-    auto i = _objects.find(id);
-    if (i == std::end(_objects)) {
-      return false;
-    } else {
-      i->second.reset();
-      _objects.erase(i);
-      return true;
+  View& view() {
+    if (!_view) {
+      _view = std::make_shared<View>(*this);
     }
+    return *_view;
   }
-  
-  void performAction(std::function<void(shared_ptr<T>)> action) {
-    for (auto entry : _objects) {
-      action(entry.second);
-    }
-  }
-  
-  std::size_t size() const {
-    return _objects.size();
-  }
-  
-  bool isEmpty() const {
-    return _objects.empty();
-  }
-  
+
 private:
-  StorageType _objects;
+  std::shared_ptr<View> _view;
 };
+
+template<typename E>
+std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
+  if (entities.empty()) {
+    return std::shared_ptr<E>();
+  }
+  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
+  return entities.getAtIndex(index);
+}
 
 #endif /* ObjectManager_h */

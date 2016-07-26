@@ -8,23 +8,11 @@
 
 #include "ParticleObject.h"
 
-ParticleObject::Params::Params(std::string name)
-: ::Params(name) {
-  add(damping.set("Damping", 0.01, 0, 0.2));
-}
-
-ParticleObject::ParticleObject(ofVec3f pos, const ParticleObject::Params& params)
-: StandardWorldObject()
+ParticleObject::ParticleObject(ofVec3f pos)
+: _position(pos)
 , _velocity(0)
 , _force(0)
-, _params(params) {
-  _position = pos;
-}
-
-void ParticleObject::setInitialCondition(ofVec3f pos, ofVec3f vel) {
-  _position = pos;
-  _velocity = vel;
-}
+, _startPosition(pos) { }
 
 void ParticleObject::resetForce() {
   _force.set(0);
@@ -34,35 +22,18 @@ void ParticleObject::addForce(ofVec3f force) {
   _force += force;
 }
 
-void ParticleObject::addDampingForce() {
-  addForce(_velocity * -_params.damping.get());
-}
-
-void ParticleObject::update(const State &state) {
-  _velocity += _force;
-  _position += _velocity;
-}
-
-void ParticleObject::outputFields(std::ostream &os) const {
-  StandardWorldObject::outputFields(os);
-  os << ", velocity: " << _velocity
-      << ", force: " << _force;
-}
-
-static bool reboundVelocity(float *vel, float pos, float minPos, float maxPos) {
-  float newPos = pos + *vel;
-  if (newPos < minPos || newPos >= maxPos) {
-    *vel *= -1;
-    return true;
-  } else {
-    return false;
+void ParticleObject::updateVelocityAndPosition(const State &state,
+                                               float speed) {
+  if (state.timeDelta > 0) {
+    _velocity += _force * state.timeDelta;
+    _position += _velocity * speed * state.timeDelta;
   }
 }
 
-AbstractReboundBehavior::AbstractReboundBehavior(const Bounds& bounds)
-: _bounds(bounds) { }
-
-bool AbstractReboundBehavior::updateEntity(ParticleObject &entity, const State &state) {
-  return _bounds.reflect(&entity._velocity, &entity._position);
+void ParticleObject::outputFields(std::ostream &os) const {
+  WorldObject::outputFields(os);
+  os << ", position: " << _position
+      << ", velocity: " << _velocity
+      << ", force: " << _force;
 }
 

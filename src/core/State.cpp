@@ -8,22 +8,23 @@
 
 #include "State.h"
 
-#include <ofMain.h>
-
-State::State()
-: time(ofGetElapsedTimef())
-, timeDelta(0) {
-  
-}
-
-void State::updateTime() {
-  auto t = ofGetElapsedTimef();
-  timeDelta = t - time;
-  time = t;
-}
-
-void State::output(std::ostream &os) const {
-  os << "State{time: " << time
+void State::outputFields(std::ostream &os) const {
+  os << "time: " << time
       << ", timeDelta: " << timeDelta
-      << "}";
+      << ", running: " << running
+      << ", observerCount: " << observerCount
+      << ", occurrenceCount: " << occurrenceCount
+      << ", animationCount: " << animationCount;
+}
+
+void ChangeFlag::outputFields(std::ostream &os) const {
+  os << _name << "=" << std::boolalpha << _status;
+}
+
+void ChangeFlags::outputFields(std::ostream& os) const {
+  os << boundsChanged;
+}
+
+void ChangeFlags::clear() {
+  boundsChanged.reset();
 }

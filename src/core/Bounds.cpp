@@ -8,15 +8,6 @@
 
 #include "Bounds.h"
 
-Bounds::Bounds(std::string name)
-: Params(name) {
-}
-
-SimpleCubeBounds::SimpleCubeBounds(std::string name)
-: Bounds(name) {
-  add(size.set("Size", 2, 0, 6));
-}
-
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   float newPos = *pos + *vel;
   if (newPos < minPos || newPos >= maxPos) {
@@ -28,8 +19,8 @@ static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   }
 }
 
-bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
-  float bound = size.get() / 2;
+bool Bounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
+  float bound = size() / 2;
   bool changed = false;
   changed |= reflectVal(&velocity->x, &position->x, -bound, bound);
   changed |= reflectVal(&velocity->y, &position->y, -bound, bound);
@@ -37,8 +28,8 @@ bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
   return changed;
 }
 
-ofVec3f SimpleCubeBounds::randomPoint() const {
-  float bound = size.get() / 2;
+ofVec3f Bounds::randomPoint() const {
+  float bound = size() / 2;
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),
                  ofRandom(-bound, bound));

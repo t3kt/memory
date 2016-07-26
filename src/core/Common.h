@@ -9,15 +9,13 @@
 #ifndef __behavior__Common__
 #define __behavior__Common__
 
-#include <ofVec3f.h>
-#include <ofLog.h>
 #include <iostream>
+#include <map>
+#include <stdexcept>
 
-ofVec3f createSignedNoiseVec3f(const ofVec3f& position);
-ofVec3f createRandomVec3f(const ofVec3f& mins,
-                          const ofVec3f& maxs);
-ofVec3f createRandomVec3f(float max);
-ofVec3f wrapVec(ofVec3f vec, float min, float max);
+#ifdef TARGET_OSX
+#define ENABLE_SYPHON
+#endif
 
 template<typename T>
 T getInterpolated(const T& a, const T& b, float amount);
@@ -25,44 +23,75 @@ T getInterpolated(const T& a, const T& b, float amount);
 class Outputable {
 public:
   virtual ~Outputable() {}
-  virtual void output(std::ostream& os) const = 0;
+  void output(std::ostream& os) const;
+protected:
+  virtual std::string typeName() const = 0;
+  virtual void outputFields(std::ostream& os) const { }
 };
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);
 
-//class HostedLog {
-//public:
-//  HostedLog(std::string mod, ofLogLevel lvl) {
-//    _module = mod;
-//    level = lvl;
-//  }
-//private:
-//  std::string _module;
-//  friend class LogHost;
-//};
-//
-//class LogHost {
-//public:
-//  void setLogLevel(ofLogLevel level) {
-//    ofSetLogLevel(getLogModule(), level);
-//  }
-//protected:
-//  LogHost(std::string module)
-//  : _logNotice(module, OF_LOG_NOTICE)
-//  , _logVerbose(module, OF_LOG_VERBOSE)
-//  , _logWarning(module, OF_LOG_WARNING) { }
-//
-//  ofLog& logNotice() { return _logNotice; }
-//  ofLog& logVerbose() { return _logVerbose; }
-//  ofLog& logWarning() { return _logWarning; }
-//  const std::string& getLogModule() const {
-//    return _logNotice.module;
-//  }
-//private:
-//
-//  HostedLog _logNotice;
-//  HostedLog _logVerbose;
-//  HostedLog _logWarning;
-//};
+template<typename T>
+class EnumTypeInfo {
+public:
+  EnumTypeInfo(std::initializer_list<std::pair<std::string, T>> entries) {
+    for (std::pair<std::string, T> entry : entries) {
+      _stringToEnum.insert(entry);
+      _enumToString.insert(std::make_pair(entry.second, entry.first));
+    }
+  }
+
+  bool tryParseString(const std::string& str, T* result) {
+    auto iter = _stringToEnum.find(str);
+    if (iter == _stringToEnum.end()) {
+      return false;
+    } else {
+      *result = iter->second;
+      return true;
+    }
+  }
+  bool tryToString(const T& value, std::string* result) {
+    auto iter = _enumToString.find(value);
+    if (iter == _enumToString.end()) {
+      return false;
+    } else {
+      *result = iter->second;
+      return true;
+    }
+  }
+  std::string toString(T value) {
+    std::string name;
+    if (!tryToString(value, &name)) {
+      throw std::invalid_argument("Unknown enum value");
+    }
+    return name;
+  }
+  T parseString(const std::string& str) {
+    T value;
+    if (!tryParseString(str, &value)) {
+      throw std::invalid_argument("Unknown enum value: " + str);
+    }
+    return value;
+  }
+private:
+  std::map<std::string, T> _stringToEnum;
+  std::map<T, std::string> _enumToString;
+};
+
+class NonCopyable {
+public:
+  NonCopyable(const NonCopyable&) = delete;
+  NonCopyable& operator=(const NonCopyable&) = delete;
+  NonCopyable() {}
+};
+
+class NOT_IMPLEMENTED
+: public std::runtime_error {
+public:
+  NOT_IMPLEMENTED(std::string description)
+  : std::runtime_error("NOT IMPLEMENTED: " + description) { }
+  NOT_IMPLEMENTED()
+  : std::runtime_error("NOT IMPLEMENTED") { }
+};
 
 #endif /* defined(__behavior__Common__) */

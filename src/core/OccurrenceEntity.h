@@ -10,91 +10,93 @@
 #define OccurrenceEntity_h
 
 #include <ofTypes.h>
-#include <map>
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
-#include "Params.h"
 #include <iostream>
 #include "ValueSupplier.h"
-#include "Bounds.h"
-#include "Behavior.h"
+#include "State.h"
 
 class ObserverEntity;
 
 class OccurrenceEntity
 : public ParticleObject {
 public:
-  class Params : public ParticleObject::Params {
-  public:
-    Params();
-    
-    void initPanel(ofxGuiGroup& panel) override;
-    
-    RandomValueSupplier<float> radius;
-    ofParameter<ofFloatColor> markerColor;
-    ofParameter<ofFloatColor> rangeColor;
-    ofParameter<ofFloatColor> connectorColor;
-    ofParameter<float> markerSize;
-  };
-  static shared_ptr<OccurrenceEntity> spawn(const Params& params, const Bounds& bounds);
-  
-  OccurrenceEntity(ofVec3f pos, float radius, const Params& params);
+  OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
-
-  void addBehavior(shared_ptr<Behavior<OccurrenceEntity>> behavior) {
-    _behaviors.add(behavior);
+  
+  void addObserver(std::shared_ptr<ObserverEntity> observer) {
+    _connectedObservers.add(observer);
   }
   
-  void addObserver(shared_ptr<ObserverEntity> observer);
-  
-  void removeObserver(ObjectId id);
+  void removeObserver(ObjectId id) {
+    _connectedObservers.erase(id);
+  }
+
+  void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
+    _connectedOccurrences.add(occurrence);
+  }
+
+  void removeOccurrence(ObjectId id) {
+    _connectedOccurrences.erase(id);
+  }
   
   bool hasConnectedObservers() const {
     return !_connectedObservers.empty();
   }
+
+  void detachConnections();
   
-  float getAmountOfObservation(const State& state) const;
+  float getAmountOfObservation() const { return _amountOfObservation; }
+
+  float getAge(const State& state) const { return state.time - _startTime; }
   
-  void update(const State& state) override;
-  
-  void draw(const State& state) override;
-  
-  void handleDeath() override;
-  
-  float originalRadius() const { return _originalRadius; };
+  float originalRadius() const { return _originalRadius; }
+
+  float actualRadius() const { return _actualRadius; }
+
+  const EntityMap<ObserverEntity>& connectedObservers() const {
+    return _connectedObservers;
+  }
+
+  EntityMap<ObserverEntity>& connectedObservers() {
+    return _connectedObservers;
+  }
+
+  const EntityMap<OccurrenceEntity>& getConnectedOccurrences() const {
+    return _connectedOccurrences;
+  }
+
+  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
+    return _connectedOccurrences;
+  }
+
+  EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
   
 private:
-  void recalculateRadius();
+  void setAmountOfObservation(float amount) {
+    _amountOfObservation = amount;
+  }
+
+  void setActualRadius(float radius) {
+    _actualRadius = radius;
+  }
   
-  const Params& _params;
   const float _originalRadius;
   float _actualRadius;
-  std::map<ObjectId, shared_ptr<ObserverEntity>> _connectedObservers;
-  BehaviorCollection<OccurrenceEntity> _behaviors;
+  float _startTime;
+  float _amountOfObservation;
+  EntityMap<ObserverEntity> _connectedObservers;
+  EntityMap<OccurrenceEntity> _connectedOccurrences;
 
-  friend class OccurrenceObserverAttraction;
+  friend class OccurrencesController;
 };
 
-class OccurrenceObserverAttraction
-: public EntityAttraction<OccurrenceEntity, ObserverEntity> {
-public:
-
-  OccurrenceObserverAttraction(const Params& params)
-  : EntityAttraction<OccurrenceEntity, ObserverEntity>(params) { }
-
-protected:
-  std::vector<shared_ptr<ObserverEntity>> getOthers(OccurrenceEntity& occurrence) const override {
-    std::vector<shared_ptr<ObserverEntity>> observers;
-    for (auto entry : occurrence._connectedObservers) {
-      observers.push_back(entry.second);
-    }
-    return observers;
-  }
-};
+template<>
+EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
 
 #endif /* OccurrenceEntity_h */

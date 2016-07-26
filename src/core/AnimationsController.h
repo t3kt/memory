@@ -10,41 +10,61 @@
 #define AnimationsController_h
 
 #include "AnimationObject.h"
+#include "Context.h"
 #include "ObjectManager.h"
 #include "Params.h"
-#include "Timing.h"
 #include "State.h"
-#include "Events.h"
-#include "OccurrencesController.h"
-#include "ObserversController.h"
+#include "Colors.h"
+#include "Context.h"
+#include "SimulationEvents.h"
 
 class AnimationsController {
 public:
-  class Params : public ::Params {
+  class Params : public ParamsWithEnabled {
   public:
-    Params();
+    Params() {
+      add(observerDied
+          .setKey("observerDied")
+          .setName("Observer Died"));
+      add(occurrenceDied
+          .setKey("occurrenceDied")
+          .setName("Occurrence Died"));
+      add(occurrenceSpawnFailed
+          .setKey("occurrenceSpawnFailed")
+          .setName("Occurrence Spawn Failed"));
+      setEnabledValueAndDefault(true);
+      occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 20);
+      occurrenceSpawnFailed.radius.setParamRanges(0, 100);
+      occurrenceSpawnFailed.setDuration(1);
+    }
 
-    ofParameter<bool> enabled;
     ExpandingSphereAnimation::Params observerDied;
     ExpandingSphereAnimation::Params occurrenceDied;
     ExpandingSphereAnimation::Params occurrenceSpawnFailed;
   };
 
-  AnimationsController(const Params& params);
+  AnimationsController(const Params& params,
+                       const ColorTheme& colors,
+                       SimulationEvents& events,
+                       Context& context);
 
-  void addAnimation(shared_ptr<AnimationObject> animation, const State& state);
-  void addTimedAction(shared_ptr<TimedAction> action);
+  void setup();
+
+  void addAnimation(std::shared_ptr<AnimationObject> animation);
   
-  void attachTo(ObserversController& observers);
-  void attachTo(OccurrencesController& occurrences);
-  
-  void update(const State& state);
-  void draw(const State& state);
+  void update();
+  void draw();
+
+  int count() const { return _animations.size(); }
   
 private:
+  void attachToEvents();
+
+  SimulationEvents& _events;
   const Params& _params;
-  ObjectManager<AnimationObject> _animations;
-  TimedActionSet _timedActions;
+  Context& _context;
+  const ColorTheme& _colors;
+  ObjectManager<AnimationObject>& _animations;
 };
 
 #endif /* AnimationsController_h */

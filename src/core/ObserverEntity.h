@@ -10,84 +10,63 @@
 #define ObserverEntity_h
 
 #include <ofTypes.h>
-#include "Params.h"
-#include "Behavior.h"
 #include "Common.h"
 #include "WorldObject.h"
 #include "ParticleObject.h"
-#include <vector>
 #include <iostream>
 #include "ValueSupplier.h"
-#include "Behavior.h"
-#include "Bounds.h"
 
 class OccurrenceEntity;
 
 class ObserverEntity
 : public ParticleObject {
 public:
-  class Params : public ParticleObject::Params {
-  public:
-    Params();
-    
-    void initPanel(ofxGuiGroup& panel) override;
-    
-    RandomValueSupplier<float> lifetime;
-    ofParameter<ofFloatColor> color;
-    ofParameter<float> drawRadius;
-  };
-  
-  static shared_ptr<ObserverEntity> spawn(const Params& params, const Bounds& bounds, const State& state);
-  
-  ObserverEntity(ofVec3f pos, float life, const Params& params, const State& state);
+  ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
+  
+  void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
-  void addBehavior(shared_ptr<Behavior<ObserverEntity>> behavior) {
-    _behaviors.add(behavior);
+  void addObserver(std::shared_ptr<ObserverEntity> observer) {
+    _connectedObservers.add(observer);
+  }
+
+  void removeObserver(ObjectId otherId) {
+    _connectedObservers.erase(otherId);
   }
   
-  void addOccurrence(shared_ptr<OccurrenceEntity> occurrence);
-  
-  std::vector<shared_ptr<OccurrenceEntity>>& getConnectedOccurrences() {
+  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
     return _connectedOccurrences;
+  }
+
+  EntityMap<ObserverEntity>& getConnectedObservers() {
+    return _connectedObservers;
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
-  
-  void update(const State& state) override;
-  
-  void draw(const State& state) override;
-  
-  void handleDeath() override;
-  
+
+  float getAge(const State& state) const { return state.time - _startTime; }
+
+  void detachConnections();
+
+  void update(const State& state);
+
   float lifetime() const { return _totalLifetime; };
+
+  EntityType entityType() const override { return EntityType::OBSERVER; }
 
 protected:
   std::string typeName() const override { return "ObserverEntity"; }
   void outputFields(std::ostream& os) const override;
-  
+
 private:
-  const Params& _params;
-  const float _startTime;
+  float _startTime;
   const float _totalLifetime;
   float _lifeFraction;
-  std::vector<shared_ptr<OccurrenceEntity>> _connectedOccurrences;
-  BehaviorCollection<ObserverEntity> _behaviors;
-
-  friend class ObserverOccurrenceAttraction;
+  EntityMap<OccurrenceEntity> _connectedOccurrences;
+  EntityMap<ObserverEntity> _connectedObservers;
 };
 
-class ObserverOccurrenceAttraction
-: public EntityAttraction<ObserverEntity, OccurrenceEntity> {
-public:
-
-  ObserverOccurrenceAttraction(const AbstractEntityAttraction::Params& params)
-  : EntityAttraction<ObserverEntity, OccurrenceEntity>(params) { }
-
-protected:
-  std::vector<shared_ptr<OccurrenceEntity>> getOthers(ObserverEntity& observer) const override {
-    return observer._connectedOccurrences;
-  }
-};
+template<>
+EntityType getEntityType<ObserverEntity>() { return EntityType::OBSERVER; }
 
 #endif /* ObserverEntity_h */

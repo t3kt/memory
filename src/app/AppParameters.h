@@ -1,42 +1,141 @@
 //
 //  AppParameters.h
-//  behavior
+//  memory
 //
 //  Created by tekt on 1/25/15.
 //
 //
 
-#ifndef __behavior__AppParameters__
-#define __behavior__AppParameters__
+#ifndef AppParameters_h
+#define AppParameters_h
 
 #include <ofParameterGroup.h>
-#include <ofxPanel.h>
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "NavigatorsController.h"
 #include "AnimationsController.h"
+#include "RenderingController.h"
+#include "PhysicsController.h"
 #include "Params.h"
 #include "Bounds.h"
+#include "Clock.h"
+#include "Colors.h"
+#include "Events.h"
+#include "MidiController.h"
+#include "InspectionController.h"
 
 class DebugParams : public Params {
 public:
-  DebugParams();
+  DebugParams() {
+    add(loggingEnabled
+        .setKey("loggingEnabled")
+        .setName("Logging Enabled")
+        .setValueAndDefault(false));
+    add(showBounds
+        .setKey("showBounds")
+        .setName("Show Bounds")
+        .setValueAndDefault(false));
+    add(showStatus
+        .setKey("showStatus")
+        .setName("Show Status")
+        .setValueAndDefault(true));
+    add(showPhysics
+        .setKey("showPhysics")
+        .setName("Show Physics")
+        .setValueAndDefault(false));
+    add(inspect
+        .setKey("inspect")
+        .setName("Inspect"));
+  }
 
-  ofParameter<bool> showLog;
-  ofParameter<bool> drawBounds;
+  TParam<bool> loggingEnabled;
+  TParam<bool> showBounds;
+  TParam<bool> showStatus;
+  TParam<bool> showPhysics;
+  InspectionController::Params inspect;
+};
+
+class OutputParams : public Params {
+public:
+  OutputParams() {
+    add(fullscreen
+        .setKey("fullscreen")
+        .setName("Fullscreen"));
+    add(externalEnabled
+        .setKey("externalEnabled")
+        .setName("Enable External Send")
+        .setValueAndDefault(false));
+  }
+
+  TParam<bool> fullscreen;
+  TParam<bool> externalEnabled;
+};
+
+class CoreParams : public Params {
+public:
+  CoreParams() {
+    add(clock
+        .setKey("clock")
+        .setName("Clock"));
+    add(bounds
+        .setKey("bounds")
+        .setName("Bounds"));
+    add(debug
+        .setKey("debug")
+        .setName("Debug"));
+    add(output
+        .setKey("output")
+        .setName("Output"));
+    add(midi
+        .setKey("midi")
+        .setName("Midi"));
+  }
+
+  Clock::Params clock;
+  Bounds bounds;
+  DebugParams debug;
+  OutputParams output;
+  MidiController::Params midi;
 };
 
 class MemoryAppParameters : public Params {
 public:
-  MemoryAppParameters();
-  
-  void initGui(ofxPanel& gui);
+  MemoryAppParameters() {
+    add(core
+        .setKey("core")
+        .setName("Core"));
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(navigators
+        .setKey("navigators")
+        .setName("Navigators"));
+    add(animations
+        .setKey("animations")
+        .setName("Animations"));
+    add(colors
+        .setKey("colors")
+        .setName("Colors"));
+    add(rendering
+        .setKey("rendering")
+        .setName("Rendering"));
+    add(physics
+        .setKey("physics")
+        .setName("Physics"));
+  }
 
-  DebugParams debug;
-  SimpleCubeBounds bounds;
+  CoreParams core;
+  ColorTheme colors;
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
+  NavigatorsController::Params navigators;
+  RenderingController::Params rendering;
+  PhysicsController::Params physics;
 };
 
-#endif /* defined(__behavior__AppParameters__) */
+#endif /* AppParameters_h */

@@ -31,4 +31,11 @@
 build/*.build
 xcuserdata
 
-memory-prototype-2.xcodeproj/project.xcworkspace/xcuserdata/tekt.xcuserdatad/UserInterfaceState.xcuserstate
+memory.xcodeproj/project.xcworkspace/xcuserdata/tekt.xcuserdatad/UserInterfaceState.xcuserstate
+obj/
+.vs/
+memory.VC*
+*.ilk
+*.exp
+*.pdb
+*.trace

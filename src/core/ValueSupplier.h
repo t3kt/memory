@@ -18,69 +18,31 @@
 template <typename T>
 class RandomValueSupplier : public ValueRange<T> {
 public:
-  explicit RandomValueSupplier(std::string name)
-  : ValueRange<T>(name) {};
-  
-  RandomValueSupplier& set(T minVal, T maxVal) {
-    ValueRange<T>::set(minVal, maxVal);
+  RandomValueSupplier& setParamValues(T minVal, T maxVal) {
+    ValueRange<T>::setParamValues(minVal, maxVal);
     return *this;
   };
   
-  RandomValueSupplier& setParamRange(T minVal, T maxVal) {
-    ValueRange<T>::setParamRange(minVal, maxVal);
+  RandomValueSupplier& setParamRanges(T minVal, T maxVal) {
+    ValueRange<T>::setParamRanges(minVal, maxVal);
     return *this;
   };
   
   T getValue() const;
 };
 
-class SimpleRandomVectorSupplier : public ValueRange<float> {
+class SimpleRandomVectorSupplier : public FloatValueRange {
 public:
-  explicit SimpleRandomVectorSupplier(std::string name) : ValueRange<float>(name) {}
-
   SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
-    ValueRange<float>::set(minVal, maxVal);
+    FloatValueRange::setParamValues(minVal, maxVal);
     return *this;
   }
-  SimpleRandomVectorSupplier& setParamRange(float minVal, float maxVal) {
-    ValueRange<float>::setParamRange(minVal, maxVal);
+  SimpleRandomVectorSupplier& setParamRanges(float minVal, float maxVal) {
+    FloatValueRange::setParamRanges(minVal, maxVal);
     return *this;
   }
 
   ofVec3f getValue() const;
-};
-
-class RandomHsbFloatColorSupplier : public Params {
-public:
-  explicit RandomHsbFloatColorSupplier(std::string name);
-  
-  RandomHsbFloatColorSupplier& setHue(float low, float high) {
-    _hueRange.set(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setSaturation(float low, float high) {
-    _saturationRange.set(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setBrightness(float low, float high) {
-    _brightnessRange.set(low, high);
-    return *this;
-  }
-  
-  RandomHsbFloatColorSupplier& setAlpha(float low, float high) {
-    _alphaRange.set(low, high);
-    return *this;
-  }
-  
-  ofFloatColor getValue() const;
-  
-private:
-  RandomValueSupplier<float> _hueRange;
-  RandomValueSupplier<float> _saturationRange;
-  RandomValueSupplier<float> _brightnessRange;
-  RandomValueSupplier<float> _alphaRange;
 };
 
 #endif /* ValueSpecifier_h */

@@ -1,8 +1,6 @@
-#include <ofMain.h>
-#include "MemoryApp.h"
+#include "AppSystem.h"
 
-int main( ){
-  ofSetupOpenGL(1024,768,OF_WINDOW);
-
-  ofRunApp(new MemoryApp());
+int main() {
+  AppSystem::initialize();
+  AppSystem::get().main();
 }
