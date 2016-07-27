@@ -6,6 +6,7 @@
 //
 //
 
+#include "JsonIO.h"
 #include "SimulationEvents.h"
 
 EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
@@ -24,4 +25,17 @@ EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value) {
   return os << SimulationEventTypeType.toString(value);
+}
+
+namespace JsonUtil {
+  template<>
+  Json toJson(const SimulationEventType& value) {
+    return SimulationEventTypeType.toString(value);
+  }
+
+  template<>
+  SimulationEventType fromJson<SimulationEventType>(const Json& value) {
+    assertHasType(value, Json::STRING);
+    return SimulationEventTypeType.parseString(value.string_value());
+  }
 }

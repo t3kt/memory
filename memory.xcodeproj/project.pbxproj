@@ -40,6 +40,7 @@
 		32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E58A3B1D3C3006001AA5E4 /* NavigatorState.cpp */; };
 		32EEAEA81D470CA2003A503F /* Logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEA61D470CA2003A503F /* Logging.cpp */; };
 		32EEAEB31D489795003A503F /* SimulationEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEB21D489795003A503F /* SimulationEvents.cpp */; };
+		32EEAEB61D489C6C003A503F /* MidiEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEB41D489C6C003A503F /* MidiEvents.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -260,6 +261,8 @@
 		32EEAEA61D470CA2003A503F /* Logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logging.cpp; path = core/Logging.cpp; sourceTree = "<group>"; };
 		32EEAEA71D470CA2003A503F /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = core/Logging.h; sourceTree = "<group>"; };
 		32EEAEB21D489795003A503F /* SimulationEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimulationEvents.cpp; path = core/SimulationEvents.cpp; sourceTree = "<group>"; };
+		32EEAEB41D489C6C003A503F /* MidiEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiEvents.cpp; path = control/MidiEvents.cpp; sourceTree = "<group>"; };
+		32EEAEB51D489C6C003A503F /* MidiEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiEvents.h; path = control/MidiEvents.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -537,6 +540,8 @@
 				0C37EB00EECE5690B2BF3F78 /* MidiController.h */,
 				7F96463E5281CD1FEBA25AA7 /* MidiDevice.cpp */,
 				F9F5853C23CC6366F75034EC /* MidiDevice.h */,
+				32EEAEB41D489C6C003A503F /* MidiEvents.cpp */,
+				32EEAEB51D489C6C003A503F /* MidiEvents.h */,
 				C6C0A7AF0AD8C3CC222F12F0 /* MidiMapping.cpp */,
 				C8A492AF1C4B575E8CE8BD6C /* MidiMapping.h */,
 				7CCDC852A1960FB9A51DF1B9 /* MidiRouter.cpp */,
@@ -1524,6 +1529,7 @@
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
+				32EEAEB61D489C6C003A503F /* MidiEvents.cpp in Sources */,
 				324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
