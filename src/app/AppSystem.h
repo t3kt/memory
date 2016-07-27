@@ -39,10 +39,6 @@ public:
     return _simulationWindow;
   }
 
-  std::shared_ptr<ofAppGLFWWindow>& controlWindow() {
-    return _controlWindow;
-  }
-
   SimulationApp* simulation() { return _simulationApp.get(); }
 
   ControlApp* control() { return _controlApp.get(); }
@@ -67,7 +63,6 @@ private:
   MemoryAppParameters _appParams;
   Context _context;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
-  std::shared_ptr<ofAppGLFWWindow> _controlWindow;
   std::shared_ptr<SimulationApp> _simulationApp;
   std::shared_ptr<ControlApp> _controlApp;
   LoggingController _log;

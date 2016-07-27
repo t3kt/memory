@@ -11,8 +11,6 @@
 #include "ControlApp.h"
 #include "SimulationApp.h"
 
-const int CONTROLS_WIDTH = 250;
-
 static std::unique_ptr<AppSystem> instance;
 
 void AppSystem::initialize() {
@@ -50,32 +48,24 @@ bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
 
 void AppSystem::setup() {
   ofGLFWWindowSettings simWinSettings;
-  simWinSettings.width = 1100;
+  simWinSettings.width = 1350;
   simWinSettings.height = 800;
   simWinSettings.resizable = false;
-  simWinSettings.setPosition(ofVec3f(CONTROLS_WIDTH + 5, 0));
+  simWinSettings.setPosition(ofVec3f(0, 0));
   _simulationWindow =
   std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(simWinSettings));
-
-  ofGLFWWindowSettings ctrlWinSettings;
-  ctrlWinSettings.width = CONTROLS_WIDTH;
-  ctrlWinSettings.height = 800;
-  ctrlWinSettings.resizable = true;
-  ctrlWinSettings.setPosition(ofVec3f(0, 0));
-  _controlWindow =
-  std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(ctrlWinSettings));
 
   _simulationApp = std::make_shared<SimulationApp>(_appParams,
                                                    _context,
                                                    _simulationWindow);
 
   _controlApp = std::make_shared<ControlApp>(_appParams);
+  _controlApp->setup();
 }
 
 void AppSystem::main() {
   setup();
 
-  ofRunApp(_controlWindow, _controlApp);
   ofRunApp(_simulationWindow, _simulationApp);
   ofRunMainLoop();
 }

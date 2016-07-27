@@ -7,6 +7,7 @@
 //
 
 #include "AppSystem.h"
+#include "ControlApp.h"
 #include "SimulationApp.h"
 
 void SimulationApp::setup() {
@@ -76,6 +77,7 @@ void SimulationApp::setup() {
 }
 
 void SimulationApp::update() {
+  AppSystem::get().control()->update();
   _clock->update();
   _observers->update();
   _occurrences->update();
@@ -122,6 +124,7 @@ void SimulationApp::draw() {
   }
 
   _inspectionController->draw();
+  AppSystem::get().control()->draw();
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {

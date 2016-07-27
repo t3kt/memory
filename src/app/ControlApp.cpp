@@ -135,10 +135,6 @@ void ControlApp::draw() {
   _gui->draw();
 }
 
-void ControlApp::keyPressed(ofKeyEventArgs& event) {
-  AppSystem::get().handleKeyPressed(event);
-}
-
 bool ControlApp::performAction(AppAction action) {
   switch (action) {
     case AppAction::LOAD_SETTINGS:

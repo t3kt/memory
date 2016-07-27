@@ -170,7 +170,7 @@
     },
     "output": {
       "externalEnabled": true,
-      "fullscreen": true
+      "fullscreen": false
     }
   },
   "navigators": {
