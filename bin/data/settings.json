@@ -131,7 +131,33 @@
         "clickRange": 10,
         "enabled": true
       },
-      "loggingEnabled": false,
+      "logging": {
+        "anim": {
+          "enabled": true,
+          "level": 1
+        },
+        "app": {
+          "enabled": true,
+          "level": 1
+        },
+        "ctrl": {
+          "enabled": true,
+          "level": 1
+        },
+        "enabled": false,
+        "nav": {
+          "enabled": true,
+          "level": 1
+        },
+        "obs": {
+          "enabled": true,
+          "level": 1
+        },
+        "occ": {
+          "enabled": true,
+          "level": 1
+        }
+      },
       "showBounds": false,
       "showPhysics": false,
       "showStatus": true
