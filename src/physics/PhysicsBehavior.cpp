@@ -6,6 +6,7 @@
 //
 //
 
+#include "AppSystem.h"
 #include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
@@ -34,6 +35,8 @@ void BoundsBehavior::applyToEntity(Context& context,
   }
   if (_bounds.reflect(entity->velocityPtr(),
                       entity->positionPtr())) {
-    ofLogNotice() << "Observer rebounded: " << *entity;
+    AppSystem::get().log().app().logNotice([&](ofLog& log) {
+      log << "Observer rebounded: " << *entity;
+    });
   }
 }

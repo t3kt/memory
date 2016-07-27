@@ -10,6 +10,7 @@
 #include <ofMain.h>
 #include <random>
 #include "AppAssets.h"
+#include "AppSystem.h"
 #include "Context.h"
 #include "NavigatorEntity.h"
 #include "NavigatorsController.h"
@@ -69,7 +70,9 @@ void NavigatorsController::update() {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
     } else {
-      ofLogNotice() << "Updating navigator: " << *navigator;
+      AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+        log << "Updating navigator: " << *navigator;
+      });
       navigator->updateNextState(_context);
       const ofVec3f& targetPoint = navigator->targetPoint();
       const ofVec3f& currentPosition = navigator->position();
@@ -94,7 +97,9 @@ void NavigatorsController::update() {
         _events.navigatorReachedLocation.notifyListeners(e);
       }
     }
-    ofLogNotice() << "Updated navigator: " << *navigator;
+    AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+      log << "Updated navigator: " << *navigator;
+    });
   });
   _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
     NavigatorEventArgs e(*navigator);

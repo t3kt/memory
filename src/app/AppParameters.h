@@ -29,10 +29,6 @@
 class DebugParams : public Params {
 public:
   DebugParams() {
-    add(loggingEnabled
-        .setKey("loggingEnabled")
-        .setName("Logging Enabled")
-        .setValueAndDefault(false));
     add(showBounds
         .setKey("showBounds")
         .setName("Show Bounds")
@@ -53,7 +49,6 @@ public:
         .setName("Logging"));
   }
 
-  TParam<bool> loggingEnabled;
   TParam<bool> showBounds;
   TParam<bool> showStatus;
   TParam<bool> showPhysics;

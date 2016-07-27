@@ -7,7 +7,6 @@
 //
 
 #include <map>
-#include <ofLog.h>
 #include "AppSystem.h"
 #include "ControlApp.h"
 #include "SimulationApp.h"

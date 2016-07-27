@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "AppSystem.h"
 #include "ObserverEntity.h"
 #include "ObserverRenderer.h"
 
@@ -87,7 +88,9 @@ void InstancedObserverRenderer::update() {
 
   auto count = entities.size();
   if (count > MAX_OBSERVERS) {
-    ofLogWarning() << "Exceeded maximum observer count: " << count << " (limit: " << MAX_OBSERVERS << ")";
+    AppSystem::get().log().observer().logWarning([&](ofLog& log) {
+      log << "Exceeded maximum observer count: " << count << " (limit: " << MAX_OBSERVERS << ")";
+    });
     count = MAX_OBSERVERS;
   }
 

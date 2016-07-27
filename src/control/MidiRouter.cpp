@@ -8,6 +8,7 @@
 
 #include <stdexcept>
 #include <typeinfo>
+#include "AppSystem.h"
 #include "Common.h"
 #include "MidiRouter.h"
 
@@ -88,13 +89,13 @@ void MidiRouter::addBinding(const MidiMapping& mapping) {
   }
   TParamBase* param = _appParams.lookupPath(path);
   if (!param) {
-    ofLogWarning() << "Unable to find parameter for binding path '" << path << "'";
+    AppSystem::get().log().control().logWarning("Unable to find parameter for binding path '" + path + "'");
   }
   std::shared_ptr<AbstractMidiBinding> binding;
   try {
     binding = createBinding(*param);
   } catch (std::invalid_argument ex) {
-    ofLogWarning() << "Unable to create binding: " << ex.what();
+    AppSystem::get().log().control().logWarning(std::string("Unable to create binding: ") + ex.what());
     return;
   }
   const auto& key = mapping.key();

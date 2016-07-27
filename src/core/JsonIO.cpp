@@ -12,6 +12,7 @@
 #include <ofTypes.h>
 #include <ofUtils.h>
 #include <sstream>
+#include "AppSystem.h"
 #include "JsonIO.h"
 
 using json11::JsonParse;
@@ -233,7 +234,7 @@ namespace JsonUtil {
 static bool tryReadJsonFromFile(std::string filepath, Json* obj) {
   filepath = ofToDataPath(filepath);
   if (!ofFile::doesFileExist(filepath, true)) {
-    ofLogWarning() << "can't find settings file: " << filepath;
+    AppSystem::get().log().app().logWarning("can't find settings file: " + filepath);
     return false;
   }
   std::ifstream in(filepath.c_str());
@@ -252,7 +253,7 @@ static bool tryReadJsonFromFile(std::string filepath, Json* obj) {
 void JsonReadable::readFromFile(std::string filepath) {
   Json obj;
   if (!tryReadJsonFromFile(filepath, &obj)) {
-    ofLogWarning() << "can't find settings file: " << filepath;
+    AppSystem::get().log().app().logWarning("can't find settings file: " + filepath);
     return;
   }
   read_json(obj);

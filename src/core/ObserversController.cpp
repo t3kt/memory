@@ -6,7 +6,6 @@
 //
 //
 
-#include <ofLog.h>
 #include "AppSystem.h"
 #include "ObserversController.h"
 #include "SimulationApp.h"

@@ -88,19 +88,19 @@ public:
       add(app
           .setKey("app")
           .setName("App"));
-      add(app
+      add(control
           .setKey("ctrl")
           .setName("Control"));
-      add(app
+      add(animation
           .setKey("anim")
           .setName("Animation"));
-      add(app
+      add(navigation
           .setKey("nav")
           .setName("Navigation"));
-      add(app
+      add(observer
           .setKey("obs")
           .setName("Observer"));
-      add(app
+      add(occurrence
           .setKey("occ")
           .setName("Occurrence"));
     }
