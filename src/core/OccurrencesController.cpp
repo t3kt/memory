@@ -101,7 +101,8 @@ void OccurrencesController::update() {
   }
   _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
-    OccurrenceEventArgs e(*occurrence);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
+                          *occurrence);
     _events.occurrenceDied.notifyListeners(e);
   });
 
@@ -125,13 +126,16 @@ void OccurrencesController::spawnRandomOccurrence() {
                                                        _context.state);
   
   bool connected = _observers.registerOccurrence(occurrence);
-  
-  OccurrenceEventArgs e(*occurrence);
+
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
     _occurrences.add(occurrence);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
+                          *occurrence);
     _events.occurrenceSpawned.notifyListeners(e);
   } else {
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
+                          *occurrence);
     _events.occurrenceSpawnFailed.notifyListeners(e);
   }
 }

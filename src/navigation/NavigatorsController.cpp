@@ -93,7 +93,8 @@ void NavigatorsController::update() {
       }
       if (navigator->nextState() && dist <= _params.reachRange.get()) {
         navigator->reachNextState(_context);
-        NavigatorEventArgs e(*navigator);
+        NavigatorEventArgs e(SimulationEventType::NAVIGATOR_REACHED_LOCATION,
+                             *navigator);
         _events.navigatorReachedLocation.notifyListeners(e);
       }
     }
@@ -102,7 +103,8 @@ void NavigatorsController::update() {
     });
   });
   _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
-    NavigatorEventArgs e(*navigator);
+    NavigatorEventArgs e(SimulationEventType::NAVIGATOR_DIED,
+                         *navigator);
     _events.navigatorDied.notifyListenersUntilHandled(e);
   });
 
@@ -131,6 +133,7 @@ void NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   auto startState = std::make_shared<ObserverNavState>(entity);
   auto navigator = std::make_shared<NavigatorEntity>(startState);
   _navigators.add(navigator);
-  NavigatorEventArgs e(*navigator);
+  NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
+                       *navigator);
   _events.navigatorSpawned.notifyListenersUntilHandled(e);
 }

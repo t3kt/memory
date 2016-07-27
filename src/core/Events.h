@@ -77,20 +77,4 @@ public:
 template<typename T>
 using ValueEvent = TEvent<ValueEventArgs<T>>;
 
-class AnimationObject;
-using AnimationEventArgs = ValueEventArgs<AnimationObject>;
-using AnimationEvent = TEvent<AnimationEventArgs>;
-
-class OccurrenceEntity;
-using OccurrenceEventArgs = ValueEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
-
-class ObserverEntity;
-using ObserverEventArgs = ValueEventArgs<ObserverEntity>;
-using ObserverEvent = TEvent<ObserverEventArgs>;
-
-class NavigatorEntity;
-using NavigatorEventArgs = ValueEventArgs<NavigatorEntity>;
-using NavigatorEvent = TEvent<NavigatorEventArgs>;
-
 #endif /* Events_h */

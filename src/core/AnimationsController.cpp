@@ -28,7 +28,8 @@ void AnimationsController::setup() {
 }
 
 void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animation) {
-  AnimationEventArgs e(*animation);
+  AnimationEventArgs e(SimulationEventType::ANIMATION_SPAWNED,
+                       *animation);
   _events.animationSpawned.notifyListeners(e);
   
   _animations.add(animation);
@@ -39,7 +40,8 @@ void AnimationsController::update() {
     animation->update(_context.state);
   }
   _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
-    AnimationEventArgs e(*animation);
+    AnimationEventArgs e(SimulationEventType::ANIMATION_DIED,
+                         *animation);
     _events.animationDied.notifyListeners(e);
   });
   _context.state.animationCount = _animations.size();

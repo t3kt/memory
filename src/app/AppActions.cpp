@@ -28,7 +28,7 @@ EnumTypeInfo<AppAction> AppActionType({
 });
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action) {
-  os << AppActionType.toString(action);
+  return os << AppActionType.toString(action);
 }
 
 void AppActionHandler::registerAsActionHandler() {
