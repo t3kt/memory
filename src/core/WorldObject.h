@@ -13,11 +13,13 @@
 #include <iostream>
 #include <memory>
 #include <ofMath.h>
+#include <ofUtils.h>
 #include <unordered_map>
 #include "Common.h"
+#include "JsonIO.h"
 #include "Serialization.h"
 
-typedef long ObjectId;
+typedef int ObjectId;
 
 enum class EntityType {
   ANIMATION,
@@ -80,6 +82,14 @@ public:
     return EntityPtr();
   }
 
+  EntityPtr operator[](ObjectId id) {
+    auto iter = _map.find(id);
+    if (iter == end()) {
+      return EntityPtr();
+    }
+    return iter->second;
+  }
+
   std::size_t erase(ObjectId id) { return _map.erase(id); }
 
   std::size_t size() const { return _map.size(); }
@@ -90,6 +100,15 @@ public:
   iterator end() { return _map.end(); }
   const_iterator begin() const { return _map.begin(); }
   const_iterator end() const { return _map.end(); }
+
+  Json idsToJson() const {
+    Json::array arr;
+    for (const auto& entity : _map) {
+      int idVal = static_cast<int>(entity.second->id());
+      arr.push_back(idVal);
+    }
+    return arr;
+  }
 private:
   Storage _map;
 };

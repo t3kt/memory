@@ -16,6 +16,7 @@
 #include <iostream>
 #include "ValueSupplier.h"
 #include "State.h"
+#include "Context.h"
 
 class ObserverEntity;
 
@@ -76,11 +77,16 @@ public:
   virtual void deserializeFields(const Json& obj,
                                  const SerializationContext& context) override;
 
+  virtual void deserializeRefs(const Json& obj,
+                               SerializationContext& context) override;
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
+  virtual void addSerializedRefs(Json::object& obj,
+                                 const SerializationContext& context) const override;
   
 private:
   void setAmountOfObservation(float amount) {
@@ -103,5 +109,9 @@ private:
 
 template<>
 EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
+
+void readOccurrenceRefs(EntityMap<OccurrenceEntity>& entities,
+                        const Json& arr,
+                        Context& context);
 
 #endif /* OccurrenceEntity_h */

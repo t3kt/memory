@@ -9,10 +9,17 @@
 #ifndef Serialization_h
 #define Serialization_h
 
+#include <stdexcept>
 #include "JsonIO.h"
 
 class Context;
 class SerializationContext;
+
+class SerializationException : std::runtime_error {
+public:
+  SerializationException(const std::string& message)
+  : std::runtime_error(message) { }
+};
 
 class Serializable {
 public:
@@ -34,6 +41,9 @@ public:
   SerializationContext(Context& context);
 
   float baseTime() const { return _baseTime; }
+
+  Context& context() { return _context; }
+  const Context& context() const { return _context; }
 private:
   float _baseTime;
   Context& _context;

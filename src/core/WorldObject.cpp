@@ -9,17 +9,10 @@
 #include "WorldObject.h"
 #include "State.h"
 
-namespace JsonUtil {
-  template<>
-  Json toJson(const ObjectId& value) {
-    return static_cast<int>(value);
-  }
-
-  template<>
-  ObjectId fromJson<ObjectId>(const Json& value) {
-    assertHasType(value, Json::NUMBER);
-    return static_cast<ObjectId>(value.int_value());
-  }
+template<>
+std::string ofToString(const ObjectId& id) {
+  int val = static_cast<int>(id);
+  return ofToString(val);
 }
 
 static ObjectId nextId() {

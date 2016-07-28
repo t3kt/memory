@@ -9,6 +9,7 @@
 #ifndef ObjectManager_h
 #define ObjectManager_h
 
+#include <algorithm>
 #include <functional>
 #include <iterator>
 #include <list>
@@ -17,6 +18,7 @@
 #include <ofMath.h>
 #include "Common.h"
 #include "Events.h"
+#include "Serialization.h"
 #include "State.h"
 #include "WorldObject.h"
 
@@ -85,6 +87,15 @@ public:
     return EntityPtr();
   }
 
+  EntityPtr operator[](ObjectId id) {
+    for (auto& entity : _objects) {
+      if (entity->id() == id) {
+        return entity;
+      }
+    }
+    return EntityPtr();
+  }
+
 protected:
   Storage _objects;
 };
@@ -132,6 +143,22 @@ public:
       _view = std::make_shared<View>(*this);
     }
     return *_view;
+  }
+
+  void loadDeserializedRefsInto(EntityMap<T>& entities,
+                                const Json& idArray) {
+    if (idArray.is_null()) {
+      return;
+    }
+    JsonUtil::assertHasType(idArray, Json::ARRAY);
+    for (const auto& val : idArray.array_items()) {
+      auto id = JsonUtil::fromJson<ObjectId>(val);
+      auto entity = (*this)[id];
+      if (!entity) {
+        throw SerializationException("Entity not found: " + ofToString(id));
+      }
+      entities.add(entity);
+    }
   }
 
 private:

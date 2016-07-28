@@ -6,6 +6,7 @@
 //
 //
 
+#include "Context.h"
 #include "OccurrenceEntity.h"
 #include "ObserverEntity.h"
 #include <ofMain.h>
@@ -50,4 +51,20 @@ void OccurrenceEntity::deserializeFields(const Json &obj,
   ParticleObject::deserializeFields(obj, context);
   _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
   _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
+}
+
+void OccurrenceEntity::addSerializedRefs(Json::object &obj,
+                                         const SerializationContext &context) const {
+  obj["connectedObservers"] = _connectedObservers.idsToJson();
+  obj["connectedOccurrences"] = _connectedOccurrences.idsToJson();
+}
+
+void OccurrenceEntity::deserializeRefs(const Json &obj,
+                                       SerializationContext &context) {
+  if (obj.is_null()) {
+    return;
+  }
+  JsonUtil::assertHasType(obj, Json::OBJECT);
+  context.context().observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
+  context.context().occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
 }

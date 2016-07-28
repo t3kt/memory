@@ -71,3 +71,19 @@ void ObserverEntity::deserializeFields(const Json &obj,
   _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
   _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
 }
+
+void ObserverEntity::addSerializedRefs(Json::object &obj,
+                                       const SerializationContext &context) const {
+  obj["connectedObservers"] = _connectedObservers.idsToJson();
+  obj["connectedOccurrences"] = _connectedOccurrences.idsToJson();
+}
+
+void ObserverEntity::deserializeRefs(const Json &obj,
+                                     SerializationContext &context) {
+  if (obj.is_null()) {
+    return;
+  }
+  JsonUtil::assertHasType(obj, Json::OBJECT);
+  context.context().observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
+  context.context().occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+}
