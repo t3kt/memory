@@ -33,3 +33,21 @@ void OccurrenceEntity::detachConnections() {
     observer.second->removeObserver(id());
   }
 }
+
+void OccurrenceEntity::addSerializedFields(Json::object &obj,
+                                           const SerializationContext &context) const {
+  ParticleObject::addSerializedFields(obj, context);
+  JsonUtil::mergeInto(obj, {
+    {"originalRadius", _originalRadius},
+    // omit actualRadius since it's calculated
+    {"startTime", _startTime - context.baseTime()},
+    // omit amountOfObservation since it's calculated
+  });
+}
+
+void OccurrenceEntity::deserializeFields(const Json &obj,
+                                         const SerializationContext &context) {
+  ParticleObject::deserializeFields(obj, context);
+  _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
+}

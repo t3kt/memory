@@ -23,8 +23,10 @@ public:
   virtual void deserializeRefs(const Json& obj,
                                SerializationContext& context) { }
 protected:
-  virtual void addSerializedFields(Json::object& obj) const = 0;
-  virtual void addSerializedRefs(Json::object& obj) const { }
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const = 0;
+  virtual void addSerializedRefs(Json::object& obj,
+                                 const SerializationContext& context) const { }
 };
 
 class SerializationContext {

@@ -40,10 +40,11 @@ void WorldObject::outputFields(std::ostream& os) const {
      << ", alive: " << _alive;
 }
 
-void WorldObject::addSerializedFields(Json::object &obj) const {
+void WorldObject::addSerializedFields(Json::object &obj,
+                                      const SerializationContext& context) const {
   JsonUtil::mergeInto(obj, {
     {"id", JsonUtil::toJson(_id)},
-    {"alive", JsonUtil::toJson(_alive)},
+    {"alive", _alive},
   });
 }
 

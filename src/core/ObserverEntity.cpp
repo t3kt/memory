@@ -54,3 +54,20 @@ void ObserverEntity::outputFields(std::ostream &os) const {
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
 }
+
+void ObserverEntity::addSerializedFields(Json::object &obj,
+                                         const SerializationContext& context) const {
+  ParticleObject::addSerializedFields(obj, context);
+  JsonUtil::mergeInto(obj, {
+    {"startTime", _startTime - context.baseTime()},
+    {"totalLifetime", _totalLifetime},
+    // omit lifetimeFraction since it's calculated
+  });
+}
+
+void ObserverEntity::deserializeFields(const Json &obj,
+                                       const SerializationContext &context) {
+  ParticleObject::deserializeFields(obj, context);
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
+  _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
+}

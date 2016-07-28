@@ -11,13 +11,13 @@
 
 Json Serializable::serializeFields(const SerializationContext &context) const {
   Json::object obj;
-  addSerializedFields(obj);
+  addSerializedFields(obj, context);
   return obj;
 }
 
 Json Serializable::serializeRefs(const SerializationContext &context) const {
   Json::object obj;
-  addSerializedRefs(obj);
+  addSerializedRefs(obj, context);
   if (obj.empty()) {
     return nullptr;
   }

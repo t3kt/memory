@@ -54,13 +54,17 @@ public:
 
   EntityType entityType() const override { return EntityType::OBSERVER; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
 protected:
   std::string typeName() const override { return "ObserverEntity"; }
   void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
 
 private:
   float _startTime;
-  const float _totalLifetime;
+  float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;

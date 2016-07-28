@@ -52,7 +52,8 @@ public:
 protected:
   virtual std::string typeName() const override;
   virtual void outputFields(std::ostream& os) const override;
-  virtual void addSerializedFields(Json::object& obj) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
 private:
   bool _alive;
   ObjectId _id;

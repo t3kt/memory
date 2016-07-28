@@ -73,9 +73,14 @@ public:
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
   
 private:
   void setAmountOfObservation(float amount) {
@@ -86,7 +91,7 @@ private:
     _actualRadius = radius;
   }
   
-  const float _originalRadius;
+  float _originalRadius;
   float _actualRadius;
   float _startTime;
   float _amountOfObservation;
