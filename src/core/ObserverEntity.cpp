@@ -20,7 +20,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   for (auto& other : occurrence->connectedObservers()) {
-    if (other.first == id) {
+    if (other.first == id()) {
       continue;
     }
     addObserver(other.second);
@@ -40,10 +40,10 @@ void ObserverEntity::update(const State &state) {
 
 void ObserverEntity::detachConnections() {
   for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeObserver(id);
+    occurrence.second->removeObserver(id());
   }
   for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id);
+    observer.second->removeObserver(id());
   }
 }
 

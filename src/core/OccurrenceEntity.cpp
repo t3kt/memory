@@ -27,9 +27,9 @@ void OccurrenceEntity::outputFields(std::ostream &os) const {
 
 void OccurrenceEntity::detachConnections() {
   for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeOccurrence(id);
+    occurrence.second->removeOccurrence(id());
   }
   for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id);
+    observer.second->removeObserver(id());
   }
 }

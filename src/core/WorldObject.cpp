@@ -15,7 +15,7 @@ static ObjectId nextId() {
 }
 
 WorldObject::WorldObject()
-: id(nextId())
+: _id(nextId())
 , _alive(true) { }
 
 std::string WorldObject::typeName() const {
@@ -23,6 +23,6 @@ std::string WorldObject::typeName() const {
 }
 
 void WorldObject::outputFields(std::ostream& os) const {
-  os << "id: " << id
+  os << "id: " << _id
      << ", alive: " << _alive;
 }

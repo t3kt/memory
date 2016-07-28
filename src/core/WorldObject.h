@@ -33,7 +33,7 @@ public:
   WorldObject();
   virtual ~WorldObject() {}
   
-  const ObjectId id;
+  const ObjectId& id() const { return _id; }
 
   bool alive() const { return _alive; }
 
@@ -47,6 +47,7 @@ protected:
   virtual void outputFields(std::ostream& os) const override;
 private:
   bool _alive;
+  ObjectId _id;
 };
 
 template<typename E>
@@ -57,7 +58,7 @@ public:
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
-  void add(EntityPtr entity) { _map[entity->id] = entity; }
+  void add(EntityPtr entity) { _map[entity->id()] = entity; }
 
   EntityPtr getAtIndex(std::size_t index) {
     if (index >= size()) {
