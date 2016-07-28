@@ -224,9 +224,27 @@ namespace JsonUtil {
     return value.string_value();
   }
 
+  template<typename T>
+  T fromJsonField(const Json& obj,
+                  const std::string& key,
+                  const T& defaultValue) {
+    Json val = obj[key];
+    if (val.is_null()) {
+      return defaultValue;
+    } else {
+      return fromJson<T>(val);
+    }
+  }
+
+  void mergeInto(Json::object& targetObj,
+                 const Json::object& sourceObj) {
+    targetObj.insert(sourceObj.begin(),
+                     sourceObj.end());
+  }
+
   Json merge(const Json obj1, const Json obj2) {
     Json::object out(obj1.object_items());
-    out.insert(obj2.object_items().begin(), obj2.object_items().end());
+    mergeInto(out, obj2.object_items());
     return out;
   }
 }

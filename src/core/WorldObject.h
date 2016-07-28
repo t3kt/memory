@@ -15,6 +15,7 @@
 #include <ofMath.h>
 #include <unordered_map>
 #include "Common.h"
+#include "Serialization.h"
 
 typedef long ObjectId;
 
@@ -28,7 +29,9 @@ enum class EntityType {
 template<typename T>
 EntityType getEntityType();
 
-class WorldObject : public Outputable {
+class WorldObject
+: public Outputable
+, public Serializable {
 public:
   WorldObject();
   virtual ~WorldObject() {}
@@ -42,9 +45,14 @@ public:
   virtual bool visible() const { return this->alive(); }
 
   virtual EntityType entityType() const = 0;
+
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+
 protected:
   virtual std::string typeName() const override;
   virtual void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj) const override;
 private:
   bool _alive;
   ObjectId _id;
