@@ -224,18 +224,6 @@ namespace JsonUtil {
     return value.string_value();
   }
 
-  template<typename T>
-  T fromJsonField(const Json& obj,
-                  const std::string& key,
-                  const T& defaultValue) {
-    Json val = obj[key];
-    if (val.is_null()) {
-      return defaultValue;
-    } else {
-      return fromJson<T>(val);
-    }
-  }
-
   void mergeInto(Json::object& targetObj,
                  const Json::object& sourceObj) {
     targetObj.insert(sourceObj.begin(),
