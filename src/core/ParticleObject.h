@@ -39,6 +39,8 @@ public:
                                  const SerializationContext& context) override;
 
 protected:
+  ParticleObject() { }
+
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;

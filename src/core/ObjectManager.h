@@ -145,6 +145,30 @@ public:
     return *_view;
   }
 
+  Json serializeEntities(const SerializationContext& context) const {
+    Json::array arr;
+    for (const auto& entity : *this) {
+      Json fields = entity->serializeFields(context);
+      Json refs = entity->serializeRefs(context);
+      if (refs.is_null()) {
+        arr.push_back(fields);
+      } else {
+        arr.push_back(JsonUtil::merge(fields, refs));
+      }
+    }
+    return arr;
+  }
+
+  void deserializeEntityFields(const Json& arr,
+                               const SerializationContext& context) {
+    JsonUtil::assertHasType(arr, Json::ARRAY);
+    for (const auto& val : arr.array_items()) {
+      JsonUtil::assertHasType(val, Json::OBJECT);
+      auto entity = T::createEmpty();
+      entity->deserializeFields(val);
+    }
+  }
+
   void loadDeserializedRefsInto(EntityMap<T>& entities,
                                 const Json& idArray) {
     if (idArray.is_null()) {

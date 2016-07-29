@@ -23,6 +23,10 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
+  static std::shared_ptr<OccurrenceEntity> createEmpty() {
+    return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
+  }
+
   OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
   
@@ -89,6 +93,8 @@ protected:
                                  const SerializationContext& context) const override;
   
 private:
+  OccurrenceEntity() { }
+
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;
   }

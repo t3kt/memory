@@ -21,6 +21,10 @@ class OccurrenceEntity;
 class ObserverEntity
 : public ParticleObject {
 public:
+  static std::shared_ptr<ObserverEntity> createEmpty() {
+    return std::shared_ptr<ObserverEntity>(new ObserverEntity());
+  }
+
   ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
   
@@ -67,6 +71,8 @@ protected:
                                  const SerializationContext& context) const override;
 
 private:
+  ObserverEntity() { }
+
   float _startTime;
   float _totalLifetime;
   float _lifeFraction;
