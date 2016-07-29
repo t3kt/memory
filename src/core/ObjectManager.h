@@ -169,6 +169,23 @@ public:
     }
   }
 
+  void deserializeEntityRefs(const Json& arr,
+                             SerializationContext& context) {
+    JsonUtil::assertHasType(arr, Json::ARRAY);
+    for (const auto& val : arr.array_items()) {
+      JsonUtil::assertHasType(val, Json::OBJECT);
+      ObjectId id = JsonUtil::fromJsonField(val, "id", NO_OBJECT_ID);
+      if (id == NO_OBJECT_ID) {
+        throw SerializationException("Missing ID for object: " + val.dump());
+      }
+      auto& entity = (*this)[id];
+      if (!entity) {
+        throw SerializationException("Entity not found: " + ofToString(id));
+      }
+      entity->deserializeRefs(val, context);
+    }
+  }
+
   void loadDeserializedRefsInto(EntityMap<T>& entities,
                                 const Json& idArray) {
     if (idArray.is_null()) {
