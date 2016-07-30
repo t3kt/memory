@@ -26,6 +26,8 @@ EnumTypeInfo<AppAction> AppActionType({
   {"toggleShowPhysics", AppAction::TOGGLE_SHOW_PHYSICS},
   {"toggleShowBounds", AppAction::TOGGLE_SHOW_BOUNDS},
   {"dumpEntityState", AppAction::DUMP_ENTITY_STATE},
+  {"loadEntityState", AppAction::LOAD_ENTITY_STATE},
+  {"saveEntityState", AppAction::SAVE_ENTITY_STATE},
 });
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action) {

@@ -138,6 +138,10 @@ public:
     this->_objects.push_back(object);
   }
 
+  void clear() {
+    this->_objects.clear();
+  }
+
   View& view() {
     if (!_view) {
       _view = std::make_shared<View>(*this);
@@ -165,7 +169,8 @@ public:
     for (const auto& val : arr.array_items()) {
       JsonUtil::assertHasType(val, Json::OBJECT);
       auto entity = T::createEmpty();
-      entity->deserializeFields(val);
+      entity->deserializeFields(val, context);
+      add(entity);
     }
   }
 
@@ -178,7 +183,7 @@ public:
       if (id == NO_OBJECT_ID) {
         throw SerializationException("Missing ID for object: " + val.dump());
       }
-      auto& entity = (*this)[id];
+      auto entity = (*this)[id];
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));
       }

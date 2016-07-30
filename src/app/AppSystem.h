@@ -12,6 +12,7 @@
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
+#include <ofSystemUtils.h>
 #include "AppActions.h"
 #include "AppParameters.h"
 #include "Context.h"
@@ -21,6 +22,8 @@
 
 class SimulationApp;
 class ControlApp;
+
+using FileAction = std::function<bool(ofFileDialogResult&)>;
 
 class AppSystem {
 public:
@@ -56,6 +59,13 @@ public:
   bool handleKeyPressed(ofKeyEventArgs& event);
 
   AppActionEvent appActionTriggered;
+
+  bool performFileSaveAction(FileAction action,
+                             std::string messageName,
+                             std::string defaultName);
+  bool performFileLoadAction(FileAction action,
+                             std::string windowTitle = "",
+                             std::string defaultPath = "");
 
 private:
   void setup();

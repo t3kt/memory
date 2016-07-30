@@ -71,3 +71,28 @@ void Context::performActionOnParticleEntityPtrs(std::function<void (std::shared_
     action(entity);
   }
 }
+
+void Context::clear() {
+  animations.clear();
+  navigators.clear();
+  observers.clear();
+  occurrences.clear();
+}
+
+Json Context::to_json() const {
+  return Json::object {
+    {"observers", observers.serializeEntities(*this)},
+    {"occurrences", occurrences.serializeEntities(*this)},
+  };
+}
+
+void Context::read_json(const Json& val) {
+  JsonUtil::assertHasType(val, Json::OBJECT);
+  Json observersArr = val["observers"];
+  Json occurrencesArr = val["occurrences"];
+  clear();
+  observers.deserializeEntityFields(observersArr, *this);
+  occurrences.deserializeEntityFields(occurrencesArr, *this);
+  observers.deserializeEntityRefs(observersArr, *this);
+  occurrences.deserializeEntityRefs(occurrencesArr, *this);
+}

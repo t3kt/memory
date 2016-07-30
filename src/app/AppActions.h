@@ -30,6 +30,8 @@ enum class AppAction {
   TOGGLE_SHOW_PHYSICS,
   TOGGLE_SHOW_BOUNDS,
   DUMP_ENTITY_STATE,
+  SAVE_ENTITY_STATE,
+  LOAD_ENTITY_STATE,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;

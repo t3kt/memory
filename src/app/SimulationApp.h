@@ -57,8 +57,11 @@ public:
 
   const State& state() const { return _context.state; }
 
-  Json serializeEntityState();
 private:
+  void dumpEntityState();
+  void loadEntityState();
+  void saveEntityState();
+
   Context& _context;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
