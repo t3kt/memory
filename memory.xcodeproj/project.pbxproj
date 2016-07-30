@@ -266,6 +266,7 @@
 		32EEAEBF1D4C5A9E003A503F /* MidiEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MidiEvents.cpp; path = control/MidiEvents.cpp; sourceTree = "<group>"; };
 		32EEAEC01D4C5A9E003A503F /* MidiEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiEvents.h; path = control/MidiEvents.h; sourceTree = "<group>"; };
 		32EEAEC21D4C5AB8003A503F /* SimulationEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimulationEvents.cpp; path = core/SimulationEvents.cpp; sourceTree = "<group>"; };
+		32EEAEC41D4C75AC003A503F /* MappingSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MappingSet.h; path = control/MappingSet.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -537,6 +538,7 @@
 		102C17DAD08FCB5A66E3A9C0 /* control */ = {
 			isa = PBXGroup;
 			children = (
+				32EEAEC41D4C75AC003A503F /* MappingSet.h */,
 				B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */,
 				B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */,
 				1CCB588E74FE34D369788C45 /* MidiController.cpp */,
