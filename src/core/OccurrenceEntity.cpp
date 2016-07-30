@@ -41,7 +41,7 @@ void OccurrenceEntity::addSerializedFields(Json::object &obj,
   JsonUtil::mergeInto(obj, {
     {"originalRadius", _originalRadius},
     // omit actualRadius since it's calculated
-    {"startTime", _startTime - context.baseTime()},
+    {"startTime", _startTime - context.time()},
     // omit amountOfObservation since it's calculated
   });
 }
@@ -50,7 +50,7 @@ void OccurrenceEntity::deserializeFields(const Json &obj,
                                          const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
   _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
-  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
 }
 
 void OccurrenceEntity::addSerializedRefs(Json::object &obj,
@@ -65,6 +65,6 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.context().observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
-  context.context().occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
+  context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
 }

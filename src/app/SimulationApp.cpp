@@ -146,9 +146,8 @@ bool SimulationApp::performAction(AppAction action) {
 }
 
 Json SimulationApp::serializeEntityState() {
-  SerializationContext context(_context);
   Json::object obj;
-  obj["observers"] = _context.observers.serializeEntities(context);
-  obj["occurrences"] = _context.occurrences.serializeEntities(context);
+  obj["observers"] = _context.observers.serializeEntities(_context);
+  obj["occurrences"] = _context.occurrences.serializeEntities(_context);
   return obj;
 }

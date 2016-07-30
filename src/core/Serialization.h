@@ -13,7 +13,8 @@
 #include "JsonIO.h"
 
 class Context;
-class SerializationContext;
+
+using SerializationContext = Context;
 
 class SerializationException : std::runtime_error {
 public:
@@ -34,19 +35,6 @@ protected:
                                    const SerializationContext& context) const = 0;
   virtual void addSerializedRefs(Json::object& obj,
                                  const SerializationContext& context) const { }
-};
-
-class SerializationContext {
-public:
-  SerializationContext(Context& context);
-
-  float baseTime() const { return _baseTime; }
-
-  Context& context() { return _context; }
-  const Context& context() const { return _context; }
-private:
-  float _baseTime;
-  Context& _context;
 };
 
 #endif /* Serialization_h */

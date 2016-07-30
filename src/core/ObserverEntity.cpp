@@ -59,7 +59,7 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
                                          const SerializationContext& context) const {
   ParticleObject::addSerializedFields(obj, context);
   JsonUtil::mergeInto(obj, {
-    {"startTime", _startTime - context.baseTime()},
+    {"startTime", _startTime - context.time()},
     {"totalLifetime", _totalLifetime},
     // omit lifetimeFraction since it's calculated
   });
@@ -68,7 +68,7 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
 void ObserverEntity::deserializeFields(const Json &obj,
                                        const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
-  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.baseTime();
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
   _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
 }
 
@@ -84,6 +84,6 @@ void ObserverEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.context().observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
-  context.context().occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
+  context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
 }

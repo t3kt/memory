@@ -23,7 +23,3 @@ Json Serializable::serializeRefs(const SerializationContext &context) const {
   }
   return obj;
 }
-
-SerializationContext::SerializationContext(Context& context)
-: _context(context)
-, _baseTime(context.time()) { }
