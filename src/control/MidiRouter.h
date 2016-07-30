@@ -42,6 +42,8 @@ private:
 
   void onInputMessage(MidiReceivedEventArgs& event);
 
+  std::shared_ptr<MidiDevice> getDevice(MidiDeviceId id);
+
   MemoryAppParameters& _appParams;
   MidiMappingSet _mappings;
   BindingMap _bindings;
