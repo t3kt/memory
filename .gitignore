@@ -39,3 +39,4 @@ memory.VC*
 *.exp
 *.pdb
 *.trace
+etc/states
