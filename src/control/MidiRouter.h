@@ -36,6 +36,9 @@ public:
   void setup(std::initializer_list<std::shared_ptr<MidiDevice>> devices);
 
   std::shared_ptr<MidiDevice> getDevice(MidiDeviceId id);
+  MidiDeviceId getDeviceId(const std::string& name) {
+    return _deviceNameToId[name];
+  }
 private:
   void addDevice(std::shared_ptr<MidiDevice> device);
 

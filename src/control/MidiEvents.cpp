@@ -83,8 +83,28 @@ void MidiEventRouter::detach(SimulationEvents &events) {
   }
 }
 
+static MidiEventMapping mapNoteOut(SimulationEventType eventType,
+                                   MidiDeviceId deviceId,
+                                   int key) {
+  return MidiEventMapping(eventType,
+                          MidiMappingKey(deviceId,
+                                         MidiMessageType::NOTE_ON,
+                                         0,
+                                         key),
+                          127);
+}
+
 void MidiEventRouter::loadMappings() {
   _mappings.readFromFile("eventMappings.json");
+  if (_mappings.empty()) {
+    auto devid = _router.getDeviceId("max");
+    _mappings.add(mapNoteOut(SimulationEventType::OBSERVER_SPAWNED,
+                             devid,
+                             10));
+    _mappings.add(mapNoteOut(SimulationEventType::OCCURRENCE_SPAWNED,
+                             devid,
+                             20));
+  }
   initBindings();
 }
 
