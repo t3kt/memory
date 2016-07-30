@@ -9,12 +9,18 @@
 #ifndef MidiEvents_h
 #define MidiEvents_h
 
+#include <vector>
 #include "Common.h"
 #include "Events.h"
 #include "JsonIO.h"
+#include "MappingSet.h"
 #include "MidiCommon.h"
 #include "Params.h"
 #include "SimulationEvents.h"
+
+class MidiRouter;
+
+class MidiEventBinding;
 
 class MidiEventMapping
 : public Outputable
@@ -23,25 +29,18 @@ class MidiEventMapping
 public:
   MidiEventMapping()
   : _eventType(SimulationEventType::ANIMATION_SPAWNED)
-  , _messageType(MidiMessageType::OTHER)
-  , _channel(0)
-  , _cc(0)
   , _value(0) { }
+
   MidiEventMapping(SimulationEventType eventType,
-                   MidiMessageType messageType,
-                   MidiChannel channel,
-                   int cc,
+                   MidiMappingKey key,
                    int value)
   : _eventType(eventType)
-  , _messageType(messageType)
-  , _channel(channel)
-  , _cc(cc)
+  , _key(key)
   , _value(value) { }
 
   SimulationEventType eventType() const { return _eventType; }
-  MidiMessageType messageType() const { return _messageType; }
-  MidiChannel channel() const { return _channel; }
-  int cc() const { return _cc; }
+  const MidiMappingKey& key() const { return _key; }
+  int value() const { return _value; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
@@ -51,15 +50,32 @@ protected:
   void outputFields(std::ostream& os) const override;
 
 private:
+  MidiMappingKey _key;
   SimulationEventType _eventType;
-  MidiMessageType _messageType;
-  MidiChannel _channel;
-  int _cc;
   int _value;
 };
 
+using MidiEventMappingSet = MappingSet<MidiEventMapping>;
+
 class MidiEventRouter {
-  
+public:
+  using BindingList = std::vector<std::shared_ptr<MidiEventBinding>>;
+
+  MidiEventRouter(MidiRouter& router)
+  : _router(router) { }
+
+  void setup();
+
+  void attach(SimulationEvents& events);
+  void detach(SimulationEvents& events);
+private:
+  void loadMappings();
+  void initBindings();
+  void addBinding(const MidiEventMapping& mapping);
+
+  MidiRouter& _router;
+  MidiEventMappingSet _mappings;
+  BindingList _bindings;
 };
 
 #endif /* MidiEvents_h */

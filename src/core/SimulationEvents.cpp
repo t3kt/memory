@@ -6,6 +6,7 @@
 //
 //
 
+#include "AppSystem.h"
 #include "JsonIO.h"
 #include "SimulationEvents.h"
 
@@ -37,5 +38,33 @@ namespace JsonUtil {
   SimulationEventType fromJson<SimulationEventType>(const Json& value) {
     assertHasType(value, Json::STRING);
     return SimulationEventTypeType.parseString(value.string_value());
+  }
+}
+
+AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {
+  switch (type) {
+    case SimulationEventType::ANIMATION_SPAWNED:
+      return &animationSpawned;
+    case SimulationEventType::ANIMATION_DIED:
+      return &animationDied;
+    case SimulationEventType::OBSERVER_SPAWNED:
+      return &observerSpawned;
+    case SimulationEventType::OBSERVER_DIED:
+      return &observerDied;
+    case SimulationEventType::OCCURRENCE_SPAWNED:
+      return &occurrenceSpawned;
+    case SimulationEventType::OCCURRENCE_SPAWN_FAILED:
+      return &occurrenceSpawnFailed;
+    case SimulationEventType::OCCURRENCE_DIED:
+      return &occurrenceDied;
+    case SimulationEventType::NAVIGATOR_SPAWNED:
+      return &navigatorSpawned;
+    case SimulationEventType::NAVIGATOR_REACHED_LOCATION:
+      return &navigatorReachedLocation;
+    case SimulationEventType::NAVIGATOR_DIED:
+      return &navigatorDied;
+    default:
+      AppSystem::get().log().control().logWarning("Unsupported event type: " + SimulationEventTypeType.toString(type));
+      return nullptr;
   }
 }

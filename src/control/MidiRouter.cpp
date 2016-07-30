@@ -11,6 +11,7 @@
 #include "AppSystem.h"
 #include "Common.h"
 #include "MidiRouter.h"
+#include "SimulationApp.h"
 
 class AbstractMidiBinding {
 public:
@@ -89,6 +90,9 @@ void MidiRouter::setup(std::initializer_list<std::shared_ptr<MidiDevice>> device
     addDevice(device);
   }
   loadMappings();
+  _eventRouter = std::make_shared<MidiEventRouter>(*this);
+  _eventRouter->setup();
+  _eventRouter->attach(AppSystem::get().simulation()->getEvents());
 }
 
 void MidiRouter::addDevice(std::shared_ptr<MidiDevice> device) {

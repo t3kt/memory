@@ -6,22 +6,50 @@
 //
 //
 
+#include "AppSystem.h"
+#include "MidiDevice.h"
 #include "MidiEvents.h"
+#include "MidiRouter.h"
+
+class MidiEventBinding {
+public:
+  MidiEventBinding(const MidiEventMapping& mapping,
+                   std::shared_ptr<MidiDevice> device)
+  : _mapping(mapping)
+  , _device(device) { }
+
+  virtual ~MidiEventBinding() { }
+
+  virtual void attach(AbstractEvent& event) {
+    event.addVoidListener([&]() {
+      _device->sendMessage(_mapping.key().type(),
+                           _mapping.key().channel(),
+                           _mapping.key().cc(),
+                           _mapping.value());
+    }, this);
+  }
+
+  virtual void detach(AbstractEvent& event) {
+    event.removeListeners(this);
+  }
+
+  SimulationEventType eventType() const { return _mapping.eventType(); }
+
+private:
+  const MidiEventMapping& _mapping;
+  std::shared_ptr<MidiDevice> _device;
+};
 
 void MidiEventMapping::outputFields(std::ostream &os) const {
   os << "event: " << _eventType;
-  os << ", message: " << _messageType;
-  os << ", channel: " << _channel;
-  os << ", cc: " << _cc;
+  os << ", key: " << _key;
   os << ", val: " << _value;
 }
 
 Json MidiEventMapping::to_json() const {
   return Json::object {
     {"event", JsonUtil::toJson(_eventType)},
-    {"message", JsonUtil::toJson(_messageType)},
-    {"channel", JsonUtil::toJson(_channel)},
-    {"cc", JsonUtil::toJson(_cc)},
+    {"key", _key},
     {"value", JsonUtil::toJson(_value)},
   };
 }
@@ -29,8 +57,50 @@ Json MidiEventMapping::to_json() const {
 void MidiEventMapping::read_json(const Json &obj) {
   JsonUtil::assertHasType(obj, Json::OBJECT);
   _eventType = JsonUtil::fromJson<SimulationEventType>(obj["event"]);
-  _messageType = JsonUtil::fromJson<MidiMessageType>(obj["message"]);
-  _channel = JsonUtil::fromJson<MidiChannel>(obj["channel"]);
-  _cc = JsonUtil::fromJson<int>(obj["cc"]);
+  _key.read_json(obj["key"]);
   _value = JsonUtil::fromJson<int>(obj["value"]);
+}
+
+void MidiEventRouter::setup() {
+  loadMappings();
+}
+
+void MidiEventRouter::attach(SimulationEvents &events) {
+  for (auto& binding : _bindings) {
+    auto event = events.getEvent(binding->eventType());
+    if (event) {
+      binding->attach(*event);
+    }
+  }
+}
+
+void MidiEventRouter::detach(SimulationEvents &events) {
+  for (auto& binding : _bindings) {
+    auto event = events.getEvent(binding->eventType());
+    if (event) {
+      binding->detach(*event);
+    }
+  }
+}
+
+void MidiEventRouter::loadMappings() {
+  _mappings.readFromFile("eventMappings.json");
+  initBindings();
+}
+
+void MidiEventRouter::initBindings() {
+  for (const auto& mapping : _mappings) {
+    addBinding(mapping);
+  }
+}
+
+void MidiEventRouter::addBinding(const MidiEventMapping &mapping) {
+  auto device = _router.getDevice(mapping.key().device());
+  if (!device) {
+    AppSystem::get().log().control().logWarning("Unable to find device for mapping " + ofToString(mapping));
+    return;
+  }
+  auto binding = std::make_shared<MidiEventBinding>(mapping,
+                                                    device);
+  _bindings.push_back(binding);
 }

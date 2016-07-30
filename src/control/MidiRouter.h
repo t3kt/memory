@@ -18,6 +18,7 @@
 #include "Events.h"
 #include "JsonIO.h"
 #include "MidiDevice.h"
+#include "MidiEvents.h"
 #include "MidiMapping.h"
 #include "Params.h"
 
@@ -33,6 +34,8 @@ public:
   : _appParams(appParams) { }
 
   void setup(std::initializer_list<std::shared_ptr<MidiDevice>> devices);
+
+  std::shared_ptr<MidiDevice> getDevice(MidiDeviceId id);
 private:
   void addDevice(std::shared_ptr<MidiDevice> device);
 
@@ -42,13 +45,12 @@ private:
 
   void onInputMessage(MidiReceivedEventArgs& event);
 
-  std::shared_ptr<MidiDevice> getDevice(MidiDeviceId id);
-
   MemoryAppParameters& _appParams;
   MidiMappingSet _mappings;
   BindingMap _bindings;
   DeviceMap _devices;
   DeviceIdMap _deviceNameToId;
+  std::shared_ptr<MidiEventRouter> _eventRouter;
 };
 
 #endif /* MidiRouter_h */

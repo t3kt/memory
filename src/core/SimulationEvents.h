@@ -84,6 +84,8 @@ public:
   NavigatorEvent navigatorSpawned;
   NavigatorEvent navigatorReachedLocation;
   NavigatorEvent navigatorDied;
+
+  AbstractEvent* getEvent(SimulationEventType type);
 };
 
 #endif /* SimulationEvents_h */
