@@ -9,12 +9,6 @@
 #include "WorldObject.h"
 #include "State.h"
 
-template<>
-std::string ofToString(const ObjectId& id) {
-  int val = static_cast<int>(id);
-  return ofToString(val);
-}
-
 static ObjectId nextId() {
   static ObjectId lastId = 0;
   return ++lastId;

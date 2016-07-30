@@ -56,6 +56,8 @@ public:
   }
 
   const State& state() const { return _context.state; }
+
+  Json serializeEntityState();
 private:
   Context& _context;
   MemoryAppParameters& _appParams;

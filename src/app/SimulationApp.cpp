@@ -133,8 +133,22 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
+    case AppAction::DUMP_ENTITY_STATE:
+    {
+      Json state = serializeEntityState();
+      JsonUtil::prettyPrintJsonToStream(state, std::cout);
+    }
+      break;
     default:
       return false;
   }
   return true;
+}
+
+Json SimulationApp::serializeEntityState() {
+  SerializationContext context(_context);
+  Json::object obj;
+  obj["observers"] = _context.observers.serializeEntities(context);
+  obj["occurrences"] = _context.occurrences.serializeEntities(context);
+  return obj;
 }

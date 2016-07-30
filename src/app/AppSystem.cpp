@@ -36,6 +36,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'x', AppAction::STOP_ALL_ENTITIES},
   {'p', AppAction::TOGGLE_SHOW_PHYSICS},
   {'b', AppAction::TOGGLE_SHOW_BOUNDS},
+  {'d', AppAction::DUMP_ENTITY_STATE},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {

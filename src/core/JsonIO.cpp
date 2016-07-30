@@ -105,11 +105,6 @@ private:
   std::ostream& _out;
 };
 
-static void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
-  JsonWriter writer(os);
-  writer.write(value);
-}
-
 static std::string prettyPrintJsonToString(const Json& value) {
   std::ostringstream os;
   prettyPrintJsonToStream(value, os);
@@ -117,6 +112,11 @@ static std::string prettyPrintJsonToString(const Json& value) {
 }
 
 namespace JsonUtil {
+
+  void prettyPrintJsonToStream(const Json& value, std::ostream& os) {
+    JsonWriter writer(os);
+    writer.write(value);
+  }
 
   void assertHasShape(const Json& value, Json::shape shape) {
     std::string message;
