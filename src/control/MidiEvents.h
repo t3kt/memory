@@ -33,14 +33,17 @@ public:
 
   MidiEventMapping(SimulationEventType eventType,
                    MidiMappingKey key,
-                   int value)
+                   int value,
+                   bool autoOff = true)
   : _eventType(eventType)
   , _key(key)
-  , _value(value) { }
+  , _value(value)
+  , _autoOff(true) { }
 
   SimulationEventType eventType() const { return _eventType; }
   const MidiMappingKey& key() const { return _key; }
   int value() const { return _value; }
+  bool autoOff() const { return _autoOff; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
@@ -53,6 +56,7 @@ private:
   MidiMappingKey _key;
   SimulationEventType _eventType;
   int _value;
+  bool _autoOff;
 };
 
 using MidiEventMappingSet = MappingSet<MidiEventMapping>;

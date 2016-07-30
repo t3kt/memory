@@ -26,6 +26,13 @@ public:
                            _mapping.key().channel(),
                            _mapping.key().cc(),
                            _mapping.value());
+      if (_mapping.key().type() == MidiMessageType::NOTE_ON
+          && _mapping.autoOff()) {
+        _device->sendMessage(MidiMessageType::NOTE_OFF,
+                             _mapping.key().channel(),
+                             _mapping.key().cc(),
+                             _mapping.value());
+      }
     }, this);
   }
 
@@ -44,14 +51,21 @@ void MidiEventMapping::outputFields(std::ostream &os) const {
   os << "event: " << _eventType;
   os << ", key: " << _key;
   os << ", val: " << _value;
+  if (_key.type() == MidiMessageType::NOTE_ON) {
+    os << ", autoOff: " << _autoOff;
+  }
 }
 
 Json MidiEventMapping::to_json() const {
-  return Json::object {
+  Json::object obj {
     {"event", JsonUtil::toJson(_eventType)},
     {"key", _key},
     {"value", JsonUtil::toJson(_value)},
   };
+  if (_key.type() == MidiMessageType::NOTE_ON) {
+    obj["autoOff"] = _autoOff;
+  }
+  return obj;
 }
 
 void MidiEventMapping::read_json(const Json &obj) {
@@ -59,6 +73,7 @@ void MidiEventMapping::read_json(const Json &obj) {
   _eventType = JsonUtil::fromJson<SimulationEventType>(obj["event"]);
   _key.read_json(obj["key"]);
   _value = JsonUtil::fromJson<int>(obj["value"]);
+  _autoOff = JsonUtil::fromJsonField(obj, "autoOff", true);
 }
 
 void MidiEventRouter::setup() {
