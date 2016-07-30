@@ -19,6 +19,11 @@ using NavigatorStatePtr = std::shared_ptr<NavigatorState>;
 class NavigatorEntity
 : public ParticleObject {
 public:
+  static std::shared_ptr<NavigatorEntity> createEmpty() {
+    // unsupported
+    return std::shared_ptr<NavigatorEntity>();
+  }
+
   NavigatorEntity(NavigatorStatePtr prevState);
 
   const ofVec3f& prevPosition() const;

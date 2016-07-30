@@ -6,6 +6,7 @@
 //
 //
 
+#include <ofSystemUtils.h>
 #include "AppSystem.h"
 #include "ControlApp.h"
 #include "SimulationApp.h"
@@ -127,12 +128,46 @@ void SimulationApp::draw() {
   AppSystem::get().control()->draw();
 }
 
+void SimulationApp::dumpEntityState() {
+  Json state = _context.to_json();
+  JsonUtil::prettyPrintJsonToStream(state, std::cout);
+}
+
+void SimulationApp::loadEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.readFromFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileLoadAction(action,
+                                         "Load Entity State",
+                                         "entityState.json");
+}
+
+void SimulationApp::saveEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.writeToFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileSaveAction(action,
+                                         "Save Entity State",
+                                         "entityState.json");
+}
+
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
   AppSystem::get().handleKeyPressed(event);
 }
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
+    case AppAction::DUMP_ENTITY_STATE:
+      dumpEntityState();
+      break;
+    case AppAction::LOAD_ENTITY_STATE:
+      loadEntityState();
+      break;
+    case AppAction::SAVE_ENTITY_STATE:
+      saveEntityState();
+      break;
     default:
       return false;
   }

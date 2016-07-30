@@ -19,6 +19,11 @@
 
 class AnimationObject : public WorldObject {
 public:
+  static std::shared_ptr<AnimationObject> createEmpty() {
+    // unsupported
+    return std::shared_ptr<AnimationObject>();
+  }
+
   class Params : public ParamsWithEnabled {
   public:
     Params() {

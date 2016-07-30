@@ -16,12 +16,17 @@
 #include <iostream>
 #include "ValueSupplier.h"
 #include "State.h"
+#include "Context.h"
 
 class ObserverEntity;
 
 class OccurrenceEntity
 : public ParticleObject {
 public:
+  static std::shared_ptr<OccurrenceEntity> createEmpty() {
+    return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
+  }
+
   OccurrenceEntity(ofVec3f pos, float radius, const State& state);
   virtual ~OccurrenceEntity() {}
   
@@ -73,11 +78,23 @@ public:
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+
+  virtual void deserializeRefs(const Json& obj,
+                               SerializationContext& context) override;
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
+  virtual void addSerializedRefs(Json::object& obj,
+                                 const SerializationContext& context) const override;
   
 private:
+  OccurrenceEntity() { }
+
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;
   }
@@ -86,7 +103,7 @@ private:
     _actualRadius = radius;
   }
   
-  const float _originalRadius;
+  float _originalRadius;
   float _actualRadius;
   float _startTime;
   float _amountOfObservation;
@@ -98,5 +115,9 @@ private:
 
 template<>
 EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
+
+void readOccurrenceRefs(EntityMap<OccurrenceEntity>& entities,
+                        const Json& arr,
+                        Context& context);
 
 #endif /* OccurrenceEntity_h */

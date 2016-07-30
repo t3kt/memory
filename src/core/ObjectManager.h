@@ -9,6 +9,7 @@
 #ifndef ObjectManager_h
 #define ObjectManager_h
 
+#include <algorithm>
 #include <functional>
 #include <iterator>
 #include <list>
@@ -17,6 +18,7 @@
 #include <ofMath.h>
 #include "Common.h"
 #include "Events.h"
+#include "Serialization.h"
 #include "State.h"
 #include "WorldObject.h"
 
@@ -85,6 +87,15 @@ public:
     return EntityPtr();
   }
 
+  EntityPtr operator[](ObjectId id) {
+    for (auto& entity : _objects) {
+      if (entity->id() == id) {
+        return entity;
+      }
+    }
+    return EntityPtr();
+  }
+
 protected:
   Storage _objects;
 };
@@ -127,11 +138,73 @@ public:
     this->_objects.push_back(object);
   }
 
+  void clear() {
+    this->_objects.clear();
+  }
+
   View& view() {
     if (!_view) {
       _view = std::make_shared<View>(*this);
     }
     return *_view;
+  }
+
+  Json serializeEntities(const SerializationContext& context) const {
+    Json::array arr;
+    for (const auto& entity : *this) {
+      Json fields = entity->serializeFields(context);
+      Json refs = entity->serializeRefs(context);
+      if (refs.is_null()) {
+        arr.push_back(fields);
+      } else {
+        arr.push_back(JsonUtil::merge(fields, refs));
+      }
+    }
+    return arr;
+  }
+
+  void deserializeEntityFields(const Json& arr,
+                               const SerializationContext& context) {
+    JsonUtil::assertHasType(arr, Json::ARRAY);
+    for (const auto& val : arr.array_items()) {
+      JsonUtil::assertHasType(val, Json::OBJECT);
+      auto entity = T::createEmpty();
+      entity->deserializeFields(val, context);
+      add(entity);
+    }
+  }
+
+  void deserializeEntityRefs(const Json& arr,
+                             SerializationContext& context) {
+    JsonUtil::assertHasType(arr, Json::ARRAY);
+    for (const auto& val : arr.array_items()) {
+      JsonUtil::assertHasType(val, Json::OBJECT);
+      ObjectId id = JsonUtil::fromJsonField(val, "id", NO_OBJECT_ID);
+      if (id == NO_OBJECT_ID) {
+        throw SerializationException("Missing ID for object: " + val.dump());
+      }
+      auto entity = (*this)[id];
+      if (!entity) {
+        throw SerializationException("Entity not found: " + ofToString(id));
+      }
+      entity->deserializeRefs(val, context);
+    }
+  }
+
+  void loadDeserializedRefsInto(EntityMap<T>& entities,
+                                const Json& idArray) {
+    if (idArray.is_null()) {
+      return;
+    }
+    JsonUtil::assertHasType(idArray, Json::ARRAY);
+    for (const auto& val : idArray.array_items()) {
+      auto id = JsonUtil::fromJson<ObjectId>(val);
+      auto entity = (*this)[id];
+      if (!entity) {
+        throw SerializationException("Entity not found: " + ofToString(id));
+      }
+      entities.add(entity);
+    }
   }
 
 private:

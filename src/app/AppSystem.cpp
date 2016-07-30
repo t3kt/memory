@@ -11,6 +11,25 @@
 #include "ControlApp.h"
 #include "SimulationApp.h"
 
+class PauseHandler {
+public:
+  PauseHandler(MemoryAppParameters& appParams)
+  : _paused(appParams.core.clock.paused)
+  , _wasPaused(appParams.core.clock.paused.get()) {
+    if (!_wasPaused) {
+      _paused.set(true);
+    }
+  }
+
+  ~PauseHandler() {
+    _paused.set(_wasPaused);
+  }
+
+private:
+  TParam<bool>& _paused;
+  bool _wasPaused;
+};
+
 static std::unique_ptr<AppSystem> instance;
 
 void AppSystem::initialize() {
@@ -36,6 +55,9 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'x', AppAction::STOP_ALL_ENTITIES},
   {'p', AppAction::TOGGLE_SHOW_PHYSICS},
   {'b', AppAction::TOGGLE_SHOW_BOUNDS},
+  {'d', AppAction::DUMP_ENTITY_STATE},
+  {'[', AppAction::LOAD_ENTITY_STATE},
+  {']', AppAction::SAVE_ENTITY_STATE},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
@@ -77,4 +99,28 @@ bool AppSystem::performAction(AppAction action) {
     _log.app().logWarning("App action not handled: " + AppActionType.toString(action));
   }
   return handled;
+}
+
+bool AppSystem::performFileSaveAction(FileAction action,
+                                      std::string messageName,
+                                      std::string defaultName) {
+  PauseHandler pauseHandler(_appParams);
+  auto result = ofSystemSaveDialog(defaultName, messageName);
+  if (!result.bSuccess) {
+    return false;
+  }
+  return action(result);
+}
+
+bool AppSystem::performFileLoadAction(FileAction action,
+                                      std::string windowTitle,
+                                      std::string defaultPath) {
+  PauseHandler pauseHandler(_appParams);
+  auto result = ofSystemLoadDialog(windowTitle,
+                                   false,
+                                   defaultPath);
+  if (!result.bSuccess) {
+    return false;
+  }
+  return action(result);
 }
