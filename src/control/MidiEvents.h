@@ -58,4 +58,8 @@ private:
   int _value;
 };
 
+class MidiEventRouter {
+  
+};
+
 #endif /* MidiEvents_h */

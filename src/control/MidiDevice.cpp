@@ -41,6 +41,9 @@ MidiDevice::MidiDevice(std::string name,
 template<typename M>
 bool tryOpenPort(M& midi, const std::string& portName) {
   auto portNames = M::getPortList();
+  for (const auto& p : portNames) {
+    AppSystem::get().log().control().logNotice("Port name: " + p);
+  }
   if (std::find(portNames.begin(), portNames.end(), portName) == portNames.end()) {
     return false;
   }

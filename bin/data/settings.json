@@ -133,7 +133,7 @@
       },
       "logging": {
         "anim": {
-          "enabled": true,
+          "enabled": false,
           "level": 1
         },
         "app": {
@@ -144,17 +144,17 @@
           "enabled": true,
           "level": 1
         },
-        "enabled": false,
+        "enabled": true,
         "nav": {
-          "enabled": true,
+          "enabled": false,
           "level": 1
         },
         "obs": {
-          "enabled": true,
+          "enabled": false,
           "level": 1
         },
         "occ": {
-          "enabled": true,
+          "enabled": false,
           "level": 1
         }
       },
@@ -164,6 +164,9 @@
     },
     "midi": {
       "enabled": true,
+      "max": {
+        "enabled": false
+      },
       "twister": {
         "enabled": false
       }

@@ -22,7 +22,11 @@ void MidiController::setup() {
                                           "Midi Fighter Twister",
                                           "Midi Fighter Twister",
                                           _params.twister);
-  _router->setup({_twister});
+  _max = std::make_shared<MidiDevice>("max",
+                                      "IAC Driver Virtual 2", // input from external
+                                      "IAC Driver Virtual 1", // output to external
+                                      _params.max);
+  _router->setup({_twister, _max});
 }
 
 void MidiController::update() {

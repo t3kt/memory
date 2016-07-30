@@ -124,9 +124,13 @@ public:
     add(twister
         .setKey("twister")
         .setName("MF Twister"));
+    add(max
+        .setKey("max")
+        .setName("Max/MSP Relay"));
   }
 
   MidiDeviceParams twister;
+  MidiDeviceParams max;
 };
 
 #endif /* MidiCommon_h */
