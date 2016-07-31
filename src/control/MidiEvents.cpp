@@ -100,11 +100,12 @@ void MidiEventRouter::detach(SimulationEvents &events) {
 
 static MidiEventMapping mapNoteOut(SimulationEventType eventType,
                                    MidiDeviceId deviceId,
+                                   MidiChannel channel,
                                    int key) {
   return MidiEventMapping(eventType,
                           MidiMappingKey(deviceId,
                                          MidiMessageType::NOTE_ON,
-                                         0,
+                                         channel,
                                          key),
                           127);
 }
@@ -115,9 +116,23 @@ void MidiEventRouter::loadMappings() {
     auto devid = _router.getDeviceId("max");
     _mappings.add(mapNoteOut(SimulationEventType::OBSERVER_SPAWNED,
                              devid,
+                             1,
                              10));
+    _mappings.add(mapNoteOut(SimulationEventType::OBSERVER_DIED,
+                             devid,
+                             1,
+                             20));
     _mappings.add(mapNoteOut(SimulationEventType::OCCURRENCE_SPAWNED,
                              devid,
+                             2,
+                             10));
+//    _mappings.add(mapNoteOut(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
+//                             devid,
+//                             2,
+//                             15));
+    _mappings.add(mapNoteOut(SimulationEventType::OCCURRENCE_DIED,
+                             devid,
+                             2,
                              20));
   }
   initBindings();

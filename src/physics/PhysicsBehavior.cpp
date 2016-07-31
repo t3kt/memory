@@ -33,10 +33,6 @@ void BoundsBehavior::applyToEntity(Context& context,
   if (!entity->alive()) {
     return;
   }
-  if (_bounds.reflect(entity->velocityPtr(),
-                      entity->positionPtr())) {
-    AppSystem::get().log().app().logNotice([&](ofLog& log) {
-      log << "Observer rebounded: " << *entity;
-    });
-  }
+  _bounds.reflect(entity->velocityPtr(),
+                  entity->positionPtr());
 }
