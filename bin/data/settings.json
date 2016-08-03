@@ -216,7 +216,7 @@
         "endValue": 1,
         "startValue": 0
       },
-      "size": 9.1836738586425781
+      "size": 12.244897842407227
     },
     "spawner": {
       "enabled": false,
@@ -265,7 +265,10 @@
         "startValue": 0
       },
       "showRange": false,
-      "size": 25,
+      "sizeRange": {
+        "high": 32.840484619140625,
+        "low": 2.6447322368621826
+      },
       "wireBrightness": 1.5,
       "wireEnabled": false,
       "wireSaturation": 0.19897958636283875,

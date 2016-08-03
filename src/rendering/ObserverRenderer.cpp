@@ -15,6 +15,7 @@
 ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
 : EntityRenderer<ObserverEntity>(params,
                                  colors.getColor(ColorId::OBSERVER_MARKER))
+, _params(params)
 , _entities(entities)
 , _mesh(AppAssets::observerMarkerMesh()) {
   _mesh.setUsage(GL_STATIC_DRAW);
@@ -37,7 +38,7 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity,
 
   ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
-  float size = _baseParams.size();
+  float size = _params.size.get();
   ofScale(ofVec3f(size));
   _mesh.draw();
 

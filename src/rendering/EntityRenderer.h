@@ -23,18 +23,12 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(size
-          .setKey("size")
-          .setName("Draw Size")
-          .setValueAndDefault(10)
-          .setRange(0, 100));
       add(fadeIn
           .setKey("fadeIn")
           .setName("Fade In"));
     }
 
     RampFactory<float>::Params fadeIn;
-    TParam<float> size;
   };
 
   AbstractEntityRenderer(const Params& params, const ofFloatColor& color)

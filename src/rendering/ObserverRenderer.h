@@ -23,6 +23,18 @@ class ObserverRenderer
 : public EntityRenderer<ObserverEntity> {
 public:
 
+  class Params : public AbstractEntityRenderer::Params {
+  public:
+    Params() {
+      add(size
+          .setKey("size")
+          .setName("Draw Size")
+          .setValueAndDefault(10)
+          .setRange(0, 100));
+    }
+    TParam<float> size;
+  };
+
   ObserverRenderer(const Params& params,
                    const ColorTheme& colors,
                    ObjectManager<ObserverEntity>& entities);
@@ -36,6 +48,7 @@ protected:
   void drawEntity(const ObserverEntity& entity,
                   const State& state) override;
 private:
+  const Params& _params;
   ObjectManager<ObserverEntity>& _entities;
   ofVboMesh _mesh;
 };

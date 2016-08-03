@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "AppParameters.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "OccurrenceRenderer.h"
@@ -35,7 +36,13 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity,
 
   ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
-  float size = _params.size();
+
+  float size = ofMap(entity.originalRadius(),
+                     _appParams.occurrences.radius.lowValue.get(),
+                     _appParams.occurrences.radius.highValue.get(),
+                     _params.sizeRange.lowValue.get(),
+                     _params.sizeRange.highValue.get());
+
   ofScale(ofVec3f(size));
   mesh.draw();
 
