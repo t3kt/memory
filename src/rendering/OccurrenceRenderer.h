@@ -70,7 +70,7 @@ protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator end() override {
     return _entities.end();
   }
-  void drawEntity(const OccurrenceEntity& entity, const ofFloatColor& baseColor, float size, const State& state) override;
+  void drawEntity(const OccurrenceEntity& entity, const State& state) override;
 private:
   const Params& _params;
   const ofFloatColor& _rangeColor;

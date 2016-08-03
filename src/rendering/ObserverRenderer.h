@@ -34,8 +34,6 @@ protected:
     return _entities.end();
   }
   void drawEntity(const ObserverEntity& entity,
-                  const ofFloatColor& baseColor,
-                  float size,
                   const State& state) override;
 private:
   ObjectManager<ObserverEntity>& _entities;

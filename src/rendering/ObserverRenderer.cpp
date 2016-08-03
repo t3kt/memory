@@ -20,7 +20,8 @@ ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const
   _mesh.setUsage(GL_STATIC_DRAW);
 }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
+void ObserverRenderer::drawEntity(const ObserverEntity &entity,
+                                  const State& state) {
   float alpha = entity.getRemainingLifetimeFraction();
   float age = entity.getAge(state);
   auto fadeIn = _fadeIn.getPhrase();
@@ -34,8 +35,9 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
   ofPushStyle();
   ofPushMatrix();
 
-  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
+  float size = _baseParams.size();
   ofScale(ofVec3f(size));
   _mesh.draw();
 
