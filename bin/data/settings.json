@@ -292,7 +292,7 @@
     },
     "observerObserverAttraction": {
       "distanceBounds": {
-        "high": 130.36235046386719,
+        "high": 140.77468872070312,
         "low": 21.032907485961914
       },
       "enabled": true,
@@ -301,11 +301,11 @@
     },
     "observerOccurrenceAttraction": {
       "distanceBounds": {
-        "high": 122.55310821533203,
+        "high": 140.77468872070312,
         "low": 0.39733448624610901
       },
       "enabled": true,
-      "magnitude": 2.9591836929321289,
+      "magnitude": 3.4693880081176758,
       "reverse": false
     },
     "observerSpatialNoiseForce": {
@@ -332,11 +332,11 @@
     },
     "occurrenceObserverAttraction": {
       "distanceBounds": {
-        "high": 96.522285461425781,
+        "high": 117.34693908691406,
         "low": 26.239070892333984
       },
       "enabled": true,
-      "magnitude": 1.4285714626312256,
+      "magnitude": 2.9591836929321289,
       "reverse": true
     },
     "occurrenceSpatialNoiseForce": {
