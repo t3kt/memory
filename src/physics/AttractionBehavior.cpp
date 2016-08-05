@@ -40,7 +40,7 @@ ofVec3f AbstractAttractionBehavior
 
 void AbstractAttractionBehavior::beginDebugDraw() {
   ofPushStyle();
-  ofSetColor(ofFloatColor::green);
+  ofSetColor(ofFloatColor::lawnGreen);
 }
 
 void AbstractAttractionBehavior::debugDrawEntity(ParticleObject *entity,

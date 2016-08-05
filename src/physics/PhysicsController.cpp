@@ -98,7 +98,7 @@ void PhysicsController::draw() {
     _observerOccurrenceAttraction->debugDraw(_context);
     _occurrenceObserverAttraction->debugDraw(_context);
     _observerObserverAttraction->debugDraw(_context);
-    _observerSpatialNoiseForce->debugDraw(_context);
+    _observerOccurrenceForce->debugDraw(_context);
     _observerSpatialNoiseForce->debugDraw(_context);
     _occurrenceSpatialNoiseForce->debugDraw(_context);
     _observerAnchorPointAttraction->debugDraw(_context);

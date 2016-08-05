@@ -37,8 +37,14 @@ public:
       force.values[1].setValueAndDefault(5);
       force.lengths[0].setValueAndDefault(5);
       force.lengths[1].setValueAndDefault(15);
+      add(magnitude
+          .setKey("magnitude")
+          .setName("Magnitude")
+          .setRange(0, 3)
+          .setValueAndDefault(1));
     }
     ForceRangeSequence force;
+    TParam<float> magnitude;
   };
 
   ObserverOccurrenceForceBehavior(const Params& params)
@@ -46,7 +52,26 @@ public:
 
   void applyToWorld(Context& context) override;
 
+  void debugDraw(Context& context) override {
+    if (!_params.enabled.get()) {
+      return;
+    }
+    AbstractPhysicsBehavior::debugDraw(context);
+  }
+
+protected:
+  virtual void beginDebugDraw() override;
+  virtual void debugDrawBehavior(Context& context) override;
+  virtual void endDebugDraw() override;
+
 private:
+  using Action = std::function<void(ObserverEntity&,
+                                    OccurrenceEntity&,
+                                    const ofVec3f&)>;
+
+  void performAction(Context& context,
+                     Action action);
+
   ofVec3f calcAttraction(const ofVec3f& entityPosition,
                          const ofVec3f& otherPosition) const;
 

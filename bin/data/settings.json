@@ -61,7 +61,7 @@
       0.38265305757522583,
       0.70918369293212891,
       0.33163264393806458,
-      0.20408163964748383
+      0.12244898080825806
     ],
     "observerDied": [
       0.66000598669052124,
@@ -216,7 +216,7 @@
         "endValue": 1,
         "startValue": 0
       },
-      "size": 9.1836738586425781
+      "size": 3.5714287757873535
     },
     "spawner": {
       "enabled": false,
@@ -246,7 +246,7 @@
       "enabled": true
     },
     "radius": {
-      "high": 181.63264465332031,
+      "high": 77.551017761230469,
       "low": 0.20408163964748383
     },
     "rateSpawner": {
@@ -265,7 +265,7 @@
         "startValue": 0
       },
       "showRange": false,
-      "size": 25,
+      "size": 11.734694480895996,
       "wireBrightness": 1.5,
       "wireEnabled": false,
       "wireSaturation": 0.19897958636283875,
@@ -296,7 +296,7 @@
         "low": 21.032907485961914
       },
       "enabled": true,
-      "magnitude": 1.4285714626312256,
+      "magnitude": 1.5306122303009033,
       "reverse": true
     },
     "observerOccurrenceAttraction": {
@@ -316,13 +316,14 @@
         "startValue": -11.082881927490234,
         "value0": 1.2557258605957031,
         "value1": 5
-      }
+      },
+      "magnitude": 0.59693872928619385
     },
     "observerSpatialNoiseForce": {
-      "enabled": false,
-      "magnitude": 2.0408163070678711,
-      "rate": 0.10000000149011612,
-      "scale": 40.816326141357422
+      "enabled": true,
+      "magnitude": 0.71428573131561279,
+      "rate": 0.038265306502580643,
+      "scale": 98.979591369628906
     },
     "observers": {
       "speed": 1.2755101919174194
@@ -364,11 +365,11 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": false,
+      "spinEnabled": true,
       "spinRate": [
-        -0.20408153533935547,
-        0.83715057373046875,
-        -0.72469806671142578
+        -0.620574951171875,
+        0.52478218078613281,
+        -0.51645183563232422
       ]
     },
     "fog": {
@@ -377,7 +378,7 @@
         "high": 4.0016660690307617,
         "low": 3.3769264221191406
       },
-      "enabled": true,
+      "enabled": false,
       "useBackgroundColor": true
     },
     "postProc": {
