@@ -64,7 +64,7 @@ public:
           .setName("Observer to Observer"));
       add(observerOccurrenceForce
           .setKey("observerOccurrenceForce")
-          .setName("Obs/Occ Force (NEW)"));
+          .setName("Obs/Occ Force"));
       add(observerSpatialNoiseForce
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
@@ -89,6 +89,7 @@ public:
       observerAnchorPointAttraction.setEnabledValueAndDefault(false);
       occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
       observerObserverAttraction.setEnabledValueAndDefault(false);
+      observerOccurrenceForce.setEnabledValueAndDefault(false);
       observerDamping.setEnabledValueAndDefault(true);
       occurrenceDamping.setEnabledValueAndDefault(true);
     }
