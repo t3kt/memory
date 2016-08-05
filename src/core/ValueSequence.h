@@ -11,6 +11,7 @@
 
 #include <array>
 #include <functional>
+#include <ofMath.h>
 #include <ofUtils.h>
 #include <ofxChoreograph.h>
 #include "Params.h"
@@ -62,8 +63,9 @@ public:
   ParamArray<T> values;
   ParamArray<float> lengths;
 
-  const SeqT& sequence() const {
-    return *_sequence;
+  T evaluate(float position) const {
+    position = ofClamp(position, 0, _sequence->getDuration());
+    return _sequence->getValue(position);
   }
 
 private:
