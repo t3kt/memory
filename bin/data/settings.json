@@ -163,7 +163,7 @@
       "showStatus": true
     },
     "midi": {
-      "enabled": true,
+      "enabled": false,
       "max": {
         "enabled": true
       },
@@ -296,7 +296,7 @@
         "low": 21.032907485961914
       },
       "enabled": true,
-      "magnitude": 2.1428570747375488,
+      "magnitude": 1.4285714626312256,
       "reverse": true
     },
     "observerOccurrenceAttraction": {
@@ -304,9 +304,19 @@
         "high": 140.77468872070312,
         "low": 0.39733448624610901
       },
-      "enabled": true,
+      "enabled": false,
       "magnitude": 3.4693880081176758,
       "reverse": false
+    },
+    "observerOccurrenceForce": {
+      "enabled": true,
+      "force": {
+        "length0": 31.799251556396484,
+        "length1": 15,
+        "startValue": -11.082881927490234,
+        "value0": 1.2557258605957031,
+        "value1": 5
+      }
     },
     "observerSpatialNoiseForce": {
       "enabled": false,
@@ -322,7 +332,7 @@
         "high": 174.61474609375,
         "low": 39.254482269287109
       },
-      "enabled": true,
+      "enabled": false,
       "magnitude": 2.8571429252624512,
       "reverse": false
     },
@@ -335,7 +345,7 @@
         "high": 117.34693908691406,
         "low": 26.239070892333984
       },
-      "enabled": true,
+      "enabled": false,
       "magnitude": 2.9591836929321289,
       "reverse": true
     },

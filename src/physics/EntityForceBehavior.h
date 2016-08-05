@@ -12,11 +12,14 @@
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
 #include "Context.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "ValueSequence.h"
+
+using ForceRangeSequence = ValueSequence<float, 2>;
 
 class ObserverOccurrenceForceBehavior
 : public AbstractPhysicsBehavior {
@@ -24,7 +27,18 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
+      add(force
+          .setKey("force")
+          .setName("Force"));
+      force.setValueRanges(-15, 15);
+      force.setLengthRanges(0, 100);
+      force.startValue.setValueAndDefault(-2);
+      force.values[0].setValueAndDefault(2);
+      force.values[1].setValueAndDefault(5);
+      force.lengths[0].setValueAndDefault(5);
+      force.lengths[1].setValueAndDefault(15);
     }
+    ForceRangeSequence force;
   };
 
   ObserverOccurrenceForceBehavior(const Params& params)
@@ -33,39 +47,11 @@ public:
   void applyToWorld(Context& context) override;
 
 private:
+  ofVec3f calcAttraction(const ofVec3f& entityPosition,
+                         const ofVec3f& otherPosition) const;
+
   const Params& _params;
 };
-
-class ForceRange {
-public:
-  ForceRange& setInnerDist(float dist);
-  ForceRange& setInnerForce(float amount);
-  ForceRange& setOuterDist(float dist);
-  ForceRange& setOuterForce(float amount);
-};
-
-using namespace ofxChoreograph;
-
-static Sequence<float>
-createForceRangeSequence(float amount0,
-                         float dist1,
-                         float amount1,
-                         float dist2,
-                         float amount2) {
-  Sequence<float> sequence(amount0);
-  sequence.then<RampTo>(amount1, dist1, easeInOutQuad);
-  sequence.then<RampTo>(amount2, dist2, easeInOutQuad);
-  return sequence;
-}
-
-void ObserverOccurrenceForceBehavior::applyToWorld(Context &context) {
-  Sequence<float> sequence(0.0f);
-  sequence.then(std::make_shared<RampTo<float>>(1.0f, // duration
-                                                -1.0f, // start value
-                                                0.0f, // end value
-                                                easeNone));
-  //...
-}
 
 
 #endif /* EntityForceBehavior_h */

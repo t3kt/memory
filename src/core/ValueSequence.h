@@ -20,6 +20,8 @@ template<typename T, std::size_t N>
 class ValueSequence
 : public Params {
 public:
+  static const std::size_t size = N;
+
   template<typename P>
   using ParamArray = std::array<TParam<P>, N>;
   using SeqT = ofxChoreograph::Sequence<T>;
@@ -59,6 +61,19 @@ public:
     }
   }
 
+  void setValueRanges(T minVal, T maxVal) {
+    startValue.setRange(minVal, maxVal);
+    for (std::size_t i = 0; i < N; ++i) {
+      values[i].setRange(minVal, maxVal);
+    }
+  }
+
+  void setLengthRanges(T minVal, T maxVal) {
+    for (std::size_t i = 0; i < N; ++i) {
+      lengths[i].setRange(minVal, maxVal);
+    }
+  }
+
   TParam<T> startValue;
   ParamArray<T> values;
   ParamArray<float> lengths;
@@ -83,7 +98,7 @@ private:
     }
   }
 
-  SeqT _sequence;
+  SeqRefT _sequence;
 };
 
 #endif /* ValueSequence_h */
