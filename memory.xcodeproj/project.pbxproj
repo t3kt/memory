@@ -42,6 +42,8 @@
 		32EEAEBA1D49B407003A503F /* Serialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEB81D49B407003A503F /* Serialization.cpp */; };
 		32EEAEC11D4C5A9E003A503F /* MidiEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEBF1D4C5A9E003A503F /* MidiEvents.cpp */; };
 		32EEAEC31D4C5AB8003A503F /* SimulationEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAEC21D4C5AB8003A503F /* SimulationEvents.cpp */; };
+		32EEAECD1D530EAF003A503F /* EntityForceBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAECB1D530EAF003A503F /* EntityForceBehavior.cpp */; };
+		32EEAED01D53238C003A503F /* ValueSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32EEAECE1D53238C003A503F /* ValueSequence.cpp */; };
 		38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E288A9F69A969C9CE34BFD /* ofxGuiSpacer.cpp */; };
 		3A7D9AB4970113C8FDF687C1 /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D16E629DAC1BDF0142FE /* FakeSSSPass.cpp */; };
 		3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B10D9A4C4D69F318E4DF5F5B /* Common.cpp */; };
@@ -267,6 +269,10 @@
 		32EEAEC01D4C5A9E003A503F /* MidiEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiEvents.h; path = control/MidiEvents.h; sourceTree = "<group>"; };
 		32EEAEC21D4C5AB8003A503F /* SimulationEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimulationEvents.cpp; path = core/SimulationEvents.cpp; sourceTree = "<group>"; };
 		32EEAEC41D4C75AC003A503F /* MappingSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MappingSet.h; path = control/MappingSet.h; sourceTree = "<group>"; };
+		32EEAECB1D530EAF003A503F /* EntityForceBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityForceBehavior.cpp; path = physics/EntityForceBehavior.cpp; sourceTree = "<group>"; };
+		32EEAECC1D530EAF003A503F /* EntityForceBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityForceBehavior.h; path = physics/EntityForceBehavior.h; sourceTree = "<group>"; };
+		32EEAECE1D53238C003A503F /* ValueSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ValueSequence.cpp; path = core/ValueSequence.cpp; sourceTree = "<group>"; };
+		32EEAECF1D53238C003A503F /* ValueSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValueSequence.h; path = core/ValueSequence.h; sourceTree = "<group>"; };
 		338201271E14EF15D6DC6CFB /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		3451DF47D28415272A387305 /* ThresholdRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ThresholdRenderer.cpp; path = src/rendering/ThresholdRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		34DF3008D52A5899C8C1AF44 /* ofxGuiSpacer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSpacer.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiSpacer.h; sourceTree = SOURCE_ROOT; };
@@ -882,6 +888,8 @@
 				315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */,
 				A7C0C87BD3DB6D5D17C0004F /* AttractionBehavior.h */,
 				B7D940FA20BA3C63C0163141 /* DampingBehavior.h */,
+				32EEAECB1D530EAF003A503F /* EntityForceBehavior.cpp */,
+				32EEAECC1D530EAF003A503F /* EntityForceBehavior.h */,
 				256465114FA04BE629E19AC8 /* ForceFieldBehavior.cpp */,
 				F8D061C4847D133FFDF60B1E /* ForceFieldBehavior.h */,
 				8DF242C4518B8602BC224D0D /* PhysicsBehavior.cpp */,
@@ -1144,6 +1152,8 @@
 				27F7A6AF265FCB06BA639098 /* State.h */,
 				DCBEBF66C39747BD1534C1B5 /* Status.cpp */,
 				52DA674F75908A4AD4029805 /* Status.h */,
+				32EEAECE1D53238C003A503F /* ValueSequence.cpp */,
+				32EEAECF1D53238C003A503F /* ValueSequence.h */,
 				0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */,
 				DCD5F898419E9A122FCFE280 /* ValueSupplier.h */,
 				4D87DC0B0E54745FACE0A250 /* WorldObject.cpp */,
@@ -1455,6 +1465,7 @@
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
 				D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */,
 				32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */,
+				32EEAECD1D530EAF003A503F /* EntityForceBehavior.cpp in Sources */,
 				74BB3894F03B76512006BA7D /* AnchorPointBehavior.cpp in Sources */,
 				BC76686ED7C0FA7007B25DCB /* AttractionBehavior.cpp in Sources */,
 				6B3B09ED7D2F80D519ABF2CE /* ForceFieldBehavior.cpp in Sources */,
@@ -1490,6 +1501,7 @@
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,
+				32EEAED01D53238C003A503F /* ValueSequence.cpp in Sources */,
 				08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */,
 				0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */,
 				64FAD181AA2FEB345A37B089 /* ofxMinimalButton.cpp in Sources */,
