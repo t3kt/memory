@@ -89,6 +89,7 @@ void SimulationApp::update() {
 void SimulationApp::draw() {
   _renderingController->beginDraw();
 
+  _renderingController->draw();
   _observers->draw();
   _occurrences->draw();
   _animations->draw();

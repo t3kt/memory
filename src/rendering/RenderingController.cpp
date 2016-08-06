@@ -7,6 +7,8 @@
 //
 
 #include "AppParameters.h"
+#include "ConnectorRenderer.h"
+#include "OccurrenceRenderer.h"
 #include "RenderingController.h"
 #include <ofMain.h>
 
@@ -26,6 +28,21 @@ void RenderingController::setup() {
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
   _camera->setup();
+  const auto& appParams = _context.appParams;
+  const auto& colors = appParams.colors;
+  const auto& occurrenceParams = appParams.occurrences;
+  _occurrenceRenderer =
+  std::make_shared<OccurrenceRenderer>(appParams.occurrences.renderer,
+                                       appParams,
+                                       _context.occurrences);
+  _observerOccurrenceConnectorRenderer =
+  std::make_shared<ObserverOccurrenceConnectorRenderer>(appParams.occurrences.connectorRenderer,
+                                                        colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
+                                                        _context.occurrences);
+  _occurrenceOccurrenceConnectorRenderer =
+  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(appParams.occurrences.occurrenceConnectorRenderer,
+                                                          colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
+                                                          _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();
@@ -46,6 +63,7 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
+  _occurrenceRenderer->update(_context.state);
   _postProc->update();
 }
 
@@ -64,6 +82,12 @@ void RenderingController::beginDraw() {
   }
 
   ofPushMatrix();
+}
+
+void RenderingController::draw() {
+  _occurrenceRenderer->draw(_context.state);
+  _observerOccurrenceConnectorRenderer->draw(_context.state);
+  _occurrenceOccurrenceConnectorRenderer->draw(_context.state);
 }
 
 void RenderingController::endDraw() {

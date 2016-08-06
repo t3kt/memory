@@ -22,6 +22,10 @@
 #include <ofxSyphon.h>
 #endif
 
+class OccurrenceRenderer;
+class ObserverOccurrenceConnectorRenderer;
+class OccurrenceOccurrenceConnectorRenderer;
+
 class FogParams : public ParamsWithEnabled {
 public:
   FogParams() {
@@ -78,6 +82,7 @@ public:
   void setup();
   void update();
   void beginDraw();
+  void draw();
   void endDraw();
   void updateResolution();
 
@@ -98,6 +103,9 @@ private:
   const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
+  std::shared_ptr<OccurrenceRenderer> _occurrenceRenderer;
+  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
+  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;
 };

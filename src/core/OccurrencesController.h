@@ -122,9 +122,6 @@ private:
   ObjectManager<OccurrenceEntity>& _occurrences;
   std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
   std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
-  std::shared_ptr<OccurrenceRenderer> _renderer;
-  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
-  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
 
   friend class IntervalOccurrenceSpawner;
   friend class RateOccurrenceSpawner;

@@ -43,19 +43,6 @@ OccurrencesController::OccurrencesController(const Params& params,
 }
 
 void OccurrencesController::setup() {
-  const auto& appParams = *AppSystem::get().params();
-  const ColorTheme& colors = appParams.colors;
-  _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer,
-                                                   appParams,
-                                                   _occurrences);
-  _observerOccurrenceConnectorRenderer =
-  std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer,
-                                                        colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
-                                                        _occurrences);
-  _occurrenceOccurrenceConnectorRenderer =
-  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(_params.occurrenceConnectorRenderer,
-                                                          colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
-                                                          _occurrences);
   _spawner = std::make_shared<IntervalOccurrenceSpawner>(*this);
   _rateSpawner = std::make_shared<RateOccurrenceSpawner>(*this);
 
@@ -106,13 +93,9 @@ void OccurrencesController::update() {
   _spawner->update(_context);
   _rateSpawner->update(_context);
   _context.state.occurrenceCount = _occurrences.size();
-  _renderer->update(_context.state);
 }
 
 void OccurrencesController::draw() {
-  _renderer->draw(_context.state);
-  _observerOccurrenceConnectorRenderer->draw(_context.state);
-  _occurrenceOccurrenceConnectorRenderer->draw(_context.state);
 }
 
 void OccurrencesController::spawnRandomOccurrence() {
