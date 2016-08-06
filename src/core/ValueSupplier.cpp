@@ -6,9 +6,9 @@
 //
 //
 
-#include "ValueSupplier.h"
-#include <ofMain.h>
 #include <cmath>
+#include <ofMain.h>
+#include "ValueSupplier.h"
 
 template<>
 float RandomValueSupplier<float>::getValue() const {

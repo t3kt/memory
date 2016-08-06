@@ -6,8 +6,8 @@
 //
 //
 
-#include "Status.h"
 #include <ofMain.h>
+#include "Status.h"
 
 const float LABEL_WIDTH = 150;
 const float VALUE_WIDTH = 60;

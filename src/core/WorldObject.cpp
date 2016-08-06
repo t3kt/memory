@@ -6,8 +6,8 @@
 //
 //
 
-#include "WorldObject.h"
 #include "State.h"
+#include "WorldObject.h"
 
 static ObjectId nextId() {
   static ObjectId lastId = 0;

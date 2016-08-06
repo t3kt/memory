@@ -9,22 +9,20 @@
 #ifndef AppParameters_h
 #define AppParameters_h
 
-#include <ofParameterGroup.h>
-
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-#include "NavigatorsController.h"
 #include "AnimationsController.h"
-#include "RenderingController.h"
-#include "PhysicsController.h"
-#include "Params.h"
 #include "Bounds.h"
 #include "Clock.h"
 #include "Colors.h"
 #include "Events.h"
-#include "MidiController.h"
 #include "InspectionController.h"
 #include "Logging.h"
+#include "MidiController.h"
+#include "NavigatorsController.h"
+#include "ObserversController.h"
+#include "OccurrencesController.h"
+#include "Params.h"
+#include "PhysicsController.h"
+#include "RenderingController.h"
 
 class DebugParams : public Params {
 public:

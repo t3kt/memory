@@ -6,10 +6,10 @@
 //
 //
 
-#include "Context.h"
-#include "OccurrenceEntity.h"
-#include "ObserverEntity.h"
 #include <ofMain.h>
+#include "Context.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state)
 : ParticleObject(pos)

@@ -10,10 +10,10 @@
 #define ParticleObject_h
 
 #include <vector>
-#include "WorldObject.h"
-#include "State.h"
-#include "Events.h"
 #include "Bounds.h"
+#include "Events.h"
+#include "State.h"
+#include "WorldObject.h"
 
 class ParticleObject : public WorldObject {
 public:

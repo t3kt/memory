@@ -9,9 +9,9 @@
 #ifndef Params_h
 #define Params_h
 
-#include <string>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <string>
 #include <typeinfo>
 #include <vector>
 #include "Common.h"

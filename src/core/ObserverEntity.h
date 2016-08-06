@@ -9,12 +9,12 @@
 #ifndef ObserverEntity_h
 #define ObserverEntity_h
 
+#include <iostream>
 #include <ofTypes.h>
 #include "Common.h"
-#include "WorldObject.h"
 #include "ParticleObject.h"
-#include <iostream>
 #include "ValueSupplier.h"
+#include "WorldObject.h"
 
 class OccurrenceEntity;
 

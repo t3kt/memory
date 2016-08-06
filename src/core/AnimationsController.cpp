@@ -6,12 +6,12 @@
 //
 //
 
-#include "AppSystem.h"
+#include <iostream>
+#include <ofMain.h>
 #include "AnimationsController.h"
+#include "AppSystem.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include <ofMain.h>
-#include <iostream>
 
 AnimationsController::AnimationsController(const Params& params,
                                            SimulationEvents& events,

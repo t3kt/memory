@@ -10,17 +10,17 @@
 #define OccurrencesController_h
 
 #include "AppActions.h"
-#include "OccurrenceEntity.h"
-#include "ObserversController.h"
-#include "ObjectManager.h"
-#include "State.h"
-#include "Params.h"
-#include "Events.h"
 #include "Bounds.h"
 #include "Colors.h"
 #include "Context.h"
+#include "Events.h"
+#include "ObjectManager.h"
+#include "ObserversController.h"
+#include "OccurrenceEntity.h"
+#include "Params.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
+#include "State.h"
 
 class OccurrencesController;
 

@@ -9,9 +9,8 @@
 #ifndef Events_h
 #define Events_h
 
-#include "Common.h"
-
 #include <ofxLiquidEvent.h>
+#include "Common.h"
 
 class EventArgs
 : public Outputable {

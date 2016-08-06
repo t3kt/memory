@@ -9,13 +9,13 @@
 #ifndef AnimationObject_h
 #define AnimationObject_h
 
-#include <string>
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
-#include "WorldObject.h"
-#include "State.h"
+#include <string>
 #include "Params.h"
+#include "State.h"
 #include "ValueSupplier.h"
+#include "WorldObject.h"
 
 class AnimationObject : public WorldObject {
 public:

@@ -10,11 +10,11 @@
 #define AttractionBehavior_h
 
 #include "Context.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 #include "Params.h"
 #include "ParticleObject.h"
 #include "PhysicsBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
 
 class RangedForceParams
 : public ParamsWithEnabled {

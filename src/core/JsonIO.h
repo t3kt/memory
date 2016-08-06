@@ -9,8 +9,8 @@
 #ifndef JsonIO_h
 #define JsonIO_h
 
-#include <json11.hpp>
 #include <iostream>
+#include <json11.hpp>
 
 using json11::Json;
 

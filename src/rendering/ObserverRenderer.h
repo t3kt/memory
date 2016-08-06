@@ -10,9 +10,9 @@
 #define ObserverRenderer_h
 
 #include <ofBufferObject.h>
+#include <ofMatrix4x4.h>
 #include <ofShader.h>
 #include <ofTexture.h>
-#include <ofMatrix4x4.h>
 #include <ofVboMesh.h>
 #include <vector>
 #include "AnimationObject.h"

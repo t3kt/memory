@@ -6,8 +6,8 @@
 //
 //
 
-#include "AttractionBehavior.h"
 #include <ofMain.h>
+#include "AttractionBehavior.h"
 
 template<>
 EntityMap<OccurrenceEntity>& AttractionBehavior<ObserverEntity, OccurrenceEntity>::getEntityOthers(ObserverEntity *entity) {

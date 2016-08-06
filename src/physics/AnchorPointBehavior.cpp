@@ -6,10 +6,10 @@
 //
 //
 
+#include <ofMain.h>
 #include "AnchorPointBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include <ofMain.h>
 
 template<>
 void AnchorPointBehavior<ObserverEntity>::drawOriginShape(const ofVec3f &position) {

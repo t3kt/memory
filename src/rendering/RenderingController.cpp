@@ -6,9 +6,9 @@
 //
 //
 
+#include <ofMain.h>
 #include "AppParameters.h"
 #include "RenderingController.h"
-#include <ofMain.h>
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,

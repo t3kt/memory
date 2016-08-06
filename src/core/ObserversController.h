@@ -10,15 +10,15 @@
 #define ObserversController_h
 
 #include "AppActions.h"
-#include "ObserverEntity.h"
-#include "ObjectManager.h"
-#include "State.h"
-#include "Params.h"
-#include "Events.h"
 #include "Bounds.h"
 #include "Context.h"
+#include "Events.h"
+#include "ObjectManager.h"
+#include "ObserverEntity.h"
+#include "Params.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
+#include "State.h"
 
 class IntervalObserverSpawner;
 class RateObserverSpawner;

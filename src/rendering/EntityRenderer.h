@@ -11,12 +11,11 @@
 
 #include <ofGraphics.h>
 #include <ofxChoreograph.h>
-
-#include "Params.h"
-#include "Colors.h"
-#include "State.h"
-#include "ObjectManager.h"
 #include "AnimationObject.h"
+#include "Colors.h"
+#include "ObjectManager.h"
+#include "Params.h"
+#include "State.h"
 
 class AbstractEntityRenderer {
 public:

@@ -6,11 +6,11 @@
 //
 //
 
+#include <ofMain.h>
 #include "AppSystem.h"
-#include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include <ofMain.h>
+#include "PhysicsBehavior.h"
 
 void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
                                              ofVec3f force) {

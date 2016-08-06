@@ -9,8 +9,8 @@
 #ifndef WorldObject_h
 #define WorldObject_h
 
-#include <iterator>
 #include <iostream>
+#include <iterator>
 #include <memory>
 #include <ofMath.h>
 #include <ofUtils.h>

@@ -6,8 +6,8 @@
 //
 //
 
-#include "ThresholdRenderer.h"
 #include <ofMath.h>
+#include "ThresholdRenderer.h"
 
 ThreshData::ThreshData() {
   _mesh.setMode(OF_PRIMITIVE_LINES);
