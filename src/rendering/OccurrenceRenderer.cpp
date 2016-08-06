@@ -8,11 +8,13 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "AppParameters.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "OccurrenceRenderer.h"
 
-void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
+void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity,
+                                    const State& state) {
   auto count = entity.getAmountOfObservation();
   float alpha = ofMap(count,
                       _params.connectionCountRange.lowValue(),
@@ -32,14 +34,21 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity, const ofFloa
   ofPushStyle();
   ofPushMatrix();
 
-  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
+
+  float size = ofMap(entity.originalRadius(),
+                     _appParams.occurrences.radius.lowValue.get(),
+                     _appParams.occurrences.radius.highValue.get(),
+                     _params.sizeRange.lowValue.get(),
+                     _params.sizeRange.highValue.get());
+
   ofScale(ofVec3f(size));
   mesh.draw();
 
   if (_params.wireEnabled()) {
     ofScale(ofVec3f(_params.wireScale()));
-    ofFloatColor wireColor(baseColor, baseColor.a * alpha);
+    ofFloatColor wireColor(_color, _color.a * alpha);
     wireColor.setSaturation(_params.wireSaturation());
     wireColor.setBrightness(_params.wireBrightness());
     ofSetColor(wireColor);

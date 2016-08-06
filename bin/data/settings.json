@@ -266,6 +266,10 @@
       },
       "showRange": false,
       "size": 11.734694480895996,
+      "sizeRange": {
+        "high": 32.840484619140625,
+        "low": 2.6447322368621826
+      },
       "wireBrightness": 1.5,
       "wireEnabled": false,
       "wireSaturation": 0.19897958636283875,
