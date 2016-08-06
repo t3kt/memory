@@ -8,6 +8,7 @@
 
 #include "AppParameters.h"
 #include "ConnectorRenderer.h"
+#include "ObserverRenderer.h"
 #include "OccurrenceRenderer.h"
 #include "RenderingController.h"
 #include <ofMain.h>
@@ -30,7 +31,23 @@ void RenderingController::setup() {
   _camera->setup();
   const auto& appParams = _context.appParams;
   const auto& colors = appParams.colors;
+  const auto& observerParams = appParams.observers;
   const auto& occurrenceParams = appParams.occurrences;
+  _observerThresholdRenderer =
+  std::make_shared<ObserverThresholdRenderer>(_context.observers,
+                                              observerParams.threshold,
+                                              colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+  _observerRenderer =
+  std::make_shared<ObserverRenderer>(observerParams.renderer,
+                                     _context.observers);
+  //  _instancedObserverRenderer =
+  //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
+  //                                              _context);
+  //  _instancedObserverRenderer->setup();
+  _observerConnectorRenderer =
+  std::make_shared<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer,
+                                                      colors.getColor(ColorId::OBSERVER_CONNECTOR),
+                                                      _context.observers);
   _occurrenceRenderer =
   std::make_shared<OccurrenceRenderer>(appParams.occurrences.renderer,
                                        appParams,
@@ -63,6 +80,9 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
+  _observerRenderer->update(_context.state);
+  //  _instancedObserverRenderer->update();
+  _observerThresholdRenderer->update();
   _occurrenceRenderer->update(_context.state);
   _postProc->update();
 }
@@ -85,6 +105,10 @@ void RenderingController::beginDraw() {
 }
 
 void RenderingController::draw() {
+  _observerRenderer->draw(_context.state);
+  //  _instancedObserverRenderer->draw();
+  _observerConnectorRenderer->draw(_context.state);
+  _observerThresholdRenderer->draw();
   _occurrenceRenderer->draw(_context.state);
   _observerOccurrenceConnectorRenderer->draw(_context.state);
   _occurrenceOccurrenceConnectorRenderer->draw(_context.state);

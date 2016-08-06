@@ -82,4 +82,7 @@ private:
   ObjectManager<T>& _objects;
 };
 
+class ObserverEntity;
+using ObserverThresholdRenderer = ThresholdRenderer<ObserverEntity>;
+
 #endif /* ThresholdRenderer_h */

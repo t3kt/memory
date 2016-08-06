@@ -108,10 +108,6 @@ private:
   ObjectManager<ObserverEntity>& _observers;
   std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
-  std::shared_ptr<ObserverRenderer> _observerRenderer;
-  std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
-  std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 
   friend class IntervalObserverSpawner;
   friend class RateObserverSpawner;

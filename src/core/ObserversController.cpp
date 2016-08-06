@@ -6,10 +6,7 @@
 //
 //
 
-#include "AppSystem.h"
-#include "Colors.h"
 #include "ObserversController.h"
-#include "SimulationApp.h"
 
 class IntervalObserverSpawner
 : public IntervalSpawner<IntervalSpawnerParams> {
@@ -53,14 +50,6 @@ ObserversController::ObserversController(const ObserversController::Params& para
 }
 
 void ObserversController::setup() {
-  const ColorTheme& colors = ColorTheme::get();
-  _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
-  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, _observers);
-//  _instancedObserverRenderer =
-//  std::make_shared<InstancedObserverRenderer>(_params.instancedRenderer,
-//                                              _context);
-//  _instancedObserverRenderer->setup();
-  _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);
   _spawner = std::make_shared<IntervalObserverSpawner>(*this);
   _rateSpawner = std::make_shared<RateObserverSpawner>(*this);
 
@@ -68,7 +57,6 @@ void ObserversController::setup() {
 }
 
 bool ObserversController::performAction(AppAction action) {
-  const auto& state = AppSystem::get().simulation()->state();
   switch (action) {
     case AppAction::SPAWN_FEW_OBSERVERS:
       spawnObservers(5);
@@ -103,17 +91,9 @@ void ObserversController::update() {
   _spawner->update(_context);
   _rateSpawner->update(_context);
   _context.state.observerCount = _observers.size();
-
-  _observerRenderer->update(_context.state);
-//  _instancedObserverRenderer->update();
-  _thresholdRenderer->update();
 }
 
 void ObserversController::draw() {
-  _observerRenderer->draw(_context.state);
-//  _instancedObserverRenderer->draw();
-  _observerConnectorRenderer->draw(_context.state);
-  _thresholdRenderer->draw();
 }
 
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
