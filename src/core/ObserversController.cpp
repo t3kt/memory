@@ -10,7 +10,7 @@
 #include "OccurrenceEntity.h"
 
 class IntervalObserverSpawner
-: public IntervalSpawner<IntervalSpawnerParams> {
+: public IntervalSpawner<> {
 public:
   IntervalObserverSpawner(ObserversController& controller)
   : IntervalSpawner(controller._params.spawner)
@@ -24,7 +24,7 @@ protected:
 };
 
 class RateObserverSpawner
-: public RateSpawner {
+: public RateSpawner<> {
 public:
   RateObserverSpawner(ObserversController& controller)
   : RateSpawner(controller._params.rateSpawner)

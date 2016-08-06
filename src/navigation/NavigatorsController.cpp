@@ -21,7 +21,7 @@
 using NavEntityPtr = std::shared_ptr<NavigatorEntity>;
 
 class ObserverNavSpawner
-: public RateSpawner {
+: public RateSpawner<> {
 public:
   ObserverNavSpawner(NavigatorsController& controller,
                            const Params& params)

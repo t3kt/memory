@@ -26,7 +26,7 @@
 class OccurrencesController;
 
 class IntervalOccurrenceSpawner
-: public IntervalSpawner<IntervalSpawnerParams> {
+: public IntervalSpawner<> {
 public:
   IntervalOccurrenceSpawner(OccurrencesController& controller);
 protected:
@@ -36,7 +36,7 @@ protected:
 };
 
 class RateOccurrenceSpawner
-: public RateSpawner {
+: public RateSpawner<> {
 public:
   RateOccurrenceSpawner(OccurrencesController& controller);
 
@@ -70,8 +70,8 @@ public:
   }
 
   RandomValueSupplier<float> radius;
-  IntervalSpawnerParams spawner;
-  RateSpawner::Params rateSpawner;
+  IntervalSpawner<>::Params spawner;
+  RateSpawner<>::Params rateSpawner;
   SimpleRandomVectorSupplier initialVelocity;
 };
 

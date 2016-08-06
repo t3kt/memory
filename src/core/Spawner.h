@@ -65,35 +65,38 @@ protected:
   float _nextTime;
 };
 
+class RateSpawnerParams : public Spawner::Params {
+public:
+  RateSpawnerParams() {
+    add(_rate
+        .setKey("rate")
+        .setName("Rate")
+        .setValueAndDefault(4)
+        .setRange(0, 30));
+  }
+
+  RateSpawnerParams& setRateValueAndDefault(float rate) {
+    _rate.setValueAndDefault(rate);
+    return *this;
+  }
+
+  RateSpawnerParams& setRateRange(float low, float high) {
+    _rate.setRange(low, high);
+    return *this;
+  }
+
+  float rate() const { return _rate.get(); }
+private:
+  TParam<float> _rate;
+};
+
+template<typename P = RateSpawnerParams>
 class RateSpawner
 : public Spawner {
 public:
-  class Params : public Spawner::Params {
-  public:
-    Params() {
-      add(_rate
-          .setKey("rate")
-          .setName("Rate")
-          .setValueAndDefault(4)
-          .setRange(0, 30));
-    }
+  using Params = P;
 
-    Params& setRateValueAndDefault(float rate) {
-      _rate.setValueAndDefault(rate);
-      return *this;
-    }
-
-    Params& setRateRange(float low, float high) {
-      _rate.setRange(low, high);
-      return *this;
-    }
-
-    float rate() const { return _rate.get(); }
-  private:
-    TParam<float> _rate;
-  };
-
-  RateSpawner(const Params& params)
+  RateSpawner(const P& params)
   : _params(params)
   , _lastTime(-1) { }
 
@@ -117,7 +120,7 @@ public:
 protected:
   virtual void spawnEntities(Context& context, int count) = 0;
 
-  const Params& _params;
+  const P& _params;
   float _lastTime;
 };
 
