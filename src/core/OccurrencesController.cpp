@@ -34,13 +34,12 @@ OccurrencesController::OccurrencesController(const Params& params,
                                              ObserversController& observers,
                                              Context& context,
                                              SimulationEvents& events)
-: _params(params)
+: EntityController(params,
+                   context,
+                   events,
+                   context.occurrences)
 , _bounds(bounds)
-, _events(events)
-, _occurrences(context.occurrences)
-, _observers(observers)
-, _context(context) {
-}
+, _observers(observers) { }
 
 void OccurrencesController::setup() {
   _spawner = std::make_shared<IntervalOccurrenceSpawner>(*this);
@@ -65,7 +64,7 @@ bool OccurrencesController::performAction(AppAction action) {
 }
 
 void OccurrencesController::update() {
-  for (auto& occurrence : _occurrences) {
+  for (auto& occurrence : _entities) {
     if (!occurrence->hasConnectedObservers()) {
       occurrence->kill();
       occurrence->setAmountOfObservation(0);
@@ -83,7 +82,7 @@ void OccurrencesController::update() {
     occurrence->setAmountOfObservation(amount);
     occurrence->setActualRadius(radius);
   }
-  _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
+  _entities.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
                           *occurrence);
@@ -92,7 +91,7 @@ void OccurrencesController::update() {
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.occurrenceCount = _occurrences.size();
+  _context.state.occurrenceCount = _entities.size();
 }
 
 void OccurrencesController::draw() {
@@ -109,7 +108,7 @@ void OccurrencesController::spawnRandomOccurrence() {
 
   if (connected) {
     occurrence->setVelocity(_params.initialVelocity.getValue());
-    _occurrences.add(occurrence);
+    _entities.add(occurrence);
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
                           *occurrence);
     _events.occurrenceSpawned.notifyListeners(e);

@@ -39,16 +39,15 @@ protected:
   ObserversController& _controller;
 };
 
-ObserversController::ObserversController(const ObserversController::Params& params,
+ObserversController::ObserversController(const Params& params,
                                          const Bounds& bounds,
                                          Context& context,
                                          SimulationEvents& events)
-: _params(params)
-, _bounds(bounds)
-, _events(events)
-, _observers(context.observers)
-, _context(context) {
-}
+: EntityController(params,
+                   context,
+                   events,
+                   context.observers)
+, _bounds(bounds) { }
 
 void ObserversController::setup() {
   _spawner = std::make_shared<IntervalObserverSpawner>(*this);
@@ -78,11 +77,11 @@ bool ObserversController::performAction(AppAction action) {
 }
 
 void ObserversController::update() {
-  _observers.performAction([&](std::shared_ptr<ObserverEntity> observer) {
+  _entities.performAction([&](std::shared_ptr<ObserverEntity> observer) {
     observer->update(_context.state);
   });
 
-  _observers.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
+  _entities.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
     ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
                         *observer);
@@ -91,7 +90,7 @@ void ObserversController::update() {
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.observerCount = _observers.size();
+  _context.state.observerCount = _entities.size();
 }
 
 void ObserversController::draw() {
@@ -100,7 +99,7 @@ void ObserversController::draw() {
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   bool connected = false;
   
-  _observers.performAction([&] (std::shared_ptr<ObserverEntity> observer) {
+  _entities.performAction([&] (std::shared_ptr<ObserverEntity> observer) {
     float dist = occurrence->position().distance(observer->position());
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);
@@ -119,7 +118,7 @@ void ObserversController::spawnRandomObserver() {
                                                    life,
                                                    _context.state);
   observer->setVelocity(_params.initialVelocity.getValue());
-  _observers.add(observer);
+  _entities.add(observer);
   ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
                       *observer);
   _events.observerSpawned.notifyListeners(e);
@@ -133,7 +132,7 @@ void ObserversController::spawnObservers(int count) {
 
 void ObserversController::killObservers(int count) {
   int i = 0;
-  for (auto& observer : _observers) {
+  for (auto& observer : _entities) {
     if (i >= count) {
       return;
     }
