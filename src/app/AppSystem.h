@@ -12,17 +12,27 @@
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
+#include <ofSystemUtils.h>
 #include "AppActions.h"
 #include "AppParameters.h"
+#include "Context.h"
 #include "Events.h"
+#include "State.h"
+#include "Logging.h"
 
 class SimulationApp;
 class ControlApp;
+
+using FileAction = std::function<bool(ofFileDialogResult&)>;
 
 class AppSystem {
 public:
   static void initialize();
   static AppSystem& get();
+
+  AppSystem()
+  : _context(_appParams)
+  , _log(_appParams.core.debug.logging) { }
 
   void main();
 
@@ -32,13 +42,17 @@ public:
     return _simulationWindow;
   }
 
-  std::shared_ptr<ofAppGLFWWindow>& controlWindow() {
-    return _controlWindow;
-  }
-
   SimulationApp* simulation() { return _simulationApp.get(); }
 
   ControlApp* control() { return _controlApp.get(); }
+
+  State& state() { return _context.state; }
+  const State& state() const { return _context.state; }
+
+  Context& context() { return _context; }
+  const Context& context() const { return _context; }
+
+  LoggingController& log() { return _log; }
 
   bool performAction(AppAction action);
 
@@ -46,14 +60,22 @@ public:
 
   AppActionEvent appActionTriggered;
 
+  bool performFileSaveAction(FileAction action,
+                             std::string messageName,
+                             std::string defaultName);
+  bool performFileLoadAction(FileAction action,
+                             std::string windowTitle = "",
+                             std::string defaultPath = "");
+
 private:
   void setup();
 
   MemoryAppParameters _appParams;
+  Context _context;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
-  std::shared_ptr<ofAppGLFWWindow> _controlWindow;
   std::shared_ptr<SimulationApp> _simulationApp;
   std::shared_ptr<ControlApp> _controlApp;
+  LoggingController _log;
 };
 
 #endif /* AppSystem_h */

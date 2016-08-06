@@ -32,6 +32,7 @@ private:
   Params& _params;
   std::shared_ptr<MidiRouter> _router;
   std::shared_ptr<MidiDevice> _twister;
+  std::shared_ptr<MidiDevice> _max;
 };
 
 #endif /* MidiController_h */

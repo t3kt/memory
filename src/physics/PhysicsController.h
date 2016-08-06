@@ -13,15 +13,14 @@
 #include "AnchorPointBehavior.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
+#include "Context.h"
 #include "DampingBehavior.h"
+#include "EntityForceBehavior.h"
 #include "ForceFieldBehavior.h"
 #include "Params.h"
-#include "PhysicsWorld.h"
 #include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
 
 class DebugParams;
 
@@ -32,8 +31,8 @@ public:
     add(speed
         .setKey("speed")
         .setName("Speed")
-        .setValueAndDefault(1)
-        .setRange(0, 10));
+        .setValueAndDefault(10)
+        .setRange(0, 50));
   }
 
   TParam<float> speed;
@@ -63,6 +62,9 @@ public:
       add(observerObserverAttraction
           .setKey("observerObserverAttraction")
           .setName("Observer to Observer"));
+      add(observerOccurrenceForce
+          .setKey("observerOccurrenceForce")
+          .setName("Obs/Occ Force"));
       add(observerSpatialNoiseForce
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
@@ -87,6 +89,7 @@ public:
       observerAnchorPointAttraction.setEnabledValueAndDefault(false);
       occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
       observerObserverAttraction.setEnabledValueAndDefault(false);
+      observerOccurrenceForce.setEnabledValueAndDefault(false);
       observerDamping.setEnabledValueAndDefault(true);
       occurrenceDamping.setEnabledValueAndDefault(true);
     }
@@ -97,6 +100,7 @@ public:
     AbstractAttractionBehavior::Params observerOccurrenceAttraction;
     AbstractAttractionBehavior::Params occurrenceObserverAttraction;
     AbstractAttractionBehavior::Params observerObserverAttraction;
+    ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
     AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
     AbstractAttractionBehavior::Params observerAnchorPointAttraction;
@@ -108,12 +112,11 @@ public:
   PhysicsController(Params& params,
                     Bounds& bounds,
                     DebugParams& debugParams,
-                    const State& state);
+                    Context& context);
 
   void stopAllEntities();
 
-  void setup(ObserversController& observers,
-             OccurrencesController& occurrences);
+  void setup();
 
   void update();
   void draw();
@@ -125,16 +128,15 @@ private:
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
   Params& _params;
+  Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-  const State& _state;
-
-  std::shared_ptr<PhysicsWorld> _world;
 
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;
   std::shared_ptr<AttractionBehavior<OccurrenceEntity, ObserverEntity>> _occurrenceObserverAttraction;
   std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
+  std::shared_ptr<ObserverOccurrenceForceBehavior> _observerOccurrenceForce;
   std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
   std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;

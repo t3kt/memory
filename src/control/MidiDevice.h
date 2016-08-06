@@ -41,9 +41,14 @@ public:
 
   MidiReceivedEvent messageReceived;
 
-  void newMidiMessage(ofxMidiMessage& message) override;
+  void sendMessage(MidiMessageType type,
+                   MidiChannel channel,
+                   int key,
+                   int value);
 
 private:
+  void newMidiMessage(ofxMidiMessage& message) override;
+
   void handleOpen();
   void handleClose(bool updateParams);
 

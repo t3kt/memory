@@ -19,7 +19,7 @@ static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   }
 }
 
-bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
+bool Bounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
   float bound = size() / 2;
   bool changed = false;
   changed |= reflectVal(&velocity->x, &position->x, -bound, bound);
@@ -28,7 +28,7 @@ bool SimpleCubeBounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
   return changed;
 }
 
-ofVec3f SimpleCubeBounds::randomPoint() const {
+ofVec3f Bounds::randomPoint() const {
   float bound = size() / 2;
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),

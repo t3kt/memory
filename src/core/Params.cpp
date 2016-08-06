@@ -8,11 +8,6 @@
 
 #include "Params.h"
 
-template<>
-void TParam<bool>::setNormalizedValue(float normVal) {
-  ofParameter<bool>::set(normVal > 0);
-}
-
 TParamBase* Params::findKey(const std::string &key) {
   for (auto param : _paramBases) {
     if (param->getKey() == key) {

@@ -62,13 +62,15 @@ public:
   const MidiDeviceId& device() const { return _device; }
   const MidiMessageType& type() const { return _type; }
   const MidiChannel& channel() const { return _channel; }
-
-  void output(std::ostream& os) const override;
+  const int& cc() const { return _cc; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
   std::size_t hash() const;
+protected:
+  std::string typeName() const override { return "MidiMappingKey"; }
+  void outputFields(std::ostream& os) const override;
 private:
   MidiDeviceId _device;
   MidiMessageType _type;
@@ -94,8 +96,7 @@ namespace std {
 }
 
 class MidiReceivedEventArgs
-: public Outputable
-, public EventArgs {
+: public EventArgs {
 public:
   MidiReceivedEventArgs(const MidiDeviceId& dev,
                         const ofxMidiMessage& msg)
@@ -103,11 +104,13 @@ public:
   , message(msg)
   , key(MidiMappingKey::create(dev, msg)) { }
 
-  void output(std::ostream& os) const override;
-
   const MidiDeviceId device;
   const ofxMidiMessage& message;
   const MidiMappingKey key;
+
+protected:
+  std::string typeName() const override { return "MidiReceivedEventArgs"; }
+  void outputFields(std::ostream& os) const override;
 };
 
 using MidiReceivedEvent = TEvent<MidiReceivedEventArgs>;
@@ -121,9 +124,13 @@ public:
     add(twister
         .setKey("twister")
         .setName("MF Twister"));
+    add(max
+        .setKey("max")
+        .setName("Max/MSP Relay"));
   }
 
   MidiDeviceParams twister;
+  MidiDeviceParams max;
 };
 
 #endif /* MidiCommon_h */

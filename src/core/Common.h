@@ -23,10 +23,15 @@ T getInterpolated(const T& a, const T& b, float amount);
 class Outputable {
 public:
   virtual ~Outputable() {}
-  virtual void output(std::ostream& os) const = 0;
+  void output(std::ostream& os) const;
+protected:
+  virtual std::string typeName() const = 0;
+  virtual void outputFields(std::ostream& os) const { }
 };
 
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);
+
+std::string ofToString(const Outputable& obj);
 
 template<typename T>
 class EnumTypeInfo {
@@ -80,6 +85,15 @@ public:
   NonCopyable(const NonCopyable&) = delete;
   NonCopyable& operator=(const NonCopyable&) = delete;
   NonCopyable() {}
+};
+
+class NOT_IMPLEMENTED
+: public std::runtime_error {
+public:
+  NOT_IMPLEMENTED(std::string description)
+  : std::runtime_error("NOT IMPLEMENTED: " + description) { }
+  NOT_IMPLEMENTED()
+  : std::runtime_error("NOT IMPLEMENTED") { }
 };
 
 #endif /* defined(__behavior__Common__) */

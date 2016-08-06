@@ -11,11 +11,11 @@
 #include "OccurrenceEntity.h"
 #include <ofMain.h>
 
-void AbstractForceFieldBehavior::applyToEntity(PhysicsWorld* world, ParticleObject *entity) {
+void AbstractForceFieldBehavior::applyToEntity(Context& context, ParticleObject *entity) {
   if (!entity->alive()) {
     return;
   }
-  ofVec3f force = getForceForEntity(world, entity);
+  ofVec3f force = getForceForEntity(context, entity);
   entity->addForce(force);
 }
 
@@ -24,12 +24,12 @@ void AbstractForceFieldBehavior::beginDebugDraw() {
   ofSetColor(ofFloatColor::red);
 }
 
-void AbstractForceFieldBehavior::debugDrawEntity(PhysicsWorld *world, ParticleObject *entity) {
+void AbstractForceFieldBehavior::debugDrawEntity(Context& context, ParticleObject *entity) {
   if (!entity->alive()) {
     return;
   }
   drawForceArrow(entity->position(),
-                 getForceForEntity(world, entity));
+                 getForceForEntity(context, entity));
 }
 
 void AbstractForceFieldBehavior::endDebugDraw() {
@@ -39,9 +39,9 @@ void AbstractForceFieldBehavior::endDebugDraw() {
 const ofVec4f SPATIAL_NOISE_Y_OFFSET = ofVec4f(100);
 const ofVec4f SPATIAL_NOISE_Z_OFFSET = ofVec4f(200);
 
-ofVec3f AbstractNoiseForceFieldBehavior::getForceForEntity(PhysicsWorld *world, ParticleObject *entity) {
+ofVec3f AbstractNoiseForceFieldBehavior::getForceForEntity(Context& context, ParticleObject *entity) {
   ofVec4f noisePos = ofVec4f(entity->position() / _params.scale());
-  noisePos.w = world->time() * _params.rate();
+  noisePos.w = context.time() * _params.rate();
 
   return ofVec3f(ofSignedNoise(noisePos),
                  ofSignedNoise(noisePos + SPATIAL_NOISE_Y_OFFSET),

@@ -12,28 +12,24 @@
 PhysicsController::PhysicsController(PhysicsController::Params& params,
                                      Bounds& bounds,
                                      DebugParams& debugParams,
-                                     const State& state)
+                                     Context& context)
 : _params(params)
+, _context(context)
 , _bounds(bounds)
-, _debugParams(debugParams)
-, _state(state) {}
+, _debugParams(debugParams) {}
 
-void PhysicsController::setup(ObserversController& observers,
-                              OccurrencesController& occurrences) {
+void PhysicsController::setup() {
   _rebound = std::make_shared<BoundsBehavior>(_params.rebound, _bounds);
   _observerOccurrenceAttraction = std::make_shared<AttractionBehavior<ObserverEntity, OccurrenceEntity>>(_params.observerOccurrenceAttraction);
   _occurrenceObserverAttraction = std::make_shared<AttractionBehavior<OccurrenceEntity, ObserverEntity>>(_params.occurrenceObserverAttraction);
   _observerObserverAttraction = std::make_shared<AttractionBehavior<ObserverEntity, ObserverEntity>>(_params.observerObserverAttraction);
+  _observerOccurrenceForce = std::make_shared<ObserverOccurrenceForceBehavior>(_params.observerOccurrenceForce);
   _observerSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<ObserverEntity>>(_params.observerSpatialNoiseForce);
   _occurrenceSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<OccurrenceEntity>>(_params.occurrenceSpatialNoiseForce);
   _observerAnchorPointAttraction = std::make_shared<AnchorPointBehavior<ObserverEntity>>(_params.observerAnchorPointAttraction);
   _occurrenceAnchorPointAttraction = std::make_shared<AnchorPointBehavior<OccurrenceEntity>>(_params.occurrenceAnchorPointAttraction);
   _observerDamping = std::make_shared<DampingBehavior<ObserverEntity>>(_params.observerDamping);
   _occurrenceDamping = std::make_shared<DampingBehavior<OccurrenceEntity>>(_params.occurrenceDamping);
-
-  _world = std::make_shared<PhysicsWorld>(_state,
-                                          observers,
-                                          occurrences);
 
   registerAsActionHandler();
 }
@@ -44,10 +40,10 @@ bool PhysicsController::performAction(AppAction action) {
       stopAllEntities();
       break;
     case AppAction::TOGGLE_SHOW_BOUNDS:
-      toggleBoolParam(_debugParams.showBounds);
+      _debugParams.showBounds.toggle();
       break;
     case AppAction::TOGGLE_SHOW_PHYSICS:
-      toggleBoolParam(_debugParams.showPhysics);
+      _debugParams.showPhysics.toggle();
       break;
     default:
       return false;
@@ -68,56 +64,56 @@ void PhysicsController::endEntityUpdate(ParticleObject *entity,
   if (!entity->alive()) {
     return;
   }
-  entity->updateVelocityAndPosition(_world->state(), params.speed());
+  entity->updateVelocityAndPosition(_context.state, params.speed());
 }
 
 void PhysicsController::update() {
-  for (auto& entity : _world->observers()) {
+  for (auto& entity : _context.observers) {
     beginEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  auto world = _world.get();
-  _observerOccurrenceAttraction->applyToWorld(world);
-  _occurrenceObserverAttraction->applyToWorld(world);
-  _observerObserverAttraction->applyToWorld(world);
-  _observerSpatialNoiseForce->applyToWorld(world);
-  _occurrenceSpatialNoiseForce->applyToWorld(world);
-  _observerAnchorPointAttraction->applyToWorld(world);
-  _occurrenceAnchorPointAttraction->applyToWorld(world);
-  _observerDamping->applyToWorld(world);
-  _occurrenceDamping->applyToWorld(world);
-  _rebound->applyToWorld(world);
-  for (auto& entity : _world->observers()) {
+  _observerOccurrenceAttraction->applyToWorld(_context);
+  _occurrenceObserverAttraction->applyToWorld(_context);
+  _observerObserverAttraction->applyToWorld(_context);
+  _observerOccurrenceForce->applyToWorld(_context);
+  _observerSpatialNoiseForce->applyToWorld(_context);
+  _occurrenceSpatialNoiseForce->applyToWorld(_context);
+  _observerAnchorPointAttraction->applyToWorld(_context);
+  _occurrenceAnchorPointAttraction->applyToWorld(_context);
+  _observerDamping->applyToWorld(_context);
+  _occurrenceDamping->applyToWorld(_context);
+  _rebound->applyToWorld(_context);
+  for (auto& entity : _context.observers) {
     endEntityUpdate(entity.get(), _params.observers);
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     endEntityUpdate(entity.get(), _params.occurrences);
   }
 }
 
 void PhysicsController::draw() {
   if (_debugParams.showPhysics()) {
-    auto world = _world.get();
-    _observerOccurrenceAttraction->debugDraw(world);
-    _occurrenceObserverAttraction->debugDraw(world);
-    _observerObserverAttraction->debugDraw(world);
-    _observerSpatialNoiseForce->debugDraw(world);
-    _occurrenceSpatialNoiseForce->debugDraw(world);
-    _observerAnchorPointAttraction->debugDraw(world);
-    _occurrenceAnchorPointAttraction->debugDraw(world);
-    _observerDamping->debugDraw(world);
-    _occurrenceDamping->debugDraw(world);
-    _rebound->debugDraw(world);
+    _observerOccurrenceAttraction->debugDraw(_context);
+    _occurrenceObserverAttraction->debugDraw(_context);
+    _observerObserverAttraction->debugDraw(_context);
+    _observerOccurrenceForce->debugDraw(_context);
+    _observerSpatialNoiseForce->debugDraw(_context);
+    _occurrenceSpatialNoiseForce->debugDraw(_context);
+    _observerAnchorPointAttraction->debugDraw(_context);
+    _occurrenceAnchorPointAttraction->debugDraw(_context);
+    _observerDamping->debugDraw(_context);
+    _occurrenceDamping->debugDraw(_context);
+    _rebound->debugDraw(_context);
   }
 }
 
 void PhysicsController::stopAllEntities() {
-  for (auto& entity : _world->observers()) {
+  for (auto& entity : _context.observers) {
     entity->setVelocity(ofVec3f::zero());
   }
-  for (auto& entity : _world->occurrences()) {
+  for (auto& entity : _context.occurrences) {
     entity->setVelocity(ofVec3f::zero());
   }
 }

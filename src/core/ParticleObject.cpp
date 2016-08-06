@@ -37,3 +37,22 @@ void ParticleObject::outputFields(std::ostream &os) const {
       << ", force: " << _force;
 }
 
+void ParticleObject::addSerializedFields(Json::object &obj,
+                                         const SerializationContext &context) const {
+  WorldObject::addSerializedFields(obj, context);
+  JsonUtil::mergeInto(obj, {
+    {"position", JsonUtil::toJson(_position)},
+    {"velocity", JsonUtil::toJson(_velocity)},
+    // omit force since it's calculated
+    {"startPosition", JsonUtil::toJson(_startPosition)},
+  });
+}
+
+void ParticleObject::deserializeFields(const Json &obj,
+                                       const SerializationContext &context) {
+  WorldObject::deserializeFields(obj, context);
+  _position = JsonUtil::fromJson<ofVec3f>(obj["position"]);
+  _velocity = JsonUtil::fromJsonField<ofVec3f>(obj, "velocity", ofVec3f::zero());
+  _startPosition = JsonUtil::fromJson<ofVec3f>(obj["startPosition"]);
+}
+

@@ -11,6 +11,19 @@
 #include <cmath>
 #include <ofTypes.h>
 #include <ofMath.h>
+#include <sstream>
+
+void Outputable::output(std::ostream &os) const {
+  os << typeName() << "{";
+  outputFields(os);
+  os << "}";
+}
+
+std::string ofToString(const Outputable& obj) {
+  std::ostringstream os;
+  obj.output(os);
+  return os.str();
+}
 
 template<>
 ofVec2f getInterpolated(const ofVec2f& a, const ofVec2f& b, float amount) {

@@ -9,28 +9,41 @@
 #include <map>
 #include "AppSystem.h"
 #include "ControlApp.h"
+#include "NavigatorEntity.h"
 #include "SimulationApp.h"
 
 template<typename A>
-std::function<void(A&)> makeEntityEventLogger(const std::string message) {
+std::function<void(A&)> makeEntityEventLogger(Logger& logger,
+                                              const std::string message) {
   return [=](A& e) {
-    ofLogNotice() << message << e.entity();
+    logger.logNotice([&](ofLog& log) {
+      log << message << e.value();
+    });
   };
 }
 
 std::function<void(AnimationEventArgs&)>
 makeAnimationLogger(const std::string message) {
-  return makeEntityEventLogger<AnimationEventArgs>(message);
+  auto& logger = AppSystem::get().log().animation();
+  return makeEntityEventLogger<AnimationEventArgs>(logger, message);
 }
 
 std::function<void(ObserverEventArgs&)>
 makeObserverLogger(const std::string message) {
-  return makeEntityEventLogger<ObserverEventArgs>(message);
+  auto& logger = AppSystem::get().log().observer();
+  return makeEntityEventLogger<ObserverEventArgs>(logger, message);
 }
 
 std::function<void(OccurrenceEventArgs&)>
 makeOccurrenceLogger(const std::string message) {
-  return makeEntityEventLogger<OccurrenceEventArgs>(message);
+  auto& logger = AppSystem::get().log().occurrence();
+  return makeEntityEventLogger<OccurrenceEventArgs>(logger, message);
+}
+
+std::function<void(NavigatorEventArgs&)>
+makeNavigatorLogger(const std::string message) {
+  auto& logger = AppSystem::get().log().navigation();
+  return makeEntityEventLogger<NavigatorEventArgs>(logger, message);
 }
 
 class EventLoggers {
@@ -42,7 +55,10 @@ public:
   , _observerDied(makeObserverLogger("Observer died: "))
   , _occurrenceSpawned(makeOccurrenceLogger("Occurrence spawned: "))
   , _occurrenceSpawnFailed(makeOccurrenceLogger("Occurrence spawn failed: "))
-  , _occurrenceDied(makeOccurrenceLogger("Occurrence died: ")) {}
+  , _occurrenceDied(makeOccurrenceLogger("Occurrence died: "))
+  , _navigatorSpawned(makeNavigatorLogger("Navigator spawned: "))
+  , _navigatorReachedLocation(makeNavigatorLogger("Navigator reached location: "))
+  , _navigatorDied(makeNavigatorLogger("Navigator died: ")) {}
 
   void attach(SimulationEvents& events) {
     detach(events);
@@ -53,6 +69,9 @@ public:
     events.occurrenceSpawned.addListener(_occurrenceSpawned, this);
     events.occurrenceSpawnFailed.addListener(_occurrenceSpawnFailed, this);
     events.occurrenceDied.addListener(_occurrenceDied, this);
+    events.navigatorSpawned.addListener(_navigatorSpawned, this);
+    events.navigatorReachedLocation.addListener(_navigatorReachedLocation, this);
+    events.navigatorDied.addListener(_navigatorDied, this);
   }
   void detach(SimulationEvents& events) {
     events.animationSpawned.removeListeners(this);
@@ -62,6 +81,9 @@ public:
     events.occurrenceSpawned.removeListeners(this);
     events.occurrenceSpawnFailed.removeListeners(this);
     events.occurrenceDied.removeListeners(this);
+    events.navigatorSpawned.removeListeners(this);
+    events.navigatorReachedLocation.removeListeners(this);
+    events.navigatorDied.removeListeners(this);
   }
 private:
   std::function<void(AnimationEventArgs&)> _animationSpawned;
@@ -71,12 +93,15 @@ private:
   std::function<void(OccurrenceEventArgs&)> _occurrenceSpawned;
   std::function<void(OccurrenceEventArgs&)> _occurrenceSpawnFailed;
   std::function<void(OccurrenceEventArgs&)> _occurrenceDied;
+  std::function<void(NavigatorEventArgs&)> _navigatorSpawned;
+  std::function<void(NavigatorEventArgs&)> _navigatorReachedLocation;
+  std::function<void(NavigatorEventArgs&)> _navigatorDied;
 };
 
 void ControlApp::setup() {
   _eventLoggers = std::make_shared<EventLoggers>();
 
-  _appParams.core.debug.loggingEnabled.changed += [this]() {
+  _appParams.core.debug.logging.enabled.changed += [this]() {
     updateLogState();
   };
 
@@ -92,7 +117,7 @@ void ControlApp::setup() {
 }
 
 void ControlApp::updateLogState() {
-  bool enabled = _appParams.core.debug.loggingEnabled();
+  bool enabled = _appParams.core.debug.logging.enabled.get();
   ofSetLogLevel(enabled ? OF_LOG_NOTICE : OF_LOG_ERROR);
   auto simulation = AppSystem::get().simulation();
   if (enabled) {
@@ -110,10 +135,6 @@ void ControlApp::draw() {
   _gui->draw();
 }
 
-void ControlApp::keyPressed(ofKeyEventArgs& event) {
-  AppSystem::get().handleKeyPressed(event);
-}
-
 bool ControlApp::performAction(AppAction action) {
   switch (action) {
     case AppAction::LOAD_SETTINGS:
@@ -123,7 +144,7 @@ bool ControlApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      toggleBoolParam(_appParams.core.debug.loggingEnabled);
+      _appParams.core.debug.logging.enabled.toggle();
       break;
     default:
       return false;
@@ -132,13 +153,15 @@ bool ControlApp::performAction(AppAction action) {
 }
 
 void ControlApp::loadSettings() {
-  ofLogNotice() << "Reading JSON settings...";
+  AppSystem::get().log().app().logNotice("Reading JSON settings...");
   _appParams.readFromFile("settings.json");
-  ofLogNotice() << ".. read from JSON finished\n\t" << _appParams;
+  AppSystem::get().log().app().logNotice([&](ofLog& log) {
+    log << ".. read from JSON finished\n\t" << _appParams;
+  });
 }
 
 void ControlApp::saveSettings() {
-  ofLogNotice() << "Writing JSON settings...";
+  AppSystem::get().log().app().logNotice("Writing JSON settings...");
   _appParams.writeToFile("settings.json");
-  ofLogNotice() << ".. write to JSON finished";
+  AppSystem::get().log().app().logNotice(".. write to JSON finished");
 }

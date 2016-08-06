@@ -6,14 +6,17 @@
 //
 //
 
+#include <ofSystemUtils.h>
 #include "AppSystem.h"
+#include "ControlApp.h"
 #include "SimulationApp.h"
 
 void SimulationApp::setup() {
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
-                                        _appParams.colors);
+                                        _appParams.colors,
+                                        _context);
   _renderingController->setup();
 
   _appParams.core.output.fullscreen.changed += [&](bool& fullscreen) {
@@ -26,34 +29,48 @@ void SimulationApp::setup() {
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
                                         _appParams.core.bounds,
-                                        _state,
+                                        _context,
                                         _events);
-  _observers->setup(_state, _appParams.colors);
+  _observers->setup(_appParams.colors);
 
   _occurrences =
   std::make_shared<OccurrencesController>(_appParams.occurrences,
                                           _appParams.core.bounds,
                                           *_observers,
-                                          _state,
+                                          _context,
                                           _events);
-  _occurrences->setup(_state, _appParams.colors);
+  _occurrences->setup(_appParams.colors);
 
   _animations =
   std::make_shared<AnimationsController>(_appParams.animations,
                                          _appParams.colors,
-                                         _events);
+                                         _events,
+                                         _context);
   _animations->setup();
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
                                                  _appParams.core.debug,
-                                                 _state);
-  _physics->setup(*_observers, *_occurrences);
+                                                 _context);
+  _physics->setup();
 
-  _clock = std::make_shared<Clock>(_appParams.core.clock, _state);
+  _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
 
-  _statusController = std::make_shared<StatusInfoController>();
+  _statusController = std::make_shared<StatusInfoController>(_context);
+
+  _inspectionController =
+  std::make_shared<InspectionController>(_appParams.core.debug.inspect,
+                                         _context,
+                                         _renderingController->getCamera(),
+                                         *_window);
+  _inspectionController->setup();
+
+  _navigators =
+  std::make_shared<NavigatorsController>(_context,
+                                         _appParams.navigators,
+                                         _events);
+  _navigators->setup();
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
@@ -61,20 +78,23 @@ void SimulationApp::setup() {
 }
 
 void SimulationApp::update() {
+  AppSystem::get().control()->update();
   _clock->update();
-  _observers->update(_state);
-  _occurrences->update(_state);
-  _animations->update(_state);
+  _observers->update();
+  _occurrences->update();
+  _animations->update();
   _physics->update();
-  _renderingController->update(_state);
+  _navigators->update();
+  _renderingController->update();
 }
 
 void SimulationApp::draw() {
-  _renderingController->beginDraw(_state);
+  _renderingController->beginDraw();
 
-  _observers->draw(_state);
-  _occurrences->draw(_state);
-  _animations->draw(_state);
+  _observers->draw();
+  _occurrences->draw();
+  _animations->draw();
+  _navigators->draw();
   _physics->draw();
 
   if (_appParams.core.debug.showBounds()) {
@@ -83,9 +103,16 @@ void SimulationApp::draw() {
     ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
+    ofDrawGrid(
+               _appParams.core.bounds.size.get() / 2 / 4, // step size
+               4, // number of steps
+               true // labels
+               );
   }
 
-  _renderingController->endDraw(_state);
+  _renderingController->endDraw();
+
+  _inspectionController->update();
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {
@@ -94,8 +121,36 @@ void SimulationApp::draw() {
 #endif
 
   if (_appParams.core.debug.showStatus()) {
-    _statusController->draw(_state);
+    _statusController->draw();
   }
+
+  _inspectionController->draw();
+  AppSystem::get().control()->draw();
+}
+
+void SimulationApp::dumpEntityState() {
+  Json state = _context.to_json();
+  JsonUtil::prettyPrintJsonToStream(state, std::cout);
+}
+
+void SimulationApp::loadEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.readFromFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileLoadAction(action,
+                                         "Load Entity State",
+                                         "entityState.json");
+}
+
+void SimulationApp::saveEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.writeToFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileSaveAction(action,
+                                         "Save Entity State",
+                                         "entityState.json");
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
@@ -104,6 +159,15 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
+    case AppAction::DUMP_ENTITY_STATE:
+      dumpEntityState();
+      break;
+    case AppAction::LOAD_ENTITY_STATE:
+      loadEntityState();
+      break;
+    case AppAction::SAVE_ENTITY_STATE:
+      saveEntityState();
+      break;
     default:
       return false;
   }

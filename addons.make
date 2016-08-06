@@ -1,3 +1,4 @@
+ofxAssimpModelLoader
 ofxChoreograph
 ofxGui
 ofxGuiExtended

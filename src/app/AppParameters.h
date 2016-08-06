@@ -13,6 +13,7 @@
 
 #include "ObserversController.h"
 #include "OccurrencesController.h"
+#include "NavigatorsController.h"
 #include "AnimationsController.h"
 #include "RenderingController.h"
 #include "PhysicsController.h"
@@ -22,14 +23,12 @@
 #include "Colors.h"
 #include "Events.h"
 #include "MidiController.h"
+#include "InspectionController.h"
+#include "Logging.h"
 
 class DebugParams : public Params {
 public:
   DebugParams() {
-    add(loggingEnabled
-        .setKey("loggingEnabled")
-        .setName("Logging Enabled")
-        .setValueAndDefault(false));
     add(showBounds
         .setKey("showBounds")
         .setName("Show Bounds")
@@ -42,12 +41,19 @@ public:
         .setKey("showPhysics")
         .setName("Show Physics")
         .setValueAndDefault(false));
+    add(inspect
+        .setKey("inspect")
+        .setName("Inspect"));
+    add(logging
+        .setKey("logging")
+        .setName("Logging"));
   }
 
-  TParam<bool> loggingEnabled;
   TParam<bool> showBounds;
   TParam<bool> showStatus;
   TParam<bool> showPhysics;
+  InspectionController::Params inspect;
+  LoggingController::Params logging;
 };
 
 class OutputParams : public Params {
@@ -84,11 +90,10 @@ public:
     add(midi
         .setKey("midi")
         .setName("Midi"));
-    bounds.size.setRange(0.5, 40);
   }
 
   Clock::Params clock;
-  SimpleCubeBounds bounds;
+  Bounds bounds;
   DebugParams debug;
   OutputParams output;
   MidiController::Params midi;
@@ -106,6 +111,9 @@ public:
     add(occurrences
         .setKey("occurrences")
         .setName("Occurrences"));
+    add(navigators
+        .setKey("navigators")
+        .setName("Navigators"));
     add(animations
         .setKey("animations")
         .setName("Animations"));
@@ -125,6 +133,7 @@ public:
   AnimationsController::Params animations;
   ObserversController::Params observers;
   OccurrencesController::Params occurrences;
+  NavigatorsController::Params navigators;
   RenderingController::Params rendering;
   PhysicsController::Params physics;
 };
