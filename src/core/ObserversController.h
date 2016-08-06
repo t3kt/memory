@@ -68,7 +68,7 @@ public:
     }
 
     RandomValueSupplier<float> lifetime;
-    IntervalSpawner::Params spawner;
+    IntervalSpawnerParams spawner;
     RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
     ObserverRenderer::Params renderer;

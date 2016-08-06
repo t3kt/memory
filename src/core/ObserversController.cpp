@@ -11,7 +11,7 @@
 #include "SimulationApp.h"
 
 class IntervalObserverSpawner
-: public IntervalSpawner {
+: public IntervalSpawner<IntervalSpawnerParams> {
 public:
   IntervalObserverSpawner(ObserversController& controller)
   : IntervalSpawner(controller._params.spawner)

@@ -22,27 +22,30 @@ public:
   virtual void update(Context& context) = 0;
 };
 
+class IntervalSpawnerParams : public Spawner::Params {
+public:
+  IntervalSpawnerParams() {
+    add(interval
+        .setKey("interval")
+        .setName("Interval")
+        .setValueAndDefault(4)
+        .setRange(0, 30));
+  }
+
+  void setIntervalValueAndDefault(float val) {
+    interval.setValueAndDefault(val);
+  }
+
+  TParam<float> interval;
+};
+
+template<typename P = IntervalSpawnerParams>
 class IntervalSpawner
 : public Spawner {
 public:
-  class Params : public Spawner::Params {
-  public:
-    Params() {
-      add(interval
-          .setKey("interval")
-          .setName("Interval")
-          .setValueAndDefault(4)
-          .setRange(0, 30));
-    }
+  using Params = P;
 
-    void setIntervalValueAndDefault(float val) {
-      interval.setValueAndDefault(val);
-    }
-
-    TParam<float> interval;
-  };
-
-  IntervalSpawner(const Params& params)
+  IntervalSpawner(const P& params)
   : _params(params) {}
 
   void update(Context& context) override {
@@ -58,7 +61,7 @@ public:
 protected:
   virtual void spawnEntities(Context& context) = 0;
 
-  const Params& _params;
+  const P& _params;
   float _nextTime;
 };
 

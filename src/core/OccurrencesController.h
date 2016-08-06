@@ -25,9 +25,28 @@
 #include "SimulationEvents.h"
 #include "Spawner.h"
 
-class IntervalOccurrenceSpawner;
-class RateOccurrenceSpawner;
-class DescendantOccurrenceSpawner;
+class OccurrencesController;
+
+class IntervalOccurrenceSpawner
+: public IntervalSpawner<IntervalSpawnerParams> {
+public:
+  IntervalOccurrenceSpawner(OccurrencesController& controller);
+protected:
+  void spawnEntities(Context& context) override;
+
+  OccurrencesController& _controller;
+};
+
+class RateOccurrenceSpawner
+: public RateSpawner {
+public:
+  RateOccurrenceSpawner(OccurrencesController& controller);
+
+protected:
+  void spawnEntities(Context& context, int count) override;
+
+  OccurrencesController& _controller;
+};
 
 class OccurrencesController
 : public AppActionHandler {
@@ -65,7 +84,7 @@ public:
     }
 
     RandomValueSupplier<float> radius;
-    IntervalSpawner::Params spawner;
+    IntervalSpawnerParams spawner;
     RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
     OccurrenceRenderer::Params renderer;
