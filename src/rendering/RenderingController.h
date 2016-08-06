@@ -14,20 +14,45 @@
 #include "CameraController.h"
 #include "Colors.h"
 #include "Common.h"
+#include "ConnectorRenderer.h"
 #include "Context.h"
+#include "ObserverRenderer.h"
+#include "OccurrenceRenderer.h"
 #include "Params.h"
 #include "PostProcController.h"
+#include "ThresholdRenderer.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
 #endif
 
-class InstancedObserverRenderer;
-class ObserverObserverConnectorRenderer;
 class ObserverOccurrenceConnectorRenderer;
 class ObserverRenderer;
 class OccurrenceOccurrenceConnectorRenderer;
 class OccurrenceRenderer;
+
+class ObserverRenderingParams : public Params {
+public:
+  ObserverRenderingParams() {
+    add(renderer
+        .setKey("renderer")
+        .setName("Renderer"));
+    add(instancedRenderer
+        .setKey("instancedRenderer")
+        .setName("Instanced Renderer"));
+    add(connectorRenderer
+        .setKey("connectorRenderer")
+        .setName("Connector Renderer"));
+    add(thresholdRenderer
+        .setKey("thresholdRenderer")
+        .setName("Threshold"));
+  }
+
+  ObserverRenderer::Params renderer;
+  InstancedObserverRenderer::Params instancedRenderer;
+  ObserverObserverConnectorRenderer::Params connectorRenderer;
+  AbstractThresholdRenderer::Params thresholdRenderer;
+};
 
 class FogParams : public ParamsWithEnabled {
 public:
@@ -63,6 +88,9 @@ public:
       add(camera
           .setKey("camera")
           .setName("Camera"));
+      add(observers
+          .setKey("observers")
+          .setName("Observers"));
       add(fog
           .setKey("fog")
           .setName("Fog"));
@@ -72,6 +100,7 @@ public:
     }
 
     CameraController::Params camera;
+    ObserverRenderingParams observers;
     FogParams fog;
     PostProcController::Params postProc;
   };

@@ -10,17 +10,12 @@
 #define ObserversController_h
 
 #include "AppActions.h"
-#include "ConnectorRenderer.h"
 #include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
 #include "ObjectManager.h"
-#include "ObserverRenderer.h"
 #include "State.h"
 #include "Params.h"
 #include "Events.h"
 #include "Bounds.h"
-#include "ThresholdRenderer.h"
-#include "EntityRenderer.h"
 #include "Context.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
@@ -52,28 +47,12 @@ public:
           .setName("Initial Velocity")
           .setParamValuesAndDefaults(0, 4)
           .setParamRanges(0, 20));
-      add(renderer
-          .setKey("renderer")
-          .setName("Renderer"));
-      add(instancedRenderer
-          .setKey("instancedRenderer")
-          .setName("Instanced Renderer"));
-      add(connectorRenderer
-          .setKey("connectorRenderer")
-          .setName("Connector Renderer"));
-      add(threshold
-          .setKey("threshold")
-          .setName("Threshold"));
     }
 
     RandomValueSupplier<float> lifetime;
     IntervalSpawnerParams spawner;
     RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
-    ObserverRenderer::Params renderer;
-    InstancedObserverRenderer::Params instancedRenderer;
-    ObserverObserverConnectorRenderer::Params connectorRenderer;
-    AbstractThresholdRenderer::Params threshold;
   };
   
   ObserversController(const Params& params,

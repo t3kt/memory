@@ -7,6 +7,7 @@
 //
 
 #include "ObserversController.h"
+#include "OccurrenceEntity.h"
 
 class IntervalObserverSpawner
 : public IntervalSpawner<IntervalSpawnerParams> {

@@ -7,9 +7,6 @@
 //
 
 #include "AppParameters.h"
-#include "ConnectorRenderer.h"
-#include "ObserverRenderer.h"
-#include "OccurrenceRenderer.h"
 #include "RenderingController.h"
 #include <ofMain.h>
 
@@ -31,11 +28,11 @@ void RenderingController::setup() {
   _camera->setup();
   const auto& appParams = _context.appParams;
   const auto& colors = appParams.colors;
-  const auto& observerParams = appParams.observers;
+  const auto& observerParams = _params.observers;
   const auto& occurrenceParams = appParams.occurrences;
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
-                                              observerParams.threshold,
+                                              observerParams.thresholdRenderer,
                                               colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer =
   std::make_shared<ObserverRenderer>(observerParams.renderer,

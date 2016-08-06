@@ -185,21 +185,9 @@
     "reachRange": 8.25
   },
   "observers": {
-    "connectorRenderer": {
-      "enabled": true
-    },
     "initialVelocity": {
       "high": 6.0204081535339355,
       "low": 0
-    },
-    "instancedRenderer": {
-      "enabled": true,
-      "fadeIn": {
-        "duration": 1,
-        "endValue": 1,
-        "startValue": 0
-      },
-      "size": 10
     },
     "lifetime": {
       "high": 240,
@@ -209,21 +197,9 @@
       "enabled": true,
       "rate": 0.84693849086761475
     },
-    "renderer": {
+    "spawner": {
       "enabled": true,
-      "fadeIn": {
-        "duration": 1,
-        "endValue": 1,
-        "startValue": 0
-      },
-      "size": 3.5714287757873535
-    },
-    "threshold": {
-      "enabled": false,
-      "range": {
-        "high": 0.10000000149011612,
-        "low": 0
-      }
+      "interval": 4
     }
   },
   "occurrences": {
@@ -261,7 +237,6 @@
         "startValue": 0
       },
       "showRange": false,
-      "size": 11.734694480895996,
       "sizeRange": {
         "high": 32.840484619140625,
         "low": 2.6447322368621826
@@ -380,6 +355,36 @@
       },
       "enabled": false,
       "useBackgroundColor": true
+    },
+    "observers": {
+      "connectorRenderer": {
+        "enabled": true
+      },
+      "instancedRenderer": {
+        "enabled": false,
+        "fadeIn": {
+          "duration": 1,
+          "endValue": 1,
+          "startValue": 0
+        },
+        "size": 10
+      },
+      "renderer": {
+        "enabled": true,
+        "fadeIn": {
+          "duration": 1,
+          "endValue": 1,
+          "startValue": 0
+        },
+        "size": 3.5714287757873535
+      },
+      "thresholdRenderer": {
+        "enabled": false,
+        "range": {
+          "high": 0.10000000149011612,
+          "low": 0
+        }
+      }
     },
     "postProc": {
       "bloom": {
