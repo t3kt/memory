@@ -32,7 +32,10 @@ public:
 protected:
   void spawnEntities(Context& context, int count) override {
     if (count == 1) {
-      _controller.spawnObserverNavigator(getRandomEntity(context.observers));
+      auto entity = getRandomEntity(context.observers);
+      if (entity) {
+        _controller.spawnObserverNavigator(entity);
+      }
       return;
     }
     std::vector<std::shared_ptr<ObserverEntity>> entities(context.observers.begin(), context.observers.end());
@@ -66,6 +69,9 @@ void NavigatorsController::setup() {
 }
 
 void NavigatorsController::update() {
+  if (!_context.state.running) {
+    return;
+  }
   _navigators.performAction([&](NavEntityPtr navigator) {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
