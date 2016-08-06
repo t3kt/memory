@@ -26,11 +26,6 @@
 #include <ofxSyphon.h>
 #endif
 
-class ObserverOccurrenceConnectorRenderer;
-class ObserverRenderer;
-class OccurrenceOccurrenceConnectorRenderer;
-class OccurrenceRenderer;
-
 class ObserverRenderingParams : public Params {
 public:
   ObserverRenderingParams() {
@@ -52,6 +47,25 @@ public:
   InstancedObserverRenderer::Params instancedRenderer;
   ObserverObserverConnectorRenderer::Params connectorRenderer;
   AbstractThresholdRenderer::Params thresholdRenderer;
+};
+
+class OccurrenceRenderingParams : public Params {
+public:
+  OccurrenceRenderingParams() {
+    add(renderer
+        .setKey("renderer")
+        .setName("Renderer"));
+    add(connectorRenderer
+        .setKey("connectorRenderer")
+        .setName("Connector Renderer"));
+    add(occurrenceConnectorRenderer
+        .setKey("occurrenceConnectorRenderer")
+        .setName("Occurrence Connector Renderer"));
+  }
+
+  OccurrenceRenderer::Params renderer;
+  ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
+  OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
 };
 
 class FogParams : public ParamsWithEnabled {
@@ -91,6 +105,9 @@ public:
       add(observers
           .setKey("observers")
           .setName("Observers"));
+      add(occurrences
+          .setKey("occurrences")
+          .setName("Occurrences"));
       add(fog
           .setKey("fog")
           .setName("Fog"));
@@ -101,6 +118,7 @@ public:
 
     CameraController::Params camera;
     ObserverRenderingParams observers;
+    OccurrenceRenderingParams occurrences;
     FogParams fog;
     PostProcController::Params postProc;
   };

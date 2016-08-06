@@ -10,9 +10,7 @@
 #define OccurrencesController_h
 
 #include "AppActions.h"
-#include "ConnectorRenderer.h"
 #include "OccurrenceEntity.h"
-#include "OccurrenceRenderer.h"
 #include "ObserversController.h"
 #include "ObjectManager.h"
 #include "State.h"
@@ -21,7 +19,6 @@
 #include "Bounds.h"
 #include "Colors.h"
 #include "Context.h"
-#include "EntityRenderer.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
 
@@ -72,24 +69,12 @@ public:
           .setName("Initial Velocity")
           .setParamValuesAndDefaults(0, 2)
           .setParamRanges(0, 20));
-      add(renderer
-          .setKey("renderer")
-          .setName("Renderer"));
-      add(connectorRenderer
-          .setKey("connectorRenderer")
-          .setName("Connector Renderer"));
-      add(occurrenceConnectorRenderer
-          .setKey("occurrenceConnectorRenderer")
-          .setName("Occurrence Connector Renderer"));
     }
 
     RandomValueSupplier<float> radius;
     IntervalSpawnerParams spawner;
     RateSpawner::Params rateSpawner;
     SimpleRandomVectorSupplier initialVelocity;
-    OccurrenceRenderer::Params renderer;
-    ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
-    OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
   };
   
   OccurrencesController(const Params& params,

@@ -29,7 +29,7 @@ void RenderingController::setup() {
   const auto& appParams = _context.appParams;
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
-  const auto& occurrenceParams = appParams.occurrences;
+  const auto& occurrenceParams = _params.occurrences;
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
                                               observerParams.thresholdRenderer,
@@ -46,15 +46,15 @@ void RenderingController::setup() {
                                                       colors.getColor(ColorId::OBSERVER_CONNECTOR),
                                                       _context.observers);
   _occurrenceRenderer =
-  std::make_shared<OccurrenceRenderer>(appParams.occurrences.renderer,
+  std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
                                        appParams,
                                        _context.occurrences);
   _observerOccurrenceConnectorRenderer =
-  std::make_shared<ObserverOccurrenceConnectorRenderer>(appParams.occurrences.connectorRenderer,
+  std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
                                                         colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
                                                         _context.occurrences);
   _occurrenceOccurrenceConnectorRenderer =
-  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(appParams.occurrences.occurrenceConnectorRenderer,
+  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer,
                                                           colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
                                                           _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);

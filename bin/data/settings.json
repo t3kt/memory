@@ -203,19 +203,9 @@
     }
   },
   "occurrences": {
-    "connectorRenderer": {
-      "connectionCountRange": {
-        "high": 4,
-        "low": 0.0052061639726161957
-      },
-      "enabled": true
-    },
     "initialVelocity": {
       "high": 0,
       "low": 0
-    },
-    "occurrenceConnectorRenderer": {
-      "enabled": true
     },
     "radius": {
       "high": 77.551017761230469,
@@ -224,27 +214,6 @@
     "rateSpawner": {
       "enabled": true,
       "rate": 3.2653059959411621
-    },
-    "renderer": {
-      "connectionCountRange": {
-        "high": 4,
-        "low": 0
-      },
-      "enabled": true,
-      "fadeIn": {
-        "duration": 1,
-        "endValue": 1,
-        "startValue": 0
-      },
-      "showRange": false,
-      "sizeRange": {
-        "high": 32.840484619140625,
-        "low": 2.6447322368621826
-      },
-      "wireBrightness": 1.5,
-      "wireEnabled": false,
-      "wireSaturation": 0.19897958636283875,
-      "wireScale": 1.0928571224212646
     },
     "spawner": {
       "enabled": false,
@@ -384,6 +353,39 @@
           "high": 0.10000000149011612,
           "low": 0
         }
+      }
+    },
+    "occurrences": {
+      "connectorRenderer": {
+        "connectionCountRange": {
+          "high": 4,
+          "low": 0.0052061639726161957
+        },
+        "enabled": true
+      },
+      "occurrenceConnectorRenderer": {
+        "enabled": true
+      },
+      "renderer": {
+        "connectionCountRange": {
+          "high": 4,
+          "low": 0
+        },
+        "enabled": true,
+        "fadeIn": {
+          "duration": 1,
+          "endValue": 1,
+          "startValue": 0
+        },
+        "showRange": false,
+        "sizeRange": {
+          "high": 32.840484619140625,
+          "low": 2.6447322368621826
+        },
+        "wireBrightness": 1.5,
+        "wireEnabled": false,
+        "wireSaturation": 0.19897958636283875,
+        "wireScale": 1.0928571224212646
       }
     },
     "postProc": {
