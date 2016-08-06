@@ -7,6 +7,7 @@
 //
 
 #include "AppSystem.h"
+#include "Colors.h"
 #include "ObserversController.h"
 #include "SimulationApp.h"
 
@@ -51,12 +52,12 @@ ObserversController::ObserversController(const ObserversController::Params& para
 , _context(context) {
 }
 
-void ObserversController::setup(const ColorTheme& colors) {
+void ObserversController::setup() {
+  const ColorTheme& colors = ColorTheme::get();
   _thresholdRenderer = std::make_shared<ThresholdRenderer<ObserverEntity>>(_observers, _params.threshold, colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
-  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, colors, _observers);
+  _observerRenderer = std::make_shared<ObserverRenderer>(_params.renderer, _observers);
 //  _instancedObserverRenderer =
 //  std::make_shared<InstancedObserverRenderer>(_params.instancedRenderer,
-//                                              colors,
 //                                              _context);
 //  _instancedObserverRenderer->setup();
   _observerConnectorRenderer = std::make_shared<ObserverObserverConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OBSERVER_CONNECTOR), _observers);

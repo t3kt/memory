@@ -44,7 +44,6 @@ public:
   };
 
   AnimationsController(const Params& params,
-                       const ColorTheme& colors,
                        SimulationEvents& events,
                        Context& context);
 

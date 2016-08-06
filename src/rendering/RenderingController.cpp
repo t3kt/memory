@@ -12,14 +12,13 @@
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,
-                                         const ColorTheme& colors,
                                          Context& context)
 : _params(params)
 , _window(window)
-, _colors(colors)
+, _colors(ColorTheme::get())
 , _context(context)
-, _backgroundColor(colors.getColor(ColorId::BACKGROUND))
-, _fogColor(colors.getColor(ColorId::FOG)) {
+, _backgroundColor(ColorTheme::get().getColor(ColorId::BACKGROUND))
+, _fogColor(ColorTheme::get().getColor(ColorId::FOG)) {
 }
 
 void RenderingController::setup() {

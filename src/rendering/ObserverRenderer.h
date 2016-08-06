@@ -36,7 +36,6 @@ public:
   };
 
   ObserverRenderer(const Params& params,
-                   const ColorTheme& colors,
                    ObjectManager<ObserverEntity>& entities);
 protected:
   ObjectManager<ObserverEntity>::StorageList::iterator begin() override {
@@ -73,7 +72,6 @@ public:
   };
 
   InstancedObserverRenderer(const Params& params,
-                            const ColorTheme& colors,
                             Context& context);
 
   void setup();

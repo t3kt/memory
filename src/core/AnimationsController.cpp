@@ -6,6 +6,7 @@
 //
 //
 
+#include "AppSystem.h"
 #include "AnimationsController.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
@@ -13,12 +14,11 @@
 #include <iostream>
 
 AnimationsController::AnimationsController(const Params& params,
-                                           const ColorTheme& colors,
                                            SimulationEvents& events,
                                            Context& context)
 : _params(params)
 , _context(context)
-, _colors(colors)
+, _colors(ColorTheme::get())
 , _events(events)
 , _animations(context.animations) {
 }

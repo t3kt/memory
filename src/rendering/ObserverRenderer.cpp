@@ -12,9 +12,10 @@
 #include "ObserverEntity.h"
 #include "ObserverRenderer.h"
 
-ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
+ObserverRenderer::ObserverRenderer(const Params& params,
+                                   ObjectManager<ObserverEntity>& entities)
 : EntityRenderer<ObserverEntity>(params,
-                                 colors.getColor(ColorId::OBSERVER_MARKER))
+                                 ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
 , _params(params)
 , _entities(entities)
 , _mesh(AppAssets::observerMarkerMesh()) {
@@ -49,11 +50,10 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity,
 static const std::size_t MAX_OBSERVERS = 1000;
 
 InstancedObserverRenderer::InstancedObserverRenderer(const Params& params,
-                                                     const ColorTheme& colors,
                                                      Context& context)
 : _params(params)
 , _context(context)
-, _color(colors.getColor(ColorId::OBSERVER_MARKER))
+, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
 , _mesh(AppAssets::observerMarkerMesh())
 , _instanceShader(AppAssets::markerInstanceShader())
 , _fadeIn(params.fadeIn) { }

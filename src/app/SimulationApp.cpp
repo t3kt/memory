@@ -15,7 +15,6 @@ void SimulationApp::setup() {
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
-                                        _appParams.colors,
                                         _context);
   _renderingController->setup();
 
@@ -31,7 +30,7 @@ void SimulationApp::setup() {
                                         _appParams.core.bounds,
                                         _context,
                                         _events);
-  _observers->setup(_appParams.colors);
+  _observers->setup();
 
   _occurrences =
   std::make_shared<OccurrencesController>(_appParams.occurrences,
@@ -39,11 +38,10 @@ void SimulationApp::setup() {
                                           *_observers,
                                           _context,
                                           _events);
-  _occurrences->setup(_appParams.colors);
+  _occurrences->setup();
 
   _animations =
   std::make_shared<AnimationsController>(_appParams.animations,
-                                         _appParams.colors,
                                          _events,
                                          _context);
   _animations->setup();

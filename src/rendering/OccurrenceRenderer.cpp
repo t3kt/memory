@@ -13,6 +13,15 @@
 #include "OccurrenceEntity.h"
 #include "OccurrenceRenderer.h"
 
+OccurrenceRenderer::OccurrenceRenderer(const Params& params,
+                                       const MemoryAppParameters& appParams,
+                                       ObjectManager<OccurrenceEntity>& entities)
+: EntityRenderer<OccurrenceEntity>(params, ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER))
+, _params(params)
+, _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
+, _appParams(appParams)
+, _entities(entities) { }
+
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity,
                                     const State& state) {
   auto count = entity.getAmountOfObservation();

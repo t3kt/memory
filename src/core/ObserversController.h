@@ -21,7 +21,6 @@
 #include "Bounds.h"
 #include "ThresholdRenderer.h"
 #include "EntityRenderer.h"
-#include "Colors.h"
 #include "Context.h"
 #include "SimulationEvents.h"
 #include "Spawner.h"
@@ -82,7 +81,7 @@ public:
                       Context& context,
                       SimulationEvents& events);
   
-  void setup(const ColorTheme& colors);
+  void setup();
   void update();
   void draw();
   

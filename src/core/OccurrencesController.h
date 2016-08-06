@@ -98,7 +98,7 @@ public:
                         Context& context,
                         SimulationEvents& events);
   
-  void setup(const ColorTheme& colors);
+  void setup();
   void update();
   void draw();
 

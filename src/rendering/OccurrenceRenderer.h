@@ -64,14 +64,8 @@ public:
   };
 
   OccurrenceRenderer(const Params& params,
-                     const ColorTheme& colors,
                      const MemoryAppParameters& appParams,
-                     ObjectManager<OccurrenceEntity>& entities)
-  : EntityRenderer<OccurrenceEntity>(params, colors.getColor(ColorId::OCCURRENCE_MARKER))
-  , _params(params)
-  , _rangeColor(colors.getColor(ColorId::OCCURRENCE_RANGE))
-  , _appParams(appParams)
-  , _entities(entities) { }
+                     ObjectManager<OccurrenceEntity>& entities);
 protected:
   ObjectManager<OccurrenceEntity>::StorageList::iterator begin() override {
     return _entities.begin();

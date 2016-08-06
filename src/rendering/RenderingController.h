@@ -71,7 +71,6 @@ public:
 
   RenderingController(Params& params,
                       ofAppGLFWWindow& window,
-                      const ColorTheme& colors,
                       Context& context);
 
   ofCamera& getCamera() { return _camera->getCamera(); }
