@@ -18,6 +18,8 @@ public:
   using Params = ParamsWithEnabled;
 
   virtual void update(Context& context) = 0;
+
+  virtual bool spawnNow(Context& context, int count) = 0;
 };
 
 class IntervalSpawnerParams : public Spawner::Params {
@@ -55,6 +57,15 @@ public:
       spawnEntities(context);
       _nextTime = now + _params.interval();
     }
+  }
+  bool spawnNow(Context& context, int count) override {
+    if (!_params.enabled.get()) {
+      return false;
+    }
+    for (int i = 0; i < count; ++i) {
+      spawnEntities(context);
+    }
+    return true;
   }
 protected:
   virtual void spawnEntities(Context& context) = 0;
@@ -113,6 +124,14 @@ public:
       spawnEntities(context, static_cast<int>(count));
       _lastTime = now;
     }
+  }
+
+  bool spawnNow(Context& context, int count) override {
+    if (!_params.enabled.get()) {
+      return false;
+    }
+    spawnEntities(context, count);
+    return true;
   }
 
 protected:

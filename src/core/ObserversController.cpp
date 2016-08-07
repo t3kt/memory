@@ -85,19 +85,12 @@ bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> o
   return connected;
 }
 
-void ObserversController::spawnRandomObserver() {
-  ofVec3f pos = _bounds.randomPoint();
-  float life = _params.lifetime.getValue();
-  auto observer = std::make_shared<ObserverEntity>(pos,
-                                                   life,
-                                                   _context.state);
-  observer->setVelocity(_params.initialVelocity.getValue());
-  tryAddEntity(observer);
-}
-
 void ObserversController::spawnObservers(int count) {
-  for (int i = 0; i < count; ++i) {
-    spawnRandomObserver();
+  if (_spawner->spawnNow(_context, count)) {
+    return;
+  }
+  if (_rateSpawner->spawnNow(_context, count)) {
+    return;
   }
 }
 

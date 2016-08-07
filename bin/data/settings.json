@@ -185,21 +185,29 @@
     "reachRange": 8.25
   },
   "observers": {
-    "initialVelocity": {
-      "high": 6.0204081535339355,
-      "low": 0
-    },
-    "lifetime": {
-      "high": 240,
-      "low": 113.87755584716797
-    },
     "rateSpawner": {
       "enabled": true,
+      "initialVelocity": {
+        "high": 6.0204081535339355,
+        "low": 0
+      },
+      "lifetime": {
+        "high": 240,
+        "low": 113.87755584716797
+      },
       "rate": 0.84693849086761475
     },
     "spawner": {
       "enabled": true,
-      "interval": 4
+      "initialVelocity": {
+        "high": 6.0204081535339355,
+        "low": 0
+      },
+      "interval": 4,
+      "lifetime": {
+        "high": 240,
+        "low": 113.87755584716797
+      }
     }
   },
   "occurrences": {
