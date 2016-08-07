@@ -70,7 +70,7 @@ bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
 
 void AppSystem::setup() {
   ofGLFWWindowSettings simWinSettings;
-  simWinSettings.width = 1350;
+  simWinSettings.width = 1400;
   simWinSettings.height = 800;
   simWinSettings.resizable = false;
   simWinSettings.setPosition(ofVec3f(0, 0));
