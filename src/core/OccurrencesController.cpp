@@ -34,10 +34,10 @@ OccurrencesController::OccurrencesController(const Params& params,
                                              ObserversController& observers,
                                              Context& context,
                                              SimulationEvents& events)
-: EntityController(params,
-                   context,
+: EntityController(context,
                    events,
                    context.occurrences)
+, _params(params)
 , _bounds(bounds)
 , _observers(observers) { }
 

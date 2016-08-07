@@ -46,39 +46,37 @@ protected:
   OccurrencesController& _controller;
 };
 
-class OccurrencesControllerParams : public ::Params {
-public:
-  OccurrencesControllerParams() {
-    add(radius
-        .setKey("radius")
-        .setName("Radius Range")
-        .setParamValuesAndDefaults(0, 80)
-        .setParamRanges(0, 400));
-    add(spawner
-        .setKey("spawner")
-        .setName("Inteval Spawner"));
-    add(rateSpawner
-        .setRateRange(0, 5)
-        .setRateValueAndDefault(0.5)
-        .setKey("rateSpawner")
-        .setName("Rate Spawner"));
-    add(initialVelocity
-        .setKey("initialVelocity")
-        .setName("Initial Velocity")
-        .setParamValuesAndDefaults(0, 2)
-        .setParamRanges(0, 20));
-  }
-
-  RandomValueSupplier<float> radius;
-  IntervalSpawner<>::Params spawner;
-  RateSpawner<>::Params rateSpawner;
-  SimpleRandomVectorSupplier initialVelocity;
-};
-
 class OccurrencesController
-: public EntityController<OccurrenceEntity, OccurrencesControllerParams> {
+: public EntityController<OccurrenceEntity> {
 public:
-  using Params = OccurrencesControllerParams;
+  class Params : public ::Params {
+  public:
+    Params() {
+      add(radius
+          .setKey("radius")
+          .setName("Radius Range")
+          .setParamValuesAndDefaults(0, 80)
+          .setParamRanges(0, 400));
+      add(spawner
+          .setKey("spawner")
+          .setName("Inteval Spawner"));
+      add(rateSpawner
+          .setRateRange(0, 5)
+          .setRateValueAndDefault(0.5)
+          .setKey("rateSpawner")
+          .setName("Rate Spawner"));
+      add(initialVelocity
+          .setKey("initialVelocity")
+          .setName("Initial Velocity")
+          .setParamValuesAndDefaults(0, 2)
+          .setParamRanges(0, 20));
+    }
+
+    RandomValueSupplier<float> radius;
+    IntervalSpawner<>::Params spawner;
+    RateSpawner<>::Params rateSpawner;
+    SimpleRandomVectorSupplier initialVelocity;
+  };
 
   OccurrencesController(const Params& params,
                         const Bounds& bounds,
@@ -99,6 +97,7 @@ public:
 private:
   void spawnRandomOccurrence();
 
+  const Params& _params;
   const Bounds& _bounds;
   ObserversController& _observers;
   std::shared_ptr<IntervalOccurrenceSpawner> _spawner;

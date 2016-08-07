@@ -19,7 +19,6 @@
 		1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F96463E5281CD1FEBA25AA7 /* MidiDevice.cpp */; };
 		1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF3275DA1779ABB3A490844 /* JsonIO.cpp */; };
 		22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86E7BBF4C34228C5E07E44F8 /* ofxGuiZoomableBaseDraws.cpp */; };
-		22D56C8A4BAB99E3A9F56FA6 /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E4B72AB3DD47F6802AF664 /* Spawner.cpp */; };
 		23234C9FA76CB202C47F4199 /* ToonPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 782F67A8BCFC490B4EC34EEE /* ToonPass.cpp */; };
 		2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 900084171B4F763F50B3B47A /* ofxSyphonServerDirectory.mm */; };
 		2B3926B6C2FA56994ECDED98 /* LimbDarkeningPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D2497856BB0050666A3D3BD /* LimbDarkeningPass.cpp */; };
@@ -28,6 +27,8 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		32324C601D55C1D900D05EDF /* EntityController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C5E1D55C1D900D05EDF /* EntityController.cpp */; };
+		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
+		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -241,6 +242,10 @@
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		32324C5E1D55C1D900D05EDF /* EntityController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityController.cpp; path = core/EntityController.cpp; sourceTree = "<group>"; };
 		32324C5F1D55C1D900D05EDF /* EntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityController.h; path = core/EntityController.h; sourceTree = "<group>"; };
+		32324C661D56C6C500D05EDF /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spawner.cpp; path = spawning/Spawner.cpp; sourceTree = "<group>"; };
+		32324C671D56C6C500D05EDF /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = spawning/Spawner.h; sourceTree = "<group>"; };
+		32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverSpawner.cpp; path = spawning/ObserverSpawner.cpp; sourceTree = "<group>"; };
+		32324C6A1D56C80B00D05EDF /* ObserverSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverSpawner.h; path = spawning/ObserverSpawner.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -436,7 +441,6 @@
 		B9693CBFC15DAD29D7FDEC99 /* types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/types.h; sourceTree = SOURCE_ROOT; };
 		BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationObject.h; path = src/core/AnimationObject.h; sourceTree = SOURCE_ROOT; };
 		BC825A4168A0DF78F0ACE6A7 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
-		BCF0A68AC198902DAFA047CB /* Spawner.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Spawner.h; path = src/core/Spawner.h; sourceTree = SOURCE_ROOT; };
 		BD12DAB4968A513EE609AB9C /* AnchorPointBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnchorPointBehavior.h; path = src/physics/AnchorPointBehavior.h; sourceTree = SOURCE_ROOT; };
 		BDF3275DA1779ABB3A490844 /* JsonIO.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = JsonIO.cpp; path = src/core/JsonIO.cpp; sourceTree = SOURCE_ROOT; };
 		BFAC291ACE4D9FD4C5320FFA /* ofxTabbedPages.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTabbedPages.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxTabbedPages.cpp; sourceTree = SOURCE_ROOT; };
@@ -465,7 +469,6 @@
 		D8D57A2DE1130D2EF3D44F5A /* AnchorPointBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AnchorPointBehavior.cpp; path = src/physics/AnchorPointBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		D917BC46A056629ECC270C08 /* ofxTextAlignTTF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextAlignTTF.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.cpp; sourceTree = SOURCE_ROOT; };
 		D9C3827264F0C34537CE0F6E /* Clock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Clock.h; path = src/core/Clock.h; sourceTree = SOURCE_ROOT; };
-		D9E4B72AB3DD47F6802AF664 /* Spawner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Spawner.cpp; path = src/core/Spawner.cpp; sourceTree = SOURCE_ROOT; };
 		DA0F8D467347FF97E1A90DEC /* RenderPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RenderPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RenderPass.cpp; sourceTree = SOURCE_ROOT; };
 		DA74967980DD7E2289059D81 /* ofxValuePlotter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxValuePlotter.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxValuePlotter.h; sourceTree = SOURCE_ROOT; };
 		DCBEBF66C39747BD1534C1B5 /* Status.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Status.cpp; path = src/core/Status.cpp; sourceTree = SOURCE_ROOT; };
@@ -606,6 +609,17 @@
 				C721A9AF1157766AFE54645E /* libs */,
 			);
 			name = ofxAssimpModelLoader;
+			sourceTree = "<group>";
+		};
+		32324C651D56C67200D05EDF /* spawning */ = {
+			isa = PBXGroup;
+			children = (
+				32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */,
+				32324C6A1D56C80B00D05EDF /* ObserverSpawner.h */,
+				32324C661D56C6C500D05EDF /* Spawner.cpp */,
+				32324C671D56C6C500D05EDF /* Spawner.h */,
+			);
+			name = spawning;
 			sourceTree = "<group>";
 		};
 		324CF6F61D3CA2D6003DD487 /* resources */ = {
@@ -1151,8 +1165,6 @@
 				32EEAEB91D49B407003A503F /* Serialization.h */,
 				32EEAEC21D4C5AB8003A503F /* SimulationEvents.cpp */,
 				F1A1B1EC58C36A38BAEF3993 /* SimulationEvents.h */,
-				D9E4B72AB3DD47F6802AF664 /* Spawner.cpp */,
-				BCF0A68AC198902DAFA047CB /* Spawner.h */,
 				36B95376ECF45981665C19E8 /* State.cpp */,
 				27F7A6AF265FCB06BA639098 /* State.h */,
 				DCBEBF66C39747BD1534C1B5 /* Status.cpp */,
@@ -1270,6 +1282,7 @@
 				32E58A341D3C2F5A001AA5E4 /* navigation */,
 				8EB304E39B119DD2D764E269 /* physics */,
 				5533A127DD65323EB591F7AD /* rendering */,
+				32324C651D56C67200D05EDF /* spawning */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1463,7 +1476,6 @@
 				32EEAEBA1D49B407003A503F /* Serialization.cpp in Sources */,
 				95295DFC21749761D7BF9B18 /* Params.cpp in Sources */,
 				96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */,
-				22D56C8A4BAB99E3A9F56FA6 /* Spawner.cpp in Sources */,
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,
 				D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
@@ -1491,6 +1503,7 @@
 				318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */,
 				EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */,
 				32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */,
+				32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */,
 				F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */,
 				A0DD88127445464D69B7224E /* ofxGuiGroup.cpp in Sources */,
 				F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */,
@@ -1505,6 +1518,7 @@
 				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
+				32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,
 				32EEAED01D53238C003A503F /* ValueSequence.cpp in Sources */,
 				08166DCA53F81B64FD6B1516 /* ofxLabelExtended.cpp in Sources */,

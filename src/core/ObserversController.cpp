@@ -9,49 +9,23 @@
 #include "ObserversController.h"
 #include "OccurrenceEntity.h"
 
-class IntervalObserverSpawner
-: public IntervalSpawner<> {
-public:
-  IntervalObserverSpawner(ObserversController& controller)
-  : IntervalSpawner(controller._params.spawner)
-  , _controller(controller) { }
-protected:
-  void spawnEntities(Context& context) override {
-    _controller.spawnRandomObserver();
-  }
-
-  ObserversController& _controller;
-};
-
-class RateObserverSpawner
-: public RateSpawner<> {
-public:
-  RateObserverSpawner(ObserversController& controller)
-  : RateSpawner(controller._params.rateSpawner)
-  , _controller(controller) { }
-protected:
-  void spawnEntities(Context& context, int count) override {
-    for (int i = 0; i < count; ++i) {
-      _controller.spawnRandomObserver();
-    }
-  }
-
-  ObserversController& _controller;
-};
-
 ObserversController::ObserversController(const Params& params,
                                          const Bounds& bounds,
                                          Context& context,
                                          SimulationEvents& events)
-: EntityController(params,
-                   context,
+: EntityController(context,
                    events,
                    context.observers)
+, _params(params)
 , _bounds(bounds) { }
 
 void ObserversController::setup() {
-  _spawner = std::make_shared<IntervalObserverSpawner>(*this);
-  _rateSpawner = std::make_shared<RateObserverSpawner>(*this);
+  _spawner = std::make_shared<IntervalObserverSpawner>(_params.spawner,
+                                                       _bounds,
+                                                       *this);
+  _rateSpawner = std::make_shared<RateObserverSpawner>(_params.rateSpawner,
+                                                       _bounds,
+                                                       *this);
 
   registerAsActionHandler();
 }

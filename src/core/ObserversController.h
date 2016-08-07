@@ -16,47 +16,43 @@
 #include "Events.h"
 #include "ObjectManager.h"
 #include "ObserverEntity.h"
+#include "ObserverSpawner.h"
 #include "Params.h"
 #include "SimulationEvents.h"
-#include "Spawner.h"
 #include "State.h"
 
-class IntervalObserverSpawner;
-class RateObserverSpawner;
-
-class ObserversControllerParams : public ::Params {
-public:
-  ObserversControllerParams() {
-    add(lifetime
-        .setKey("lifetime")
-        .setName("Lifetime Range")
-        .setParamValuesAndDefaults(1, 4)
-        .setParamRanges(0, 240));
-    add(spawner
-        .setKey("spawner")
-        .setName("Interval Spawner"));
-    add(rateSpawner
-        .setRateRange(0, 5)
-        .setRateValueAndDefault(0.5)
-        .setKey("rateSpawner")
-        .setName("Rate Spawner"));
-    add(initialVelocity
-        .setKey("initialVelocity")
-        .setName("Initial Velocity")
-        .setParamValuesAndDefaults(0, 4)
-        .setParamRanges(0, 20));
-  }
-
-  RandomValueSupplier<float> lifetime;
-  IntervalSpawner<>::Params spawner;
-  RateSpawner<>::Params rateSpawner;
-  SimpleRandomVectorSupplier initialVelocity;
-};
-
 class ObserversController
-: public EntityController<ObserverEntity, ObserversControllerParams> {
+: public EntityController<ObserverEntity> {
 public:
-  using Params = ObserversControllerParams;
+
+  class Params : public ::Params {
+  public:
+    Params() {
+      add(lifetime
+          .setKey("lifetime")
+          .setName("Lifetime Range")
+          .setParamValuesAndDefaults(1, 4)
+          .setParamRanges(0, 240));
+      add(spawner
+          .setKey("spawner")
+          .setName("Interval Spawner"));
+      add(rateSpawner
+          .setRateRange(0, 5)
+          .setRateValueAndDefault(0.5)
+          .setKey("rateSpawner")
+          .setName("Rate Spawner"));
+      add(initialVelocity
+          .setKey("initialVelocity")
+          .setName("Initial Velocity")
+          .setParamValuesAndDefaults(0, 4)
+          .setParamRanges(0, 20));
+    }
+
+    RandomValueSupplier<float> lifetime;
+    IntervalObserverSpawner::Params spawner;
+    RateObserverSpawner::Params rateSpawner;
+    SimpleRandomVectorSupplier initialVelocity;
+  };
   
   ObserversController(const Params& params,
                       const Bounds& bounds,
@@ -80,12 +76,12 @@ public:
 private:
   void spawnRandomObserver();
 
+  const Params& _params;
   const Bounds& _bounds;
   std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
 
   friend class IntervalObserverSpawner;
-  friend class RateObserverSpawner;
 };
 
 #endif /* ObserversController_h */

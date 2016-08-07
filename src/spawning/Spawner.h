@@ -13,8 +13,6 @@
 #include "Context.h"
 #include "Params.h"
 
-using SpawnerParams = ParamsWithEnabled;
-
 class Spawner {
 public:
   using Params = ParamsWithEnabled;
@@ -126,7 +124,7 @@ protected:
 
 class AbstractDescendantSpawner {
 public:
-  class Params : public SpawnerParams {
+  class Params : public Spawner::Params {
   public:
     Params() {
       add(_threshold

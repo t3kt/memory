@@ -28,18 +28,14 @@ public:
   virtual void draw() {};
 };
 
-template<typename E, typename P>
+template<typename E>
 class EntityController
 : public AbstractEntityController {
 public:
-  using Params = P;
-
-  EntityController(const P& params,
-                   Context& context,
+  EntityController(Context& context,
                    SimulationEvents& events,
                    ObjectManager<E>& entities)
-  : _params(params)
-  , _context(context)
+  : _context(context)
   , _events(events)
   , _entities(entities) { }
 
@@ -49,7 +45,6 @@ public:
   virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
 
 protected:
-  const P& _params;
   Context& _context;
   SimulationEvents& _events;
   ObjectManager<E>& _entities;
