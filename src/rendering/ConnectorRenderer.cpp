@@ -9,12 +9,13 @@
 #include <ofMain.h>
 #include "ConnectorRenderer.h"
 
-void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
+void ObserverOccurrenceConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
   ofPushStyle();
   ofEnableAlphaBlending();
+  ofSetLineWidth(_params.lineWidth.get());
   ofMesh connectorMesh;
   float lowCount = _params.connectionCountRange.lowValue();
   float highCount = _params.connectionCountRange.highValue();
@@ -45,12 +46,13 @@ void ObserverOccurrenceConnectorRenderer::draw(const State& state) {
   ofPopStyle();
 }
 
-void ObserverObserverConnectorRenderer::draw(const State& state) {
+void ObserverObserverConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
   ofPushStyle();
   ofEnableAlphaBlending();
+  ofSetLineWidth(_params.lineWidth.get());
   ofMesh connectorMesh;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (const auto& observer : _entities) {
@@ -75,12 +77,13 @@ void ObserverObserverConnectorRenderer::draw(const State& state) {
   ofPopStyle();
 }
 
-void OccurrenceOccurrenceConnectorRenderer::draw(const State& state) {
+void OccurrenceOccurrenceConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
   ofPushStyle();
   ofEnableAlphaBlending();
+  ofSetLineWidth(_params.lineWidth.get());
   ofMesh connectorMesh;
   connectorMesh.setMode(OF_PRIMITIVE_LINES);
   for (const auto& occurrence : _entities) {

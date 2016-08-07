@@ -104,11 +104,11 @@ void RenderingController::beginDraw() {
 void RenderingController::draw() {
   _observerRenderer->draw(_context.state);
   //  _instancedObserverRenderer->draw();
-  _observerConnectorRenderer->draw(_context.state);
+  _observerConnectorRenderer->draw();
   _observerThresholdRenderer->draw();
   _occurrenceRenderer->draw(_context.state);
-  _observerOccurrenceConnectorRenderer->draw(_context.state);
-  _occurrenceOccurrenceConnectorRenderer->draw(_context.state);
+  _observerOccurrenceConnectorRenderer->draw();
+  _occurrenceOccurrenceConnectorRenderer->draw();
 }
 
 void RenderingController::endDraw() {

@@ -365,7 +365,8 @@
     },
     "observers": {
       "connectorRenderer": {
-        "enabled": true
+        "enabled": true,
+        "lineWidth": 2.5114538669586182
       },
       "instancedRenderer": {
         "enabled": false,
@@ -399,10 +400,12 @@
           "high": 4,
           "low": 0.0052061639726161957
         },
-        "enabled": true
+        "enabled": true,
+        "lineWidth": 1.8867141008377075
       },
       "occurrenceConnectorRenderer": {
-        "enabled": true
+        "enabled": true,
+        "lineWidth": 4.07330322265625
       },
       "renderer": {
         "connectionCountRange": {
