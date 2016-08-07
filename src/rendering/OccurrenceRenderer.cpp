@@ -25,19 +25,7 @@ OccurrenceRenderer::OccurrenceRenderer(const Params& params,
 , _appParams(appParams) { }
 
 void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity) {
-  auto count = entity.getAmountOfObservation();
-  float alpha = ofMap(count,
-                      _params.connectionCountRange.lowValue(),
-                      _params.connectionCountRange.highValue(),
-                      0, 1, true);
-  float age = entity.getAge(_context.state);
-  auto fadeIn = _fadeIn.getPhrase();
-  if (age < fadeIn->getDuration()) {
-    alpha *= fadeIn->getValue(age);
-  }
-  if (alpha <= 0.0) {
-    return;
-  }
+  float alpha = entity.alpha();
 
   const auto& mesh = AppAssets::occurrenceMarkerMesh();
 

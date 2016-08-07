@@ -31,6 +31,7 @@
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
 		32324C7A1D57F32800D05EDF /* ObserverPreRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */; };
+		32324C7D1D57F90900D05EDF /* OccurrencePreRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C7B1D57F90900D05EDF /* OccurrencePreRenderer.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -252,6 +253,8 @@
 		32324C6D1D56E2D700D05EDF /* OccurrenceSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceSpawner.h; path = spawning/OccurrenceSpawner.h; sourceTree = "<group>"; };
 		32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverPreRenderer.cpp; path = rendering/ObserverPreRenderer.cpp; sourceTree = "<group>"; };
 		32324C791D57F32800D05EDF /* ObserverPreRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverPreRenderer.h; path = rendering/ObserverPreRenderer.h; sourceTree = "<group>"; };
+		32324C7B1D57F90900D05EDF /* OccurrencePreRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrencePreRenderer.cpp; path = rendering/OccurrencePreRenderer.cpp; sourceTree = "<group>"; };
+		32324C7C1D57F90900D05EDF /* OccurrencePreRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrencePreRenderer.h; path = rendering/OccurrencePreRenderer.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -750,6 +753,8 @@
 				32324C791D57F32800D05EDF /* ObserverPreRenderer.h */,
 				324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */,
 				324CF7071D3CB1E9003DD487 /* ObserverRenderer.h */,
+				32324C7B1D57F90900D05EDF /* OccurrencePreRenderer.cpp */,
+				32324C7C1D57F90900D05EDF /* OccurrencePreRenderer.h */,
 				324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */,
 				324CF70A1D3CB279003DD487 /* OccurrenceRenderer.h */,
 				3EEDD94E96E3A4D29CC0A83A /* PostProcController.cpp */,
@@ -1456,6 +1461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55592031663A7C81C1FEB895 /* AppActions.cpp in Sources */,
+				32324C7D1D57F90900D05EDF /* OccurrencePreRenderer.cpp in Sources */,
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				F81FD2E8043A882838897E5E /* AppSystem.cpp in Sources */,

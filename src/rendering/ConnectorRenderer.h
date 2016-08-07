@@ -33,19 +33,8 @@ public:
 
 class ObserverOccurrenceConnectorRenderer {
 public:
-  class Params : public ConnectorRendererParams {
-  public:
-    Params() {
-      add(connectionCountRange
-          .setKey("connectionCountRange")
-          .setName("Connection Count Range")
-          .setParamValuesAndDefaults(0, 4)
-          .setParamRanges(0, 20));
-      setEnabledValueAndDefault(true);
-    }
+  using Params = ConnectorRendererParams;
 
-    ValueRange<float> connectionCountRange;
-  };
   ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
   : _params(params)
   , _color(color)

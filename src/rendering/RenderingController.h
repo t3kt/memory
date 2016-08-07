@@ -18,6 +18,7 @@
 #include "Context.h"
 #include "ObserverPreRenderer.h"
 #include "ObserverRenderer.h"
+#include "OccurrencePreRenderer.h"
 #include "OccurrenceRenderer.h"
 #include "Params.h"
 #include "PostProcController.h"
@@ -57,6 +58,9 @@ public:
 class OccurrenceRenderingParams : public Params {
 public:
   OccurrenceRenderingParams() {
+    add(preRenderer
+        .setKey("preRenderer")
+        .setName("Pre Renderer"));
     add(renderer
         .setKey("renderer")
         .setName("Renderer"));
@@ -68,6 +72,7 @@ public:
         .setName("Occurrence Connector Renderer"));
   }
 
+  OccurrencePreRenderer::Params preRenderer;
   OccurrenceRenderer::Params renderer;
   ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
   OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
@@ -159,6 +164,7 @@ private:
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
   std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;
+  std::shared_ptr<OccurrencePreRenderer> _occurrencePreRenderer;
   std::shared_ptr<ObserverRenderer> _observerRenderer;
   std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;

@@ -377,6 +377,13 @@
         },
         "size": 10
       },
+      "preRenderer": {
+        "fadeIn": {
+          "duration": 1,
+          "endValue": 1,
+          "startValue": 0
+        }
+      },
       "renderer": {
         "enabled": true,
         "fadeIn": {
@@ -396,10 +403,6 @@
     },
     "occurrences": {
       "connectorRenderer": {
-        "connectionCountRange": {
-          "high": 4,
-          "low": 0.0052061639726161957
-        },
         "enabled": true,
         "lineWidth": 1.8867141008377075
       },
@@ -407,11 +410,18 @@
         "enabled": true,
         "lineWidth": 4.07330322265625
       },
-      "renderer": {
+      "preRenderer": {
         "connectionCountRange": {
           "high": 4,
           "low": 0
         },
+        "fadeIn": {
+          "duration": 1,
+          "endValue": 1,
+          "startValue": 0
+        }
+      },
+      "renderer": {
         "enabled": true,
         "fadeIn": {
           "duration": 4,

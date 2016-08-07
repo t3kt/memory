@@ -28,11 +28,6 @@ public:
           .setKey("showRange")
           .setName("Show Range")
           .setValueAndDefault(true));
-      add(connectionCountRange
-          .setKey("connectionCountRange")
-          .setName("Connection Amount Scale")
-          .setParamValuesAndDefaults(0, 4)
-          .setParamRanges(0, 20));
       add(wireEnabled
           .setKey("wireEnabled")
           .setName("Wireframe Enabled")
@@ -56,7 +51,6 @@ public:
 
     ValueRange<float> sizeRange;
     TParam<bool> showRange;
-    ValueRange<float> connectionCountRange;
     TParam<bool> wireEnabled;
     TParam<float> wireScale;
     TParam<float> wireSaturation;

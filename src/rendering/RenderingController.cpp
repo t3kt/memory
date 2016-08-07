@@ -33,6 +33,9 @@ void RenderingController::setup() {
   _observerPreRenderer =
   std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
                                         _context);
+  _occurrencePreRenderer =
+  std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
+                                          _context);
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
                                               observerParams.thresholdRenderer,
@@ -89,6 +92,7 @@ void RenderingController::update() {
 
 void RenderingController::beginDraw() {
   _observerPreRenderer->update();
+  _occurrencePreRenderer->update();
 
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
