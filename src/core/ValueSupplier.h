@@ -31,6 +31,37 @@ public:
   T getValue() const;
 };
 
+class RandomBoolSupplier
+: public Params {
+public:
+  RandomBoolSupplier() {
+    add(chance
+        .setKey("chance")
+        .setName("Chance")
+        .setRange(0, 1)
+        .setValueAndDefault(0.5));
+  }
+
+  RandomBoolSupplier& setKey(std::string key) {
+    Params::setKey(key);
+    return *this;
+  }
+
+  RandomBoolSupplier& setName(std::string name) {
+    Params::setName(name);
+    return *this;
+  }
+
+  RandomBoolSupplier& setChanceValueAndDefault(float chanceVal) {
+    chance.setValueAndDefault(chanceVal);
+    return *this;
+  }
+
+  bool getValue() const;
+
+  TParam<float> chance;
+};
+
 class SimpleRandomVectorSupplier : public FloatValueRange {
 public:
   SimpleRandomVectorSupplier& set(float minVal, float maxVal) {

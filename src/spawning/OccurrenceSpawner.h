@@ -15,6 +15,7 @@
 
 class Bounds;
 class Context;
+class OccurrenceEntity;
 class OccurrencesController;
 
 class OccurrencesSpawnerParamsMixin {
@@ -30,10 +31,52 @@ public:
                .setName("Initial Velocity")
                .setParamValuesAndDefaults(0, 2)
                .setParamRanges(0, 20));
+    params.add(chain
+               .setKey("chain")
+               .setName("Chain")
+               .setChanceValueAndDefault(0.2));
+    params.add(chainCount
+               .setKey("chainCount")
+               .setName("Chain Count")
+               .setParamRanges(0, 20)
+               .setParamValuesAndDefaults(1, 5));
+    params.add(chainDistance
+               .setKey("chainDistance")
+               .setName("Chain Distance")
+               .setParamRanges(0, 100)
+               .setParamValuesAndDefaults(8, 40));
   }
 
   RandomValueSupplier<float> radius;
   SimpleRandomVectorSupplier initialVelocity;
+  RandomBoolSupplier chain;
+  RandomValueSupplier<int> chainCount;
+  SimpleRandomVectorSupplier chainDistance;
+};
+
+class OccurrenceSpawnerCore {
+public:
+  OccurrenceSpawnerCore(const OccurrencesSpawnerParamsMixin& params,
+                        const Bounds& bounds,
+                        OccurrencesController& controller)
+  : _params(params)
+  , _bounds(bounds)
+  , _controller(controller) { }
+
+  int spawnEntities(Context& context);
+  
+private:
+  void updateState(Context& context);
+
+  std::shared_ptr<OccurrenceEntity>
+  spawnEntity(Context& context,
+              float radius,
+              const ofVec3f& pos,
+              std::shared_ptr<OccurrenceEntity> prev);
+
+  const OccurrencesSpawnerParamsMixin& _params;
+  const Bounds& _bounds;
+  OccurrencesController& _controller;
 };
 
 class RateOccurrenceSpawnerParams
@@ -52,14 +95,14 @@ public:
                         const Bounds& bounds,
                         OccurrencesController& controller)
   : RateSpawner(params)
-  , _bounds(bounds)
-  , _controller(controller) { }
+  , _core(params,
+          bounds,
+          controller) { }
 
 protected:
   void spawnEntities(Context& context, int count) override;
 
-  const Bounds& _bounds;
-  OccurrencesController& _controller;
+  OccurrenceSpawnerCore _core;
 };
 
 class IntervalOccurrenceSpawnerParams
@@ -78,13 +121,13 @@ public:
                             const Bounds& bounds,
                             OccurrencesController& controller)
   : IntervalSpawner(params)
-  , _bounds(bounds)
-  , _controller(controller) { }
+  , _core(params,
+          bounds,
+          controller) { }
 protected:
   void spawnEntities(Context& context) override;
 
-  const Bounds& _bounds;
-  OccurrencesController& _controller;
+  OccurrenceSpawnerCore _core;
 };
 
 #endif /* OccurrenceSpawner_h */

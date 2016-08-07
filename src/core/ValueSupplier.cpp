@@ -30,6 +30,11 @@ ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
                  ofRandom(minVal.z, maxVal.z));
 }
 
+bool RandomBoolSupplier::getValue() const {
+  float val = ofRandomuf();
+  return val < chance.get();
+}
+
 ofVec3f SimpleRandomVectorSupplier::getValue() const {
   float dist = ofRandom(lowValue(), highValue());
   ofVec3f value = ofVec3f(dist, 0, 0);
