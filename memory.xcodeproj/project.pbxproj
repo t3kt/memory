@@ -29,6 +29,7 @@
 		32324C601D55C1D900D05EDF /* EntityController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C5E1D55C1D900D05EDF /* EntityController.cpp */; };
 		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
+		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -246,6 +247,8 @@
 		32324C671D56C6C500D05EDF /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = spawning/Spawner.h; sourceTree = "<group>"; };
 		32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverSpawner.cpp; path = spawning/ObserverSpawner.cpp; sourceTree = "<group>"; };
 		32324C6A1D56C80B00D05EDF /* ObserverSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverSpawner.h; path = spawning/ObserverSpawner.h; sourceTree = "<group>"; };
+		32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceSpawner.cpp; path = spawning/OccurrenceSpawner.cpp; sourceTree = "<group>"; };
+		32324C6D1D56E2D700D05EDF /* OccurrenceSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceSpawner.h; path = spawning/OccurrenceSpawner.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 			children = (
 				32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */,
 				32324C6A1D56C80B00D05EDF /* ObserverSpawner.h */,
+				32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */,
+				32324C6D1D56E2D700D05EDF /* OccurrenceSpawner.h */,
 				32324C661D56C6C500D05EDF /* Spawner.cpp */,
 				32324C671D56C6C500D05EDF /* Spawner.h */,
 			);
@@ -1474,6 +1479,7 @@
 				324CF7081D3CB1E9003DD487 /* ObserverRenderer.cpp in Sources */,
 				3FFEA3E5BD9125BE2DBD6D6A /* OccurrencesController.cpp in Sources */,
 				32EEAEBA1D49B407003A503F /* Serialization.cpp in Sources */,
+				32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */,
 				95295DFC21749761D7BF9B18 /* Params.cpp in Sources */,
 				96CF56C32059C367D4ACB8B8 /* ParticleObject.cpp in Sources */,
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,

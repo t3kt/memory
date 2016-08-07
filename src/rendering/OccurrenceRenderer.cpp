@@ -46,9 +46,8 @@ void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity,
   ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
 
-  float size = ofMap(entity.originalRadius(),
-                     _appParams.occurrences.radius.lowValue.get(),
-                     _appParams.occurrences.radius.highValue.get(),
+  float size = ofMap(entity.originalRadiusFraction(),
+                     0, 1,
                      _params.sizeRange.lowValue.get(),
                      _params.sizeRange.highValue.get());
 

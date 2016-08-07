@@ -11,40 +11,18 @@
 
 #include "AppActions.h"
 #include "Bounds.h"
-#include "Colors.h"
 #include "Context.h"
 #include "EntityController.h"
 #include "Events.h"
 #include "ObjectManager.h"
 #include "ObserversController.h"
 #include "OccurrenceEntity.h"
+#include "OccurrenceSpawner.h"
 #include "Params.h"
 #include "SimulationEvents.h"
-#include "Spawner.h"
 #include "State.h"
 
 class OccurrencesController;
-
-class IntervalOccurrenceSpawner
-: public IntervalSpawner<> {
-public:
-  IntervalOccurrenceSpawner(OccurrencesController& controller);
-protected:
-  void spawnEntities(Context& context) override;
-
-  OccurrencesController& _controller;
-};
-
-class RateOccurrenceSpawner
-: public RateSpawner<> {
-public:
-  RateOccurrenceSpawner(OccurrencesController& controller);
-
-protected:
-  void spawnEntities(Context& context, int count) override;
-
-  OccurrencesController& _controller;
-};
 
 class OccurrencesController
 : public EntityController<OccurrenceEntity> {
@@ -52,11 +30,6 @@ public:
   class Params : public ::Params {
   public:
     Params() {
-      add(radius
-          .setKey("radius")
-          .setName("Radius Range")
-          .setParamValuesAndDefaults(0, 80)
-          .setParamRanges(0, 400));
       add(spawner
           .setKey("spawner")
           .setName("Inteval Spawner"));
@@ -65,17 +38,10 @@ public:
           .setRateValueAndDefault(0.5)
           .setKey("rateSpawner")
           .setName("Rate Spawner"));
-      add(initialVelocity
-          .setKey("initialVelocity")
-          .setName("Initial Velocity")
-          .setParamValuesAndDefaults(0, 2)
-          .setParamRanges(0, 20));
     }
 
-    RandomValueSupplier<float> radius;
-    IntervalSpawner<>::Params spawner;
-    RateSpawner<>::Params rateSpawner;
-    SimpleRandomVectorSupplier initialVelocity;
+    IntervalOccurrenceSpawner::Params spawner;
+    RateOccurrenceSpawner::Params rateSpawner;
   };
 
   OccurrencesController(const Params& params,
@@ -95,8 +61,6 @@ public:
   bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
   
 private:
-  void spawnRandomOccurrence();
-
   const Params& _params;
   const Bounds& _bounds;
   ObserversController& _observers;
@@ -104,7 +68,6 @@ private:
   std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
 
   friend class IntervalOccurrenceSpawner;
-  friend class RateOccurrenceSpawner;
   friend class DescendantOccurrenceSpawner;
 };
 

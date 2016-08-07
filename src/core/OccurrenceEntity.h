@@ -27,7 +27,10 @@ public:
     return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
   }
 
-  OccurrenceEntity(ofVec3f pos, float radius, const State& state);
+  OccurrenceEntity(ofVec3f pos,
+                   float radius,
+                   float radiusFraction,
+                   const State& state);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
@@ -57,6 +60,8 @@ public:
   float getAge(const State& state) const { return state.time - _startTime; }
   
   float originalRadius() const { return _originalRadius; }
+
+  float originalRadiusFraction() const { return _originalRadiusFraction; }
 
   float actualRadius() const { return _actualRadius; }
 
@@ -102,8 +107,9 @@ private:
   void setActualRadius(float radius) {
     _actualRadius = radius;
   }
-  
+
   float _originalRadius;
+  float _originalRadiusFraction;
   float _actualRadius;
   float _startTime;
   float _amountOfObservation;

@@ -211,21 +211,29 @@
     }
   },
   "occurrences": {
-    "initialVelocity": {
-      "high": 0,
-      "low": 0
-    },
-    "radius": {
-      "high": 77.551017761230469,
-      "low": 0.20408163964748383
-    },
     "rateSpawner": {
       "enabled": true,
+      "initialVelocity": {
+        "high": 0,
+        "low": 0
+      },
+      "radius": {
+        "high": 77.551017761230469,
+        "low": 0.20408163964748383
+      },
       "rate": 3.2653059959411621
     },
     "spawner": {
       "enabled": false,
-      "interval": 4
+      "initialVelocity": {
+        "high": 0,
+        "low": 0
+      },
+      "interval": 4,
+      "radius": {
+        "high": 77.551017761230469,
+        "low": 0.20408163964748383
+      }
     }
   },
   "physics": {
