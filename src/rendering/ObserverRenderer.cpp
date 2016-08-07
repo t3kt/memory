@@ -24,16 +24,21 @@ ObserverRenderer::ObserverRenderer(const Params& params,
   _mesh.setUsage(GL_STATIC_DRAW);
 }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
-  float alpha = entity.getRemainingLifetimeFraction();
-  float age = entity.getAge(_context.state);
+void ObserverRenderer::update() {
   auto fadeIn = _fadeIn.getPhrase();
-  if (age < fadeIn->getDuration()) {
-    alpha *= fadeIn->getValue(age);
+  for (auto& entity : _entities) {
+    auto alpha = entity->getRemainingLifetimeFraction();
+    auto age = entity->getAge(_context.state);
+    if (age < fadeIn->getDuration()) {
+      alpha *= fadeIn->getValue(age);
+    }
+    alpha = ofClamp(alpha, 0, 1);
+    entity->setAlpha(alpha);
   }
-  if (alpha <= 0) {
-    return;
-  }
+}
+
+void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
+  float alpha = entity.alpha();
 
   ofPushStyle();
   ofPushMatrix();

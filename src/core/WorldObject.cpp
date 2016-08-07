@@ -16,7 +16,8 @@ static ObjectId nextId() {
 
 WorldObject::WorldObject()
 : _id(nextId())
-, _alive(true) { }
+, _alive(true)
+, _alpha(1) { }
 
 std::string WorldObject::typeName() const {
   return "WorldObject";

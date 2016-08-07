@@ -46,7 +46,10 @@ public:
 
   void kill() { _alive = false; }
   
-  virtual bool visible() const { return this->alive(); }
+  virtual bool visible() const { return this->alive() && _alpha > 0; }
+
+  float alpha() const { return _alpha; }
+  void setAlpha(float alpha) { _alpha = alpha; }
 
   virtual EntityType entityType() const = 0;
 
@@ -59,6 +62,7 @@ protected:
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
 private:
+  float _alpha;
   bool _alive;
   ObjectId _id;
 };

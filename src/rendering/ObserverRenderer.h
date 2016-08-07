@@ -37,6 +37,8 @@ public:
 
   ObserverRenderer(const Params& params,
                    Context& context);
+
+  void update() override;
 protected:
   void drawEntity(const ObserverEntity& entity) override;
 private:

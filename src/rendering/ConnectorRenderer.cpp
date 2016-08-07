@@ -32,14 +32,14 @@ void ObserverOccurrenceConnectorRenderer::draw() {
     ofFloatColor connectorStartColor(_color, _color.a * occurrenceAlpha);
     for (const auto& entry : occurrence->connectedObservers()) {
       auto observer = entry.second;
-      float observerLife = observer->getRemainingLifetimeFraction();
-      if (observerLife <= 0) {
+      if (!observer->visible()) {
         continue;
       }
       connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
       connectorMesh.addVertex(observer->position());
-      connectorMesh.addColor(ofFloatColor(_color, _color.a * observerLife));
+      connectorMesh.addColor(ofFloatColor(_color,
+                                          _color.a * observer->alpha()));
     }
   }
   connectorMesh.draw();
@@ -59,18 +59,16 @@ void ObserverObserverConnectorRenderer::draw() {
     if (!observer->alive()) {
       continue;
     }
-    float observerLife = observer->getRemainingLifetimeFraction();
-    ofFloatColor connectorStartColor(_color, _color.a * observerLife);
+    ofFloatColor connectorStartColor(_color, _color.a * observer->alpha());
     for (const auto& other : observer->getConnectedObservers()) {
       if (!other.second->alive()) {
         continue;
       }
-      float otherLife = other.second->getRemainingLifetimeFraction();
       connectorMesh.addVertex(observer->position());
       connectorMesh.addColor(connectorStartColor);
       connectorMesh.addVertex(other.second->position());
       connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * otherLife));
+                                          _color.a * other.second->alpha()));
     }
   }
   connectorMesh.draw();

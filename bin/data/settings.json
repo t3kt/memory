@@ -213,7 +213,7 @@
   "occurrences": {
     "rateSpawner": {
       "chain": {
-        "chance": 0.64077466726303101
+        "chance": 0.21386922895908356
       },
       "chainCount": {
         "high": 12,
@@ -232,7 +232,7 @@
         "high": 195.91836547851562,
         "low": 0.20408163964748383
       },
-      "rate": 3.2653059959411621
+      "rate": 0.86734700202941895
     },
     "spawner": {
       "chain": {
@@ -347,7 +347,7 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": true,
+      "spinEnabled": false,
       "spinRate": [
         -0.620574951171875,
         0.94127464294433594,

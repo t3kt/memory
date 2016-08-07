@@ -30,6 +30,9 @@ void RenderingController::setup() {
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
   const auto& occurrenceParams = _params.occurrences;
+  _observerPreRenderer =
+  std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
+                                        _context);
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
                                               observerParams.thresholdRenderer,
@@ -85,6 +88,8 @@ void RenderingController::update() {
 }
 
 void RenderingController::beginDraw() {
+  _observerPreRenderer->update();
+
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();

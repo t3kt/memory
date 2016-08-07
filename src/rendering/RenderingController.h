@@ -16,6 +16,7 @@
 #include "Common.h"
 #include "ConnectorRenderer.h"
 #include "Context.h"
+#include "ObserverPreRenderer.h"
 #include "ObserverRenderer.h"
 #include "OccurrenceRenderer.h"
 #include "Params.h"
@@ -29,6 +30,9 @@
 class ObserverRenderingParams : public Params {
 public:
   ObserverRenderingParams() {
+    add(preRenderer
+        .setKey("preRenderer")
+        .setName("Pre Renderer"));
     add(renderer
         .setKey("renderer")
         .setName("Renderer"));
@@ -43,6 +47,7 @@ public:
         .setName("Threshold"));
   }
 
+  ObserverPreRenderer::Params preRenderer;
   ObserverRenderer::Params renderer;
   InstancedObserverRenderer::Params instancedRenderer;
   ObserverObserverConnectorRenderer::Params connectorRenderer;
@@ -153,6 +158,7 @@ private:
   const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
+  std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;
   std::shared_ptr<ObserverRenderer> _observerRenderer;
   std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;

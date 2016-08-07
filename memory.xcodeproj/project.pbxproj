@@ -30,6 +30,7 @@
 		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
+		32324C7A1D57F32800D05EDF /* ObserverPreRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -249,6 +250,8 @@
 		32324C6A1D56C80B00D05EDF /* ObserverSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverSpawner.h; path = spawning/ObserverSpawner.h; sourceTree = "<group>"; };
 		32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceSpawner.cpp; path = spawning/OccurrenceSpawner.cpp; sourceTree = "<group>"; };
 		32324C6D1D56E2D700D05EDF /* OccurrenceSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceSpawner.h; path = spawning/OccurrenceSpawner.h; sourceTree = "<group>"; };
+		32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverPreRenderer.cpp; path = rendering/ObserverPreRenderer.cpp; sourceTree = "<group>"; };
+		32324C791D57F32800D05EDF /* ObserverPreRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverPreRenderer.h; path = rendering/ObserverPreRenderer.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -743,6 +746,8 @@
 				32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */,
 				1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
+				32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */,
+				32324C791D57F32800D05EDF /* ObserverPreRenderer.h */,
 				324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */,
 				324CF7071D3CB1E9003DD487 /* ObserverRenderer.h */,
 				324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */,
@@ -1582,6 +1587,7 @@
 				A791C1E2EECD6035BCBC8ACE /* ofxTextAlignTTF.cpp in Sources */,
 				57514656C6121DBD7B1B5F1E /* ofxXmlSettings.cpp in Sources */,
 				7F8CE38CEA7B29A08FB87974 /* tinyxml.cpp in Sources */,
+				32324C7A1D57F32800D05EDF /* ObserverPreRenderer.cpp in Sources */,
 				8E4803896B3157AE8ADCB02E /* tinyxmlerror.cpp in Sources */,
 				51311032AF6D46EB9144F0C7 /* tinyxmlparser.cpp in Sources */,
 			);
