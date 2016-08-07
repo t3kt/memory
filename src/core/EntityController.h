@@ -46,7 +46,7 @@ public:
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }
 
-//  virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
+  virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
 
 protected:
   const P& _params;

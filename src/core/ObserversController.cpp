@@ -118,16 +118,20 @@ void ObserversController::spawnRandomObserver() {
                                                    life,
                                                    _context.state);
   observer->setVelocity(_params.initialVelocity.getValue());
-  _entities.add(observer);
-  ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
-                      *observer);
-  _events.observerSpawned.notifyListeners(e);
+  tryAddEntity(observer);
 }
 
 void ObserversController::spawnObservers(int count) {
   for (int i = 0; i < count; ++i) {
     spawnRandomObserver();
   }
+}
+
+bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
+  _entities.add(entity);
+  ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
+                      *entity);
+  _events.observerSpawned.notifyListeners(e);
 }
 
 void ObserversController::killObservers(int count) {

@@ -103,24 +103,31 @@ void OccurrencesController::spawnRandomOccurrence() {
   auto occurrence = std::make_shared<OccurrenceEntity>(pos,
                                                        radius,
                                                        _context.state);
-  
-  bool connected = _observers.registerOccurrence(occurrence);
 
-  if (connected) {
-    occurrence->setVelocity(_params.initialVelocity.getValue());
-    _entities.add(occurrence);
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
-                          *occurrence);
-    _events.occurrenceSpawned.notifyListeners(e);
-  } else {
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
-                          *occurrence);
-    _events.occurrenceSpawnFailed.notifyListeners(e);
-  }
+  tryAddEntity(occurrence);
 }
 
 void OccurrencesController::spawnOccurrences(int count) {
   for (int i = 0; i < count; ++i) {
     spawnRandomOccurrence();
+  }
+}
+
+bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) {
+
+  bool connected = _observers.registerOccurrence(entity);
+
+  if (connected) {
+    entity->setVelocity(_params.initialVelocity.getValue());
+    _entities.add(entity);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
+                          *entity);
+    _events.occurrenceSpawned.notifyListeners(e);
+    return true;
+  } else {
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
+                          *entity);
+    _events.occurrenceSpawnFailed.notifyListeners(e);
+    return false;
   }
 }
