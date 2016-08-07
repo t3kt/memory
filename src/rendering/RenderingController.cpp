@@ -36,7 +36,7 @@ void RenderingController::setup() {
                                               colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
   _observerRenderer =
   std::make_shared<ObserverRenderer>(observerParams.renderer,
-                                     _context.observers);
+                                     _context);
   //  _instancedObserverRenderer =
   //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
   //                                              _context);
@@ -48,7 +48,7 @@ void RenderingController::setup() {
   _occurrenceRenderer =
   std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
                                        appParams,
-                                       _context.occurrences);
+                                       _context);
   _observerOccurrenceConnectorRenderer =
   std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
                                                         colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
@@ -77,10 +77,10 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
-  _observerRenderer->update(_context.state);
+  _observerRenderer->update();
   //  _instancedObserverRenderer->update();
   _observerThresholdRenderer->update();
-  _occurrenceRenderer->update(_context.state);
+  _occurrenceRenderer->update();
   _postProc->update();
 }
 
@@ -102,11 +102,11 @@ void RenderingController::beginDraw() {
 }
 
 void RenderingController::draw() {
-  _observerRenderer->draw(_context.state);
+  _observerRenderer->draw();
   //  _instancedObserverRenderer->draw();
   _observerConnectorRenderer->draw();
   _observerThresholdRenderer->draw();
-  _occurrenceRenderer->draw(_context.state);
+  _occurrenceRenderer->draw();
   _observerOccurrenceConnectorRenderer->draw();
   _occurrenceOccurrenceConnectorRenderer->draw();
 }

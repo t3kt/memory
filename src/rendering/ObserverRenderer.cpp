@@ -9,23 +9,24 @@
 #include <ofMain.h>
 #include "AppAssets.h"
 #include "AppSystem.h"
+#include "Context.h"
 #include "ObserverEntity.h"
 #include "ObserverRenderer.h"
 
 ObserverRenderer::ObserverRenderer(const Params& params,
-                                   ObjectManager<ObserverEntity>& entities)
-: EntityRenderer<ObserverEntity>(params,
-                                 ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
+                                   Context& context)
+: EntityRenderer(params,
+                 ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
+                 context,
+                 context.observers)
 , _params(params)
-, _entities(entities)
 , _mesh(AppAssets::observerMarkerMesh()) {
   _mesh.setUsage(GL_STATIC_DRAW);
 }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity,
-                                  const State& state) {
+void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
   float alpha = entity.getRemainingLifetimeFraction();
-  float age = entity.getAge(state);
+  float age = entity.getAge(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   if (age < fadeIn->getDuration()) {
     alpha *= fadeIn->getValue(age);

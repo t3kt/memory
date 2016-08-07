@@ -36,19 +36,11 @@ public:
   };
 
   ObserverRenderer(const Params& params,
-                   ObjectManager<ObserverEntity>& entities);
+                   Context& context);
 protected:
-  ObjectManager<ObserverEntity>::StorageList::iterator begin() override {
-    return _entities.begin();
-  }
-  ObjectManager<ObserverEntity>::StorageList::iterator end() override {
-    return _entities.end();
-  }
-  void drawEntity(const ObserverEntity& entity,
-                  const State& state) override;
+  void drawEntity(const ObserverEntity& entity) override;
 private:
   const Params& _params;
-  ObjectManager<ObserverEntity>& _entities;
   ofVboMesh _mesh;
 };
 

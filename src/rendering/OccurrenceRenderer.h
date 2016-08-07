@@ -65,20 +65,13 @@ public:
 
   OccurrenceRenderer(const Params& params,
                      const MemoryAppParameters& appParams,
-                     ObjectManager<OccurrenceEntity>& entities);
+                     Context& context);
 protected:
-  ObjectManager<OccurrenceEntity>::StorageList::iterator begin() override {
-    return _entities.begin();
-  }
-  ObjectManager<OccurrenceEntity>::StorageList::iterator end() override {
-    return _entities.end();
-  }
-  void drawEntity(const OccurrenceEntity& entity, const State& state) override;
+  void drawEntity(const OccurrenceEntity& entity) override;
 private:
   const Params& _params;
   const ofFloatColor& _rangeColor;
   const MemoryAppParameters& _appParams;
-  ObjectManager<OccurrenceEntity>& _entities;
 };
 
 #endif /* OccurrenceRenderer_h */

@@ -6,8 +6,9 @@
 //
 //
 
+#include "Context.h"
 #include "EntityRenderer.h"
 
-void AbstractEntityRenderer::update(const State &state) {
-  _fadeIn.update(state);
+void AbstractEntityRenderer::update() {
+  _fadeIn.update(_context.state);
 }

@@ -15,21 +15,22 @@
 
 OccurrenceRenderer::OccurrenceRenderer(const Params& params,
                                        const MemoryAppParameters& appParams,
-                                       ObjectManager<OccurrenceEntity>& entities)
-: EntityRenderer<OccurrenceEntity>(params, ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER))
+                                       Context& context)
+: EntityRenderer(params,
+                 ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER),
+                 context,
+                 context.occurrences)
 , _params(params)
 , _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
-, _appParams(appParams)
-, _entities(entities) { }
+, _appParams(appParams) { }
 
-void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity,
-                                    const State& state) {
+void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity) {
   auto count = entity.getAmountOfObservation();
   float alpha = ofMap(count,
                       _params.connectionCountRange.lowValue(),
                       _params.connectionCountRange.highValue(),
                       0, 1, true);
-  float age = entity.getAge(state);
+  float age = entity.getAge(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   if (age < fadeIn->getDuration()) {
     alpha *= fadeIn->getValue(age);
