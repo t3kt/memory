@@ -318,12 +318,12 @@
       "enabled": true,
       "force": {
         "length0": 5,
-        "length1": 15,
-        "startValue": -4.2107458114624023,
-        "value0": 0.16243267059326172,
-        "value1": 2.5052070617675781
+        "length1": 35.443565368652344,
+        "startValue": -5.1478548049926758,
+        "value0": -2.3365259170532227,
+        "value1": 0.78717327117919922
       },
-      "magnitude": 2.7857141494750977
+      "magnitude": 1.3622448444366455
     },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,
