@@ -24,16 +24,15 @@ void ObserverOccurrenceConnectorRenderer::draw() {
     }
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
-    for (const auto& entry : occurrence->connectedObservers()) {
-      auto observer = entry.second;
-      if (!observer->visible()) {
+    for (const auto& observer : occurrence->connectedObservers()) {
+      if (!observer.second->visible()) {
         continue;
       }
       connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(observer->position());
+      connectorMesh.addVertex(observer.second->position());
       connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * observer->alpha()));
+                                          _color.a * observer.second->alpha()));
     }
   }
   connectorMesh.draw();

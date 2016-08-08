@@ -99,7 +99,7 @@ public:
     }
     ofPushStyle();
     ofFill();
-    for (std::shared_ptr<T> entity : _entities) {
+    for (const auto& entity : _entities) {
       if (!entity->visible()) {
         continue;
       }
