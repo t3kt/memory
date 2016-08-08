@@ -281,15 +281,6 @@
       "magnitude": 1.5306122303009033,
       "reverse": true
     },
-    "observerOccurrenceAttraction": {
-      "distanceBounds": {
-        "high": 140.77468872070312,
-        "low": 0.39733448624610901
-      },
-      "enabled": false,
-      "magnitude": 3.4693880081176758,
-      "reverse": false
-    },
     "observerOccurrenceForce": {
       "enabled": true,
       "force": {
@@ -322,15 +313,6 @@
     "occurrenceDamping": {
       "enabled": true,
       "magnitude": 0.34183672070503235
-    },
-    "occurrenceObserverAttraction": {
-      "distanceBounds": {
-        "high": 117.34693908691406,
-        "low": 26.239070892333984
-      },
-      "enabled": false,
-      "magnitude": 2.9591836929321289,
-      "reverse": true
     },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,

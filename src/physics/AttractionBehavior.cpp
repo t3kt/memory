@@ -9,16 +9,6 @@
 #include <ofMain.h>
 #include "AttractionBehavior.h"
 
-template<>
-EntityMap<OccurrenceEntity>& AttractionBehavior<ObserverEntity, OccurrenceEntity>::getEntityOthers(ObserverEntity *entity) {
-  return entity->getConnectedOccurrences();
-}
-
-template<>
-EntityMap<ObserverEntity>& AttractionBehavior<OccurrenceEntity, ObserverEntity>::getEntityOthers(OccurrenceEntity *entity) {
-  return entity->connectedObservers();
-}
-
 ofVec3f AbstractAttractionBehavior
 ::calcAttractionForce(const ofVec3f&entityPosition,
                       const ofVec3f &otherPosition,
