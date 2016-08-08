@@ -29,8 +29,8 @@ public:
       add(size
           .setKey("size")
           .setName("Draw Size")
-          .setValueAndDefault(10)
-          .setRange(0, 100));
+          .setValueAndDefault(2)
+          .setRange(0, 20));
     }
     TParam<float> size;
   };
@@ -43,7 +43,6 @@ protected:
   void drawEntity(const ObserverEntity& entity) override;
 private:
   const Params& _params;
-  ofVboMesh _mesh;
 };
 
 class InstancedObserverRenderer {

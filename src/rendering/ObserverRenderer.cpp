@@ -19,10 +19,7 @@ ObserverRenderer::ObserverRenderer(const Params& params,
                  ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
                  context,
                  context.observers)
-, _params(params)
-, _mesh(AppAssets::observerMarkerMesh()) {
-  _mesh.setUsage(GL_STATIC_DRAW);
-}
+, _params(params) { }
 
 void ObserverRenderer::update() {
   auto fadeIn = _fadeIn.getPhrase();
@@ -47,7 +44,7 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
   ofTranslate(entity.position());
   float size = _params.size.get();
   ofScale(ofVec3f(size));
-  _mesh.draw();
+  ofDrawSphere(size);
 
   ofPopMatrix();
   ofPopStyle();
