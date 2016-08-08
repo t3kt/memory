@@ -6,12 +6,12 @@
 //
 //
 
-#include <ofMain.h>
+#include <ofGraphics.h>
 #include "EntityForceBehavior.h"
 
 ofVec3f
-ObserverOccurrenceForceBehavior::calcAttraction(const ofVec3f &entityPosition,
-                                                const ofVec3f &otherPosition) const {
+AbstractEntityForceBehavior::calcAttraction(const ofVec3f &entityPosition,
+                                            const ofVec3f &otherPosition) const {
   ofVec3f posDiff = otherPosition - entityPosition;
   float dist = posDiff.length();
   float forceMag = _params.force.evaluate(dist);
@@ -19,8 +19,17 @@ ObserverOccurrenceForceBehavior::calcAttraction(const ofVec3f &entityPosition,
   return posDiff.getNormalized() * forceMag * magnitude;
 }
 
-void ObserverOccurrenceForceBehavior::performAction(Context& context,
-                                                    Action action) {
+void AbstractEntityForceBehavior::beginDebugDraw() {
+  ofPushStyle();
+  ofSetColor(ofFloatColor::limeGreen);
+}
+
+void AbstractEntityForceBehavior::endDebugDraw() {
+  ofPopStyle();
+}
+
+template<>
+void EntityForceBehavior<ObserverEntity, OccurrenceEntity>::performAction(Context& context, Action action) {
   for (auto& entity : context.observers) {
     if (!entity->alive()) {
       continue;
@@ -37,33 +46,20 @@ void ObserverOccurrenceForceBehavior::performAction(Context& context,
   }
 }
 
-void ObserverOccurrenceForceBehavior::applyToWorld(Context &context) {
-  if (!_params.enabled.get()) {
-    return;
+template<>
+void EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>::performAction(Context &context, Action action) {
+  for (auto& entity : context.occurrences) {
+    if (!entity->alive()) {
+      continue;
+    }
+    for (auto& otherEntry : entity->getConnectedOccurrences()) {
+      auto& other = otherEntry.second;
+      if (!other->alive()) {
+        continue;
+      }
+      ofVec3f force = calcAttraction(entity->position(),
+                                     other->position());
+      action(*entity, *other, force);
+    }
   }
-  performAction(context, [&](ObserverEntity& entity,
-                             OccurrenceEntity& other,
-                             const ofVec3f& force) {
-    entity.addForce(force);
-    other.addForce(-force);
-  });
-}
-
-void ObserverOccurrenceForceBehavior::beginDebugDraw() {
-  ofPushStyle();
-  ofSetColor(ofFloatColor::limeGreen);
-  //...
-}
-
-void ObserverOccurrenceForceBehavior::debugDrawBehavior(Context &context) {
-  performAction(context, [&](ObserverEntity& entity,
-                             OccurrenceEntity& other,
-                             const ofVec3f& force) {
-    drawForceArrow(entity.position(), force);
-    drawForceArrow(other.position(), -force);
-  });
-}
-
-void ObserverOccurrenceForceBehavior::endDebugDraw() {
-  ofPushStyle();
 }

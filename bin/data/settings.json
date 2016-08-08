@@ -314,6 +314,17 @@
       "enabled": true,
       "magnitude": 0.34183672070503235
     },
+    "occurrenceOccurrenceForce": {
+      "enabled": true,
+      "force": {
+        "length0": 5,
+        "length1": 15,
+        "startValue": -4.2107458114624023,
+        "value0": 0.16243267059326172,
+        "value1": 2.5052070617675781
+      },
+      "magnitude": 2.7857141494750977
+    },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,
       "magnitude": 4.5918364524841309,

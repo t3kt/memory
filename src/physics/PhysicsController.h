@@ -59,6 +59,9 @@ public:
       add(observerOccurrenceForce
           .setKey("observerOccurrenceForce")
           .setName("Obs/Occ Force"));
+      add(occurrenceOccurrenceForce
+          .setKey("occurrenceOccurrenceForce")
+          .setName("Occ/Occ Force"));
       add(observerSpatialNoiseForce
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
@@ -92,6 +95,7 @@ public:
     ParamsWithEnabled rebound;
     AbstractAttractionBehavior::Params observerObserverAttraction;
     ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
+    OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
     AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
     AbstractAttractionBehavior::Params observerAnchorPointAttraction;
@@ -126,6 +130,7 @@ private:
   std::shared_ptr<BoundsBehavior> _rebound;
   std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
   std::shared_ptr<ObserverOccurrenceForceBehavior> _observerOccurrenceForce;
+  std::shared_ptr<OccurrenceOccurrenceForceBehavior> _occurrenceOccurrenceForce;
   std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
   std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;

@@ -21,7 +21,7 @@
 
 using ForceRangeSequence = ValueSequence<float, 2>;
 
-class ObserverOccurrenceForceBehavior
+class AbstractEntityForceBehavior
 : public AbstractPhysicsBehavior {
 public:
   class Params : public ParamsWithEnabled {
@@ -47,10 +47,8 @@ public:
     TParam<float> magnitude;
   };
 
-  ObserverOccurrenceForceBehavior(const Params& params)
+  AbstractEntityForceBehavior(const Params& params)
   : _params(params) { }
-
-  void applyToWorld(Context& context) override;
 
   void debugDraw(Context& context) override {
     if (!_params.enabled.get()) {
@@ -61,22 +59,53 @@ public:
 
 protected:
   virtual void beginDebugDraw() override;
-  virtual void debugDrawBehavior(Context& context) override;
   virtual void endDebugDraw() override;
-
-private:
-  using Action = std::function<void(ObserverEntity&,
-                                    OccurrenceEntity&,
-                                    const ofVec3f&)>;
-
-  void performAction(Context& context,
-                     Action action);
 
   ofVec3f calcAttraction(const ofVec3f& entityPosition,
                          const ofVec3f& otherPosition) const;
 
   const Params& _params;
 };
+
+template<typename T1, typename T2>
+class EntityForceBehavior
+: public AbstractEntityForceBehavior {
+public:
+  EntityForceBehavior(const Params& params)
+  : AbstractEntityForceBehavior(params) { }
+
+  void applyToWorld(Context& context) override {
+    if (!_params.enabled()) {
+      return;
+    }
+    performAction(context, [&](T1& entity,
+                               T2& other,
+                               const ofVec3f& force) {
+      entity.addForce(force);
+      other.addForce(-force);
+    });
+  }
+
+protected:
+  using Action = std::function<void(T1&, T2&, const ofVec3f&)>;
+
+  void performAction(Context& context,
+                     Action action);
+
+  void debugDrawBehavior(Context& context) override {
+    performAction(context, [&](T1& entity,
+                               T2& other,
+                               const ofVec3f& force) {
+      drawForceArrow(entity.position(), force);
+      drawForceArrow(other.position(), -force);
+    });
+  }
+};
+
+using ObserverOccurrenceForceBehavior
+= EntityForceBehavior<ObserverEntity, OccurrenceEntity>;
+using OccurrenceOccurrenceForceBehavior
+= EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>;
 
 
 #endif /* EntityForceBehavior_h */
