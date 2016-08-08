@@ -43,7 +43,7 @@ public:
       observerNavigatorSpawner.setRateRange(0, 2);
     }
 
-    RateSpawner::Params observerNavigatorSpawner;
+    RateSpawner<>::Params observerNavigatorSpawner;
     TParam<float> moveRate;
     TParam<float> reachRange;
   };

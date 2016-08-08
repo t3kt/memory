@@ -9,9 +9,8 @@
 #ifndef Events_h
 #define Events_h
 
-#include "Common.h"
-
 #include <ofxLiquidEvent.h>
+#include "Common.h"
 
 class EventArgs
 : public Outputable {
@@ -35,16 +34,25 @@ public:
 
 protected:
   std::string typeName() const override { return "ValueEventArgs"; }
-  void outputFields(std::ostream& os) const override {
-    os << _value;
-  }
+//  void outputFields(std::ostream& os) const override {
+//    os << _value;
+//  }
 private:
   T& _value;
 };
 
+class AbstractEvent {
+public:
+  using VoidFunctor = std::function<void()>;
+
+  virtual void addVoidListener(VoidFunctor functor, void* owner) = 0;
+  virtual void removeListeners(void* owner) = 0;
+};
+
 template<typename ArgType>
 class TEvent
-: public ofxLiquidEvent<ArgType> {
+: public AbstractEvent
+, public ofxLiquidEvent<ArgType> {
 public:
   using Functor = typename ofxLiquidEvent<ArgType>::Functor;
   using VoidFunctor = std::function<void()>;
@@ -67,10 +75,14 @@ public:
     addVoidListener(functor, 0);
   }
 
-  void addVoidListener(VoidFunctor functor, void* owner) {
+  void addVoidListener(VoidFunctor functor, void* owner) override {
     this->addListener([functor](ArgType&) {
       functor();
     }, owner);
+  }
+
+  void removeListeners(void* owner) override {
+    ofxLiquidEvent<ArgType>::removeListeners(owner);
   }
 
   bool operator()(ArgType& args) {
@@ -80,21 +92,5 @@ public:
 
 template<typename T>
 using ValueEvent = TEvent<ValueEventArgs<T>>;
-
-class AnimationObject;
-using AnimationEventArgs = ValueEventArgs<AnimationObject>;
-using AnimationEvent = TEvent<AnimationEventArgs>;
-
-class OccurrenceEntity;
-using OccurrenceEventArgs = ValueEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
-
-class ObserverEntity;
-using ObserverEventArgs = ValueEventArgs<ObserverEntity>;
-using ObserverEvent = TEvent<ObserverEventArgs>;
-
-class NavigatorEntity;
-using NavigatorEventArgs = ValueEventArgs<NavigatorEntity>;
-using NavigatorEvent = TEvent<NavigatorEventArgs>;
 
 #endif /* Events_h */

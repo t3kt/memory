@@ -62,6 +62,7 @@ public:
   const MidiDeviceId& device() const { return _device; }
   const MidiMessageType& type() const { return _type; }
   const MidiChannel& channel() const { return _channel; }
+  const int& cc() const { return _cc; }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
@@ -123,9 +124,13 @@ public:
     add(twister
         .setKey("twister")
         .setName("MF Twister"));
+    add(max
+        .setKey("max")
+        .setName("Max/MSP Relay"));
   }
 
   MidiDeviceParams twister;
+  MidiDeviceParams max;
 };
 
 #endif /* MidiCommon_h */

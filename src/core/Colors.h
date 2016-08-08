@@ -10,8 +10,8 @@
 #define Colors_h
 
 #include <functional>
-#include <map>
 #include <initializer_list>
+#include <map>
 #include <ofColor.h>
 #include "Common.h"
 #include "Params.h"
@@ -37,6 +37,8 @@ extern EnumTypeInfo<ColorId> ColorIdType;
 class ColorTheme
 : public Params {
 public:
+  static const ColorTheme& get();
+
   ColorTheme();
 
   const ofFloatColor& getColor(ColorId colorId) const;

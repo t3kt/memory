@@ -9,10 +9,10 @@
 #ifndef ThresholdRenderer_h
 #define ThresholdRenderer_h
 
-#include "Params.h"
-#include "ObjectManager.h"
 #include <ofColor.h>
 #include <ofMesh.h>
+#include "ObjectManager.h"
+#include "Params.h"
 
 class ThreshData {
 public:
@@ -81,5 +81,8 @@ protected:
 private:
   ObjectManager<T>& _objects;
 };
+
+class ObserverEntity;
+using ObserverThresholdRenderer = ThresholdRenderer<ObserverEntity>;
 
 #endif /* ThresholdRenderer_h */

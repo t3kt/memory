@@ -92,7 +92,7 @@ void MidiMappingKey::read_json(const Json &obj) {
   _device = JsonUtil::fromJson<MidiDeviceId>(obj["device"]);
   _channel = JsonUtil::fromJson<MidiChannel>(obj["channel"]);
   _type = JsonUtil::fromJson<MidiMessageType>(obj["type"]);
-  _cc = JsonUtil::fromJson<MidiDeviceId>(obj["cc"]);
+  _cc = JsonUtil::fromJson<int>(obj["cc"]);
 }
 
 void MidiReceivedEventArgs::outputFields(std::ostream &os) const {

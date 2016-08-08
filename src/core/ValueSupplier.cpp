@@ -6,9 +6,9 @@
 //
 //
 
-#include "ValueSupplier.h"
-#include <ofMain.h>
 #include <cmath>
+#include <ofMain.h>
+#include "ValueSupplier.h"
 
 template<>
 float RandomValueSupplier<float>::getValue() const {
@@ -28,6 +28,11 @@ ofVec3f RandomValueSupplier<ofVec3f>::getValue() const {
   return ofVec3f(ofRandom(minVal.x, maxVal.x),
                  ofRandom(minVal.y, maxVal.y),
                  ofRandom(minVal.z, maxVal.z));
+}
+
+bool RandomBoolSupplier::getValue() const {
+  float val = ofRandomuf();
+  return val < chance.get();
 }
 
 ofVec3f SimpleRandomVectorSupplier::getValue() const {

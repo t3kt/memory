@@ -9,30 +9,25 @@
 #ifndef AppParameters_h
 #define AppParameters_h
 
-#include <ofParameterGroup.h>
-
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-#include "NavigatorsController.h"
 #include "AnimationsController.h"
-#include "RenderingController.h"
-#include "PhysicsController.h"
-#include "Params.h"
 #include "Bounds.h"
 #include "Clock.h"
 #include "Colors.h"
 #include "Events.h"
-#include "MidiController.h"
 #include "InspectionController.h"
+#include "Logging.h"
+#include "MidiController.h"
+#include "NavigatorsController.h"
+#include "ObserversController.h"
+#include "OccurrencesController.h"
 #include "OscController.h"
+#include "Params.h"
+#include "PhysicsController.h"
+#include "RenderingController.h"
 
 class DebugParams : public Params {
 public:
   DebugParams() {
-    add(loggingEnabled
-        .setKey("loggingEnabled")
-        .setName("Logging Enabled")
-        .setValueAndDefault(false));
     add(showBounds
         .setKey("showBounds")
         .setName("Show Bounds")
@@ -48,13 +43,16 @@ public:
     add(inspect
         .setKey("inspect")
         .setName("Inspect"));
+    add(logging
+        .setKey("logging")
+        .setName("Logging"));
   }
 
-  TParam<bool> loggingEnabled;
   TParam<bool> showBounds;
   TParam<bool> showStatus;
   TParam<bool> showPhysics;
   InspectionController::Params inspect;
+  LoggingController::Params logging;
 };
 
 class OutputParams : public Params {

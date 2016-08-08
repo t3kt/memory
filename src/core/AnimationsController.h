@@ -10,13 +10,13 @@
 #define AnimationsController_h
 
 #include "AnimationObject.h"
+#include "Colors.h"
+#include "Context.h"
 #include "Context.h"
 #include "ObjectManager.h"
 #include "Params.h"
-#include "State.h"
-#include "Colors.h"
-#include "Context.h"
 #include "SimulationEvents.h"
+#include "State.h"
 
 class AnimationsController {
 public:
@@ -44,7 +44,6 @@ public:
   };
 
   AnimationsController(const Params& params,
-                       const ColorTheme& colors,
                        SimulationEvents& events,
                        Context& context);
 

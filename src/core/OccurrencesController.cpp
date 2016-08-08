@@ -10,57 +10,25 @@
 #include "OccurrencesController.h"
 #include "SimulationApp.h"
 
-class IntervalOccurrenceSpawner
-: public IntervalSpawner {
-public:
-  IntervalOccurrenceSpawner(OccurrencesController& controller)
-  : IntervalSpawner(controller._params.spawner)
-  , _controller(controller) { }
-
-protected:
-  void spawnEntities(Context& context) override {
-    _controller.spawnRandomOccurrence();
-  }
-
-  OccurrencesController& _controller;
-};
-
-class RateOccurrenceSpawner
-: public RateSpawner {
-public:
-  RateOccurrenceSpawner(OccurrencesController& controller)
-  : RateSpawner(controller._params.rateSpawner)
-  , _controller(controller) { }
-
-protected:
-  void spawnEntities(Context& context, int count) override {
-    for (int i = 0; i < count; ++i) {
-      _controller.spawnRandomOccurrence();
-    }
-  }
-
-  OccurrencesController& _controller;
-};
-
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
                                              ObserversController& observers,
                                              Context& context,
                                              SimulationEvents& events)
-: _params(params)
+: EntityController(context,
+                   events,
+                   context.occurrences)
+, _params(params)
 , _bounds(bounds)
-, _events(events)
-, _occurrences(context.occurrences)
-, _observers(observers)
-, _context(context) {
-}
+, _observers(observers) { }
 
-void OccurrencesController::setup(const ColorTheme& colors) {
-  _renderer = std::make_shared<OccurrenceRenderer>(_params.renderer, colors, _occurrences);
-  _observerOccurrenceConnectorRenderer = std::make_shared<ObserverOccurrenceConnectorRenderer>(_params.connectorRenderer, colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR), _occurrences);
-  _occurrenceOccurrenceConnectorRenderer = std::make_shared<OccurrenceOccurrenceConnectorRenderer>(_params.occurrenceConnectorRenderer, colors.getColor(ColorId::OCCURRENCE_CONNECTOR), _occurrences);
-  _spawner = std::make_shared<IntervalOccurrenceSpawner>(*this);
-  _rateSpawner = std::make_shared<RateOccurrenceSpawner>(*this);
+void OccurrencesController::setup() {
+  _spawner = std::make_shared<IntervalOccurrenceSpawner>(_params.spawner,
+                                                         _bounds,
+                                                         *this);
+  _rateSpawner = std::make_shared<RateOccurrenceSpawner>(_params.rateSpawner,
+                                                         _bounds,
+                                                         *this);
 
   registerAsActionHandler();
 }
@@ -81,7 +49,7 @@ bool OccurrencesController::performAction(AppAction action) {
 }
 
 void OccurrencesController::update() {
-  for (auto& occurrence : _occurrences) {
+  for (auto& occurrence : _entities) {
     if (!occurrence->hasConnectedObservers()) {
       occurrence->kill();
       occurrence->setAmountOfObservation(0);
@@ -99,45 +67,44 @@ void OccurrencesController::update() {
     occurrence->setAmountOfObservation(amount);
     occurrence->setActualRadius(radius);
   }
-  _occurrences.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
+  _entities.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
-    OccurrenceEventArgs e(*occurrence);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
+                          *occurrence);
     _events.occurrenceDied.notifyListeners(e);
   });
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.occurrenceCount = _occurrences.size();
-  _renderer->update(_context.state);
+  _context.state.occurrenceCount = _entities.size();
 }
 
 void OccurrencesController::draw() {
-  _renderer->draw(_context.state);
-  _observerOccurrenceConnectorRenderer->draw(_context.state);
-  _occurrenceOccurrenceConnectorRenderer->draw(_context.state);
-}
-
-void OccurrencesController::spawnRandomOccurrence() {
-  ofVec3f pos = _bounds.randomPoint();
-  float radius = _params.radius.getValue();
-  auto occurrence = std::make_shared<OccurrenceEntity>(pos,
-                                                       radius,
-                                                       _context.state);
-  
-  bool connected = _observers.registerOccurrence(occurrence);
-  
-  OccurrenceEventArgs e(*occurrence);
-  if (connected) {
-    occurrence->setVelocity(_params.initialVelocity.getValue());
-    _occurrences.add(occurrence);
-    _events.occurrenceSpawned.notifyListeners(e);
-  } else {
-    _events.occurrenceSpawnFailed.notifyListeners(e);
-  }
 }
 
 void OccurrencesController::spawnOccurrences(int count) {
-  for (int i = 0; i < count; ++i) {
-    spawnRandomOccurrence();
+  if (_spawner->spawnNow(_context, count)) {
+    return;
+  }
+  if (_rateSpawner->spawnNow(_context, count)) {
+    return;
+  }
+}
+
+bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) {
+
+  bool connected = _observers.registerOccurrence(entity);
+
+  if (connected) {
+    _entities.add(entity);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
+                          *entity);
+    _events.occurrenceSpawned.notifyListeners(e);
+    return true;
+  } else {
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
+                          *entity);
+    _events.occurrenceSpawnFailed.notifyListeners(e);
+    return false;
   }
 }

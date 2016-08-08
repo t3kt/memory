@@ -20,9 +20,9 @@ PhysicsController::PhysicsController(PhysicsController::Params& params,
 
 void PhysicsController::setup() {
   _rebound = std::make_shared<BoundsBehavior>(_params.rebound, _bounds);
-  _observerOccurrenceAttraction = std::make_shared<AttractionBehavior<ObserverEntity, OccurrenceEntity>>(_params.observerOccurrenceAttraction);
-  _occurrenceObserverAttraction = std::make_shared<AttractionBehavior<OccurrenceEntity, ObserverEntity>>(_params.occurrenceObserverAttraction);
   _observerObserverAttraction = std::make_shared<AttractionBehavior<ObserverEntity, ObserverEntity>>(_params.observerObserverAttraction);
+  _observerOccurrenceForce = std::make_shared<ObserverOccurrenceForceBehavior>(_params.observerOccurrenceForce);
+  _occurrenceOccurrenceForce = std::make_shared<OccurrenceOccurrenceForceBehavior>(_params.occurrenceOccurrenceForce);
   _observerSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<ObserverEntity>>(_params.observerSpatialNoiseForce);
   _occurrenceSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<OccurrenceEntity>>(_params.occurrenceSpatialNoiseForce);
   _observerAnchorPointAttraction = std::make_shared<AnchorPointBehavior<ObserverEntity>>(_params.observerAnchorPointAttraction);
@@ -73,9 +73,9 @@ void PhysicsController::update() {
   for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  _observerOccurrenceAttraction->applyToWorld(_context);
-  _occurrenceObserverAttraction->applyToWorld(_context);
   _observerObserverAttraction->applyToWorld(_context);
+  _observerOccurrenceForce->applyToWorld(_context);
+  _occurrenceOccurrenceForce->applyToWorld(_context);
   _observerSpatialNoiseForce->applyToWorld(_context);
   _occurrenceSpatialNoiseForce->applyToWorld(_context);
   _observerAnchorPointAttraction->applyToWorld(_context);
@@ -93,9 +93,9 @@ void PhysicsController::update() {
 
 void PhysicsController::draw() {
   if (_debugParams.showPhysics()) {
-    _observerOccurrenceAttraction->debugDraw(_context);
-    _occurrenceObserverAttraction->debugDraw(_context);
     _observerObserverAttraction->debugDraw(_context);
+    _observerOccurrenceForce->debugDraw(_context);
+    _occurrenceOccurrenceForce->debugDraw(_context);
     _observerSpatialNoiseForce->debugDraw(_context);
     _occurrenceSpatialNoiseForce->debugDraw(_context);
     _observerAnchorPointAttraction->debugDraw(_context);

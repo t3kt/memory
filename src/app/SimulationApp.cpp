@@ -6,14 +6,15 @@
 //
 //
 
+#include <ofSystemUtils.h>
 #include "AppSystem.h"
+#include "ControlApp.h"
 #include "SimulationApp.h"
 
 void SimulationApp::setup() {
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
-                                        _appParams.colors,
                                         _context);
   _renderingController->setup();
 
@@ -29,7 +30,7 @@ void SimulationApp::setup() {
                                         _appParams.core.bounds,
                                         _context,
                                         _events);
-  _observers->setup(_appParams.colors);
+  _observers->setup();
 
   _occurrences =
   std::make_shared<OccurrencesController>(_appParams.occurrences,
@@ -37,11 +38,10 @@ void SimulationApp::setup() {
                                           *_observers,
                                           _context,
                                           _events);
-  _occurrences->setup(_appParams.colors);
+  _occurrences->setup();
 
   _animations =
   std::make_shared<AnimationsController>(_appParams.animations,
-                                         _appParams.colors,
                                          _events,
                                          _context);
   _animations->setup();
@@ -76,6 +76,7 @@ void SimulationApp::setup() {
 }
 
 void SimulationApp::update() {
+  AppSystem::get().control()->update();
   _clock->update();
   _observers->update();
   _occurrences->update();
@@ -88,6 +89,7 @@ void SimulationApp::update() {
 void SimulationApp::draw() {
   _renderingController->beginDraw();
 
+  _renderingController->draw();
   _observers->draw();
   _occurrences->draw();
   _animations->draw();
@@ -122,6 +124,32 @@ void SimulationApp::draw() {
   }
 
   _inspectionController->draw();
+  AppSystem::get().control()->draw();
+}
+
+void SimulationApp::dumpEntityState() {
+  Json state = _context.to_json();
+  JsonUtil::prettyPrintJsonToStream(state, std::cout);
+}
+
+void SimulationApp::loadEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.readFromFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileLoadAction(action,
+                                         "Load Entity State",
+                                         "entityState.json");
+}
+
+void SimulationApp::saveEntityState() {
+  FileAction action = [&](ofFileDialogResult& file) {
+    _context.writeToFile(file.getPath());
+    return true;
+  };
+  AppSystem::get().performFileSaveAction(action,
+                                         "Save Entity State",
+                                         "entityState.json");
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
@@ -130,6 +158,15 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
 
 bool SimulationApp::performAction(AppAction action) {
   switch (action) {
+    case AppAction::DUMP_ENTITY_STATE:
+      dumpEntityState();
+      break;
+    case AppAction::LOAD_ENTITY_STATE:
+      loadEntityState();
+      break;
+    case AppAction::SAVE_ENTITY_STATE:
+      saveEntityState();
+      break;
     default:
       return false;
   }

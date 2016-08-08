@@ -11,7 +11,9 @@
 
 #include <functional>
 #include "Common.h"
+#include "JsonIO.h"
 #include "ObjectManager.h"
+#include "Serialization.h"
 #include "State.h"
 
 class AnimationObject;
@@ -22,7 +24,9 @@ class OccurrenceEntity;
 class ParticleObject;
 
 class Context
-: public NonCopyable {
+: public NonCopyable
+, public JsonWritable
+, public JsonReadable {
 public:
   Context(MemoryAppParameters& appPars)
   : appParams(appPars) { }
@@ -55,12 +59,18 @@ public:
 
   void performActionOnParticleEntityPtrs(std::function<void(std::shared_ptr<ParticleObject>)> action);
 
+  Json to_json() const override;
+  void read_json(const Json& val) override;
+
   MemoryAppParameters& appParams;
   State state;
   ObjectManager<AnimationObject> animations;
   ObjectManager<NavigatorEntity> navigators;
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
+
+private:
+  void clear();
 };
 
 #endif /* Context_h */

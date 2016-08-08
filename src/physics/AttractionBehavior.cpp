@@ -6,18 +6,8 @@
 //
 //
 
-#include "AttractionBehavior.h"
 #include <ofMain.h>
-
-template<>
-EntityMap<OccurrenceEntity>& AttractionBehavior<ObserverEntity, OccurrenceEntity>::getEntityOthers(ObserverEntity *entity) {
-  return entity->getConnectedOccurrences();
-}
-
-template<>
-EntityMap<ObserverEntity>& AttractionBehavior<OccurrenceEntity, ObserverEntity>::getEntityOthers(OccurrenceEntity *entity) {
-  return entity->connectedObservers();
-}
+#include "AttractionBehavior.h"
 
 ofVec3f AbstractAttractionBehavior
 ::calcAttractionForce(const ofVec3f&entityPosition,
@@ -40,7 +30,7 @@ ofVec3f AbstractAttractionBehavior
 
 void AbstractAttractionBehavior::beginDebugDraw() {
   ofPushStyle();
-  ofSetColor(ofFloatColor::green);
+  ofSetColor(ofFloatColor::lawnGreen);
 }
 
 void AbstractAttractionBehavior::debugDrawEntity(ParticleObject *entity,

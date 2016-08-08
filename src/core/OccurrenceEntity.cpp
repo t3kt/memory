@@ -6,14 +6,19 @@
 //
 //
 
-#include "OccurrenceEntity.h"
-#include "ObserverEntity.h"
 #include <ofMain.h>
+#include "Context.h"
+#include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 
-OccurrenceEntity::OccurrenceEntity(ofVec3f pos, float radius, const State& state)
+OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
+                                   float radius,
+                                   float radiusFraction,
+                                   const State& state)
 : ParticleObject(pos)
 , _actualRadius(0)
 , _originalRadius(radius)
+, _originalRadiusFraction(radiusFraction)
 , _startTime(state.time)
 , _amountOfObservation(0) {}
 
@@ -27,9 +32,45 @@ void OccurrenceEntity::outputFields(std::ostream &os) const {
 
 void OccurrenceEntity::detachConnections() {
   for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeOccurrence(id);
+    occurrence.second->removeOccurrence(id());
   }
   for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id);
+    observer.second->removeObserver(id());
   }
+}
+
+void OccurrenceEntity::addSerializedFields(Json::object &obj,
+                                           const SerializationContext &context) const {
+  ParticleObject::addSerializedFields(obj, context);
+  JsonUtil::mergeInto(obj, {
+    {"originalRadius", _originalRadius},
+    {"originalRadiusFraction", _originalRadiusFraction},
+    // omit actualRadius since it's calculated
+    {"startTime", _startTime - context.time()},
+    // omit amountOfObservation since it's calculated
+  });
+}
+
+void OccurrenceEntity::deserializeFields(const Json &obj,
+                                         const SerializationContext &context) {
+  ParticleObject::deserializeFields(obj, context);
+  _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
+  _originalRadiusFraction = JsonUtil::fromJson<float>(obj["originalRadiusFraction"]);
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
+}
+
+void OccurrenceEntity::addSerializedRefs(Json::object &obj,
+                                         const SerializationContext &context) const {
+  obj["connectedObservers"] = _connectedObservers.idsToJson();
+  obj["connectedOccurrences"] = _connectedOccurrences.idsToJson();
+}
+
+void OccurrenceEntity::deserializeRefs(const Json &obj,
+                                       SerializationContext &context) {
+  if (obj.is_null()) {
+    return;
+  }
+  JsonUtil::assertHasType(obj, Json::OBJECT);
+  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
+  context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
 }

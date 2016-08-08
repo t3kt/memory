@@ -6,16 +6,22 @@
 //
 //
 
-#include "Common.h"
-
 #include <cmath>
-#include <ofTypes.h>
 #include <ofMath.h>
+#include <ofTypes.h>
+#include <sstream>
+#include "Common.h"
 
 void Outputable::output(std::ostream &os) const {
   os << typeName() << "{";
   outputFields(os);
   os << "}";
+}
+
+std::string ofToString(const Outputable& obj) {
+  std::ostringstream os;
+  obj.output(os);
+  return os.str();
 }
 
 template<>

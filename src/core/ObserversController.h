@@ -10,36 +10,24 @@
 #define ObserversController_h
 
 #include "AppActions.h"
-#include "ConnectorRenderer.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "ObjectManager.h"
-#include "ObserverRenderer.h"
-#include "State.h"
-#include "Params.h"
-#include "Events.h"
 #include "Bounds.h"
-#include "ThresholdRenderer.h"
-#include "EntityRenderer.h"
-#include "Colors.h"
 #include "Context.h"
+#include "EntityController.h"
+#include "Events.h"
+#include "ObjectManager.h"
+#include "ObserverEntity.h"
+#include "ObserverSpawner.h"
+#include "Params.h"
 #include "SimulationEvents.h"
-#include "Spawner.h"
-
-class IntervalObserverSpawner;
-class RateObserverSpawner;
+#include "State.h"
 
 class ObserversController
-: public AppActionHandler {
+: public EntityController<ObserverEntity> {
 public:
+
   class Params : public ::Params {
   public:
     Params() {
-      add(lifetime
-          .setKey("lifetime")
-          .setName("Lifetime Range")
-          .setParamValuesAndDefaults(1, 4)
-          .setParamRanges(0, 240));
       add(spawner
           .setKey("spawner")
           .setName("Interval Spawner"));
@@ -48,33 +36,10 @@ public:
           .setRateValueAndDefault(0.5)
           .setKey("rateSpawner")
           .setName("Rate Spawner"));
-      add(initialVelocity
-          .setKey("initialVelocity")
-          .setName("Initial Velocity")
-          .setParamValuesAndDefaults(0, 4)
-          .setParamRanges(0, 20));
-      add(renderer
-          .setKey("renderer")
-          .setName("Renderer"));
-      add(instancedRenderer
-          .setKey("instancedRenderer")
-          .setName("Instanced Renderer"));
-      add(connectorRenderer
-          .setKey("connectorRenderer")
-          .setName("Connector Renderer"));
-      add(threshold
-          .setKey("threshold")
-          .setName("Threshold"));
     }
 
-    RandomValueSupplier<float> lifetime;
-    IntervalSpawner::Params spawner;
-    RateSpawner::Params rateSpawner;
-    SimpleRandomVectorSupplier initialVelocity;
-    ObserverRenderer::Params renderer;
-    InstancedObserverRenderer::Params instancedRenderer;
-    ObserverObserverConnectorRenderer::Params connectorRenderer;
-    AbstractThresholdRenderer::Params threshold;
+    IntervalObserverSpawner::Params spawner;
+    RateObserverSpawner::Params rateSpawner;
   };
   
   ObserversController(const Params& params,
@@ -82,9 +47,9 @@ public:
                       Context& context,
                       SimulationEvents& events);
   
-  void setup(const ColorTheme& colors);
-  void update();
-  void draw();
+  void setup() override;
+  void update() override;
+  void draw() override;
   
   bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
@@ -92,30 +57,17 @@ public:
 
   void killObservers(int count);
 
-  ObjectManager<ObserverEntity>& entities() { return _observers; }
-  const ObjectManager<ObserverEntity>& entities() const {
-    return _observers;
-  }
-
   bool performAction(AppAction action) override;
+
+  bool tryAddEntity(std::shared_ptr<ObserverEntity> entity) override;
   
 private:
-  void spawnRandomObserver();
-  
   const Params& _params;
-  Context& _context;
   const Bounds& _bounds;
-  SimulationEvents& _events;
-  ObjectManager<ObserverEntity>& _observers;
   std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
-  std::shared_ptr<ObserverRenderer> _observerRenderer;
-  std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
-  std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  std::shared_ptr<ThresholdRenderer<ObserverEntity>> _thresholdRenderer;
 
   friend class IntervalObserverSpawner;
-  friend class RateObserverSpawner;
 };
 
 #endif /* ObserversController_h */

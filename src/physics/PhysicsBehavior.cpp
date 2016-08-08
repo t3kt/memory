@@ -6,17 +6,19 @@
 //
 //
 
-#include "PhysicsBehavior.h"
+#include <ofMain.h>
+#include "AppSystem.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
-#include <ofMain.h>
+#include "PhysicsBehavior.h"
 
 void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
                                              ofVec3f force) {
-  force *= 20.0f;
   ofDrawArrow(position,
-              position + force,
-              force.length() * 0.1f);
+              position + force * 20.0f,
+              ofClamp(force.length() * 2.0f,
+                      0,
+                      6.0f));
 }
 
 void BoundsBehavior::applyToWorld(Context& context) {
@@ -32,8 +34,6 @@ void BoundsBehavior::applyToEntity(Context& context,
   if (!entity->alive()) {
     return;
   }
-  if (_bounds.reflect(entity->velocityPtr(),
-                      entity->positionPtr())) {
-    ofLogNotice() << "Observer rebounded: " << *entity;
-  }
+  _bounds.reflect(entity->velocityPtr(),
+                  entity->positionPtr());
 }

@@ -6,7 +6,12 @@
 //
 //
 
+#include "AppSystem.h"
 #include "Colors.h"
+
+const ColorTheme& ColorTheme::get() {
+  return AppSystem::get().params()->colors;
+}
 
 EnumTypeInfo<ColorId> ColorIdType({
   {"background", ColorId::BACKGROUND},

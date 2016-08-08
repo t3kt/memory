@@ -9,18 +9,22 @@
 #ifndef ObserverEntity_h
 #define ObserverEntity_h
 
+#include <iostream>
 #include <ofTypes.h>
 #include "Common.h"
-#include "WorldObject.h"
 #include "ParticleObject.h"
-#include <iostream>
 #include "ValueSupplier.h"
+#include "WorldObject.h"
 
 class OccurrenceEntity;
 
 class ObserverEntity
 : public ParticleObject {
 public:
+  static std::shared_ptr<ObserverEntity> createEmpty() {
+    return std::shared_ptr<ObserverEntity>(new ObserverEntity());
+  }
+
   ObserverEntity(ofVec3f pos, float life, const State& state);
   virtual ~ObserverEntity() override {}
   
@@ -54,13 +58,23 @@ public:
 
   EntityType entityType() const override { return EntityType::OBSERVER; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+  virtual void deserializeRefs(const Json& obj,
+                               SerializationContext& context) override;
 protected:
   std::string typeName() const override { return "ObserverEntity"; }
   void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
+  virtual void addSerializedRefs(Json::object& obj,
+                                 const SerializationContext& context) const override;
 
 private:
+  ObserverEntity() { }
+
   float _startTime;
-  const float _totalLifetime;
+  float _totalLifetime;
   float _lifeFraction;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;

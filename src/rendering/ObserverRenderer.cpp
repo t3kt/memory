@@ -8,35 +8,43 @@
 
 #include <ofMain.h>
 #include "AppAssets.h"
+#include "AppSystem.h"
+#include "Context.h"
 #include "ObserverEntity.h"
 #include "ObserverRenderer.h"
 
-ObserverRenderer::ObserverRenderer(const ObserverRenderer::Params& params, const ColorTheme& colors, ObjectManager<ObserverEntity>& entities)
-: EntityRenderer<ObserverEntity>(params,
-                                 colors.getColor(ColorId::OBSERVER_MARKER))
-, _entities(entities)
-, _mesh(AppAssets::observerMarkerMesh()) {
-  _mesh.setUsage(GL_STATIC_DRAW);
+ObserverRenderer::ObserverRenderer(const Params& params,
+                                   Context& context)
+: EntityRenderer(params,
+                 ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
+                 context,
+                 context.observers)
+, _params(params) { }
+
+void ObserverRenderer::update() {
+  auto fadeIn = _fadeIn.getPhrase();
+  for (auto& entity : _entities) {
+    auto alpha = entity->getRemainingLifetimeFraction();
+    auto age = entity->getAge(_context.state);
+    if (age < fadeIn->getDuration()) {
+      alpha *= fadeIn->getValue(age);
+    }
+    alpha = ofClamp(alpha, 0, 1);
+    entity->setAlpha(alpha);
+  }
 }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatColor &baseColor, float size, const State& state) {
-  float alpha = entity.getRemainingLifetimeFraction();
-  float age = entity.getAge(state);
-  auto fadeIn = _fadeIn.getPhrase();
-  if (age < fadeIn->getDuration()) {
-    alpha *= fadeIn->getValue(age);
-  }
-  if (alpha <= 0) {
-    return;
-  }
+void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
+  float alpha = entity.alpha();
 
   ofPushStyle();
   ofPushMatrix();
 
-  ofSetColor(ofFloatColor(baseColor, baseColor.a * alpha));
+  ofSetColor(ofFloatColor(_color, _color.a * alpha));
   ofTranslate(entity.position());
+  float size = _params.size.get();
   ofScale(ofVec3f(size));
-  _mesh.draw();
+  ofDrawSphere(size);
 
   ofPopMatrix();
   ofPopStyle();
@@ -45,11 +53,10 @@ void ObserverRenderer::drawEntity(const ObserverEntity &entity, const ofFloatCol
 static const std::size_t MAX_OBSERVERS = 1000;
 
 InstancedObserverRenderer::InstancedObserverRenderer(const Params& params,
-                                                     const ColorTheme& colors,
                                                      Context& context)
 : _params(params)
 , _context(context)
-, _color(colors.getColor(ColorId::OBSERVER_MARKER))
+, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
 , _mesh(AppAssets::observerMarkerMesh())
 , _instanceShader(AppAssets::markerInstanceShader())
 , _fadeIn(params.fadeIn) { }
@@ -87,7 +94,9 @@ void InstancedObserverRenderer::update() {
 
   auto count = entities.size();
   if (count > MAX_OBSERVERS) {
-    ofLogWarning() << "Exceeded maximum observer count: " << count << " (limit: " << MAX_OBSERVERS << ")";
+    AppSystem::get().log().observer().logWarning([&](ofLog& log) {
+      log << "Exceeded maximum observer count: " << count << " (limit: " << MAX_OBSERVERS << ")";
+    });
     count = MAX_OBSERVERS;
   }
 

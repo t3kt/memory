@@ -22,17 +22,14 @@
 class EventLoggers;
 
 class ControlApp
-: public ofBaseApp
-, public AppActionHandler {
+: public AppActionHandler {
 public:
   ControlApp(MemoryAppParameters& appParams)
   : _appParams(appParams) { }
 
-  void setup() override;
-  void update() override;
-  void draw() override;
-
-  void keyPressed(ofKeyEventArgs& event) override;
+  void setup();
+  void update();
+  void draw();
 
   bool performAction(AppAction action) override;
 private:

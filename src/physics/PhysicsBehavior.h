@@ -12,8 +12,8 @@
 #include "Bounds.h"
 #include "Context.h"
 #include "Params.h"
-#include "State.h"
 #include "ParticleObject.h"
+#include "State.h"
 
 class AbstractPhysicsBehavior {
 public:

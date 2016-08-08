@@ -9,20 +9,28 @@
 #ifndef OccurrenceEntity_h
 #define OccurrenceEntity_h
 
+#include <iostream>
 #include <ofTypes.h>
 #include "Common.h"
-#include "WorldObject.h"
+#include "Context.h"
 #include "ParticleObject.h"
-#include <iostream>
-#include "ValueSupplier.h"
 #include "State.h"
+#include "ValueSupplier.h"
+#include "WorldObject.h"
 
 class ObserverEntity;
 
 class OccurrenceEntity
 : public ParticleObject {
 public:
-  OccurrenceEntity(ofVec3f pos, float radius, const State& state);
+  static std::shared_ptr<OccurrenceEntity> createEmpty() {
+    return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
+  }
+
+  OccurrenceEntity(ofVec3f pos,
+                   float radius,
+                   float radiusFraction,
+                   const State& state);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
@@ -53,6 +61,8 @@ public:
   
   float originalRadius() const { return _originalRadius; }
 
+  float originalRadiusFraction() const { return _originalRadiusFraction; }
+
   float actualRadius() const { return _actualRadius; }
 
   const EntityMap<ObserverEntity>& connectedObservers() const {
@@ -73,11 +83,23 @@ public:
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+
+  virtual void deserializeRefs(const Json& obj,
+                               SerializationContext& context) override;
+
 protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
   void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
+  virtual void addSerializedRefs(Json::object& obj,
+                                 const SerializationContext& context) const override;
   
 private:
+  OccurrenceEntity() { }
+
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;
   }
@@ -85,8 +107,9 @@ private:
   void setActualRadius(float radius) {
     _actualRadius = radius;
   }
-  
-  const float _originalRadius;
+
+  float _originalRadius;
+  float _originalRadiusFraction;
   float _actualRadius;
   float _startTime;
   float _amountOfObservation;
@@ -98,5 +121,9 @@ private:
 
 template<>
 EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
+
+void readOccurrenceRefs(EntityMap<OccurrenceEntity>& entities,
+                        const Json& arr,
+                        Context& context);
 
 #endif /* OccurrenceEntity_h */

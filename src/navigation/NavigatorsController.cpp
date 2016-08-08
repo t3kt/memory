@@ -10,6 +10,7 @@
 #include <ofMain.h>
 #include <random>
 #include "AppAssets.h"
+#include "AppSystem.h"
 #include "Context.h"
 #include "NavigatorEntity.h"
 #include "NavigatorsController.h"
@@ -20,7 +21,7 @@
 using NavEntityPtr = std::shared_ptr<NavigatorEntity>;
 
 class ObserverNavSpawner
-: public RateSpawner {
+: public RateSpawner<> {
 public:
   ObserverNavSpawner(NavigatorsController& controller,
                            const Params& params)
@@ -31,7 +32,10 @@ public:
 protected:
   void spawnEntities(Context& context, int count) override {
     if (count == 1) {
-      _controller.spawnObserverNavigator(getRandomEntity(context.observers));
+      auto entity = getRandomEntity(context.observers);
+      if (entity) {
+        _controller.spawnObserverNavigator(entity);
+      }
       return;
     }
     std::vector<std::shared_ptr<ObserverEntity>> entities(context.observers.begin(), context.observers.end());
@@ -65,11 +69,16 @@ void NavigatorsController::setup() {
 }
 
 void NavigatorsController::update() {
+  if (!_context.state.running) {
+    return;
+  }
   _navigators.performAction([&](NavEntityPtr navigator) {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
     } else {
-      ofLogNotice() << "Updating navigator: " << *navigator;
+      AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+        log << "Updating navigator: " << *navigator;
+      });
       navigator->updateNextState(_context);
       const ofVec3f& targetPoint = navigator->targetPoint();
       const ofVec3f& currentPosition = navigator->position();
@@ -90,14 +99,18 @@ void NavigatorsController::update() {
       }
       if (navigator->nextState() && dist <= _params.reachRange.get()) {
         navigator->reachNextState(_context);
-        NavigatorEventArgs e(*navigator);
+        NavigatorEventArgs e(SimulationEventType::NAVIGATOR_REACHED_LOCATION,
+                             *navigator);
         _events.navigatorReachedLocation.notifyListeners(e);
       }
     }
-    ofLogNotice() << "Updated navigator: " << *navigator;
+    AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+      log << "Updated navigator: " << *navigator;
+    });
   });
   _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
-    NavigatorEventArgs e(*navigator);
+    NavigatorEventArgs e(SimulationEventType::NAVIGATOR_DIED,
+                         *navigator);
     _events.navigatorDied.notifyListenersUntilHandled(e);
   });
 
@@ -126,6 +139,7 @@ void NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   auto startState = std::make_shared<ObserverNavState>(entity);
   auto navigator = std::make_shared<NavigatorEntity>(startState);
   _navigators.add(navigator);
-  NavigatorEventArgs e(*navigator);
+  NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
+                       *navigator);
   _events.navigatorSpawned.notifyListenersUntilHandled(e);
 }

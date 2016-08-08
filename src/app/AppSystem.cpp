@@ -7,12 +7,28 @@
 //
 
 #include <map>
-#include <ofLog.h>
 #include "AppSystem.h"
 #include "ControlApp.h"
 #include "SimulationApp.h"
 
-const int CONTROLS_WIDTH = 250;
+class PauseHandler {
+public:
+  PauseHandler(MemoryAppParameters& appParams)
+  : _paused(appParams.core.clock.paused)
+  , _wasPaused(appParams.core.clock.paused.get()) {
+    if (!_wasPaused) {
+      _paused.set(true);
+    }
+  }
+
+  ~PauseHandler() {
+    _paused.set(_wasPaused);
+  }
+
+private:
+  TParam<bool>& _paused;
+  bool _wasPaused;
+};
 
 static std::unique_ptr<AppSystem> instance;
 
@@ -39,6 +55,9 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'x', AppAction::STOP_ALL_ENTITIES},
   {'p', AppAction::TOGGLE_SHOW_PHYSICS},
   {'b', AppAction::TOGGLE_SHOW_BOUNDS},
+  {'d', AppAction::DUMP_ENTITY_STATE},
+  {'[', AppAction::LOAD_ENTITY_STATE},
+  {']', AppAction::SAVE_ENTITY_STATE},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
@@ -51,32 +70,24 @@ bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
 
 void AppSystem::setup() {
   ofGLFWWindowSettings simWinSettings;
-  simWinSettings.width = 1100;
+  simWinSettings.width = 1400;
   simWinSettings.height = 800;
   simWinSettings.resizable = false;
-  simWinSettings.setPosition(ofVec3f(CONTROLS_WIDTH + 5, 0));
+  simWinSettings.setPosition(ofVec3f(0, 0));
   _simulationWindow =
   std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(simWinSettings));
-
-  ofGLFWWindowSettings ctrlWinSettings;
-  ctrlWinSettings.width = CONTROLS_WIDTH;
-  ctrlWinSettings.height = 800;
-  ctrlWinSettings.resizable = true;
-  ctrlWinSettings.setPosition(ofVec3f(0, 0));
-  _controlWindow =
-  std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(ctrlWinSettings));
 
   _simulationApp = std::make_shared<SimulationApp>(_appParams,
                                                    _context,
                                                    _simulationWindow);
 
   _controlApp = std::make_shared<ControlApp>(_appParams);
+  _controlApp->setup();
 }
 
 void AppSystem::main() {
   setup();
 
-  ofRunApp(_controlWindow, _controlApp);
   ofRunApp(_simulationWindow, _simulationApp);
   ofRunMainLoop();
 }
@@ -85,7 +96,31 @@ bool AppSystem::performAction(AppAction action) {
   auto args = AppActionEventArgs(action);
   bool handled = appActionTriggered.notifyListenersUntilHandled(args);
   if (!handled) {
-    ofLogWarning() << "App action not handled: " << AppActionType.toString(action);
+    _log.app().logWarning("App action not handled: " + AppActionType.toString(action));
   }
   return handled;
+}
+
+bool AppSystem::performFileSaveAction(FileAction action,
+                                      std::string messageName,
+                                      std::string defaultName) {
+  PauseHandler pauseHandler(_appParams);
+  auto result = ofSystemSaveDialog(defaultName, messageName);
+  if (!result.bSuccess) {
+    return false;
+  }
+  return action(result);
+}
+
+bool AppSystem::performFileLoadAction(FileAction action,
+                                      std::string windowTitle,
+                                      std::string defaultPath) {
+  PauseHandler pauseHandler(_appParams);
+  auto result = ofSystemLoadDialog(windowTitle,
+                                   false,
+                                   defaultPath);
+  if (!result.bSuccess) {
+    return false;
+  }
+  return action(result);
 }

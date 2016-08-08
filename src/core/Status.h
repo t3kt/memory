@@ -9,9 +9,9 @@
 #ifndef Status_h
 #define Status_h
 
-#include <vector>
-#include <utility>
 #include <ofxTextAlignTTF.h>
+#include <utility>
+#include <vector>
 #include "Context.h"
 
 class StatusInfoController {

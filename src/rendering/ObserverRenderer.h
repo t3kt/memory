@@ -10,9 +10,9 @@
 #define ObserverRenderer_h
 
 #include <ofBufferObject.h>
+#include <ofMatrix4x4.h>
 #include <ofShader.h>
 #include <ofTexture.h>
-#include <ofMatrix4x4.h>
 #include <ofVboMesh.h>
 #include <vector>
 #include "AnimationObject.h"
@@ -23,23 +23,26 @@ class ObserverRenderer
 : public EntityRenderer<ObserverEntity> {
 public:
 
+  class Params : public AbstractEntityRenderer::Params {
+  public:
+    Params() {
+      add(size
+          .setKey("size")
+          .setName("Draw Size")
+          .setValueAndDefault(2)
+          .setRange(0, 20));
+    }
+    TParam<float> size;
+  };
+
   ObserverRenderer(const Params& params,
-                   const ColorTheme& colors,
-                   ObjectManager<ObserverEntity>& entities);
+                   Context& context);
+
+  void update() override;
 protected:
-  ObjectManager<ObserverEntity>::StorageList::iterator begin() override {
-    return _entities.begin();
-  }
-  ObjectManager<ObserverEntity>::StorageList::iterator end() override {
-    return _entities.end();
-  }
-  void drawEntity(const ObserverEntity& entity,
-                  const ofFloatColor& baseColor,
-                  float size,
-                  const State& state) override;
+  void drawEntity(const ObserverEntity& entity) override;
 private:
-  ObjectManager<ObserverEntity>& _entities;
-  ofVboMesh _mesh;
+  const Params& _params;
 };
 
 class InstancedObserverRenderer {
@@ -62,7 +65,6 @@ public:
   };
 
   InstancedObserverRenderer(const Params& params,
-                            const ColorTheme& colors,
                             Context& context);
 
   void setup();

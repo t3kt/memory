@@ -9,9 +9,9 @@
 #ifndef Params_h
 #define Params_h
 
-#include <string>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <string>
 #include <typeinfo>
 #include <vector>
 #include "Common.h"
@@ -171,6 +171,14 @@ public:
                                         normVal));
   }
 
+  float getNormalizedValue() const {
+    return ofMap(ofParameter<T>::get(),
+                 ofParameter<T>::getMin(),
+                 ofParameter<T>::getMax(),
+                 0.0f,
+                 1.0f);
+  }
+
 protected:
   TParam<T>& selfRef() override { return *this; }
 };
@@ -182,6 +190,10 @@ public:
 
   void setNormalizedValue(float normVal) {
     ofParameter<bool>::set(normVal > 0);
+  }
+
+  float getNormalizedValue() const {
+    return ofParameter<bool>::get() ? 1.0f : 0.0f;
   }
 
   void toggle() {

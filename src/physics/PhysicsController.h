@@ -9,17 +9,18 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
-#include "AppActions.h"
 #include "AnchorPointBehavior.h"
+#include "AppActions.h"
 #include "AttractionBehavior.h"
 #include "Bounds.h"
 #include "Context.h"
 #include "DampingBehavior.h"
+#include "EntityForceBehavior.h"
 #include "ForceFieldBehavior.h"
-#include "Params.h"
-#include "PhysicsBehavior.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
+#include "Params.h"
+#include "PhysicsBehavior.h"
 
 class DebugParams;
 
@@ -52,15 +53,15 @@ public:
       add(rebound
           .setKey("rebound")
           .setName("Rebound"));
-      add(observerOccurrenceAttraction
-          .setKey("observerOccurrenceAttraction")
-          .setName("Observer to Occurrence"));
-      add(occurrenceObserverAttraction
-          .setKey("occurrenceObserverAttraction")
-          .setName("Occurrence to Observer"));
       add(observerObserverAttraction
           .setKey("observerObserverAttraction")
           .setName("Observer to Observer"));
+      add(observerOccurrenceForce
+          .setKey("observerOccurrenceForce")
+          .setName("Obs/Occ Force"));
+      add(occurrenceOccurrenceForce
+          .setKey("occurrenceOccurrenceForce")
+          .setName("Occ/Occ Force"));
       add(observerSpatialNoiseForce
           .setKey("observerSpatialNoiseForce")
           .setName("Observer Spatial Noise"));
@@ -81,10 +82,10 @@ public:
           .setName("Occurrence Damping"));
       rebound.setEnabledValueAndDefault(true);
       observerSpatialNoiseForce.setEnabledValueAndDefault(false);
-      occurrenceObserverAttraction.setEnabledValueAndDefault(false);
       observerAnchorPointAttraction.setEnabledValueAndDefault(false);
       occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
       observerObserverAttraction.setEnabledValueAndDefault(false);
+      observerOccurrenceForce.setEnabledValueAndDefault(false);
       observerDamping.setEnabledValueAndDefault(true);
       occurrenceDamping.setEnabledValueAndDefault(true);
     }
@@ -92,9 +93,9 @@ public:
     EntityPhysicsParams observers;
     EntityPhysicsParams occurrences;
     ParamsWithEnabled rebound;
-    AbstractAttractionBehavior::Params observerOccurrenceAttraction;
-    AbstractAttractionBehavior::Params occurrenceObserverAttraction;
     AbstractAttractionBehavior::Params observerObserverAttraction;
+    ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
+    OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
     AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
     AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
     AbstractAttractionBehavior::Params observerAnchorPointAttraction;
@@ -127,9 +128,9 @@ private:
   DebugParams& _debugParams;
 
   std::shared_ptr<BoundsBehavior> _rebound;
-  std::shared_ptr<AttractionBehavior<ObserverEntity, OccurrenceEntity>> _observerOccurrenceAttraction;
-  std::shared_ptr<AttractionBehavior<OccurrenceEntity, ObserverEntity>> _occurrenceObserverAttraction;
   std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
+  std::shared_ptr<ObserverOccurrenceForceBehavior> _observerOccurrenceForce;
+  std::shared_ptr<OccurrenceOccurrenceForceBehavior> _occurrenceOccurrenceForce;
   std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
   std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
   std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;

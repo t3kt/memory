@@ -17,27 +17,30 @@
 #include "OccurrenceEntity.h"
 #include "Params.h"
 
+class ConnectorRendererParams
+: public ParamsWithEnabled {
+public:
+  ConnectorRendererParams() {
+    add(lineWidth
+        .setKey("lineWidth")
+        .setName("Line Width")
+        .setRange(0, 30)
+        .setValueAndDefault(2));
+  }
+
+  TParam<float> lineWidth;
+};
+
 class ObserverOccurrenceConnectorRenderer {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(connectionCountRange
-          .setKey("connectionCountRange")
-          .setName("Connection Count Range")
-          .setParamValuesAndDefaults(0, 4)
-          .setParamRanges(0, 20));
-      setEnabledValueAndDefault(true);
-    }
+  using Params = ConnectorRendererParams;
 
-    ValueRange<float> connectionCountRange;
-  };
   ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
   : _params(params)
   , _color(color)
   , _occurrences(occurrences) { }
 
-  void draw(const State& state);
+  void draw();
 
 private:
   const Params& _params;
@@ -47,7 +50,7 @@ private:
 
 class ObserverObserverConnectorRenderer {
 public:
-  using Params = ParamsWithEnabled;
+  using Params = ConnectorRendererParams;
 
   ObserverObserverConnectorRenderer(const Params& params,
                                     const ofFloatColor& color,
@@ -56,7 +59,7 @@ public:
   , _color(color)
   , _entities(entities) { }
 
-  void draw(const State& state);
+  void draw();
 
 private:
   const Params& _params;
@@ -66,7 +69,7 @@ private:
 
 class OccurrenceOccurrenceConnectorRenderer {
 public:
-  using Params = ParamsWithEnabled;
+  using Params = ConnectorRendererParams;
 
   OccurrenceOccurrenceConnectorRenderer(const Params& params,
                                         const ofFloatColor& color,
@@ -75,7 +78,7 @@ public:
   , _color(color)
   , _entities(entities) { }
 
-  void draw(const State& state);
+  void draw();
 
 private:
   const Params& _params;

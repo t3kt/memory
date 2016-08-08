@@ -6,20 +6,19 @@
 //
 //
 
+#include <ofMain.h>
 #include "AppParameters.h"
 #include "RenderingController.h"
-#include <ofMain.h>
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,
-                                         const ColorTheme& colors,
                                          Context& context)
 : _params(params)
 , _window(window)
-, _colors(colors)
+, _colors(ColorTheme::get())
 , _context(context)
-, _backgroundColor(colors.getColor(ColorId::BACKGROUND))
-, _fogColor(colors.getColor(ColorId::FOG)) {
+, _backgroundColor(ColorTheme::get().getColor(ColorId::BACKGROUND))
+, _fogColor(ColorTheme::get().getColor(ColorId::FOG)) {
 }
 
 void RenderingController::setup() {
@@ -27,6 +26,43 @@ void RenderingController::setup() {
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
   _camera->setup();
+  const auto& appParams = _context.appParams;
+  const auto& colors = appParams.colors;
+  const auto& observerParams = _params.observers;
+  const auto& occurrenceParams = _params.occurrences;
+  _observerPreRenderer =
+  std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
+                                        _context);
+  _occurrencePreRenderer =
+  std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
+                                          _context);
+  _observerThresholdRenderer =
+  std::make_shared<ObserverThresholdRenderer>(_context.observers,
+                                              observerParams.thresholdRenderer,
+                                              colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+  _observerRenderer =
+  std::make_shared<ObserverRenderer>(observerParams.renderer,
+                                     _context);
+  //  _instancedObserverRenderer =
+  //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
+  //                                              _context);
+  //  _instancedObserverRenderer->setup();
+  _observerConnectorRenderer =
+  std::make_shared<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer,
+                                                      colors.getColor(ColorId::OBSERVER_CONNECTOR),
+                                                      _context.observers);
+  _occurrenceRenderer =
+  std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
+                                       appParams,
+                                       _context);
+  _observerOccurrenceConnectorRenderer =
+  std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
+                                                        colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
+                                                        _context.occurrences);
+  _occurrenceOccurrenceConnectorRenderer =
+  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer,
+                                                          colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
+                                                          _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();
@@ -47,10 +83,17 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
+  _observerRenderer->update();
+  //  _instancedObserverRenderer->update();
+  _observerThresholdRenderer->update();
+  _occurrenceRenderer->update();
   _postProc->update();
 }
 
 void RenderingController::beginDraw() {
+  _observerPreRenderer->update();
+  _occurrencePreRenderer->update();
+
   ofBackground(_backgroundColor);
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
@@ -65,6 +108,16 @@ void RenderingController::beginDraw() {
   }
 
   ofPushMatrix();
+}
+
+void RenderingController::draw() {
+  _observerRenderer->draw();
+  //  _instancedObserverRenderer->draw();
+  _observerConnectorRenderer->draw();
+  _observerThresholdRenderer->draw();
+  _occurrenceRenderer->draw();
+  _observerOccurrenceConnectorRenderer->draw();
+  _occurrenceOccurrenceConnectorRenderer->draw();
 }
 
 void RenderingController::endDraw() {

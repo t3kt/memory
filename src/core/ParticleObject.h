@@ -10,10 +10,10 @@
 #define ParticleObject_h
 
 #include <vector>
-#include "WorldObject.h"
-#include "State.h"
-#include "Events.h"
 #include "Bounds.h"
+#include "Events.h"
+#include "State.h"
+#include "WorldObject.h"
 
 class ParticleObject : public WorldObject {
 public:
@@ -35,8 +35,15 @@ public:
   ofVec3f* velocityPtr() { return &_velocity; }
   ofVec3f* forcePtr() { return &_force; }
 
+  virtual void deserializeFields(const Json& obj,
+                                 const SerializationContext& context) override;
+
 protected:
+  ParticleObject() { }
+
   virtual void outputFields(std::ostream& os) const override;
+  virtual void addSerializedFields(Json::object& obj,
+                                   const SerializationContext& context) const override;
 private:
   ofVec3f _position;
   ofVec3f _velocity;

@@ -7,6 +7,7 @@
 //
 
 #include <algorithm>
+#include "AppSystem.h"
 #include "MidiDevice.h"
 
 
@@ -40,6 +41,9 @@ MidiDevice::MidiDevice(std::string name,
 template<typename M>
 bool tryOpenPort(M& midi, const std::string& portName) {
   auto portNames = M::getPortList();
+  for (const auto& p : portNames) {
+    AppSystem::get().log().control().logNotice("Port name: " + p);
+  }
   if (std::find(portNames.begin(), portNames.end(), portName) == portNames.end()) {
     return false;
   }
@@ -75,4 +79,26 @@ void MidiDevice::handleClose(bool updateParams) {
 void MidiDevice::newMidiMessage(ofxMidiMessage &message) {
   MidiReceivedEventArgs e(_id, message);
   messageReceived.notifyListeners(e);
+}
+
+void MidiDevice::sendMessage(MidiMessageType type,
+                             MidiChannel channel,
+                             int key,
+                             int value) {
+  if (!_midiOut.isOpen()) {
+    return;
+  }
+  switch (type) {
+    case MidiMessageType::CONTROL_CHANGE:
+      _midiOut.sendControlChange(channel, key, value);
+      break;
+    case MidiMessageType::NOTE_ON:
+      _midiOut.sendNoteOn(channel, key, value);
+      break;
+    case MidiMessageType::NOTE_OFF:
+      _midiOut.sendNoteOff(channel, key, value);
+      break;
+    default:
+      AppSystem::get().log().control().logWarning("Unsupported midi mapping type: " + MidiMessageTypeType.toString(type));
+  }
 }
