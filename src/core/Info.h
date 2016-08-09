@@ -10,7 +10,8 @@
 #define Info_h
 
 #include <algorithm>
-#include <ofRectangle.h>
+#include <ofTypes.h>
+#include <ofUtils.h>
 #include <ofxTextAlignTTF.h>
 #include <string>
 #include <utility>
@@ -27,10 +28,15 @@ public:
   : _labelMaxLength(0)
   , _valueMaxLength(0) { }
 
-  void add(std::string&& label, std::string&& value) {
+  void add(const std::string& label, std::string value) {
     _labelMaxLength = std::max(_labelMaxLength, label.size());
     _valueMaxLength = std::max(_valueMaxLength, value.size());
     _lines.emplace_back(label, value);
+  }
+
+  template<typename T>
+  void add(const std::string& label, const T& value) {
+    add(label, ofToString(value));
   }
 
   void resetSize() {

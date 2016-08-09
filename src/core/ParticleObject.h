@@ -38,6 +38,8 @@ public:
   virtual void deserializeFields(const Json& obj,
                                  const SerializationContext& context) override;
 
+  virtual void fillInfo(Info& info) const override;
+
 protected:
   ParticleObject() { }
 

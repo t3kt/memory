@@ -81,9 +81,7 @@ void InspectionController::updateInfo() {
     return;
   }
 
-  _info.add("Type:", _selectedEntity->typeName());
-  _info.add("ID:", ofToString(_selectedEntity->id()));
-  //...
+  _selectedEntity->fillInfo(_info);
 }
 
 // must be called after camera has ended

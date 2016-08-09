@@ -7,6 +7,7 @@
 //
 
 #include <ofMain.h>
+#include "Info.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 #include "State.h"
@@ -53,6 +54,14 @@ void ObserverEntity::outputFields(std::ostream &os) const {
       << ", lifeFraction: " << _lifeFraction
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
+}
+
+void ObserverEntity::fillInfo(Info& info) const {
+  ParticleObject::fillInfo(info);
+  info.add("lifeFraction:", _lifeFraction);
+  info.add("totalLifeTime:", _totalLifetime);
+  info.add("connObservers:", _connectedObservers.size());
+  info.add("connOccurrences:", _connectedOccurrences.size());
 }
 
 void ObserverEntity::addSerializedFields(Json::object &obj,

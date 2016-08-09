@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "Context.h"
+#include "Info.h"
 #include "ObserverEntity.h"
 #include "OccurrenceEntity.h"
 
@@ -28,6 +29,15 @@ void OccurrenceEntity::outputFields(std::ostream &os) const {
       << ", actualRadius: " << _actualRadius
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
+}
+
+void OccurrenceEntity::fillInfo(Info& info) const {
+  ParticleObject::fillInfo(info);
+  info.add("origRadius:", _originalRadius);
+  info.add("actualRadius:", _actualRadius);
+  info.add("amountOfObs:", _amountOfObservation);
+  info.add("connObservers:", _connectedObservers.size());
+  info.add("connOccurrences:", _connectedOccurrences.size());
 }
 
 void OccurrenceEntity::detachConnections() {

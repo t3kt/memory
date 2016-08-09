@@ -33,6 +33,8 @@ enum class EntityType {
 template<typename T>
 EntityType getEntityType();
 
+class Info;
+
 class WorldObject
 : public Outputable
 , public Serializable {
@@ -56,6 +58,8 @@ public:
   virtual void deserializeFields(const Json& obj,
                                  const SerializationContext& context) override;
   virtual std::string typeName() const override;
+
+  virtual void fillInfo(Info& info) const;
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

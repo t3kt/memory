@@ -6,6 +6,7 @@
 //
 //
 
+#include "Info.h"
 #include "State.h"
 #include "WorldObject.h"
 
@@ -26,6 +27,11 @@ std::string WorldObject::typeName() const {
 void WorldObject::outputFields(std::ostream& os) const {
   os << "id: " << _id
      << ", alive: " << _alive;
+}
+
+void WorldObject::fillInfo(Info &info) const {
+  info.add("type:", typeName());
+  info.add("id:", id());
 }
 
 void WorldObject::addSerializedFields(Json::object &obj,

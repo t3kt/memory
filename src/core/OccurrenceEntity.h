@@ -89,6 +89,7 @@ public:
   virtual void deserializeRefs(const Json& obj,
                                SerializationContext& context) override;
 
+  virtual void fillInfo(Info& info) const override;
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;
