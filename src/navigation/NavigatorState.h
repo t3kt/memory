@@ -32,8 +32,8 @@ public:
     os << "}";
   }
 
-protected:
   virtual std::string typeName() const = 0;
+protected:
   virtual void outputFields(std::ostream& os) const {}
 };
 
@@ -49,8 +49,8 @@ public:
 
   bool alive() const override { return true; }
 
-protected:
   std::string typeName() const override { return "PointNavState"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:
@@ -73,8 +73,8 @@ public:
 
   bool alive() const override { return _entity->alive(); }
 
-protected:
   std::string typeName() const override { return "ObserverNavState"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:

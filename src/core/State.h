@@ -24,8 +24,8 @@ public:
   int occurrenceCount;
   int animationCount;
   bool running;
-protected:
   std::string typeName() const override { return "State"; }
+protected:
   void outputFields(std::ostream& os) const override;
 };
 
@@ -42,8 +42,8 @@ public:
 
   operator bool() const { return _status; }
 
-protected:
   std::string typeName() const override { return "ChangeFlag"; }
+protected:
   void outputFields(std::ostream& os) const override;
 private:
   const std::string _name;
@@ -58,8 +58,8 @@ public:
 
   ChangeFlag boundsChanged;
 
-protected:
   std::string typeName() const override { return "ChangeFlags"; }
+protected:
   void outputFields(std::ostream& os) const override;
 };
 

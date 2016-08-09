@@ -41,8 +41,8 @@ public:
 
   bool stateAlive() const;
 
-protected:
   std::string typeName() const override { return "NavigatorEntity"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:

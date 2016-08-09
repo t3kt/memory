@@ -24,8 +24,8 @@ class Outputable {
 public:
   virtual ~Outputable() {}
   void output(std::ostream& os) const;
-protected:
   virtual std::string typeName() const = 0;
+protected:
   virtual void outputFields(std::ostream& os) const { }
 };
 

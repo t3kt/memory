@@ -68,8 +68,9 @@ public:
   void read_json(const Json& obj) override;
 
   std::size_t hash() const;
-protected:
+
   std::string typeName() const override { return "MidiMappingKey"; }
+protected:
   void outputFields(std::ostream& os) const override;
 private:
   MidiDeviceId _device;
@@ -108,8 +109,8 @@ public:
   const ofxMidiMessage& message;
   const MidiMappingKey key;
 
-protected:
   std::string typeName() const override { return "MidiReceivedEventArgs"; }
+protected:
   void outputFields(std::ostream& os) const override;
 };
 

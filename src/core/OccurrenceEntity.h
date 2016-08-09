@@ -89,8 +89,8 @@ public:
   virtual void deserializeRefs(const Json& obj,
                                SerializationContext& context) override;
 
-protected:
   std::string typeName() const override { return "OccurrenceEntity"; }
+protected:
   void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;

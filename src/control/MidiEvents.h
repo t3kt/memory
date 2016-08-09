@@ -48,8 +48,8 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-protected:
   std::string typeName() const override { return "MidiEventMapping"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:

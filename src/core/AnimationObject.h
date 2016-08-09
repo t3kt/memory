@@ -58,10 +58,11 @@ public:
   }
 
   EntityType entityType() const override { return EntityType::ANIMATION; }
-protected:
   virtual std::string typeName() const override {
     return "Animation";
   }
+
+protected:
   void outputFields(std::ostream& os) const override;
 
   inline float percentage() const { return _percentage; }
@@ -107,7 +108,6 @@ public:
 
   virtual void draw(const State& state) override;
 
-protected:
   virtual std::string typeName() const override {
     return "ExpandingSphereAnimation";
   }

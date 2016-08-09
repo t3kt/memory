@@ -32,11 +32,7 @@ public:
 
   T& value() { return _value; }
 
-protected:
   std::string typeName() const override { return "ValueEventArgs"; }
-//  void outputFields(std::ostream& os) const override {
-//    os << _value;
-//  }
 private:
   T& _value;
 };
