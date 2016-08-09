@@ -48,6 +48,7 @@ void InspectionController::update() {
     _camera.begin();
     float closestDist = -1;
     float range = _params.clickRange.get();
+    bool found = false;
     _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
       ofVec3f screenPos = _camera.worldToScreen(entity->position());
       float dist = screenPos.distance(_clickPos);
@@ -57,8 +58,12 @@ void InspectionController::update() {
       if (closestDist < 0 || dist < closestDist) {
         closestDist = dist;
         _selectedEntity = entity;
+        found = true;
       }
     });
+    if (!found) {
+      _selectedEntity.reset();
+    }
     _hasClick = false;
     _camera.end();
   }
