@@ -13,6 +13,7 @@
 #include <ofAppGLFWWindow.h>
 #include <ofCamera.h>
 #include <ofEvents.h>
+#include "Info.h"
 #include "Params.h"
 #include "ParticleObject.h"
 
@@ -28,9 +29,14 @@ public:
           .setName("Click Range")
           .setValueAndDefault(10)
           .setRange(0, 100));
+      add(showInfo
+          .setKey("showInfo")
+          .setName("Show Info")
+          .setValueAndDefault(false));
       setEnabledValueAndDefault(false);
     }
     TParam<float> clickRange;
+    TParam<bool> showInfo;
   };
 
   InspectionController(Params& params,
@@ -40,7 +46,8 @@ public:
   : _params(params)
   , _context(context)
   , _camera(camera)
-  , _window(window){ }
+  , _window(window)
+  , _infoBox(InfoBox::Position::BOTTOM_RIGHT) { }
 
   void setup();
   void update();
@@ -50,6 +57,8 @@ private:
   void attachToEvents();
   void detachFromEvents();
   void onEnabledChanged(bool enabled);
+  void updateInfo();
+  void drawInfo();
 
   Params& _params;
   Context& _context;
@@ -60,6 +69,9 @@ private:
   ofVec3f _selectedScreenPosition;
   ofVec2f _clickPos;
   bool _hasClick;
+
+  Info _info;
+  InfoBox _infoBox;
 };
 
 #endif /* InspectionController_h */

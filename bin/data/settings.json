@@ -129,7 +129,8 @@
     "debug": {
       "inspect": {
         "clickRange": 10,
-        "enabled": false
+        "enabled": true,
+        "showInfo": true
       },
       "logging": {
         "anim": {

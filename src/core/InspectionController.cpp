@@ -69,6 +69,21 @@ void InspectionController::update() {
       _selectedScreenPosition = _camera.worldToScreen(_selectedEntity->position());
     }
   }
+  updateInfo();
+}
+
+void InspectionController::updateInfo() {
+  _info.clear();
+  if (!_params.showInfo.get()) {
+    return;
+  }
+  if (!_selectedEntity || !_selectedEntity->alive()) {
+    return;
+  }
+
+  _info.add("Type:", _selectedEntity->typeName());
+  _info.add("ID:", ofToString(_selectedEntity->id()));
+  //...
 }
 
 // must be called after camera has ended
@@ -78,22 +93,25 @@ void InspectionController::draw() {
   }
   if (_selectedEntity) {
     ofPushStyle();
-//    ofPushMatrix();
     ofSetColor(ofFloatColor::white);
     auto winSize = _window.getWindowSize();
     const auto& pos = _selectedScreenPosition;
     ofVec3f sidePos(0, pos.y);
-    if (pos.x > winSize.x / 2) {
+//    if (pos.x > winSize.x / 2) {
       sidePos.x = winSize.x;
-    }
+//    }
     ofDrawLine(pos, sidePos);
-//    ofNoFill();
-//    ofSetRectMode(OF_RECTMODE_CENTER);
-//    ofDrawRectangle(pos, 10, 10);
-    //...
-//    ofPopMatrix();
     ofPopStyle();
+
+    drawInfo();
   }
+}
+
+void InspectionController::drawInfo() {
+  if (!_params.showInfo.get()) {
+    return;
+  }
+  _infoBox.drawInfo(_info);
 }
 
 void InspectionController::onMousePressed(ofMouseEventArgs &event) {
