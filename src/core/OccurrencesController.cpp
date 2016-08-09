@@ -57,7 +57,7 @@ void OccurrencesController::update() {
     }
     float amount = 0;
     float radius = 0;
-    for (const auto& observer : occurrence->connectedObservers()) {
+    for (const auto& observer : occurrence->getConnectedObservers()) {
       amount += observer.second->getRemainingLifetimeFraction();
       float dist = occurrence->position().distance(observer.second->position());
       if (dist > radius) {

@@ -14,6 +14,7 @@
 #include "Common.h"
 #include "Context.h"
 #include "ObserverEntity.h"
+#include "OccurrenceEntity.h"
 #include "WorldObject.h"
 
 class NavigatorState;
@@ -85,6 +86,33 @@ protected:
 
 private:
   std::shared_ptr<ObserverEntity> _entity;
+};
+
+class OccurrenceNavState
+: public NavigatorState {
+public:
+  OccurrenceNavState(std::shared_ptr<OccurrenceEntity> entity)
+  : _entity(entity) { }
+
+  const ofVec3f& position() const override {
+    return _entity->position();
+  }
+
+  OccurrenceEntity& entity() { return *_entity; }
+
+  NavigatorStatePtr nextState(Context& context) override;
+
+  bool alive() const override { return _entity->alive(); }
+
+  void fillInfo(Info& info, const std::string& prefix) const override;
+
+  std::string typeName() const override { return "OccurrenceNavState"; }
+
+protected:
+  void outputFields(std::ostream& os) const override;
+
+private:
+  std::shared_ptr<OccurrenceEntity> _entity;
 };
 
 #endif /* NavigatorState_h */

@@ -66,11 +66,11 @@ public:
 
   float actualRadius() const { return _actualRadius; }
 
-  const EntityMap<ObserverEntity>& connectedObservers() const {
+  const EntityMap<ObserverEntity>& getConnectedObservers() const {
     return _connectedObservers;
   }
 
-  EntityMap<ObserverEntity>& connectedObservers() {
+  EntityMap<ObserverEntity>& getConnectedObservers() {
     return _connectedObservers;
   }
 

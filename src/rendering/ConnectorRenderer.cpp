@@ -24,7 +24,7 @@ void ObserverOccurrenceConnectorRenderer::draw() {
     }
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
-    for (const auto& observer : occurrence->connectedObservers()) {
+    for (const auto& observer : occurrence->getConnectedObservers()) {
       if (!observer.second->visible()) {
         continue;
       }
