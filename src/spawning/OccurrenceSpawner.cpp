@@ -74,6 +74,7 @@ OccurrenceSpawnerCore::spawnEntity(Context &context,
   if (_controller.tryAddEntity(occurrence)) {
     if (prev) {
       prev->addOccurrence(occurrence);
+      occurrence->addOccurrence(prev);
     }
     occurrence->setVelocity(_params.initialVelocity.getValue());
     return occurrence;
