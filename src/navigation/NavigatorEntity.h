@@ -24,7 +24,8 @@ public:
     return std::shared_ptr<NavigatorEntity>();
   }
 
-  NavigatorEntity(NavigatorStatePtr prevState);
+  NavigatorEntity(NavigatorStatePtr prevState,
+                  Context& context);
 
   const ofVec3f& prevPosition() const;
   const ofVec3f& nextPosition() const;
@@ -34,10 +35,14 @@ public:
 
   const ofVec3f& targetPoint() const;
 
+  float lastChangeTime() const { return _lastChangeTime; }
+
   EntityType entityType() const override { return EntityType::NAVIGATOR; }
 
   void updateNextState(Context& context);
   void reachNextState(Context& context);
+
+  void setPosition(const ofVec3f& pos) { _position = pos; }
 
   bool stateAlive() const;
 
@@ -50,6 +55,7 @@ protected:
 private:
   NavigatorStatePtr _prevState;
   NavigatorStatePtr _nextState;
+  float _lastChangeTime;
 };
 
 template<>

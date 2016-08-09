@@ -33,6 +33,11 @@ public:
           .setName("Move Rate")
           .setValueAndDefault(10)
           .setRange(0, 50));
+      add(stepDuration
+          .setKey("stepDuration")
+          .setName("Step Duration")
+          .setValueAndDefault(1)
+          .setRange(0, 10));
       add(reachRange
           .setKey("reachRange")
           .setName("Reach Range")
@@ -45,6 +50,7 @@ public:
 
     RateSpawner<>::Params observerNavigatorSpawner;
     TParam<float> moveRate;
+    TParam<float> stepDuration;
     TParam<float> reachRange;
   };
 

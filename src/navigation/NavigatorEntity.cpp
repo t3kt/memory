@@ -10,9 +10,11 @@
 #include "NavigatorEntity.h"
 #include "NavigatorState.h"
 
-NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState)
+NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState,
+                                 Context& context)
 : ParticleObject(prevState->position())
-, _prevState(prevState) {}
+, _prevState(prevState)
+, _lastChangeTime(context.time()) { }
 
 void NavigatorEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
@@ -32,6 +34,7 @@ void NavigatorEntity::outputFields(std::ostream &os) const {
 
 void NavigatorEntity::fillInfo(Info &info) const {
   ParticleObject::fillInfo(info);
+  info.add("targetpt:", targetPoint());
   if (!_prevState) {
     info.add("prev:", "(none)");
   } else {
@@ -59,11 +62,13 @@ void NavigatorEntity::updateNextState(Context &context) {
     return;
   }
   _nextState = _prevState->nextState(context);
+  _lastChangeTime = context.time();
 }
 
 void NavigatorEntity::reachNextState(Context &context) {
   _prevState = _nextState;
   _nextState.reset();
+  _lastChangeTime = context.time();
 }
 
 const ofVec3f& NavigatorEntity::targetPoint() const {

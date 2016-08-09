@@ -180,10 +180,11 @@
   "navigators": {
     "moveRate": 23.25,
     "observerNavigatorSpawner": {
-      "enabled": false,
+      "enabled": true,
       "rate": 0.55102038383483887
     },
-    "reachRange": 8.25
+    "reachRange": 8.25,
+    "stepDuration": 1
   },
   "observers": {
     "rateSpawner": {
