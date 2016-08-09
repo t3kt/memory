@@ -97,6 +97,9 @@ void InspectionController::draw() {
 }
 
 void InspectionController::onMousePressed(ofMouseEventArgs &event) {
+  if (event.button != OF_MOUSE_BUTTON_3) {
+    return;
+  }
   _clickPos = event;
   _hasClick = true;
 }
