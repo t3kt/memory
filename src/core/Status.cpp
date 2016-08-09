@@ -22,6 +22,10 @@ void StatusInfoController::update() {
   _info.add("Occurrences:", ofToString(_context.occurrences.size()));
   _info.add("Animations:", ofToString(_context.animations.size()));
   _info.add("Navigators:", ofToString(_context.navigators.size()));
+  if (!_context.highlightedEntities.empty()) {
+    _info.add("Highlighted:",
+              ofToString(_context.highlightedEntities.size()));
+  }
 }
 
 void StatusInfoController::draw() {

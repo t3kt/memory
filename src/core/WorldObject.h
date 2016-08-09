@@ -9,6 +9,7 @@
 #ifndef WorldObject_h
 #define WorldObject_h
 
+#include <functional>
 #include <iostream>
 #include <memory>
 #include "Common.h"
@@ -56,6 +57,10 @@ public:
   virtual std::string typeName() const override;
 
   virtual void fillInfo(Info& info) const;
+
+  using ObjectPtrAction =
+  std::function<void(std::shared_ptr<WorldObject>)>;
+  virtual void performActionOnConnected(ObjectPtrAction action) {}
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

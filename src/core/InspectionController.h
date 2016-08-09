@@ -57,6 +57,7 @@ private:
   void attachToEvents();
   void detachFromEvents();
   void onEnabledChanged(bool enabled);
+  void updateHighlights();
   void updateInfo();
   void drawInfo();
 

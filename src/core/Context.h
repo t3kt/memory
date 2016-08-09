@@ -11,6 +11,7 @@
 
 #include <functional>
 #include "Common.h"
+#include "EntityMap.h"
 #include "JsonIO.h"
 #include "ObjectManager.h"
 #include "Serialization.h"
@@ -22,6 +23,7 @@ class NavigatorEntity;
 class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
+class WorldObject;
 
 class Context
 : public NonCopyable
@@ -68,6 +70,8 @@ public:
   ObjectManager<NavigatorEntity> navigators;
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
+
+  EntityMap<WorldObject> highlightedEntities;
 
 private:
   void clear();

@@ -47,6 +47,11 @@ public:
     return iter->second;
   }
 
+  bool containsId(ObjectId id) const {
+    auto iter = _map.find(id);
+    return iter != end();
+  }
+
   void clear() { _map.clear(); }
 
   std::size_t erase(ObjectId id) { return _map.erase(id); }

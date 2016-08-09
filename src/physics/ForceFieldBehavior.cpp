@@ -28,6 +28,10 @@ void AbstractForceFieldBehavior::debugDrawEntity(Context& context, ParticleObjec
   if (!entity->alive()) {
     return;
   }
+  if (!context.highlightedEntities.empty() &&
+      !context.highlightedEntities.containsId(entity->id())) {
+    return;
+  }
   drawForceArrow(entity->position(),
                  getForceForEntity(context, entity));
 }

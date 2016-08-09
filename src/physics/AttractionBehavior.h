@@ -171,6 +171,10 @@ protected:
             entity->addForce(force);
             break;
           case ApplyMode::DEBUG_DRAW:
+            if (!context.highlightedEntities.empty() &&
+                !context.highlightedEntities.containsId(entity->id())) {
+              break;
+            }
             debugDrawEntity(entity.get(), force);
             break;
         }

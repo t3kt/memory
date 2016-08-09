@@ -21,6 +21,7 @@ void InspectionController::onEnabledChanged(bool enabled) {
   if (enabled) {
     attachToEvents();
   } else {
+    _context.highlightedEntities.clear();
     detachFromEvents();
   }
 }
@@ -39,7 +40,7 @@ void InspectionController::detachFromEvents() {
                    &InspectionController::onMousePressed);
 }
 
-// must be called after camera has ended
+// must not be called while camera is active
 void InspectionController::update() {
   if (!_params.enabled.get()) {
     return;
@@ -74,7 +75,19 @@ void InspectionController::update() {
       _selectedScreenPosition = _camera.worldToScreen(_selectedEntity->position());
     }
   }
+  updateHighlights();
   updateInfo();
+}
+
+void InspectionController::updateHighlights() {
+  _context.highlightedEntities.clear();
+  if (!_selectedEntity) {
+    return;
+  }
+  _context.highlightedEntities.add(_selectedEntity);
+  _selectedEntity->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
+    _context.highlightedEntities.add(entity);
+  });
 }
 
 void InspectionController::updateInfo() {
@@ -89,7 +102,7 @@ void InspectionController::updateInfo() {
   _selectedEntity->fillInfo(_info);
 }
 
-// must be called after camera has ended
+// must not be called while camera is active
 void InspectionController::draw() {
   if (!_params.enabled.get()) {
     return;

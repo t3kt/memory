@@ -86,6 +86,7 @@ void SimulationApp::update() {
   _renderingController->update();
 
   _context.highlightedEntities.clear();
+  _inspectionController->update();
 
   if (_appParams.core.debug.showStatus()) {
     _statusController->update();
@@ -116,8 +117,6 @@ void SimulationApp::draw() {
   }
 
   _renderingController->endDraw();
-
-  _inspectionController->update();
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {

@@ -91,6 +91,7 @@ public:
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
+  virtual void performActionOnConnected(ObjectPtrAction action) override;
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;

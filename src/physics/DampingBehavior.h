@@ -65,6 +65,10 @@ protected:
       return;
     }
     for (auto& entity : context.getEntities<E>()) {
+      if (!context.highlightedEntities.empty() &&
+          !context.highlightedEntities.containsId(entity->id())) {
+        return;
+      }
       debugDrawEntity(context, entity.get());
     }
   }

@@ -96,6 +96,11 @@ protected:
     performAction(context, [&](T1& entity,
                                T2& other,
                                const ofVec3f& force) {
+      if (!context.highlightedEntities.empty() &&
+          !context.highlightedEntities.containsId(entity.id()) &&
+          !context.highlightedEntities.containsId(other.id())) {
+        return;
+      }
       drawForceArrow(entity.position(), force);
       drawForceArrow(other.position(), -force);
     });

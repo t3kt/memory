@@ -84,3 +84,12 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
   context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
   context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
 }
+
+void OccurrenceEntity::performActionOnConnected(ObjectPtrAction action) {
+  for (auto& entity : _connectedObservers) {
+    action(entity.second);
+  }
+  for (auto& entity : _connectedOccurrences) {
+    action(entity.second);
+  }
+}
