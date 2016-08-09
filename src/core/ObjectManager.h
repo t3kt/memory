@@ -16,7 +16,9 @@
 #include <map>
 #include <memory>
 #include <ofMath.h>
+#include <ofUtils.h>
 #include "Common.h"
+#include "EntityMap.h"
 #include "Events.h"
 #include "Serialization.h"
 #include "State.h"

@@ -85,6 +85,8 @@ void SimulationApp::update() {
   _navigators->update();
   _renderingController->update();
 
+  _context.highlightedEntities.clear();
+
   if (_appParams.core.debug.showStatus()) {
     _statusController->update();
   }

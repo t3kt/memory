@@ -258,6 +258,7 @@
 		32324C7C1D57F90900D05EDF /* OccurrencePreRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrencePreRenderer.h; path = rendering/OccurrencePreRenderer.h; sourceTree = "<group>"; };
 		32324CA31D59690500D05EDF /* Info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Info.cpp; path = core/Info.cpp; sourceTree = "<group>"; };
 		32324CA41D59690500D05EDF /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Info.h; path = core/Info.h; sourceTree = "<group>"; };
+		32324CAA1D59861800D05EDF /* EntityMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntityMap.h; path = core/EntityMap.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -1159,6 +1160,7 @@
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				32324C5E1D55C1D900D05EDF /* EntityController.cpp */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
+				32324CAA1D59861800D05EDF /* EntityMap.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				32324CA31D59690500D05EDF /* Info.cpp */,
 				32324CA41D59690500D05EDF /* Info.h */,

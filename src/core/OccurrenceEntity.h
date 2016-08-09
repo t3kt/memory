@@ -13,6 +13,7 @@
 #include <ofTypes.h>
 #include "Common.h"
 #include "Context.h"
+#include "EntityMap.h"
 #include "ParticleObject.h"
 #include "State.h"
 #include "ValueSupplier.h"

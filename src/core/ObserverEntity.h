@@ -12,6 +12,7 @@
 #include <iostream>
 #include <ofTypes.h>
 #include "Common.h"
+#include "EntityMap.h"
 #include "ParticleObject.h"
 #include "ValueSupplier.h"
 #include "WorldObject.h"
