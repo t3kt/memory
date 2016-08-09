@@ -84,6 +84,10 @@ void SimulationApp::update() {
   _physics->update();
   _navigators->update();
   _renderingController->update();
+
+  if (_appParams.core.debug.showStatus()) {
+    _statusController->update();
+  }
 }
 
 void SimulationApp::draw() {
