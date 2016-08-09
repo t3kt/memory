@@ -6,6 +6,7 @@
 //
 //
 
+#include "Info.h"
 #include "NavigatorEntity.h"
 #include "NavigatorState.h"
 
@@ -26,6 +27,22 @@ void NavigatorEntity::outputFields(std::ostream &os) const {
     os << *_nextState;
   } else {
     os << "(none)";
+  }
+}
+
+void NavigatorEntity::fillInfo(Info &info) const {
+  ParticleObject::fillInfo(info);
+  if (!_prevState) {
+    info.add("prev:", "(none)");
+  } else {
+    info.add("prev:", _prevState->typeName());
+    _prevState->fillInfo(info, "prev.");
+  }
+  if (!_nextState) {
+    info.add("next:", "(none)");
+  } else {
+    info.add("next:", _nextState->typeName());
+    _nextState->fillInfo(info, "next.");
   }
 }
 

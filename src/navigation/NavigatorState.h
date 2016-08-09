@@ -33,6 +33,8 @@ public:
   }
 
   virtual std::string typeName() const = 0;
+
+  virtual void fillInfo(Info& info, const std::string& prefix) const = 0;
 protected:
   virtual void outputFields(std::ostream& os) const {}
 };
@@ -48,6 +50,8 @@ public:
   NavigatorStatePtr nextState(Context& context) override;
 
   bool alive() const override { return true; }
+
+  void fillInfo(Info& info, const std::string& prefix) const override;
 
   std::string typeName() const override { return "PointNavState"; }
 protected:
@@ -72,6 +76,8 @@ public:
   NavigatorStatePtr nextState(Context& context) override;
 
   bool alive() const override { return _entity->alive(); }
+
+  void fillInfo(Info& info, const std::string& prefix) const override;
 
   std::string typeName() const override { return "ObserverNavState"; }
 protected:

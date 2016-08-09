@@ -66,6 +66,9 @@ public:
 
   virtual void fillInfo(Info& info) const override;
   virtual void performActionOnConnected(ObjectPtrAction action) override;
+  virtual bool hasConnections() const override {
+    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+  }
   std::string typeName() const override { return "ObserverEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;

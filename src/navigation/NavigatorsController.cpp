@@ -135,11 +135,15 @@ void NavigatorsController::draw() {
   ofPopStyle();
 }
 
-void NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity> entity) {
+bool NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity> entity) {
+  if (!entity->hasConnections()) {
+    return false;
+  }
   auto startState = std::make_shared<ObserverNavState>(entity);
   auto navigator = std::make_shared<NavigatorEntity>(startState);
   _navigators.add(navigator);
   NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
                        *navigator);
   _events.navigatorSpawned.notifyListenersUntilHandled(e);
+  return true;
 }

@@ -56,7 +56,7 @@ public:
   void update();
   void draw();
 private:
-  void spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
+  bool spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
 
   Context& _context;
   Params& _params;

@@ -13,6 +13,11 @@ void PointNavState::outputFields(std::ostream& os) const {
   os << "point: " << _point;
 }
 
+void PointNavState::fillInfo(Info &info,
+                             const std::string &prefix) const {
+  info.add(prefix + "point:", _point);
+}
+
 NavigatorStatePtr PointNavState::nextState(Context &context) {
   auto point = context.appParams.core.bounds.randomPoint();
   return std::make_shared<PointNavState>(point);
@@ -20,6 +25,11 @@ NavigatorStatePtr PointNavState::nextState(Context &context) {
 
 void ObserverNavState::outputFields(std::ostream& os) const {
   os << "entity: " << *_entity;
+}
+
+void ObserverNavState::fillInfo(Info &info,
+                                const std::string &prefix) const {
+  info.add(prefix + "observer:", _entity->id());
 }
 
 NavigatorStatePtr ObserverNavState::nextState(Context& context) {
