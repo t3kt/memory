@@ -10,6 +10,7 @@
 #define NavigatorEntity_h
 
 #include <memory>
+#include <ofxChoreograph.h>
 #include "ParticleObject.h"
 
 class Context;
@@ -60,5 +61,44 @@ private:
 
 template<>
 EntityType getEntityType<NavigatorEntity>() { return EntityType::NAVIGATOR; }
+
+class NavigatorEntity_2
+: public WorldObject {
+private:
+  using TimelineT = ofxChoreograph::Timeline;
+  using OutputT = ofxChoreograph::Output<ofVec3f>;
+  using RampT = ofxChoreograph::RampTo<ofVec3f>;
+public:
+  NavigatorEntity_2(NavigatorStatePtr prevState,
+                    const float& stepTime);
+
+  const ofVec3f& prevPosition() const;
+  const ofVec3f& nextPosition() const;
+
+  NavigatorState* prevState() { return _prevState.get(); }
+  NavigatorState* nextState() { return _nextState.get(); }
+
+  const ofVec3f& targetPoint() const;
+
+  const ofVec3f& position() const override {
+    return _positionOutput.value();
+  }
+
+  void update(Context& context);
+
+  std::string typeName() const override { return "NavigatorEntity_2"; }
+protected:
+  void outputFields(std::ostream& os) const override;
+private:
+  void updateRamp();
+  void onTimelineFinished();
+
+  const float& _stepTime;
+  NavigatorStatePtr _prevState;
+  NavigatorStatePtr _nextState;
+  OutputT _positionOutput;
+  TimelineT _timeline;
+  std::shared_ptr<RampT> _ramp;
+};
 
 #endif /* NavigatorEntity_h */

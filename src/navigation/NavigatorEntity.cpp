@@ -6,6 +6,7 @@
 //
 //
 
+#include "Context.h"
 #include "Info.h"
 #include "NavigatorEntity.h"
 #include "NavigatorState.h"
@@ -80,4 +81,34 @@ bool NavigatorEntity::stateAlive() const {
     return false;
   }
   return _nextState ? _nextState->alive() : _prevState->alive();
+}
+
+NavigatorEntity_2::NavigatorEntity_2(NavigatorStatePtr prevState,
+                                     const float& stepTime)
+: _prevState(prevState)
+, _stepTime(stepTime) {
+  _timeline.setFinishFn([this]() {
+    this->onTimelineFinished();
+  });
+}
+
+void NavigatorEntity_2::update(Context &context) {
+  //...
+}
+
+void NavigatorEntity_2::updateRamp() {
+  if (!_nextState) {
+    if (_ramp) {
+      _ramp.reset();
+    }
+  } else {
+    if (!_ramp) {
+      _ramp = std::make_shared<RampT>(_stepTime,
+                                      prevPosition(),
+                                      nextPosition());
+    } else {
+      _ramp->setStartValue(prevPosition());
+      _ramp->setEndValue(nextPosition());
+    }
+  }
 }
