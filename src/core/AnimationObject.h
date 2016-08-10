@@ -48,7 +48,7 @@ public:
   virtual void update(const State& state);
   virtual void draw(const State& state) = 0;
 
-  ofVec3f position() const { return _position; }
+  const ofVec3f& position() const override { return _position; }
   
   void show() { _visible = true; }
   void hide() { _visible = false; }
