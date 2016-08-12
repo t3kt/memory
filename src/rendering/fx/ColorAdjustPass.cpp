@@ -61,7 +61,7 @@ void ColorAdjustPass::render(ofFbo &readFbo,
                        0,
                        0);
   _shader.setUniform3f("mult",
-                       0,
+                       1,
                        _params->saturationMult.get(),
                        _params->valueMult.get());
 
