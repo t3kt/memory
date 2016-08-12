@@ -17,6 +17,8 @@ _(
   uniform sampler2D tex;
   uniform vec3 offset;
   uniform vec3 mult;
+  uniform float brightness;
+  uniform float contrast;
 
   vec3 rgb2hsv(vec3 c)
   {
@@ -35,11 +37,20 @@ _(
     return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
   }
 
+  vec3 applyHsvAdjust(vec3 color) {
+    return hsv2rgb((rgb2hsv(color) + offset) * mult);
+  }
+
+  vec3 applyBrightContrast(vec3 color) {
+    vec3 colorContrasted = (color) * contrast;
+    return colorContrasted + vec3(brightness);
+  }
+
   void main() {
     vec4 color = texture2D(tex, gl_TexCoord[0].st);
-    vec3 hsv = rgb2hsv(color.rgb);
-    hsv = (hsv + offset) * mult;
-    gl_FragColor = vec4(hsv2rgb(hsv), color.a);
+    color.rgb = applyHsvAdjust(color.rgb);
+    color.rgb = applyBrightContrast(color.rgb);
+    gl_FragColor = color;
   }
 );
 
@@ -64,6 +75,10 @@ void ColorAdjustPass::render(ofFbo &readFbo,
                        1,
                        _params->saturationMult.get(),
                        _params->valueMult.get());
+  _shader.setUniform1f("brightness",
+                       _params->brightness.get());
+  _shader.setUniform1f("contrast",
+                       _params->contrast.get());
 
   texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
 

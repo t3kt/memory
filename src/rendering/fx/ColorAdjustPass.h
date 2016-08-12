@@ -19,6 +19,16 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
+      add(brightness
+          .setKey("brightness")
+          .setName("Brightness")
+          .setRange(-1, 1)
+          .setValueAndDefault(0));
+      add(contrast
+          .setKey("contrast")
+          .setName("Contrast")
+          .setRange(0, 4)
+          .setValueAndDefault(1));
       add(hueOffset
           .setKey("hueOffset")
           .setName("Hue Offset")
@@ -35,10 +45,11 @@ public:
           .setRange(0, 3)
           .setValueAndDefault(1));
     }
+    TParam<float> brightness;
+    TParam<float> contrast;
     TParam<float> hueOffset;
     TParam<float> saturationMult;
     TParam<float> valueMult;
-
   };
 
   ColorAdjustPass(const ofVec2f& aspect,
