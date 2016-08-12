@@ -438,6 +438,14 @@
       "bloom": {
         "enabled": true
       },
+      "colorAdjust": {
+        "brightness": 0,
+        "contrast": 1,
+        "enabled": false,
+        "hueOffset": 0,
+        "saturationMult": 1,
+        "valueMult": 1
+      },
       "dof": {
         "aperture": 0.33785924315452576,
         "enabled": true,
