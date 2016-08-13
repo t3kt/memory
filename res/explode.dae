@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2016-08-13T01:31:39Z</created><keywords></keywords><modified>2016-08-13T01:31:39Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="fragment1-lib" name="fragment1Mesh">
+      <mesh>
+        <source id="fragment1-POSITION">
+          <float_array id="fragment1-POSITION-array" count="48">
+0.000000 1.000000 0.000000
+0.395248 0.918574 0.000000
+-0.144097 0.918574 0.368045
+0.567710 0.755723 -0.326477
+0.344925 0.674298 -0.652955
+-0.050324 0.755723 -0.652955
+-0.222786 0.918574 -0.326477
+0.162095 0.786825 0.595509
+0.495428 0.786825 0.368045
+0.768071 0.492224 0.409613
+0.940533 0.329373 0.083135
+0.840353 0.461122 -0.284910
+0.986425 -0.065875 0.150394
+0.932145 -0.329373 -0.150394
+0.831965 -0.197624 -0.518439
+0.786069 0.197624 -0.585696
+</float_array>
+          <technique_common>
+            <accessor source="#fragment1-POSITION-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment1-Normal0">
+          <float_array id="fragment1-Normal0-array" count="48">
+0.200222 0.971899 -0.123785
+0.431478 0.900163 -0.059434
+0.193493 0.939234 0.283551
+0.491590 0.854729 -0.166666
+0.188492 0.914958 -0.356822
+0.188492 0.914958 -0.356822
+0.188492 0.914958 -0.356822
+0.193493 0.939234 0.283551
+0.557073 0.818352 0.141313
+0.729968 0.681970 0.045431
+0.909142 0.403548 -0.103004
+0.909142 0.403548 -0.103004
+0.968623 0.071996 -0.237879
+0.968623 0.071996 -0.237879
+0.968623 0.071996 -0.237879
+0.968623 0.071996 -0.237879
+</float_array>
+          <technique_common>
+            <accessor source="#fragment1-Normal0-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment1-UV0">
+          <float_array id="fragment1-UV0-array" count="46">
+0.419355 0.411025
+0.387097 0.355153
+0.419355 0.299280
+0.483871 0.299280
+0.516129 0.355153
+0.483871 0.411025
+0.387097 0.466898
+0.322581 0.466898
+0.302644 0.405539
+0.354839 0.367618
+0.407033 0.405539
+0.290323 0.411025
+0.225806 0.411025
+0.193548 0.355153
+0.225806 0.299280
+0.290323 0.299280
+0.322581 0.355153
+0.129032 0.355153
+0.096774 0.411025
+0.032258 0.411025
+0.000000 0.355153
+0.032258 0.299280
+0.096774 0.299280
+</float_array>
+          <technique_common>
+            <accessor source="#fragment1-UV0-array" count="23" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment1-VERTEX">
+          <input semantic="POSITION" source="#fragment1-POSITION"/>
+          <input semantic="NORMAL" source="#fragment1-Normal0"/>
+        </vertices>
+        <triangles count="15" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment1-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment1-UV0"/><p> 4 3 0 0 3 2 3 2 0 0 1 1 0 0 4 3 6 5 6 5 4 3 5 4 8 8 0 10 7 7 7 7 0 10 2 6 0 10 8 8 1 9 10 13 8 11 9 12 8 11 10 13 1 16 10 13 11 14 1 16 1 16 11 14 3 15 15 21 10 17 12 18 10 17 15 21 11 22 14 20 12 18 13 19 15 21 12 18 14 20</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment2-lib" name="fragment2Mesh">
+      <mesh>
+        <source id="fragment2-POSITION">
+          <float_array id="fragment2-POSITION-array" count="36">
+-0.222786 0.918574 -0.326477
+-0.589668 0.755723 -0.284910
+-0.643952 0.492224 -0.585696
+-0.050324 0.755723 -0.652955
+-0.310619 0.492224 -0.813161
+-0.842332 0.147301 -0.518439
+-0.986425 0.065875 -0.150394
+-0.932145 0.329373 0.150394
+-0.733765 0.674298 0.083135
+-0.175666 0.147301 -0.973367
+-0.374046 -0.197624 -0.906110
+-0.707379 -0.197624 -0.678644
+</float_array>
+          <technique_common>
+            <accessor source="#fragment2-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment2-Normal0">
+          <float_array id="fragment2-Normal0-array" count="36">
+-0.386986 0.727076 -0.567100
+-0.719623 0.581472 -0.379517
+-0.687944 0.435452 -0.580616
+-0.386986 0.727076 -0.567100
+-0.518626 0.391678 -0.760010
+-0.758749 0.326476 -0.563661
+-0.861296 0.448979 -0.237881
+-0.861296 0.448979 -0.237881
+-0.861296 0.448979 -0.237881
+-0.556309 0.160991 -0.815231
+-0.556309 0.160991 -0.815231
+-0.556309 0.160991 -0.815231
+</float_array>
+          <technique_common>
+            <accessor source="#fragment2-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment2-UV0">
+          <float_array id="fragment2-UV0-array" count="26">
+0.548387 0.367618
+0.600582 0.405539
+0.580645 0.466898
+0.516129 0.466898
+0.496192 0.405539
+0.612903 0.522771
+0.580645 0.578643
+0.516129 0.578643
+0.483871 0.522771
+0.612903 0.411025
+0.677419 0.411025
+0.709677 0.466898
+0.677419 0.522771
+</float_array>
+          <technique_common>
+            <accessor source="#fragment2-UV0-array" count="13" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment2-VERTEX">
+          <input semantic="POSITION" source="#fragment2-POSITION"/>
+          <input semantic="NORMAL" source="#fragment2-Normal0"/>
+        </vertices>
+        <triangles count="11" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment2-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment2-UV0"/><p> 4 1 0 4 3 0 0 4 2 2 1 3 2 2 0 4 4 1 6 6 2 2 5 5 2 2 6 6 1 3 1 3 7 7 8 8 7 7 1 3 6 6 5 5 9 10 10 11 9 10 2 2 4 9 2 2 9 10 5 5 5 5 10 11 11 12</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment3-lib" name="fragment3Mesh">
+      <mesh>
+        <source id="fragment3-POSITION">
+          <float_array id="fragment3-POSITION-array" count="42">
+0.000000 1.000000 0.000000
+-0.222786 0.918574 -0.326477
+-0.589668 0.755723 -0.284910
+-0.733765 0.674298 0.083135
+-0.510979 0.755723 0.409613
+-0.144097 0.918574 0.368045
+-0.571670 0.461122 0.678644
+-0.265479 0.329373 0.906110
+0.101404 0.492224 0.864542
+0.162095 0.786825 0.595509
+-0.831965 0.197624 0.518439
+-0.786069 -0.197624 0.585696
+-0.479878 -0.329373 0.813161
+-0.219582 -0.065875 0.973367
+</float_array>
+          <technique_common>
+            <accessor source="#fragment3-POSITION-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment3-Normal0">
+          <float_array id="fragment3-Normal0-array" count="42">
+-0.400983 0.914958 0.045431
+-0.400983 0.914958 0.045431
+-0.400983 0.914958 0.045431
+-0.400983 0.914958 0.045431
+-0.334416 0.854729 0.396994
+-0.334416 0.854729 0.396994
+-0.427364 0.403549 0.809017
+-0.427365 0.403548 0.809017
+-0.223822 0.681970 0.696291
+-0.223822 0.681970 0.696291
+-0.574642 0.071997 0.815232
+-0.574642 0.071997 0.815232
+-0.574642 0.071997 0.815232
+-0.574642 0.071997 0.815232
+</float_array>
+          <technique_common>
+            <accessor source="#fragment3-Normal0-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment3-UV0">
+          <float_array id="fragment3-UV0-array" count="28">
+0.419355 0.411025
+0.483871 0.411025
+0.516129 0.466898
+0.483871 0.522771
+0.419355 0.522771
+0.387097 0.466898
+0.387097 0.578643
+0.322581 0.578643
+0.290323 0.522771
+0.322581 0.466898
+0.419355 0.634516
+0.387097 0.690388
+0.322581 0.690388
+0.290323 0.634516
+</float_array>
+          <technique_common>
+            <accessor source="#fragment3-UV0-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment3-VERTEX">
+          <input semantic="POSITION" source="#fragment3-POSITION"/>
+          <input semantic="NORMAL" source="#fragment3-Normal0"/>
+        </vertices>
+        <triangles count="12" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment3-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment3-UV0"/><p> 3 3 1 1 2 2 1 1 3 3 0 0 0 0 3 3 5 5 5 5 3 3 4 4 5 5 7 7 8 8 4 4 7 7 5 5 7 7 4 4 6 6 8 8 9 9 5 5 7 7 10 10 13 13 13 13 11 11 12 12 10 10 7 7 6 6 11 11 13 13 10 10</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment4-lib" name="fragment4Mesh">
+      <mesh>
+        <source id="fragment4-POSITION">
+          <float_array id="fragment4-POSITION-array" count="36">
+-0.510979 0.755723 0.409613
+-0.733765 0.674298 0.083135
+-0.571670 0.461122 0.678644
+-0.932145 0.329373 0.150394
+-0.831965 0.197624 0.518439
+-0.786069 -0.197624 0.585696
+-0.986425 0.065875 -0.150394
+-0.940533 -0.329373 -0.083135
+-0.840353 -0.461122 0.284910
+-0.567710 -0.755723 0.326477
+-0.344925 -0.674298 0.652955
+-0.479878 -0.329373 0.813161
+</float_array>
+          <technique_common>
+            <accessor source="#fragment4-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment4-Normal0">
+          <float_array id="fragment4-Normal0-array" count="36">
+-0.762436 0.514917 0.391857
+-0.762436 0.514917 0.391857
+-0.762436 0.514917 0.391857
+-0.937823 0.154801 0.310683
+-0.937823 0.154801 0.310683
+-0.890853 -0.249696 0.379515
+-0.968623 -0.071996 0.237879
+-0.968623 -0.071996 0.237879
+-0.890853 -0.249696 0.379515
+-0.642851 -0.514918 0.567100
+-0.642851 -0.514918 0.567100
+-0.642851 -0.514918 0.567100
+</float_array>
+          <technique_common>
+            <accessor source="#fragment4-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment4-UV0">
+          <float_array id="fragment4-UV0-array" count="32">
+0.419355 0.522771
+0.483871 0.522771
+0.503808 0.584129
+0.451613 0.622051
+0.399418 0.584129
+0.580645 0.578643
+0.612903 0.634516
+0.580645 0.690388
+0.516129 0.690388
+0.483871 0.634516
+0.516129 0.578643
+0.161290 0.789669
+0.109096 0.751747
+0.129032 0.690388
+0.193548 0.690388
+0.213485 0.751747
+</float_array>
+          <technique_common>
+            <accessor source="#fragment4-UV0-array" count="16" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment4-VERTEX">
+          <input semantic="POSITION" source="#fragment4-POSITION"/>
+          <input semantic="NORMAL" source="#fragment4-Normal0"/>
+        </vertices>
+        <triangles count="10" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment4-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment4-UV0"/><p> 3 2 2 4 0 0 2 4 3 2 4 3 0 0 1 1 3 2 5 8 7 6 8 7 6 5 4 9 3 10 7 6 5 8 6 5 4 9 6 5 5 8 10 13 5 15 8 11 5 15 10 13 11 14 8 11 9 12 10 13</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment5-lib" name="fragment5Mesh">
+      <mesh>
+        <source id="fragment5-POSITION">
+          <float_array id="fragment5-POSITION-array" count="48">
+-0.842332 0.147301 -0.518439
+-0.707379 -0.197624 -0.678644
+-0.986425 0.065875 -0.150394
+-0.374046 -0.197624 -0.906110
+0.265479 -0.329373 -0.906110
+-0.768071 -0.492224 -0.409613
+-0.940533 -0.329373 -0.083135
+-0.101404 -0.492224 -0.864542
+-0.840353 -0.461122 0.284910
+-0.162095 -0.786825 -0.595509
+-0.495428 -0.786825 -0.368045
+0.510979 -0.755723 -0.409613
+0.144097 -0.918574 -0.368045
+0.571670 -0.461122 -0.678644
+-0.395248 -0.918574 -0.000000
+-0.567710 -0.755723 0.326477
+</float_array>
+          <technique_common>
+            <accessor source="#fragment5-POSITION-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment5-Normal0">
+          <float_array id="fragment5-Normal0-array" count="48">
+-0.903875 -0.171636 -0.391855
+-0.668159 -0.421959 -0.612792
+-0.903875 -0.171636 -0.391855
+-0.475144 -0.537975 -0.696291
+0.223822 -0.681970 -0.696291
+-0.727832 -0.551876 -0.407055
+-0.836096 -0.516857 -0.183853
+-0.134516 -0.652955 -0.745356
+-0.729968 -0.681970 -0.045431
+-0.134516 -0.652955 -0.745356
+-0.645016 -0.652955 -0.396994
+0.223822 -0.681970 -0.696291
+0.223822 -0.681970 -0.696291
+0.223822 -0.681970 -0.696291
+-0.729968 -0.681970 -0.045431
+-0.729968 -0.681970 -0.045431
+</float_array>
+          <technique_common>
+            <accessor source="#fragment5-Normal0-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment5-UV0">
+          <float_array id="fragment5-UV0-array" count="36">
+0.612903 0.522771
+0.677419 0.522771
+0.697356 0.584129
+0.645161 0.622051
+0.592967 0.584129
+0.709677 0.466898
+0.774194 0.466898
+0.806452 0.522771
+0.774194 0.578643
+0.709677 0.578643
+0.903226 0.466898
+0.870968 0.522771
+0.806452 0.411025
+0.870968 0.411025
+0.806452 0.634516
+0.774194 0.690388
+0.709677 0.690388
+0.677419 0.634516
+</float_array>
+          <technique_common>
+            <accessor source="#fragment5-UV0-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment5-VERTEX">
+          <input semantic="POSITION" source="#fragment5-POSITION"/>
+          <input semantic="NORMAL" source="#fragment5-Normal0"/>
+        </vertices>
+        <triangles count="15" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment5-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment5-UV0"/><p> 1 1 2 4 0 0 6 3 1 1 5 2 2 4 1 1 6 3 10 8 3 5 7 6 3 5 10 8 5 9 5 9 1 1 3 5 10 8 7 6 9 7 7 6 12 11 9 7 11 10 4 12 13 13 12 11 4 12 11 10 4 12 12 11 7 6 8 16 14 14 15 15 6 17 10 8 14 14 10 8 6 17 5 9 6 17 14 14 8 16</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment6-lib" name="fragment6Mesh">
+      <mesh>
+        <source id="fragment6-POSITION">
+          <float_array id="fragment6-POSITION-array" count="42">
+0.567710 0.755723 -0.326477
+-0.050324 0.755723 -0.652955
+0.840353 0.461122 -0.284910
+0.344925 0.674298 -0.652955
+-0.310619 0.492224 -0.813161
+0.786069 0.197624 -0.585696
+0.479878 0.329373 -0.813161
+-0.175666 0.147301 -0.973367
+0.219582 0.065875 -0.973367
+0.831965 -0.197624 -0.518439
+0.571670 -0.461122 -0.678644
+0.265479 -0.329373 -0.906110
+-0.101404 -0.492224 -0.864542
+-0.374046 -0.197624 -0.906110
+</float_array>
+          <technique_common>
+            <accessor source="#fragment6-POSITION-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment6-Normal0">
+          <float_array id="fragment6-Normal0-array" count="42">
+0.642851 0.514918 -0.567100
+0.092495 0.448981 -0.888741
+0.642851 0.514918 -0.567100
+0.313455 0.498142 -0.808456
+0.092495 0.448981 -0.888741
+0.631207 0.154800 -0.760010
+0.438361 0.285433 -0.852272
+0.047069 0.228478 -0.972411
+0.269653 0.114649 -0.956108
+0.574642 -0.071997 -0.815232
+0.574642 -0.071997 -0.815231
+0.364821 -0.114865 -0.923965
+-0.035360 -0.171639 -0.984525
+-0.035360 -0.171639 -0.984525
+</float_array>
+          <technique_common>
+            <accessor source="#fragment6-Normal0-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment6-UV0">
+          <float_array id="fragment6-UV0-array" count="44">
+0.225806 0.299280
+0.205870 0.237922
+0.258065 0.200000
+0.310259 0.237922
+0.290323 0.299280
+0.580645 0.355153
+0.612903 0.299280
+0.677419 0.299280
+0.709677 0.355153
+0.677419 0.411025
+0.612903 0.411025
+0.903226 0.355153
+0.870968 0.411025
+0.806452 0.411025
+0.774194 0.355153
+0.806452 0.299280
+0.870968 0.299280
+0.689741 0.405539
+0.741935 0.367618
+0.794130 0.405539
+0.774194 0.466898
+0.709677 0.466898
+</float_array>
+          <technique_common>
+            <accessor source="#fragment6-UV0-array" count="22" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment6-VERTEX">
+          <input semantic="POSITION" source="#fragment6-POSITION"/>
+          <input semantic="NORMAL" source="#fragment6-Normal0"/>
+        </vertices>
+        <triangles count="14" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment6-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment6-UV0"/><p> 5 2 3 4 2 1 3 4 5 2 6 3 2 1 3 4 0 0 8 8 3 6 6 7 1 5 7 9 4 10 3 6 8 8 1 5 7 9 1 5 8 8 8 14 9 11 11 13 9 11 8 14 5 16 11 13 9 11 10 12 8 14 6 15 5 16 12 20 8 18 11 19 8 18 12 20 7 17 7 17 12 20 13 21</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment7-lib" name="fragment7Mesh">
+      <mesh>
+        <source id="fragment7-POSITION">
+          <float_array id="fragment7-POSITION-array" count="51">
+0.831965 -0.197624 -0.518439
+0.571670 -0.461122 -0.678644
+0.932145 -0.329373 -0.150394
+0.510979 -0.755723 -0.409613
+0.733765 -0.674298 -0.083135
+0.589668 -0.755723 0.284910
+-0.495428 -0.786825 -0.368045
+-0.162095 -0.786825 -0.595509
+0.144097 -0.918574 -0.368045
+0.986425 -0.065875 0.150394
+0.842332 -0.147301 0.518439
+0.643952 -0.492224 0.585696
+0.310619 -0.492224 0.813161
+0.050324 -0.755723 0.652955
+0.222786 -0.918574 0.326477
+0.000000 -1.000000 -0.000000
+-0.395248 -0.918574 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#fragment7-POSITION-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment7-Normal0">
+          <float_array id="fragment7-Normal0-array" count="51">
+0.762436 -0.514917 -0.391857
+0.762436 -0.514917 -0.391857
+0.867091 -0.498141 0.002858
+0.563730 -0.805237 -0.183854
+0.716508 -0.697368 -0.017152
+0.623114 -0.750143 0.221393
+-0.193493 -0.939233 -0.283551
+-0.193493 -0.939233 -0.283551
+0.188262 -0.971899 -0.141313
+0.861296 -0.448979 0.237881
+0.861296 -0.448979 0.237881
+0.719623 -0.581472 0.379516
+0.386986 -0.727076 0.567100
+0.386986 -0.727076 0.567100
+0.416261 -0.888568 0.192804
+0.188261 -0.971899 -0.141313
+-0.193493 -0.939234 -0.283551
+</float_array>
+          <technique_common>
+            <accessor source="#fragment7-Normal0-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment7-UV0">
+          <float_array id="fragment7-UV0-array" count="44">
+0.987679 0.405539
+0.967742 0.466898
+0.903226 0.466898
+0.883289 0.405539
+0.935484 0.367618
+0.096774 0.411025
+0.129032 0.466898
+0.096774 0.522771
+0.032258 0.522771
+0.000000 0.466898
+0.032258 0.411025
+0.116711 0.584129
+0.064516 0.622051
+0.012321 0.584129
+1.000000 0.522771
+0.967742 0.578643
+0.903226 0.578643
+0.870968 0.522771
+0.786515 0.584129
+0.806452 0.522771
+0.890904 0.584129
+0.838710 0.622051
+</float_array>
+          <technique_common>
+            <accessor source="#fragment7-UV0-array" count="22" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment7-VERTEX">
+          <input semantic="POSITION" source="#fragment7-POSITION"/>
+          <input semantic="NORMAL" source="#fragment7-Normal0"/>
+        </vertices>
+        <triangles count="17" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment7-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment7-UV0"/><p> 1 3 2 0 3 2 2 0 1 3 0 4 2 0 4 1 3 2 5 8 9 5 11 7 11 7 9 5 10 6 9 5 5 8 2 10 2 10 5 8 4 9 14 13 12 11 13 12 12 11 14 13 11 7 11 7 14 13 5 8 4 1 15 16 8 17 4 1 8 17 3 2 14 15 4 1 5 14 15 16 4 1 14 15 7 19 15 20 6 18 15 20 7 19 8 17 6 18 15 20 16 21</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment8-lib" name="fragment8Mesh">
+      <mesh>
+        <source id="fragment8-POSITION">
+          <float_array id="fragment8-POSITION-array" count="39">
+-0.265479 0.329373 0.906110
+-0.219582 -0.065875 0.973367
+-0.479878 -0.329373 0.813161
+0.050324 -0.755723 0.652955
+-0.344925 -0.674298 0.652955
+-0.567710 -0.755723 0.326477
+0.222786 -0.918574 0.326477
+-0.395248 -0.918574 -0.000000
+0.000000 -1.000000 -0.000000
+0.175666 -0.147301 0.973367
+0.374046 0.197624 0.906110
+0.101404 0.492224 0.864542
+0.310619 -0.492224 0.813161
+</float_array>
+          <technique_common>
+            <accessor source="#fragment8-POSITION-array" count="13" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment8-Normal0">
+          <float_array id="fragment8-Normal0-array" count="39">
+0.035360 0.171639 0.984525
+-0.047069 -0.228477 0.972411
+-0.092495 -0.448981 0.888741
+-0.150394 -0.730025 0.666667
+-0.150394 -0.730026 0.666667
+-0.188492 -0.914958 0.356822
+-0.188492 -0.914958 0.356822
+-0.188492 -0.914958 0.356822
+-0.188492 -0.914959 0.356822
+-0.047069 -0.228478 0.972411
+0.035360 0.171639 0.984525
+0.035360 0.171639 0.984525
+-0.092495 -0.448981 0.888741
+</float_array>
+          <technique_common>
+            <accessor source="#fragment8-Normal0-array" count="13" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment8-UV0">
+          <float_array id="fragment8-UV0-array" count="34">
+0.310259 0.584129
+0.258065 0.622051
+0.205870 0.584129
+0.225806 0.522771
+0.290323 0.522771
+0.193548 0.578643
+0.225806 0.634516
+0.193548 0.690388
+0.129032 0.690388
+0.096774 0.634516
+0.129032 0.578643
+1.000000 0.634516
+0.967742 0.690388
+0.903226 0.690388
+0.870968 0.634516
+0.903226 0.578643
+0.967742 0.578643
+</float_array>
+          <technique_common>
+            <accessor source="#fragment8-UV0-array" count="17" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment8-VERTEX">
+          <input semantic="POSITION" source="#fragment8-POSITION"/>
+          <input semantic="NORMAL" source="#fragment8-Normal0"/>
+        </vertices>
+        <triangles count="11" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment8-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment8-UV0"/><p> 9 2 11 4 1 1 11 4 9 2 10 3 1 1 11 4 0 0 1 6 3 9 9 5 9 5 3 9 12 10 4 8 1 6 2 7 3 9 1 6 4 8 4 12 8 15 6 16 4 12 6 16 3 11 5 13 8 15 4 12 8 15 5 13 7 14</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="fragment9-lib" name="fragment9Mesh">
+      <mesh>
+        <source id="fragment9-POSITION">
+          <float_array id="fragment9-POSITION-array" count="36">
+0.495428 0.786825 0.368045
+0.162095 0.786825 0.595509
+0.768071 0.492224 0.409613
+0.101404 0.492224 0.864542
+0.940533 0.329373 0.083135
+0.707379 0.197624 0.678644
+0.374046 0.197624 0.906110
+0.986425 -0.065875 0.150394
+0.842332 -0.147301 0.518439
+0.175666 -0.147301 0.973367
+0.643952 -0.492224 0.585696
+0.310619 -0.492224 0.813161
+</float_array>
+          <technique_common>
+            <accessor source="#fragment9-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment9-Normal0">
+          <float_array id="fragment9-Normal0-array" count="36">
+0.475144 0.537975 0.696291
+0.475144 0.537975 0.696291
+0.668159 0.421959 0.612792
+0.475144 0.537975 0.696291
+0.903875 0.171636 0.391855
+0.655350 0.200041 0.728354
+0.552068 0.201774 0.809017
+0.903875 0.171636 0.391855
+0.721649 -0.038684 0.691178
+0.556309 -0.160991 0.815231
+0.556309 -0.160991 0.815231
+0.556309 -0.160991 0.815231
+</float_array>
+          <technique_common>
+            <accessor source="#fragment9-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fragment9-UV0">
+          <float_array id="fragment9-UV0-array" count="26">
+0.290323 0.411025
+0.322581 0.466898
+0.290323 0.522771
+0.225806 0.522771
+0.193548 0.466898
+0.225806 0.411025
+0.129032 0.466898
+0.109096 0.405539
+0.161290 0.367618
+0.213485 0.405539
+0.193548 0.578643
+0.129032 0.578643
+0.096774 0.522771
+</float_array>
+          <technique_common>
+            <accessor source="#fragment9-UV0-array" count="13" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fragment9-VERTEX">
+          <input semantic="POSITION" source="#fragment9-POSITION"/>
+          <input semantic="NORMAL" source="#fragment9-Normal0"/>
+        </vertices>
+        <triangles count="11" material="lambert1"><input semantic="VERTEX" offset="0" source="#fragment9-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#fragment9-UV0"/><p> 3 2 0 0 1 1 0 0 6 3 2 5 6 3 0 0 3 2 2 5 6 3 5 4 7 7 5 4 8 6 5 4 7 7 4 8 5 4 4 8 2 9 8 6 6 3 9 10 6 3 8 6 5 4 9 10 10 12 8 6 10 12 9 10 11 11</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="fragment1-anim" name="fragment1"></animation>
+    <animation><source id="fragment1-translate.X-input"><float_array id="fragment1-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.X-output"><float_array id="fragment1-translate.X-output-array" count="2">0.000000 0.748451</float_array><technique_common><accessor source="#fragment1-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.X-interpolation"><Name_array id="fragment1-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-translate.X-intan"><float_array id="fragment1-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 0.748451</float_array><technique_common><accessor source="#fragment1-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.X-outtan"><float_array id="fragment1-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-translate.X"><input semantic="INPUT" source="#fragment1-translate.X-input"></input><input semantic="OUTPUT" source="#fragment1-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment1-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-translate.X-outtan"></input></sampler><channel source="#fragment1-translate.X" target="fragment1/translate.X"></channel></animation>
+    <animation><source id="fragment1-translate.Y-input"><float_array id="fragment1-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Y-output"><float_array id="fragment1-translate.Y-output-array" count="2">0.000000 0.175199</float_array><technique_common><accessor source="#fragment1-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Y-interpolation"><Name_array id="fragment1-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-translate.Y-intan"><float_array id="fragment1-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 0.175199</float_array><technique_common><accessor source="#fragment1-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Y-outtan"><float_array id="fragment1-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-translate.Y"><input semantic="INPUT" source="#fragment1-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment1-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment1-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-translate.Y-outtan"></input></sampler><channel source="#fragment1-translate.Y" target="fragment1/translate.Y"></channel></animation>
+    <animation><source id="fragment1-translate.Z-input"><float_array id="fragment1-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Z-output"><float_array id="fragment1-translate.Z-output-array" count="2">0.000000 0.161567</float_array><technique_common><accessor source="#fragment1-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Z-interpolation"><Name_array id="fragment1-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-translate.Z-intan"><float_array id="fragment1-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 0.161567</float_array><technique_common><accessor source="#fragment1-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-translate.Z-outtan"><float_array id="fragment1-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-translate.Z"><input semantic="INPUT" source="#fragment1-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment1-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment1-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-translate.Z-outtan"></input></sampler><channel source="#fragment1-translate.Z" target="fragment1/translate.Z"></channel></animation>
+    <animation><source id="fragment1-rotateX.ANGLE-input"><float_array id="fragment1-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateX.ANGLE-output"><float_array id="fragment1-rotateX.ANGLE-output-array" count="2">0.000000 29.854082</float_array><technique_common><accessor source="#fragment1-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateX.ANGLE-interpolation"><Name_array id="fragment1-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-rotateX.ANGLE-intan"><float_array id="fragment1-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 29.854082</float_array><technique_common><accessor source="#fragment1-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateX.ANGLE-outtan"><float_array id="fragment1-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-rotateX.ANGLE"><input semantic="INPUT" source="#fragment1-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment1-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment1-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment1-rotateX.ANGLE" target="fragment1/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment1-rotateY.ANGLE-input"><float_array id="fragment1-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateY.ANGLE-output"><float_array id="fragment1-rotateY.ANGLE-output-array" count="2">0.000000 34.712540</float_array><technique_common><accessor source="#fragment1-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateY.ANGLE-interpolation"><Name_array id="fragment1-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-rotateY.ANGLE-intan"><float_array id="fragment1-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 34.712540</float_array><technique_common><accessor source="#fragment1-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateY.ANGLE-outtan"><float_array id="fragment1-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-rotateY.ANGLE"><input semantic="INPUT" source="#fragment1-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment1-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment1-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment1-rotateY.ANGLE" target="fragment1/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment1-rotateZ.ANGLE-input"><float_array id="fragment1-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment1-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateZ.ANGLE-output"><float_array id="fragment1-rotateZ.ANGLE-output-array" count="2">0.000000 23.344072</float_array><technique_common><accessor source="#fragment1-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateZ.ANGLE-interpolation"><Name_array id="fragment1-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment1-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment1-rotateZ.ANGLE-intan"><float_array id="fragment1-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 23.344072</float_array><technique_common><accessor source="#fragment1-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment1-rotateZ.ANGLE-outtan"><float_array id="fragment1-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment1-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment1-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment1-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment1-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment1-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment1-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment1-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment1-rotateZ.ANGLE" target="fragment1/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment2-anim" name="fragment2"></animation>
+    <animation><source id="fragment2-translate.X-input"><float_array id="fragment2-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.X-output"><float_array id="fragment2-translate.X-output-array" count="2">0.000000 -0.842896</float_array><technique_common><accessor source="#fragment2-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.X-interpolation"><Name_array id="fragment2-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-translate.X-intan"><float_array id="fragment2-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 -0.842896</float_array><technique_common><accessor source="#fragment2-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.X-outtan"><float_array id="fragment2-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-translate.X"><input semantic="INPUT" source="#fragment2-translate.X-input"></input><input semantic="OUTPUT" source="#fragment2-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment2-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-translate.X-outtan"></input></sampler><channel source="#fragment2-translate.X" target="fragment2/translate.X"></channel></animation>
+    <animation><source id="fragment2-translate.Y-input"><float_array id="fragment2-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Y-output"><float_array id="fragment2-translate.Y-output-array" count="2">0.000000 0.057602</float_array><technique_common><accessor source="#fragment2-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Y-interpolation"><Name_array id="fragment2-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-translate.Y-intan"><float_array id="fragment2-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 0.057602</float_array><technique_common><accessor source="#fragment2-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Y-outtan"><float_array id="fragment2-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-translate.Y"><input semantic="INPUT" source="#fragment2-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment2-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment2-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-translate.Y-outtan"></input></sampler><channel source="#fragment2-translate.Y" target="fragment2/translate.Y"></channel></animation>
+    <animation><source id="fragment2-translate.Z-input"><float_array id="fragment2-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Z-output"><float_array id="fragment2-translate.Z-output-array" count="2">0.000000 -0.150987</float_array><technique_common><accessor source="#fragment2-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Z-interpolation"><Name_array id="fragment2-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-translate.Z-intan"><float_array id="fragment2-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 -0.150987</float_array><technique_common><accessor source="#fragment2-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-translate.Z-outtan"><float_array id="fragment2-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-translate.Z"><input semantic="INPUT" source="#fragment2-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment2-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment2-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-translate.Z-outtan"></input></sampler><channel source="#fragment2-translate.Z" target="fragment2/translate.Z"></channel></animation>
+    <animation><source id="fragment2-rotateX.ANGLE-input"><float_array id="fragment2-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateX.ANGLE-output"><float_array id="fragment2-rotateX.ANGLE-output-array" count="2">0.000000 39.636993</float_array><technique_common><accessor source="#fragment2-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateX.ANGLE-interpolation"><Name_array id="fragment2-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-rotateX.ANGLE-intan"><float_array id="fragment2-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 39.636993</float_array><technique_common><accessor source="#fragment2-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateX.ANGLE-outtan"><float_array id="fragment2-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-rotateX.ANGLE"><input semantic="INPUT" source="#fragment2-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment2-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment2-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment2-rotateX.ANGLE" target="fragment2/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment2-rotateY.ANGLE-input"><float_array id="fragment2-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateY.ANGLE-output"><float_array id="fragment2-rotateY.ANGLE-output-array" count="2">0.000000 35.080608</float_array><technique_common><accessor source="#fragment2-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateY.ANGLE-interpolation"><Name_array id="fragment2-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-rotateY.ANGLE-intan"><float_array id="fragment2-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 35.080608</float_array><technique_common><accessor source="#fragment2-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateY.ANGLE-outtan"><float_array id="fragment2-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-rotateY.ANGLE"><input semantic="INPUT" source="#fragment2-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment2-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment2-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment2-rotateY.ANGLE" target="fragment2/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment2-rotateZ.ANGLE-input"><float_array id="fragment2-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment2-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateZ.ANGLE-output"><float_array id="fragment2-rotateZ.ANGLE-output-array" count="2">0.000000 43.300884</float_array><technique_common><accessor source="#fragment2-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateZ.ANGLE-interpolation"><Name_array id="fragment2-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment2-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment2-rotateZ.ANGLE-intan"><float_array id="fragment2-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 43.300884</float_array><technique_common><accessor source="#fragment2-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment2-rotateZ.ANGLE-outtan"><float_array id="fragment2-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment2-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment2-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment2-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment2-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment2-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment2-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment2-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment2-rotateZ.ANGLE" target="fragment2/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment3-anim" name="fragment3"></animation>
+    <animation><source id="fragment3-translate.X-input"><float_array id="fragment3-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.X-output"><float_array id="fragment3-translate.X-output-array" count="2">0.000000 -0.997781</float_array><technique_common><accessor source="#fragment3-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.X-interpolation"><Name_array id="fragment3-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-translate.X-intan"><float_array id="fragment3-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 -0.997781</float_array><technique_common><accessor source="#fragment3-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.X-outtan"><float_array id="fragment3-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-translate.X"><input semantic="INPUT" source="#fragment3-translate.X-input"></input><input semantic="OUTPUT" source="#fragment3-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment3-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-translate.X-outtan"></input></sampler><channel source="#fragment3-translate.X" target="fragment3/translate.X"></channel></animation>
+    <animation><source id="fragment3-translate.Y-input"><float_array id="fragment3-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Y-output"><float_array id="fragment3-translate.Y-output-array" count="2">0.000000 -0.496740</float_array><technique_common><accessor source="#fragment3-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Y-interpolation"><Name_array id="fragment3-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-translate.Y-intan"><float_array id="fragment3-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.496740</float_array><technique_common><accessor source="#fragment3-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Y-outtan"><float_array id="fragment3-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-translate.Y"><input semantic="INPUT" source="#fragment3-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment3-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment3-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-translate.Y-outtan"></input></sampler><channel source="#fragment3-translate.Y" target="fragment3/translate.Y"></channel></animation>
+    <animation><source id="fragment3-translate.Z-input"><float_array id="fragment3-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Z-output"><float_array id="fragment3-translate.Z-output-array" count="2">0.000000 1.075519</float_array><technique_common><accessor source="#fragment3-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Z-interpolation"><Name_array id="fragment3-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-translate.Z-intan"><float_array id="fragment3-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 1.075519</float_array><technique_common><accessor source="#fragment3-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-translate.Z-outtan"><float_array id="fragment3-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-translate.Z"><input semantic="INPUT" source="#fragment3-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment3-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment3-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-translate.Z-outtan"></input></sampler><channel source="#fragment3-translate.Z" target="fragment3/translate.Z"></channel></animation>
+    <animation><source id="fragment3-rotateX.ANGLE-input"><float_array id="fragment3-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateX.ANGLE-output"><float_array id="fragment3-rotateX.ANGLE-output-array" count="2">0.000000 32.717560</float_array><technique_common><accessor source="#fragment3-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateX.ANGLE-interpolation"><Name_array id="fragment3-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-rotateX.ANGLE-intan"><float_array id="fragment3-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 32.717560</float_array><technique_common><accessor source="#fragment3-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateX.ANGLE-outtan"><float_array id="fragment3-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-rotateX.ANGLE"><input semantic="INPUT" source="#fragment3-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment3-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment3-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment3-rotateX.ANGLE" target="fragment3/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment3-rotateY.ANGLE-input"><float_array id="fragment3-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateY.ANGLE-output"><float_array id="fragment3-rotateY.ANGLE-output-array" count="2">0.000000 25.046618</float_array><technique_common><accessor source="#fragment3-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateY.ANGLE-interpolation"><Name_array id="fragment3-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-rotateY.ANGLE-intan"><float_array id="fragment3-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 25.046618</float_array><technique_common><accessor source="#fragment3-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateY.ANGLE-outtan"><float_array id="fragment3-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-rotateY.ANGLE"><input semantic="INPUT" source="#fragment3-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment3-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment3-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment3-rotateY.ANGLE" target="fragment3/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment3-rotateZ.ANGLE-input"><float_array id="fragment3-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment3-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateZ.ANGLE-output"><float_array id="fragment3-rotateZ.ANGLE-output-array" count="2">0.000000 -11.587677</float_array><technique_common><accessor source="#fragment3-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateZ.ANGLE-interpolation"><Name_array id="fragment3-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment3-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment3-rotateZ.ANGLE-intan"><float_array id="fragment3-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -11.587677</float_array><technique_common><accessor source="#fragment3-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment3-rotateZ.ANGLE-outtan"><float_array id="fragment3-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment3-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment3-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment3-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment3-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment3-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment3-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment3-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment3-rotateZ.ANGLE" target="fragment3/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment4-anim" name="fragment4"></animation>
+    <animation><source id="fragment4-translate.X-input"><float_array id="fragment4-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.X-output"><float_array id="fragment4-translate.X-output-array" count="2">0.000000 -1.186716</float_array><technique_common><accessor source="#fragment4-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.X-interpolation"><Name_array id="fragment4-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-translate.X-intan"><float_array id="fragment4-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 -1.186716</float_array><technique_common><accessor source="#fragment4-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.X-outtan"><float_array id="fragment4-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-translate.X"><input semantic="INPUT" source="#fragment4-translate.X-input"></input><input semantic="OUTPUT" source="#fragment4-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment4-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-translate.X-outtan"></input></sampler><channel source="#fragment4-translate.X" target="fragment4/translate.X"></channel></animation>
+    <animation><source id="fragment4-translate.Y-input"><float_array id="fragment4-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Y-output"><float_array id="fragment4-translate.Y-output-array" count="2">0.000000 -0.090099</float_array><technique_common><accessor source="#fragment4-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Y-interpolation"><Name_array id="fragment4-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-translate.Y-intan"><float_array id="fragment4-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.090099</float_array><technique_common><accessor source="#fragment4-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Y-outtan"><float_array id="fragment4-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-translate.Y"><input semantic="INPUT" source="#fragment4-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment4-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment4-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-translate.Y-outtan"></input></sampler><channel source="#fragment4-translate.Y" target="fragment4/translate.Y"></channel></animation>
+    <animation><source id="fragment4-translate.Z-input"><float_array id="fragment4-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Z-output"><float_array id="fragment4-translate.Z-output-array" count="2">0.000000 0.055875</float_array><technique_common><accessor source="#fragment4-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Z-interpolation"><Name_array id="fragment4-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-translate.Z-intan"><float_array id="fragment4-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 0.055875</float_array><technique_common><accessor source="#fragment4-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-translate.Z-outtan"><float_array id="fragment4-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-translate.Z"><input semantic="INPUT" source="#fragment4-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment4-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment4-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-translate.Z-outtan"></input></sampler><channel source="#fragment4-translate.Z" target="fragment4/translate.Z"></channel></animation>
+    <animation><source id="fragment4-rotateX.ANGLE-input"><float_array id="fragment4-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateX.ANGLE-output"><float_array id="fragment4-rotateX.ANGLE-output-array" count="2">0.000000 -6.667526</float_array><technique_common><accessor source="#fragment4-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateX.ANGLE-interpolation"><Name_array id="fragment4-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-rotateX.ANGLE-intan"><float_array id="fragment4-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -6.667526</float_array><technique_common><accessor source="#fragment4-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateX.ANGLE-outtan"><float_array id="fragment4-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-rotateX.ANGLE"><input semantic="INPUT" source="#fragment4-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment4-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment4-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment4-rotateX.ANGLE" target="fragment4/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment4-rotateY.ANGLE-input"><float_array id="fragment4-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateY.ANGLE-output"><float_array id="fragment4-rotateY.ANGLE-output-array" count="2">0.000000 37.161594</float_array><technique_common><accessor source="#fragment4-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateY.ANGLE-interpolation"><Name_array id="fragment4-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-rotateY.ANGLE-intan"><float_array id="fragment4-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 37.161594</float_array><technique_common><accessor source="#fragment4-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateY.ANGLE-outtan"><float_array id="fragment4-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-rotateY.ANGLE"><input semantic="INPUT" source="#fragment4-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment4-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment4-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment4-rotateY.ANGLE" target="fragment4/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment4-rotateZ.ANGLE-input"><float_array id="fragment4-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment4-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateZ.ANGLE-output"><float_array id="fragment4-rotateZ.ANGLE-output-array" count="2">0.000000 46.281849</float_array><technique_common><accessor source="#fragment4-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateZ.ANGLE-interpolation"><Name_array id="fragment4-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment4-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment4-rotateZ.ANGLE-intan"><float_array id="fragment4-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 46.281849</float_array><technique_common><accessor source="#fragment4-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment4-rotateZ.ANGLE-outtan"><float_array id="fragment4-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment4-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment4-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment4-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment4-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment4-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment4-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment4-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment4-rotateZ.ANGLE" target="fragment4/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment5-anim" name="fragment5"></animation>
+    <animation><source id="fragment5-translate.X-input"><float_array id="fragment5-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.X-output"><float_array id="fragment5-translate.X-output-array" count="2">0.000000 -0.696341</float_array><technique_common><accessor source="#fragment5-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.X-interpolation"><Name_array id="fragment5-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-translate.X-intan"><float_array id="fragment5-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 -0.696341</float_array><technique_common><accessor source="#fragment5-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.X-outtan"><float_array id="fragment5-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-translate.X"><input semantic="INPUT" source="#fragment5-translate.X-input"></input><input semantic="OUTPUT" source="#fragment5-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment5-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-translate.X-outtan"></input></sampler><channel source="#fragment5-translate.X" target="fragment5/translate.X"></channel></animation>
+    <animation><source id="fragment5-translate.Y-input"><float_array id="fragment5-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Y-output"><float_array id="fragment5-translate.Y-output-array" count="2">0.000000 -0.450900</float_array><technique_common><accessor source="#fragment5-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Y-interpolation"><Name_array id="fragment5-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-translate.Y-intan"><float_array id="fragment5-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.450900</float_array><technique_common><accessor source="#fragment5-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Y-outtan"><float_array id="fragment5-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-translate.Y"><input semantic="INPUT" source="#fragment5-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment5-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment5-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-translate.Y-outtan"></input></sampler><channel source="#fragment5-translate.Y" target="fragment5/translate.Y"></channel></animation>
+    <animation><source id="fragment5-translate.Z-input"><float_array id="fragment5-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Z-output"><float_array id="fragment5-translate.Z-output-array" count="2">0.000000 -0.640816</float_array><technique_common><accessor source="#fragment5-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Z-interpolation"><Name_array id="fragment5-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-translate.Z-intan"><float_array id="fragment5-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 -0.640816</float_array><technique_common><accessor source="#fragment5-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-translate.Z-outtan"><float_array id="fragment5-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-translate.Z"><input semantic="INPUT" source="#fragment5-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment5-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment5-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-translate.Z-outtan"></input></sampler><channel source="#fragment5-translate.Z" target="fragment5/translate.Z"></channel></animation>
+    <animation><source id="fragment5-rotateX.ANGLE-input"><float_array id="fragment5-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateX.ANGLE-output"><float_array id="fragment5-rotateX.ANGLE-output-array" count="2">0.000000 -46.520432</float_array><technique_common><accessor source="#fragment5-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateX.ANGLE-interpolation"><Name_array id="fragment5-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-rotateX.ANGLE-intan"><float_array id="fragment5-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -46.520432</float_array><technique_common><accessor source="#fragment5-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateX.ANGLE-outtan"><float_array id="fragment5-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-rotateX.ANGLE"><input semantic="INPUT" source="#fragment5-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment5-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment5-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment5-rotateX.ANGLE" target="fragment5/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment5-rotateY.ANGLE-input"><float_array id="fragment5-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateY.ANGLE-output"><float_array id="fragment5-rotateY.ANGLE-output-array" count="2">0.000000 -35.733261</float_array><technique_common><accessor source="#fragment5-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateY.ANGLE-interpolation"><Name_array id="fragment5-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-rotateY.ANGLE-intan"><float_array id="fragment5-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -35.733261</float_array><technique_common><accessor source="#fragment5-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateY.ANGLE-outtan"><float_array id="fragment5-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-rotateY.ANGLE"><input semantic="INPUT" source="#fragment5-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment5-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment5-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment5-rotateY.ANGLE" target="fragment5/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment5-rotateZ.ANGLE-input"><float_array id="fragment5-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment5-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateZ.ANGLE-output"><float_array id="fragment5-rotateZ.ANGLE-output-array" count="2">0.000000 13.254741</float_array><technique_common><accessor source="#fragment5-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateZ.ANGLE-interpolation"><Name_array id="fragment5-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment5-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment5-rotateZ.ANGLE-intan"><float_array id="fragment5-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 13.254741</float_array><technique_common><accessor source="#fragment5-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment5-rotateZ.ANGLE-outtan"><float_array id="fragment5-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment5-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment5-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment5-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment5-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment5-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment5-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment5-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment5-rotateZ.ANGLE" target="fragment5/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment6-anim" name="fragment6"></animation>
+    <animation><source id="fragment6-translate.X-input"><float_array id="fragment6-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.X-output"><float_array id="fragment6-translate.X-output-array" count="2">0.000000 0.225751</float_array><technique_common><accessor source="#fragment6-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.X-interpolation"><Name_array id="fragment6-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-translate.X-intan"><float_array id="fragment6-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 0.225751</float_array><technique_common><accessor source="#fragment6-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.X-outtan"><float_array id="fragment6-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-translate.X"><input semantic="INPUT" source="#fragment6-translate.X-input"></input><input semantic="OUTPUT" source="#fragment6-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment6-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-translate.X-outtan"></input></sampler><channel source="#fragment6-translate.X" target="fragment6/translate.X"></channel></animation>
+    <animation><source id="fragment6-translate.Y-input"><float_array id="fragment6-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Y-output"><float_array id="fragment6-translate.Y-output-array" count="2">0.000000 0.457800</float_array><technique_common><accessor source="#fragment6-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Y-interpolation"><Name_array id="fragment6-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-translate.Y-intan"><float_array id="fragment6-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 0.457800</float_array><technique_common><accessor source="#fragment6-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Y-outtan"><float_array id="fragment6-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-translate.Y"><input semantic="INPUT" source="#fragment6-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment6-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment6-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-translate.Y-outtan"></input></sampler><channel source="#fragment6-translate.Y" target="fragment6/translate.Y"></channel></animation>
+    <animation><source id="fragment6-translate.Z-input"><float_array id="fragment6-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Z-output"><float_array id="fragment6-translate.Z-output-array" count="2">0.000000 -0.684771</float_array><technique_common><accessor source="#fragment6-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Z-interpolation"><Name_array id="fragment6-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-translate.Z-intan"><float_array id="fragment6-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 -0.684771</float_array><technique_common><accessor source="#fragment6-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-translate.Z-outtan"><float_array id="fragment6-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-translate.Z"><input semantic="INPUT" source="#fragment6-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment6-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment6-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-translate.Z-outtan"></input></sampler><channel source="#fragment6-translate.Z" target="fragment6/translate.Z"></channel></animation>
+    <animation><source id="fragment6-rotateX.ANGLE-input"><float_array id="fragment6-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateX.ANGLE-output"><float_array id="fragment6-rotateX.ANGLE-output-array" count="2">0.000000 -21.818697</float_array><technique_common><accessor source="#fragment6-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateX.ANGLE-interpolation"><Name_array id="fragment6-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-rotateX.ANGLE-intan"><float_array id="fragment6-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -21.818697</float_array><technique_common><accessor source="#fragment6-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateX.ANGLE-outtan"><float_array id="fragment6-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-rotateX.ANGLE"><input semantic="INPUT" source="#fragment6-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment6-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment6-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment6-rotateX.ANGLE" target="fragment6/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment6-rotateY.ANGLE-input"><float_array id="fragment6-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateY.ANGLE-output"><float_array id="fragment6-rotateY.ANGLE-output-array" count="2">0.000000 -27.838818</float_array><technique_common><accessor source="#fragment6-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateY.ANGLE-interpolation"><Name_array id="fragment6-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-rotateY.ANGLE-intan"><float_array id="fragment6-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -27.838818</float_array><technique_common><accessor source="#fragment6-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateY.ANGLE-outtan"><float_array id="fragment6-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-rotateY.ANGLE"><input semantic="INPUT" source="#fragment6-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment6-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment6-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment6-rotateY.ANGLE" target="fragment6/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment6-rotateZ.ANGLE-input"><float_array id="fragment6-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment6-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateZ.ANGLE-output"><float_array id="fragment6-rotateZ.ANGLE-output-array" count="2">0.000000 7.391988</float_array><technique_common><accessor source="#fragment6-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateZ.ANGLE-interpolation"><Name_array id="fragment6-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment6-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment6-rotateZ.ANGLE-intan"><float_array id="fragment6-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 7.391988</float_array><technique_common><accessor source="#fragment6-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment6-rotateZ.ANGLE-outtan"><float_array id="fragment6-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment6-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment6-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment6-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment6-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment6-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment6-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment6-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment6-rotateZ.ANGLE" target="fragment6/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment7-anim" name="fragment7"></animation>
+    <animation><source id="fragment7-translate.X-input"><float_array id="fragment7-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.X-output"><float_array id="fragment7-translate.X-output-array" count="2">0.000000 0.525230</float_array><technique_common><accessor source="#fragment7-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.X-interpolation"><Name_array id="fragment7-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-translate.X-intan"><float_array id="fragment7-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 0.525230</float_array><technique_common><accessor source="#fragment7-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.X-outtan"><float_array id="fragment7-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-translate.X"><input semantic="INPUT" source="#fragment7-translate.X-input"></input><input semantic="OUTPUT" source="#fragment7-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment7-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-translate.X-outtan"></input></sampler><channel source="#fragment7-translate.X" target="fragment7/translate.X"></channel></animation>
+    <animation><source id="fragment7-translate.Y-input"><float_array id="fragment7-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Y-output"><float_array id="fragment7-translate.Y-output-array" count="2">0.000000 -0.463759</float_array><technique_common><accessor source="#fragment7-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Y-interpolation"><Name_array id="fragment7-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-translate.Y-intan"><float_array id="fragment7-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.463759</float_array><technique_common><accessor source="#fragment7-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Y-outtan"><float_array id="fragment7-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-translate.Y"><input semantic="INPUT" source="#fragment7-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment7-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment7-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-translate.Y-outtan"></input></sampler><channel source="#fragment7-translate.Y" target="fragment7/translate.Y"></channel></animation>
+    <animation><source id="fragment7-translate.Z-input"><float_array id="fragment7-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Z-output"><float_array id="fragment7-translate.Z-output-array" count="2">0.000000 0.179858</float_array><technique_common><accessor source="#fragment7-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Z-interpolation"><Name_array id="fragment7-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-translate.Z-intan"><float_array id="fragment7-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 0.179858</float_array><technique_common><accessor source="#fragment7-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-translate.Z-outtan"><float_array id="fragment7-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-translate.Z"><input semantic="INPUT" source="#fragment7-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment7-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment7-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-translate.Z-outtan"></input></sampler><channel source="#fragment7-translate.Z" target="fragment7/translate.Z"></channel></animation>
+    <animation><source id="fragment7-rotateX.ANGLE-input"><float_array id="fragment7-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateX.ANGLE-output"><float_array id="fragment7-rotateX.ANGLE-output-array" count="2">0.000000 10.214154</float_array><technique_common><accessor source="#fragment7-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateX.ANGLE-interpolation"><Name_array id="fragment7-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-rotateX.ANGLE-intan"><float_array id="fragment7-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 10.214154</float_array><technique_common><accessor source="#fragment7-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateX.ANGLE-outtan"><float_array id="fragment7-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-rotateX.ANGLE"><input semantic="INPUT" source="#fragment7-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment7-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment7-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment7-rotateX.ANGLE" target="fragment7/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment7-rotateY.ANGLE-input"><float_array id="fragment7-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateY.ANGLE-output"><float_array id="fragment7-rotateY.ANGLE-output-array" count="2">0.000000 -31.445398</float_array><technique_common><accessor source="#fragment7-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateY.ANGLE-interpolation"><Name_array id="fragment7-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-rotateY.ANGLE-intan"><float_array id="fragment7-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -31.445398</float_array><technique_common><accessor source="#fragment7-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateY.ANGLE-outtan"><float_array id="fragment7-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-rotateY.ANGLE"><input semantic="INPUT" source="#fragment7-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment7-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment7-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment7-rotateY.ANGLE" target="fragment7/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment7-rotateZ.ANGLE-input"><float_array id="fragment7-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment7-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateZ.ANGLE-output"><float_array id="fragment7-rotateZ.ANGLE-output-array" count="2">0.000000 -34.184830</float_array><technique_common><accessor source="#fragment7-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateZ.ANGLE-interpolation"><Name_array id="fragment7-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment7-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment7-rotateZ.ANGLE-intan"><float_array id="fragment7-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -34.184830</float_array><technique_common><accessor source="#fragment7-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment7-rotateZ.ANGLE-outtan"><float_array id="fragment7-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment7-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment7-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment7-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment7-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment7-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment7-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment7-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment7-rotateZ.ANGLE" target="fragment7/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment8-anim" name="fragment8"></animation>
+    <animation><source id="fragment8-translate.X-input"><float_array id="fragment8-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.X-output"><float_array id="fragment8-translate.X-output-array" count="2">0.000000 -0.070539</float_array><technique_common><accessor source="#fragment8-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.X-interpolation"><Name_array id="fragment8-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-translate.X-intan"><float_array id="fragment8-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 -0.070539</float_array><technique_common><accessor source="#fragment8-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.X-outtan"><float_array id="fragment8-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-translate.X"><input semantic="INPUT" source="#fragment8-translate.X-input"></input><input semantic="OUTPUT" source="#fragment8-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment8-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-translate.X-outtan"></input></sampler><channel source="#fragment8-translate.X" target="fragment8/translate.X"></channel></animation>
+    <animation><source id="fragment8-translate.Y-input"><float_array id="fragment8-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Y-output"><float_array id="fragment8-translate.Y-output-array" count="2">0.000000 -0.700542</float_array><technique_common><accessor source="#fragment8-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Y-interpolation"><Name_array id="fragment8-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-translate.Y-intan"><float_array id="fragment8-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.700542</float_array><technique_common><accessor source="#fragment8-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Y-outtan"><float_array id="fragment8-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-translate.Y"><input semantic="INPUT" source="#fragment8-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment8-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment8-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-translate.Y-outtan"></input></sampler><channel source="#fragment8-translate.Y" target="fragment8/translate.Y"></channel></animation>
+    <animation><source id="fragment8-translate.Z-input"><float_array id="fragment8-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Z-output"><float_array id="fragment8-translate.Z-output-array" count="2">0.000000 0.776025</float_array><technique_common><accessor source="#fragment8-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Z-interpolation"><Name_array id="fragment8-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-translate.Z-intan"><float_array id="fragment8-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 0.776025</float_array><technique_common><accessor source="#fragment8-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-translate.Z-outtan"><float_array id="fragment8-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-translate.Z"><input semantic="INPUT" source="#fragment8-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment8-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment8-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-translate.Z-outtan"></input></sampler><channel source="#fragment8-translate.Z" target="fragment8/translate.Z"></channel></animation>
+    <animation><source id="fragment8-rotateX.ANGLE-input"><float_array id="fragment8-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateX.ANGLE-output"><float_array id="fragment8-rotateX.ANGLE-output-array" count="2">0.000000 48.405399</float_array><technique_common><accessor source="#fragment8-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateX.ANGLE-interpolation"><Name_array id="fragment8-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-rotateX.ANGLE-intan"><float_array id="fragment8-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 48.405399</float_array><technique_common><accessor source="#fragment8-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateX.ANGLE-outtan"><float_array id="fragment8-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-rotateX.ANGLE"><input semantic="INPUT" source="#fragment8-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment8-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment8-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment8-rotateX.ANGLE" target="fragment8/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment8-rotateY.ANGLE-input"><float_array id="fragment8-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateY.ANGLE-output"><float_array id="fragment8-rotateY.ANGLE-output-array" count="2">0.000000 -35.878445</float_array><technique_common><accessor source="#fragment8-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateY.ANGLE-interpolation"><Name_array id="fragment8-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-rotateY.ANGLE-intan"><float_array id="fragment8-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -35.878445</float_array><technique_common><accessor source="#fragment8-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateY.ANGLE-outtan"><float_array id="fragment8-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-rotateY.ANGLE"><input semantic="INPUT" source="#fragment8-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment8-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment8-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment8-rotateY.ANGLE" target="fragment8/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment8-rotateZ.ANGLE-input"><float_array id="fragment8-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment8-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateZ.ANGLE-output"><float_array id="fragment8-rotateZ.ANGLE-output-array" count="2">0.000000 -21.485523</float_array><technique_common><accessor source="#fragment8-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateZ.ANGLE-interpolation"><Name_array id="fragment8-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment8-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment8-rotateZ.ANGLE-intan"><float_array id="fragment8-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -21.485523</float_array><technique_common><accessor source="#fragment8-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment8-rotateZ.ANGLE-outtan"><float_array id="fragment8-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment8-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment8-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment8-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment8-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment8-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment8-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment8-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment8-rotateZ.ANGLE" target="fragment8/rotateZ.ANGLE"></channel></animation>
+    <animation id="fragment9-anim" name="fragment9"></animation>
+    <animation><source id="fragment9-translate.X-input"><float_array id="fragment9-translate.X-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-translate.X-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.X-output"><float_array id="fragment9-translate.X-output-array" count="2">0.000000 0.282622</float_array><technique_common><accessor source="#fragment9-translate.X-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.X-interpolation"><Name_array id="fragment9-translate.X-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-translate.X-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-translate.X-intan"><float_array id="fragment9-translate.X-intan-array" count="4">0.000000 0.000000 2.819444 0.282622</float_array><technique_common><accessor source="#fragment9-translate.X-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.X-outtan"><float_array id="fragment9-translate.X-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-translate.X-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-translate.X"><input semantic="INPUT" source="#fragment9-translate.X-input"></input><input semantic="OUTPUT" source="#fragment9-translate.X-output"></input><input semantic="INTERPOLATION" source="#fragment9-translate.X-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-translate.X-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-translate.X-outtan"></input></sampler><channel source="#fragment9-translate.X" target="fragment9/translate.X"></channel></animation>
+    <animation><source id="fragment9-translate.Y-input"><float_array id="fragment9-translate.Y-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-translate.Y-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Y-output"><float_array id="fragment9-translate.Y-output-array" count="2">0.000000 -0.031383</float_array><technique_common><accessor source="#fragment9-translate.Y-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Y-interpolation"><Name_array id="fragment9-translate.Y-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-translate.Y-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-translate.Y-intan"><float_array id="fragment9-translate.Y-intan-array" count="4">0.000000 0.000000 2.819444 -0.031383</float_array><technique_common><accessor source="#fragment9-translate.Y-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Y-outtan"><float_array id="fragment9-translate.Y-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-translate.Y-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-translate.Y"><input semantic="INPUT" source="#fragment9-translate.Y-input"></input><input semantic="OUTPUT" source="#fragment9-translate.Y-output"></input><input semantic="INTERPOLATION" source="#fragment9-translate.Y-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-translate.Y-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-translate.Y-outtan"></input></sampler><channel source="#fragment9-translate.Y" target="fragment9/translate.Y"></channel></animation>
+    <animation><source id="fragment9-translate.Z-input"><float_array id="fragment9-translate.Z-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-translate.Z-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Z-output"><float_array id="fragment9-translate.Z-output-array" count="2">0.000000 1.409911</float_array><technique_common><accessor source="#fragment9-translate.Z-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Z-interpolation"><Name_array id="fragment9-translate.Z-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-translate.Z-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-translate.Z-intan"><float_array id="fragment9-translate.Z-intan-array" count="4">0.000000 0.000000 2.819444 1.409911</float_array><technique_common><accessor source="#fragment9-translate.Z-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-translate.Z-outtan"><float_array id="fragment9-translate.Z-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-translate.Z-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-translate.Z"><input semantic="INPUT" source="#fragment9-translate.Z-input"></input><input semantic="OUTPUT" source="#fragment9-translate.Z-output"></input><input semantic="INTERPOLATION" source="#fragment9-translate.Z-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-translate.Z-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-translate.Z-outtan"></input></sampler><channel source="#fragment9-translate.Z" target="fragment9/translate.Z"></channel></animation>
+    <animation><source id="fragment9-rotateX.ANGLE-input"><float_array id="fragment9-rotateX.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-rotateX.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateX.ANGLE-output"><float_array id="fragment9-rotateX.ANGLE-output-array" count="2">0.000000 71.776558</float_array><technique_common><accessor source="#fragment9-rotateX.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateX.ANGLE-interpolation"><Name_array id="fragment9-rotateX.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-rotateX.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-rotateX.ANGLE-intan"><float_array id="fragment9-rotateX.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 71.776558</float_array><technique_common><accessor source="#fragment9-rotateX.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateX.ANGLE-outtan"><float_array id="fragment9-rotateX.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-rotateX.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-rotateX.ANGLE"><input semantic="INPUT" source="#fragment9-rotateX.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment9-rotateX.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment9-rotateX.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-rotateX.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-rotateX.ANGLE-outtan"></input></sampler><channel source="#fragment9-rotateX.ANGLE" target="fragment9/rotateX.ANGLE"></channel></animation>
+    <animation><source id="fragment9-rotateY.ANGLE-input"><float_array id="fragment9-rotateY.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-rotateY.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateY.ANGLE-output"><float_array id="fragment9-rotateY.ANGLE-output-array" count="2">0.000000 -45.656841</float_array><technique_common><accessor source="#fragment9-rotateY.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateY.ANGLE-interpolation"><Name_array id="fragment9-rotateY.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-rotateY.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-rotateY.ANGLE-intan"><float_array id="fragment9-rotateY.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -45.656841</float_array><technique_common><accessor source="#fragment9-rotateY.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateY.ANGLE-outtan"><float_array id="fragment9-rotateY.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-rotateY.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-rotateY.ANGLE"><input semantic="INPUT" source="#fragment9-rotateY.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment9-rotateY.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment9-rotateY.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-rotateY.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-rotateY.ANGLE-outtan"></input></sampler><channel source="#fragment9-rotateY.ANGLE" target="fragment9/rotateY.ANGLE"></channel></animation>
+    <animation><source id="fragment9-rotateZ.ANGLE-input"><float_array id="fragment9-rotateZ.ANGLE-input-array" count="2">0.041667 4.208333</float_array><technique_common><accessor source="#fragment9-rotateZ.ANGLE-input-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateZ.ANGLE-output"><float_array id="fragment9-rotateZ.ANGLE-output-array" count="2">0.000000 -63.553822</float_array><technique_common><accessor source="#fragment9-rotateZ.ANGLE-output-array" count="2" stride="1"><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateZ.ANGLE-interpolation"><Name_array id="fragment9-rotateZ.ANGLE-interpolation-array" count="2">BEZIER BEZIER</Name_array><technique_common><accessor source="#fragment9-rotateZ.ANGLE-interpolation-array" count="2" stride="1"><param type="name"></param></accessor></technique_common></source><source id="fragment9-rotateZ.ANGLE-intan"><float_array id="fragment9-rotateZ.ANGLE-intan-array" count="4">0.000000 0.000000 2.819444 -63.553822</float_array><technique_common><accessor source="#fragment9-rotateZ.ANGLE-intan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><source id="fragment9-rotateZ.ANGLE-outtan"><float_array id="fragment9-rotateZ.ANGLE-outtan-array" count="4">1.430556 0.000000 0.000000 0.000000</float_array><technique_common><accessor source="#fragment9-rotateZ.ANGLE-outtan-array" count="2" stride="2"><param type="float"></param><param type="float"></param></accessor></technique_common></source><sampler id="fragment9-rotateZ.ANGLE"><input semantic="INPUT" source="#fragment9-rotateZ.ANGLE-input"></input><input semantic="OUTPUT" source="#fragment9-rotateZ.ANGLE-output"></input><input semantic="INTERPOLATION" source="#fragment9-rotateZ.ANGLE-interpolation"></input><input semantic="IN_TANGENT" source="#fragment9-rotateZ.ANGLE-intan"></input><input semantic="OUT_TANGENT" source="#fragment9-rotateZ.ANGLE-outtan"></input></sampler><channel source="#fragment9-rotateZ.ANGLE" target="fragment9/rotateZ.ANGLE"></channel></animation>
+  </library_animations>
+  <library_visual_scenes>
+    <visual_scene id="explode" name="explode">
+      <node name="fragment1" id="fragment1" sid="fragment1"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">0.381820 0.335313 -0.028723</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">-0.381820 -0.335313 0.028723</translate><translate sid="scalePivot">0.381820 0.335313 -0.028723</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">-0.381820 -0.335313 0.028723</translate><instance_geometry url="#fragment1-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment2" id="fragment2" sid="fragment2"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">-0.518374 0.360475 -0.411487</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">0.518374 -0.360475 0.411487</translate><translate sid="scalePivot">-0.518374 0.360475 -0.411487</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">0.518374 -0.360475 0.411487</translate><instance_geometry url="#fragment2-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment3" id="fragment3" sid="fragment3"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">-0.334935 0.335313 0.323445</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">0.334935 -0.335313 -0.323445</translate><translate sid="scalePivot">-0.334935 0.335313 0.323445</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">0.334935 -0.335313 -0.323445</translate><instance_geometry url="#fragment3-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment4" id="fragment4" sid="fragment4"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">-0.665675 0.000000 0.331383</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">0.665675 -0.000000 -0.331383</translate><translate sid="scalePivot">-0.665675 0.000000 0.331383</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">0.665675 -0.000000 -0.331383</translate><instance_geometry url="#fragment4-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment5" id="fragment5" sid="fragment5"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">-0.207378 -0.385637 -0.289816</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">0.207378 0.385637 0.289816</translate><translate sid="scalePivot">-0.207378 -0.385637 -0.289816</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">0.207378 0.385637 0.289816</translate><instance_geometry url="#fragment5-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment6" id="fragment6" sid="fragment6"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">0.233153 0.131749 -0.629139</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">-0.233153 -0.131749 0.629139</translate><translate sid="scalePivot">0.233153 0.131749 -0.629139</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">-0.233153 -0.131749 0.629139</translate><instance_geometry url="#fragment6-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment7" id="fragment7" sid="fragment7"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">0.245499 -0.532937 0.067258</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">-0.245499 0.532937 -0.067258</translate><translate sid="scalePivot">0.245499 -0.532937 0.067258</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">-0.245499 0.532937 -0.067258</translate><instance_geometry url="#fragment7-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment8" id="fragment8" sid="fragment8"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">-0.096832 -0.253888 0.486684</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">0.096832 0.253888 -0.486684</translate><translate sid="scalePivot">-0.096832 -0.253888 0.486684</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">0.096832 0.253888 -0.486684</translate><instance_geometry url="#fragment8-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="fragment9" id="fragment9" sid="fragment9"><translate sid="translate">0.000000 0.000000 0.000000</translate><translate sid="rotatePivot">0.543914 0.147300 0.528251</translate><rotate sid="rotateZ">0 0 1 0.000000</rotate><rotate sid="rotateY">0 1 0 0.000000</rotate><rotate sid="rotateX">1 0 0 0.000000</rotate><translate sid="rotatePivotInverse">-0.543914 -0.147300 -0.528251</translate><translate sid="scalePivot">0.543914 0.147300 0.528251</translate><scale sid="scale">1.000000 1.000000 1.000000</scale><translate sid="scalePivotInverse">-0.543914 -0.147300 -0.528251</translate><instance_geometry url="#fragment9-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>4.208333</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#explode"></instance_visual_scene>
+  </scene>
+</COLLADA>
