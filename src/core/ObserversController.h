@@ -18,8 +18,9 @@
 #include "../core/ObserverEntity.h"
 #include "../spawning/ObserverSpawner.h"
 #include "../core/Params.h"
-#include "../core/SimulationEvents.h"
 #include "../core/State.h"
+
+class SimulationEvents;
 
 class ObserversController
 : public EntityController<ObserverEntity> {

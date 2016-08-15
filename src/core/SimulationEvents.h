@@ -12,6 +12,7 @@
 #include <iostream>
 #include "../core/Common.h"
 #include "../core/Events.h"
+#include "../navigation/NavigatorEntity.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,

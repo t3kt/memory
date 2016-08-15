@@ -10,6 +10,7 @@
 #include <ofMath.h>
 #include <ofTypes.h>
 #include <sstream>
+#include <string>
 #include "../core/Common.h"
 
 void Outputable::output(std::ostream &os) const {

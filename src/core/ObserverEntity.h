@@ -84,7 +84,4 @@ private:
   EntityMap<ObserverEntity> _connectedObservers;
 };
 
-template<>
-EntityType getEntityType<ObserverEntity>() { return EntityType::OBSERVER; }
-
 #endif /* ObserverEntity_h */

@@ -52,7 +52,7 @@ private:
     }
     _out << "{\n";
     _indent++;
-    int i = 0;
+    std::size_t i = 0;
     for (const auto& item : items) {
       writeIndent();
       Json key = item.first;
@@ -78,7 +78,7 @@ private:
     }
     _out << "[\n";
     _indent++;
-    int i = 0;
+    std::size_t i = 0;
     for (const auto& item : items) {
       writeIndent();
       write(item);

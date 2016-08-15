@@ -122,11 +122,4 @@ private:
   friend class OccurrencesController;
 };
 
-template<>
-EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
-
-void readOccurrenceRefs(EntityMap<OccurrenceEntity>& entities,
-                        const Json& arr,
-                        Context& context);
-
 #endif /* OccurrenceEntity_h */

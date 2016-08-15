@@ -6,8 +6,10 @@
 //
 //
 
+#include "../core/AnimationObject.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrenceEntity.h"
+#include "../core/SimulationEvents.h"
 
 ObserversController::ObserversController(const Params& params,
                                          const Bounds& bounds,
@@ -99,6 +101,7 @@ bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
   ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
                       *entity);
   _events.observerSpawned.notifyListeners(e);
+  return true;
 }
 
 void ObserversController::killObservers(int count) {

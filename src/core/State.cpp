@@ -6,6 +6,8 @@
 //
 //
 
+#include <iostream>
+#include <string>
 #include "../core/State.h"
 
 void State::outputFields(std::ostream &os) const {

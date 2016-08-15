@@ -15,8 +15,9 @@
 #include "../core/Context.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
-#include "../core/SimulationEvents.h"
 #include "../core/State.h"
+
+class SimulationEvents;
 
 class AnimationsController {
 public:

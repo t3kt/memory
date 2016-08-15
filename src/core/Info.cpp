@@ -68,13 +68,3 @@ void InfoBox::drawInfo(const Info &info) {
   }
   ofPopStyle();
 }
-
-template<>
-void Info::add(const std::string& label, const float& value) {
-  add(label, ofToString(value, 2));
-}
-
-template<>
-void Info::add(const std::string& label, const ofVec3f& value) {
-  add(label, ofToString(value, 2));
-}

@@ -13,9 +13,9 @@
 #include "../app/AppActions.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
-#include "../core/SimulationEvents.h"
 
 class Context;
+class SimulationEvents;
 
 class AbstractEntityController
 : public AppActionHandler {

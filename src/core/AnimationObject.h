@@ -75,9 +75,6 @@ private:
   float _percentage;
 };
 
-template<>
-EntityType getEntityType<AnimationObject>() { return EntityType::ANIMATION; }
-
 class ExpandingSphereAnimation : public AnimationObject {
 public:
   class Params : public AnimationObject::Params {

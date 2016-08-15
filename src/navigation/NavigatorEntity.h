@@ -50,7 +50,4 @@ private:
   NavigatorStatePtr _nextState;
 };
 
-template<>
-EntityType getEntityType<NavigatorEntity>() { return EntityType::NAVIGATOR; }
-
 #endif /* NavigatorEntity_h */

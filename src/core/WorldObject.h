@@ -27,9 +27,6 @@ enum class EntityType {
   OCCURRENCE,
 };
 
-template<typename T>
-EntityType getEntityType();
-
 class Info;
 
 class WorldObject
