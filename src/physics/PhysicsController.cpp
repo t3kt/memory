@@ -6,8 +6,8 @@
 //
 //
 
-#include "AppParameters.h"
-#include "PhysicsController.h"
+#include "../app/AppParameters.h"
+#include "../physics/PhysicsController.h"
 
 PhysicsController::PhysicsController(PhysicsController::Params& params,
                                      Bounds& bounds,

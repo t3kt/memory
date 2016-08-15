@@ -10,10 +10,10 @@
 #define EntityController_h
 
 #include <memory>
-#include "AppActions.h"
-#include "ObjectManager.h"
-#include "Params.h"
-#include "SimulationEvents.h"
+#include "../app/AppActions.h"
+#include "../core/ObjectManager.h"
+#include "../core/Params.h"
+#include "../core/SimulationEvents.h"
 
 class Context;
 

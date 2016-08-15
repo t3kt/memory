@@ -6,7 +6,7 @@
 //
 //
 
-#include "Logging.h"
+#include "../core/Logging.h"
 
 void Logger::log(ofLogLevel level, std::string message) const {
   if (!check(level)) {

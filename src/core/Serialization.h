@@ -10,7 +10,7 @@
 #define Serialization_h
 
 #include <stdexcept>
-#include "JsonIO.h"
+#include "../core/JsonIO.h"
 
 class Context;
 

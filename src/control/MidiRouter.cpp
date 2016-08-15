@@ -8,10 +8,10 @@
 
 #include <stdexcept>
 #include <typeinfo>
-#include "AppSystem.h"
-#include "Common.h"
-#include "MidiRouter.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../core/Common.h"
+#include "../control/MidiRouter.h"
+#include "../app/SimulationApp.h"
 
 class AbstractMidiBinding {
 public:

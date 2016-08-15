@@ -6,7 +6,7 @@
 //
 //
 
-#include "PostProcController.h"
+#include "../rendering/PostProcController.h"
 
 void PostProcController::setup() {
   _postProc.init();

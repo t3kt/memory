@@ -12,10 +12,10 @@
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
 #include <string>
-#include "Params.h"
-#include "State.h"
-#include "ValueSupplier.h"
-#include "WorldObject.h"
+#include "../core/Params.h"
+#include "../core/State.h"
+#include "../core/ValueSupplier.h"
+#include "../core/WorldObject.h"
 
 class AnimationObject : public WorldObject {
 public:

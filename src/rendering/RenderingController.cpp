@@ -7,8 +7,8 @@
 //
 
 #include <ofMain.h>
-#include "AppParameters.h"
-#include "RenderingController.h"
+#include "../app/AppParameters.h"
+#include "../rendering/RenderingController.h"
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,

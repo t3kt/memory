@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include <ofMain.h>
-#include "AnimationsController.h"
-#include "AppSystem.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "../core/AnimationsController.h"
+#include "../core/AppSystem.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
 
 AnimationsController::AnimationsController(const Params& params,
                                            SimulationEvents& events,

@@ -7,7 +7,7 @@
 //
 
 #include <boost/functional/hash.hpp>
-#include "MidiCommon.h"
+#include "../control/MidiCommon.h"
 
 EnumTypeInfo<MidiMessageType> MidiMessageTypeType {
   {"cc", MidiMessageType::CONTROL_CHANGE},

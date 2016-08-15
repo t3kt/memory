@@ -6,8 +6,8 @@
 //
 //
 
-#include "ObserversController.h"
-#include "OccurrenceEntity.h"
+#include "../core/ObserversController.h"
+#include "../core/OccurrenceEntity.h"
 
 ObserversController::ObserversController(const Params& params,
                                          const Bounds& bounds,

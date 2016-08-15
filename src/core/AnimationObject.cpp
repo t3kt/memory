@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "AnimationObject.h"
+#include "../core/AnimationObject.h"
 
 AnimationObject::AnimationObject(const Params& params,
                                  const State& state)

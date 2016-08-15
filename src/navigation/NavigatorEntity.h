@@ -10,7 +10,7 @@
 #define NavigatorEntity_h
 
 #include <memory>
-#include "ParticleObject.h"
+#include "../core/ParticleObject.h"
 
 class Context;
 class NavigatorState;

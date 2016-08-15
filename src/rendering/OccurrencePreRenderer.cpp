@@ -6,10 +6,10 @@
 //
 //
 
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "OccurrencePreRenderer.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../rendering/OccurrencePreRenderer.h"
 
 OccurrencePreRenderer::OccurrencePreRenderer(const Params& params,
                                              Context& context)

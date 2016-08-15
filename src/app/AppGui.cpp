@@ -6,8 +6,8 @@
 //
 //
 
-#include "AppGui.h"
 #include <ofxGuiExtended.h>
+#include "../app/AppGui.h"
 
 class ActionsGui
 : public ofxPanelExtended {

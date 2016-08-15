@@ -7,10 +7,10 @@
 //
 
 #include <ofMain.h>
-#include "Info.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "State.h"
+#include "../core/Info.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/State.h"
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 : ParticleObject(pos)

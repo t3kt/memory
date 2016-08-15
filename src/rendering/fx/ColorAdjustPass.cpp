@@ -7,7 +7,7 @@
 //
 
 #include <string>
-#include "ColorAdjustPass.h"
+#include "../rendering/fx/ColorAdjustPass.h"
 
 #define _(A) #A
 

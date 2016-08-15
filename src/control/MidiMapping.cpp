@@ -6,7 +6,7 @@
 //
 //
 
-#include "MidiMapping.h"
+#include "../control/MidiMapping.h"
 
 Json MidiMapping::to_json() const {
   return Json::object {

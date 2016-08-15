@@ -12,9 +12,9 @@
 #include <memory>
 #include <ofCamera.h>
 #include <ofxPostProcessing.h>
-#include "ColorAdjustPass.h"
-#include "Common.h"
-#include "Params.h"
+#include "../rendering/fx/ColorAdjustPass.h"
+#include "../core/Common.h"
+#include "../core/Params.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>

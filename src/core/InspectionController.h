@@ -13,9 +13,9 @@
 #include <ofAppGLFWWindow.h>
 #include <ofCamera.h>
 #include <ofEvents.h>
-#include "Info.h"
-#include "Params.h"
-#include "ParticleObject.h"
+#include "../core/Info.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
 
 class Context;
 

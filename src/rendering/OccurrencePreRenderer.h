@@ -9,7 +9,7 @@
 #ifndef OccurrencePreRenderer_h
 #define OccurrencePreRenderer_h
 
-#include "EntityRenderer.h"
+#include "../rendering/EntityRenderer.h"
 
 class OccurrenceEntity;
 

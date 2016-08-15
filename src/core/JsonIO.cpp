@@ -12,8 +12,8 @@
 #include <ofTypes.h>
 #include <ofUtils.h>
 #include <sstream>
-#include "AppSystem.h"
-#include "JsonIO.h"
+#include "../app/AppSystem.h"
+#include "../core/JsonIO.h"
 
 using json11::JsonParse;
 using namespace JsonUtil;

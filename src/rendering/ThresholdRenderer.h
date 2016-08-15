@@ -11,8 +11,8 @@
 
 #include <ofColor.h>
 #include <ofMesh.h>
-#include "ObjectManager.h"
-#include "Params.h"
+#include "../core/ObjectManager.h"
+#include "../core/Params.h"
 
 class ThreshData {
 public:

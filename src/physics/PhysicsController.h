@@ -9,18 +9,18 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
-#include "AnchorPointBehavior.h"
-#include "AppActions.h"
-#include "AttractionBehavior.h"
-#include "Bounds.h"
-#include "Context.h"
-#include "DampingBehavior.h"
-#include "EntityForceBehavior.h"
-#include "ForceFieldBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "Params.h"
-#include "PhysicsBehavior.h"
+#include "../physics/AnchorPointBehavior.h"
+#include "../app/AppActions.h"
+#include "../physics/AttractionBehavior.h"
+#include "../core/Bounds.h"
+#include "../core/Context.h"
+#include "../physics/DampingBehavior.h"
+#include "../physics/EntityForceBehavior.h"
+#include "../physics/ForceFieldBehavior.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/Params.h"
+#include "../physics/PhysicsBehavior.h"
 
 class DebugParams;
 

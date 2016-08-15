@@ -6,9 +6,9 @@
 //
 //
 
-#include "Info.h"
-#include "State.h"
-#include "WorldObject.h"
+#include "../core/Info.h"
+#include "../core/State.h"
+#include "../core/WorldObject.h"
 
 static ObjectId nextId() {
   static ObjectId lastId = 0;

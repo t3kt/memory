@@ -7,7 +7,7 @@
 //
 
 #include <ofUtils.h>
-#include "Clock.h"
+#include "../core/Clock.h"
 
 Clock::Clock(Clock::Params& params, State& state)
 : _params(params)

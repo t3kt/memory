@@ -6,9 +6,9 @@
 //
 //
 
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "ObserverPreRenderer.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../rendering/ObserverPreRenderer.h"
 
 ObserverPreRenderer::ObserverPreRenderer(const Params& params,
                                          Context& context)

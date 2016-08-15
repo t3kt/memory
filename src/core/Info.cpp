@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "Info.h"
+#include "../core/Info.h"
 
 const float LINE_HEIGHT = 15;
 const float CHAR_WIDTH = 10;

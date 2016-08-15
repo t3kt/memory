@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "CameraController.h"
+#include "../rendering/CameraController.h"
 
 void CameraController::setup() {
   registerAsActionHandler();

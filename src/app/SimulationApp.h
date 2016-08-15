@@ -10,21 +10,21 @@
 #define SimulationApp_h
 
 #include <ofMain.h>
-#include "AnimationsController.h"
-#include "AppActions.h"
-#include "AppParameters.h"
-#include "Clock.h"
-#include "Common.h"
-#include "Context.h"
-#include "InspectionController.h"
-#include "NavigatorsController.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-#include "PhysicsController.h"
-#include "RenderingController.h"
-#include "SimulationEvents.h"
-#include "State.h"
-#include "Status.h"
+#include "../core/AnimationsController.h"
+#include "../app/AppActions.h"
+#include "../app/AppParameters.h"
+#include "../core/Clock.h"
+#include "../core/Common.h"
+#include "../core/Context.h"
+#include "../core/InspectionController.h"
+#include "../navigation/NavigatorsController.h"
+#include "../core/ObserversController.h"
+#include "../core/OccurrencesController.h"
+#include "../physics/PhysicsController.h"
+#include "../rendering/RenderingController.h"
+#include "../core/SimulationEvents.h"
+#include "../core/State.h"
+#include "../core/Status.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>

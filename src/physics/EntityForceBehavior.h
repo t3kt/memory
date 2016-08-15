@@ -11,13 +11,13 @@
 
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "PhysicsBehavior.h"
-#include "ValueSequence.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../physics/PhysicsBehavior.h"
+#include "../core/ValueSequence.h"
 
 using ForceRangeSequence = ValueSequence<float, 2>;
 
