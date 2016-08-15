@@ -11,9 +11,9 @@
 
 #include <memory>
 #include <ofParameter.h>
-#include "AppActions.h"
-#include "Params.h"
-#include "State.h"
+#include "../app/AppActions.h"
+#include "../core/Params.h"
+#include "../core/State.h"
 
 class Clock
 : public AppActionHandler {

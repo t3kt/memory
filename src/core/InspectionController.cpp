@@ -7,8 +7,8 @@
 //
 
 #include <ofGraphics.h>
-#include "Context.h"
-#include "InspectionController.h"
+#include "../core/Context.h"
+#include "../core/InspectionController.h"
 
 void InspectionController::setup() {
   _params.enabled.changed += [&](bool& enabled) {
@@ -21,6 +21,7 @@ void InspectionController::onEnabledChanged(bool enabled) {
   if (enabled) {
     attachToEvents();
   } else {
+    _context.highlightedEntities.clear();
     detachFromEvents();
   }
 }
@@ -39,7 +40,7 @@ void InspectionController::detachFromEvents() {
                    &InspectionController::onMousePressed);
 }
 
-// must be called after camera has ended
+// must not be called while camera is active
 void InspectionController::update() {
   if (!_params.enabled.get()) {
     return;
@@ -48,6 +49,7 @@ void InspectionController::update() {
     _camera.begin();
     float closestDist = -1;
     float range = _params.clickRange.get();
+    bool found = false;
     _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
       ofVec3f screenPos = _camera.worldToScreen(entity->position());
       float dist = screenPos.distance(_clickPos);
@@ -57,8 +59,12 @@ void InspectionController::update() {
       if (closestDist < 0 || dist < closestDist) {
         closestDist = dist;
         _selectedEntity = entity;
+        found = true;
       }
     });
+    if (!found) {
+      _selectedEntity.reset();
+    }
     _hasClick = false;
     _camera.end();
   }
@@ -69,34 +75,65 @@ void InspectionController::update() {
       _selectedScreenPosition = _camera.worldToScreen(_selectedEntity->position());
     }
   }
+  updateHighlights();
+  updateInfo();
 }
 
-// must be called after camera has ended
+void InspectionController::updateHighlights() {
+  _context.highlightedEntities.clear();
+  if (!_selectedEntity) {
+    return;
+  }
+  _context.highlightedEntities.add(_selectedEntity);
+  _selectedEntity->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
+    _context.highlightedEntities.add(entity);
+  });
+}
+
+void InspectionController::updateInfo() {
+  _info.clear();
+  if (!_params.showInfo.get()) {
+    return;
+  }
+  if (!_selectedEntity || !_selectedEntity->alive()) {
+    return;
+  }
+
+  _selectedEntity->fillInfo(_info);
+}
+
+// must not be called while camera is active
 void InspectionController::draw() {
   if (!_params.enabled.get()) {
     return;
   }
   if (_selectedEntity) {
     ofPushStyle();
-//    ofPushMatrix();
     ofSetColor(ofFloatColor::white);
     auto winSize = _window.getWindowSize();
     const auto& pos = _selectedScreenPosition;
     ofVec3f sidePos(0, pos.y);
-    if (pos.x > winSize.x / 2) {
+//    if (pos.x > winSize.x / 2) {
       sidePos.x = winSize.x;
-    }
+//    }
     ofDrawLine(pos, sidePos);
-//    ofNoFill();
-//    ofSetRectMode(OF_RECTMODE_CENTER);
-//    ofDrawRectangle(pos, 10, 10);
-    //...
-//    ofPopMatrix();
     ofPopStyle();
+
+    drawInfo();
   }
 }
 
+void InspectionController::drawInfo() {
+  if (!_params.showInfo.get()) {
+    return;
+  }
+  _infoBox.drawInfo(_info);
+}
+
 void InspectionController::onMousePressed(ofMouseEventArgs &event) {
+  if (event.button != OF_MOUSE_BUTTON_3) {
+    return;
+  }
   _clickPos = event;
   _hasClick = true;
 }

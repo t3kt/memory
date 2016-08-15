@@ -13,10 +13,10 @@
 #include <iostream>
 #include <JsonIO.h>
 #include <ofxMidi.h>
-#include "Common.h"
-#include "Events.h"
-#include "JsonIO.h"
-#include "Params.h"
+#include "../core/Common.h"
+#include "../core/Events.h"
+#include "../core/JsonIO.h"
+#include "../core/Params.h"
 
 using MidiDeviceId = int;
 using MidiChannel = int;
@@ -68,8 +68,9 @@ public:
   void read_json(const Json& obj) override;
 
   std::size_t hash() const;
-protected:
+
   std::string typeName() const override { return "MidiMappingKey"; }
+protected:
   void outputFields(std::ostream& os) const override;
 private:
   MidiDeviceId _device;
@@ -108,8 +109,8 @@ public:
   const ofxMidiMessage& message;
   const MidiMappingKey key;
 
-protected:
   std::string typeName() const override { return "MidiReceivedEventArgs"; }
+protected:
   void outputFields(std::ostream& os) const override;
 };
 

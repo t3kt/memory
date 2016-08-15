@@ -7,12 +7,12 @@
 //
 
 #include <ofMath.h>
-#include "AppSystem.h"
-#include "Bounds.h"
-#include "Context.h"
-#include "Logging.h"
-#include "OccurrenceSpawner.h"
-#include "OccurrencesController.h"
+#include "../app/AppSystem.h"
+#include "../core/Bounds.h"
+#include "../core/Context.h"
+#include "../core/Logging.h"
+#include "../spawning/OccurrenceSpawner.h"
+#include "../core/OccurrencesController.h"
 
 int OccurrenceSpawnerCore::spawnEntities(Context& context) {
   float startRadius = _params.radius.getValue();
@@ -74,6 +74,7 @@ OccurrenceSpawnerCore::spawnEntity(Context &context,
   if (_controller.tryAddEntity(occurrence)) {
     if (prev) {
       prev->addOccurrence(occurrence);
+      occurrence->addOccurrence(prev);
     }
     occurrence->setVelocity(_params.initialVelocity.getValue());
     return occurrence;

@@ -7,10 +7,10 @@
 //
 
 #include <map>
-#include "AppSystem.h"
-#include "ControlApp.h"
-#include "NavigatorEntity.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../app/ControlApp.h"
+#include "../navigation/NavigatorEntity.h"
+#include "../app/SimulationApp.h"
 
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(Logger& logger,

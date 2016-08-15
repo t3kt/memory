@@ -14,7 +14,7 @@
 #include <ofMath.h>
 #include <ofUtils.h>
 #include <ofxChoreograph.h>
-#include "Params.h"
+#include "../core/Params.h"
 
 template<typename T, std::size_t N>
 class ValueSequence

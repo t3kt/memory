@@ -10,7 +10,7 @@
 #define NavigatorEntity_h
 
 #include <memory>
-#include "ParticleObject.h"
+#include "../core/ParticleObject.h"
 
 class Context;
 class NavigatorState;
@@ -41,16 +41,13 @@ public:
 
   bool stateAlive() const;
 
-protected:
   std::string typeName() const override { return "NavigatorEntity"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:
   NavigatorStatePtr _prevState;
   NavigatorStatePtr _nextState;
 };
-
-template<>
-EntityType getEntityType<NavigatorEntity>() { return EntityType::NAVIGATOR; }
 
 #endif /* NavigatorEntity_h */

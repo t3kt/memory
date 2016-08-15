@@ -10,8 +10,9 @@
 #define SimulationEvents_h
 
 #include <iostream>
-#include "Common.h"
-#include "Events.h"
+#include "../core/Common.h"
+#include "../core/Events.h"
+#include "../navigation/NavigatorEntity.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,
@@ -42,8 +43,8 @@ public:
 
   T& value() { return _value; }
 
-private:
   std::string typeName() const override { return "SimulationEventArgs"; }
+private:
   void outputFields(std::ostream& os) const override {
     os << "type: " << _type;
     os << ", value: " << _value;

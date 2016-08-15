@@ -12,8 +12,9 @@
 #include <memory>
 #include <ofCamera.h>
 #include <ofxPostProcessing.h>
-#include "Common.h"
-#include "Params.h"
+#include "../rendering/fx/ColorAdjustPass.h"
+#include "../core/Common.h"
+#include "../core/Params.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -83,10 +84,14 @@ public:
     add(bloom
         .setKey("bloom")
         .setName("Bloom"));
+    add(colorAdjust
+        .setKey("colorAdjust")
+        .setName("Color Adjust"));
     setEnabledValueAndDefault(true);
     fxaa.setEnabledValueAndDefault(true);
     rimHighlight.setEnabledValueAndDefault(false);
     bloom.setEnabledValueAndDefault(true);
+    colorAdjust.setEnabledValueAndDefault(false);
   }
 
   ParamsWithEnabled fxaa;
@@ -94,6 +99,7 @@ public:
   DofPassParams dof;
   ParamsWithEnabled rimHighlight;
   ParamsWithEnabled bloom;
+  ColorAdjustPass::Params colorAdjust;
 };
 
 class PostProcController {
@@ -123,6 +129,7 @@ private:
   std::shared_ptr<DofPass> _dofPass;
   std::shared_ptr<RimHighlightingPass> _rimHighlightPass;
   std::shared_ptr<BloomPass> _bloomPass;
+  std::shared_ptr<ColorAdjustPass> _colorAdjustPass;
 };
 
 #endif /* PostProcController_h */

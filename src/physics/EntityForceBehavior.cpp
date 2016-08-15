@@ -7,7 +7,7 @@
 //
 
 #include <ofGraphics.h>
-#include "EntityForceBehavior.h"
+#include "../physics/EntityForceBehavior.h"
 
 ofVec3f
 AbstractEntityForceBehavior::calcAttraction(const ofVec3f &entityPosition,

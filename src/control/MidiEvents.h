@@ -10,13 +10,13 @@
 #define MidiEvents_h
 
 #include <vector>
-#include "Common.h"
-#include "Events.h"
-#include "JsonIO.h"
-#include "MappingSet.h"
-#include "MidiCommon.h"
-#include "Params.h"
-#include "SimulationEvents.h"
+#include "../core/Common.h"
+#include "../core/Events.h"
+#include "../core/JsonIO.h"
+#include "../control/MappingSet.h"
+#include "../control/MidiCommon.h"
+#include "../core/Params.h"
+#include "../core/SimulationEvents.h"
 
 class MidiRouter;
 
@@ -48,8 +48,8 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-protected:
   std::string typeName() const override { return "MidiEventMapping"; }
+protected:
   void outputFields(std::ostream& os) const override;
 
 private:

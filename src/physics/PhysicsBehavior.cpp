@@ -7,10 +7,10 @@
 //
 
 #include <ofMain.h>
-#include "AppSystem.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "PhysicsBehavior.h"
+#include "../app/AppSystem.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../physics/PhysicsBehavior.h"
 
 void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
                                              ofVec3f force) {

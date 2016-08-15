@@ -10,8 +10,8 @@
 #define MappingSet_h
 
 #include <string>
-#include "Common.h"
-#include "JsonIO.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
 
 template<typename T>
 class MappingSet
@@ -51,8 +51,8 @@ public:
   std::size_t size() const { return _mappings.size(); }
   bool empty() const { return _mappings.empty(); }
 
-protected:
   std::string typeName() const override { return "MappingSet"; }
+protected:
   void outputFields(std::ostream& os) const override {
     for (const auto& mapping : _mappings) {
       os << mapping << ", ";

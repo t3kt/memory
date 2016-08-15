@@ -6,7 +6,8 @@
 //
 //
 
-#include "ParticleObject.h"
+#include "../core/Info.h"
+#include "../core/ParticleObject.h"
 
 ParticleObject::ParticleObject(ofVec3f pos)
 : _position(pos)
@@ -35,6 +36,13 @@ void ParticleObject::outputFields(std::ostream &os) const {
   os << ", position: " << _position
       << ", velocity: " << _velocity
       << ", force: " << _force;
+}
+
+void ParticleObject::fillInfo(Info &info) const {
+  WorldObject::fillInfo(info);
+  info.add("position:", _position);
+  info.add("velocity:", _velocity);
+  info.add("force:", _force);
 }
 
 void ParticleObject::addSerializedFields(Json::object &obj,

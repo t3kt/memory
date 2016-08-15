@@ -6,8 +6,8 @@
 //
 //
 
-#include "AppParameters.h"
-#include "NavigatorState.h"
+#include "../app/AppParameters.h"
+#include "../navigation/NavigatorState.h"
 
 void PointNavState::outputFields(std::ostream& os) const {
   os << "point: " << _point;

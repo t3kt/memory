@@ -11,12 +11,13 @@
 
 #include <iostream>
 #include <ofTypes.h>
-#include "Common.h"
-#include "Context.h"
-#include "ParticleObject.h"
-#include "State.h"
-#include "ValueSupplier.h"
-#include "WorldObject.h"
+#include "../core/Common.h"
+#include "../core/Context.h"
+#include "../core/EntityMap.h"
+#include "../core/ParticleObject.h"
+#include "../core/State.h"
+#include "../core/ValueSupplier.h"
+#include "../core/WorldObject.h"
 
 class ObserverEntity;
 
@@ -89,8 +90,10 @@ public:
   virtual void deserializeRefs(const Json& obj,
                                SerializationContext& context) override;
 
-protected:
+  virtual void fillInfo(Info& info) const override;
+  virtual void performActionOnConnected(ObjectPtrAction action) override;
   std::string typeName() const override { return "OccurrenceEntity"; }
+protected:
   void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
@@ -118,12 +121,5 @@ private:
 
   friend class OccurrencesController;
 };
-
-template<>
-EntityType getEntityType<OccurrenceEntity>() { return EntityType::OCCURRENCE; }
-
-void readOccurrenceRefs(EntityMap<OccurrenceEntity>& entities,
-                        const Json& arr,
-                        Context& context);
 
 #endif /* OccurrenceEntity_h */

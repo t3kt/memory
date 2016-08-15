@@ -10,19 +10,19 @@
 #define RenderingController_h
 
 #include <ofAppGLFWWindow.h>
-#include "AppActions.h"
-#include "CameraController.h"
-#include "Colors.h"
-#include "Common.h"
-#include "ConnectorRenderer.h"
-#include "Context.h"
-#include "ObserverPreRenderer.h"
-#include "ObserverRenderer.h"
-#include "OccurrencePreRenderer.h"
-#include "OccurrenceRenderer.h"
-#include "Params.h"
-#include "PostProcController.h"
-#include "ThresholdRenderer.h"
+#include "../app/AppActions.h"
+#include "../rendering/CameraController.h"
+#include "../core/Colors.h"
+#include "../core/Common.h"
+#include "../rendering/ConnectorRenderer.h"
+#include "../core/Context.h"
+#include "../rendering/ObserverPreRenderer.h"
+#include "../rendering/ObserverRenderer.h"
+#include "../rendering/OccurrencePreRenderer.h"
+#include "../rendering/OccurrenceRenderer.h"
+#include "../core/Params.h"
+#include "../rendering/PostProcController.h"
+#include "../rendering/ThresholdRenderer.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>

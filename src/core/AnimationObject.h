@@ -12,10 +12,10 @@
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
 #include <string>
-#include "Params.h"
-#include "State.h"
-#include "ValueSupplier.h"
-#include "WorldObject.h"
+#include "../core/Params.h"
+#include "../core/State.h"
+#include "../core/ValueSupplier.h"
+#include "../core/WorldObject.h"
 
 class AnimationObject : public WorldObject {
 public:
@@ -58,10 +58,11 @@ public:
   }
 
   EntityType entityType() const override { return EntityType::ANIMATION; }
-protected:
   virtual std::string typeName() const override {
     return "Animation";
   }
+
+protected:
   void outputFields(std::ostream& os) const override;
 
   inline float percentage() const { return _percentage; }
@@ -73,9 +74,6 @@ private:
   float _duration;
   float _percentage;
 };
-
-template<>
-EntityType getEntityType<AnimationObject>() { return EntityType::ANIMATION; }
 
 class ExpandingSphereAnimation : public AnimationObject {
 public:
@@ -107,7 +105,6 @@ public:
 
   virtual void draw(const State& state) override;
 
-protected:
   virtual std::string typeName() const override {
     return "ExpandingSphereAnimation";
   }

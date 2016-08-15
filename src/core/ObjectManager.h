@@ -16,11 +16,13 @@
 #include <map>
 #include <memory>
 #include <ofMath.h>
-#include "Common.h"
-#include "Events.h"
-#include "Serialization.h"
-#include "State.h"
-#include "WorldObject.h"
+#include <ofUtils.h>
+#include "../core/Common.h"
+#include "../core/EntityMap.h"
+#include "../core/Events.h"
+#include "../core/Serialization.h"
+#include "../core/State.h"
+#include "../core/WorldObject.h"
 
 template<typename T, typename Storage>
 class AbstractObjectView {

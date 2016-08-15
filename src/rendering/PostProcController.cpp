@@ -6,7 +6,7 @@
 //
 //
 
-#include "PostProcController.h"
+#include "../rendering/PostProcController.h"
 
 void PostProcController::setup() {
   _postProc.init();
@@ -15,6 +15,8 @@ void PostProcController::setup() {
   _dofPass = _postProc.createPass<DofPass>();
   _rimHighlightPass = _postProc.createPass<RimHighlightingPass>();
   _bloomPass = _postProc.createPass<BloomPass>();
+  _colorAdjustPass = _postProc.createPass<ColorAdjustPass>();
+  _colorAdjustPass->setParams(&_params.colorAdjust);
 }
 
 void PostProcController::update() {
@@ -39,6 +41,7 @@ void PostProcController::update() {
   }
   _rimHighlightPass->setEnabled(_params.rimHighlight.enabled());
   _bloomPass->setEnabled(_params.bloom.enabled());
+  _colorAdjustPass->setEnabled(_params.colorAdjust.enabled.get());
 }
 
 void PostProcController::updateResolution(ofVec2f size) {

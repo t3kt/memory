@@ -10,10 +10,10 @@
 #define MidiMapping_h
 
 #include <string>
-#include "Common.h"
-#include "JsonIO.h"
-#include "MappingSet.h"
-#include "MidiCommon.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
+#include "../control/MappingSet.h"
+#include "../control/MidiCommon.h"
 
 class MidiMapping
 : public JsonReadable
@@ -31,8 +31,8 @@ public:
   Json to_json() const override;
   void read_json(const Json& obj) override;
 
-protected:
   std::string typeName() const override { return "MidiMapping"; }
+protected:
   void outputFields(std::ostream& os) const override;
 private:
   MidiMappingKey _key;

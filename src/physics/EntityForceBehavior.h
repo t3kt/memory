@@ -11,13 +11,13 @@
 
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "PhysicsBehavior.h"
-#include "ValueSequence.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../physics/PhysicsBehavior.h"
+#include "../core/ValueSequence.h"
 
 using ForceRangeSequence = ValueSequence<float, 2>;
 
@@ -96,6 +96,11 @@ protected:
     performAction(context, [&](T1& entity,
                                T2& other,
                                const ofVec3f& force) {
+      if (!context.highlightedEntities.empty() &&
+          !context.highlightedEntities.containsId(entity.id()) &&
+          !context.highlightedEntities.containsId(other.id())) {
+        return;
+      }
       drawForceArrow(entity.position(), force);
       drawForceArrow(other.position(), -force);
     });

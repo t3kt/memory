@@ -6,8 +6,9 @@
 //
 //
 
-#include "State.h"
-#include "WorldObject.h"
+#include "../core/Info.h"
+#include "../core/State.h"
+#include "../core/WorldObject.h"
 
 static ObjectId nextId() {
   static ObjectId lastId = 0;
@@ -26,6 +27,11 @@ std::string WorldObject::typeName() const {
 void WorldObject::outputFields(std::ostream& os) const {
   os << "id: " << _id
      << ", alive: " << _alive;
+}
+
+void WorldObject::fillInfo(Info &info) const {
+  info.add("type:", typeName());
+  info.add("id:", id());
 }
 
 void WorldObject::addSerializedFields(Json::object &obj,

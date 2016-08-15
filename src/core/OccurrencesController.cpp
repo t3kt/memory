@@ -6,9 +6,10 @@
 //
 //
 
-#include "AppSystem.h"
-#include "OccurrencesController.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../core/OccurrencesController.h"
+#include "../app/SimulationApp.h"
+#include "../core/SimulationEvents.h"
 
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,

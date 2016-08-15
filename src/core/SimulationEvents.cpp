@@ -6,9 +6,9 @@
 //
 //
 
-#include "AppSystem.h"
-#include "JsonIO.h"
-#include "SimulationEvents.h"
+#include "../app/AppSystem.h"
+#include "../core/JsonIO.h"
+#include "../core/SimulationEvents.h"
 
 EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
   {"animationSpawned", SimulationEventType::ANIMATION_SPAWNED},

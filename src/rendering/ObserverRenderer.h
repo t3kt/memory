@@ -15,9 +15,9 @@
 #include <ofTexture.h>
 #include <ofVboMesh.h>
 #include <vector>
-#include "AnimationObject.h"
-#include "Context.h"
-#include "EntityRenderer.h"
+#include "../core/AnimationObject.h"
+#include "../core/Context.h"
+#include "../rendering/EntityRenderer.h"
 
 class ObserverRenderer
 : public EntityRenderer<ObserverEntity> {

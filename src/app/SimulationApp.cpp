@@ -7,9 +7,9 @@
 //
 
 #include <ofSystemUtils.h>
-#include "AppSystem.h"
-#include "ControlApp.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../app/ControlApp.h"
+#include "../app/SimulationApp.h"
 
 void SimulationApp::setup() {
   _renderingController =
@@ -84,6 +84,13 @@ void SimulationApp::update() {
   _physics->update();
   _navigators->update();
   _renderingController->update();
+
+  _context.highlightedEntities.clear();
+  _inspectionController->update();
+
+  if (_appParams.core.debug.showStatus()) {
+    _statusController->update();
+  }
 }
 
 void SimulationApp::draw() {
@@ -110,8 +117,6 @@ void SimulationApp::draw() {
   }
 
   _renderingController->endDraw();
-
-  _inspectionController->update();
 
 #ifdef ENABLE_SYPHON
   if (_appParams.core.output.externalEnabled()) {

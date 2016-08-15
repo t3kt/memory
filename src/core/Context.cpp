@@ -6,11 +6,11 @@
 //
 //
 
-#include "Context.h"
-#include "NavigatorEntity.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "ParticleObject.h"
+#include "../core/Context.h"
+#include "../navigation/NavigatorEntity.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/ParticleObject.h"
 
 template<>
 ObjectManager<AnimationObject>&

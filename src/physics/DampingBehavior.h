@@ -9,11 +9,11 @@
 #ifndef DampingBehavior_h
 #define DampingBehavior_h
 
-#include "Context.h"
-#include "ForceFieldBehavior.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "PhysicsBehavior.h"
+#include "../core/Context.h"
+#include "../physics/ForceFieldBehavior.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../physics/PhysicsBehavior.h"
 
 class AbstractDampingBehavior
 : public AbstractForceFieldBehavior {
@@ -65,6 +65,10 @@ protected:
       return;
     }
     for (auto& entity : context.getEntities<E>()) {
+      if (!context.highlightedEntities.empty() &&
+          !context.highlightedEntities.containsId(entity->id())) {
+        return;
+      }
       debugDrawEntity(context, entity.get());
     }
   }

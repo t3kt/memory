@@ -7,9 +7,10 @@
 //
 
 #include <ofMain.h>
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "../core/Context.h"
+#include "../core/Info.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
                                    float radius,
@@ -28,6 +29,15 @@ void OccurrenceEntity::outputFields(std::ostream &os) const {
       << ", actualRadius: " << _actualRadius
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
+}
+
+void OccurrenceEntity::fillInfo(Info& info) const {
+  ParticleObject::fillInfo(info);
+  info.add("origRadius:", _originalRadius);
+  info.add("actualRadius:", _actualRadius);
+  info.add("amountOfObs:", _amountOfObservation);
+  info.add("connObservers:", _connectedObservers.size());
+  info.add("connOccurrences:", _connectedOccurrences.size());
 }
 
 void OccurrenceEntity::detachConnections() {
@@ -73,4 +83,13 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
   JsonUtil::assertHasType(obj, Json::OBJECT);
   context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
   context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+}
+
+void OccurrenceEntity::performActionOnConnected(ObjectPtrAction action) {
+  for (auto& entity : _connectedObservers) {
+    action(entity.second);
+  }
+  for (auto& entity : _connectedOccurrences) {
+    action(entity.second);
+  }
 }

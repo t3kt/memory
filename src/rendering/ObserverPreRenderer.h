@@ -9,7 +9,7 @@
 #ifndef ObserverPreRenderer_h
 #define ObserverPreRenderer_h
 
-#include "EntityRenderer.h"
+#include "../rendering/EntityRenderer.h"
 
 class ObserverEntity;
 

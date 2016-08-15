@@ -10,10 +10,10 @@
 #define ParticleObject_h
 
 #include <vector>
-#include "Bounds.h"
-#include "Events.h"
-#include "State.h"
-#include "WorldObject.h"
+#include "../core/Bounds.h"
+#include "../core/Events.h"
+#include "../core/State.h"
+#include "../core/WorldObject.h"
 
 class ParticleObject : public WorldObject {
 public:
@@ -37,6 +37,8 @@ public:
 
   virtual void deserializeFields(const Json& obj,
                                  const SerializationContext& context) override;
+
+  virtual void fillInfo(Info& info) const override;
 
 protected:
   ParticleObject() { }

@@ -6,11 +6,11 @@
 //
 //
 
-#include "AppParameters.h"
-#include "Common.h"
-#include "MidiController.h"
-#include "MidiDevice.h"
-#include "MidiRouter.h"
+#include "../app/AppParameters.h"
+#include "../core/Common.h"
+#include "../control/MidiController.h"
+#include "../control/MidiDevice.h"
+#include "../control/MidiRouter.h"
 
 MidiController::MidiController(MemoryAppParameters& appParams)
 : _appParams(appParams)

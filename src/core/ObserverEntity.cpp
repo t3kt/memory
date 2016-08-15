@@ -7,9 +7,10 @@
 //
 
 #include <ofMain.h>
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "State.h"
+#include "../core/Info.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/State.h"
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 : ParticleObject(pos)
@@ -55,6 +56,14 @@ void ObserverEntity::outputFields(std::ostream &os) const {
       << ", connectedObservers: " << _connectedObservers.size();
 }
 
+void ObserverEntity::fillInfo(Info& info) const {
+  ParticleObject::fillInfo(info);
+  info.add("lifeFraction:", _lifeFraction);
+  info.add("totalLifeTime:", _totalLifetime);
+  info.add("connObservers:", _connectedObservers.size());
+  info.add("connOccurrences:", _connectedOccurrences.size());
+}
+
 void ObserverEntity::addSerializedFields(Json::object &obj,
                                          const SerializationContext& context) const {
   ParticleObject::addSerializedFields(obj, context);
@@ -86,4 +95,13 @@ void ObserverEntity::deserializeRefs(const Json &obj,
   JsonUtil::assertHasType(obj, Json::OBJECT);
   context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
   context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+}
+
+void ObserverEntity::performActionOnConnected(ObjectPtrAction action) {
+  for (auto& entity : _connectedObservers) {
+    action(entity.second);
+  }
+  for (auto& entity : _connectedOccurrences) {
+    action(entity.second);
+  }
 }

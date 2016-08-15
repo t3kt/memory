@@ -10,9 +10,9 @@
 #define NavigatorsController_h
 
 #include <memory>
-#include "ObjectManager.h"
-#include "Params.h"
-#include "Spawner.h"
+#include "../core/ObjectManager.h"
+#include "../core/Params.h"
+#include "../spawning/Spawner.h"
 
 class Context;
 class NavigatorEntity;
