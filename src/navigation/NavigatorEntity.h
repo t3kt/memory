@@ -11,7 +11,7 @@
 
 #include <memory>
 #include <ofxChoreograph.h>
-#include "ParticleObject.h"
+#include "../core/ParticleObject.h"
 
 class Context;
 class NavigatorState;
@@ -58,9 +58,6 @@ private:
   NavigatorStatePtr _nextState;
   float _lastChangeTime;
 };
-
-template<>
-EntityType getEntityType<NavigatorEntity>() { return EntityType::NAVIGATOR; }
 
 class NavigatorEntity_2
 : public WorldObject {

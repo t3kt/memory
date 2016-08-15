@@ -11,11 +11,11 @@
 
 #include <iostream>
 #include <memory>
-#include "Common.h"
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "WorldObject.h"
+#include "../core/Common.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/WorldObject.h"
 
 class NavigatorState;
 using NavigatorStatePtr = std::shared_ptr<NavigatorState>;

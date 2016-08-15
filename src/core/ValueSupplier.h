@@ -13,7 +13,7 @@
 #include <ofParameterGroup.h>
 #include <ofTypes.h>
 #include <string>
-#include "Params.h"
+#include "../core/Params.h"
 
 template <typename T>
 class RandomValueSupplier : public ValueRange<T> {

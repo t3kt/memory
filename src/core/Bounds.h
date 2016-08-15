@@ -9,8 +9,8 @@
 #ifndef Bounds_h
 #define Bounds_h
 
-#include "Params.h"
-#include "ValueSupplier.h"
+#include "../core/Params.h"
+#include "../core/ValueSupplier.h"
 
 class Bounds : public Params {
 public:

@@ -10,8 +10,8 @@
 #define AppGui_h
 
 #include <memory>
-#include "AppActions.h"
-#include "AppParameters.h"
+#include "../app/AppActions.h"
+#include "../app/AppParameters.h"
 
 class AppGuiImpl;
 

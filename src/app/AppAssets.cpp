@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <ofxAssimpModelLoader.h>
-#include "AppAssets.h"
+#include "../app/AppAssets.h"
 
 class AssetData {
 public:

@@ -7,8 +7,8 @@
 //
 
 #include <ofGraphics.h>
-#include "Context.h"
-#include "InspectionController.h"
+#include "../core/Context.h"
+#include "../core/InspectionController.h"
 
 void InspectionController::setup() {
   _params.enabled.changed += [&](bool& enabled) {

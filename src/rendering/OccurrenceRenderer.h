@@ -9,7 +9,7 @@
 #ifndef OccurrenceRenderer_h
 #define OccurrenceRenderer_h
 
-#include "EntityRenderer.h"
+#include "../rendering/EntityRenderer.h"
 
 class MemoryAppParameters;
 

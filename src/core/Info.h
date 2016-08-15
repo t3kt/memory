@@ -39,6 +39,13 @@ public:
     add(label, ofToString(value));
   }
 
+  void add(const std::string& label, const ofVec3f& value) {
+    add(label, ofToString(value, 2));
+  }
+  void add(const std::string& label, const float& value) {
+    add(label, ofToString(value, 2));
+  }
+
   void resetSize() {
     _labelMaxLength = 0;
     _valueMaxLength = 0;

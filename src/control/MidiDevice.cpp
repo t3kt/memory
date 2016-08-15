@@ -7,8 +7,8 @@
 //
 
 #include <algorithm>
-#include "AppSystem.h"
-#include "MidiDevice.h"
+#include "../app/AppSystem.h"
+#include "../control/MidiDevice.h"
 
 
 static MidiDeviceId nextId() {

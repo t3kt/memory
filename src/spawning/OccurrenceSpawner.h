@@ -9,9 +9,9 @@
 #ifndef OccurrenceSpawner_h
 #define OccurrenceSpawner_h
 
-#include "Params.h"
-#include "Spawner.h"
-#include "ValueSupplier.h"
+#include "../core/Params.h"
+#include "../spawning/Spawner.h"
+#include "../core/ValueSupplier.h"
 
 class Bounds;
 class Context;

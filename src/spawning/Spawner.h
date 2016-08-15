@@ -10,8 +10,8 @@
 #define Spawner_h
 
 #include <memory>
-#include "Context.h"
-#include "Params.h"
+#include "../core/Context.h"
+#include "../core/Params.h"
 
 class Spawner {
 public:

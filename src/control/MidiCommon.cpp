@@ -7,7 +7,7 @@
 //
 
 #include <boost/functional/hash.hpp>
-#include "MidiCommon.h"
+#include "../control/MidiCommon.h"
 
 EnumTypeInfo<MidiMessageType> MidiMessageTypeType {
   {"cc", MidiMessageType::CONTROL_CHANGE},
@@ -43,10 +43,10 @@ MidiMappingKey MidiMappingKey::create(const MidiDeviceId& device,
 }
 
 void MidiMappingKey::outputFields(std::ostream& os) const {
-  return os << "dev: " << _device
-            << ", type: " << _type
-            << ", chan: " << _channel
-            << ", cc: " << _cc;
+  os << "dev: " << _device
+     << ", type: " << _type
+     << ", chan: " << _channel
+     << ", cc: " << _cc;
 }
 
 bool operator==(const MidiMappingKey& lha, const MidiMappingKey& rha) {

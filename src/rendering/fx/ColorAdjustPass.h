@@ -11,7 +11,7 @@
 
 #include <ofShader.h>
 #include <RenderPass.h>
-#include "Params.h"
+#include "../../core/Params.h"
 
 class ColorAdjustPass
 : public itg::RenderPass {

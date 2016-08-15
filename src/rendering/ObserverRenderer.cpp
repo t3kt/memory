@@ -7,11 +7,11 @@
 //
 
 #include <ofMain.h>
-#include "AppAssets.h"
-#include "AppSystem.h"
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "ObserverRenderer.h"
+#include "../app/AppAssets.h"
+#include "../app/AppSystem.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../rendering/ObserverRenderer.h"
 
 ObserverRenderer::ObserverRenderer(const Params& params,
                                    Context& context)

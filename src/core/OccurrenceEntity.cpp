@@ -7,10 +7,10 @@
 //
 
 #include <ofMain.h>
-#include "Context.h"
-#include "Info.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "../core/Context.h"
+#include "../core/Info.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
 
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
                                    float radius,

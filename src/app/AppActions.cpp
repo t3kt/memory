@@ -6,8 +6,8 @@
 //
 //
 
-#include "AppActions.h"
-#include "AppSystem.h"
+#include "../app/AppActions.h"
+#include "../app/AppSystem.h"
 
 EnumTypeInfo<AppAction> AppActionType({
   {"(none)", AppAction::NONE},

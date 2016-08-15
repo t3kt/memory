@@ -6,8 +6,8 @@
 //
 //
 
-#include "AppSystem.h"
-#include "Colors.h"
+#include "../app/AppSystem.h"
+#include "../core/Colors.h"
 
 const ColorTheme& ColorTheme::get() {
   return AppSystem::get().params()->colors;

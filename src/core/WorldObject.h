@@ -12,9 +12,9 @@
 #include <functional>
 #include <iostream>
 #include <memory>
-#include "Common.h"
-#include "JsonIO.h"
-#include "Serialization.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
+#include "../core/Serialization.h"
 
 typedef int ObjectId;
 
@@ -26,9 +26,6 @@ enum class EntityType {
   OBSERVER,
   OCCURRENCE,
 };
-
-template<typename T>
-EntityType getEntityType();
 
 class Info;
 

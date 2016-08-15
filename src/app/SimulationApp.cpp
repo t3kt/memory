@@ -7,9 +7,9 @@
 //
 
 #include <ofSystemUtils.h>
-#include "AppSystem.h"
-#include "ControlApp.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../app/ControlApp.h"
+#include "../app/SimulationApp.h"
 
 void SimulationApp::setup() {
   _renderingController =

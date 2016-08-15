@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "Info.h"
+#include "../core/Info.h"
 
 const float LINE_HEIGHT = 15;
 const float CHAR_WIDTH = 10;
@@ -67,14 +67,4 @@ void InfoBox::drawInfo(const Info &info) {
     y += LINE_HEIGHT;
   }
   ofPopStyle();
-}
-
-template<>
-void Info::add(const std::string& label, const float& value) {
-  add(label, ofToString(value, 2));
-}
-
-template<>
-void Info::add(const std::string& label, const ofVec3f& value) {
-  add(label, ofToString(value, 2));
 }

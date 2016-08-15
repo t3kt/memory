@@ -7,11 +7,11 @@
 //
 
 #include <ofMain.h>
-#include "AppAssets.h"
-#include "AppParameters.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "OccurrenceRenderer.h"
+#include "../app/AppAssets.h"
+#include "../app/AppParameters.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../rendering/OccurrenceRenderer.h"
 
 OccurrenceRenderer::OccurrenceRenderer(const Params& params,
                                        const MemoryAppParameters& appParams,

@@ -6,10 +6,10 @@
 //
 //
 
-#include "Context.h"
-#include "Info.h"
-#include "NavigatorEntity.h"
-#include "NavigatorState.h"
+#include "../core/Context.h"
+#include "../core/Info.h"
+#include "../navigation/NavigatorEntity.h"
+#include "../navigation/NavigatorState.h"
 
 NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState,
                                  Context& context)

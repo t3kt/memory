@@ -9,11 +9,11 @@
 #ifndef AnchorPointBehavior_h
 #define AnchorPointBehavior_h
 
-#include "AttractionBehavior.h"
-#include "Context.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "PhysicsBehavior.h"
+#include "../physics/AttractionBehavior.h"
+#include "../core/Context.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../physics/PhysicsBehavior.h"
 
 class AbstractAnchorPointBehavior
 : public AbstractAttractionBehavior {

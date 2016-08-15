@@ -6,10 +6,10 @@
 //
 //
 
-#include "AppSystem.h"
-#include "MidiDevice.h"
-#include "MidiEvents.h"
-#include "MidiRouter.h"
+#include "../app/AppSystem.h"
+#include "../control/MidiDevice.h"
+#include "../control/MidiEvents.h"
+#include "../control/MidiRouter.h"
 
 class MidiEventBinding {
 public:
