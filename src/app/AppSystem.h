@@ -1,9 +1,8 @@
 //
 //  AppSystem.h
-//  memory
 //
-//  Created by tekt on 7/14/16.
-//
+//  Top-level application component. It owns the Context instance
+//  and it provides centralized access to various global objects.
 //
 
 #ifndef AppSystem_h

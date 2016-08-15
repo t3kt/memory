@@ -1,9 +1,7 @@
 //
 //  AppParameters.h
-//  memory
 //
-//  Created by tekt on 1/25/15.
-//
+//  Parameters which control the behavior of the application.
 //
 
 #ifndef AppParameters_h

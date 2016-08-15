@@ -1,9 +1,5 @@
 //
 //  AppActions.cpp
-//  memory
-//
-//  Created by tekt on 7/10/16.
-//
 //
 
 #include "../app/AppActions.h"

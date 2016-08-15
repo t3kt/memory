@@ -1,9 +1,5 @@
 //
 //  AppAssets.cpp
-//  memory
-//
-//  Created by tekt on 7/17/16.
-//
 //
 
 #include <memory>

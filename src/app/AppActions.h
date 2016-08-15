@@ -1,9 +1,8 @@
 //
 //  AppActions.h
-//  memory
 //
-//  Created by tekt on 7/10/16.
-//
+//  Actions which can be triggered by things like keyboard shortcuts
+//  and handled by various components.
 //
 
 #ifndef AppActions_h
@@ -13,6 +12,7 @@
 #include "../core/Common.h"
 #include "../core/Events.h"
 
+// Type of action
 enum class AppAction {
   NONE,
   RESET_CAMERA,
@@ -39,6 +39,7 @@ using AppActionEvent = ValueEvent<AppAction>;
 
 extern EnumTypeInfo<AppAction> AppActionType;
 
+// A component which can handle AppActions
 class AppActionHandler {
 public:
   virtual bool performAction(AppAction action) = 0;
