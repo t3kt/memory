@@ -14,7 +14,7 @@
 class MemoryAppParameters;
 
 class OccurrenceRenderer
-: public EntityRenderer<OccurrenceEntity> {
+: public AbstractEntityRenderer {
 public:
   class Params : public AbstractEntityRenderer::Params {
   public:
@@ -60,12 +60,13 @@ public:
   OccurrenceRenderer(const Params& params,
                      const MemoryAppParameters& appParams,
                      Context& context);
-protected:
-  void drawEntity(const OccurrenceEntity& entity) override;
+
+  void draw() override;
 private:
   const Params& _params;
   const ofFloatColor& _rangeColor;
   const MemoryAppParameters& _appParams;
+  ObjectManager<OccurrenceEntity>& _entities;
 };
 
 #endif /* OccurrenceRenderer_h */

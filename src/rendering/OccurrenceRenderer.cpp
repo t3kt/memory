@@ -16,56 +16,104 @@
 OccurrenceRenderer::OccurrenceRenderer(const Params& params,
                                        const MemoryAppParameters& appParams,
                                        Context& context)
-: EntityRenderer(params,
-                 ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER),
-                 context,
-                 context.occurrences)
+: AbstractEntityRenderer(params,
+                         ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER),
+                         context)
+, _entities(context.occurrences)
 , _params(params)
 , _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
 , _appParams(appParams) { }
 
-void OccurrenceRenderer::drawEntity(const OccurrenceEntity &entity) {
-  float alpha = entity.alpha();
-
+void OccurrenceRenderer::draw() {
+  if (!_params.enabled.get()) {
+    return;
+  }
   const auto& mesh = AppAssets::occurrenceMarkerMesh();
+  auto renderer = ofGetCurrentRenderer();
 
-  ofPushStyle();
-  ofPushMatrix();
+  renderer->pushStyle();
 
-  ofSetColor(ofFloatColor(_color, _color.a * alpha));
-  ofTranslate(entity.position());
+  for (const auto& entity : _entities) {
+    if (!entity->visible()) {
+      continue;
+    }
 
-  float size = ofMap(entity.originalRadiusFraction(),
-                     0, 1,
-                     _params.sizeRange.lowValue.get(),
-                     _params.sizeRange.highValue.get());
+    renderer->pushMatrix();
+    float alpha = entity->alpha();
+    renderer->setColor(ofFloatColor(_color, _color.a * alpha));
+    renderer->translate(entity->position());
 
-  ofScale(ofVec3f(size));
-  mesh.draw();
+    float size = ofMap(entity->originalRadiusFraction(),
+                       0, 1,
+                       _params.sizeRange.lowValue.get(),
+                       _params.sizeRange.highValue.get());
 
-  if (_params.wireEnabled()) {
-    ofScale(ofVec3f(_params.wireScale()));
-    ofFloatColor wireColor(_color, _color.a * alpha);
-    wireColor.setSaturation(_params.wireSaturation());
-    wireColor.setBrightness(_params.wireBrightness());
-    ofSetColor(wireColor);
-    mesh.drawWireframe();
+    renderer->scale(size, size, size);
+    renderer->draw(mesh,
+                   OF_MESH_FILL,
+                   mesh.usingColors(),
+                   mesh.usingTextures(),
+                   mesh.usingNormals());
+    renderer->popMatrix();
   }
 
-  ofPopMatrix();
-  ofPopStyle();
+  if (_params.wireEnabled.get()) {
+    for (const auto& entity : _entities) {
+      if (!entity->visible()) {
+        continue;
+      }
+      renderer->pushMatrix();
+      renderer->translate(entity->position());
 
+      float size = ofMap(entity->originalRadiusFraction(),
+                         0, 1,
+                         _params.sizeRange.lowValue.get(),
+                         _params.sizeRange.highValue.get());
+      size *= _params.wireScale.get();
+      renderer->scale(size, size, size);
 
-  if (_params.showRange.get()) {
-    ofFloatColor rangeColor(_rangeColor);
-    rangeColor.a *= alpha;
-    if (rangeColor.a > 0) {
-      ofPushStyle();
-      ofEnableAlphaBlending();
-      ofSetColor(rangeColor);
-      float radius = entity.actualRadius();
-      ofDrawSphere(entity.position(), radius);
-      ofPopStyle();
+      ofFloatColor wireColor(_color, _color.a * entity->alpha());
+      wireColor.setSaturation(_params.wireSaturation());
+      wireColor.setBrightness(_params.wireBrightness());
+      renderer->setColor(wireColor);
+      renderer->draw(mesh,
+                     OF_MESH_WIREFRAME,
+                     mesh.usingColors(),
+                     mesh.usingTextures(),
+                     mesh.usingNormals());
+
+      renderer->popMatrix();
     }
   }
+
+  renderer->setBlendMode(OF_BLENDMODE_ALPHA);
+  if (_params.showRange.get()) {
+    for (const auto& entity : _entities) {
+      if (!entity->visible()) {
+        continue;
+      }
+
+      ofFloatColor color(_rangeColor, _rangeColor.a * entity->alpha());
+      if (color.a <= 0) {
+        continue;
+      }
+      renderer->pushMatrix();
+
+      float size = ofMap(entity->originalRadiusFraction(),
+                         0, 1,
+                         _params.sizeRange.lowValue.get(),
+                         _params.sizeRange.highValue.get());
+      size *= _params.wireScale.get();
+      renderer->scale(size, size, size);
+      renderer->setColor(color);
+      float radius = entity->actualRadius();
+      renderer->drawSphere(entity->position(), radius);
+
+      renderer->popMatrix();
+    }
+  }
+
+  renderer->popStyle();
+
 }
+
