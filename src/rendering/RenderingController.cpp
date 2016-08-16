@@ -83,10 +83,8 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
-  _observerRenderer->update();
   //  _instancedObserverRenderer->update();
   _observerThresholdRenderer->update();
-  _occurrenceRenderer->update();
   _postProc->update();
 }
 

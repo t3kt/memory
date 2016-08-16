@@ -17,6 +17,7 @@ ObserverPreRenderer::ObserverPreRenderer(const Params& params,
                     context.observers) { }
 
 void ObserverPreRenderer::update() {
+  _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   for (auto& entity : _entities) {
     auto alpha = entity->getRemainingLifetimeFraction();

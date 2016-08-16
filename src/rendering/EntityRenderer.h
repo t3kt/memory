@@ -52,32 +52,20 @@ protected:
 
 class AbstractEntityRenderer {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(fadeIn
-          .setKey("fadeIn")
-          .setName("Fade In"));
-    }
-
-    RampFactory<float>::Params fadeIn;
-  };
+  using Params = ParamsWithEnabled;
 
   AbstractEntityRenderer(const Params& params,
                          const ofFloatColor& color,
                          Context& context)
   : _baseParams(params)
   , _color(color)
-  , _context(context)
-  , _fadeIn(params.fadeIn) { }
+  , _context(context) { }
 
-  virtual void update();
   virtual void draw() = 0;
 protected:
   const Params& _baseParams;
   const ofFloatColor& _color;
   Context& _context;
-  RampFactory<float> _fadeIn;
 };
 
 template<typename T>

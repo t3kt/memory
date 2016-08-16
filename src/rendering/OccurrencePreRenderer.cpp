@@ -18,6 +18,7 @@ OccurrencePreRenderer::OccurrencePreRenderer(const Params& params,
                     context.occurrences) { }
 
 void OccurrencePreRenderer::update() {
+  _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   auto lowCount = _params.connectionCountRange.lowValue.get();
   auto highCount = _params.connectionCountRange.highValue.get();
