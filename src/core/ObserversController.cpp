@@ -40,6 +40,9 @@ bool ObserversController::performAction(AppAction action) {
     case AppAction::SPAWN_MANY_OBSERVERS:
       spawnObservers(100);
       break;
+    case AppAction::SPAWN_TONS_OF_OBSERVERS:
+      spawnObservers(4000);
+      break;
     case AppAction::KILL_FEW_OBSERVERS:
       killObservers(5);
       break;

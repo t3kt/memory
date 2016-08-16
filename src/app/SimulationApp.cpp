@@ -172,6 +172,10 @@ bool SimulationApp::performAction(AppAction action) {
     case AppAction::SAVE_ENTITY_STATE:
       saveEntityState();
       break;
+    case AppAction::SPAWN_LOAD_TEST_ENTITIES:
+      _observers->performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
+      _occurrences->performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
+      break;
     default:
       return false;
   }

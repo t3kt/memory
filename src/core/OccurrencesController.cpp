@@ -43,6 +43,9 @@ bool OccurrencesController::performAction(AppAction action) {
     case AppAction::SPAWN_MANY_OCCURRENCES:
       spawnOccurrences(100);
       break;
+    case AppAction::SPAWN_TONS_OF_OCCURRENCES:
+      spawnOccurrences(4000);
+      break;
     default:
       return false;
   }
