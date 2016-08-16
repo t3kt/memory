@@ -20,7 +20,7 @@
 #include "../rendering/EntityRenderer.h"
 
 class ObserverRenderer
-: public EntityRenderer<ObserverEntity> {
+: public AbstractEntityRenderer {
 public:
 
   class Params : public AbstractEntityRenderer::Params {
@@ -38,10 +38,11 @@ public:
   ObserverRenderer(const Params& params,
                    Context& context);
 
-protected:
-  void drawEntity(const ObserverEntity& entity) override;
+  void draw() override;
+
 private:
   const Params& _params;
+  ObjectManager<ObserverEntity>& _entities;
 };
 
 class InstancedObserverRenderer {

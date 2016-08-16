@@ -7,7 +7,6 @@
 //
 
 #include <ofMain.h>
-#include "../app/AppAssets.h"
 #include "../app/AppParameters.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
@@ -28,7 +27,6 @@ void OccurrenceRenderer::draw() {
   if (!_params.enabled.get()) {
     return;
   }
-  const auto& mesh = AppAssets::occurrenceMarkerMesh();
   auto renderer = ofGetCurrentRenderer();
 
   renderer->pushStyle();

@@ -15,26 +15,33 @@
 
 ObserverRenderer::ObserverRenderer(const Params& params,
                                    Context& context)
-: EntityRenderer(params,
-                 ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
-                 context,
-                 context.observers)
+: AbstractEntityRenderer(params,
+                         ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
+                         context)
+, _entities(context.observers)
 , _params(params) { }
 
-void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
-  float alpha = entity.alpha();
+void ObserverRenderer::draw() {
+  if (!_params.enabled.get()) {
+    return;
+  }
+  auto renderer = ofGetCurrentRenderer();
 
-  ofPushStyle();
-  ofPushMatrix();
+  renderer->pushStyle();
 
-  ofSetColor(ofFloatColor(_color, _color.a * alpha));
-  ofTranslate(entity.position());
   float size = _params.size.get();
-  ofScale(ofVec3f(size));
-  ofDrawSphere(size);
 
-  ofPopMatrix();
-  ofPopStyle();
+  for (const auto& entity : _entities) {
+    if (!entity->visible()) {
+      continue;
+    }
+
+    renderer->setColor(ofFloatColor(_color, _color.a * entity->alpha()));
+
+    renderer->drawSphere(entity->position(), size);
+  }
+
+  renderer->popStyle();
 }
 
 static const std::size_t MAX_OBSERVERS = 1000;
