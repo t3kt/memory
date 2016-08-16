@@ -15,11 +15,10 @@
 
 ObserverRenderer::ObserverRenderer(const Params& params,
                                    Context& context)
-: AbstractEntityRenderer(params,
-                         ColorTheme::get().getColor(ColorId::OBSERVER_MARKER),
-                         context)
+: _context(context)
 , _entities(context.observers)
-, _params(params) { }
+, _params(params)
+, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER)) { }
 
 void ObserverRenderer::draw() {
   if (!_params.enabled.get()) {

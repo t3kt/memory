@@ -19,11 +19,10 @@
 #include "../core/Context.h"
 #include "../rendering/EntityRenderer.h"
 
-class ObserverRenderer
-: public AbstractEntityRenderer {
+class ObserverRenderer {
 public:
 
-  class Params : public AbstractEntityRenderer::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(size
@@ -38,10 +37,12 @@ public:
   ObserverRenderer(const Params& params,
                    Context& context);
 
-  void draw() override;
+  void draw();
 
 private:
+  Context& _context;
   const Params& _params;
+  const ofFloatColor& _color;
   ObjectManager<ObserverEntity>& _entities;
 };
 

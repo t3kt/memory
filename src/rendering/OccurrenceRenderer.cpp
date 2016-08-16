@@ -15,11 +15,10 @@
 OccurrenceRenderer::OccurrenceRenderer(const Params& params,
                                        const MemoryAppParameters& appParams,
                                        Context& context)
-: AbstractEntityRenderer(params,
-                         ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER),
-                         context)
+: _context(context)
 , _entities(context.occurrences)
 , _params(params)
+, _color(ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER))
 , _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
 , _appParams(appParams) { }
 

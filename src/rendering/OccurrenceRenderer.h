@@ -13,10 +13,9 @@
 
 class MemoryAppParameters;
 
-class OccurrenceRenderer
-: public AbstractEntityRenderer {
+class OccurrenceRenderer {
 public:
-  class Params : public AbstractEntityRenderer::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(sizeRange
@@ -61,9 +60,11 @@ public:
                      const MemoryAppParameters& appParams,
                      Context& context);
 
-  void draw() override;
+  void draw();
 private:
   const Params& _params;
+  Context& _context;
+  const ofFloatColor& _color;
   const ofFloatColor& _rangeColor;
   const MemoryAppParameters& _appParams;
   ObjectManager<OccurrenceEntity>& _entities;

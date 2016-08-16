@@ -147,7 +147,6 @@
 		E915AD058D8CFBCF94867948 /* MotionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F7B869B77B84D84CBCF4EC6 /* MotionGroup.cpp */; };
 		EA6C3001ABA7EFDC59645D80 /* OccurrenceEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED1E236F3CF91768C675C432 /* OccurrenceEntity.cpp */; };
 		EB3DC41222A933534B9D7969 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A03571044EBB2DB95F16A0C2 /* ofxBaseGui.cpp */; };
-		EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */; };
 		F0A84C7C84C257206AC3EB26 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */; };
 		F339AB5F62C370C58449E370 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10E1EFE181FE634470793842 /* ofxLabel.cpp */; };
 		F81FD2E8043A882838897E5E /* AppSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E74B5556F60C45C853F9278 /* AppSystem.cpp */; };
@@ -209,7 +208,6 @@
 		10E1EFE181FE634470793842 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		13141418D48931C1710FFD5B /* IOSystem.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IOSystem.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/IOSystem.hpp; sourceTree = SOURCE_ROOT; };
 		1324084D010EA3700F964757 /* PhysicsBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PhysicsBehavior.h; path = src/physics/PhysicsBehavior.h; sourceTree = SOURCE_ROOT; };
-		1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EntityRenderer.cpp; path = src/rendering/EntityRenderer.cpp; sourceTree = SOURCE_ROOT; };
 		159F259F97E78793627A062A /* version.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = version.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/version.h; sourceTree = SOURCE_ROOT; };
 		169A7495494F5C1E216A2174 /* ofxTextAlignTTF.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextAlignTTF.h; path = ../../of_v0.9.3_osx_release/addons/ofxTextAlign/src/ofxTextAlignTTF.h; sourceTree = SOURCE_ROOT; };
 		17FCD68AEE2DE0B3A43C4C71 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
@@ -764,7 +762,6 @@
 				E3EF9EBE32865BF7425A7088 /* CameraController.h */,
 				32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */,
 				32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */,
-				1466F3E595C6DEDD74B29971 /* EntityRenderer.cpp */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
 				32324C781D57F32800D05EDF /* ObserverPreRenderer.cpp */,
 				32324C791D57F32800D05EDF /* ObserverPreRenderer.h */,
@@ -1526,7 +1523,6 @@
 				4D93988C4818BD27BE899E23 /* PhysicsBehavior.cpp in Sources */,
 				1518C0B3AAD2C1012B1FE216 /* PhysicsController.cpp in Sources */,
 				D40AED9187D21FE8E9B98573 /* CameraController.cpp in Sources */,
-				EF1A09FB392D4CAE19233279 /* EntityRenderer.cpp in Sources */,
 				4A11364C587650CFFFEB00B8 /* PostProcController.cpp in Sources */,
 				AC65CBF6F38E677411466D3D /* RenderingController.cpp in Sources */,
 				8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */,

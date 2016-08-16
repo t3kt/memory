@@ -12,7 +12,6 @@
 #include <ofGraphics.h>
 #include <ofxChoreograph.h>
 #include "../core/AnimationObject.h"
-#include "../core/Colors.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 
@@ -48,57 +47,6 @@ protected:
   Context& _context;
   ObjectManager<T>& _entities;
   RampFactory<float> _fadeIn;
-};
-
-class AbstractEntityRenderer {
-public:
-  using Params = ParamsWithEnabled;
-
-  AbstractEntityRenderer(const Params& params,
-                         const ofFloatColor& color,
-                         Context& context)
-  : _baseParams(params)
-  , _color(color)
-  , _context(context) { }
-
-  virtual void draw() = 0;
-protected:
-  const Params& _baseParams;
-  const ofFloatColor& _color;
-  Context& _context;
-};
-
-template<typename T>
-class EntityRenderer
-: public AbstractEntityRenderer {
-public:
-  EntityRenderer(const Params& params,
-                 const ofFloatColor& color,
-                 Context& context,
-                 ObjectManager<T>& entities)
-  : AbstractEntityRenderer(params,
-                           color,
-                           context)
-  , _entities(entities) { }
-
-  void draw() override {
-    if (!_baseParams.enabled.get()) {
-      return;
-    }
-    ofPushStyle();
-    ofFill();
-    for (const auto& entity : _entities) {
-      if (!entity->visible()) {
-        continue;
-      }
-      drawEntity(*entity);
-    }
-    ofPopStyle();
-  }
-protected:
-  virtual void drawEntity(const T& entity) = 0;
-
-  ObjectManager<T>& _entities;
 };
 
 #endif /* EntityRenderer_h */
