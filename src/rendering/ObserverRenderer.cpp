@@ -21,19 +21,6 @@ ObserverRenderer::ObserverRenderer(const Params& params,
                  context.observers)
 , _params(params) { }
 
-void ObserverRenderer::update() {
-  auto fadeIn = _fadeIn.getPhrase();
-  for (auto& entity : _entities) {
-    auto alpha = entity->getRemainingLifetimeFraction();
-    auto age = entity->getAge(_context.state);
-    if (age < fadeIn->getDuration()) {
-      alpha *= fadeIn->getValue(age);
-    }
-    alpha = ofClamp(alpha, 0, 1);
-    entity->setAlpha(alpha);
-  }
-}
-
 void ObserverRenderer::drawEntity(const ObserverEntity &entity) {
   float alpha = entity.alpha();
 
