@@ -3,7 +3,7 @@
 //
 
 #include <ofxGuiExtended.h>
-#include "../app/AppGui.h"
+#include "../gui/AppGui.h"
 
 class ActionsGui
 : public ofxPanelExtended {

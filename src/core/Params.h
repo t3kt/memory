@@ -292,6 +292,10 @@ public:
         .setName("High"));
   }
 
+  const std::type_info& getTypeInfo() const override {
+    return typeid(ValueRange<T>);
+  }
+
   ValueRange<T>& setKey(std::string key) {
     Params::setKey(key);
     return *this;

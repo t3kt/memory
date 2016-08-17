@@ -12,7 +12,7 @@
 #include <memory>
 #include <ofMain.h>
 #include "../app/AppActions.h"
-#include "../app/AppGui.h"
+#include "../gui/AppGui.h"
 #include "../app/AppParameters.h"
 #include "../core/Common.h"
 #include "../control/MidiController.h"
