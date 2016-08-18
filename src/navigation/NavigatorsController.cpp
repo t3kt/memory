@@ -115,6 +115,8 @@ void NavigatorsController::update() {
   });
 
   _observerNavSpawner->update(_context);
+
+  _context.state.stats.navigatorCount = _navigators.size();
 }
 
 void NavigatorsController::draw() {

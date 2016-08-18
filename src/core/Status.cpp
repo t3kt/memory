@@ -18,10 +18,10 @@ void StatusInfoController::update() {
   _info.add("State:", _context.state.running ? "Playing" : "Paused");
   _info.add("Time:", ofToString(_context.time(), 2));
   _info.add("FPS:", ofToString(ofGetFrameRate(), 2));
-  _info.add("Observers:", ofToString(_context.observers.size()));
-  _info.add("Occurrences:", ofToString(_context.occurrences.size()));
-  _info.add("Animations:", ofToString(_context.animations.size()));
-  _info.add("Navigators:", ofToString(_context.navigators.size()));
+  _info.add("Observers:", ofToString(_context.state.stats.observerCount));
+  _info.add("Occurrences:", ofToString(_context.state.stats.occurrenceCount));
+  _info.add("Animations:", ofToString(_context.state.stats.animationCount));
+  _info.add("Navigators:", ofToString(_context.state.stats.navigatorCount));
   if (!_context.highlightedEntities.empty()) {
     _info.add("Highlighted:",
               ofToString(_context.highlightedEntities.size()));

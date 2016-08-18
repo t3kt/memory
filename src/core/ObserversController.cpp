@@ -69,7 +69,7 @@ void ObserversController::update() {
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.observerCount = _entities.size();
+  _context.state.stats.observerCount = _entities.size();
 }
 
 void ObserversController::draw() {

@@ -9,6 +9,7 @@
 #ifndef __behavior__State__
 #define __behavior__State__
 
+#include "../analysis/SimulationStats.h"
 #include "../core/Common.h"
 
 class State
@@ -20,9 +21,7 @@ public:
   
   float time;
   float timeDelta;
-  int observerCount;
-  int occurrenceCount;
-  int animationCount;
+  SimulationStats stats;
   bool running;
   std::string typeName() const override { return "State"; }
 protected:
