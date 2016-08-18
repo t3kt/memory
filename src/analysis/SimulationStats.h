@@ -18,7 +18,16 @@ public:
   using CountT = std::size_t;
 
   CountT living;
+  CountT spawned;
   CountT died;
+  CountT totalSpawned;
+  CountT totalDied;
+
+  void resetCurrentCounts() {
+    living = 0;
+    spawned = 0;
+    died = 0;
+  }
 
   std::string typeName() const override { return "EntityStats"; }
 protected:
@@ -34,6 +43,13 @@ public:
   EntityStats navigators;
   EntityStats observers;
   EntityStats occurrences;
+
+  void resetCurrentCounts() {
+    animations.resetCurrentCounts();
+    navigators.resetCurrentCounts();
+    observers.resetCurrentCounts();
+    occurrences.resetCurrentCounts();
+  }
 
   std::string typeName() const override { return "SimulationStats"; }
 protected:

@@ -72,7 +72,7 @@ void NavigatorsController::update() {
   if (!_context.state.running) {
     return;
   }
-  _context.state.stats.navigators.died = 0;
+  auto& stats = _context.state.stats.navigators;
   _navigators.performAction([&](NavEntityPtr navigator) {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
@@ -114,12 +114,13 @@ void NavigatorsController::update() {
                          *navigator);
     _events.navigatorDied.notifyListenersUntilHandled(e);
 
-    _context.state.stats.navigators.died++;
+    stats.died++;
+    stats.totalDied++;
   });
 
   _observerNavSpawner->update(_context);
 
-  _context.state.stats.navigators.living = _navigators.size();
+  stats.living = _navigators.size();
 }
 
 void NavigatorsController::draw() {
@@ -147,4 +148,6 @@ void NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
                        *navigator);
   _events.navigatorSpawned.notifyListenersUntilHandled(e);
+  _context.state.stats.navigators.spawned++;
+  _context.state.stats.navigators.totalSpawned++;
 }

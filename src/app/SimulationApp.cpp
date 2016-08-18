@@ -77,6 +77,7 @@ void SimulationApp::setup() {
 
 void SimulationApp::update() {
   AppSystem::get().control()->update();
+  _context.state.stats.resetCurrentCounts();
   _clock->update();
   _observers->update();
   _occurrences->update();

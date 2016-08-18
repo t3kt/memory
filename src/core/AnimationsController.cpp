@@ -34,21 +34,24 @@ void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animati
   _events.animationSpawned.notifyListeners(e);
   
   _animations.add(animation);
+  _context.state.stats.animations.spawned++;
+  _context.state.stats.animations.totalSpawned++;
 }
 
 void AnimationsController::update() {
+  auto& stats = _context.state.stats.animations;
   for (auto& animation : _animations) {
     animation->update(_context.state);
   }
-  _context.state.stats.animations.died = 0;
   _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(SimulationEventType::ANIMATION_DIED,
                          *animation);
     _events.animationDied.notifyListeners(e);
 
-    _context.state.stats.animations.died++;
+    stats.died++;
+    stats.totalDied++;
   });
-  _context.state.stats.animations.living = _animations.size();
+  stats.living = _animations.size();
 }
 
 void AnimationsController::draw() {

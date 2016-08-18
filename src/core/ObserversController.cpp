@@ -56,23 +56,24 @@ bool ObserversController::performAction(AppAction action) {
 }
 
 void ObserversController::update() {
+  auto& stats = _context.state.stats.observers;
   _entities.performAction([&](std::shared_ptr<ObserverEntity> observer) {
     observer->update(_context.state);
   });
 
-  _context.state.stats.observers.died = 0;
   _entities.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
     ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
                         *observer);
     _events.observerDied.notifyListeners(e);
 
-    _context.state.stats.observers.died++;
+    stats.died++;
+    stats.totalDied++;
   });
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.stats.observers.living = _entities.size();
+  stats.living = _entities.size();
 }
 
 void ObserversController::draw() {
@@ -107,6 +108,8 @@ bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
   ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
                       *entity);
   _events.observerSpawned.notifyListeners(e);
+  _context.state.stats.observers.spawned++;
+  _context.state.stats.observers.totalSpawned++;
   return true;
 }
 

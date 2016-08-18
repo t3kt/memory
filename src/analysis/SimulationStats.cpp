@@ -10,7 +10,8 @@
 
 void EntityStats::outputFields(std::ostream &os) const {
   os << "living: " << living;
-  os << ", died: " << died;
+  os << ", died: " << died << " (" << totalDied << ")";
+  os << ", spawned: " << spawned << " (" << totalSpawned << ")";
 }
 
 void SimulationStats::outputFields(std::ostream &os) const {

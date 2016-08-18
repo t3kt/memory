@@ -53,6 +53,7 @@ bool OccurrencesController::performAction(AppAction action) {
 }
 
 void OccurrencesController::update() {
+  auto& stats = _context.state.stats.occurrences;
   for (auto& occurrence : _entities) {
     if (!occurrence->hasConnectedObservers()) {
       occurrence->kill();
@@ -71,19 +72,19 @@ void OccurrencesController::update() {
     occurrence->setAmountOfObservation(amount);
     occurrence->setActualRadius(radius);
   }
-  _context.state.stats.occurrences.died = 0;
   _entities.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
                           *occurrence);
     _events.occurrenceDied.notifyListeners(e);
 
-    _context.state.stats.occurrences.died++;
+    stats.died++;
+    stats.totalDied++;
   });
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.stats.occurrences.living = _entities.size();
+  stats.living = _entities.size();
 }
 
 void OccurrencesController::draw() {
@@ -107,6 +108,8 @@ bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entit
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
                           *entity);
     _events.occurrenceSpawned.notifyListeners(e);
+    _context.state.stats.occurrences.spawned++;
+    _context.state.stats.occurrences.totalSpawned++;
     return true;
   } else {
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
