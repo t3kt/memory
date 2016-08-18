@@ -8,9 +8,14 @@
 
 #include "../analysis/SimulationStats.h"
 
+void EntityStats::outputFields(std::ostream &os) const {
+  os << "living: " << living;
+  os << ", died: " << died;
+}
+
 void SimulationStats::outputFields(std::ostream &os) const {
-  os << "observerCount: " << observerCount;
-  os << ", occurrenceCount: " << occurrenceCount;
-  os << ", navigatorCount: " << navigatorCount;
-  os << ", animationCount: " << animationCount;
+  os << "observers: " << observers;
+  os << ", occurrences: " << occurrences;
+  os << ", navigators: " << navigators;
+  os << ", animations: " << animations;
 }

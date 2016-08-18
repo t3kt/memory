@@ -71,16 +71,19 @@ void OccurrencesController::update() {
     occurrence->setAmountOfObservation(amount);
     occurrence->setActualRadius(radius);
   }
+  _context.state.stats.occurrences.died = 0;
   _entities.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
     occurrence->detachConnections();
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
                           *occurrence);
     _events.occurrenceDied.notifyListeners(e);
+
+    _context.state.stats.occurrences.died++;
   });
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.stats.occurrenceCount = _entities.size();
+  _context.state.stats.occurrences.living = _entities.size();
 }
 
 void OccurrencesController::draw() {

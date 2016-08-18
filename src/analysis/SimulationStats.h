@@ -12,17 +12,30 @@
 #include <cstddef>
 #include "../core/Common.h"
 
+class EntityStats
+: public Outputable {
+public:
+  using CountT = std::size_t;
+
+  CountT living;
+  CountT died;
+
+  std::string typeName() const override { return "EntityStats"; }
+protected:
+  void outputFields(std::ostream& os) const override;
+};
+
 class SimulationStats
 : public Outputable {
 public:
   using CountT = std::size_t;
 
-  CountT observerCount;
-  CountT occurrenceCount;
-  CountT navigatorCount;
-  CountT animationCount;
+  EntityStats animations;
+  EntityStats navigators;
+  EntityStats observers;
+  EntityStats occurrences;
 
-  std::string typeName() const override { return "stats"; }
+  std::string typeName() const override { return "SimulationStats"; }
 protected:
   void outputFields(std::ostream& os) const override;
 };

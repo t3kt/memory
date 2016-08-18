@@ -40,12 +40,15 @@ void AnimationsController::update() {
   for (auto& animation : _animations) {
     animation->update(_context.state);
   }
+  _context.state.stats.animations.died = 0;
   _animations.cullDeadObjects([&](std::shared_ptr<AnimationObject> animation) {
     AnimationEventArgs e(SimulationEventType::ANIMATION_DIED,
                          *animation);
     _events.animationDied.notifyListeners(e);
+
+    _context.state.stats.animations.died++;
   });
-  _context.state.stats.animationCount = _animations.size();
+  _context.state.stats.animations.living = _animations.size();
 }
 
 void AnimationsController::draw() {

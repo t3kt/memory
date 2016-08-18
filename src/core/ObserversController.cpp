@@ -60,16 +60,19 @@ void ObserversController::update() {
     observer->update(_context.state);
   });
 
+  _context.state.stats.observers.died = 0;
   _entities.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
     observer->detachConnections();
     ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
                         *observer);
     _events.observerDied.notifyListeners(e);
+
+    _context.state.stats.observers.died++;
   });
 
   _spawner->update(_context);
   _rateSpawner->update(_context);
-  _context.state.stats.observerCount = _entities.size();
+  _context.state.stats.observers.living = _entities.size();
 }
 
 void ObserversController::draw() {
