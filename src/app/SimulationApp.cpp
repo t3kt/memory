@@ -55,6 +55,8 @@ void SimulationApp::setup() {
   _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
 
+  _analysis = std::make_shared<AnalysisController>(_context);
+
   _statusController = std::make_shared<StatusInfoController>(_context);
 
   _inspectionController =
@@ -77,7 +79,7 @@ void SimulationApp::setup() {
 
 void SimulationApp::update() {
   AppSystem::get().control()->update();
-  _context.state.stats.resetCurrentCounts();
+  _analysis->update();
   _clock->update();
   _observers->update();
   _occurrences->update();

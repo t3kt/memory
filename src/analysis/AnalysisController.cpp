@@ -10,5 +10,5 @@
 #include "../core/Context.h"
 
 void AnalysisController::update() {
-  //...
+  _context.state.stats.resetCurrentCounts();
 }

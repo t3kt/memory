@@ -10,7 +10,21 @@
 #define SimulationStats_h
 
 #include <cstddef>
+#include <vector>
 #include "../core/Common.h"
+
+template<typename T>
+struct TimedSample {
+  T value;
+  float time;
+};
+
+class RunningValue {
+public:
+  using CountT = std::size_t;
+
+private:
+};
 
 class EntityStats
 : public Outputable {
@@ -23,15 +37,16 @@ public:
   CountT totalSpawned;
   CountT totalDied;
 
+  std::string typeName() const override { return "EntityStats"; }
+protected:
+  void outputFields(std::ostream& os) const override;
+
   void resetCurrentCounts() {
     living = 0;
     spawned = 0;
     died = 0;
   }
-
-  std::string typeName() const override { return "EntityStats"; }
-protected:
-  void outputFields(std::ostream& os) const override;
+  friend class SimulationStats;
 };
 
 class SimulationStats

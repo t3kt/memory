@@ -10,6 +10,7 @@
 #define SimulationApp_h
 
 #include <ofMain.h>
+#include "../analysis/AnalysisController.h"
 #include "../core/AnimationsController.h"
 #include "../app/AppActions.h"
 #include "../app/AppParameters.h"
@@ -74,6 +75,7 @@ private:
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;
   std::shared_ptr<PhysicsController> _physics;
+  std::shared_ptr<AnalysisController> _analysis;
   std::shared_ptr<Clock> _clock;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;

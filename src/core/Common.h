@@ -96,4 +96,9 @@ public:
   : std::runtime_error("NOT IMPLEMENTED") { }
 };
 
+template<typename T>
+class RotatingBuffer {
+public:
+};
+
 #endif /* defined(__behavior__Common__) */
