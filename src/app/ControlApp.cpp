@@ -108,8 +108,8 @@ void ControlApp::setup() {
   updateLogState();
   loadSettings();
 
-  _gui = std::make_shared<AppGui>(_appParams, *this);
-  _gui->setup();
+  _gui = std::make_shared<AppGui>(_appParams);
+  _gui->setup(*this);
 
   _midi = std::make_shared<MidiController>(_appParams);
   _midi->setup();

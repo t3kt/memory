@@ -48,30 +48,29 @@ private:
 // Control panel GUI which modifies Params
 class AppGui {
 public:
-  AppGui(MemoryAppParameters& appParams,
-         AppActionHandler& actionHandler);
+  AppGui(MemoryAppParameters& appParams);
 
-  void setup();
+  void setup(AppActionHandler& actionHandler);
   void draw();
 private:
   MemoryAppParameters& _appParams;
 
-  ofxGuiPage _corePage;
-  ofxGuiPage _entityPage;
-  ofxGuiPage _animationsPage;
-  ofxGuiPage _colorsPage;
-  ofxGuiPage _renderingPage;
-  ofxGuiPage _physicsPage;
+  std::shared_ptr<ofxGuiPage> _corePage;
+  std::shared_ptr<ofxGuiPage> _entityPage;
+  std::shared_ptr<ofxGuiPage> _animationsPage;
+  std::shared_ptr<ofxGuiPage> _colorsPage;
+  std::shared_ptr<ofxGuiPage> _renderingPage;
+  std::shared_ptr<ofxGuiPage> _physicsPage;
 
-  ofxTabbedPages _pages;
+  std::shared_ptr<ofxTabbedPages> _pages;
 
-  ofxGuiPage _observersPage;
-  ofxGuiPage _occurrencesPage;
-  ofxGuiPage _navigatorsPage;
+  std::shared_ptr<ofxGuiPage> _observersPage;
+  std::shared_ptr<ofxGuiPage> _occurrencesPage;
+  std::shared_ptr<ofxGuiPage> _navigatorsPage;
 
-  ofxTabbedPages _entityPages;
+  std::shared_ptr<ofxTabbedPages> _entityPages;
 
-  ActionsGui _actions;
+  std::shared_ptr<ActionsGui> _actions;
 };
 
 #endif /* AppGui_h */
