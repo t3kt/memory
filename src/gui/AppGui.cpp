@@ -2,80 +2,18 @@
 //  AppGui.cpp
 //
 
-#include <ofxGuiExtended.h>
 #include "../gui/AppGui.h"
-
-class ActionsGui
-: public ofxPanelExtended {
-public:
-  ActionsGui(AppActionHandler& actionHandler)
-  : _actionHandler(actionHandler) {
-    setup();
-    setName("Actions");
-    _group.setup();
-    add(&_group);
-
-    auto loadButton = new ofxMinimalButton("load");
-    loadButton->addListener(this, &ActionsGui::onLoad);
-    _group.add(loadButton);
-
-    auto saveButton = new ofxMinimalButton("save");
-    saveButton->addListener(this, &ActionsGui::onSave);
-    _group.add(saveButton);
-
-    _group.minimize();
-  }
-private:
-  void onLoad() {
-    _actionHandler.performAction(AppAction::LOAD_SETTINGS);
-  }
-
-  void onSave() {
-    _actionHandler.performAction(AppAction::SAVE_SETTINGS);
-  }
-
-  AppActionHandler& _actionHandler;
-  ofxGuiGroupExtended _group;
-};
-
-class AppGuiImpl {
-public:
-  AppGuiImpl(MemoryAppParameters& appParams,
-             AppActionHandler& actionHandler);
-
-  void draw() {
-    _pages.draw();
-    _actions.draw();
-  }
-private:
-  MemoryAppParameters& _appParams;
-
-  ofxGuiPage _corePage;
-  ofxGuiPage _entityPage;
-  ofxGuiPage _animationsPage;
-  ofxGuiPage _colorsPage;
-  ofxGuiPage _renderingPage;
-  ofxGuiPage _physicsPage;
-
-  ofxTabbedPages _pages;
-
-  ofxGuiPage _observersPage;
-  ofxGuiPage _occurrencesPage;
-  ofxGuiPage _navigatorsPage;
-
-  ofxTabbedPages _entityPages;
-
-  ActionsGui _actions;
-};
 
 static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
   gui->setBackgroundColor(ofColor(gui->getBackgroundColor(), alpha*255));
 }
 
-AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
-                       AppActionHandler& actionHandler)
+AppGui::AppGui(MemoryAppParameters& appParams,
+               AppActionHandler& actionHandler)
 : _appParams(appParams)
-, _actions(actionHandler) {
+, _actions(actionHandler) { }
+
+void AppGui::setup() {
   _pages.setup();
   _pages.setSize(240, 700);
   _pages.setShowHeader(false);
@@ -133,10 +71,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   setBackgroundAlpha(&_entityPages, 0.7);
 }
 
-AppGui::AppGui(MemoryAppParameters& appParams,
-               AppActionHandler& actionHandler)
-: _impl(new AppGuiImpl(appParams, actionHandler)) {}
-
 void AppGui::draw() {
-  _impl->draw();
+  _pages.draw();
+  _actions.draw();
 }
