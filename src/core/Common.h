@@ -96,4 +96,40 @@ public:
   : std::runtime_error("NOT IMPLEMENTED") { }
 };
 
+template<typename T>
+class ValueOrRef {
+public:
+  static ValueOrRef<T> fromRef(T* val) {
+    return ValueOrRef<T>(false, val);
+  }
+
+  static ValueOrRef<T> owningValue(T initialValue) {
+    auto result = owningValue();
+    result._value = initialValue;
+    return result;
+  }
+
+  static ValueOrRef<T> owningValue() {
+    ValueOrRef<T> result(true, new T());
+    return result;
+  }
+
+  ~ValueOrRef() {
+    if (_ownsValue) {
+      delete _value;
+    }
+  }
+
+  const T& get() const { return *_value; }
+  void set(const T& value) { *_value = value; }
+
+private:
+  ValueOrRef(bool owns, T* val)
+  : _ownsValue(owns)
+  , _value(val) { }
+
+  const bool _ownsValue;
+  T* _value;
+};
+
 #endif /* defined(__behavior__Common__) */
