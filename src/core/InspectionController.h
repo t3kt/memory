@@ -62,8 +62,7 @@ private:
   Context& _context;
   ofAppGLFWWindow& _window;
 
-  std::shared_ptr<ParticleObject> _selectedEntity;
-  ofVec3f _selectedScreenPosition;
+  ParticlePtr _selectedEntity;
   ofVec2f _clickPos;
   bool _hasClick;
 
