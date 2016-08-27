@@ -60,7 +60,6 @@ void SimulationApp::setup() {
   _inspectionController =
   std::make_shared<InspectionController>(_appParams.core.debug.inspect,
                                          _context,
-                                         _renderingController->getCamera(),
                                          *_window);
   _inspectionController->setup();
 

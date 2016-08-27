@@ -11,7 +11,6 @@
 
 #include <memory>
 #include <ofAppGLFWWindow.h>
-#include <ofCamera.h>
 #include <ofEvents.h>
 #include "../core/Info.h"
 #include "../core/Params.h"
@@ -41,11 +40,9 @@ public:
 
   InspectionController(Params& params,
                        Context& context,
-                       ofCamera& camera,
                        ofAppGLFWWindow& window)
   : _params(params)
   , _context(context)
-  , _camera(camera)
   , _window(window)
   , _infoBox(InfoBox::Position::BOTTOM_RIGHT) { }
 
@@ -63,7 +60,6 @@ private:
 
   Params& _params;
   Context& _context;
-  ofCamera& _camera;
   ofAppGLFWWindow& _window;
 
   std::shared_ptr<ParticleObject> _selectedEntity;

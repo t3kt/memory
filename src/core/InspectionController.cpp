@@ -46,12 +46,11 @@ void InspectionController::update() {
     return;
   }
   if (_hasClick) {
-    _camera.begin();
     float closestDist = -1;
     float range = _params.clickRange.get();
     bool found = false;
     _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
-      ofVec3f screenPos = _camera.worldToScreen(entity->position());
+      const auto& screenPos = entity->screenPos();
       float dist = screenPos.distance(_clickPos);
       if (dist > range) {
         return;
@@ -66,13 +65,12 @@ void InspectionController::update() {
       _selectedEntity.reset();
     }
     _hasClick = false;
-    _camera.end();
   }
   if (_selectedEntity) {
     if (!_selectedEntity->alive()) {
       _selectedEntity.reset();
     } else {
-      _selectedScreenPosition = _camera.worldToScreen(_selectedEntity->position());
+      _selectedScreenPosition = _selectedEntity->screenPos();
     }
   }
   updateHighlights();

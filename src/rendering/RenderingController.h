@@ -137,8 +137,6 @@ public:
                       ofAppGLFWWindow& window,
                       Context& context);
 
-  ofCamera& getCamera() { return _camera->getCamera(); }
-
   void setup();
   void update();
   void beginDraw();
