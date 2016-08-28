@@ -130,7 +130,7 @@
       "inspect": {
         "clickRange": 13.577677726745605,
         "enabled": true,
-        "showInfo": false
+        "showInfo": true
       },
       "logging": {
         "anim": {
@@ -380,12 +380,8 @@
       },
       "renderer": {
         "enabled": true,
-        "fadeIn": {
-          "duration": 1,
-          "endValue": 1,
-          "startValue": 0
-        },
-        "size": 1.5701793432235718
+        "highlightAmount": 0.60000002384185791,
+        "size": 5.7351107597351074
       },
       "thresholdRenderer": {
         "enabled": false,
@@ -417,11 +413,7 @@
       },
       "renderer": {
         "enabled": true,
-        "fadeIn": {
-          "duration": 4,
-          "endValue": 1,
-          "startValue": 0
-        },
+        "highlightAmount": 0.60000002384185791,
         "showRange": false,
         "sizeRange": {
           "high": 10.751474380493164,

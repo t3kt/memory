@@ -30,8 +30,14 @@ public:
           .setName("Draw Size")
           .setValueAndDefault(2)
           .setRange(0, 20));
+      add(highlightAmount
+          .setKey("highlightAmount")
+          .setName("Highlighting")
+          .setValueAndDefault(0.6)
+          .setRange(0, 1));
     }
     TParam<float> size;
+    TParam<float> highlightAmount;
   };
 
   ObserverRenderer(const Params& params,
