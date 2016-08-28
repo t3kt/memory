@@ -99,19 +99,11 @@ void RenderingController::beginDraw() {
   _occurrencePreRenderer->update();
 
   ofBackground(_backgroundColor);
-  glPushAttrib(GL_ENABLE_BIT);
-//  ofEnableDepthTest();
-  //glEnable(GL_DEPTH_TEST);
-//  ofEnableLighting();
-  glEnable(GL_CULL_FACE);
-//  _light.enable();
   _postProc->beginDraw(_camera->getCamera());
   _camera->applyTransform();
   if (_params.fog.enabled()) {
     beginFog();
   }
-
-  ofPushMatrix();
 }
 
 void RenderingController::draw() {
@@ -125,14 +117,10 @@ void RenderingController::draw() {
 }
 
 void RenderingController::endDraw() {
-  ofPopMatrix();
   if (_params.fog.enabled()) {
     endFog();
   }
   _postProc->endDraw(_camera->getCamera());
-//  ofDisableDepthTest();
-//  ofDisableLighting();
-  glPopAttrib();
 }
 
 void RenderingController::beginFog() {
