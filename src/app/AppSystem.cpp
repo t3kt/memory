@@ -5,7 +5,6 @@
 
 #include <map>
 #include "../app/AppSystem.h"
-#include "../app/ControlApp.h"
 #include "../app/SimulationApp.h"
 
 class PauseHandler {
@@ -78,9 +77,6 @@ void AppSystem::setup() {
   _simulationApp = std::make_shared<SimulationApp>(_appParams,
                                                    _context,
                                                    _simulationWindow);
-
-  _controlApp = std::make_shared<ControlApp>(_appParams);
-  _controlApp->setup();
 }
 
 void AppSystem::main() {

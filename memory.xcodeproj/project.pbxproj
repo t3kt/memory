@@ -39,6 +39,7 @@
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
 		324CF7081D3CB1E9003DD487 /* ObserverRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */; };
 		324CF70B1D3CB279003DD487 /* OccurrenceRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */; };
+		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
 		32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */; };
 		32DB79E91D3DD81600ED4EB7 /* marker-shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */; };
@@ -94,7 +95,6 @@
 		820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */; };
 		8363E3A3FB38459F28C32F67 /* SimulationApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2644BC4B5A561E6D39FDB990 /* SimulationApp.cpp */; };
 		8466D8562C4AAB5F968FC8BD /* ContrastPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6477C34ACC12C364A027E364 /* ContrastPass.cpp */; };
-		8700B268519CF1A82FB0E0E6 /* ControlApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FB4B4048C04F08C0A1FA98 /* ControlApp.cpp */; };
 		88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7973CB857523C1FD621B06B3 /* ZoomBlurPass.cpp */; };
 		8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 060B900FD66542BB0792E633 /* ObserverEntity.cpp */; };
 		8AFFBB76CB2F6EB013036AF3 /* ofxAssimpTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B01E1D9D70BE4D90B76CD672 /* ofxAssimpTexture.cpp */; };
@@ -237,7 +237,6 @@
 		2A61C85F50CE0EA044F147DA /* PostProcController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PostProcController.h; path = src/rendering/PostProcController.h; sourceTree = SOURCE_ROOT; };
 		2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AnimationsController.cpp; path = src/core/AnimationsController.cpp; sourceTree = SOURCE_ROOT; };
 		2F8E0972EBAD194019AAE430 /* HorizontalTiltShifPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = HorizontalTiltShifPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/HorizontalTiltShifPass.cpp; sourceTree = SOURCE_ROOT; };
-		2FE1E3676960DCD7CA682635 /* ControlApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlApp.h; path = src/app/ControlApp.h; sourceTree = SOURCE_ROOT; };
 		3085A7C9897B49320258786A /* TimelineItem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimelineItem.h; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineItem.h; sourceTree = SOURCE_ROOT; };
 		3137CEF1BCCAD71B77E1C2E6 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../of_v0.9.3_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AttractionBehavior.cpp; path = src/physics/AttractionBehavior.cpp; sourceTree = SOURCE_ROOT; };
@@ -273,6 +272,8 @@
 		324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceRenderer.cpp; path = rendering/OccurrenceRenderer.cpp; sourceTree = "<group>"; };
 		324CF70A1D3CB279003DD487 /* OccurrenceRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceRenderer.h; path = rendering/OccurrenceRenderer.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
+		32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventLogging.cpp; path = core/EventLogging.cpp; sourceTree = "<group>"; };
+		32CBCEE71D72B21400AEECC1 /* EventLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventLogging.h; path = core/EventLogging.h; sourceTree = "<group>"; };
 		32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectorRenderer.cpp; path = rendering/ConnectorRenderer.cpp; sourceTree = "<group>"; };
 		32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectorRenderer.h; path = rendering/ConnectorRenderer.h; sourceTree = "<group>"; };
 		32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "marker-shader.vert"; path = "res/marker-shader.vert"; sourceTree = SOURCE_ROOT; };
@@ -341,7 +342,6 @@
 		52DA674F75908A4AD4029805 /* Status.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Status.h; path = src/core/Status.h; sourceTree = SOURCE_ROOT; };
 		55A8F82130278C2A892A5A61 /* ofxGuiExtended.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiExtended.h; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiExtended.h; sourceTree = SOURCE_ROOT; };
 		581F497F9FA3425721AEB3DC /* Params.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Params.cpp; path = src/core/Params.cpp; sourceTree = SOURCE_ROOT; };
-		59FB4B4048C04F08C0A1FA98 /* ControlApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlApp.cpp; path = src/app/ControlApp.cpp; sourceTree = SOURCE_ROOT; };
 		5A5B1087DCFC03442468411E /* AppSystem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppSystem.h; path = src/app/AppSystem.h; sourceTree = SOURCE_ROOT; };
 		5A9746499F22FE090346550E /* ofxGuiBaseDraws.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiBaseDraws.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiBaseDraws.cpp; sourceTree = SOURCE_ROOT; };
 		5CB4B21F346420AC3C025F44 /* FxaaPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FxaaPass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/FxaaPass.h; sourceTree = SOURCE_ROOT; };
@@ -1171,6 +1171,8 @@
 				32324C5E1D55C1D900D05EDF /* EntityController.cpp */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
+				32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */,
+				32CBCEE71D72B21400AEECC1 /* EventLogging.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				32324CA31D59690500D05EDF /* Info.cpp */,
 				32324CA41D59690500D05EDF /* Info.h */,
@@ -1240,8 +1242,6 @@
 				5EA0A1032F532D62BFD5CCB4 /* AppParameters.h */,
 				4E74B5556F60C45C853F9278 /* AppSystem.cpp */,
 				5A5B1087DCFC03442468411E /* AppSystem.h */,
-				59FB4B4048C04F08C0A1FA98 /* ControlApp.cpp */,
-				2FE1E3676960DCD7CA682635 /* ControlApp.h */,
 				823FBC6F9791944E4D93726D /* main.cpp */,
 				2644BC4B5A561E6D39FDB990 /* SimulationApp.cpp */,
 				8C23CBB813797A86DA3D0E1F /* SimulationApp.h */,
@@ -1482,7 +1482,6 @@
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				F81FD2E8043A882838897E5E /* AppSystem.cpp in Sources */,
-				8700B268519CF1A82FB0E0E6 /* ControlApp.cpp in Sources */,
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
 				8363E3A3FB38459F28C32F67 /* SimulationApp.cpp in Sources */,
 				32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */,
@@ -1605,6 +1604,7 @@
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
 				32EEAEC31D4C5AB8003A503F /* SimulationEvents.cpp in Sources */,
 				32EEAEC11D4C5A9E003A503F /* MidiEvents.cpp in Sources */,
+				32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */,
 				324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
