@@ -30,6 +30,8 @@
 #include <ofxSyphon.h>
 #endif
 
+class EventLoggers;
+
 class SimulationApp
 : public ofBaseApp
 , public AppActionHandler {
@@ -58,13 +60,19 @@ public:
   const State& state() const { return _context.state; }
 
 private:
+  void loadSettings();
+  void saveSettings();
+
   void dumpEntityState();
   void loadEntityState();
   void saveEntityState();
 
+  void updateLogState();
+
   Context& _context;
   MemoryAppParameters& _appParams;
   SimulationEvents _events;
+  std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<ofAppGLFWWindow> _window;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;

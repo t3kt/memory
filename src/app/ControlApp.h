@@ -10,15 +10,11 @@
 #define ControlApp_h
 
 #include <memory>
-#include <ofMain.h>
 #include "../app/AppActions.h"
 #include "../app/AppGui.h"
 #include "../app/AppParameters.h"
-#include "../core/Common.h"
 #include "../control/MidiController.h"
 #include "../core/State.h"
-
-class EventLoggers;
 
 class ControlApp
 : public AppActionHandler {
@@ -32,13 +28,8 @@ public:
 
   bool performAction(AppAction action) override;
 private:
-  void updateLogState();
-
-  void loadSettings();
-  void saveSettings();
 
   MemoryAppParameters& _appParams;
-  std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<AppGui> _gui;
   std::shared_ptr<MidiController> _midi;
 };
