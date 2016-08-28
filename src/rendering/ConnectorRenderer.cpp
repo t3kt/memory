@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "ConnectorRenderer.h"
+#include "../rendering/ConnectorRenderer.h"
 
 void ObserverOccurrenceConnectorRenderer::draw() {
   if (!_params.enabled()) {

@@ -9,11 +9,11 @@
 #ifndef PhysicsBehavior_h
 #define PhysicsBehavior_h
 
-#include "Bounds.h"
-#include "Context.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "State.h"
+#include "../core/Bounds.h"
+#include "../core/Context.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../core/State.h"
 
 class AbstractPhysicsBehavior {
 public:

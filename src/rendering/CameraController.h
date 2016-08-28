@@ -10,9 +10,9 @@
 #define CameraController_h
 
 #include <ofEasyCam.h>
-#include "AppActions.h"
-#include "Context.h"
-#include "Params.h"
+#include "../app/AppActions.h"
+#include "../core/Context.h"
+#include "../core/Params.h"
 
 class CameraController
 : public AppActionHandler {

@@ -9,10 +9,10 @@
 #ifndef ForceFieldBehavior_h
 #define ForceFieldBehavior_h
 
-#include "Context.h"
-#include "Params.h"
-#include "ParticleObject.h"
-#include "PhysicsBehavior.h"
+#include "../core/Context.h"
+#include "../core/Params.h"
+#include "../core/ParticleObject.h"
+#include "../physics/PhysicsBehavior.h"
 
 class AbstractForceFieldBehavior
 : public AbstractPhysicsBehavior {

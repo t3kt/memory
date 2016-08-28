@@ -6,9 +6,9 @@
 //
 //
 
-#include "Context.h"
-#include "ObserverEntity.h"
-#include "ObserverPreRenderer.h"
+#include "../core/Context.h"
+#include "../core/ObserverEntity.h"
+#include "../rendering/ObserverPreRenderer.h"
 
 ObserverPreRenderer::ObserverPreRenderer(const Params& params,
                                          Context& context)
@@ -17,6 +17,7 @@ ObserverPreRenderer::ObserverPreRenderer(const Params& params,
                     context.observers) { }
 
 void ObserverPreRenderer::update() {
+  _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   for (auto& entity : _entities) {
     auto alpha = entity->getRemainingLifetimeFraction();

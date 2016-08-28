@@ -12,9 +12,9 @@
 #include <functional>
 #include <iostream>
 #include <memory>
-#include "Common.h"
-#include "JsonIO.h"
-#include "Serialization.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
+#include "../core/Serialization.h"
 
 typedef int ObjectId;
 
@@ -26,9 +26,6 @@ enum class EntityType {
   OBSERVER,
   OCCURRENCE,
 };
-
-template<typename T>
-EntityType getEntityType();
 
 class Info;
 
@@ -50,6 +47,10 @@ public:
   float alpha() const { return _alpha; }
   void setAlpha(float alpha) { _alpha = alpha; }
 
+  const ofVec3f& screenPos() const { return _screenPos; }
+
+  void setScreenPos(const ofVec3f& pos) { _screenPos = pos; }
+
   virtual EntityType entityType() const = 0;
 
   virtual void deserializeFields(const Json& obj,
@@ -69,6 +70,7 @@ private:
   float _alpha;
   bool _alive;
   ObjectId _id;
+  ofVec3f _screenPos;
 };
 
 #endif /* WorldObject_h */

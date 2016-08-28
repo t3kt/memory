@@ -6,9 +6,10 @@
 //
 //
 
-#include "AppSystem.h"
-#include "OccurrencesController.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../core/OccurrencesController.h"
+#include "../app/SimulationApp.h"
+#include "../core/SimulationEvents.h"
 
 OccurrencesController::OccurrencesController(const Params& params,
                                              const Bounds& bounds,
@@ -41,6 +42,9 @@ bool OccurrencesController::performAction(AppAction action) {
       break;
     case AppAction::SPAWN_MANY_OCCURRENCES:
       spawnOccurrences(100);
+      break;
+    case AppAction::SPAWN_TONS_OF_OCCURRENCES:
+      spawnOccurrences(4000);
       break;
     default:
       return false;

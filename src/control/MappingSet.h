@@ -10,8 +10,8 @@
 #define MappingSet_h
 
 #include <string>
-#include "Common.h"
-#include "JsonIO.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
 
 template<typename T>
 class MappingSet

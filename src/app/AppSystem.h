@@ -1,9 +1,8 @@
 //
 //  AppSystem.h
-//  memory
 //
-//  Created by tekt on 7/14/16.
-//
+//  Top-level application component. It owns the Context instance
+//  and it provides centralized access to various global objects.
 //
 
 #ifndef AppSystem_h
@@ -13,12 +12,12 @@
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
 #include <ofSystemUtils.h>
-#include "AppActions.h"
-#include "AppParameters.h"
-#include "Context.h"
-#include "Events.h"
-#include "State.h"
-#include "Logging.h"
+#include "../app/AppActions.h"
+#include "../app/AppParameters.h"
+#include "../core/Context.h"
+#include "../core/Events.h"
+#include "../core/State.h"
+#include "../core/Logging.h"
 
 class SimulationApp;
 class ControlApp;

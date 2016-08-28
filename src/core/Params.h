@@ -14,9 +14,9 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
-#include "Common.h"
-#include "Events.h"
-#include "JsonIO.h"
+#include "../core/Common.h"
+#include "../core/Events.h"
+#include "../core/JsonIO.h"
 
 class TParamBase
 : public JsonReadable

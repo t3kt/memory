@@ -1,28 +1,26 @@
 //
 //  AppParameters.h
-//  memory
 //
-//  Created by tekt on 1/25/15.
-//
+//  Parameters which control the behavior of the application.
 //
 
 #ifndef AppParameters_h
 #define AppParameters_h
 
-#include "AnimationsController.h"
-#include "Bounds.h"
-#include "Clock.h"
-#include "Colors.h"
-#include "Events.h"
-#include "InspectionController.h"
-#include "Logging.h"
-#include "MidiController.h"
-#include "NavigatorsController.h"
-#include "ObserversController.h"
-#include "OccurrencesController.h"
-#include "Params.h"
-#include "PhysicsController.h"
-#include "RenderingController.h"
+#include "../core/AnimationsController.h"
+#include "../core/Bounds.h"
+#include "../core/Clock.h"
+#include "../core/Colors.h"
+#include "../core/Events.h"
+#include "../core/InspectionController.h"
+#include "../core/Logging.h"
+#include "../control/MidiController.h"
+#include "../navigation/NavigatorsController.h"
+#include "../core/ObserversController.h"
+#include "../core/OccurrencesController.h"
+#include "../core/Params.h"
+#include "../physics/PhysicsController.h"
+#include "../rendering/RenderingController.h"
 
 class DebugParams : public Params {
 public:

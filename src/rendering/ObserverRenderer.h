@@ -15,15 +15,14 @@
 #include <ofTexture.h>
 #include <ofVboMesh.h>
 #include <vector>
-#include "AnimationObject.h"
-#include "Context.h"
-#include "EntityRenderer.h"
+#include "../core/AnimationObject.h"
+#include "../core/Context.h"
+#include "../rendering/EntityRenderer.h"
 
-class ObserverRenderer
-: public EntityRenderer<ObserverEntity> {
+class ObserverRenderer {
 public:
 
-  class Params : public AbstractEntityRenderer::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(size
@@ -31,18 +30,26 @@ public:
           .setName("Draw Size")
           .setValueAndDefault(2)
           .setRange(0, 20));
+      add(highlightAmount
+          .setKey("highlightAmount")
+          .setName("Highlighting")
+          .setValueAndDefault(0.6)
+          .setRange(0, 1));
     }
     TParam<float> size;
+    TParam<float> highlightAmount;
   };
 
   ObserverRenderer(const Params& params,
                    Context& context);
 
-  void update() override;
-protected:
-  void drawEntity(const ObserverEntity& entity) override;
+  void draw();
+
 private:
+  Context& _context;
   const Params& _params;
+  const ofFloatColor& _color;
+  ObjectManager<ObserverEntity>& _entities;
 };
 
 class InstancedObserverRenderer {

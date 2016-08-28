@@ -1,12 +1,8 @@
 //
 //  Bounds.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/26/16.
-//
 //
 
-#include "Bounds.h"
+#include "../core/Bounds.h"
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   float newPos = *pos + *vel;

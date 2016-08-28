@@ -10,10 +10,10 @@
 #define ParticleObject_h
 
 #include <vector>
-#include "Bounds.h"
-#include "Events.h"
-#include "State.h"
-#include "WorldObject.h"
+#include "../core/Bounds.h"
+#include "../core/Events.h"
+#include "../core/State.h"
+#include "../core/WorldObject.h"
 
 class ParticleObject : public WorldObject {
 public:
@@ -52,5 +52,8 @@ private:
   ofVec3f _force;
   ofVec3f _startPosition;
 };
+
+using ParticlePtr = std::shared_ptr<ParticleObject>;
+using ParticleVector = std::vector<ParticlePtr>;
 
 #endif /* ParticleObject_h */

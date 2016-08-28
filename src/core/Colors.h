@@ -13,8 +13,8 @@
 #include <initializer_list>
 #include <map>
 #include <ofColor.h>
-#include "Common.h"
-#include "Params.h"
+#include "../core/Common.h"
+#include "../core/Params.h"
 
 enum class ColorId {
   BACKGROUND,

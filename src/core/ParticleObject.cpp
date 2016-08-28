@@ -6,8 +6,8 @@
 //
 //
 
-#include "Info.h"
-#include "ParticleObject.h"
+#include "../core/Info.h"
+#include "../core/ParticleObject.h"
 
 ParticleObject::ParticleObject(ofVec3f pos)
 : _position(pos)

@@ -10,10 +10,10 @@
 #define MidiMapping_h
 
 #include <string>
-#include "Common.h"
-#include "JsonIO.h"
-#include "MappingSet.h"
-#include "MidiCommon.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
+#include "../control/MappingSet.h"
+#include "../control/MidiCommon.h"
 
 class MidiMapping
 : public JsonReadable

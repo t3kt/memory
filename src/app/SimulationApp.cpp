@@ -7,9 +7,9 @@
 //
 
 #include <ofSystemUtils.h>
-#include "AppSystem.h"
-#include "ControlApp.h"
-#include "SimulationApp.h"
+#include "../app/AppSystem.h"
+#include "../app/ControlApp.h"
+#include "../app/SimulationApp.h"
 
 void SimulationApp::setup() {
   _renderingController =
@@ -60,7 +60,6 @@ void SimulationApp::setup() {
   _inspectionController =
   std::make_shared<InspectionController>(_appParams.core.debug.inspect,
                                          _context,
-                                         _renderingController->getCamera(),
                                          *_window);
   _inspectionController->setup();
 
@@ -171,6 +170,10 @@ bool SimulationApp::performAction(AppAction action) {
       break;
     case AppAction::SAVE_ENTITY_STATE:
       saveEntityState();
+      break;
+    case AppAction::SPAWN_LOAD_TEST_ENTITIES:
+      _observers->performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
+      _occurrences->performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
       break;
     default:
       return false;

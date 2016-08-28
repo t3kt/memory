@@ -1,13 +1,10 @@
 //
 //  Clock.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
 //
 //
 
 #include <ofUtils.h>
-#include "Clock.h"
+#include "../core/Clock.h"
 
 Clock::Clock(Clock::Params& params, State& state)
 : _params(params)

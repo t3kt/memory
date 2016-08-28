@@ -6,8 +6,8 @@
 //
 //
 
-#include "NavigatorEntity.h"
-#include "NavigatorState.h"
+#include "../navigation/NavigatorEntity.h"
+#include "../navigation/NavigatorState.h"
 
 NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState)
 : ParticleObject(prevState->position())

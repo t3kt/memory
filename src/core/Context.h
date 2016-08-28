@@ -10,12 +10,12 @@
 #define Context_h
 
 #include <functional>
-#include "Common.h"
-#include "EntityMap.h"
-#include "JsonIO.h"
-#include "ObjectManager.h"
-#include "Serialization.h"
-#include "State.h"
+#include "../core/Common.h"
+#include "../core/EntityMap.h"
+#include "../core/JsonIO.h"
+#include "../core/ObjectManager.h"
+#include "../core/Serialization.h"
+#include "../core/State.h"
 
 class AnimationObject;
 class MemoryAppParameters;

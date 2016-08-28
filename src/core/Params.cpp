@@ -6,7 +6,7 @@
 //
 //
 
-#include "Params.h"
+#include "../core/Params.h"
 
 TParamBase* Params::findKey(const std::string &key) {
   for (auto param : _paramBases) {

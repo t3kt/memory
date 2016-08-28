@@ -12,8 +12,8 @@
 #include <ofxTextAlignTTF.h>
 #include <utility>
 #include <vector>
-#include "Context.h"
-#include "Info.h"
+#include "../core/Context.h"
+#include "../core/Info.h"
 
 class StatusInfoController {
 public:

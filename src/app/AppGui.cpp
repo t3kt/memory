@@ -1,13 +1,9 @@
 //
 //  AppGui.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
-//
 //
 
-#include "AppGui.h"
 #include <ofxGuiExtended.h>
+#include "../app/AppGui.h"
 
 class ActionsGui
 : public ofxPanelExtended {

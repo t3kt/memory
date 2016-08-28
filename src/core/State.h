@@ -9,7 +9,7 @@
 #ifndef __behavior__State__
 #define __behavior__State__
 
-#include "Common.h"
+#include "../core/Common.h"
 
 class State
 : public Outputable

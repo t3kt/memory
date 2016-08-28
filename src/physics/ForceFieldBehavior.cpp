@@ -7,9 +7,9 @@
 //
 
 #include <ofMain.h>
-#include "ForceFieldBehavior.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
+#include "../physics/ForceFieldBehavior.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
 
 void AbstractForceFieldBehavior::applyToEntity(Context& context, ParticleObject *entity) {
   if (!entity->alive()) {

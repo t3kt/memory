@@ -9,20 +9,20 @@
 #ifndef OccurrencesController_h
 #define OccurrencesController_h
 
-#include "AppActions.h"
-#include "Bounds.h"
-#include "Context.h"
-#include "EntityController.h"
-#include "Events.h"
-#include "ObjectManager.h"
-#include "ObserversController.h"
-#include "OccurrenceEntity.h"
-#include "OccurrenceSpawner.h"
-#include "Params.h"
-#include "SimulationEvents.h"
-#include "State.h"
+#include "../app/AppActions.h"
+#include "../core/Bounds.h"
+#include "../core/Context.h"
+#include "../core/EntityController.h"
+#include "../core/Events.h"
+#include "../core/ObjectManager.h"
+#include "../core/ObserversController.h"
+#include "../core/OccurrenceEntity.h"
+#include "../spawning/OccurrenceSpawner.h"
+#include "../core/Params.h"
+#include "../core/State.h"
 
 class OccurrencesController;
+class SimulationEvents;
 
 class OccurrencesController
 : public EntityController<OccurrenceEntity> {

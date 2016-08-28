@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "Status.h"
+#include "../core/Status.h"
 
 StatusInfoController::StatusInfoController(const Context& context)
 : _context(context)

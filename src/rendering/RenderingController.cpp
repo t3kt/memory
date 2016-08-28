@@ -7,8 +7,8 @@
 //
 
 #include <ofMain.h>
-#include "AppParameters.h"
-#include "RenderingController.h"
+#include "../app/AppParameters.h"
+#include "../rendering/RenderingController.h"
 
 RenderingController::RenderingController(Params& params,
                                          ofAppGLFWWindow& window,
@@ -83,10 +83,14 @@ bool RenderingController::performAction(AppAction action) {
 
 void RenderingController::update() {
   _camera->update();
-  _observerRenderer->update();
+  auto& cam = _camera->getCamera();
+  cam.begin();
+  _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
+    entity->setScreenPos(cam.worldToScreen(entity->position()));
+  });
+  cam.end();
   //  _instancedObserverRenderer->update();
   _observerThresholdRenderer->update();
-  _occurrenceRenderer->update();
   _postProc->update();
 }
 

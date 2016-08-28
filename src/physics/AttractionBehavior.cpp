@@ -7,7 +7,7 @@
 //
 
 #include <ofMain.h>
-#include "AttractionBehavior.h"
+#include "../physics/AttractionBehavior.h"
 
 ofVec3f AbstractAttractionBehavior
 ::calcAttractionForce(const ofVec3f&entityPosition,

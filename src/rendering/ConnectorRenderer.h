@@ -12,10 +12,10 @@
 #include <ofGraphics.h>
 #include <ofTypes.h>
 #include <ofVboMesh.h>
-#include "ObjectManager.h"
-#include "ObserverEntity.h"
-#include "OccurrenceEntity.h"
-#include "Params.h"
+#include "../core/ObjectManager.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/Params.h"
 
 class ConnectorRendererParams
 : public ParamsWithEnabled {

@@ -120,7 +120,7 @@
   },
   "core": {
     "bounds": {
-      "size": 846.93878173828125
+      "size": 1000
     },
     "clock": {
       "paused": false,
@@ -128,7 +128,7 @@
     },
     "debug": {
       "inspect": {
-        "clickRange": 10,
+        "clickRange": 13.577677726745605,
         "enabled": true,
         "showInfo": true
       },
@@ -189,14 +189,14 @@
     "rateSpawner": {
       "enabled": true,
       "initialVelocity": {
-        "high": 6.0204081535339355,
+        "high": 7.7134523391723633,
         "low": 0
       },
       "lifetime": {
         "high": 240,
-        "low": 113.87755584716797
+        "low": 158.78384399414062
       },
-      "rate": 0.84693849086761475
+      "rate": 4.1071429252624512
     },
     "spawner": {
       "enabled": true,
@@ -204,10 +204,10 @@
         "high": 6.0204081535339355,
         "low": 0
       },
-      "interval": 4,
+      "interval": 5.0510201454162598,
       "lifetime": {
         "high": 240,
-        "low": 113.87755584716797
+        "low": 161.28280639648438
       }
     }
   },
@@ -217,12 +217,12 @@
         "chance": 0.21386922895908356
       },
       "chainCount": {
-        "high": 12,
+        "high": 17,
         "low": 1
       },
       "chainDistance": {
-        "high": 95.835067749023438,
-        "low": 86.984596252441406
+        "high": 100,
+        "low": 90.108283996582031
       },
       "enabled": true,
       "initialVelocity": {
@@ -230,10 +230,10 @@
         "low": 0
       },
       "radius": {
-        "high": 195.91836547851562,
-        "low": 0.20408163964748383
+        "high": 73.052894592285156,
+        "low": 20.991256713867188
       },
-      "rate": 0.86734700202941895
+      "rate": 4.5153059959411621
     },
     "spawner": {
       "chain": {
@@ -254,7 +254,7 @@
       },
       "interval": 4,
       "radius": {
-        "high": 77.551017761230469,
+        "high": 35.568515777587891,
         "low": 0.20408163964748383
       }
     }
@@ -286,16 +286,16 @@
       "enabled": true,
       "force": {
         "length0": 31.799251556396484,
-        "length1": 15,
+        "length1": 37.526031494140625,
         "startValue": -11.082881927490234,
         "value0": 1.2557258605957031,
-        "value1": 5
+        "value1": 5.9412746429443359
       },
-      "magnitude": 0.59693872928619385
+      "magnitude": 0.76530611515045166
     },
     "observerSpatialNoiseForce": {
-      "enabled": true,
-      "magnitude": 0.71428573131561279,
+      "enabled": false,
+      "magnitude": 0.61224490404129028,
       "rate": 0.038265306502580643,
       "scale": 98.979591369628906
     },
@@ -328,7 +328,7 @@
     },
     "occurrenceSpatialNoiseForce": {
       "enabled": false,
-      "magnitude": 4.5918364524841309,
+      "magnitude": 0.40816324949264526,
       "rate": 0.028061224147677422,
       "scale": 20.408163070678711
     },
@@ -341,11 +341,11 @@
   },
   "rendering": {
     "camera": {
-      "spinEnabled": false,
+      "spinEnabled": true,
       "spinRate": [
-        -0.620574951171875,
-        0.94127464294433594,
-        -0.51645183563232422
+        0.0041656494140625,
+        0.21241188049316406,
+        -0.099958419799804688
       ]
     },
     "fog": {
@@ -380,12 +380,8 @@
       },
       "renderer": {
         "enabled": true,
-        "fadeIn": {
-          "duration": 1,
-          "endValue": 1,
-          "startValue": 0
-        },
-        "size": 2.7155354022979736
+        "highlightAmount": 0.60000002384185791,
+        "size": 5.7351107597351074
       },
       "thresholdRenderer": {
         "enabled": false,
@@ -417,15 +413,11 @@
       },
       "renderer": {
         "enabled": true,
-        "fadeIn": {
-          "duration": 4,
-          "endValue": 1,
-          "startValue": 0
-        },
+        "highlightAmount": 0.60000002384185791,
         "showRange": false,
         "sizeRange": {
-          "high": 16.595129013061523,
-          "low": 2.6447322368621826
+          "high": 10.751474380493164,
+          "low": 1.1891320943832397
         },
         "wireBrightness": 1.5,
         "wireEnabled": false,
@@ -440,9 +432,9 @@
       "colorAdjust": {
         "brightness": 0,
         "contrast": 1,
-        "enabled": false,
+        "enabled": true,
         "hueOffset": 0,
-        "saturationMult": 1,
+        "saturationMult": 1.0008330345153809,
         "valueMult": 1
       },
       "dof": {

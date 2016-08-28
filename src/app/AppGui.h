@@ -1,20 +1,17 @@
 //
 //  AppGui.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
-//
 //
 
 #ifndef AppGui_h
 #define AppGui_h
 
 #include <memory>
-#include "AppActions.h"
-#include "AppParameters.h"
+#include "../app/AppActions.h"
+#include "../app/AppParameters.h"
 
 class AppGuiImpl;
 
+// Control panel GUI which modifies Params
 class AppGui {
 public:
   AppGui(MemoryAppParameters& appParams,

@@ -6,10 +6,10 @@
 //
 //
 
-#include "Bounds.h"
-#include "Context.h"
-#include "ObserversController.h"
-#include "ObserverSpawner.h"
+#include "../core/Bounds.h"
+#include "../core/Context.h"
+#include "../core/ObserversController.h"
+#include "../spawning/ObserverSpawner.h"
 
 void RateObserverSpawner::spawnEntities(Context &context, int count) {
   for (int i = 0; i < count; ++i) {

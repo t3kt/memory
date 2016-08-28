@@ -10,7 +10,7 @@
 #define Events_h
 
 #include <ofxLiquidEvent.h>
-#include "Common.h"
+#include "../core/Common.h"
 
 class EventArgs
 : public Outputable {

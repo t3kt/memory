@@ -11,12 +11,12 @@
 
 #include <memory>
 #include <ofMain.h>
-#include "AppActions.h"
-#include "AppGui.h"
-#include "AppParameters.h"
-#include "Common.h"
-#include "MidiController.h"
-#include "State.h"
+#include "../app/AppActions.h"
+#include "../app/AppGui.h"
+#include "../app/AppParameters.h"
+#include "../core/Common.h"
+#include "../control/MidiController.h"
+#include "../core/State.h"
 
 class EventLoggers;
 

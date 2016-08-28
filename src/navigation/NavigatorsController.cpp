@@ -9,14 +9,14 @@
 #include <algorithm>
 #include <ofMain.h>
 #include <random>
-#include "AppAssets.h"
-#include "AppSystem.h"
-#include "Context.h"
-#include "NavigatorEntity.h"
-#include "NavigatorsController.h"
-#include "NavigatorState.h"
-#include "ObserverEntity.h"
-#include "SimulationEvents.h"
+#include "../app/AppAssets.h"
+#include "../app/AppSystem.h"
+#include "../core/Context.h"
+#include "../navigation/NavigatorEntity.h"
+#include "../navigation/NavigatorsController.h"
+#include "../navigation/NavigatorState.h"
+#include "../core/ObserverEntity.h"
+#include "../core/SimulationEvents.h"
 
 using NavEntityPtr = std::shared_ptr<NavigatorEntity>;
 

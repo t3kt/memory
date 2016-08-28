@@ -14,9 +14,9 @@
 #include <ofMath.h>
 #include <ofUtils.h>
 #include <unordered_map>
-#include "Common.h"
-#include "JsonIO.h"
-#include "WorldObject.h"
+#include "../core/Common.h"
+#include "../core/JsonIO.h"
+#include "../core/WorldObject.h"
 
 template<typename E>
 class EntityMap {

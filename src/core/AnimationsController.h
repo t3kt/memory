@@ -9,14 +9,15 @@
 #ifndef AnimationsController_h
 #define AnimationsController_h
 
-#include "AnimationObject.h"
-#include "Colors.h"
-#include "Context.h"
-#include "Context.h"
-#include "ObjectManager.h"
-#include "Params.h"
-#include "SimulationEvents.h"
-#include "State.h"
+#include "../core/AnimationObject.h"
+#include "../core/Colors.h"
+#include "../core/Context.h"
+#include "../core/Context.h"
+#include "../core/ObjectManager.h"
+#include "../core/Params.h"
+#include "../core/State.h"
+
+class SimulationEvents;
 
 class AnimationsController {
 public:

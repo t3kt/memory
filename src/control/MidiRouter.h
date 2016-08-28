@@ -14,13 +14,13 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
-#include "AppParameters.h"
-#include "Events.h"
-#include "JsonIO.h"
-#include "MidiDevice.h"
-#include "MidiEvents.h"
-#include "MidiMapping.h"
-#include "Params.h"
+#include "../app/AppParameters.h"
+#include "../core/Events.h"
+#include "../core/JsonIO.h"
+#include "../control/MidiDevice.h"
+#include "../control/MidiEvents.h"
+#include "../control/MidiMapping.h"
+#include "../core/Params.h"
 
 class AbstractMidiBinding;
 

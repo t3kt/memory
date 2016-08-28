@@ -10,8 +10,9 @@
 #define SimulationEvents_h
 
 #include <iostream>
-#include "Common.h"
-#include "Events.h"
+#include "../core/Common.h"
+#include "../core/Events.h"
+#include "../navigation/NavigatorEntity.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,
