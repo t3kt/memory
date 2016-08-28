@@ -8,7 +8,6 @@
 
 #include <ofSystemUtils.h>
 #include "../app/AppSystem.h"
-#include "../app/ControlApp.h"
 #include "../app/SimulationApp.h"
 #include "../core/EventLogging.h"
 
@@ -80,6 +79,11 @@ void SimulationApp::setup() {
                                          _events);
   _navigators->setup();
 
+  _gui = std::make_shared<AppGui>(_appParams, *this);
+
+  _midi = std::make_shared<MidiController>(_appParams);
+  _midi->setup();
+
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
@@ -97,7 +101,7 @@ void SimulationApp::updateLogState() {
 }
 
 void SimulationApp::update() {
-  AppSystem::get().control()->update();
+  _midi->update();
   _clock->update();
   _observers->update();
   _occurrences->update();
@@ -150,7 +154,7 @@ void SimulationApp::draw() {
   }
 
   _inspectionController->draw();
-  AppSystem::get().control()->draw();
+  _gui->draw();
 }
 
 void SimulationApp::dumpEntityState() {

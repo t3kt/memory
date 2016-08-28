@@ -12,11 +12,13 @@
 #include <ofMain.h>
 #include "../core/AnimationsController.h"
 #include "../app/AppActions.h"
+#include "../app/AppGui.h"
 #include "../app/AppParameters.h"
 #include "../core/Clock.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
+#include "../control/MidiController.h"
 #include "../navigation/NavigatorsController.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
@@ -74,6 +76,8 @@ private:
   SimulationEvents _events;
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<ofAppGLFWWindow> _window;
+  std::shared_ptr<AppGui> _gui;
+  std::shared_ptr<MidiController> _midi;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
