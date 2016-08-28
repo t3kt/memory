@@ -39,6 +39,7 @@
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
 		324CF7081D3CB1E9003DD487 /* ObserverRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */; };
 		324CF70B1D3CB279003DD487 /* OccurrenceRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */; };
+		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
 		32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */; };
 		32DB79E91D3DD81600ED4EB7 /* marker-shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */; };
@@ -273,6 +274,8 @@
 		324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OccurrenceRenderer.cpp; path = rendering/OccurrenceRenderer.cpp; sourceTree = "<group>"; };
 		324CF70A1D3CB279003DD487 /* OccurrenceRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceRenderer.h; path = rendering/OccurrenceRenderer.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
+		32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventLogging.cpp; path = core/EventLogging.cpp; sourceTree = "<group>"; };
+		32CBCEE71D72B21400AEECC1 /* EventLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventLogging.h; path = core/EventLogging.h; sourceTree = "<group>"; };
 		32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectorRenderer.cpp; path = rendering/ConnectorRenderer.cpp; sourceTree = "<group>"; };
 		32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectorRenderer.h; path = rendering/ConnectorRenderer.h; sourceTree = "<group>"; };
 		32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "marker-shader.vert"; path = "res/marker-shader.vert"; sourceTree = SOURCE_ROOT; };
@@ -1171,6 +1174,8 @@
 				32324C5E1D55C1D900D05EDF /* EntityController.cpp */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
+				32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */,
+				32CBCEE71D72B21400AEECC1 /* EventLogging.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				32324CA31D59690500D05EDF /* Info.cpp */,
 				32324CA41D59690500D05EDF /* Info.h */,
@@ -1605,6 +1610,7 @@
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
 				32EEAEC31D4C5AB8003A503F /* SimulationEvents.cpp in Sources */,
 				32EEAEC11D4C5A9E003A503F /* MidiEvents.cpp in Sources */,
+				32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */,
 				324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */,
 				B84B4DC749097B80B3F9A80C /* SyphonNameboundClient.m in Sources */,
 				17FE1C423DE74A808D3FEEEE /* ofxTextAlign.cpp in Sources */,
