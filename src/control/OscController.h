@@ -70,6 +70,7 @@ private:
   void handleMessage(const ofxOscMessage& message);
 //  void queueOutputMessage(const ofxOscMessage& message);
   void sendMessage(ofxOscMessage message);
+  void sendAllParameters();
 
   Params& _params;
   MemoryAppParameters& _appParams;

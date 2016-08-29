@@ -204,6 +204,8 @@ protected:
   TParam<bool>& selfRef() override { return *this; }
 };
 
+using ParamBaseAction = std::function<void(TParamBase&)>;
+
 class Params
 : public ofParameterGroup
 , public TParamBase
@@ -271,6 +273,8 @@ public:
 
   std::vector<TParamBase*>& getParamBases() { return _paramBases; }
 
+  void performRecursiveParamAction(ParamBaseAction action);
+
   bool supportsOsc() const override { return _supportsOsc; }
 
   Params& setSupportsOsc(bool supportsOsc) {
@@ -280,7 +284,7 @@ public:
 private:
   std::string _key;
   std::vector<TParamBase*> _paramBases;
-  bool _supportsOsc;
+  bool _supportsOsc = true;
 };
 
 class ParamsWithEnabled : public Params {

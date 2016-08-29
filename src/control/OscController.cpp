@@ -6,6 +6,7 @@
 //
 //
 
+//#include <set>
 #include "AppParameters.h"
 #include "OscController.h"
 
@@ -20,6 +21,8 @@ public:
   const std::string& path() const { return _path; }
 
   virtual void handleMessage(const ofxOscMessage& message) = 0;
+
+  virtual void sendValue() = 0;
 protected:
 //  inline void queueMessage(ofxOscMessage& message) {
 //    message.setRemoteEndpoint(_controller._params.outputHost.get(),
@@ -33,6 +36,46 @@ protected:
   const std::string _path;
   OscController& _controller;
 };
+
+template<typename T>
+void addOscMessageArg(ofxOscMessage& message,
+                      const T& value);
+
+template<>
+void addOscMessageArg(ofxOscMessage& message,
+                      const float& value) {
+  message.addFloatArg(value);
+}
+
+template<>
+void addOscMessageArg(ofxOscMessage& message,
+                      const int& value) {
+  message.addIntArg(value);
+}
+
+template<>
+void addOscMessageArg(ofxOscMessage& message,
+                      const bool& value) {
+  message.addBoolArg(value);
+}
+
+template<typename T>
+T getOscMessageArg(const ofxOscMessage& message, int i);
+
+template<>
+float getOscMessageArg(const ofxOscMessage& message, int i) {
+  return message.getArgAsFloat(i);
+}
+
+template<>
+int getOscMessageArg(const ofxOscMessage& message, int i) {
+  return message.getArgAsInt(i);
+}
+
+template<>
+bool getOscMessageArg(const ofxOscMessage& message, int i) {
+  return message.getArgAsBool(i);
+}
 
 template<typename T>
 class OscBinding
@@ -53,56 +96,24 @@ public:
   }
 
   void handleMessage(const ofxOscMessage& message) override {
-    auto value = getMessageValue(message);
+    auto value = getOscMessageArg<T>(message, 0);
     _param.set(value);
   }
 
+  void sendValue() override {
+    onParamChanged(_param.get());
+  }
+
 protected:
-  void onParamChanged(T& value) {
+  void onParamChanged(const T& value) {
     ofxOscMessage message;
     message.setAddress(_path);
-    setMessageValue(message, value);
+    addOscMessageArg(message, value);
     sendMessage(message);
   }
 
-  T getMessageValue(const ofxOscMessage& message) const;
-  void setMessageValue(ofxOscMessage& message, const T& value) const;
-
   TParam<T>& _param;
 };
-
-template<>
-float OscBinding<float>::getMessageValue(const ofxOscMessage &message) const {
-  return message.getArgAsFloat(0);
-}
-
-template<>
-int OscBinding<int>::getMessageValue(const ofxOscMessage &message) const {
-  return message.getArgAsInt(0);
-}
-
-template<>
-bool OscBinding<bool>::getMessageValue(const ofxOscMessage &message) const {
-  return message.getArgAsBool(0);
-}
-
-template<>
-void OscBinding<float>::setMessageValue(ofxOscMessage &message,
-                                        const float &value) const {
-  message.addFloatArg(value);
-}
-
-template<>
-void OscBinding<int>::setMessageValue(ofxOscMessage &message,
-                                      const int &value) const {
-  message.addIntArg(value);
-}
-
-template<>
-void OscBinding<bool>::setMessageValue(ofxOscMessage &message,
-                                       const bool &value) const {
-  message.addBoolArg(value);
-}
 
 template<typename T>
 static std::shared_ptr<AbstractOscBinding>
@@ -180,6 +191,7 @@ void OscController::handleOpen() {
     _sender->sendMessage(hello, false);
   }
   loadBindings(_appParams, _params.paramPrefix.get());
+  sendAllParameters();
 }
 
 void OscController::handleClose(bool updateParams) {
@@ -233,6 +245,16 @@ void OscController::sendMessage(ofxOscMessage message) {
   message.setRemoteEndpoint(_params.outputHost.get(),
                             _params.outputPort.get());
   _sender->sendMessage(message, false);
+}
+
+void OscController::sendAllParameters() {
+  if (!_sender) {
+    return;
+  }
+  _receiving = false;
+  for (auto& entry : _bindings) {
+    entry.second->sendValue();
+  }
 }
 
 void OscController::update() {

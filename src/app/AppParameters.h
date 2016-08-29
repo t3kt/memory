@@ -86,10 +86,12 @@ public:
         .setName("Output"));
     add(midi
         .setKey("midi")
-        .setName("Midi"));
+        .setName("Midi")
+        .setSupportsOsc(false));
     add(osc
         .setKey("osc")
-        .setName("OSC"));
+        .setName("OSC")
+        .setSupportsOsc(false));
   }
 
   Clock::Params clock;
