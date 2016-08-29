@@ -1,9 +1,5 @@
 //
 //  AppActions.cpp
-//  memory
-//
-//  Created by tekt on 7/10/16.
-//
 //
 
 #include "../app/AppActions.h"
@@ -18,6 +14,9 @@ EnumTypeInfo<AppAction> AppActionType({
   {"spawnFewObservers", AppAction::SPAWN_FEW_OBSERVERS},
   {"spawnManyOccurrences", AppAction::SPAWN_MANY_OCCURRENCES},
   {"spawnManyObservers", AppAction::SPAWN_MANY_OBSERVERS},
+  {"spawnTonsOfObservers", AppAction::SPAWN_TONS_OF_OBSERVERS},
+  {"spawnTonsOfOccurrences", AppAction::SPAWN_TONS_OF_OCCURRENCES},
+  {"spawnLoadTestEntities", AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {"killFewObservers", AppAction::KILL_FEW_OBSERVERS},
   {"killManyObservers", AppAction::KILL_MANY_OBSERVERS},
   {"loadSettings", AppAction::LOAD_SETTINGS},

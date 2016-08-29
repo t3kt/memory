@@ -1,14 +1,10 @@
 //
 //  AppSystem.cpp
-//  memory
-//
-//  Created by tekt on 7/14/16.
 //
 //
 
 #include <map>
 #include "../app/AppSystem.h"
-#include "../app/ControlApp.h"
 #include "../app/SimulationApp.h"
 
 class PauseHandler {
@@ -48,6 +44,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'0', AppAction::SPAWN_FEW_OBSERVERS},
   {'(', AppAction::SPAWN_MANY_OCCURRENCES},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
+  {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {'-', AppAction::KILL_FEW_OBSERVERS},
   {'_', AppAction::KILL_MANY_OBSERVERS},
   {'r', AppAction::LOAD_SETTINGS},
@@ -80,9 +77,6 @@ void AppSystem::setup() {
   _simulationApp = std::make_shared<SimulationApp>(_appParams,
                                                    _context,
                                                    _simulationWindow);
-
-  _controlApp = std::make_shared<ControlApp>(_appParams);
-  _controlApp->setup();
 }
 
 void AppSystem::main() {

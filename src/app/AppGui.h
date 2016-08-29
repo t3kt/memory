@@ -1,9 +1,5 @@
 //
 //  AppGui.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
-//
 //
 
 #ifndef AppGui_h
@@ -15,6 +11,7 @@
 
 class AppGuiImpl;
 
+// Control panel GUI which modifies Params
 class AppGui {
 public:
   AppGui(MemoryAppParameters& appParams,

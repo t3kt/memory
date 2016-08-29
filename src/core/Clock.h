@@ -1,8 +1,9 @@
 //
 //  Clock.h
-//  memory-prototype-2
 //
-//  Created by tekt on 6/28/16.
+//  Controller that keeps track of the current time and updates it
+//  on every update cycle. It supports a variable rate controlled by
+//  a parameter and it can be paused based on another parameter.
 //
 //
 
