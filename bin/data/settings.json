@@ -174,7 +174,7 @@
     },
     "osc": {
       "enabled": true,
-      "inputEnabled": false,
+      "inputEnabled": true,
       "inputPort": 9999,
       "outputEnabled": true,
       "outputHost": "localhost",
