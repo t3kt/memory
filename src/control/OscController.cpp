@@ -23,6 +23,8 @@ public:
   virtual void handleMessage(const ofxOscMessage& message) = 0;
 
   virtual void sendValue() = 0;
+
+  virtual void sendConfig() = 0;
 protected:
 //  inline void queueMessage(ofxOscMessage& message) {
 //    message.setRemoteEndpoint(_controller._params.outputHost.get(),
@@ -78,6 +80,26 @@ bool getOscMessageArg(const ofxOscMessage& message, int i) {
 }
 
 template<typename T>
+Json getParamConfigJson(const TParam<T>& param) {
+  return Json::object {
+    {"key", param.getKey()},
+    {"name", param.getName()},
+    {"min", param.getMin()},
+    {"max", param.getMax()},
+    {"default", param.getDefaultValue()},
+  };
+}
+
+template<>
+Json getParamConfigJson(const TParam<bool>& param) {
+  return Json::object {
+    {"key", param.getKey()},
+    {"name", param.getName()},
+    {"default", param.getDefaultValue()},
+  };
+}
+
+template<typename T>
 class OscBinding
 : public AbstractOscBinding {
 public:
@@ -102,6 +124,15 @@ public:
 
   void sendValue() override {
     onParamChanged(_param.get());
+  }
+
+  void sendConfig() override {
+    ofxOscMessage message;
+    message.setAddress("/config");
+    auto config = getParamConfigJson(_param);
+    message.addStringArg(_path);
+    message.addStringArg(config.dump());
+    sendMessage(message);
   }
 
 protected:
@@ -191,6 +222,7 @@ void OscController::handleOpen() {
     _sender->sendMessage(hello, false);
   }
   loadBindings(_appParams, _params.paramPrefix.get());
+  sendParameterConfigs();
   sendAllParameters();
 }
 
@@ -254,6 +286,16 @@ void OscController::sendAllParameters() {
   _receiving = false;
   for (auto& entry : _bindings) {
     entry.second->sendValue();
+  }
+}
+
+void OscController::sendParameterConfigs() {
+  if (!_sender) {
+    return;
+  }
+  _receiving = false;
+  for (auto& entry : _bindings) {
+    entry.second->sendConfig();
   }
 }
 
