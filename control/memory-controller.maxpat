@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 57.0, 97.0, 838.0, 594.0 ],
+		"rect" : [ 296.0, 147.0, 838.0, 594.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,27 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"args" : [ "/param/core/clock/paused", "@label", "clock paused", "@default", 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-16",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "memctrl.toggle.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 27.0, 282.0, 177.0, 30.0 ],
+					"varname" : "memctrl.slider[2]",
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ "/param/core/clock/rate", "@label", "clock rate", "@min", 0, "@max", 10, "@default", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
@@ -51,9 +72,58 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 400.0, 332.0, 30.0 ],
+					"patching_rect" : [ 27.0, 239.0, 332.0, 30.0 ],
 					"varname" : "memctrl.slider",
 					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "/param/core/bounds/size", "@label", "bounds size", "@min", 0, "@max", 1000, "@default", 500 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-25",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "memctrl.slider.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 27.0, 207.0, 332.0, 30.0 ],
+					"varname" : "memctrl.slider[1]",
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-11",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 27.0, 174.0, 51.0, 27.0 ],
+					"style" : "",
+					"text" : "Core"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.681193, 0.750541, 0.758255, 0.25 ],
+					"id" : "obj-9",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 19.0, 169.0, 347.0, 160.0 ],
+					"proportion" : 0.39,
+					"style" : ""
 				}
 
 			}
@@ -159,32 +229,11 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "/param/core/bounds/size", "@label", "bounds size", "@min", 0, "@max", 1000, "@default", 500 ],
-					"bgmode" : 0,
-					"border" : 0,
-					"clickthrough" : 0,
-					"enablehscroll" : 0,
-					"enablevscroll" : 0,
-					"id" : "obj-25",
-					"lockeddragscroll" : 0,
-					"maxclass" : "bpatcher",
-					"name" : "memctrl.slider.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 368.0, 332.0, 30.0 ],
-					"varname" : "memctrl.slider[1]",
-					"viewvisibility" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-24",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 541.0, 425.0, 137.0, 22.0 ],
+					"patching_rect" : [ 590.0, 380.0, 137.0, 22.0 ],
 					"style" : "",
 					"text" : "udpsend localhost 9999"
 				}
@@ -210,37 +259,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 603.0, 286.0, 82.0, 22.0 ],
+					"patching_rect" : [ 610.0, 287.0, 82.0, 22.0 ],
 					"style" : "",
 					"text" : "r mctl.osc.out"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 18.0,
-					"id" : "obj-11",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 73.0, 203.0, 51.0, 27.0 ],
-					"style" : "",
-					"text" : "Core"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"bgcolor" : [ 0.681193, 0.750541, 0.758255, 1.0 ],
-					"id" : "obj-9",
-					"maxclass" : "panel",
-					"mode" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 65.0, 198.0, 178.0, 149.0 ],
-					"proportion" : 0.39,
-					"style" : ""
 				}
 
 			}
@@ -285,14 +306,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-6",
-					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 625.0, 163.0, 271.0, 35.0 ],
+					"patching_rect" : [ 625.0, 163.0, 271.0, 22.0 ],
 					"style" : "",
-					"text" : "/param/core/debug/inspect/clickRange 13.577678"
+					"text" : "/param/core/clock/rate 4.438776"
 				}
 
 			}
@@ -455,6 +475,12 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "memctrl.slider.maxpat",
+				"bootpath" : "~/creations/memory/memory/control",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "memctrl.toggle.maxpat",
 				"bootpath" : "~/creations/memory/memory/control",
 				"type" : "JSON",
 				"implicit" : 1
