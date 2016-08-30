@@ -51,7 +51,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 401.0, 294.0, 32.0 ],
+					"patching_rect" : [ 25.0, 400.0, 294.0, 32.0 ],
+					"varname" : "memctrl.slider",
 					"viewvisibility" : 1
 				}
 
@@ -171,7 +172,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 368.0, 292.0, 29.0 ],
+					"patching_rect" : [ 25.0, 368.0, 294.0, 30.0 ],
+					"varname" : "memctrl.slider[1]",
 					"viewvisibility" : 1
 				}
 
