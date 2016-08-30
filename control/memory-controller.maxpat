@@ -38,7 +38,7 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
-					"args" : [ "/param/core/clock/rate" ],
+					"args" : [ "/param/core/clock/rate", "@label", "clock rate", "@min", 0, "@max", 10, "@default", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -51,7 +51,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 400.0, 294.0, 32.0 ],
+					"patching_rect" : [ 25.0, 400.0, 332.0, 30.0 ],
 					"varname" : "memctrl.slider",
 					"viewvisibility" : 1
 				}
@@ -159,7 +159,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "/param/core/bounds/size", "bounds size", 0, 1000, 500 ],
+					"args" : [ "/param/core/bounds/size", "@label", "bounds size", "@min", 0, "@max", 1000, "@default", 500 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -172,7 +172,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 25.0, 368.0, 294.0, 30.0 ],
+					"patching_rect" : [ 25.0, 368.0, 332.0, 30.0 ],
 					"varname" : "memctrl.slider[1]",
 					"viewvisibility" : 1
 				}
