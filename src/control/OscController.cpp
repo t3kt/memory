@@ -71,6 +71,14 @@ void addOscMessageArg(ofxOscMessage& message,
   message.addFloatArg(value.a);
 }
 
+template<>
+void addOscMessageArg(ofxOscMessage& message,
+                      const ofVec3f& value) {
+  message.addFloatArg(value.x);
+  message.addFloatArg(value.y);
+  message.addFloatArg(value.z);
+}
+
 template<typename T>
 T getOscMessageArg(const ofxOscMessage& message, int i);
 
@@ -94,6 +102,12 @@ T getOscMessageValue(const ofxOscMessage& message) {
   return getOscMessageArg<T>(message, 0);
 }
 
+static void logInvalidSize(const ofxOscMessage& message) {
+  AppSystem::get().log().control().logWarning([&](ofLog& log) {
+    log << "Invalid message size " << message.getNumArgs() << " for path '" << message.getAddress() << "'";
+  });
+}
+
 template<>
 ofFloatColor getOscMessageValue(const ofxOscMessage& message) {
   auto size = message.getNumArgs();
@@ -108,8 +122,21 @@ ofFloatColor getOscMessageValue(const ofxOscMessage& message) {
                         message.getArgAsFloat(2),
                         message.getArgAsFloat(3));
   } else {
-    AppSystem::get().log().control().logWarning("Invalid message size for path: " + message.getAddress());
+    logInvalidSize(message);
     return ofFloatColor(0, 0, 0, 1);
+  }
+}
+
+template<>
+ofVec3f getOscMessageValue(const ofxOscMessage& message) {
+  auto size = message.getNumArgs();
+  if (size == 3) {
+    return ofVec3f(message.getArgAsFloat(0),
+                   message.getArgAsFloat(1),
+                   message.getArgAsFloat(2));
+  } else {
+    logInvalidSize(message);
+    return ofVec3f(0);
   }
 }
 
@@ -127,8 +154,8 @@ Json getParamConfigJson(const TParam<float>& param) {
   return Json::object {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"min", param.getMin()},
-    {"max", param.getMax()},
+    {"min", JsonUtil::toJson(param.getMin())},
+    {"max", JsonUtil::toJson(param.getMax())},
     {"default", JsonUtil::toJson(param.getDefaultValue())},
   };
 }
@@ -138,8 +165,19 @@ Json getParamConfigJson(const TParam<int>& param) {
   return Json::object {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"min", param.getMin()},
-    {"max", param.getMax()},
+    {"min", JsonUtil::toJson(param.getMin())},
+    {"max", JsonUtil::toJson(param.getMax())},
+    {"default", JsonUtil::toJson(param.getDefaultValue())},
+  };
+}
+
+template<>
+Json getParamConfigJson(const TParam<ofVec3f>& param) {
+  return Json::object {
+    {"key", param.getKey()},
+    {"name", param.getName()},
+    {"min", JsonUtil::toJson(param.getMin())},
+    {"max", JsonUtil::toJson(param.getMax())},
     {"default", JsonUtil::toJson(param.getDefaultValue())},
   };
 }
