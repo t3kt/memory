@@ -6,9 +6,10 @@
 //
 //
 
-//#include <set>
-#include "AppParameters.h"
-#include "OscController.h"
+#include <stdexcept>
+#include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
+#include "../control/OscController.h"
 
 class AbstractOscBinding {
 public:
@@ -61,6 +62,15 @@ void addOscMessageArg(ofxOscMessage& message,
   message.addBoolArg(value);
 }
 
+template<>
+void addOscMessageArg(ofxOscMessage& message,
+                      const ofFloatColor& value) {
+  message.addFloatArg(value.r);
+  message.addFloatArg(value.g);
+  message.addFloatArg(value.b);
+  message.addFloatArg(value.a);
+}
+
 template<typename T>
 T getOscMessageArg(const ofxOscMessage& message, int i);
 
@@ -80,22 +90,57 @@ bool getOscMessageArg(const ofxOscMessage& message, int i) {
 }
 
 template<typename T>
+T getOscMessageValue(const ofxOscMessage& message) {
+  return getOscMessageArg<T>(message, 0);
+}
+
+template<>
+ofFloatColor getOscMessageValue(const ofxOscMessage& message) {
+  auto size = message.getNumArgs();
+  if (size == 3) {
+    return ofFloatColor(message.getArgAsFloat(0),
+                        message.getArgAsFloat(1),
+                        message.getArgAsFloat(2),
+                        1);
+  } else if (size == 4) {
+    return ofFloatColor(message.getArgAsFloat(0),
+                        message.getArgAsFloat(1),
+                        message.getArgAsFloat(2),
+                        message.getArgAsFloat(3));
+  } else {
+    AppSystem::get().log().control().logWarning("Invalid message size for path: " + message.getAddress());
+    return ofFloatColor(0, 0, 0, 1);
+  }
+}
+
+template<typename T>
 Json getParamConfigJson(const TParam<T>& param) {
+  return Json::object {
+    {"key", param.getKey()},
+    {"name", param.getName()},
+    {"default", JsonUtil::toJson(param.getDefaultValue())},
+  };
+}
+
+template<>
+Json getParamConfigJson(const TParam<float>& param) {
   return Json::object {
     {"key", param.getKey()},
     {"name", param.getName()},
     {"min", param.getMin()},
     {"max", param.getMax()},
-    {"default", param.getDefaultValue()},
+    {"default", JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 
 template<>
-Json getParamConfigJson(const TParam<bool>& param) {
+Json getParamConfigJson(const TParam<int>& param) {
   return Json::object {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"default", param.getDefaultValue()},
+    {"min", param.getMin()},
+    {"max", param.getMax()},
+    {"default", JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 
@@ -118,7 +163,7 @@ public:
   }
 
   void handleMessage(const ofxOscMessage& message) override {
-    auto value = getOscMessageArg<T>(message, 0);
+    auto value = getOscMessageValue<T>(message);
     _param.set(value);
   }
 

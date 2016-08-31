@@ -12,7 +12,7 @@
 #include <memory>
 #include <ofxOsc.h>
 #include <unordered_map>
-#include "Params.h"
+#include "../core/Params.h"
 
 class AbstractOscBinding;
 class MemoryAppParameters;
