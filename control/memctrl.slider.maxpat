@@ -38,6 +38,25 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 31.0, 242.0, 67.0, 22.0 ],
+					"restore" : [ 0.5 ],
+					"saved_object_attributes" : 					{
+						"parameter_enable" : 0
+					}
+,
+					"style" : "",
+					"text" : "pattr value",
+					"varname" : "value"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-51",
 					"maxclass" : "button",
 					"numinlets" : 1,
@@ -56,7 +75,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 255.0, 406.0, 63.0, 22.0 ],
-					"restore" : [ "" ],
+					"restore" : [ 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -115,7 +134,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 679.0, 78.0, 283.0, 22.0 ],
 					"style" : "",
-					"text" : "patcherargs @min 0 @max 1 @default 0.5 @label "
+					"text" : "patcherargs @min 0 @max 1 @default 0.5 @label"
 				}
 
 			}
@@ -210,7 +229,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 557.0, 406.0, 61.0, 22.0 ],
-					"restore" : [ 0.0 ],
+					"restore" : [ 1.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -229,9 +248,8 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 297.0, 137.0, 74.0, 22.0 ],
-					"restore" : [ 0.0 ],
+					"restore" : [ 0.5 ],
 					"saved_object_attributes" : 					{
-						"annotation_name" : "",
 						"parameter_enable" : 0
 					}
 ,
@@ -460,7 +478,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 117.5, 4.0, 132.0, 22.0 ],
 					"size" : 1.0,
-					"style" : ""
+					"style" : "",
+					"varname" : "slider"
 				}
 
 			}
@@ -488,7 +507,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 5.5, 4.0, 110.0, 20.0 ],
 					"style" : "",
-					"text" : "asdf"
+					"text" : "0"
 				}
 
 			}
@@ -644,6 +663,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-27", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-3", 1 ]
 				}
 
 			}
@@ -819,10 +847,6 @@
 
 			}
  ],
-		"parameters" : 		{
-
-		}
-,
 		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
