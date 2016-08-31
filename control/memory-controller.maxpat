@@ -38,6 +38,76 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"args" : [ "/param/core/ouput/fullscreen", "@label", "fullscreen", "@default", 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-35",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "memctrl.toggle.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 110.0, 291.5, 177.0, 30.0 ],
+					"varname" : "memctrl.slider[4]",
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "/param/core/ouput/externalEnabled", "@label", "external enabled", "@default", 1 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-34",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "memctrl.toggle.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 110.0, 251.5, 177.0, 30.0 ],
+					"varname" : "memctrl.slider[3]",
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 16.0,
+					"id" : "obj-22",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 37.0, 251.5, 65.0, 24.0 ],
+					"style" : "",
+					"text" : "Output"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 0.681193, 0.750541, 0.758255, 0.25 ],
+					"id" : "obj-29",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 27.0, 244.5, 352.0, 87.0 ],
+					"proportion" : 0.39,
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ "/param/core/bounds/size", "@label", "size", "@min", 0, "@max", 1000, "@default", 500 ],
 					"bgmode" : 0,
 					"border" : 0,
@@ -51,7 +121,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 37.0, 335.0, 332.0, 30.0 ],
+					"patching_rect" : [ 37.0, 189.5, 332.0, 30.0 ],
 					"varname" : "memctrl.slider[1]",
 					"viewvisibility" : 1
 				}
@@ -64,7 +134,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 37.0, 302.0, 65.0, 24.0 ],
+					"patching_rect" : [ 37.0, 156.5, 65.0, 24.0 ],
 					"style" : "",
 					"text" : "Bounds"
 				}
@@ -77,7 +147,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 37.0, 210.0, 54.0, 24.0 ],
+					"patching_rect" : [ 37.0, 64.5, 54.0, 24.0 ],
 					"style" : "",
 					"text" : "Clock"
 				}
@@ -98,7 +168,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 104.5, 210.0, 177.0, 30.0 ],
+					"patching_rect" : [ 104.5, 64.5, 177.0, 30.0 ],
 					"varname" : "memctrl.slider[2]",
 					"viewvisibility" : 1
 				}
@@ -119,7 +189,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 37.0, 242.0, 332.0, 30.0 ],
+					"patching_rect" : [ 37.0, 96.5, 332.0, 30.0 ],
 					"varname" : "memctrl.slider",
 					"viewvisibility" : 1
 				}
@@ -132,7 +202,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 174.0, 51.0, 27.0 ],
+					"patching_rect" : [ 27.0, 28.5, 51.0, 27.0 ],
 					"style" : "",
 					"text" : "Core"
 				}
@@ -145,7 +215,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 73.0, 44.0, 141.0, 22.0 ],
+					"patching_rect" : [ 514.0, 491.0, 141.0, 22.0 ],
 					"style" : "",
 					"text" : "route /config"
 				}
@@ -157,7 +227,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 195.0, 85.0, 95.0, 22.0 ],
+					"patching_rect" : [ 636.0, 532.0, 95.0, 22.0 ],
 					"style" : "",
 					"text" : "s mctl.osc.val.in"
 				}
@@ -170,7 +240,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 73.0, 8.0, 75.0, 22.0 ],
+					"patching_rect" : [ 514.0, 455.0, 75.0, 22.0 ],
 					"style" : "",
 					"text" : "r mctl.osc.in"
 				}
@@ -182,7 +252,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 73.0, 85.0, 112.0, 22.0 ],
+					"patching_rect" : [ 514.0, 532.0, 112.0, 22.0 ],
 					"style" : "",
 					"text" : "s mctl.osc.config.in"
 				}
@@ -220,7 +290,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 306.0, 51.0, 77.0, 22.0 ],
+					"patching_rect" : [ 747.0, 498.0, 77.0, 22.0 ],
 					"style" : "",
 					"text" : "s mctl.osc.in"
 				}
@@ -267,6 +337,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-3",
+					"int" : 1,
 					"maxclass" : "gswitch2",
 					"numinlets" : 2,
 					"numoutlets" : 2,
@@ -311,7 +382,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 625.0, 163.0, 271.0, 22.0 ],
 					"style" : "",
-					"text" : "/param/core/clock/rate 4.438776"
+					"text" : "/param/core/debug/showBounds 0"
 				}
 
 			}
@@ -347,7 +418,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 306.0, 15.0, 99.0, 22.0 ],
+					"patching_rect" : [ 747.0, 462.0, 99.0, 22.0 ],
 					"style" : "",
 					"text" : "udpreceive 9000"
 				}
@@ -362,7 +433,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 203.0, 352.0, 87.0 ],
+					"patching_rect" : [ 27.0, 57.5, 352.0, 87.0 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
@@ -377,7 +448,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 295.0, 352.0, 87.0 ],
+					"patching_rect" : [ 27.0, 149.5, 352.0, 87.0 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
@@ -392,7 +463,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 19.0, 169.0, 386.0, 303.0 ],
+					"patching_rect" : [ 19.0, 23.5, 378.0, 415.0 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
