@@ -256,6 +256,10 @@ createBinding(TParamBase& param,
     return createTypedBinding<int>(param, path, controller);
   } else if (type == typeid(bool)) {
     return createTypedBinding<bool>(param, path, controller);
+  } else if (type == typeid(ofFloatColor)) {
+    return createTypedBinding<ofFloatColor>(param, path, controller);
+  } else if (type == typeid(ofVec3f)) {
+    return createTypedBinding<ofVec3f>(param, path, controller);
   } else {
     throw std::invalid_argument("Cannot bind to param " + path
                                 + " of type " + type.name());
