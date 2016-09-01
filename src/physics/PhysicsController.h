@@ -38,71 +38,74 @@ public:
   TParam<float> speed;
 };
 
+class PhysicsParams
+: public Params {
+public:
+  PhysicsParams() {
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(rebound
+        .setKey("rebound")
+        .setName("Rebound"));
+    add(observerObserverAttraction
+        .setKey("observerObserverAttraction")
+        .setName("Observer to Observer"));
+    add(observerOccurrenceForce
+        .setKey("observerOccurrenceForce")
+        .setName("Obs/Occ Force"));
+    add(occurrenceOccurrenceForce
+        .setKey("occurrenceOccurrenceForce")
+        .setName("Occ/Occ Force"));
+    add(observerSpatialNoiseForce
+        .setKey("observerSpatialNoiseForce")
+        .setName("Observer Spatial Noise"));
+    add(occurrenceSpatialNoiseForce
+        .setKey("occurrenceSpatialNoiseForce")
+        .setName("Occurrence Spatial Noise"));
+    add(observerAnchorPointAttraction
+        .setKey("observerAnchorPointAttraction")
+        .setName("Observer Anchoring"));
+    add(occurrenceAnchorPointAttraction
+        .setKey("occurrenceAnchorPointAttraction")
+        .setName("Occurrence Anchoring"));
+    add(observerDamping
+        .setKey("observerDamping")
+        .setName("Observer Damping"));
+    add(occurrenceDamping
+        .setKey("occurrenceDamping")
+        .setName("Occurrence Damping"));
+    rebound.setEnabledValueAndDefault(true);
+    observerSpatialNoiseForce.setEnabledValueAndDefault(false);
+    observerAnchorPointAttraction.setEnabledValueAndDefault(false);
+    occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
+    observerObserverAttraction.setEnabledValueAndDefault(false);
+    observerOccurrenceForce.setEnabledValueAndDefault(false);
+    observerDamping.setEnabledValueAndDefault(true);
+    occurrenceDamping.setEnabledValueAndDefault(true);
+  }
+
+  EntityPhysicsParams observers;
+  EntityPhysicsParams occurrences;
+  ParamsWithEnabled rebound;
+  AbstractAttractionBehavior::Params observerObserverAttraction;
+  ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
+  OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
+  AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
+  AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
+  AbstractAttractionBehavior::Params observerAnchorPointAttraction;
+  AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
+  AbstractDampingBehavior::Params observerDamping;
+  AbstractDampingBehavior::Params occurrenceDamping;
+};
+
 class PhysicsController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(observers
-          .setKey("observers")
-          .setName("Observers"));
-      add(occurrences
-          .setKey("occurrences")
-          .setName("Occurrences"));
-      add(rebound
-          .setKey("rebound")
-          .setName("Rebound"));
-      add(observerObserverAttraction
-          .setKey("observerObserverAttraction")
-          .setName("Observer to Observer"));
-      add(observerOccurrenceForce
-          .setKey("observerOccurrenceForce")
-          .setName("Obs/Occ Force"));
-      add(occurrenceOccurrenceForce
-          .setKey("occurrenceOccurrenceForce")
-          .setName("Occ/Occ Force"));
-      add(observerSpatialNoiseForce
-          .setKey("observerSpatialNoiseForce")
-          .setName("Observer Spatial Noise"));
-      add(occurrenceSpatialNoiseForce
-          .setKey("occurrenceSpatialNoiseForce")
-          .setName("Occurrence Spatial Noise"));
-      add(observerAnchorPointAttraction
-          .setKey("observerAnchorPointAttraction")
-          .setName("Observer Anchoring"));
-      add(occurrenceAnchorPointAttraction
-          .setKey("occurrenceAnchorPointAttraction")
-          .setName("Occurrence Anchoring"));
-      add(observerDamping
-          .setKey("observerDamping")
-          .setName("Observer Damping"));
-      add(occurrenceDamping
-          .setKey("occurrenceDamping")
-          .setName("Occurrence Damping"));
-      rebound.setEnabledValueAndDefault(true);
-      observerSpatialNoiseForce.setEnabledValueAndDefault(false);
-      observerAnchorPointAttraction.setEnabledValueAndDefault(false);
-      occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
-      observerObserverAttraction.setEnabledValueAndDefault(false);
-      observerOccurrenceForce.setEnabledValueAndDefault(false);
-      observerDamping.setEnabledValueAndDefault(true);
-      occurrenceDamping.setEnabledValueAndDefault(true);
-    }
-
-    EntityPhysicsParams observers;
-    EntityPhysicsParams occurrences;
-    ParamsWithEnabled rebound;
-    AbstractAttractionBehavior::Params observerObserverAttraction;
-    ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
-    OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
-    AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
-    AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
-    AbstractAttractionBehavior::Params observerAnchorPointAttraction;
-    AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
-    AbstractDampingBehavior::Params observerDamping;
-    AbstractDampingBehavior::Params occurrenceDamping;
-  };
+  using Params = PhysicsParams;
 
   PhysicsController(Params& params,
                     Bounds& bounds,

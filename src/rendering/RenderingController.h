@@ -103,35 +103,39 @@ public:
   TParam<bool> useBackgroundColor;
 };
 
+
+class RenderingParams
+: public Params {
+public:
+  RenderingParams() {
+    add(camera
+        .setKey("camera")
+        .setName("Camera"));
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(fog
+        .setKey("fog")
+        .setName("Fog"));
+    add(postProc
+        .setKey("postProc")
+        .setName("Post Processing"));
+  }
+
+  CameraController::Params camera;
+  ObserverRenderingParams observers;
+  OccurrenceRenderingParams occurrences;
+  FogParams fog;
+  PostProcController::Params postProc;
+};
+
 class RenderingController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(camera
-          .setKey("camera")
-          .setName("Camera"));
-      add(observers
-          .setKey("observers")
-          .setName("Observers"));
-      add(occurrences
-          .setKey("occurrences")
-          .setName("Occurrences"));
-      add(fog
-          .setKey("fog")
-          .setName("Fog"));
-      add(postProc
-          .setKey("postProc")
-          .setName("Post Processing"));
-    }
-
-    CameraController::Params camera;
-    ObserverRenderingParams observers;
-    OccurrenceRenderingParams occurrences;
-    FogParams fog;
-    PostProcController::Params postProc;
-  };
+  using Params = RenderingParams;
 
   RenderingController(Params& params,
                       ofAppGLFWWindow& window,

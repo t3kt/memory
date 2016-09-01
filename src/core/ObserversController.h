@@ -22,26 +22,27 @@
 
 class SimulationEvents;
 
+class ObserverParams : public ::Params {
+public:
+  ObserverParams() {
+    add(spawner
+        .setKey("spawner")
+        .setName("Interval Spawner"));
+    add(rateSpawner
+        .setRateRange(0, 5)
+        .setRateValueAndDefault(0.5)
+        .setKey("rateSpawner")
+        .setName("Rate Spawner"));
+  }
+
+  IntervalObserverSpawner::Params spawner;
+  RateObserverSpawner::Params rateSpawner;
+};
+
 class ObserversController
 : public EntityController<ObserverEntity> {
 public:
-
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(spawner
-          .setKey("spawner")
-          .setName("Interval Spawner"));
-      add(rateSpawner
-          .setRateRange(0, 5)
-          .setRateValueAndDefault(0.5)
-          .setKey("rateSpawner")
-          .setName("Rate Spawner"));
-    }
-
-    IntervalObserverSpawner::Params spawner;
-    RateObserverSpawner::Params rateSpawner;
-  };
+  using Params = ObserverParams;
   
   ObserversController(const Params& params,
                       const Bounds& bounds,
