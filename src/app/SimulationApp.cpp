@@ -16,7 +16,7 @@ void SimulationApp::setup() {
 
   _eventLoggers = std::make_shared<EventLoggers>();
 
-  _appParams.core.debug.logging.enabled.changed += [this]() {
+  _appParams.debug.logging.enabled.changed += [this]() {
     updateLogState();
   };
 
@@ -58,7 +58,7 @@ void SimulationApp::setup() {
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
-                                                 _appParams.core.debug,
+                                                 _appParams.debug,
                                                  _context);
   _physics->setup();
 
@@ -68,7 +68,7 @@ void SimulationApp::setup() {
   _statusController = std::make_shared<StatusInfoController>(_context);
 
   _inspectionController =
-  std::make_shared<InspectionController>(_appParams.core.debug.inspect,
+  std::make_shared<InspectionController>(_appParams.debug.inspect,
                                          _context,
                                          *_window);
   _inspectionController->setup();
@@ -92,7 +92,7 @@ void SimulationApp::setup() {
 }
 
 void SimulationApp::updateLogState() {
-  bool enabled = _appParams.core.debug.logging.enabled.get();
+  bool enabled = _appParams.debug.logging.enabled.get();
   ofSetLogLevel(enabled ? OF_LOG_NOTICE : OF_LOG_ERROR);
   auto simulation = AppSystem::get().simulation();
   if (enabled) {
@@ -116,7 +116,7 @@ void SimulationApp::update() {
   _context.highlightedEntities.clear();
   _inspectionController->update();
 
-  if (_appParams.core.debug.showStatus()) {
+  if (_appParams.debug.showStatus()) {
     _statusController->update();
   }
 }
@@ -131,7 +131,7 @@ void SimulationApp::draw() {
   _navigators->draw();
   _physics->draw();
 
-  if (_appParams.core.debug.showBounds()) {
+  if (_appParams.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
     ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
@@ -152,7 +152,7 @@ void SimulationApp::draw() {
   }
 #endif
 
-  if (_appParams.core.debug.showStatus()) {
+  if (_appParams.debug.showStatus()) {
     _statusController->draw();
   }
 
@@ -211,7 +211,7 @@ bool SimulationApp::performAction(AppAction action) {
       saveSettings();
       break;
     case AppAction::TOGGLE_LOGGING:
-      _appParams.core.debug.logging.enabled.toggle();
+      _appParams.debug.logging.enabled.toggle();
       break;
     default:
       return false;

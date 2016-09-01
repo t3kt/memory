@@ -126,43 +126,6 @@
       "paused": false,
       "rate": 1.6734694242477417
     },
-    "debug": {
-      "inspect": {
-        "clickRange": 13.577677726745605,
-        "enabled": true,
-        "showInfo": true
-      },
-      "logging": {
-        "anim": {
-          "enabled": false,
-          "level": 1
-        },
-        "app": {
-          "enabled": false,
-          "level": 1
-        },
-        "ctrl": {
-          "enabled": false,
-          "level": 1
-        },
-        "enabled": false,
-        "nav": {
-          "enabled": false,
-          "level": 1
-        },
-        "obs": {
-          "enabled": false,
-          "level": 1
-        },
-        "occ": {
-          "enabled": true,
-          "level": 1
-        }
-      },
-      "showBounds": false,
-      "showPhysics": false,
-      "showStatus": true
-    },
     "midi": {
       "enabled": false,
       "max": {
@@ -185,6 +148,43 @@
       "externalEnabled": true,
       "fullscreen": false
     }
+  },
+  "debug": {
+    "inspect": {
+      "clickRange": 13.577677726745605,
+      "enabled": true,
+      "showInfo": true
+    },
+    "logging": {
+      "anim": {
+        "enabled": false,
+        "level": 1
+      },
+      "app": {
+        "enabled": false,
+        "level": 1
+      },
+      "ctrl": {
+        "enabled": false,
+        "level": 1
+      },
+      "enabled": false,
+      "nav": {
+        "enabled": false,
+        "level": 1
+      },
+      "obs": {
+        "enabled": false,
+        "level": 1
+      },
+      "occ": {
+        "enabled": true,
+        "level": 1
+      }
+    },
+    "showBounds": false,
+    "showPhysics": false,
+    "showStatus": true
   },
   "navigators": {
     "moveRate": 23.25,

@@ -78,9 +78,6 @@ public:
     add(bounds
         .setKey("bounds")
         .setName("Bounds"));
-    add(debug
-        .setKey("debug")
-        .setName("Debug"));
     add(output
         .setKey("output")
         .setName("Output"));
@@ -96,7 +93,6 @@ public:
 
   Clock::Params clock;
   Bounds bounds;
-  DebugParams debug;
   OutputParams output;
   MidiController::Params midi;
   OscController::Params osc;
@@ -129,6 +125,9 @@ public:
     add(physics
         .setKey("physics")
         .setName("Physics"));
+    add(debug
+        .setKey("debug")
+        .setName("Debug"));
   }
 
   CoreParams core;
@@ -139,6 +138,7 @@ public:
   NavigatorsController::Params navigators;
   RenderingController::Params rendering;
   PhysicsController::Params physics;
+  DebugParams debug;
 };
 
 #endif /* AppParameters_h */

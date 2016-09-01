@@ -30,7 +30,7 @@ public:
 
   AppSystem()
   : _context(_appParams)
-  , _log(_appParams.core.debug.logging) { }
+  , _log(_appParams.debug.logging) { }
 
   void main();
 
