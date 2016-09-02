@@ -55,7 +55,7 @@ void AppGui::setup(AppActionHandler& actionHandler) {
   _entityPages->add(_navigatorsPage);
 
   _animationsPage = new ofxGuiPage();
-  _animationsPage->setup("Anim");
+  _animationsPage->setup("Ani");
   _animationsPage->add(new ofxGuiGroupExtended(_appParams.animations));
   _pages->add(_animationsPage);
 
@@ -65,14 +65,19 @@ void AppGui::setup(AppActionHandler& actionHandler) {
   _pages->add(_colorsPage);
 
   _renderingPage = new ofxGuiPage();
-  _renderingPage->setup("Rend");
+  _renderingPage->setup("Ren");
   _renderingPage->add(new ofxGuiGroupExtended(_appParams.rendering));
   _pages->add(_renderingPage);
 
   _physicsPage = new ofxGuiPage();
-  _physicsPage->setup("Phys");
+  _physicsPage->setup("Phy");
   _physicsPage->add(new ofxGuiGroupExtended(_appParams.physics));
   _pages->add(_physicsPage);
+
+  _debugPage = new ofxGuiPage();
+  _debugPage->setup("Dbg");
+  _debugPage->add(new ofxGuiGroupExtended(_appParams.debug));
+  _pages->add(_debugPage);
 
   _actions = new ActionsGui(actionHandler);
   _actions->setPosition(0, 0);

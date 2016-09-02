@@ -61,6 +61,7 @@ private:
   ofxGuiPage* _colorsPage;
   ofxGuiPage* _renderingPage;
   ofxGuiPage* _physicsPage;
+  ofxGuiPage* _debugPage;
 
   ofxTabbedPages* _pages;
 
