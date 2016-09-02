@@ -8,10 +8,20 @@
 
 #include <ofSystemUtils.h>
 #include "../app/AppSystem.h"
-#include "../app/ControlApp.h"
 #include "../app/SimulationApp.h"
+#include "../core/EventLogging.h"
 
 void SimulationApp::setup() {
+  loadSettings();
+
+  _eventLoggers = std::make_shared<EventLoggers>();
+
+  _appParams.debug.logging.enabled.changed += [this]() {
+    updateLogState();
+  };
+
+  updateLogState();
+
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
@@ -48,7 +58,7 @@ void SimulationApp::setup() {
 
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
-                                                 _appParams.core.debug,
+                                                 _appParams.debug,
                                                  _context);
   _physics->setup();
 
@@ -58,9 +68,8 @@ void SimulationApp::setup() {
   _statusController = std::make_shared<StatusInfoController>(_context);
 
   _inspectionController =
-  std::make_shared<InspectionController>(_appParams.core.debug.inspect,
+  std::make_shared<InspectionController>(_appParams.debug.inspect,
                                          _context,
-                                         _renderingController->getCamera(),
                                          *_window);
   _inspectionController->setup();
 
@@ -70,13 +79,33 @@ void SimulationApp::setup() {
                                          _events);
   _navigators->setup();
 
+  _gui = std::make_shared<AppGui>(_appParams);
+  _gui->setup(*this);
+
+  _midi = std::make_shared<MidiController>(_appParams);
+  _midi->setup();
+
+  _osc = std::make_shared<OscController>(_appParams);
+
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
 }
 
+void SimulationApp::updateLogState() {
+  bool enabled = _appParams.debug.logging.enabled.get();
+  ofSetLogLevel(enabled ? OF_LOG_NOTICE : OF_LOG_ERROR);
+  auto simulation = AppSystem::get().simulation();
+  if (enabled) {
+    _eventLoggers->attach(simulation->getEvents());
+  } else {
+    _eventLoggers->detach(simulation->getEvents());
+  }
+}
+
 void SimulationApp::update() {
-  AppSystem::get().control()->update();
+  _osc->update();
+  _midi->update();
   _clock->update();
   _observers->update();
   _occurrences->update();
@@ -88,7 +117,7 @@ void SimulationApp::update() {
   _context.highlightedEntities.clear();
   _inspectionController->update();
 
-  if (_appParams.core.debug.showStatus()) {
+  if (_appParams.debug.showStatus()) {
     _statusController->update();
   }
 }
@@ -103,7 +132,7 @@ void SimulationApp::draw() {
   _navigators->draw();
   _physics->draw();
 
-  if (_appParams.core.debug.showBounds()) {
+  if (_appParams.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
     ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
@@ -124,12 +153,12 @@ void SimulationApp::draw() {
   }
 #endif
 
-  if (_appParams.core.debug.showStatus()) {
+  if (_appParams.debug.showStatus()) {
     _statusController->draw();
   }
 
   _inspectionController->draw();
-  AppSystem::get().control()->draw();
+  _gui->draw();
 }
 
 void SimulationApp::dumpEntityState() {
@@ -176,8 +205,31 @@ bool SimulationApp::performAction(AppAction action) {
       _observers->performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
       _occurrences->performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
       break;
+    case AppAction::LOAD_SETTINGS:
+      loadSettings();
+      break;
+    case AppAction::SAVE_SETTINGS:
+      saveSettings();
+      break;
+    case AppAction::TOGGLE_LOGGING:
+      _appParams.debug.logging.enabled.toggle();
+      break;
     default:
       return false;
   }
   return true;
+}
+
+void SimulationApp::loadSettings() {
+  AppSystem::get().log().app().logNotice("Reading JSON settings...");
+  _appParams.readFromFile("settings.json");
+  AppSystem::get().log().app().logNotice([&](ofLog& log) {
+    log << ".. read from JSON finished\n\t" << _appParams;
+  });
+}
+
+void SimulationApp::saveSettings() {
+  AppSystem::get().log().app().logNotice("Writing JSON settings...");
+  _appParams.writeToFile("settings.json");
+  AppSystem::get().log().app().logNotice(".. write to JSON finished");
 }

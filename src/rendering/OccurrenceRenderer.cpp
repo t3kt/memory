@@ -30,13 +30,25 @@ void OccurrenceRenderer::draw() {
 
   renderer->pushStyle();
 
+  auto darkening = 1.0 - _params.highlightAmount.get();
+  auto baseColor = _color;
+  auto darkendColor = ofFloatColor(_color, _color.a * darkening);
+  auto hasHighlights = !_context.highlightedEntities.empty();
+
   for (const auto& entity : _entities) {
     if (!entity->visible()) {
       continue;
     }
 
-    float alpha = entity->alpha();
-    renderer->setColor(ofFloatColor(_color, _color.a * alpha));
+    ofFloatColor color;
+    if (hasHighlights &&
+        !_context.highlightedEntities.containsId(entity->id())) {
+      color = darkendColor;
+    } else {
+      color = baseColor;
+    }
+    color.a *= entity->alpha();
+    renderer->setColor(color);
 
     float size = ofMap(entity->originalRadiusFraction(),
                        0, 1,
@@ -59,10 +71,18 @@ void OccurrenceRenderer::draw() {
                          _params.sizeRange.highValue.get());
       size *= _params.wireScale.get();
 
-      ofFloatColor wireColor(_color, _color.a * entity->alpha());
-      wireColor.setSaturation(_params.wireSaturation());
-      wireColor.setBrightness(_params.wireBrightness());
-      renderer->setColor(wireColor);
+      ofFloatColor color;
+      if (hasHighlights &&
+          !_context.highlightedEntities.containsId(entity->id())) {
+        color = darkendColor;
+      } else {
+        color = baseColor;
+      }
+      color.a *= entity->alpha();
+
+      color.setSaturation(_params.wireSaturation());
+      color.setBrightness(_params.wireBrightness());
+      renderer->setColor(color);
       renderer->drawBox(entity->position(), size);
     }
   }
@@ -70,15 +90,21 @@ void OccurrenceRenderer::draw() {
   if (_params.showRange.get()) {
     renderer->setBlendMode(OF_BLENDMODE_ALPHA);
     renderer->setFillMode(OF_FILLED);
+    auto baseRangeColor = _rangeColor;
+    auto darkenedRangeColor = ofFloatColor(_rangeColor, _rangeColor.a * darkening);
     for (const auto& entity : _entities) {
       if (!entity->visible()) {
         continue;
       }
 
-      ofFloatColor color(_rangeColor, _rangeColor.a * entity->alpha());
-      if (color.a <= 0) {
-        continue;
+      ofFloatColor color;
+      if (hasHighlights &&
+          !_context.highlightedEntities.containsId(entity->id())) {
+        color = darkenedRangeColor;
+      } else {
+        color = baseRangeColor;
       }
+      color.a *= entity->alpha();
       renderer->setColor(color);
       float radius = entity->actualRadius();
       renderer->drawSphere(entity->position(), radius);

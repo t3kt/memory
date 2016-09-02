@@ -47,6 +47,10 @@ public:
   float alpha() const { return _alpha; }
   void setAlpha(float alpha) { _alpha = alpha; }
 
+  const ofVec3f& screenPos() const { return _screenPos; }
+
+  void setScreenPos(const ofVec3f& pos) { _screenPos = pos; }
+
   virtual EntityType entityType() const = 0;
 
   virtual void deserializeFields(const Json& obj,
@@ -66,6 +70,7 @@ private:
   float _alpha;
   bool _alive;
   ObjectId _id;
+  ofVec3f _screenPos;
 };
 
 #endif /* WorldObject_h */

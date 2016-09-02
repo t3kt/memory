@@ -7,8 +7,19 @@
 //
 
 #include <ofGraphics.h>
+#include <set>
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
+
+struct ParticleScreenDepthLess {
+  constexpr bool operator()(const ParticlePtr& lha,
+                            const ParticlePtr& rha) const {
+    return lha->screenPos().z < rha->screenPos().z;
+  }
+};
+
+using ScreenDepthSortedParticleSet =
+std::set<ParticlePtr, ParticleScreenDepthLess>;
 
 void InspectionController::setup() {
   _params.enabled.changed += [&](bool& enabled) {
@@ -46,34 +57,30 @@ void InspectionController::update() {
     return;
   }
   if (_hasClick) {
-    _camera.begin();
-    float closestDist = -1;
-    float range = _params.clickRange.get();
-    bool found = false;
-    _context.performActionOnParticleEntityPtrs([&](std::shared_ptr<ParticleObject> entity) {
-      ofVec3f screenPos = _camera.worldToScreen(entity->position());
-      float dist = screenPos.distance(_clickPos);
-      if (dist > range) {
+
+    ScreenDepthSortedParticleSet candidates;
+
+    auto range = _params.clickRange.get();
+    _context.performActionOnParticleEntityPtrs([&](ParticlePtr entity) {
+      const auto& screenPos = entity->screenPos();
+      auto xyPos = ofVec2f(screenPos.x, screenPos.y);
+      float xyDist = xyPos.distance(_clickPos);
+      if (xyDist > range) {
         return;
       }
-      if (closestDist < 0 || dist < closestDist) {
-        closestDist = dist;
-        _selectedEntity = entity;
-        found = true;
-      }
+      candidates.insert(entity);
     });
-    if (!found) {
-      _selectedEntity.reset();
-    }
-    _hasClick = false;
-    _camera.end();
-  }
-  if (_selectedEntity) {
-    if (!_selectedEntity->alive()) {
+
+    if (candidates.empty()) {
       _selectedEntity.reset();
     } else {
-      _selectedScreenPosition = _camera.worldToScreen(_selectedEntity->position());
+      _selectedEntity = *candidates.begin();
     }
+
+    _hasClick = false;
+  }
+  if (_selectedEntity && !_selectedEntity->alive()) {
+    _selectedEntity.reset();
   }
   updateHighlights();
   updateInfo();
@@ -111,7 +118,7 @@ void InspectionController::draw() {
     ofPushStyle();
     ofSetColor(ofFloatColor::white);
     auto winSize = _window.getWindowSize();
-    const auto& pos = _selectedScreenPosition;
+    const auto& pos = _selectedEntity->screenPos();
     ofVec3f sidePos(0, pos.y);
 //    if (pos.x > winSize.x / 2) {
       sidePos.x = winSize.x;

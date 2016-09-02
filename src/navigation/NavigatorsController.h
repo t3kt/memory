@@ -20,33 +20,36 @@ class NavigatorState;
 class ObserverEntity;
 class SimulationEvents;
 
+class NavigatorParams
+: public Params {
+public:
+  NavigatorParams() {
+    add(observerNavigatorSpawner
+        .setKey("observerNavigatorSpawner")
+        .setName("Observer Nav Spawner"));
+    add(moveRate
+        .setKey("moveRate")
+        .setName("Move Rate")
+        .setValueAndDefault(10)
+        .setRange(0, 50));
+    add(reachRange
+        .setKey("reachRange")
+        .setName("Reach Range")
+        .setValueAndDefault(10)
+        .setRange(0, 50));
+    observerNavigatorSpawner.setEnabledValueAndDefault(false);
+    observerNavigatorSpawner.setRateValueAndDefault(0.04);
+    observerNavigatorSpawner.setRateRange(0, 2);
+  }
+
+  RateSpawner<>::Params observerNavigatorSpawner;
+  TParam<float> moveRate;
+  TParam<float> reachRange;
+};
+
 class NavigatorsController {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(observerNavigatorSpawner
-          .setKey("observerNavigatorSpawner")
-          .setName("Observer Nav Spawner"));
-      add(moveRate
-          .setKey("moveRate")
-          .setName("Move Rate")
-          .setValueAndDefault(10)
-          .setRange(0, 50));
-      add(reachRange
-          .setKey("reachRange")
-          .setName("Reach Range")
-          .setValueAndDefault(10)
-          .setRange(0, 50));
-      observerNavigatorSpawner.setEnabledValueAndDefault(false);
-      observerNavigatorSpawner.setRateValueAndDefault(0.04);
-      observerNavigatorSpawner.setRateRange(0, 2);
-    }
-
-    RateSpawner<>::Params observerNavigatorSpawner;
-    TParam<float> moveRate;
-    TParam<float> reachRange;
-  };
+  using Params = NavigatorParams;
 
   NavigatorsController(Context& context,
                        Params& params,

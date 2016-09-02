@@ -20,9 +20,6 @@ class SimulationEvents;
 class AbstractEntityController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  };
-
   virtual void setup() = 0;
   virtual void update() = 0;
   virtual void draw() {};

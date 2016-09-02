@@ -46,6 +46,11 @@ public:
           .setName("Wire Brightness")
           .setValueAndDefault(1.1)
           .setRange(0.5, 1.5));
+      add(highlightAmount
+          .setKey("highlightAmount")
+          .setName("Highlighting")
+          .setValueAndDefault(0.6)
+          .setRange(0, 1));
     }
 
     ValueRange<float> sizeRange;
@@ -54,6 +59,7 @@ public:
     TParam<float> wireScale;
     TParam<float> wireSaturation;
     TParam<float> wireBrightness;
+    TParam<float> highlightAmount;
   };
 
   OccurrenceRenderer(const Params& params,

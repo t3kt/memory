@@ -66,7 +66,7 @@ ofxBaseGui* TGuiBuilder::createGroup(const Params &params) const {
     default:
       return nullptr;
   }
-  for (const auto param : params.paramBases()) {
+  for (const auto param : params.getParamBases()) {
     auto control = createControl(*param, true);
     if (control) {
       group->add(control);

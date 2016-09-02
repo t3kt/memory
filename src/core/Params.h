@@ -33,6 +33,7 @@ public:
 
   virtual std::string asString() const = 0;
   virtual const std::type_info& getTypeInfo() const = 0;
+  virtual bool supportsOsc() const = 0;
 };
 
 template<typename T, typename ParT>
@@ -40,7 +41,8 @@ class TTypedParamBase
 : public ofParameter<T>
 , public TParamBase {
 public:
-  TTypedParamBase() {
+  TTypedParamBase()
+  : _supportsOsc(true) {
     ofParameter<T>::addListener(this,
                                 &TTypedParamBase::onChanged);
   }
@@ -136,6 +138,13 @@ public:
       throw JsonException("Required field missing: " + getKey());
     }
   }
+
+  bool supportsOsc() const override { return _supportsOsc; }
+
+  ParT& setSupportsOsc(bool supportsOsc) {
+    _supportsOsc = supportsOsc;
+    return selfRef();
+  }
   
 protected:
   virtual ParT& selfRef() = 0;
@@ -148,6 +157,7 @@ private:
   std::string _key;
   bool _hasDefaultValue;
   T _defaultValue;
+  bool _supportsOsc;
 };
 
 template<typename T>
@@ -193,6 +203,8 @@ public:
 protected:
   TParam<bool>& selfRef() override { return *this; }
 };
+
+using ParamBaseAction = std::function<void(TParamBase&)>;
 
 class Params
 : public ofParameterGroup
@@ -259,12 +271,24 @@ public:
 
   TParamBase* lookupPath(const std::string& path);
 
-  const std::vector<TParamBase*>& paramBases() const {
+  std::vector<TParamBase*>& getParamBases() { return _paramBases; }
+
+  const std::vector<TParamBase*>& getParamBases() const {
     return _paramBases;
+  }
+
+  void performRecursiveParamAction(ParamBaseAction action);
+
+  bool supportsOsc() const override { return _supportsOsc; }
+
+  Params& setSupportsOsc(bool supportsOsc) {
+    _supportsOsc = supportsOsc;
+    return *this;
   }
 private:
   std::string _key;
   std::vector<TParamBase*> _paramBases;
+  bool _supportsOsc = true;
 };
 
 class ParamsWithEnabled : public Params {
@@ -294,10 +318,6 @@ public:
     add(highValue
         .setKey("high")
         .setName("High"));
-  }
-
-  const std::type_info& getTypeInfo() const override {
-    return typeid(ValueRange<T>);
   }
 
   ValueRange<T>& setKey(std::string key) {
