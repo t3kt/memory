@@ -24,6 +24,7 @@ class TGuiBuilder;
 enum class GuiGroupMode {
   GROUP,
   PAGE,
+  PAGE_WITH_INNER_GROUP,
   PANEL,
   TABBED_PAGES,
 };
@@ -123,6 +124,9 @@ protected:
       return *this;
     }
   }
+
+  void populateGroup(ofxGuiGroupExtended* group,
+                     const Params& params) const;
 private:
   inline ChainReturnT chainRet() { return std::shared_ptr<TGuiBuilder>(this); }
 

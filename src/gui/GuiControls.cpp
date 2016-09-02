@@ -49,34 +49,56 @@ ofxBaseGui* TGuiBuilder::createChildGroup(const Params &params) const {
 }
 
 ofxBaseGui* TGuiBuilder::createGroup(const Params &params) const {
-  ofxGuiGroupExtended* group;
   switch (_groupMode) {
     case GuiGroupMode::GROUP:
-      group = (new ofxGuiGroupExtended())->setup(params.getName());
-      break;
+    {
+      auto group = (new ofxGuiGroupExtended())->setup(params.getName());
+      populateGroup(group, params);
+      return group;
+    }
     case GuiGroupMode::PAGE:
-      group = (new ofxGuiPage())->setup(params.getName());
-      break;
+    {
+      auto group = (new ofxGuiPage())->setup(params.getName());
+      populateGroup(group, params);
+      return group;
+    }
+    case GuiGroupMode::PAGE_WITH_INNER_GROUP:
+    {
+      auto page = (new ofxGuiPage())->setup(params.getName());
+      auto group = (new ofxGuiGroupExtended())->setup(params.getName());
+      page->add(group);
+      populateGroup(group, params);
+      return page;
+    }
     case GuiGroupMode::PANEL:
-      group = (new ofxPanelExtended())->setup(params.getName());
-      break;
+    {
+      auto group = (new ofxPanelExtended())->setup(params.getName());
+      populateGroup(group, params);
+      return group;
+    }
     case GuiGroupMode::TABBED_PAGES:
+    {
       // TODO: implement tabbed pages support
       return nullptr;
+    }
     default:
       return nullptr;
   }
+}
+
+void TGuiBuilder::populateGroup(ofxGuiGroupExtended *group,
+                                const Params &params) const {
   for (const auto param : params.getParamBases()) {
     auto control = createControl(*param, true);
     if (control) {
       group->add(control);
     }
   }
-  return group;
 }
 
 ofxBaseGui* TGuiBuilder::createToggle(const TParam<bool> &param) const {
-  return new ofxMinimalToggle(param);
+  return new ofxToggle(param);
+//  return new ofxMinimalToggle(param);
 }
 
 

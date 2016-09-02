@@ -3,6 +3,7 @@
 //
 
 #include "../gui/AppGui.h"
+#include "../gui/GuiControls.h"
 
 static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
   gui->setBackgroundColor(ofColor(gui->getBackgroundColor(), alpha*255));
@@ -56,7 +57,11 @@ void AppGui::setup(AppActionHandler& actionHandler) {
 
   _animationsPage = new ofxGuiPage();
   _animationsPage->setup("Ani");
-  _animationsPage->add(new ofxGuiGroupExtended(_appParams.animations));
+  {
+    auto builder = TGuiBuilder(GuiGroupMode::GROUP);
+    auto group = builder.createControl(_appParams.animations);
+    _animationsPage->add(group);
+  }
   _pages->add(_animationsPage);
 
   _colorsPage = new ofxGuiPage();
@@ -66,12 +71,20 @@ void AppGui::setup(AppActionHandler& actionHandler) {
 
   _renderingPage = new ofxGuiPage();
   _renderingPage->setup("Ren");
-  _renderingPage->add(new ofxGuiGroupExtended(_appParams.rendering));
+  {
+    auto builder = TGuiBuilder(GuiGroupMode::GROUP);
+    auto group = builder.createControl(_appParams.rendering);
+    _renderingPage->add(group);
+  }
   _pages->add(_renderingPage);
 
   _physicsPage = new ofxGuiPage();
   _physicsPage->setup("Phy");
-  _physicsPage->add(new ofxGuiGroupExtended(_appParams.physics));
+  {
+    auto builder = TGuiBuilder(GuiGroupMode::GROUP);
+    auto group = builder.createControl(_appParams.physics);
+    _physicsPage->add(group);
+  }
   _pages->add(_physicsPage);
 
   _debugPage = new ofxGuiPage();
