@@ -55,22 +55,22 @@ public:
 private:
   MemoryAppParameters& _appParams;
 
-  std::shared_ptr<ofxGuiPage> _corePage;
-  std::shared_ptr<ofxGuiPage> _entityPage;
-  std::shared_ptr<ofxGuiPage> _animationsPage;
-  std::shared_ptr<ofxGuiPage> _colorsPage;
-  std::shared_ptr<ofxGuiPage> _renderingPage;
-  std::shared_ptr<ofxGuiPage> _physicsPage;
+  ofxGuiPage* _corePage;
+  ofxGuiPage* _entityPage;
+  ofxGuiPage* _animationsPage;
+  ofxGuiPage* _colorsPage;
+  ofxGuiPage* _renderingPage;
+  ofxGuiPage* _physicsPage;
 
-  std::shared_ptr<ofxTabbedPages> _pages;
+  ofxTabbedPages* _pages;
 
-  std::shared_ptr<ofxGuiPage> _observersPage;
-  std::shared_ptr<ofxGuiPage> _occurrencesPage;
-  std::shared_ptr<ofxGuiPage> _navigatorsPage;
+  ofxGuiPage* _observersPage;
+  ofxGuiPage* _occurrencesPage;
+  ofxGuiPage* _navigatorsPage;
 
-  std::shared_ptr<ofxTabbedPages> _entityPages;
+  ofxTabbedPages* _entityPages;
 
-  std::shared_ptr<ActionsGui> _actions;
+  ActionsGui* _actions;
 };
 
 #endif /* AppGui_h */
