@@ -35,6 +35,7 @@
 		32324C7D1D57F90900D05EDF /* OccurrencePreRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C7B1D57F90900D05EDF /* OccurrencePreRenderer.cpp */; };
 		32324CA51D59690500D05EDF /* Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324CA31D59690500D05EDF /* Info.cpp */; };
 		32324CB51D5C460900D05EDF /* ColorAdjustPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324CB31D5C460900D05EDF /* ColorAdjustPass.cpp */; };
+		323EEE021D7A7925001C7A72 /* EntityRules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE001D7A7925001C7A72 /* EntityRules.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -275,6 +276,8 @@
 		32324CAA1D59861800D05EDF /* EntityMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntityMap.h; path = core/EntityMap.h; sourceTree = "<group>"; };
 		32324CB31D5C460900D05EDF /* ColorAdjustPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorAdjustPass.cpp; path = rendering/fx/ColorAdjustPass.cpp; sourceTree = "<group>"; };
 		32324CB41D5C460900D05EDF /* ColorAdjustPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorAdjustPass.h; path = rendering/fx/ColorAdjustPass.h; sourceTree = "<group>"; };
+		323EEE001D7A7925001C7A72 /* EntityRules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityRules.cpp; path = core/EntityRules.cpp; sourceTree = "<group>"; };
+		323EEE011D7A7925001C7A72 /* EntityRules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityRules.h; path = core/EntityRules.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -1324,6 +1327,8 @@
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
 				32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */,
 				32CBCEE71D72B21400AEECC1 /* EventLogging.h */,
+				323EEE001D7A7925001C7A72 /* EntityRules.cpp */,
+				323EEE011D7A7925001C7A72 /* EntityRules.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
 				32324CA31D59690500D05EDF /* Info.cpp */,
 				32324CA41D59690500D05EDF /* Info.h */,
@@ -1684,6 +1689,7 @@
 				8E1259551060546687E17DFF /* ThresholdRenderer.cpp in Sources */,
 				9E3D4E659A623E2606FB176E /* ofxAssimpAnimation.cpp in Sources */,
 				789C276BFDE07DB1F2FC3273 /* ofxAssimpMeshHelper.cpp in Sources */,
+				323EEE021D7A7925001C7A72 /* EntityRules.cpp in Sources */,
 				BA80EC1312CA78AACB7A3C45 /* ofxAssimpModelLoader.cpp in Sources */,
 				8AFFBB76CB2F6EB013036AF3 /* ofxAssimpTexture.cpp in Sources */,
 				C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */,

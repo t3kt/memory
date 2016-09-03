@@ -13,6 +13,7 @@
 #include "../core/Bounds.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
+#include "../core/EntityRules.h"
 #include "../core/Events.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserverEntity.h"
@@ -21,6 +22,7 @@
 #include "../core/State.h"
 
 class SimulationEvents;
+using ObserverRule = EntityRule<ObserverEntity>;
 
 class ObserverParams : public ::Params {
 public:
