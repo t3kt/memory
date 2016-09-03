@@ -20,7 +20,6 @@
 #include "../core/Logging.h"
 
 class SimulationApp;
-class ControlApp;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
 
@@ -31,7 +30,7 @@ public:
 
   AppSystem()
   : _context(_appParams)
-  , _log(_appParams.core.debug.logging) { }
+  , _log(_appParams.debug.logging) { }
 
   void main();
 
@@ -42,8 +41,6 @@ public:
   }
 
   SimulationApp* simulation() { return _simulationApp.get(); }
-
-  ControlApp* control() { return _controlApp.get(); }
 
   State& state() { return _context.state; }
   const State& state() const { return _context.state; }
@@ -73,7 +70,6 @@ private:
   Context _context;
   std::shared_ptr<ofAppGLFWWindow> _simulationWindow;
   std::shared_ptr<SimulationApp> _simulationApp;
-  std::shared_ptr<ControlApp> _controlApp;
   LoggingController _log;
 };
 

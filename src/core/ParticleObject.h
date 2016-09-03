@@ -53,4 +53,7 @@ private:
   ofVec3f _startPosition;
 };
 
+using ParticlePtr = std::shared_ptr<ParticleObject>;
+using ParticleVector = std::vector<ParticlePtr>;
+
 #endif /* ParticleObject_h */

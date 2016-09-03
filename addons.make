@@ -4,6 +4,7 @@ ofxGui
 ofxGuiExtended
 ofxLiquidEvent
 ofxMidi
+ofxOsc
 ofxPostProcessing
 ofxSyphon
 ofxTextAlign
