@@ -232,7 +232,6 @@
 		1F8E99083CDB97599C3EDFDA /* Hold.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Hold.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Hold.hpp; sourceTree = SOURCE_ROOT; };
 		2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RGBShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.cpp; sourceTree = SOURCE_ROOT; };
 		208D07AA141FB8252C6B4871 /* ofxRtMidiIn.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxRtMidiIn.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxMidi/src/desktop/ofxRtMidiIn.cpp; sourceTree = SOURCE_ROOT; };
-		21486E8D0CA688A2FC4DAA74 /* Colors.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Colors.h; path = src/core/Colors.h; sourceTree = SOURCE_ROOT; };
 		22F017FB9260290C5F3E590A /* KaleidoscopePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KaleidoscopePass.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/KaleidoscopePass.h; sourceTree = SOURCE_ROOT; };
 		2361E49D807B63833D9BCEC7 /* Ramp.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Ramp.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Ramp.hpp; sourceTree = SOURCE_ROOT; };
 		23F9EB88C0A4822FD78FE2E1 /* ofxAssimpUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAssimpUtils.h; path = ../../of_v0.9.3_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpUtils.h; sourceTree = SOURCE_ROOT; };
@@ -272,6 +271,7 @@
 		32324CAA1D59861800D05EDF /* EntityMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntityMap.h; path = core/EntityMap.h; sourceTree = "<group>"; };
 		32324CB31D5C460900D05EDF /* ColorAdjustPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorAdjustPass.cpp; path = rendering/fx/ColorAdjustPass.cpp; sourceTree = "<group>"; };
 		32324CB41D5C460900D05EDF /* ColorAdjustPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorAdjustPass.h; path = rendering/fx/ColorAdjustPass.h; sourceTree = "<group>"; };
+		323EEE061D7D01A5001C7A72 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = rendering/Colors.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -903,6 +903,7 @@
 				32DB79E71D3DD81600ED4EB7 /* marker-shader.frag */,
 				264FBA0D0F7C55AE0316D615 /* CameraController.cpp */,
 				E3EF9EBE32865BF7425A7088 /* CameraController.h */,
+				323EEE061D7D01A5001C7A72 /* Colors.h */,
 				32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */,
 				32DB79E01D3DD2F000ED4EB7 /* ConnectorRenderer.h */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
@@ -1306,7 +1307,6 @@
 				B235D09E719D526194402149 /* Bounds.h */,
 				B435F280334BE688BF136963 /* Clock.cpp */,
 				D9C3827264F0C34537CE0F6E /* Clock.h */,
-				21486E8D0CA688A2FC4DAA74 /* Colors.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
 				A9ADD6203ACA4F47673ED063 /* Context.cpp */,
