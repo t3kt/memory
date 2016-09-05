@@ -41,18 +41,18 @@ public:
   template<typename E>
   const ObjectManager<E>& getEntities() const;
 
-  template<typename E>
-  void performActionOnEntitiesOfType(std::function<void(E*)> action) {
+  template<typename E, typename T>
+  void performEntityAction(PtrRefAction<T> action) {
     getEntities<E>().performTypedAction(action);
   }
 
   template<typename E, typename T>
-  void performTypedActionOnEntities(std::function<void(T*)> action) {
+  void performTypedActionOnEntities(PtrRefAction<T> action) {
     getEntities<E>().performTypedAction(action);
   }
 
   template<typename T>
-  void performTypedActionOnAllEntities(std::function<void(T*)> action) {
+  void performTypedActionOnAllEntities(PtrRefAction<T> action) {
     performTypedActionOnEntities<AnimationObject>(action);
     performTypedActionOnEntities<NavigatorEntity>(action);
     performTypedActionOnEntities<ObserverEntity>(action);

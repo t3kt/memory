@@ -22,8 +22,8 @@ void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,
 }
 
 void BoundsBehavior::applyToWorld(Context& context) {
-  std::function<void(ParticleObject*)> action = [&](ParticleObject* entity) {
-    applyToEntity(context, entity);
+  PtrAction<ParticleObject> action = [&](std::shared_ptr<ParticleObject> entity) {
+    applyToEntity(context, entity.get());
   };
   context.observers.performTypedAction(action);
   context.occurrences.performTypedAction(action);

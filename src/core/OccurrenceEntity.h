@@ -93,7 +93,7 @@ public:
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
-  virtual void performActionOnConnected(ObjectPtrAction action) override;
+  virtual void performActionOnConnected(ObjectPtrRefAction action) override;
   virtual bool hasConnections() const override {
     return !_connectedObservers.empty() || !_connectedOccurrences.empty();
   }

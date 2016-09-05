@@ -132,4 +132,10 @@ private:
   T* _value;
 };
 
+template<typename E>
+using PtrRefAction = std::function<void(std::shared_ptr<E>&)>;
+
+template<typename E>
+using PtrAction = std::function<void(std::shared_ptr<E>)>;
+
 #endif /* defined(__behavior__Common__) */

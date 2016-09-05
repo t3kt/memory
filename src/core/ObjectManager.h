@@ -34,23 +34,23 @@ public:
   AbstractObjectView(Storage objects)
   : _objects(objects) { }
 
-  void performAction(std::function<void(EntityPtr&)> action) {
-    for (auto& entity : _objects) {
+  void performAction(PtrRefAction<T> action) {
+    for (EntityPtr& entity : _objects) {
       action(entity);
     }
   }
 
   template<typename Base>
-  void performTypedAction(std::function<void(Base*)> action) {
-    for (auto& entity : _objects) {
-      action(entity.get());
+  void performTypedAction(PtrAction<Base> action) {
+    for (EntityPtr& entity : _objects) {
+      action(entity);
     }
   }
 
   template<typename Base>
-  void performTypedAction(std::function<void(const Base*)> action) const {
-    for (const auto& entity : _objects) {
-      action(entity.get());
+  void performTypedAction(PtrAction<Base> action) const {
+    for (const EntityPtr& entity : _objects) {
+      action(entity);
     }
   }
 
