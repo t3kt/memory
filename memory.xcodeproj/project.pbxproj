@@ -99,7 +99,6 @@
 		744A99D255BA21E0823917E3 /* LUTPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD50823B68F5BE29DB6D200A /* LUTPass.cpp */; };
 		74BB3894F03B76512006BA7D /* AnchorPointBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8D57A2DE1130D2EF3D44F5A /* AnchorPointBehavior.cpp */; };
 		758C8807E87953B9A29F1F34 /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44B12021EA4A3F54AF08DB06 /* ofxMidiOut.cpp */; };
-		75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F05D9B2D4915D920A10BE4F /* Colors.cpp */; };
 		78263DB7A06E5E0226C873CE /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1FEB66CE88C2B47C1925F8C /* ofxPanel.cpp */; };
 		789C276BFDE07DB1F2FC3273 /* ofxAssimpMeshHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A912203C558EA621B101C2CD /* ofxAssimpMeshHelper.cpp */; };
 		7DE30FC333652825841CEBCD /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36B95376ECF45981665C19E8 /* State.cpp */; };
@@ -230,7 +229,6 @@
 		18FDAA884F43D6CF3A92BA3B /* ofxGuiGroupExtended.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroupExtended.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiGroupExtended.cpp; sourceTree = SOURCE_ROOT; };
 		1A5C23DAFEE4E3049A5BA4BE /* SyphonNameboundClient.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SyphonNameboundClient.h; path = ../../of_v0.9.3_osx_release/addons/ofxSyphon/libs/Syphon/src/SyphonNameboundClient.h; sourceTree = SOURCE_ROOT; };
 		1CCB588E74FE34D369788C45 /* MidiController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MidiController.cpp; path = src/control/MidiController.cpp; sourceTree = SOURCE_ROOT; };
-		1F05D9B2D4915D920A10BE4F /* Colors.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Colors.cpp; path = src/core/Colors.cpp; sourceTree = SOURCE_ROOT; };
 		1F8E99083CDB97599C3EDFDA /* Hold.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Hold.hpp; path = ../../of_v0.9.3_osx_release/addons/ofxChoreograph/libs/Choreograph/src/choreograph/phrase/Hold.hpp; sourceTree = SOURCE_ROOT; };
 		2035E385739E80C2B8F1F941 /* RGBShiftPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RGBShiftPass.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/RGBShiftPass.cpp; sourceTree = SOURCE_ROOT; };
 		208D07AA141FB8252C6B4871 /* ofxRtMidiIn.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxRtMidiIn.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxMidi/src/desktop/ofxRtMidiIn.cpp; sourceTree = SOURCE_ROOT; };
@@ -1308,7 +1306,6 @@
 				B235D09E719D526194402149 /* Bounds.h */,
 				B435F280334BE688BF136963 /* Clock.cpp */,
 				D9C3827264F0C34537CE0F6E /* Clock.h */,
-				1F05D9B2D4915D920A10BE4F /* Colors.cpp */,
 				21486E8D0CA688A2FC4DAA74 /* Colors.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
@@ -1642,7 +1639,6 @@
 				32F74A611D409C0600C1A911 /* UdpSocket.cpp in Sources */,
 				32F74A5F1D409C0600C1A911 /* IpEndpointName.cpp in Sources */,
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
-				75BAB05AEBFC1B777846D687 /* Colors.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				32F74A641D409C0600C1A911 /* OscOutboundPacketStream.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
