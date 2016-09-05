@@ -18,7 +18,7 @@ ObserverRenderer::ObserverRenderer(const Params& params,
 : _context(context)
 , _entities(context.observers)
 , _params(params)
-, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER)) { }
+, _color(AppSystem::get().params()->colors.observerMarker.get()) { }
 
 void ObserverRenderer::draw() {
   if (!_params.enabled.get()) {
@@ -62,7 +62,7 @@ InstancedObserverRenderer::InstancedObserverRenderer(const Params& params,
                                                      Context& context)
 : _params(params)
 , _context(context)
-, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
+, _color(AppSystem::get().params()->colors.observerMarker.get())
 , _mesh(AppAssets::observerMarkerMesh())
 , _instanceShader(AppAssets::markerInstanceShader())
 , _fadeIn(params.fadeIn) { }

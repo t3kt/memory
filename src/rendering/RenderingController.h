@@ -161,8 +161,6 @@ private:
   Params& _params;
   Context& _context;
   const ColorTheme& _colors;
-  const ofFloatColor& _backgroundColor;
-  const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
   std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;

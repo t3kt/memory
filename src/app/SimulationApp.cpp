@@ -134,7 +134,7 @@ void SimulationApp::draw() {
   if (_appParams.debug.showBounds()) {
     ofPushStyle();
     ofNoFill();
-    ofSetColor(_appParams.colors.getColor(ColorId::BOUNDS));
+    ofSetColor(_appParams.colors.bounds.get());
     ofDrawBox(_appParams.core.bounds.size());
     ofPopStyle();
     ofDrawGrid(

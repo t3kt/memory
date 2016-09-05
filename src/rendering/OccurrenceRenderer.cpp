@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../rendering/OccurrenceRenderer.h"
@@ -18,8 +19,8 @@ OccurrenceRenderer::OccurrenceRenderer(const Params& params,
 : _context(context)
 , _entities(context.occurrences)
 , _params(params)
-, _color(ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER))
-, _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
+, _color(AppSystem::get().params()->colors.occurrenceMarker.get())
+, _rangeColor(AppSystem::get().params()->colors.occurrenceRange.get())
 , _appParams(appParams) { }
 
 void OccurrenceRenderer::draw() {

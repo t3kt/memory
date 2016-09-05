@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
 #include "../rendering/RenderingController.h"
 
 RenderingController::RenderingController(Params& params,
@@ -15,10 +16,8 @@ RenderingController::RenderingController(Params& params,
                                          Context& context)
 : _params(params)
 , _window(window)
-, _colors(ColorTheme::get())
-, _context(context)
-, _backgroundColor(ColorTheme::get().getColor(ColorId::BACKGROUND))
-, _fogColor(ColorTheme::get().getColor(ColorId::FOG)) {
+, _colors(AppSystem::get().params()->colors)
+, _context(context) {
 }
 
 void RenderingController::setup() {
@@ -39,7 +38,7 @@ void RenderingController::setup() {
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
                                               observerParams.thresholdRenderer,
-                                              colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
+                                              colors.observerThresholdConnector.get());
   _observerRenderer =
   std::make_shared<ObserverRenderer>(observerParams.renderer,
                                      _context);
@@ -49,7 +48,7 @@ void RenderingController::setup() {
   //  _instancedObserverRenderer->setup();
   _observerConnectorRenderer =
   std::make_shared<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer,
-                                                      colors.getColor(ColorId::OBSERVER_CONNECTOR),
+                                                      colors.observerConnector.get(),
                                                       _context.observers);
   _occurrenceRenderer =
   std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
@@ -57,11 +56,11 @@ void RenderingController::setup() {
                                        _context);
   _observerOccurrenceConnectorRenderer =
   std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
-                                                        colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
+                                                        colors.occurrenceObserverConnector.get(),
                                                         _context.occurrences);
   _occurrenceOccurrenceConnectorRenderer =
   std::make_shared<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer,
-                                                          colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
+                                                          colors.occurrenceConnector.get(),
                                                           _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
@@ -98,7 +97,7 @@ void RenderingController::beginDraw() {
   _observerPreRenderer->update();
   _occurrencePreRenderer->update();
 
-  ofBackground(_backgroundColor);
+  ofBackground(_colors.background.get());
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
   //glEnable(GL_DEPTH_TEST);
@@ -138,13 +137,15 @@ void RenderingController::endDraw() {
 void RenderingController::beginFog() {
   GLfloat fogCol[4];
   if (_params.fog.useBackgroundColor()) {
-    fogCol[0] = _backgroundColor.r;
-    fogCol[1] = _backgroundColor.g;
-    fogCol[2] = _backgroundColor.b;
+    const auto& color = _colors.background.get();
+    fogCol[0] = color.r;
+    fogCol[1] = color.g;
+    fogCol[2] = color.b;
   } else {
-    fogCol[0] = _fogColor.r;
-    fogCol[1] = _fogColor.g;
-    fogCol[2] = _fogColor.b;
+    const auto& color = _colors.fog.get();
+    fogCol[0] = color.r;
+    fogCol[1] = color.g;
+    fogCol[2] = color.b;
   }
   fogCol[3] = 1; // not used by opengl?
 
