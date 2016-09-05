@@ -53,7 +53,7 @@ bool ObserversController::performAction(AppAction action) {
 }
 
 void ObserversController::update() {
-  _entities.performAction([&](std::shared_ptr<ObserverEntity> observer) {
+  _entities.performAction([&](std::shared_ptr<ObserverEntity>& observer) {
     observer->update(_context.state);
   });
 
@@ -74,7 +74,7 @@ void ObserversController::draw() {
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   bool connected = false;
   
-  _entities.performAction([&] (std::shared_ptr<ObserverEntity> observer) {
+  _entities.performAction([&] (std::shared_ptr<ObserverEntity>& observer) {
     float dist = occurrence->position().distance(observer->position());
     if (dist <= occurrence->originalRadius()) {
       occurrence->addObserver(observer);

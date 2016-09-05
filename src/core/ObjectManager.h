@@ -34,7 +34,7 @@ public:
   AbstractObjectView(Storage objects)
   : _objects(objects) { }
 
-  void performAction(std::function<void(EntityPtr)> action) {
+  void performAction(std::function<void(EntityPtr&)> action) {
     for (auto& entity : _objects) {
       action(entity);
     }
