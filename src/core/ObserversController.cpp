@@ -22,9 +22,6 @@ ObserversController::ObserversController(const Params& params,
 , _bounds(bounds) { }
 
 void ObserversController::setup() {
-  _spawner = std::make_shared<IntervalObserverSpawner>(_params.spawner,
-                                                       _bounds,
-                                                       *this);
   _rateSpawner = std::make_shared<RateObserverSpawner>(_params.rateSpawner,
                                                        _bounds,
                                                        *this);
@@ -67,7 +64,6 @@ void ObserversController::update() {
     _events.observerDied.notifyListeners(e);
   });
 
-  _spawner->update(_context);
   _rateSpawner->update(_context);
   _context.state.observerCount = _entities.size();
 }
@@ -91,9 +87,6 @@ bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> o
 }
 
 void ObserversController::spawnObservers(int count) {
-  if (_spawner->spawnNow(_context, count)) {
-    return;
-  }
   if (_rateSpawner->spawnNow(_context, count)) {
     return;
   }

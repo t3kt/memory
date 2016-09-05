@@ -62,6 +62,10 @@ public:
   using ObjectPtrAction =
   std::function<void(std::shared_ptr<WorldObject>)>;
   virtual void performActionOnConnected(ObjectPtrAction action) {}
+
+  virtual const ofVec3f& position() const = 0;
+
+  virtual bool hasConnections() const { return false; }
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

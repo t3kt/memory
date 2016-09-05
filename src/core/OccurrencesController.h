@@ -28,17 +28,13 @@ class OccurrenceParams
 : public Params {
 public:
   OccurrenceParams() {
-    add(spawner
-        .setKey("spawner")
-        .setName("Inteval Spawner"));
     add(rateSpawner
-        .setRateRange(0, 5)
-        .setRateValueAndDefault(0.5)
         .setKey("rateSpawner")
         .setName("Rate Spawner"));
+    rateSpawner.rate.setRange(0, 5);
+    rateSpawner.rate.setValueAndDefault(0.5);
   }
 
-  IntervalOccurrenceSpawner::Params spawner;
   RateOccurrenceSpawner::Params rateSpawner;
 };
 
@@ -67,7 +63,6 @@ private:
   const Params& _params;
   const Bounds& _bounds;
   ObserversController& _observers;
-  std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
   std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
 
   friend class IntervalOccurrenceSpawner;

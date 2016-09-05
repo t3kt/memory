@@ -22,13 +22,3 @@ void RateObserverSpawner::spawnEntities(Context &context, int count) {
     _controller.tryAddEntity(observer);
   }
 }
-
-void IntervalObserverSpawner::spawnEntities(Context &context) {
-  auto pos = _bounds.randomPoint();
-  auto life = _params.lifetime.getValue();
-  auto observer = std::make_shared<ObserverEntity>(pos,
-                                                   life,
-                                                   context.state);
-  observer->setVelocity(_params.initialVelocity.getValue());
-  _controller.tryAddEntity(observer);
-}

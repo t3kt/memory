@@ -10,6 +10,7 @@
 #define NavigatorsController_h
 
 #include <memory>
+#include "../app/AppActions.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../spawning/Spawner.h"
@@ -24,30 +25,37 @@ class NavigatorParams
 : public Params {
 public:
   NavigatorParams() {
-    add(observerNavigatorSpawner
-        .setKey("observerNavigatorSpawner")
-        .setName("Observer Nav Spawner"));
-    add(moveRate
-        .setKey("moveRate")
-        .setName("Move Rate")
-        .setValueAndDefault(10)
-        .setRange(0, 50));
-    add(reachRange
-        .setKey("reachRange")
-        .setName("Reach Range")
-        .setValueAndDefault(10)
-        .setRange(0, 50));
-    observerNavigatorSpawner.setEnabledValueAndDefault(false);
-    observerNavigatorSpawner.setRateValueAndDefault(0.04);
-    observerNavigatorSpawner.setRateRange(0, 2);
-  }
+      add(observerNavigatorSpawner
+          .setKey("observerNavigatorSpawner")
+          .setName("Observer Nav Spawner"));
+      add(moveRate
+          .setKey("moveRate")
+          .setName("Move Rate")
+          .setValueAndDefault(10)
+          .setRange(0, 50));
+      add(stepDuration
+          .setKey("stepDuration")
+          .setName("Step Duration")
+          .setValueAndDefault(1)
+          .setRange(0, 10));
+      add(reachRange
+          .setKey("reachRange")
+          .setName("Reach Range")
+          .setValueAndDefault(10)
+          .setRange(0, 50));
+      observerNavigatorSpawner.enabled.setValueAndDefault(false);
+      observerNavigatorSpawner.rate.setValueAndDefault(0.04);
+      observerNavigatorSpawner.rate.setRange(0, 2);
+    }
 
-  RateSpawner<>::Params observerNavigatorSpawner;
-  TParam<float> moveRate;
-  TParam<float> reachRange;
+    RateSpawner<>::Params observerNavigatorSpawner;
+    TParam<float> moveRate;
+    TParam<float> stepDuration;
+    TParam<float> reachRange;
 };
 
-class NavigatorsController {
+class NavigatorsController
+: public AppActionHandler {
 public:
   using Params = NavigatorParams;
 
@@ -58,8 +66,11 @@ public:
   void setup();
   void update();
   void draw();
+
+  bool performAction(AppAction action) override;
 private:
-  void spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
+  bool spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
+  bool spawnHighlightedObserverNavigator();
 
   Context& _context;
   Params& _params;

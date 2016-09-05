@@ -27,17 +27,13 @@ using ObserverRule = EntityRule<ObserverEntity>;
 class ObserverParams : public ::Params {
 public:
   ObserverParams() {
-    add(spawner
-        .setKey("spawner")
-        .setName("Interval Spawner"));
     add(rateSpawner
-        .setRateRange(0, 5)
-        .setRateValueAndDefault(0.5)
         .setKey("rateSpawner")
         .setName("Rate Spawner"));
+    rateSpawner.rate.setRange(0, 5);
+    rateSpawner.rate.setValueAndDefault(0.5);
   }
 
-  IntervalObserverSpawner::Params spawner;
   RateObserverSpawner::Params rateSpawner;
 };
 
@@ -68,7 +64,6 @@ public:
 private:
   const Params& _params;
   const Bounds& _bounds;
-  std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
 
   friend class IntervalObserverSpawner;

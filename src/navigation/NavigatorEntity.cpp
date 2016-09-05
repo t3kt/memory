@@ -6,12 +6,16 @@
 //
 //
 
+#include "../core/Context.h"
+#include "../core/Info.h"
 #include "../navigation/NavigatorEntity.h"
 #include "../navigation/NavigatorState.h"
 
-NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState)
+NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState,
+                                 Context& context)
 : ParticleObject(prevState->position())
-, _prevState(prevState) {}
+, _prevState(prevState)
+, _lastChangeTime(context.time()) { }
 
 void NavigatorEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
@@ -29,6 +33,23 @@ void NavigatorEntity::outputFields(std::ostream &os) const {
   }
 }
 
+void NavigatorEntity::fillInfo(Info &info) const {
+  ParticleObject::fillInfo(info);
+  info.add("targetpt:", targetPoint());
+  if (!_prevState) {
+    info.add("prev:", "(none)");
+  } else {
+    info.add("prev:", _prevState->typeName());
+    _prevState->fillInfo(info, "prev.");
+  }
+  if (!_nextState) {
+    info.add("next:", "(none)");
+  } else {
+    info.add("next:", _nextState->typeName());
+    _nextState->fillInfo(info, "next.");
+  }
+}
+
 const ofVec3f& NavigatorEntity::prevPosition() const {
   return _prevState->position();
 }
@@ -42,11 +63,13 @@ void NavigatorEntity::updateNextState(Context &context) {
     return;
   }
   _nextState = _prevState->nextState(context);
+  _lastChangeTime = context.time();
 }
 
 void NavigatorEntity::reachNextState(Context &context) {
   _prevState = _nextState;
   _nextState.reset();
+  _lastChangeTime = context.time();
 }
 
 const ofVec3f& NavigatorEntity::targetPoint() const {
@@ -58,4 +81,34 @@ bool NavigatorEntity::stateAlive() const {
     return false;
   }
   return _nextState ? _nextState->alive() : _prevState->alive();
+}
+
+NavigatorEntity_2::NavigatorEntity_2(NavigatorStatePtr prevState,
+                                     const float& stepTime)
+: _prevState(prevState)
+, _stepTime(stepTime) {
+  _timeline.setFinishFn([this]() {
+    this->onTimelineFinished();
+  });
+}
+
+void NavigatorEntity_2::update(Context &context) {
+  //...
+}
+
+void NavigatorEntity_2::updateRamp() {
+  if (!_nextState) {
+    if (_ramp) {
+      _ramp.reset();
+    }
+  } else {
+    if (!_ramp) {
+      _ramp = std::make_shared<RampT>(_stepTime,
+                                      prevPosition(),
+                                      nextPosition());
+    } else {
+      _ramp->setStartValue(prevPosition());
+      _ramp->setEndValue(nextPosition());
+    }
+  }
 }

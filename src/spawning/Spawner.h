@@ -22,81 +22,17 @@ public:
   virtual bool spawnNow(Context& context, int count) = 0;
 };
 
-class IntervalSpawnerParams : public Spawner::Params {
-public:
-  IntervalSpawnerParams() {
-    add(interval
-        .setKey("interval")
-        .setName("Interval")
-        .setValueAndDefault(4)
-        .setRange(0, 30));
-  }
-
-  void setIntervalValueAndDefault(float val) {
-    interval.setValueAndDefault(val);
-  }
-
-  TParam<float> interval;
-};
-
-template<typename P = IntervalSpawnerParams>
-class IntervalSpawner
-: public Spawner {
-public:
-  using Params = P;
-
-  IntervalSpawner(const P& params)
-  : _params(params) {}
-
-  void update(Context& context) override {
-    if (!_params.enabled()) {
-      return;
-    }
-    float now = context.time();
-    if (_nextTime < 0 || now >= _nextTime) {
-      spawnEntities(context);
-      _nextTime = now + _params.interval();
-    }
-  }
-  bool spawnNow(Context& context, int count) override {
-    if (!_params.enabled.get()) {
-      return false;
-    }
-    for (int i = 0; i < count; ++i) {
-      spawnEntities(context);
-    }
-    return true;
-  }
-protected:
-  virtual void spawnEntities(Context& context) = 0;
-
-  const P& _params;
-  float _nextTime;
-};
-
 class RateSpawnerParams : public Spawner::Params {
 public:
   RateSpawnerParams() {
-    add(_rate
+    add(rate
         .setKey("rate")
         .setName("Rate")
         .setValueAndDefault(4)
         .setRange(0, 30));
   }
 
-  RateSpawnerParams& setRateValueAndDefault(float rate) {
-    _rate.setValueAndDefault(rate);
-    return *this;
-  }
-
-  RateSpawnerParams& setRateRange(float low, float high) {
-    _rate.setRange(low, high);
-    return *this;
-  }
-
-  float rate() const { return _rate.get(); }
-private:
-  TParam<float> _rate;
+  TParam<float> rate;
 };
 
 template<typename P = RateSpawnerParams>
@@ -111,10 +47,11 @@ public:
 
   void update(Context& context) override {
     if (!_params.enabled()) {
+      _lastTime = -1;
       return;
     }
     float now = context.time();
-    if (_lastTime == -1) {
+    if (_lastTime < 0) {
       _lastTime = now;
       return;
     }
@@ -127,9 +64,6 @@ public:
   }
 
   bool spawnNow(Context& context, int count) override {
-    if (!_params.enabled.get()) {
-      return false;
-    }
     spawnEntities(context, count);
     return true;
   }
@@ -141,28 +75,27 @@ protected:
   float _lastTime;
 };
 
+class AbstractDescendantSpawnerParams
+: public Spawner::Params {
+public:
+  AbstractDescendantSpawnerParams() {
+    add(threshold
+        .setKey("threshold")
+        .setName("Spawn Threshold"));
+    add(childCountRange
+        .setKey("childCountRange")
+        .setName("Child Count Range")
+        .setParamValuesAndDefaults(0, 3)
+        .setParamRanges(0, 15));
+  }
+
+  ValueRange<int> childCountRange;
+  TParam<float> threshold;
+};
+
 class AbstractDescendantSpawner {
 public:
-  class Params : public Spawner::Params {
-  public:
-    Params() {
-      add(_threshold
-          .setKey("threshold")
-          .setName("Spawn Threshold"));
-      add(childCountRange
-          .setKey("childCountRange")
-          .setName("Child Count Range")
-          .setParamValuesAndDefaults(0, 3)
-          .setParamRanges(0, 15));
-    }
-
-    float threshold() const { return _threshold.get(); }
-
-    ValueRange<int> childCountRange;
-
-  private:
-    TParam<float> _threshold;
-  };
+  using Params = AbstractDescendantSpawnerParams;
 
   AbstractDescendantSpawner(const Params& params)
   : _params(params) { }

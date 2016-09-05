@@ -22,6 +22,8 @@ class OccurrenceEntity;
 class ObserverEntity
 : public ParticleObject {
 public:
+  static const auto type = EntityType::OBSERVER;
+
   static std::shared_ptr<ObserverEntity> createEmpty() {
     return std::shared_ptr<ObserverEntity>(new ObserverEntity());
   }
@@ -66,6 +68,9 @@ public:
 
   virtual void fillInfo(Info& info) const override;
   virtual void performActionOnConnected(ObjectPtrAction action) override;
+  virtual bool hasConnections() const override {
+    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+  }
   std::string typeName() const override { return "ObserverEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;

@@ -192,7 +192,8 @@
       "enabled": false,
       "rate": 0.55102038383483887
     },
-    "reachRange": 8.25
+    "reachRange": 8.25,
+    "stepDuration": 1
   },
   "observers": {
     "rateSpawner": {
@@ -202,36 +203,24 @@
         "low": 0
       },
       "lifetime": {
-        "high": 240,
-        "low": 158.78384399414062
+        "high": 110.05414581298828,
+        "low": 68.821327209472656
       },
       "rate": 4.1071429252624512
-    },
-    "spawner": {
-      "enabled": true,
-      "initialVelocity": {
-        "high": 6.0204081535339355,
-        "low": 0
-      },
-      "interval": 5.0510201454162598,
-      "lifetime": {
-        "high": 240,
-        "low": 161.28280639648438
-      }
     }
   },
   "occurrences": {
     "rateSpawner": {
       "chain": {
-        "chance": 0.21386922895908356
+        "chance": 0.10974594950675964
       },
       "chainCount": {
-        "high": 17,
+        "high": 4,
         "low": 1
       },
       "chainDistance": {
         "high": 100,
-        "low": 90.108283996582031
+        "low": 94.273223876953125
       },
       "enabled": true,
       "initialVelocity": {
@@ -239,33 +228,10 @@
         "low": 0
       },
       "radius": {
-        "high": 73.052894592285156,
-        "low": 20.991256713867188
+        "high": 148.02166748046875,
+        "low": 33.486049652099609
       },
       "rate": 4.5153059959411621
-    },
-    "spawner": {
-      "chain": {
-        "chance": 0.20000000298023224
-      },
-      "chainCount": {
-        "high": 5,
-        "low": 1
-      },
-      "chainDistance": {
-        "high": 40,
-        "low": 8
-      },
-      "enabled": false,
-      "initialVelocity": {
-        "high": 0,
-        "low": 0
-      },
-      "interval": 4,
-      "radius": {
-        "high": 35.568515777587891,
-        "low": 0.20408163964748383
-      }
     }
   },
   "physics": {

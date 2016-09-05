@@ -88,7 +88,3 @@ void RateOccurrenceSpawner::spawnEntities(Context &context,
     _core.spawnEntities(context);
   }
 }
-
-void IntervalOccurrenceSpawner::spawnEntities(Context &context) {
-  _core.spawnEntities(context);
-}

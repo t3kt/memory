@@ -24,6 +24,8 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
+  static const auto type = EntityType::OCCURRENCE;
+
   static std::shared_ptr<OccurrenceEntity> createEmpty() {
     return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
   }
@@ -66,11 +68,11 @@ public:
 
   float actualRadius() const { return _actualRadius; }
 
-  const EntityMap<ObserverEntity>& connectedObservers() const {
+  const EntityMap<ObserverEntity>& getConnectedObservers() const {
     return _connectedObservers;
   }
 
-  EntityMap<ObserverEntity>& connectedObservers() {
+  EntityMap<ObserverEntity>& getConnectedObservers() {
     return _connectedObservers;
   }
 
@@ -92,6 +94,9 @@ public:
 
   virtual void fillInfo(Info& info) const override;
   virtual void performActionOnConnected(ObjectPtrAction action) override;
+  virtual bool hasConnections() const override {
+    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+  }
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;

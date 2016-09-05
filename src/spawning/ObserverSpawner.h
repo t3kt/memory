@@ -62,29 +62,4 @@ protected:
   ObserversController& _controller;
 };
 
-class IntervalObserverSpawnerParams
-: public IntervalSpawnerParams
-, public ObserverSpawnerParamsMixin {
-public:
-  IntervalObserverSpawnerParams() {
-    ObserverSpawnerParamsMixin::mixInto(*this);
-  }
-};
-
-class IntervalObserverSpawner
-: public IntervalSpawner<IntervalObserverSpawnerParams> {
-public:
-  IntervalObserverSpawner(const Params& params,
-                          const Bounds& bounds,
-                          ObserversController& controller)
-  : IntervalSpawner(params)
-  , _bounds(bounds)
-  , _controller(controller) { }
-protected:
-  void spawnEntities(Context& context) override;
-
-  const Bounds& _bounds;
-  ObserversController& _controller;
-};
-
 #endif /* ObserverSpawner_h */

@@ -73,6 +73,16 @@ public:
     }
     return arr;
   }
+
+  template<typename T>
+  std::shared_ptr<T> getFirstOfType() {
+    for (auto& entry : _map) {
+      if (entry.second->entityType() == T::type) {
+        return std::dynamic_pointer_cast<T>(entry.second);
+      }
+    }
+    return std::shared_ptr<T>();
+  }
 private:
   Storage _map;
 };
