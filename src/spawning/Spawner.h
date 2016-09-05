@@ -64,9 +64,6 @@ public:
   }
 
   bool spawnNow(Context& context, int count) override {
-    if (!_params.enabled.get()) {
-      return false;
-    }
     spawnEntities(context, count);
     return true;
   }

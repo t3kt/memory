@@ -189,7 +189,7 @@
   "navigators": {
     "moveRate": 23.25,
     "observerNavigatorSpawner": {
-      "enabled": true,
+      "enabled": false,
       "rate": 0.55102038383483887
     },
     "reachRange": 8.25,
@@ -197,7 +197,7 @@
   },
   "observers": {
     "rateSpawner": {
-      "enabled": true,
+      "enabled": false,
       "initialVelocity": {
         "high": 7.7134523391723633,
         "low": 0
@@ -228,8 +228,8 @@
         "low": 0
       },
       "radius": {
-        "high": 73.052894592285156,
-        "low": 20.991256713867188
+        "high": 102.20742034912109,
+        "low": 33.486049652099609
       },
       "rate": 4.5153059959411621
     }
