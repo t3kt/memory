@@ -113,6 +113,8 @@ void ControlApp::setup() {
   _midi = std::make_shared<MidiController>(_appParams);
   _midi->setup();
 
+  _osc = std::make_shared<OscController>(_appParams);
+
   registerAsActionHandler();
 }
 
@@ -129,6 +131,7 @@ void ControlApp::updateLogState() {
 
 void ControlApp::update() {
   _midi->update();
+  _osc->update();
 }
 
 void ControlApp::draw() {

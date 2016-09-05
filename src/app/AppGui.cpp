@@ -1,9 +1,5 @@
 //
 //  AppGui.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
-//
 //
 
 #include <ofxGuiExtended.h>
@@ -60,6 +56,7 @@ private:
   ofxGuiPage _colorsPage;
   ofxGuiPage _renderingPage;
   ofxGuiPage _physicsPage;
+  ofxGuiPage _debugPage;
 
   ofxTabbedPages _pages;
 
@@ -115,7 +112,7 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _navigatorsPage.setSize(230, 700);
   _entityPages.add(&_navigatorsPage);
 
-  _animationsPage.setup("Anim");
+  _animationsPage.setup("Ani");
   _animationsPage.add(new ofxGuiGroupExtended(_appParams.animations));
   _pages.add(&_animationsPage);
 
@@ -123,13 +120,17 @@ AppGuiImpl::AppGuiImpl(MemoryAppParameters& appParams,
   _colorsPage.add(new ofxGuiGroupExtended(_appParams.colors));
   _pages.add(&_colorsPage);
 
-  _renderingPage.setup("Rend");
+  _renderingPage.setup("Ren");
   _renderingPage.add(new ofxGuiGroupExtended(_appParams.rendering));
   _pages.add(&_renderingPage);
 
-  _physicsPage.setup("Phys");
+  _physicsPage.setup("Phy");
   _physicsPage.add(new ofxGuiGroupExtended(_appParams.physics));
   _pages.add(&_physicsPage);
+
+  _debugPage.setup("Dbg");
+  _debugPage.add(new ofxGuiGroupExtended(_appParams.debug));
+  _pages.add(&_debugPage);
 
   _actions.setPosition(0, 0);
 

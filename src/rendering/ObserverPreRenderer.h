@@ -18,6 +18,7 @@ class ObserverPreRenderer
 public:
 
   ObserverPreRenderer(const Params& params,
+                      const ColorTheme& colors,
                       Context& context);
 
   void update() override;

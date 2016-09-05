@@ -1,8 +1,9 @@
 //
 //  Clock.h
-//  memory-prototype-2
 //
-//  Created by tekt on 6/28/16.
+//  Controller that keeps track of the current time and updates it
+//  on every update cycle. It supports a variable rate controlled by
+//  a parameter and it can be paused based on another parameter.
 //
 //
 
@@ -15,26 +16,29 @@
 #include "../core/Params.h"
 #include "../core/State.h"
 
+class ClockParams
+: public Params {
+public:
+  ClockParams() {
+    add(paused
+        .setKey("paused")
+        .setName("Paused")
+        .setValueAndDefault(false));
+    add(rate
+        .setKey("rate")
+        .setName("Rate")
+        .setValueAndDefault(1)
+        .setRange(0, 10));
+  }
+
+  TParam<bool> paused;
+  TParam<float> rate;
+};
+
 class Clock
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(paused
-          .setKey("paused")
-          .setName("Paused")
-          .setValueAndDefault(false));
-      add(rate
-          .setKey("rate")
-          .setName("Rate")
-          .setValueAndDefault(1)
-          .setRange(0, 10));
-    }
-
-    TParam<bool> paused;
-    TParam<float> rate;
-  };
+  using Params = ClockParams;
 
   Clock(Params& params, State& state);
 

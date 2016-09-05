@@ -20,11 +20,10 @@ class NavigatorState;
 class ObserverEntity;
 class SimulationEvents;
 
-class NavigatorsController {
+class NavigatorParams
+: public Params {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
+  NavigatorParams() {
       add(observerNavigatorSpawner
           .setKey("observerNavigatorSpawner")
           .setName("Observer Nav Spawner"));
@@ -52,7 +51,11 @@ public:
     TParam<float> moveRate;
     TParam<float> stepDuration;
     TParam<float> reachRange;
-  };
+};
+
+class NavigatorsController {
+public:
+  using Params = NavigatorParams;
 
   NavigatorsController(Context& context,
                        Params& params,

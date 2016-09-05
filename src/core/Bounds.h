@@ -1,9 +1,7 @@
 //
 //  Bounds.h
-//  memory-prototype-2
 //
-//  Created by tekt on 6/26/16.
-//
+//  Parameters that define the boundaries of the simulated world.
 //
 
 #ifndef Bounds_h

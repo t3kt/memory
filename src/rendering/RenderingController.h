@@ -12,7 +12,7 @@
 #include <ofAppGLFWWindow.h>
 #include "../app/AppActions.h"
 #include "../rendering/CameraController.h"
-#include "../core/Colors.h"
+#include "../rendering/Colors.h"
 #include "../core/Common.h"
 #include "../rendering/ConnectorRenderer.h"
 #include "../core/Context.h"
@@ -103,41 +103,43 @@ public:
   TParam<bool> useBackgroundColor;
 };
 
+
+class RenderingParams
+: public Params {
+public:
+  RenderingParams() {
+    add(camera
+        .setKey("camera")
+        .setName("Camera"));
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(fog
+        .setKey("fog")
+        .setName("Fog"));
+    add(postProc
+        .setKey("postProc")
+        .setName("Post Processing"));
+  }
+
+  CameraController::Params camera;
+  ObserverRenderingParams observers;
+  OccurrenceRenderingParams occurrences;
+  FogParams fog;
+  PostProcController::Params postProc;
+};
+
 class RenderingController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(camera
-          .setKey("camera")
-          .setName("Camera"));
-      add(observers
-          .setKey("observers")
-          .setName("Observers"));
-      add(occurrences
-          .setKey("occurrences")
-          .setName("Occurrences"));
-      add(fog
-          .setKey("fog")
-          .setName("Fog"));
-      add(postProc
-          .setKey("postProc")
-          .setName("Post Processing"));
-    }
-
-    CameraController::Params camera;
-    ObserverRenderingParams observers;
-    OccurrenceRenderingParams occurrences;
-    FogParams fog;
-    PostProcController::Params postProc;
-  };
+  using Params = RenderingParams;
 
   RenderingController(Params& params,
                       ofAppGLFWWindow& window,
                       Context& context);
-
-  ofCamera& getCamera() { return _camera->getCamera(); }
 
   void setup();
   void update();
@@ -159,8 +161,6 @@ private:
   Params& _params;
   Context& _context;
   const ColorTheme& _colors;
-  const ofFloatColor& _backgroundColor;
-  const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
   std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;

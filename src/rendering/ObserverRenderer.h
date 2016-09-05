@@ -19,11 +19,10 @@
 #include "../core/Context.h"
 #include "../rendering/EntityRenderer.h"
 
-class ObserverRenderer
-: public EntityRenderer<ObserverEntity> {
+class ObserverRenderer {
 public:
 
-  class Params : public AbstractEntityRenderer::Params {
+  class Params : public ParamsWithEnabled {
   public:
     Params() {
       add(size
@@ -31,18 +30,27 @@ public:
           .setName("Draw Size")
           .setValueAndDefault(2)
           .setRange(0, 20));
+      add(highlightAmount
+          .setKey("highlightAmount")
+          .setName("Highlighting")
+          .setValueAndDefault(0.6)
+          .setRange(0, 1));
     }
     TParam<float> size;
+    TParam<float> highlightAmount;
   };
 
   ObserverRenderer(const Params& params,
+                   const ColorTheme& colors,
                    Context& context);
 
-  void update() override;
-protected:
-  void drawEntity(const ObserverEntity& entity) override;
+  void draw();
+
 private:
+  Context& _context;
   const Params& _params;
+  const ColorTheme& _colors;
+  ObjectManager<ObserverEntity>& _entities;
 };
 
 class InstancedObserverRenderer {
@@ -65,6 +73,7 @@ public:
   };
 
   InstancedObserverRenderer(const Params& params,
+                            const ColorTheme& colors,
                             Context& context);
 
   void setup();
@@ -73,7 +82,7 @@ public:
 private:
   Context& _context;
   const Params& _params;
-  const ofFloatColor& _color;
+  const ColorTheme& _colors;
   const ofShader& _instanceShader;
   ofVboMesh _mesh;
   std::vector<ofMatrix4x4> _matrices;

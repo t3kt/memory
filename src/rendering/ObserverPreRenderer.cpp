@@ -11,12 +11,15 @@
 #include "../rendering/ObserverPreRenderer.h"
 
 ObserverPreRenderer::ObserverPreRenderer(const Params& params,
+                                         const ColorTheme& colors,
                                          Context& context)
 : EntityPreRenderer(params,
+                    colors,
                     context,
                     context.observers) { }
 
 void ObserverPreRenderer::update() {
+  _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   for (auto& entity : _entities) {
     auto alpha = entity->getRemainingLifetimeFraction();

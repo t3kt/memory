@@ -24,25 +24,28 @@
 class OccurrencesController;
 class SimulationEvents;
 
+class OccurrenceParams
+: public Params {
+public:
+  OccurrenceParams() {
+    add(spawner
+        .setKey("spawner")
+        .setName("Inteval Spawner"));
+    add(rateSpawner
+        .setRateRange(0, 5)
+        .setRateValueAndDefault(0.5)
+        .setKey("rateSpawner")
+        .setName("Rate Spawner"));
+  }
+
+  IntervalOccurrenceSpawner::Params spawner;
+  RateOccurrenceSpawner::Params rateSpawner;
+};
+
 class OccurrencesController
 : public EntityController<OccurrenceEntity> {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(spawner
-          .setKey("spawner")
-          .setName("Inteval Spawner"));
-      add(rateSpawner
-          .setRateRange(0, 5)
-          .setRateValueAndDefault(0.5)
-          .setKey("rateSpawner")
-          .setName("Rate Spawner"));
-    }
-
-    IntervalOccurrenceSpawner::Params spawner;
-    RateOccurrenceSpawner::Params rateSpawner;
-  };
+  using Params = OccurrenceParams;
 
   OccurrencesController(const Params& params,
                         const Bounds& bounds,

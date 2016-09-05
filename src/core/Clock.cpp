@@ -1,13 +1,12 @@
 //
 //  Clock.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
 //
 //
 
 #include <ofUtils.h>
 #include "../core/Clock.h"
+
+const float maxTimeStep = 1/30.0f;
 
 Clock::Clock(Clock::Params& params, State& state)
 : _params(params)
@@ -59,6 +58,9 @@ void Clock::update() {
     }
     float nowTime = ofGetElapsedTimef();
     float rawDelta = nowTime - _lastTime;
+    if (rawDelta > maxTimeStep) {
+      rawDelta = maxTimeStep;
+    }
     float delta = rawDelta * _params.rate();
     _state.timeDelta = delta;
     _state.time += delta;

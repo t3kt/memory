@@ -1,9 +1,5 @@
 //
 //  AppAssets.h
-//  memory
-//
-//  Created by tekt on 7/17/16.
-//
 //
 
 #ifndef AppAssets_h
@@ -12,6 +8,7 @@
 #include <ofMesh.h>
 #include <ofShader.h>
 
+// Assets loaded from external files.
 class AppAssets {
 public:
   static const ofMesh& navMarkerMesh();
