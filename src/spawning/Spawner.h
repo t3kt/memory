@@ -22,58 +22,6 @@ public:
   virtual bool spawnNow(Context& context, int count) = 0;
 };
 
-class IntervalSpawnerParams : public Spawner::Params {
-public:
-  IntervalSpawnerParams() {
-    add(interval
-        .setKey("interval")
-        .setName("Interval")
-        .setValueAndDefault(4)
-        .setRange(0, 30));
-  }
-
-  void setIntervalValueAndDefault(float val) {
-    interval.setValueAndDefault(val);
-  }
-
-  TParam<float> interval;
-};
-
-template<typename P = IntervalSpawnerParams>
-class IntervalSpawner
-: public Spawner {
-public:
-  using Params = P;
-
-  IntervalSpawner(const P& params)
-  : _params(params) {}
-
-  void update(Context& context) override {
-    if (!_params.enabled()) {
-      return;
-    }
-    float now = context.time();
-    if (_nextTime < 0 || now >= _nextTime) {
-      spawnEntities(context);
-      _nextTime = now + _params.interval();
-    }
-  }
-  bool spawnNow(Context& context, int count) override {
-    if (!_params.enabled.get()) {
-      return false;
-    }
-    for (int i = 0; i < count; ++i) {
-      spawnEntities(context);
-    }
-    return true;
-  }
-protected:
-  virtual void spawnEntities(Context& context) = 0;
-
-  const P& _params;
-  float _nextTime;
-};
-
 class RateSpawnerParams : public Spawner::Params {
 public:
   RateSpawnerParams() {

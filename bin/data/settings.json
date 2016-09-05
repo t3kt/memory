@@ -207,18 +207,6 @@
         "low": 158.78384399414062
       },
       "rate": 4.1071429252624512
-    },
-    "spawner": {
-      "enabled": true,
-      "initialVelocity": {
-        "high": 6.0204081535339355,
-        "low": 0
-      },
-      "interval": 5.0510201454162598,
-      "lifetime": {
-        "high": 240,
-        "low": 161.28280639648438
-      }
     }
   },
   "occurrences": {
@@ -244,29 +232,6 @@
         "low": 20.991256713867188
       },
       "rate": 4.5153059959411621
-    },
-    "spawner": {
-      "chain": {
-        "chance": 0.20000000298023224
-      },
-      "chainCount": {
-        "high": 5,
-        "low": 1
-      },
-      "chainDistance": {
-        "high": 40,
-        "low": 8
-      },
-      "enabled": false,
-      "initialVelocity": {
-        "high": 0,
-        "low": 0
-      },
-      "interval": 4,
-      "radius": {
-        "high": 35.568515777587891,
-        "low": 0.20408163964748383
-      }
     }
   },
   "physics": {

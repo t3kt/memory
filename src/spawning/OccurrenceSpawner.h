@@ -105,29 +105,4 @@ protected:
   OccurrenceSpawnerCore _core;
 };
 
-class IntervalOccurrenceSpawnerParams
-: public IntervalSpawnerParams
-, public OccurrencesSpawnerParamsMixin {
-public:
-  IntervalOccurrenceSpawnerParams() {
-    OccurrencesSpawnerParamsMixin::mixInto(*this);
-  }
-};
-
-class IntervalOccurrenceSpawner
-: public IntervalSpawner<IntervalOccurrenceSpawnerParams> {
-public:
-  IntervalOccurrenceSpawner(const Params& params,
-                            const Bounds& bounds,
-                            OccurrencesController& controller)
-  : IntervalSpawner(params)
-  , _core(params,
-          bounds,
-          controller) { }
-protected:
-  void spawnEntities(Context& context) override;
-
-  OccurrenceSpawnerCore _core;
-};
-
 #endif /* OccurrenceSpawner_h */

@@ -24,9 +24,6 @@ OccurrencesController::OccurrencesController(const Params& params,
 , _observers(observers) { }
 
 void OccurrencesController::setup() {
-  _spawner = std::make_shared<IntervalOccurrenceSpawner>(_params.spawner,
-                                                         _bounds,
-                                                         *this);
   _rateSpawner = std::make_shared<RateOccurrenceSpawner>(_params.rateSpawner,
                                                          _bounds,
                                                          *this);
@@ -78,7 +75,6 @@ void OccurrencesController::update() {
     _events.occurrenceDied.notifyListeners(e);
   });
 
-  _spawner->update(_context);
   _rateSpawner->update(_context);
   _context.state.occurrenceCount = _entities.size();
 }
@@ -87,9 +83,6 @@ void OccurrencesController::draw() {
 }
 
 void OccurrencesController::spawnOccurrences(int count) {
-  if (_spawner->spawnNow(_context, count)) {
-    return;
-  }
   if (_rateSpawner->spawnNow(_context, count)) {
     return;
   }

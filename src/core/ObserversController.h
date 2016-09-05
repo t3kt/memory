@@ -25,9 +25,6 @@ class SimulationEvents;
 class ObserverParams : public ::Params {
 public:
   ObserverParams() {
-    add(spawner
-        .setKey("spawner")
-        .setName("Interval Spawner"));
     add(rateSpawner
         .setKey("rateSpawner")
         .setName("Rate Spawner"));
@@ -35,7 +32,6 @@ public:
     rateSpawner.rate.setValueAndDefault(0.5);
   }
 
-  IntervalObserverSpawner::Params spawner;
   RateObserverSpawner::Params rateSpawner;
 };
 
@@ -66,7 +62,6 @@ public:
 private:
   const Params& _params;
   const Bounds& _bounds;
-  std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
 
   friend class IntervalObserverSpawner;
