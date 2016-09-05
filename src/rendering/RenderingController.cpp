@@ -31,9 +31,11 @@ void RenderingController::setup() {
   const auto& occurrenceParams = _params.occurrences;
   _observerPreRenderer =
   std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
+                                        colors,
                                         _context);
   _occurrencePreRenderer =
   std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
+                                          colors,
                                           _context);
   _observerThresholdRenderer =
   std::make_shared<ObserverThresholdRenderer>(_context.observers,
@@ -41,6 +43,7 @@ void RenderingController::setup() {
                                               colors.observerThresholdConnector.get());
   _observerRenderer =
   std::make_shared<ObserverRenderer>(observerParams.renderer,
+                                     colors,
                                      _context);
   //  _instancedObserverRenderer =
   //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
@@ -52,7 +55,7 @@ void RenderingController::setup() {
                                                       _context.observers);
   _occurrenceRenderer =
   std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
-                                       appParams,
+                                       colors,
                                        _context);
   _observerOccurrenceConnectorRenderer =
   std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,

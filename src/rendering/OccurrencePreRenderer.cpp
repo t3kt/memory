@@ -12,8 +12,10 @@
 #include "../rendering/OccurrencePreRenderer.h"
 
 OccurrencePreRenderer::OccurrencePreRenderer(const Params& params,
+                                             const ColorTheme& colors,
                                              Context& context)
 : EntityPreRenderer(params,
+                    colors,
                     context,
                     context.occurrences) { }
 
