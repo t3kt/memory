@@ -32,10 +32,10 @@ public:
         .setKey("spawner")
         .setName("Inteval Spawner"));
     add(rateSpawner
-        .setRateRange(0, 5)
-        .setRateValueAndDefault(0.5)
         .setKey("rateSpawner")
         .setName("Rate Spawner"));
+    rateSpawner.rate.setRange(0, 5);
+    rateSpawner.rate.setValueAndDefault(0.5);
   }
 
   IntervalOccurrenceSpawner::Params spawner;

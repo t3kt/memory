@@ -43,9 +43,9 @@ public:
           .setName("Reach Range")
           .setValueAndDefault(10)
           .setRange(0, 50));
-      observerNavigatorSpawner.setEnabledValueAndDefault(false);
-      observerNavigatorSpawner.setRateValueAndDefault(0.04);
-      observerNavigatorSpawner.setRateRange(0, 2);
+      observerNavigatorSpawner.enabled.setValueAndDefault(false);
+      observerNavigatorSpawner.rate.setValueAndDefault(0.04);
+      observerNavigatorSpawner.rate.setRange(0, 2);
     }
 
     RateSpawner<>::Params observerNavigatorSpawner;

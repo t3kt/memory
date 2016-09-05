@@ -77,26 +77,14 @@ protected:
 class RateSpawnerParams : public Spawner::Params {
 public:
   RateSpawnerParams() {
-    add(_rate
+    add(rate
         .setKey("rate")
         .setName("Rate")
         .setValueAndDefault(4)
         .setRange(0, 30));
   }
 
-  RateSpawnerParams& setRateValueAndDefault(float rate) {
-    _rate.setValueAndDefault(rate);
-    return *this;
-  }
-
-  RateSpawnerParams& setRateRange(float low, float high) {
-    _rate.setRange(low, high);
-    return *this;
-  }
-
-  float rate() const { return _rate.get(); }
-private:
-  TParam<float> _rate;
+  TParam<float> rate;
 };
 
 template<typename P = RateSpawnerParams>
@@ -146,7 +134,7 @@ class AbstractDescendantSpawnerParams
 : public Spawner::Params {
 public:
   AbstractDescendantSpawnerParams() {
-    add(_threshold
+    add(threshold
         .setKey("threshold")
         .setName("Spawn Threshold"));
     add(childCountRange
@@ -156,12 +144,8 @@ public:
         .setParamRanges(0, 15));
   }
 
-  float threshold() const { return _threshold.get(); }
-
   ValueRange<int> childCountRange;
-
-private:
-  TParam<float> _threshold;
+  TParam<float> threshold;
 };
 
 class AbstractDescendantSpawner {
