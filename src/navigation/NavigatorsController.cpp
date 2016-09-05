@@ -176,21 +176,22 @@ bool NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   return true;
 }
 
-bool NavigatorsController::spawnHighlightedObserverNavigator() {
-  if (_context.highlightedEntities.empty()) {
-    return false;
-  }
+bool NavigatorsController::spawnObserverNavigator() {
   auto observer = _context.highlightedEntities.getFirstOfType<ObserverEntity>();
   if (!observer) {
+    observer = getRandomEntity(_context.observers);
+  }
+  if (observer) {
+    return spawnObserverNavigator(observer);
+  } else {
     return false;
   }
-  return spawnObserverNavigator(observer);
 }
 
 bool NavigatorsController::performAction(AppAction action) {
   switch (action) {
     case AppAction::SPAWN_OBSERVER_NAVIGATOR:
-      return spawnHighlightedObserverNavigator();
+      return spawnObserverNavigator();
     default:
       return false;
   }

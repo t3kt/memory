@@ -70,7 +70,7 @@ public:
   bool performAction(AppAction action) override;
 private:
   bool spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
-  bool spawnHighlightedObserverNavigator();
+  bool spawnObserverNavigator();
 
   Context& _context;
   Params& _params;
