@@ -111,10 +111,11 @@ public:
 
   void update(Context& context) override {
     if (!_params.enabled()) {
+      _lastTime = -1;
       return;
     }
     float now = context.time();
-    if (_lastTime == -1) {
+    if (_lastTime < 0) {
       _lastTime = now;
       return;
     }
@@ -141,28 +142,31 @@ protected:
   float _lastTime;
 };
 
+class AbstractDescendantSpawnerParams
+: public Spawner::Params {
+public:
+  AbstractDescendantSpawnerParams() {
+    add(_threshold
+        .setKey("threshold")
+        .setName("Spawn Threshold"));
+    add(childCountRange
+        .setKey("childCountRange")
+        .setName("Child Count Range")
+        .setParamValuesAndDefaults(0, 3)
+        .setParamRanges(0, 15));
+  }
+
+  float threshold() const { return _threshold.get(); }
+
+  ValueRange<int> childCountRange;
+
+private:
+  TParam<float> _threshold;
+};
+
 class AbstractDescendantSpawner {
 public:
-  class Params : public Spawner::Params {
-  public:
-    Params() {
-      add(_threshold
-          .setKey("threshold")
-          .setName("Spawn Threshold"));
-      add(childCountRange
-          .setKey("childCountRange")
-          .setName("Child Count Range")
-          .setParamValuesAndDefaults(0, 3)
-          .setParamRanges(0, 15));
-    }
-
-    float threshold() const { return _threshold.get(); }
-
-    ValueRange<int> childCountRange;
-
-  private:
-    TParam<float> _threshold;
-  };
+  using Params = AbstractDescendantSpawnerParams;
 
   AbstractDescendantSpawner(const Params& params)
   : _params(params) { }
