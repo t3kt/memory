@@ -11,8 +11,10 @@
 #include "../rendering/ObserverPreRenderer.h"
 
 ObserverPreRenderer::ObserverPreRenderer(const Params& params,
+                                         const ColorTheme& colors,
                                          Context& context)
 : EntityPreRenderer(params,
+                    colors,
                     context,
                     context.observers) { }
 

@@ -14,11 +14,12 @@
 #include "../rendering/ObserverRenderer.h"
 
 ObserverRenderer::ObserverRenderer(const Params& params,
+                                   const ColorTheme& colors,
                                    Context& context)
 : _context(context)
 , _entities(context.observers)
 , _params(params)
-, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER)) { }
+, _colors(colors) { }
 
 void ObserverRenderer::draw() {
   if (!_params.enabled.get()) {
@@ -29,8 +30,8 @@ void ObserverRenderer::draw() {
   renderer->pushStyle();
 
   auto darkening = 1.0 - _params.highlightAmount.get();
-  auto baseColor = _color;
-  auto darkenedColor = ofFloatColor(_color, _color.a * darkening);
+  auto baseColor = _colors.observerMarker.get();
+  auto darkenedColor = ofFloatColor(baseColor, baseColor.a * darkening);
   auto hasHighlights = !_context.highlightedEntities.empty();
 
   float size = _params.size.get();
@@ -59,10 +60,11 @@ void ObserverRenderer::draw() {
 static const std::size_t MAX_OBSERVERS = 1000;
 
 InstancedObserverRenderer::InstancedObserverRenderer(const Params& params,
+                                                     const ColorTheme& colors,
                                                      Context& context)
 : _params(params)
 , _context(context)
-, _color(ColorTheme::get().getColor(ColorId::OBSERVER_MARKER))
+, _colors(colors)
 , _mesh(AppAssets::observerMarkerMesh())
 , _instanceShader(AppAssets::markerInstanceShader())
 , _fadeIn(params.fadeIn) { }
@@ -92,7 +94,7 @@ void InstancedObserverRenderer::update() {
   if (!_params.enabled.get()) {
     return;
   }
-  ofFloatColor baseColor(_color);
+  auto baseColor = _colors.observerMarker.get();
   float size = _params.size.get();
   auto fadeIn = _fadeIn.getPhrase();
   const auto& entities = _context.observers;

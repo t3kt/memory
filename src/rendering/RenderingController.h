@@ -12,7 +12,7 @@
 #include <ofAppGLFWWindow.h>
 #include "../app/AppActions.h"
 #include "../rendering/CameraController.h"
-#include "../core/Colors.h"
+#include "../rendering/Colors.h"
 #include "../core/Common.h"
 #include "../rendering/ConnectorRenderer.h"
 #include "../core/Context.h"
@@ -161,8 +161,6 @@ private:
   Params& _params;
   Context& _context;
   const ColorTheme& _colors;
-  const ofFloatColor& _backgroundColor;
-  const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
   std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;

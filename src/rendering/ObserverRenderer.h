@@ -41,6 +41,7 @@ public:
   };
 
   ObserverRenderer(const Params& params,
+                   const ColorTheme& colors,
                    Context& context);
 
   void draw();
@@ -48,7 +49,7 @@ public:
 private:
   Context& _context;
   const Params& _params;
-  const ofFloatColor& _color;
+  const ColorTheme& _colors;
   ObjectManager<ObserverEntity>& _entities;
 };
 
@@ -72,6 +73,7 @@ public:
   };
 
   InstancedObserverRenderer(const Params& params,
+                            const ColorTheme& colors,
                             Context& context);
 
   void setup();
@@ -80,7 +82,7 @@ public:
 private:
   Context& _context;
   const Params& _params;
-  const ofFloatColor& _color;
+  const ColorTheme& _colors;
   const ofShader& _instanceShader;
   ofVboMesh _mesh;
   std::vector<ofMatrix4x4> _matrices;
