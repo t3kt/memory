@@ -10,6 +10,7 @@
 #define NavigatorsController_h
 
 #include <memory>
+#include "../app/AppActions.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../spawning/Spawner.h"
@@ -53,7 +54,8 @@ public:
     TParam<float> reachRange;
 };
 
-class NavigatorsController {
+class NavigatorsController
+: public AppActionHandler {
 public:
   using Params = NavigatorParams;
 
@@ -64,8 +66,11 @@ public:
   void setup();
   void update();
   void draw();
+
+  bool performAction(AppAction action) override;
 private:
   bool spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
+  bool spawnHighlightedObserverNavigator();
 
   Context& _context;
   Params& _params;

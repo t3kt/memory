@@ -24,6 +24,8 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
+  static const auto type = EntityType::OCCURRENCE;
+
   static std::shared_ptr<OccurrenceEntity> createEmpty() {
     return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
   }

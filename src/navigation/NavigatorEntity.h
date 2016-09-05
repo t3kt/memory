@@ -20,6 +20,8 @@ using NavigatorStatePtr = std::shared_ptr<NavigatorState>;
 class NavigatorEntity
 : public ParticleObject {
 public:
+  static const auto type = EntityType::NAVIGATOR;
+
   static std::shared_ptr<NavigatorEntity> createEmpty() {
     // unsupported
     return std::shared_ptr<NavigatorEntity>();
@@ -66,6 +68,8 @@ private:
   using OutputT = ofxChoreograph::Output<ofVec3f>;
   using RampT = ofxChoreograph::RampTo<ofVec3f>;
 public:
+  static const auto type = EntityType::NAVIGATOR;
+
   NavigatorEntity_2(NavigatorStatePtr prevState,
                     const float& stepTime);
 

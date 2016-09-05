@@ -20,6 +20,10 @@
 
 using NavEntityPtr = std::shared_ptr<NavigatorEntity>;
 
+static inline Logger& navLog() {
+  return AppSystem::get().log().navigation();
+}
+
 class ObserverNavSpawner
 : public RateSpawner<> {
 public:
@@ -60,7 +64,9 @@ NavigatorsController::NavigatorsController(Context& context,
 : _context(context)
 , _params(params)
 , _events(events)
-, _navigators(context.navigators) { }
+, _navigators(context.navigators) {
+  registerAsActionHandler();
+}
 
 void NavigatorsController::setup() {
   _observerNavSpawner =
@@ -78,7 +84,7 @@ void NavigatorsController::update() {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
     } else {
-      AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+      navLog().logNotice([&](ofLog& log) {
         log << "Updating navigator: " << *navigator;
       });
       navigator->updateNextState(_context);
@@ -125,7 +131,7 @@ void NavigatorsController::update() {
 //        _events.navigatorReachedLocation.notifyListeners(e);
 //      }
     }
-    AppSystem::get().log().navigation().logNotice([&](ofLog& log) {
+    navLog().logNotice([&](ofLog& log) {
       log << "Updated navigator: " << *navigator;
     });
   });
@@ -168,4 +174,24 @@ bool NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
                        *navigator);
   _events.navigatorSpawned.notifyListenersUntilHandled(e);
   return true;
+}
+
+bool NavigatorsController::spawnHighlightedObserverNavigator() {
+  if (_context.highlightedEntities.empty()) {
+    return false;
+  }
+  auto observer = _context.highlightedEntities.getFirstOfType<ObserverEntity>();
+  if (!observer) {
+    return false;
+  }
+  return spawnObserverNavigator(observer);
+}
+
+bool NavigatorsController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SPAWN_OBSERVER_NAVIGATOR:
+      return spawnHighlightedObserverNavigator();
+    default:
+      return false;
+  }
 }

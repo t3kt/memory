@@ -45,6 +45,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'(', AppAction::SPAWN_MANY_OCCURRENCES},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
   {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
+  {'n', AppAction::SPAWN_OBSERVER_NAVIGATOR},
   {'-', AppAction::KILL_FEW_OBSERVERS},
   {'_', AppAction::KILL_MANY_OBSERVERS},
   {'r', AppAction::LOAD_SETTINGS},

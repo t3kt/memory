@@ -19,6 +19,8 @@
 
 class AnimationObject : public WorldObject {
 public:
+  static const auto type = EntityType::ANIMATION;
+
   static std::shared_ptr<AnimationObject> createEmpty() {
     // unsupported
     return std::shared_ptr<AnimationObject>();
