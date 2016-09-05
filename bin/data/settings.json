@@ -197,7 +197,7 @@
   },
   "observers": {
     "rateSpawner": {
-      "enabled": false,
+      "enabled": true,
       "initialVelocity": {
         "high": 7.7134523391723633,
         "low": 0
