@@ -189,6 +189,7 @@
   "navigators": {
     "moveRate": 23.25,
     "observerNavigatorSpawner": {
+      "chance": 1,
       "enabled": false,
       "rate": 0.55102038383483887
     },
@@ -197,6 +198,7 @@
   },
   "observers": {
     "rateSpawner": {
+      "chance": 1,
       "enabled": true,
       "initialVelocity": {
         "high": 7.7134523391723633,
@@ -222,6 +224,7 @@
         "high": 100,
         "low": 94.273223876953125
       },
+      "chance": 1,
       "enabled": true,
       "initialVelocity": {
         "high": 1.0495628118515015,
