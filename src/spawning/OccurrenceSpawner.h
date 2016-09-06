@@ -91,16 +91,17 @@ public:
 class RateOccurrenceSpawner
 : public RateSpawner<RateOccurrenceSpawnerParams> {
 public:
-  RateOccurrenceSpawner(const Params& params,
+  RateOccurrenceSpawner(Context& context,
+                        const Params& params,
                         const Bounds& bounds,
                         OccurrencesController& controller)
-  : RateSpawner(params)
+  : RateSpawner(context, params)
   , _core(params,
           bounds,
           controller) { }
 
 protected:
-  void spawnEntities(Context& context, int count) override;
+  void spawnEntities(int count) override;
 
   OccurrenceSpawnerCore _core;
 };

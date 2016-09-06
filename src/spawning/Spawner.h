@@ -12,28 +12,18 @@
 #include <memory>
 #include "../core/Context.h"
 #include "../core/Params.h"
+#include "../core/Scheduler.h"
 
 class Spawner {
 public:
   using Params = ParamsWithEnabled;
 
-  virtual void update(Context& context) = 0;
+  virtual void update() = 0;
 
-  virtual bool spawnNow(Context& context, int count) = 0;
+  virtual bool spawnNow(int count) = 0;
 };
 
-class RateSpawnerParams : public Spawner::Params {
-public:
-  RateSpawnerParams() {
-    add(rate
-        .setKey("rate")
-        .setName("Rate")
-        .setValueAndDefault(4)
-        .setRange(0, 30));
-  }
-
-  TParam<float> rate;
-};
+using RateSpawnerParams = RateSchedulerParams;
 
 template<typename P = RateSpawnerParams>
 class RateSpawner
@@ -41,38 +31,29 @@ class RateSpawner
 public:
   using Params = P;
 
-  RateSpawner(const P& params)
+  RateSpawner(Context& context, const P& params)
   : _params(params)
-  , _lastTime(-1) { }
+  , _context(context)
+  , _scheduler(context, params) { }
 
-  void update(Context& context) override {
-    if (!_params.enabled()) {
-      _lastTime = -1;
-      return;
-    }
-    float now = context.time();
-    if (_lastTime < 0) {
-      _lastTime = now;
-      return;
-    }
-    float elapsed = now - _lastTime;
-    float count = elapsed * _params.rate();
-    if (count > 1) {
-      spawnEntities(context, static_cast<int>(count));
-      _lastTime = now;
+  void update() override {
+    int count = _scheduler.query();
+    if (count > 0) {
+      spawnEntities(count);
     }
   }
 
-  bool spawnNow(Context& context, int count) override {
-    spawnEntities(context, count);
+  bool spawnNow(int count) override {
+    spawnEntities(count);
     return true;
   }
 
 protected:
-  virtual void spawnEntities(Context& context, int count) = 0;
+  virtual void spawnEntities(int count) = 0;
 
   const P& _params;
-  float _lastTime;
+  Context& _context;
+  RateScheduler _scheduler;
 };
 
 class AbstractDescendantSpawnerParams

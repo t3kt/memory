@@ -48,15 +48,16 @@ public:
 class RateObserverSpawner
 : public RateSpawner<RateObserverSpawnerParams> {
 public:
-  RateObserverSpawner(const Params& params,
+  RateObserverSpawner(Context& context,
+                      const Params& params,
                       const Bounds& bounds,
                       ObserversController& controller)
-  : RateSpawner(params)
+  : RateSpawner(context, params)
   , _bounds(bounds)
   , _controller(controller) { }
 
 protected:
-  void spawnEntities(Context& context, int count) override;
+  void spawnEntities(int count) override;
 
   const Bounds& _bounds;
   ObserversController& _controller;

@@ -37,6 +37,7 @@
 		32324CB51D5C460900D05EDF /* ColorAdjustPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324CB31D5C460900D05EDF /* ColorAdjustPass.cpp */; };
 		323EEE181D7D4514001C7A72 /* EntitySelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE161D7D4514001C7A72 /* EntitySelector.cpp */; };
 		323EEE1B1D7E57E3001C7A72 /* EntityRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE191D7E57E3001C7A72 /* EntityRule.cpp */; };
+		323EEE221D7E5A1B001C7A72 /* Scheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE201D7E5A1B001C7A72 /* Scheduler.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -279,6 +280,8 @@
 		323EEE171D7D4514001C7A72 /* EntitySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntitySelector.h; path = rules/EntitySelector.h; sourceTree = "<group>"; };
 		323EEE191D7E57E3001C7A72 /* EntityRule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityRule.cpp; path = rules/EntityRule.cpp; sourceTree = "<group>"; };
 		323EEE1A1D7E57E3001C7A72 /* EntityRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityRule.h; path = rules/EntityRule.h; sourceTree = "<group>"; };
+		323EEE201D7E5A1B001C7A72 /* Scheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scheduler.cpp; path = core/Scheduler.cpp; sourceTree = "<group>"; };
+		323EEE211D7E5A1B001C7A72 /* Scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scheduler.h; path = core/Scheduler.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -1360,6 +1363,8 @@
 				EF3A3B4184C0BD92ED93C143 /* Params.h */,
 				F38907EC6905E539FB6235FC /* ParticleObject.cpp */,
 				A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */,
+				323EEE201D7E5A1B001C7A72 /* Scheduler.cpp */,
+				323EEE211D7E5A1B001C7A72 /* Scheduler.h */,
 				32EEAEB81D49B407003A503F /* Serialization.cpp */,
 				32EEAEB91D49B407003A503F /* Serialization.h */,
 				32EEAEC21D4C5AB8003A503F /* SimulationEvents.cpp */,
@@ -1734,6 +1739,7 @@
 				0C34EB1715B2CC6D9C283038 /* ofxMasterSlaveControl.cpp in Sources */,
 				32F74A691D409C0600C1A911 /* ofxOscMessage.cpp in Sources */,
 				64FAD181AA2FEB345A37B089 /* ofxMinimalButton.cpp in Sources */,
+				323EEE221D7E5A1B001C7A72 /* Scheduler.cpp in Sources */,
 				C7165067D1B817AB0063B30D /* ofxMinimalToggle.cpp in Sources */,
 				A56DDEF911445AC15CE5F965 /* ofxPanelExtended.cpp in Sources */,
 				98A7B2DA2BA0E271B47E0D7F /* ofxRotarySlider.cpp in Sources */,

@@ -82,9 +82,8 @@ OccurrenceSpawnerCore::spawnEntity(Context &context,
   return nullptr;
 }
 
-void RateOccurrenceSpawner::spawnEntities(Context &context,
-                                          int count) {
+void RateOccurrenceSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
-    _core.spawnEntities(context);
+    _core.spawnEntities(_context);
   }
 }

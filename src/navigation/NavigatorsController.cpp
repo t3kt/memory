@@ -28,21 +28,22 @@ class ObserverNavSpawner
 : public RateSpawner<> {
 public:
   ObserverNavSpawner(NavigatorsController& controller,
-                           const Params& params)
-  : RateSpawner(params)
+                     Context& context,
+                     const Params& params)
+  : RateSpawner(context, params)
   , _controller(controller)
   , _randomGen(_randomDevice()) { }
 
 protected:
-  void spawnEntities(Context& context, int count) override {
+  void spawnEntities(int count) override {
     if (count == 1) {
-      auto entity = getRandomEntity(context.observers);
+      auto entity = getRandomEntity(_context.observers);
       if (entity) {
         _controller.spawnObserverNavigator(entity);
       }
       return;
     }
-    std::vector<std::shared_ptr<ObserverEntity>> entities(context.observers.begin(), context.observers.end());
+    std::vector<std::shared_ptr<ObserverEntity>> entities(_context.observers.begin(), _context.observers.end());
     std::shuffle(entities.begin(), entities.end(), _randomGen);
     if (entities.size() < count) {
       count = entities.size();
@@ -71,6 +72,7 @@ NavigatorsController::NavigatorsController(Context& context,
 void NavigatorsController::setup() {
   _observerNavSpawner =
   std::make_shared<ObserverNavSpawner>(*this,
+                                       _context,
                                        _params.observerNavigatorSpawner);
 }
 
@@ -141,7 +143,7 @@ void NavigatorsController::update() {
     _events.navigatorDied.notifyListenersUntilHandled(e);
   });
 
-  _observerNavSpawner->update(_context);
+  _observerNavSpawner->update();
 }
 
 void NavigatorsController::draw() {
