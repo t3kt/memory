@@ -15,6 +15,7 @@
 ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
 : ParticleObject(pos)
 , _totalLifetime(life)
+, _remainingLife(life)
 , _lifeFraction(1)
 , _startTime(state.time) {
 }
@@ -30,12 +31,16 @@ void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence)
 }
 
 void ObserverEntity::update(const State &state) {
-  float elapsed = state.time - _startTime;
-  if (elapsed > _totalLifetime) {
-    _lifeFraction = 0.0f;
+  _remainingLife -= state.timeDelta;
+  if (_remainingLife <= 0) {
+    _remainingLife = 0;
+    _lifeFraction = 0;
     kill();
   } else {
-    _lifeFraction = ofMap(elapsed, 0.0f, _totalLifetime, 1.0f, 0.0f);
+    // intentionally reversing the ratio
+    _lifeFraction = ofMap(_remainingLife,
+                          _totalLifetime, 0.0f,
+                          1.0f, 0.0f);
   }
 }
 
@@ -51,6 +56,7 @@ void ObserverEntity::detachConnections() {
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
   os << ", totalLifetime: " << _totalLifetime
+      << ", remainingLife: " << _remainingLife
       << ", lifeFraction: " << _lifeFraction
       << ", sick: " << _sick
       << ", connectedOccurrences: " << _connectedOccurrences.size()
@@ -61,6 +67,7 @@ void ObserverEntity::fillInfo(Info& info) const {
   ParticleObject::fillInfo(info);
   info.add("lifeFraction:", _lifeFraction);
   info.add("totalLifeTime:", _totalLifetime);
+  info.add("remainingLife:", _remainingLife);
   info.add("connObservers:", _connectedObservers.size());
   info.add("connOccurrences:", _connectedOccurrences.size());
   if (_sick) {
@@ -74,6 +81,7 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
   JsonUtil::mergeInto(obj, {
     {"startTime", _startTime - context.time()},
     {"totalLifetime", _totalLifetime},
+    {"remainingLife", _remainingLife},
     {"sick", _sick},
     // omit lifetimeFraction since it's calculated
   });
@@ -84,6 +92,7 @@ void ObserverEntity::deserializeFields(const Json &obj,
   ParticleObject::deserializeFields(obj, context);
   _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
   _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
+  _remainingLife = JsonUtil::fromJson<float>(obj["remainingLife"]);
   _sick = JsonUtil::fromJson<bool>(obj["sick"]);
 }
 

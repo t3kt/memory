@@ -57,13 +57,14 @@ public:
 
   void update(const State& state);
 
-  float lifetime() const { return _totalLifetime; }
-  void modifyLifetime(float multiplier) {
-    _totalLifetime *= multiplier;
+  float remainingLife() const { return _remainingLife; }
+
+  void modifyRemainingLife(float multiplier) {
+    _remainingLife *= multiplier;
   }
-  void capLifetime(float maxLifetime) {
-    if (_totalLifetime > maxLifetime) {
-      _totalLifetime = maxLifetime;
+  void capRemainingLifetime(float maxLifetime) {
+    if (_remainingLife > maxLifetime) {
+      _remainingLife = maxLifetime;
     }
   }
 
@@ -96,6 +97,7 @@ private:
   float _startTime;
   float _totalLifetime;
   float _lifeFraction;
+  float _remainingLife;
   bool _sick;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
