@@ -38,6 +38,7 @@
 		323EEE181D7D4514001C7A72 /* EntitySelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE161D7D4514001C7A72 /* EntitySelector.cpp */; };
 		323EEE1B1D7E57E3001C7A72 /* EntityRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE191D7E57E3001C7A72 /* EntityRule.cpp */; };
 		323EEE221D7E5A1B001C7A72 /* Scheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE201D7E5A1B001C7A72 /* Scheduler.cpp */; };
+		323EEE291D7E687D001C7A72 /* ObserverSickness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE271D7E687D001C7A72 /* ObserverSickness.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -282,6 +283,8 @@
 		323EEE1A1D7E57E3001C7A72 /* EntityRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityRule.h; path = rules/EntityRule.h; sourceTree = "<group>"; };
 		323EEE201D7E5A1B001C7A72 /* Scheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scheduler.cpp; path = core/Scheduler.cpp; sourceTree = "<group>"; };
 		323EEE211D7E5A1B001C7A72 /* Scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scheduler.h; path = core/Scheduler.h; sourceTree = "<group>"; };
+		323EEE271D7E687D001C7A72 /* ObserverSickness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverSickness.cpp; path = rules/ObserverSickness.cpp; sourceTree = "<group>"; };
+		323EEE281D7E687D001C7A72 /* ObserverSickness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverSickness.h; path = rules/ObserverSickness.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -713,6 +716,8 @@
 				323EEE1A1D7E57E3001C7A72 /* EntityRule.h */,
 				323EEE161D7D4514001C7A72 /* EntitySelector.cpp */,
 				323EEE171D7D4514001C7A72 /* EntitySelector.h */,
+				323EEE271D7E687D001C7A72 /* ObserverSickness.cpp */,
+				323EEE281D7E687D001C7A72 /* ObserverSickness.h */,
 			);
 			name = rules;
 			sourceTree = "<group>";
@@ -1788,6 +1793,7 @@
 				88F112CB2ECCF5E114037369 /* ZoomBlurPass.cpp in Sources */,
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
+				323EEE291D7E687D001C7A72 /* ObserverSickness.cpp in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
 				32EEAEC31D4C5AB8003A503F /* SimulationEvents.cpp in Sources */,
 				32EEAEC11D4C5A9E003A503F /* MidiEvents.cpp in Sources */,

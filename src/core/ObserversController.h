@@ -17,6 +17,7 @@
 #include "../core/ObjectManager.h"
 #include "../core/ObserverEntity.h"
 #include "../spawning/ObserverSpawner.h"
+#include "../rules/ObserverSickness.h"
 #include "../core/Params.h"
 #include "../core/State.h"
 
@@ -30,9 +31,14 @@ public:
         .setName("Rate Spawner"));
     rateSpawner.rate.setRange(0, 5);
     rateSpawner.rate.setValueAndDefault(0.5);
+    add(sickness
+        .setKey("sickness")
+        .setName("Sickness"));
+    sickness.setEnabledValueAndDefault(false);
   }
 
   RateObserverSpawner::Params rateSpawner;
+  ObserverSicknessParams sickness;
 };
 
 class ObserversController
@@ -63,6 +69,7 @@ private:
   const Params& _params;
   const Bounds& _bounds;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
+  std::shared_ptr<ObserverSickness> _sickness;
 
   friend class IntervalObserverSpawner;
 };

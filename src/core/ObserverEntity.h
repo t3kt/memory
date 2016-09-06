@@ -57,7 +57,18 @@ public:
 
   void update(const State& state);
 
-  float lifetime() const { return _totalLifetime; };
+  float lifetime() const { return _totalLifetime; }
+  void modifyLifetime(float multiplier) {
+    _totalLifetime *= multiplier;
+  }
+  void capLifetime(float maxLifetime) {
+    if (_totalLifetime > maxLifetime) {
+      _totalLifetime = maxLifetime;
+    }
+  }
+
+  bool sick() const { return _sick; }
+  void setSick(bool sick) { _sick = sick; }
 
   EntityType entityType() const override { return EntityType::OBSERVER; }
 
@@ -85,6 +96,7 @@ private:
   float _startTime;
   float _totalLifetime;
   float _lifeFraction;
+  bool _sick;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
 };

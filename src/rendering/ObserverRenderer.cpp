@@ -48,6 +48,9 @@ void ObserverRenderer::draw() {
     } else {
       color = baseColor;
     }
+    if (entity->sick()) {
+      color.setSaturation(0);
+    }
     color.a *= entity->alpha();
     renderer->setColor(color);
 

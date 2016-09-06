@@ -26,6 +26,9 @@ void ObserversController::setup() {
                                                        _params.rateSpawner,
                                                        _bounds,
                                                        *this);
+  _sickness =
+  std::make_shared<ObserverSickness>(_context,
+                                     _params.sickness);
 
   registerAsActionHandler();
 }
@@ -54,6 +57,7 @@ bool ObserversController::performAction(AppAction action) {
 }
 
 void ObserversController::update() {
+  _sickness->update();
   _entities.performAction([&](std::shared_ptr<ObserverEntity>& observer) {
     observer->update(_context.state);
   });

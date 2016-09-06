@@ -93,7 +93,7 @@ class IntervalScheduler
 public:
   using Params = IntervalSchedulerParams;
 
-  IntervalScheduler(Context& context, Params& params)
+  IntervalScheduler(Context& context, const Params& params)
   : Scheduler(context, params)
   , _params(params)
   , _nextTime(-1) { }
@@ -101,7 +101,7 @@ public:
   int query() override;
 
 protected:
-  Params& _params;
+  const Params& _params;
   float _nextTime;
 };
 

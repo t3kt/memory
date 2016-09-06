@@ -52,6 +52,7 @@ void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
   os << ", totalLifetime: " << _totalLifetime
       << ", lifeFraction: " << _lifeFraction
+      << ", sick: " << _sick
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
 }
@@ -62,6 +63,9 @@ void ObserverEntity::fillInfo(Info& info) const {
   info.add("totalLifeTime:", _totalLifetime);
   info.add("connObservers:", _connectedObservers.size());
   info.add("connOccurrences:", _connectedOccurrences.size());
+  if (_sick) {
+    info.add("sick:", _sick);
+  }
 }
 
 void ObserverEntity::addSerializedFields(Json::object &obj,
@@ -70,6 +74,7 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
   JsonUtil::mergeInto(obj, {
     {"startTime", _startTime - context.time()},
     {"totalLifetime", _totalLifetime},
+    {"sick", _sick},
     // omit lifetimeFraction since it's calculated
   });
 }
@@ -79,6 +84,7 @@ void ObserverEntity::deserializeFields(const Json &obj,
   ParticleObject::deserializeFields(obj, context);
   _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
   _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
+  _sick = JsonUtil::fromJson<bool>(obj["sick"]);
 }
 
 void ObserverEntity::addSerializedRefs(Json::object &obj,
