@@ -72,13 +72,6 @@ void Context::performActionOnParticleEntityPtrs(std::function<void (std::shared_
   }
 }
 
-
-
-template<>
-void Context::performEntityAction<WorldObject, WorldObject>(PtrRefAction<WorldObject> action) {
-//  getEntities<AnimationObject>().performTypedAction(action);
-}
-
 void Context::clear() {
   animations.clear();
   navigators.clear();

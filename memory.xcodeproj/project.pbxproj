@@ -36,6 +36,7 @@
 		32324CA51D59690500D05EDF /* Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324CA31D59690500D05EDF /* Info.cpp */; };
 		32324CB51D5C460900D05EDF /* ColorAdjustPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324CB31D5C460900D05EDF /* ColorAdjustPass.cpp */; };
 		323EEE021D7A7925001C7A72 /* EntityRules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE001D7A7925001C7A72 /* EntityRules.cpp */; };
+		323EEE181D7D4514001C7A72 /* EntitySelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323EEE161D7D4514001C7A72 /* EntitySelector.cpp */; };
 		324CF6EE1D3C7A81003DD487 /* InspectionController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */; };
 		324CF6FC1D3CA39C003DD487 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 324CF6F71D3CA2ED003DD487 /* icon.icns */; };
 		324CF7051D3CAE1C003DD487 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7031D3CAE1C003DD487 /* AppAssets.cpp */; };
@@ -276,6 +277,8 @@
 		323EEE001D7A7925001C7A72 /* EntityRules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityRules.cpp; path = core/EntityRules.cpp; sourceTree = "<group>"; };
 		323EEE011D7A7925001C7A72 /* EntityRules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityRules.h; path = core/EntityRules.h; sourceTree = "<group>"; };
 		323EEE061D7D01A5001C7A72 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colors.h; path = rendering/Colors.h; sourceTree = "<group>"; };
+		323EEE161D7D4514001C7A72 /* EntitySelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntitySelector.cpp; path = rules/EntitySelector.cpp; sourceTree = "<group>"; };
+		323EEE171D7D4514001C7A72 /* EntitySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntitySelector.h; path = rules/EntitySelector.h; sourceTree = "<group>"; };
 		324CF6EC1D3C7A81003DD487 /* InspectionController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InspectionController.cpp; path = core/InspectionController.cpp; sourceTree = "<group>"; };
 		324CF6ED1D3C7A81003DD487 /* InspectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InspectionController.h; path = core/InspectionController.h; sourceTree = "<group>"; };
 		324CF6F71D3CA2ED003DD487 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = res/icon.icns; sourceTree = "<group>"; };
@@ -698,6 +701,15 @@
 				32324CB41D5C460900D05EDF /* ColorAdjustPass.h */,
 			);
 			name = fx;
+			sourceTree = "<group>";
+		};
+		323EEE151D7D44CA001C7A72 /* rules */ = {
+			isa = PBXGroup;
+			children = (
+				323EEE161D7D4514001C7A72 /* EntitySelector.cpp */,
+				323EEE171D7D4514001C7A72 /* EntitySelector.h */,
+			);
+			name = rules;
 			sourceTree = "<group>";
 		};
 		324CF6F61D3CA2D6003DD487 /* resources */ = {
@@ -1467,6 +1479,7 @@
 				32E58A341D3C2F5A001AA5E4 /* navigation */,
 				8EB304E39B119DD2D764E269 /* physics */,
 				5533A127DD65323EB591F7AD /* rendering */,
+				323EEE151D7D44CA001C7A72 /* rules */,
 				32324C651D56C67200D05EDF /* spawning */,
 			);
 			path = src;
@@ -1639,6 +1652,7 @@
 				8363E3A3FB38459F28C32F67 /* SimulationApp.cpp in Sources */,
 				32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */,
 				9EBFB565EFF37317583CA299 /* MidiCommon.cpp in Sources */,
+				323EEE181D7D4514001C7A72 /* EntitySelector.cpp in Sources */,
 				684827C1C4E22CB31E360F24 /* MidiController.cpp in Sources */,
 				1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */,
 				BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */,
