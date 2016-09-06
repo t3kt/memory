@@ -11,6 +11,7 @@
 
 #include <functional>
 #include <memory>
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/WorldObject.h"
@@ -18,7 +19,7 @@
 template<typename E>
 class EntitySelector {
 public:
-  using ActionT = PtrAction<E>;
+  using ActionT = PtrRefAction<E>;
 
   EntitySelector(Context& context)
   : _context(context) { }
@@ -28,6 +29,28 @@ public:
   };
 protected:
   Context& _context;
+};
+
+template<typename E>
+class PredicateEntitySelector
+: public EntitySelector<E> {
+public:
+  using ActionT = typename EntitySelector<E>::ActionT;
+  using PredicateT = PtrRefPredicate<E>;
+
+  PredicateEntitySelector(Context& context, PredicateT predicate)
+  : EntitySelector<E>(context)
+  , _predicate(predicate) { }
+
+  void applyAction(ActionT action) override {
+    EntitySelector<E>::_context.performEntityAction([&](std::shared_ptr<E>& entity) {
+      if (_predicate(entity)) {
+        action(entity);
+      }
+    });
+  }
+private:
+  PredicateT _predicate;
 };
 
 #endif /* EntitySelector_h */

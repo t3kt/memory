@@ -11,7 +11,6 @@
 
 #include <memory>
 #include "../app/AppActions.h"
-#include "../core/EntityRules.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 
@@ -30,8 +29,6 @@ template<typename E>
 class EntityController
 : public AbstractEntityController {
 public:
-  using RuleListT = EntityRuleList<E>;
-
   EntityController(Context& context,
                    SimulationEvents& events,
                    ObjectManager<E>& entities)
@@ -48,7 +45,6 @@ protected:
   Context& _context;
   SimulationEvents& _events;
   ObjectManager<E>& _entities;
-  RuleListT _rules;
 };
 
 #endif /* EntityController_h */
