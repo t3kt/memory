@@ -53,6 +53,9 @@ public:
 
   float getAge(const State& state) const { return state.time - _startTime; }
 
+  float getDecayRate() const { return _decayRate; }
+  void setDecayRate(float decayRate) { _decayRate = decayRate; }
+
   void detachConnections();
 
   void update(const State& state);
