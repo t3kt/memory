@@ -28,7 +28,7 @@ public:
     return std::shared_ptr<ObserverEntity>(new ObserverEntity());
   }
 
-  ObserverEntity(ofVec3f pos, float life, const State& state);
+  ObserverEntity(ofVec3f pos, float decay, const State& state);
   virtual ~ObserverEntity() override {}
   
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
@@ -57,8 +57,6 @@ public:
 
   void update(const State& state);
 
-  float lifetime() const { return _totalLifetime; };
-
   EntityType entityType() const override { return EntityType::OBSERVER; }
 
   virtual void deserializeFields(const Json& obj,
@@ -83,8 +81,8 @@ private:
   ObserverEntity() { }
 
   float _startTime;
-  float _totalLifetime;
   float _lifeFraction;
+  float _decayRate;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
 };

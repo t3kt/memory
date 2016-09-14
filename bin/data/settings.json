@@ -168,17 +168,17 @@
         "enabled": false,
         "level": 1
       },
-      "enabled": false,
+      "enabled": true,
       "nav": {
         "enabled": false,
         "level": 1
       },
       "obs": {
-        "enabled": false,
+        "enabled": true,
         "level": 1
       },
       "occ": {
-        "enabled": true,
+        "enabled": false,
         "level": 1
       }
     },
@@ -199,16 +199,28 @@
   "observers": {
     "rateSpawner": {
       "chance": 1,
+      "decayRate": {
+        "high": 0.090000003576278687,
+        "low": 0.004999999888241291
+      },
       "enabled": true,
       "initialVelocity": {
         "high": 7.7134523391723633,
         "low": 0
       },
-      "lifetime": {
-        "high": 110.05414581298828,
-        "low": 68.821327209472656
-      },
       "rate": 4.1071429252624512
+    },
+    "sickness": {
+      "enabled": true,
+      "lifetimeMult": 0.5,
+      "scheduler": {
+        "chance": 1,
+        "enabled": true,
+        "interval": {
+          "high": 10,
+          "low": 4
+        }
+      }
     }
   },
   "occurrences": {
