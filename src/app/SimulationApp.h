@@ -10,6 +10,7 @@
 #define SimulationApp_h
 
 #include <ofMain.h>
+#include "../core/Actions.h"
 #include "../core/AnimationsController.h"
 #include "../app/AppActions.h"
 #include "../app/AppGui.h"
@@ -62,6 +63,8 @@ public:
 
   const State& state() const { return _context.state; }
 
+  ActionsController& actions() { return *_actions; }
+
 private:
   void loadSettings();
   void saveSettings();
@@ -78,6 +81,7 @@ private:
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<ofAppGLFWWindow> _window;
   std::shared_ptr<AppGui> _gui;
+  std::shared_ptr<ActionsController> _actions;
   std::shared_ptr<MidiController> _midi;
   std::shared_ptr<OscController> _osc;
   std::shared_ptr<ObserversController> _observers;

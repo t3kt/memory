@@ -24,7 +24,7 @@ void ActionsController::update() {
        i != _actions.end();) {
     auto& entry = *i;
     if (now >= entry.time) {
-      auto result = entry.action->run(_context);
+      auto result = entry.action->run(_context, *this);
       if (result.isReschedule()) {
         newEntries.push_back(entry.withTime(result.rescheduleTime()));
       }

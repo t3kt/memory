@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 
+class ActionsController;
 class Context;
 
 class ActionResult {
@@ -31,7 +32,8 @@ private:
 
 class Action {
 public:
-  virtual ActionResult run(Context& context) = 0;
+  virtual ActionResult run(Context& context,
+                           ActionsController& controller) = 0;
 };
 
 using ActionPtr = std::shared_ptr<Action>;

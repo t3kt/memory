@@ -22,6 +22,9 @@ void SimulationApp::setup() {
 
   updateLogState();
 
+  _actions =
+  std::make_shared<ActionsController>(_context);
+
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
                                         getWindow(),
@@ -103,6 +106,7 @@ void SimulationApp::updateLogState() {
 }
 
 void SimulationApp::update() {
+  _actions->update();
   _osc->update();
   _midi->update();
   _clock->update();
