@@ -20,11 +20,11 @@ class ObserversController;
 class ObserverSpawnerParamsMixin {
 public:
   void mixInto(Params& params) {
-    params.add(lifetime
-               .setKey("lifetime")
-               .setName("Lifetime Range")
-               .setParamValuesAndDefaults(1, 4)
-               .setParamRanges(0, 240));
+    params.add(decayRate
+               .setKey("decayRate")
+               .setName("Decay Rate Range")
+               .setParamValuesAndDefaults(0.005, 0.090)
+               .setParamRanges(0, 0.5));
     params.add(initialVelocity
                .setKey("initialVelocity")
                .setName("Initial Velocity")
@@ -32,7 +32,7 @@ public:
                .setParamRanges(0, 20));
   }
 
-  RandomValueSupplier<float> lifetime;
+  RandomValueSupplier<float> decayRate;
   SimpleRandomVectorSupplier initialVelocity;
 };
 

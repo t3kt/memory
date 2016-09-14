@@ -12,10 +12,9 @@
 #include "../core/OccurrenceEntity.h"
 #include "../core/State.h"
 
-ObserverEntity::ObserverEntity(ofVec3f pos, float life, const State& state)
+ObserverEntity::ObserverEntity(ofVec3f pos, float decay, const State& state)
 : ParticleObject(pos)
-, _totalLifetime(life)
-, _remainingLife(life)
+, _decayRate(decay)
 , _lifeFraction(1)
 , _startTime(state.time) {
 }
@@ -31,16 +30,10 @@ void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence)
 }
 
 void ObserverEntity::update(const State &state) {
-  _remainingLife -= state.timeDelta;
-  if (_remainingLife <= 0) {
-    _remainingLife = 0;
+  _lifeFraction -= _decayRate * state.timeDelta;
+  if (_lifeFraction <= 0) {
     _lifeFraction = 0;
     kill();
-  } else {
-    // intentionally reversing the ratio
-    _lifeFraction = ofMap(_remainingLife,
-                          _totalLifetime, 0.0f,
-                          1.0f, 0.0f);
   }
 }
 
@@ -55,9 +48,8 @@ void ObserverEntity::detachConnections() {
 
 void ObserverEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
-  os << ", totalLifetime: " << _totalLifetime
-      << ", remainingLife: " << _remainingLife
-      << ", lifeFraction: " << _lifeFraction
+  os << ", lifeFraction: " << _lifeFraction
+      << ", decayRate: " << _decayRate
       << ", sick: " << _sick
       << ", connectedOccurrences: " << _connectedOccurrences.size()
       << ", connectedObservers: " << _connectedObservers.size();
@@ -66,8 +58,7 @@ void ObserverEntity::outputFields(std::ostream &os) const {
 void ObserverEntity::fillInfo(Info& info) const {
   ParticleObject::fillInfo(info);
   info.add("lifeFraction:", _lifeFraction);
-  info.add("totalLifeTime:", _totalLifetime);
-  info.add("remainingLife:", _remainingLife);
+  info.add("decayRate:", _decayRate);
   info.add("connObservers:", _connectedObservers.size());
   info.add("connOccurrences:", _connectedOccurrences.size());
   if (_sick) {
@@ -80,10 +71,9 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
   ParticleObject::addSerializedFields(obj, context);
   JsonUtil::mergeInto(obj, {
     {"startTime", _startTime - context.time()},
-    {"totalLifetime", _totalLifetime},
-    {"remainingLife", _remainingLife},
+    {"lifeFraction", _lifeFraction},
+    {"decayRate", _decayRate},
     {"sick", _sick},
-    // omit lifetimeFraction since it's calculated
   });
 }
 
@@ -91,8 +81,8 @@ void ObserverEntity::deserializeFields(const Json &obj,
                                        const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
   _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
-  _totalLifetime = JsonUtil::fromJson<float>(obj["totalLifetime"]);
-  _remainingLife = JsonUtil::fromJson<float>(obj["remainingLife"]);
+  _decayRate = JsonUtil::fromJson<float>(obj["decayRate"]);
+  _lifeFraction = JsonUtil::fromJson<float>(obj["lifeFraction"]);
   _sick = JsonUtil::fromJson<bool>(obj["sick"]);
 }
 

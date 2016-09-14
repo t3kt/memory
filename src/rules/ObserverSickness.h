@@ -20,15 +20,15 @@ public:
     add(scheduler
         .setKey("scheduler")
         .setName("Scheduler"));
-    add(lifetimeMult
-        .setKey("lifetimeMult")
-        .setName("Life Mult.")
-        .setRange(0, 1)
-        .setValueAndDefault(0.5));
+    add(decayRateAmount
+        .setKey("decayRateAmount")
+        .setName("Decay Rate Amount")
+        .setRange(-0.2, 0.2)
+        .setValueAndDefault(0.06));
   }
 
   IntervalSchedulerParams scheduler;
-  TParam<float> lifetimeMult;
+  TParam<float> decayRateAmount;
 };
 
 class ObserverSickness {

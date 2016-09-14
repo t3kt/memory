@@ -28,7 +28,7 @@ public:
     return std::shared_ptr<ObserverEntity>(new ObserverEntity());
   }
 
-  ObserverEntity(ofVec3f pos, float life, const State& state);
+  ObserverEntity(ofVec3f pos, float decay, const State& state);
   virtual ~ObserverEntity() override {}
   
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
@@ -53,20 +53,12 @@ public:
 
   float getAge(const State& state) const { return state.time - _startTime; }
 
+  float getDecayRate() const { return _decayRate; }
+  void setDecayRate(float decayRate) { _decayRate = decayRate; }
+
   void detachConnections();
 
   void update(const State& state);
-
-  float remainingLife() const { return _remainingLife; }
-
-  void modifyRemainingLife(float multiplier) {
-    _remainingLife *= multiplier;
-  }
-  void capRemainingLifetime(float maxLifetime) {
-    if (_remainingLife > maxLifetime) {
-      _remainingLife = maxLifetime;
-    }
-  }
 
   bool sick() const { return _sick; }
   void setSick(bool sick) { _sick = sick; }
@@ -95,10 +87,9 @@ private:
   ObserverEntity() { }
 
   float _startTime;
-  float _totalLifetime;
   float _lifeFraction;
-  float _remainingLife;
   bool _sick;
+  float _decayRate;
   EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
 };

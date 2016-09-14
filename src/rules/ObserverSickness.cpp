@@ -17,16 +17,15 @@ void ObserverSickness::update() {
   }
   int count = _scheduler.query();
   auto& log = AppSystem::get().log().observer();
-  auto mult = _params.lifetimeMult.get();
+  auto addDecay = _params.decayRateAmount.get();
   for (int i = 0; i < count; ++i) {
     auto entity = getRandomEntity(_context.observers);
     if (entity && entity->alive() && !entity->sick()) {
-      auto oldLife = entity->remainingLife();
+      auto oldDecayRate = entity->getDecayRate();
+      entity->setDecayRate(oldDecayRate + addDecay);
       entity->setSick(true);
-      entity->modifyRemainingLife(mult);
-//      entity->capRemainingLifetime(3);
       log.logWarning([&](ofLog& log) {
-        log << "Entity infected (id: "<< entity->id() <<") remaining life: " << oldLife << " -> " << entity->remainingLife();
+        log << "Entity infected (id: "<< entity->id() <<") decay rate: " << oldDecayRate << " -> " << entity->getDecayRate();
       });
     }
   }
