@@ -161,7 +161,7 @@
         "level": 1
       },
       "app": {
-        "enabled": false,
+        "enabled": true,
         "level": 1
       },
       "ctrl": {
@@ -174,7 +174,7 @@
         "level": 1
       },
       "obs": {
-        "enabled": true,
+        "enabled": false,
         "level": 1
       },
       "occ": {

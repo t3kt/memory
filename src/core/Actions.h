@@ -9,8 +9,11 @@
 #ifndef Actions_h
 #define Actions_h
 
+#include <functional>
 #include <memory>
 #include <vector>
+#include "../app/AppActions.h"
+#include "../core/Logging.h"
 
 class ActionsController;
 class Context;
@@ -22,7 +25,7 @@ public:
     return ActionResult(time);
   }
 
-  bool isReschedule() const { return _time < 0; }
+  bool isReschedule() const { return _time >= 0; }
   float rescheduleTime() const { return _time; }
 private:
   ActionResult(float time) : _time(time) { }
@@ -30,15 +33,23 @@ private:
   const float _time;
 };
 
-class Action {
-public:
-  virtual ActionResult run(Context& context,
-                           ActionsController& controller) = 0;
-};
-
+class Action;
 using ActionPtr = std::shared_ptr<Action>;
 
-class ActionsController {
+using ActionFn =
+std::function<ActionResult(Context&,
+                           ActionsController&)>;
+
+class Action {
+public:
+  virtual ActionResult operator()(Context& context,
+                                  ActionsController& controller) = 0;
+
+  static ActionPtr of(ActionFn action);
+};
+
+class ActionsController
+: public AppActionHandler {
 private:
   class Entry {
   public:
@@ -49,12 +60,20 @@ private:
     Entry withTime(float t) { return Entry(action, t); }
   };
 public:
-  ActionsController(Context& context)
-  : _context(context) { }
+  ActionsController(Context& context);
 
-  void addActionAt(ActionPtr action, float time);
-  void addDelayed(ActionPtr action, float delay);
+  void addAt(float time, ActionPtr action);
+  void addAt(float time, ActionFn action);
+  void addDelayed(float delay, ActionPtr action);
+  void addDelayed(float delay, ActionFn action);
+  void addRepeating(float interval, std::function<bool()> action);
+
   void update();
+
+  void logAction(std::string message);
+  void logAction(Logger::Statement statement);
+
+  bool performAction(AppAction action) override;
 private:
   Context& _context;
   std::vector<Entry> _actions;

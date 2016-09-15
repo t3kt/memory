@@ -28,6 +28,7 @@ EnumTypeInfo<AppAction> AppActionType({
   {"dumpEntityState", AppAction::DUMP_ENTITY_STATE},
   {"loadEntityState", AppAction::LOAD_ENTITY_STATE},
   {"saveEntityState", AppAction::SAVE_ENTITY_STATE},
+  {"testAction", AppAction::TEST_ACTION},
 });
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action) {

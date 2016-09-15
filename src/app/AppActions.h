@@ -36,6 +36,7 @@ enum class AppAction {
   DUMP_ENTITY_STATE,
   SAVE_ENTITY_STATE,
   LOAD_ENTITY_STATE,
+  TEST_ACTION,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
