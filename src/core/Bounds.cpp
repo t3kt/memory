@@ -16,7 +16,7 @@ static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
 }
 
 bool Bounds::reflect(ofVec3f *velocity, ofVec3f* position) const {
-  float bound = size() / 2;
+  float bound = size.get() / 2;
   bool changed = false;
   changed |= reflectVal(&velocity->x, &position->x, -bound, bound);
   changed |= reflectVal(&velocity->y, &position->y, -bound, bound);
@@ -29,4 +29,11 @@ ofVec3f Bounds::randomPoint() const {
   return ofVec3f(ofRandom(-bound, bound),
                  ofRandom(-bound, bound),
                  ofRandom(-bound, bound));
+}
+
+ofVec3f Bounds::clampPoint(const ofVec3f &position) const {
+  float bound = size.get() / 2;
+  return ofVec3f(ofClamp(position.x, -bound, bound),
+                 ofClamp(position.y, -bound, bound),
+                 ofClamp(position.z, -bound, bound));
 }

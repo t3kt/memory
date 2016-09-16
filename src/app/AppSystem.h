@@ -19,6 +19,7 @@
 #include "../core/State.h"
 #include "../core/Logging.h"
 
+class ActionsController;
 class SimulationApp;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
@@ -49,6 +50,8 @@ public:
   const Context& context() const { return _context; }
 
   LoggingController& log() { return _log; }
+
+  ActionsController& actions();
 
   bool performAction(AppAction action);
 

@@ -161,7 +161,7 @@
         "level": 1
       },
       "app": {
-        "enabled": true,
+        "enabled": false,
         "level": 1
       },
       "ctrl": {
@@ -174,7 +174,7 @@
         "level": 1
       },
       "obs": {
-        "enabled": false,
+        "enabled": true,
         "level": 1
       },
       "occ": {
@@ -246,7 +246,22 @@
         "high": 148.02166748046875,
         "low": 33.486049652099609
       },
-      "rate": 4.5153059959411621
+      "rate": 4.5153059959411621,
+      "sequence": {
+        "chance": 0.10000000149011612
+      },
+      "sequenceCount": {
+        "high": 10,
+        "low": 2
+      },
+      "sequenceInterval": {
+        "high": 20,
+        "low": 5
+      },
+      "sequenceStepDistance": {
+        "high": 50,
+        "low": 10
+      }
     }
   },
   "physics": {

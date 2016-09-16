@@ -45,6 +45,25 @@ public:
                .setName("Chain Distance")
                .setParamRanges(0, 100)
                .setParamValuesAndDefaults(8, 40));
+    params.add(sequence
+               .setKey("sequence")
+               .setName("Sequence")
+               .setChanceValueAndDefault(0.1));
+    params.add(sequenceCount
+               .setKey("sequenceCount")
+               .setName("Sequence Count")
+               .setParamRanges(2, 30)
+               .setParamValuesAndDefaults(2, 10));
+    params.add(sequenceInterval
+               .setKey("sequenceInterval")
+               .setName("Sequence Interval")
+               .setParamRanges(0, 60)
+               .setParamValuesAndDefaults(5, 20));
+    params.add(sequenceStepDistance
+               .setKey("sequenceStepDistance")
+               .setName("Seq Step Distance")
+               .setParamRanges(0, 100)
+               .setParamValuesAndDefaults(10, 50));
   }
 
   RandomValueSupplier<float> radius;
@@ -52,6 +71,10 @@ public:
   RandomBoolSupplier chain;
   RandomValueSupplier<int> chainCount;
   SimpleRandomVectorSupplier chainDistance;
+  RandomBoolSupplier sequence;
+  RandomValueSupplier<int> sequenceCount;
+  RandomValueSupplier<float> sequenceInterval;
+  RandomValueSupplier<float> sequenceStepDistance;
 };
 
 class OccurrenceSpawnerCore {
@@ -64,6 +87,14 @@ public:
   , _controller(controller) { }
 
   int spawnEntities(Context& context);
+
+  std::shared_ptr<OccurrenceEntity>
+  spawnSequenceStepEntity(Context& context,
+                          std::shared_ptr<OccurrenceEntity> prev);
+
+  const OccurrencesSpawnerParamsMixin& params() const {
+    return _params;
+  }
   
 private:
   void updateState(Context& context);
@@ -73,6 +104,8 @@ private:
               float radius,
               const ofVec3f& pos,
               std::shared_ptr<OccurrenceEntity> prev);
+
+  bool spawnNewSequence(Context& context);
 
   const OccurrencesSpawnerParamsMixin& _params;
   const Bounds& _bounds;

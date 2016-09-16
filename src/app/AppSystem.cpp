@@ -81,6 +81,10 @@ void AppSystem::setup() {
                                                    _simulationWindow);
 }
 
+ActionsController& AppSystem::actions() {
+  return _simulationApp->actions();
+}
+
 void AppSystem::main() {
   setup();
 

@@ -8,13 +8,105 @@
 
 #include <ofMath.h>
 #include "../app/AppSystem.h"
+#include "../core/Actions.h"
 #include "../core/Bounds.h"
 #include "../core/Context.h"
 #include "../core/Logging.h"
-#include "../spawning/OccurrenceSpawner.h"
 #include "../core/OccurrencesController.h"
+#include "../spawning/OccurrenceSpawner.h"
+
+static void logNotice(Logger::Statement statement) {
+  AppSystem::get().log().occurrence().logNotice(statement);
+}
+
+class OccurrenceSequenceSpawnAction
+: public Action {
+public:
+  OccurrenceSequenceSpawnAction(OccurrenceSpawnerCore& spawner,
+                                std::shared_ptr<OccurrenceEntity> prev,
+                                int count)
+  : _spawner(spawner)
+  , _count(count)
+  , _previous(prev) { }
+
+  ActionResult operator()(Context& context,
+                          ActionsController& controller) override {
+    if (!_previous->alive()) {
+      logNotice([&](ofLog& log) {
+        log << "Canceling spawn sequence because entity died: " << *_previous;
+      });
+      return ActionResult::cancel();
+    }
+    auto next = _spawner.spawnSequenceStepEntity(context, _previous);
+    if (!next) {
+      logNotice([&](ofLog& log) {
+        log << "Canceling spawn sequence spawning next entity failed. previous: " << *_previous;
+      });
+      return ActionResult::cancel();
+    }
+    _previous = next;
+    _count--;
+    if (_count <= 0) {
+      logNotice([&](ofLog& log) {
+        log << "Finished spawn sequence. previous: " << *_previous;
+      });
+      return ActionResult::cancel();
+    }
+    float interval = _spawner.params().sequenceInterval.getValue();
+    return ActionResult::reschedule(context.time() + interval);
+  }
+private:
+  OccurrenceSpawnerCore& _spawner;
+  std::shared_ptr<OccurrenceEntity> _previous;
+  int _count;
+};
+
+std::shared_ptr<OccurrenceEntity>
+OccurrenceSpawnerCore::spawnSequenceStepEntity(Context &context,
+                                               std::shared_ptr<OccurrenceEntity> prev) {
+  float radius = _params.radius.getValue();
+  ofVec3f pos = ofVec3f(_params.sequenceStepDistance.getValue(), 0, 0);
+  pos.rotate(ofRandomf() * 360, ofRandomf() * 360, ofRandomf() * 360);
+  pos += prev->position();
+  pos = _bounds.clampPoint(pos);
+  auto entity = spawnEntity(context, radius, pos, prev);
+  if (entity) {
+    logNotice([&](ofLog& log) {
+      log << "Spawned sequence step: " << *entity;
+    });
+  } else {
+    logNotice([&](ofLog& log) {
+      log << "Failed to spawn sequence step from " << *prev;
+    });
+  }
+  return entity;
+}
+
+bool OccurrenceSpawnerCore::spawnNewSequence(Context& context) {
+  auto count = _params.sequenceCount.getValue();
+  if (count <= 0) {
+    return false;
+  }
+  auto occurrence =
+  spawnEntity(context,
+              _params.radius.getValue(),
+              _bounds.randomPoint(),
+              nullptr);
+  if (!occurrence) {
+    return false;
+  }
+  AppSystem::get().actions()
+  .addDelayed(_params.sequenceInterval.getValue(),
+              std::make_shared<OccurrenceSequenceSpawnAction>(*this,
+                                                              occurrence,
+                                                              count));
+  return true;
+}
 
 int OccurrenceSpawnerCore::spawnEntities(Context& context) {
+  if (_params.sequence.getValue()) {
+    return spawnNewSequence(context) ? 1 : 0;
+  }
   float startRadius = _params.radius.getValue();
   ofVec3f startPos = _bounds.randomPoint();
   int chainCount = _params.chainCount.getValue();
