@@ -16,7 +16,7 @@
 
 class Bounds;
 class Context;
-class ObserversController;
+class SimulationEvents;
 
 class ObserverSpawnerParamsMixin {
 public:
@@ -52,19 +52,17 @@ class RateObserverSpawner
 public:
   RateObserverSpawner(Context& context,
                       const Params& params,
-                      const Bounds& bounds,
-                      ObserversController& controller)
-  : RateSpawner(context, params)
-  , _bounds(bounds)
-  , _controller(controller) { }
+                      const Bounds& bounds);
 
   bool performAction(AppAction action) override;
 
 protected:
   void spawnEntities(int count) override;
 
+  void addEntity(std::shared_ptr<ObserverEntity> entity);
+
   const Bounds& _bounds;
-  ObserversController& _controller;
+  SimulationEvents& _events;
 };
 
 #endif /* ObserverSpawner_h */

@@ -22,10 +22,10 @@ ObserversController::ObserversController(const Params& params,
 , _bounds(bounds) { }
 
 void ObserversController::setup() {
-  _rateSpawner = std::make_shared<RateObserverSpawner>(_context,
-                                                       _params.rateSpawner,
-                                                       _bounds,
-                                                       *this);
+  _rateSpawner =
+  std::make_shared<RateObserverSpawner>(_context,
+                                        _params.rateSpawner,
+                                        _bounds);
   _sickness =
   std::make_shared<ObserverSickness>(_context,
                                      _params.sickness);
@@ -60,12 +60,4 @@ void ObserversController::update() {
 
   _rateSpawner->update();
   _context.state.observerCount = _entities.size();
-}
-
-bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
-  _entities.add(entity);
-  ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
-                      *entity);
-  _events.observerSpawned.notifyListeners(e);
-  return true;
 }

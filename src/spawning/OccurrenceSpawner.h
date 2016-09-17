@@ -110,7 +110,6 @@ private:
 
   const Params& _params;
   const Bounds& _bounds;
-  Context& _context;
   SimulationEvents& _events;
 
   friend class OccurrenceSequenceSpawnAction;

@@ -6,10 +6,18 @@
 //
 //
 
+#include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../core/Bounds.h"
 #include "../core/Context.h"
-#include "../core/ObserversController.h"
 #include "../spawning/ObserverSpawner.h"
+
+RateObserverSpawner::RateObserverSpawner(Context& context,
+                                         const Params& params,
+                                         const Bounds& bounds)
+: RateSpawner(context, params)
+, _bounds(bounds)
+, _events(AppSystem::get().simulation()->getEvents()) { }
 
 void RateObserverSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
@@ -19,8 +27,15 @@ void RateObserverSpawner::spawnEntities(int count) {
                                                      decay,
                                                      _context.state);
     observer->setVelocity(_params.initialVelocity.getValue());
-    _controller.tryAddEntity(observer);
+    addEntity(observer);
   }
+}
+
+void RateObserverSpawner::addEntity(std::shared_ptr<ObserverEntity> entity) {
+  _context.observers.add(entity);
+  ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
+                      *entity);
+  _events.observerSpawned.notifyListeners(e);
 }
 
 bool RateObserverSpawner::performAction(AppAction action) {

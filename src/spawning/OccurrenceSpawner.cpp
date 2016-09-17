@@ -23,7 +23,6 @@ OccurrenceSpawner::OccurrenceSpawner(Context& context,
                                      const Params& params,
                                      const Bounds& bounds)
 : RateSpawner(context, params)
-, _context(context)
 , _params(params)
 , _bounds(bounds)
 , _events(AppSystem::get().simulation()->getEvents()) { }
