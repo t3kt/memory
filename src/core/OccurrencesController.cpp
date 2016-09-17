@@ -23,10 +23,11 @@ OccurrencesController::OccurrencesController(const Params& params,
 , _observers(observers) { }
 
 void OccurrencesController::setup() {
-  _rateSpawner = std::make_shared<RateOccurrenceSpawner>(_context,
-                                                         _params.rateSpawner,
-                                                         _bounds,
-                                                         *this);
+  _rateSpawner =
+  std::make_shared<OccurrenceSpawner>(_context,
+                                      _params.rateSpawner,
+                                      _bounds,
+                                      *this);
 }
 
 void OccurrencesController::update() {

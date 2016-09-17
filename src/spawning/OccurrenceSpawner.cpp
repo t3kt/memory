@@ -22,7 +22,7 @@ static void logNotice(Logger::Statement statement) {
 class OccurrenceSequenceSpawnAction
 : public Action {
 public:
-  OccurrenceSequenceSpawnAction(OccurrenceSpawnerCore& spawner,
+  OccurrenceSequenceSpawnAction(OccurrenceSpawner& spawner,
                                 std::shared_ptr<OccurrenceEntity> prev,
                                 int count)
   : _spawner(spawner)
@@ -52,17 +52,17 @@ public:
       });
       return ActionResult::cancel();
     }
-    float interval = _spawner.params().sequenceInterval.getValue();
+    float interval = _spawner._params.sequenceInterval.getValue();
     return ActionResult::reschedule(context.time() + interval);
   }
 private:
-  OccurrenceSpawnerCore& _spawner;
+  OccurrenceSpawner& _spawner;
   std::shared_ptr<OccurrenceEntity> _previous;
   int _count;
 };
 
 std::shared_ptr<OccurrenceEntity>
-OccurrenceSpawnerCore::spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev) {
+OccurrenceSpawner::spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev) {
   float radius = _params.radius.getValue();
   ofVec3f pos = ofVec3f(_params.sequenceStepDistance.getValue(), 0, 0);
   pos.rotate(ofRandomf() * 360, ofRandomf() * 360, ofRandomf() * 360);
@@ -81,7 +81,7 @@ OccurrenceSpawnerCore::spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity>
   return entity;
 }
 
-bool OccurrenceSpawnerCore::spawnNewSequence() {
+bool OccurrenceSpawner::spawnNewSequence() {
   auto count = _params.sequenceCount.getValue();
   if (count <= 0) {
     return false;
@@ -93,15 +93,16 @@ bool OccurrenceSpawnerCore::spawnNewSequence() {
   if (!occurrence) {
     return false;
   }
+  auto action =
+  std::make_shared<OccurrenceSequenceSpawnAction>(*this,
+                                                  occurrence,
+                                                  count);
   AppSystem::get().actions()
-  .addDelayed(_params.sequenceInterval.getValue(),
-              std::make_shared<OccurrenceSequenceSpawnAction>(*this,
-                                                              occurrence,
-                                                              count));
+  .addDelayed(_params.sequenceInterval.getValue(), action);
   return true;
 }
 
-int OccurrenceSpawnerCore::spawnEntities() {
+int OccurrenceSpawner::spawnEntities() {
   if (_params.sequence.getValue()) {
     return spawnNewSequence() ? 1 : 0;
   }
@@ -147,9 +148,9 @@ int OccurrenceSpawnerCore::spawnEntities() {
 }
 
 std::shared_ptr<OccurrenceEntity>
-OccurrenceSpawnerCore::spawnEntity(float radius,
-                                   const ofVec3f &pos,
-                                   std::shared_ptr<OccurrenceEntity> prev) {
+OccurrenceSpawner::spawnEntity(float radius,
+                               const ofVec3f &pos,
+                               std::shared_ptr<OccurrenceEntity> prev) {
   float radiusFraction = ofMap(radius,
                                _params.radius.lowValue.get(),
                                _params.radius.highValue.get(),
@@ -169,13 +170,13 @@ OccurrenceSpawnerCore::spawnEntity(float radius,
   return nullptr;
 }
 
-void RateOccurrenceSpawner::spawnEntities(int count) {
+void OccurrenceSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
-    _core.spawnEntities();
+    spawnEntities();
   }
 }
 
-bool RateOccurrenceSpawner::performAction(AppAction action) {
+bool OccurrenceSpawner::performAction(AppAction action) {
   switch (action) {
     case AppAction::SPAWN_FEW_OCCURRENCES:
       spawnEntities(5);

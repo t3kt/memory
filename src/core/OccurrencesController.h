@@ -35,7 +35,7 @@ public:
     rateSpawner.rate.setValueAndDefault(0.5);
   }
 
-  RateOccurrenceSpawner::Params rateSpawner;
+  OccurrenceSpawner::Params rateSpawner;
 };
 
 class OccurrencesController
@@ -61,7 +61,7 @@ private:
   const Params& _params;
   const Bounds& _bounds;
   ObserversController& _observers;
-  std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
+  std::shared_ptr<OccurrenceSpawner> _rateSpawner;
 
   friend class IntervalOccurrenceSpawner;
   friend class DescendantOccurrenceSpawner;

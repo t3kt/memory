@@ -19,52 +19,53 @@ class Context;
 class OccurrenceEntity;
 class OccurrencesController;
 
-class OccurrencesSpawnerParamsMixin {
+class RateOccurrenceSpawnerParams
+: public RateSpawnerParams {
 public:
-  void mixInto(Params& params) {
-    params.add(radius
-               .setKey("radius")
-               .setName("Radius Range")
-               .setParamValuesAndDefaults(0, 80)
-               .setParamRanges(0, 400));
-    params.add(initialVelocity
-               .setKey("initialVelocity")
-               .setName("Initial Velocity")
-               .setParamValuesAndDefaults(0, 2)
-               .setParamRanges(0, 20));
-    params.add(chain
-               .setKey("chain")
-               .setName("Chain")
-               .setChanceValueAndDefault(0.2));
-    params.add(chainCount
-               .setKey("chainCount")
-               .setName("Chain Count")
-               .setParamRanges(0, 20)
-               .setParamValuesAndDefaults(1, 5));
-    params.add(chainDistance
-               .setKey("chainDistance")
-               .setName("Chain Distance")
-               .setParamRanges(0, 100)
-               .setParamValuesAndDefaults(8, 40));
-    params.add(sequence
-               .setKey("sequence")
-               .setName("Sequence")
-               .setChanceValueAndDefault(0.1));
-    params.add(sequenceCount
-               .setKey("sequenceCount")
-               .setName("Sequence Count")
-               .setParamRanges(2, 30)
-               .setParamValuesAndDefaults(2, 10));
-    params.add(sequenceInterval
-               .setKey("sequenceInterval")
-               .setName("Sequence Interval")
-               .setParamRanges(0, 60)
-               .setParamValuesAndDefaults(5, 20));
-    params.add(sequenceStepDistance
-               .setKey("sequenceStepDistance")
-               .setName("Seq Step Distance")
-               .setParamRanges(0, 100)
-               .setParamValuesAndDefaults(10, 50));
+  RateOccurrenceSpawnerParams() {
+    add(radius
+        .setKey("radius")
+        .setName("Radius Range")
+        .setParamValuesAndDefaults(0, 80)
+        .setParamRanges(0, 400));
+    add(initialVelocity
+        .setKey("initialVelocity")
+        .setName("Initial Velocity")
+        .setParamValuesAndDefaults(0, 2)
+        .setParamRanges(0, 20));
+    add(chain
+        .setKey("chain")
+        .setName("Chain")
+        .setChanceValueAndDefault(0.2));
+    add(chainCount
+        .setKey("chainCount")
+        .setName("Chain Count")
+        .setParamRanges(0, 20)
+        .setParamValuesAndDefaults(1, 5));
+    add(chainDistance
+        .setKey("chainDistance")
+        .setName("Chain Distance")
+        .setParamRanges(0, 100)
+        .setParamValuesAndDefaults(8, 40));
+    add(sequence
+        .setKey("sequence")
+        .setName("Sequence")
+        .setChanceValueAndDefault(0.1));
+    add(sequenceCount
+        .setKey("sequenceCount")
+        .setName("Sequence Count")
+        .setParamRanges(2, 30)
+        .setParamValuesAndDefaults(2, 10));
+    add(sequenceInterval
+        .setKey("sequenceInterval")
+        .setName("Sequence Interval")
+        .setParamRanges(0, 60)
+        .setParamValuesAndDefaults(5, 20));
+    add(sequenceStepDistance
+        .setKey("sequenceStepDistance")
+        .setName("Seq Step Distance")
+        .setParamRanges(0, 100)
+        .setParamValuesAndDefaults(10, 50));
   }
 
   RandomValueSupplier<float> radius;
@@ -78,27 +79,31 @@ public:
   RandomValueSupplier<float> sequenceStepDistance;
 };
 
-class OccurrenceSpawnerCore {
+class OccurrenceSpawner
+: public RateSpawner<RateOccurrenceSpawnerParams>
+, public AppActionHandler {
 public:
-  OccurrenceSpawnerCore(Context& context,
-                        const OccurrencesSpawnerParamsMixin& params,
-                        const Bounds& bounds,
-                        OccurrencesController& controller)
-  : _params(params)
+  OccurrenceSpawner(Context& context,
+                    const Params& params,
+                    const Bounds& bounds,
+                    OccurrencesController& controller)
+  : RateSpawner(context, params)
+  , _context(context)
+  , _params(params)
   , _bounds(bounds)
-  , _controller(controller)
-  , _context(context) { }
-
-  int spawnEntities();
+  , _controller(controller) { }
 
   std::shared_ptr<OccurrenceEntity>
   spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
 
-  const OccurrencesSpawnerParamsMixin& params() const {
-    return _params;
-  }
-  
+  bool performAction(AppAction action) override;
+
+protected:
+  void spawnEntities(int count) override;
+
 private:
+  int spawnEntities();
+
   std::shared_ptr<OccurrenceEntity>
   spawnEntity(float radius,
               const ofVec3f& pos,
@@ -106,41 +111,12 @@ private:
 
   bool spawnNewSequence();
 
-  const OccurrencesSpawnerParamsMixin& _params;
+  const Params& _params;
   const Bounds& _bounds;
   Context& _context;
   OccurrencesController& _controller;
-};
 
-class RateOccurrenceSpawnerParams
-: public RateSpawnerParams
-, public OccurrencesSpawnerParamsMixin {
-public:
-  RateOccurrenceSpawnerParams() {
-    OccurrencesSpawnerParamsMixin::mixInto(*this);
-  }
-};
-
-class RateOccurrenceSpawner
-: public RateSpawner<RateOccurrenceSpawnerParams>
-, public AppActionHandler {
-public:
-  RateOccurrenceSpawner(Context& context,
-                        const Params& params,
-                        const Bounds& bounds,
-                        OccurrencesController& controller)
-  : RateSpawner(context, params)
-  , _core(context,
-          params,
-          bounds,
-          controller) { }
-
-  bool performAction(AppAction action) override;
-
-protected:
-  void spawnEntities(int count) override;
-
-  OccurrenceSpawnerCore _core;
+  friend class OccurrenceSequenceSpawnAction;
 };
 
 #endif /* OccurrenceSpawner_h */
