@@ -39,7 +39,8 @@ public:
 };
 
 class OccurrencesController
-: public EntityController<OccurrenceEntity> {
+: public EntityController<OccurrenceEntity>
+, public AppActionHandler {
 public:
   using Params = OccurrenceParams;
 
@@ -53,6 +54,8 @@ public:
   void update() override;
 
   bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
+
+  bool performAction(AppAction action) override;
   
 private:
   const Params& _params;

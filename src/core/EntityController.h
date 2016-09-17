@@ -38,6 +38,17 @@ public:
 
   virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
 
+  void killEntities(int count) {
+    int i = 0;
+    for (auto& entity : _entities) {
+      if (i >= count) {
+        return;
+      }
+      entity->kill();
+      i++;
+    }
+  }
+
 protected:
   Context& _context;
   SimulationEvents& _events;

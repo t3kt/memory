@@ -134,7 +134,7 @@ public:
   , _core(params,
           bounds,
           controller) {
-//    registerAsActionHandler();
+    registerAsActionHandler();
   }
 
   bool performAction(AppAction action) override;

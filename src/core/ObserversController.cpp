@@ -36,10 +36,10 @@ void ObserversController::setup() {
 bool ObserversController::performAction(AppAction action) {
   switch (action) {
     case AppAction::KILL_FEW_OBSERVERS:
-      killObservers(5);
+      killEntities(5);
       break;
     case AppAction::KILL_MANY_OBSERVERS:
-      killObservers(100);
+      killEntities(100);
       break;
     default:
       return false;
@@ -85,15 +85,4 @@ bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
                       *entity);
   _events.observerSpawned.notifyListeners(e);
   return true;
-}
-
-void ObserversController::killObservers(int count) {
-  int i = 0;
-  for (auto& observer : _entities) {
-    if (i >= count) {
-      return;
-    }
-    observer->kill();
-    i++;
-  }
 }

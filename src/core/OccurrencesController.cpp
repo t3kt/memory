@@ -27,6 +27,7 @@ void OccurrencesController::setup() {
                                                          _params.rateSpawner,
                                                          _bounds,
                                                          *this);
+  registerAsActionHandler();
 }
 
 void OccurrencesController::update() {
@@ -75,4 +76,18 @@ bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entit
     _events.occurrenceSpawnFailed.notifyListeners(e);
     return false;
   }
+}
+
+bool OccurrencesController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::KILL_FEW_OCCURRENCES:
+      killEntities(5);
+      break;
+    case AppAction::KILL_MANY_OCCURRENCES:
+      killEntities(100);
+      break;
+    default:
+      return false;
+  }
+  return true;
 }
