@@ -29,9 +29,7 @@ void AnimationsController::setup() {
 }
 
 void AnimationsController::addAnimation(std::shared_ptr<AnimationObject> animation) {
-  AnimationEventArgs e(SimulationEventType::ANIMATION_SPAWNED,
-                       *animation);
-  _events.animationSpawned.notifyListeners(e);
+  _events.spawned(*animation);
   
   _animations.add(animation);
 }

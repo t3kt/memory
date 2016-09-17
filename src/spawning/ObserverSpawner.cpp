@@ -33,9 +33,7 @@ void RateObserverSpawner::spawnEntities(int count) {
 
 void RateObserverSpawner::addEntity(std::shared_ptr<ObserverEntity> entity) {
   _context.observers.add(entity);
-  ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,
-                      *entity);
-  _events.observerSpawned.notifyListeners(e);
+  _events.spawned(*entity);
 }
 
 bool RateObserverSpawner::performAction(AppAction action) {

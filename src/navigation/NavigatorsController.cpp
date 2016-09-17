@@ -170,7 +170,7 @@ bool NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   _navigators.add(navigator);
   NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
                        *navigator);
-  _events.navigatorSpawned.notifyListenersUntilHandled(e);
+  _events.spawned(*navigator);
   return true;
 }
 

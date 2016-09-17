@@ -56,8 +56,7 @@ public:
     _entities.processAndCullObjects([&](EntityPtr& entity) {
       entity->update(_context.state);
       if (!entity->alive()) {
-        EntityEventArgs e(diedEventType<E>(), *entity);
-        _events.died<E>().notifyListeners(e);
+        _events.died<E>(*entity);
       }
     });
   }

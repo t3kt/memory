@@ -191,9 +191,7 @@ bool OccurrenceSpawner::tryAddEntity(std::shared_ptr<OccurrenceEntity> occurrenc
 
   if (connected) {
     _context.occurrences.add(occurrence);
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
-                          *occurrence);
-    _events.occurrenceSpawned.notifyListeners(e);
+    _events.spawned(*occurrence);
     return true;
   } else {
     OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,

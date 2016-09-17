@@ -45,6 +45,11 @@ constexpr SimulationEventType spawnedEventType<OccurrenceEntity>() {
   return SimulationEventType::OCCURRENCE_SPAWNED;
 }
 
+template<>
+constexpr SimulationEventType spawnedEventType<NavigatorEntity>() {
+  return SimulationEventType::NAVIGATOR_SPAWNED;
+}
+
 template<typename T>
 constexpr SimulationEventType diedEventType();
 
@@ -61,6 +66,11 @@ constexpr SimulationEventType diedEventType<ObserverEntity>() {
 template<>
 constexpr SimulationEventType diedEventType<OccurrenceEntity>() {
   return SimulationEventType::OCCURRENCE_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<NavigatorEntity>() {
+  return SimulationEventType::NAVIGATOR_DIED;
 }
 
 extern EnumTypeInfo<SimulationEventType> SimulationEventTypeType;
@@ -131,7 +141,19 @@ public:
   SimulationEvent<T>& spawned();
 
   template<typename T>
+  void spawned(T& entity) {
+    SimulationEventArgs<T> e(spawnedEventType<T>(), entity);
+    spawned<T>().notifyListeners(e);
+  }
+
+  template<typename T>
   SimulationEvent<T>& died();
+
+  template<typename T>
+  void died(T& entity) {
+    SimulationEventArgs<T> e(diedEventType<T>(), entity);
+    died<T>().notifyListeners(e);
+  }
 };
 
 #endif /* SimulationEvents_h */
