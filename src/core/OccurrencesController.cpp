@@ -59,12 +59,6 @@ void OccurrencesController::update() {
   _context.state.occurrenceCount = _entities.size();
 }
 
-void OccurrencesController::spawnOccurrences(int count) {
-  if (_rateSpawner->spawnNow(count)) {
-    return;
-  }
-}
-
 bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) {
 
   bool connected = _observers.registerOccurrence(entity);

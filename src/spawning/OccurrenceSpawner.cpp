@@ -181,7 +181,6 @@ void RateOccurrenceSpawner::spawnEntities(int count) {
 }
 
 bool RateOccurrenceSpawner::performAction(AppAction action) {
-  int count;
   switch (action) {
     case AppAction::SPAWN_FEW_OCCURRENCES:
       spawnEntities(5);

@@ -52,8 +52,6 @@ public:
   void setup() override;
   void update() override;
 
-  void spawnOccurrences(int count);
-
   bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
   
 private:

@@ -22,3 +22,19 @@ void RateObserverSpawner::spawnEntities(int count) {
     _controller.tryAddEntity(observer);
   }
 }
+
+bool RateObserverSpawner::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SPAWN_FEW_OBSERVERS:
+      spawnEntities(5);
+      return true;
+    case AppAction::SPAWN_MANY_OBSERVERS:
+      spawnEntities(100);
+      return true;
+    case AppAction::SPAWN_TONS_OF_OBSERVERS:
+      spawnEntities(4000);
+      return true;
+    default:
+      return false;
+  }
+}

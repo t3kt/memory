@@ -35,15 +35,6 @@ void ObserversController::setup() {
 
 bool ObserversController::performAction(AppAction action) {
   switch (action) {
-    case AppAction::SPAWN_FEW_OBSERVERS:
-      spawnObservers(5);
-      break;
-    case AppAction::SPAWN_MANY_OBSERVERS:
-      spawnObservers(100);
-      break;
-    case AppAction::SPAWN_TONS_OF_OBSERVERS:
-      spawnObservers(4000);
-      break;
     case AppAction::KILL_FEW_OBSERVERS:
       killObservers(5);
       break;
@@ -86,12 +77,6 @@ bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> o
     
   });
   return connected;
-}
-
-void ObserversController::spawnObservers(int count) {
-  if (_rateSpawner->spawnNow(count)) {
-    return;
-  }
 }
 
 bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {

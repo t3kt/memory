@@ -9,9 +9,10 @@
 #ifndef ObserverSpawner_h
 #define ObserverSpawner_h
 
+#include "../app/AppActions.h"
 #include "../core/Params.h"
-#include "../spawning/Spawner.h"
 #include "../core/ValueSupplier.h"
+#include "../spawning/Spawner.h"
 
 class Bounds;
 class Context;
@@ -46,7 +47,8 @@ public:
 };
 
 class RateObserverSpawner
-: public RateSpawner<RateObserverSpawnerParams> {
+: public RateSpawner<RateObserverSpawnerParams>
+, public AppActionHandler {
 public:
   RateObserverSpawner(Context& context,
                       const Params& params,
@@ -54,7 +56,11 @@ public:
                       ObserversController& controller)
   : RateSpawner(context, params)
   , _bounds(bounds)
-  , _controller(controller) { }
+  , _controller(controller) {
+    registerAsActionHandler();
+  }
+
+  bool performAction(AppAction action) override;
 
 protected:
   void spawnEntities(int count) override;

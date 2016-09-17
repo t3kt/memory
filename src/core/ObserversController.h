@@ -57,8 +57,6 @@ public:
   
   bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
-  void spawnObservers(int count);
-
   void killObservers(int count);
 
   bool performAction(AppAction action) override;
