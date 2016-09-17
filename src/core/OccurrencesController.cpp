@@ -33,7 +33,6 @@ void OccurrencesController::update() {
   _entities.processAndCullObjects([&](std::shared_ptr<OccurrenceEntity> & occurrence) {
     occurrence->update();
     if (!occurrence->alive()) {
-      occurrence->detachConnections();
       OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
                             *occurrence);
       _events.occurrenceDied.notifyListeners(e);

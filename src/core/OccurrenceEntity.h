@@ -56,7 +56,7 @@ public:
     return !_connectedObservers.empty();
   }
 
-  void detachConnections();
+  void detachConnections() override;
   
   float getAmountOfObservation() const { return _amountOfObservation; }
 

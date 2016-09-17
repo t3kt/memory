@@ -20,6 +20,11 @@ WorldObject::WorldObject()
 , _alive(true)
 , _alpha(1) { }
 
+void WorldObject::kill() {
+  _alive = false;
+  this->detachConnections();
+}
+
 std::string WorldObject::typeName() const {
   return "WorldObject";
 }

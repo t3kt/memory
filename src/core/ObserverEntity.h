@@ -56,7 +56,7 @@ public:
   float getDecayRate() const { return _decayRate; }
   void setDecayRate(float decayRate) { _decayRate = decayRate; }
 
-  void detachConnections();
+  void detachConnections() override;
 
   void update(const State& state);
 

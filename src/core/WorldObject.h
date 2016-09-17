@@ -40,7 +40,7 @@ public:
 
   bool alive() const { return _alive; }
 
-  void kill() { _alive = false; }
+  void kill();
   
   virtual bool visible() const { return this->alive() && _alpha > 0; }
 
@@ -66,6 +66,7 @@ public:
   virtual const ofVec3f& position() const = 0;
 
   virtual bool hasConnections() const { return false; }
+  virtual void detachConnections() { }
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

@@ -50,7 +50,6 @@ void ObserversController::update() {
   _entities.processAndCullObjects([&](std::shared_ptr<ObserverEntity>& observer) {
     observer->update(_context.state);
     if (!observer->alive()) {
-      observer->detachConnections();
       ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
                           *observer);
       _events.observerDied.notifyListeners(e);
