@@ -18,15 +18,3 @@ void State::outputFields(std::ostream &os) const {
       << ", occurrenceCount: " << occurrenceCount
       << ", animationCount: " << animationCount;
 }
-
-void ChangeFlag::outputFields(std::ostream &os) const {
-  os << _name << "=" << std::boolalpha << _status;
-}
-
-void ChangeFlags::outputFields(std::ostream& os) const {
-  os << boundsChanged;
-}
-
-void ChangeFlags::clear() {
-  boundsChanged.reset();
-}

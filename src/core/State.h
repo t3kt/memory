@@ -29,38 +29,4 @@ protected:
   void outputFields(std::ostream& os) const override;
 };
 
-class ChangeFlag : public Outputable {
-public:
-  ChangeFlag(std::string name)
-  : _name(name)
-  , _status(false) {}
-
-  const std::string& name() const { return _name; }
-
-  void set() { _status = true; }
-  void reset() { _status = false; }
-
-  operator bool() const { return _status; }
-
-  std::string typeName() const override { return "ChangeFlag"; }
-protected:
-  void outputFields(std::ostream& os) const override;
-private:
-  const std::string _name;
-  bool _status;
-};
-
-class ChangeFlags : public Outputable {
-public:
-  ChangeFlags();
-
-  void clear();
-
-  ChangeFlag boundsChanged;
-
-  std::string typeName() const override { return "ChangeFlags"; }
-protected:
-  void outputFields(std::ostream& os) const override;
-};
-
 #endif /* defined(__behavior__State__) */
