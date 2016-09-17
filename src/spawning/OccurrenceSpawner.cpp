@@ -179,3 +179,20 @@ void RateOccurrenceSpawner::spawnEntities(int count) {
     _core.spawnEntities(_context);
   }
 }
+
+bool RateOccurrenceSpawner::performAction(AppAction action) {
+  int count;
+  switch (action) {
+    case AppAction::SPAWN_FEW_OCCURRENCES:
+      spawnEntities(5);
+      return true;
+    case AppAction::SPAWN_MANY_OCCURRENCES:
+      spawnEntities(100);
+      return true;
+    case AppAction::SPAWN_TONS_OF_OCCURRENCES:
+      spawnEntities(4000);
+      return true;
+    default:
+      return false;
+  }
+}

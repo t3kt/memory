@@ -9,9 +9,10 @@
 #ifndef OccurrenceSpawner_h
 #define OccurrenceSpawner_h
 
+#include "../app/AppActions.h"
 #include "../core/Params.h"
-#include "../spawning/Spawner.h"
 #include "../core/ValueSupplier.h"
+#include "../spawning/Spawner.h"
 
 class Bounds;
 class Context;
@@ -122,7 +123,8 @@ public:
 };
 
 class RateOccurrenceSpawner
-: public RateSpawner<RateOccurrenceSpawnerParams> {
+: public RateSpawner<RateOccurrenceSpawnerParams>
+, public AppActionHandler {
 public:
   RateOccurrenceSpawner(Context& context,
                         const Params& params,
@@ -131,7 +133,11 @@ public:
   : RateSpawner(context, params)
   , _core(params,
           bounds,
-          controller) { }
+          controller) {
+//    registerAsActionHandler();
+  }
+
+  bool performAction(AppAction action) override;
 
 protected:
   void spawnEntities(int count) override;

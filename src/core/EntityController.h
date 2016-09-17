@@ -10,15 +10,13 @@
 #define EntityController_h
 
 #include <memory>
-#include "../app/AppActions.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 
 class Context;
 class SimulationEvents;
 
-class AbstractEntityController
-: public AppActionHandler {
+class AbstractEntityController {
 public:
   virtual void setup() = 0;
   virtual void update() = 0;

@@ -42,7 +42,8 @@ public:
 };
 
 class ObserversController
-: public EntityController<ObserverEntity> {
+: public EntityController<ObserverEntity>
+, public AppActionHandler {
 public:
   using Params = ObserverParams;
   

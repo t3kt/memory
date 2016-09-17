@@ -6,7 +6,6 @@
 //
 //
 
-#include "../app/AppSystem.h"
 #include "../core/OccurrencesController.h"
 #include "../app/SimulationApp.h"
 #include "../core/SimulationEvents.h"
@@ -28,26 +27,6 @@ void OccurrencesController::setup() {
                                                          _params.rateSpawner,
                                                          _bounds,
                                                          *this);
-
-  registerAsActionHandler();
-}
-
-bool OccurrencesController::performAction(AppAction action) {
-  const auto& state = AppSystem::get().simulation()->state();
-  switch (action) {
-    case AppAction::SPAWN_FEW_OCCURRENCES:
-      spawnOccurrences(5);
-      break;
-    case AppAction::SPAWN_MANY_OCCURRENCES:
-      spawnOccurrences(100);
-      break;
-    case AppAction::SPAWN_TONS_OF_OCCURRENCES:
-      spawnOccurrences(4000);
-      break;
-    default:
-      return false;
-  }
-  return true;
 }
 
 void OccurrencesController::update() {

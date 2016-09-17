@@ -54,8 +54,6 @@ public:
 
   void spawnOccurrences(int count);
 
-  bool performAction(AppAction action) override;
-
   bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
   
 private:
