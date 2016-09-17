@@ -60,7 +60,8 @@ private:
     Entry withTime(float t) { return Entry(action, t); }
   };
 public:
-  ActionsController(Context& context);
+  ActionsController(Context& context)
+  : _context(context) { }
 
   void addAt(float time, ActionPtr action);
   void addAt(float time, ActionFn action);

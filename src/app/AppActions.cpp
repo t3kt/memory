@@ -37,7 +37,7 @@ std::ostream& operator<<(std::ostream& os, const AppAction& action) {
   return os << AppActionType.toString(action);
 }
 
-void AppActionHandler::registerAsActionHandler() {
+AppActionHandler::AppActionHandler() {
   AppSystem::get().appActionTriggered += [&](AppActionEventArgs& event) {
     if (performAction(event.value())) {
       event.markHandled();

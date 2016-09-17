@@ -29,8 +29,6 @@ void PhysicsController::setup() {
   _occurrenceAnchorPointAttraction = std::make_shared<AnchorPointBehavior<OccurrenceEntity>>(_params.occurrenceAnchorPointAttraction);
   _observerDamping = std::make_shared<DampingBehavior<ObserverEntity>>(_params.observerDamping);
   _occurrenceDamping = std::make_shared<DampingBehavior<OccurrenceEntity>>(_params.occurrenceDamping);
-
-  registerAsActionHandler();
 }
 
 bool PhysicsController::performAction(AppAction action) {

@@ -49,10 +49,9 @@ extern EnumTypeInfo<AppAction> AppActionType;
 // A component which can handle AppActions
 class AppActionHandler {
 public:
-  virtual bool performAction(AppAction action) = 0;
+  AppActionHandler();
 
-protected:
-  void registerAsActionHandler();
+  virtual bool performAction(AppAction action) = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action);

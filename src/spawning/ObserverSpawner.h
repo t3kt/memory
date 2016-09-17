@@ -56,9 +56,7 @@ public:
                       ObserversController& controller)
   : RateSpawner(context, params)
   , _bounds(bounds)
-  , _controller(controller) {
-    registerAsActionHandler();
-  }
+  , _controller(controller) { }
 
   bool performAction(AppAction action) override;
 

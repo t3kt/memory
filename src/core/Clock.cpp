@@ -8,18 +8,11 @@
 
 const float maxTimeStep = 1/30.0f;
 
-Clock::Clock(Clock::Params& params, State& state)
-: _params(params)
-, _state(state) {
-}
-
 void Clock::setup() {
   _lastTime = ofGetElapsedTimef();
   _state.running = true;
   _state.time = 0;
   _state.timeDelta = 0;
-
-  registerAsActionHandler();
 }
 
 bool Clock::performAction(AppAction action) {

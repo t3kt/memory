@@ -27,7 +27,6 @@ void OccurrencesController::setup() {
                                                          _params.rateSpawner,
                                                          _bounds,
                                                          *this);
-  registerAsActionHandler();
 }
 
 void OccurrencesController::update() {

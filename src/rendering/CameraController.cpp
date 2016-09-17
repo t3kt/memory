@@ -9,10 +9,6 @@
 #include <ofMain.h>
 #include "../rendering/CameraController.h"
 
-void CameraController::setup() {
-  registerAsActionHandler();
-}
-
 void CameraController::resetCamera() {
   _cam.reset();
 }

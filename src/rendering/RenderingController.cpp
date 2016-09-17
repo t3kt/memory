@@ -24,7 +24,6 @@ void RenderingController::setup() {
   ofEnableAlphaBlending();
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
-  _camera->setup();
   const auto& appParams = _context.appParams;
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
@@ -71,7 +70,6 @@ void RenderingController::setup() {
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
-  registerAsActionHandler();
 }
 
 void RenderingController::updateResolution() {

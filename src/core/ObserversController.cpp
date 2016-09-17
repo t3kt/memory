@@ -29,8 +29,6 @@ void ObserversController::setup() {
   _sickness =
   std::make_shared<ObserverSickness>(_context,
                                      _params.sickness);
-
-  registerAsActionHandler();
 }
 
 bool ObserversController::performAction(AppAction action) {

@@ -59,11 +59,6 @@ private:
   std::function<bool()> _action;
 };
 
-ActionsController::ActionsController(Context& context)
-: _context(context) {
-  registerAsActionHandler();
-}
-
 void ActionsController::logAction(std::string message) {
   AppSystem::get().log().app().logNotice([&](ofLog& log) {
     log << "Action at [" << _context.time() << "]: " << message;

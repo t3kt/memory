@@ -65,9 +65,7 @@ NavigatorsController::NavigatorsController(Context& context,
 : _context(context)
 , _params(params)
 , _events(events)
-, _navigators(context.navigators) {
-  registerAsActionHandler();
-}
+, _navigators(context.navigators) { }
 
 void NavigatorsController::setup() {
   _observerNavSpawner =

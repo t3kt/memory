@@ -133,9 +133,7 @@ public:
   : RateSpawner(context, params)
   , _core(params,
           bounds,
-          controller) {
-    registerAsActionHandler();
-  }
+          controller) { }
 
   bool performAction(AppAction action) override;
 

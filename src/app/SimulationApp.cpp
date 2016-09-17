@@ -36,8 +36,6 @@ void SimulationApp::setup() {
     _renderingController->updateResolution();
   };
 
-  registerAsActionHandler();
-
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
                                         _appParams.core.bounds,

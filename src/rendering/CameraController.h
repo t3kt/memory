@@ -42,7 +42,6 @@ public:
   : _params(params)
   , _context(context) {}
 
-  void setup();
   void update();
 
   void applyTransform();

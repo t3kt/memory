@@ -40,7 +40,9 @@ class Clock
 public:
   using Params = ClockParams;
 
-  Clock(Params& params, State& state);
+  Clock(Params& params, State& state)
+  : _params(params)
+  , _state(state) { }
 
   void setup();
 
