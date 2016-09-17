@@ -80,36 +80,35 @@ public:
 
 class OccurrenceSpawnerCore {
 public:
-  OccurrenceSpawnerCore(const OccurrencesSpawnerParamsMixin& params,
+  OccurrenceSpawnerCore(Context& context,
+                        const OccurrencesSpawnerParamsMixin& params,
                         const Bounds& bounds,
                         OccurrencesController& controller)
   : _params(params)
   , _bounds(bounds)
-  , _controller(controller) { }
+  , _controller(controller)
+  , _context(context) { }
 
-  int spawnEntities(Context& context);
+  int spawnEntities();
 
   std::shared_ptr<OccurrenceEntity>
-  spawnSequenceStepEntity(Context& context,
-                          std::shared_ptr<OccurrenceEntity> prev);
+  spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
 
   const OccurrencesSpawnerParamsMixin& params() const {
     return _params;
   }
   
 private:
-  void updateState(Context& context);
-
   std::shared_ptr<OccurrenceEntity>
-  spawnEntity(Context& context,
-              float radius,
+  spawnEntity(float radius,
               const ofVec3f& pos,
               std::shared_ptr<OccurrenceEntity> prev);
 
-  bool spawnNewSequence(Context& context);
+  bool spawnNewSequence();
 
   const OccurrencesSpawnerParamsMixin& _params;
   const Bounds& _bounds;
+  Context& _context;
   OccurrencesController& _controller;
 };
 
@@ -131,7 +130,8 @@ public:
                         const Bounds& bounds,
                         OccurrencesController& controller)
   : RateSpawner(context, params)
-  , _core(params,
+  , _core(context,
+          params,
           bounds,
           controller) { }
 

@@ -37,7 +37,7 @@ public:
       });
       return ActionResult::cancel();
     }
-    auto next = _spawner.spawnSequenceStepEntity(context, _previous);
+    auto next = _spawner.spawnSequenceStepEntity(_previous);
     if (!next) {
       logNotice([&](ofLog& log) {
         log << "Canceling spawn sequence spawning next entity failed. previous: " << *_previous;
@@ -62,14 +62,13 @@ private:
 };
 
 std::shared_ptr<OccurrenceEntity>
-OccurrenceSpawnerCore::spawnSequenceStepEntity(Context &context,
-                                               std::shared_ptr<OccurrenceEntity> prev) {
+OccurrenceSpawnerCore::spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev) {
   float radius = _params.radius.getValue();
   ofVec3f pos = ofVec3f(_params.sequenceStepDistance.getValue(), 0, 0);
   pos.rotate(ofRandomf() * 360, ofRandomf() * 360, ofRandomf() * 360);
   pos += prev->position();
   pos = _bounds.clampPoint(pos);
-  auto entity = spawnEntity(context, radius, pos, prev);
+  auto entity = spawnEntity(radius, pos, prev);
   if (entity) {
     logNotice([&](ofLog& log) {
       log << "Spawned sequence step: " << *entity;
@@ -82,14 +81,13 @@ OccurrenceSpawnerCore::spawnSequenceStepEntity(Context &context,
   return entity;
 }
 
-bool OccurrenceSpawnerCore::spawnNewSequence(Context& context) {
+bool OccurrenceSpawnerCore::spawnNewSequence() {
   auto count = _params.sequenceCount.getValue();
   if (count <= 0) {
     return false;
   }
   auto occurrence =
-  spawnEntity(context,
-              _params.radius.getValue(),
+  spawnEntity(_params.radius.getValue(),
               _bounds.randomPoint(),
               nullptr);
   if (!occurrence) {
@@ -103,16 +101,15 @@ bool OccurrenceSpawnerCore::spawnNewSequence(Context& context) {
   return true;
 }
 
-int OccurrenceSpawnerCore::spawnEntities(Context& context) {
+int OccurrenceSpawnerCore::spawnEntities() {
   if (_params.sequence.getValue()) {
-    return spawnNewSequence(context) ? 1 : 0;
+    return spawnNewSequence() ? 1 : 0;
   }
   float startRadius = _params.radius.getValue();
   ofVec3f startPos = _bounds.randomPoint();
   int chainCount = _params.chainCount.getValue();
   if (!_params.chain.getValue() || chainCount <= 1) {
-    auto occurrence = spawnEntity(context,
-                                  startRadius,
+    auto occurrence = spawnEntity(startRadius,
                                   startPos,
                                   nullptr);
     return occurrence ? 1 : 0;
@@ -134,8 +131,7 @@ int OccurrenceSpawnerCore::spawnEntities(Context& context) {
                          endRadius,
                          fraction);
     auto pos = startPos.getInterpolated(endPos, fraction);
-    auto occurrence = spawnEntity(context,
-                                  radius,
+    auto occurrence = spawnEntity(radius,
                                   pos,
                                   prev);
     if (!occurrence) {
@@ -151,8 +147,7 @@ int OccurrenceSpawnerCore::spawnEntities(Context& context) {
 }
 
 std::shared_ptr<OccurrenceEntity>
-OccurrenceSpawnerCore::spawnEntity(Context &context,
-                                   float radius,
+OccurrenceSpawnerCore::spawnEntity(float radius,
                                    const ofVec3f &pos,
                                    std::shared_ptr<OccurrenceEntity> prev) {
   float radiusFraction = ofMap(radius,
@@ -162,7 +157,7 @@ OccurrenceSpawnerCore::spawnEntity(Context &context,
   auto occurrence = std::make_shared<OccurrenceEntity>(pos,
                                                        radius,
                                                        radiusFraction,
-                                                       context.state);
+                                                       _context.state);
   if (_controller.tryAddEntity(occurrence)) {
     if (prev) {
       prev->addOccurrence(occurrence);
@@ -176,7 +171,7 @@ OccurrenceSpawnerCore::spawnEntity(Context &context,
 
 void RateOccurrenceSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
-    _core.spawnEntities(_context);
+    _core.spawnEntities();
   }
 }
 
