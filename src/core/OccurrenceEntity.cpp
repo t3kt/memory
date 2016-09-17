@@ -49,6 +49,25 @@ void OccurrenceEntity::detachConnections() {
   }
 }
 
+void OccurrenceEntity::update() {
+  if (!hasConnectedObservers()) {
+    kill();
+    setAmountOfObservation(0);
+  } else {
+    float amount = 0;
+    float radius = 0;
+    for (const auto& observer : getConnectedObservers()) {
+      amount += observer.second->getRemainingLifetimeFraction();
+      float dist = position().distance(observer.second->position());
+      if (dist > radius) {
+        radius = dist;
+      }
+    }
+    setAmountOfObservation(amount);
+    setActualRadius(radius);
+  }
+}
+
 void OccurrenceEntity::addSerializedFields(Json::object &obj,
                                            const SerializationContext &context) const {
   ParticleObject::addSerializedFields(obj, context);

@@ -31,25 +31,12 @@ void OccurrencesController::setup() {
 
 void OccurrencesController::update() {
   _entities.processAndCullObjects([&](std::shared_ptr<OccurrenceEntity> & occurrence) {
-    if (!occurrence->hasConnectedObservers()) {
-      occurrence->kill();
-      occurrence->setAmountOfObservation(0);
+    occurrence->update();
+    if (!occurrence->alive()) {
       occurrence->detachConnections();
       OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
                             *occurrence);
       _events.occurrenceDied.notifyListeners(e);
-    } else {
-      float amount = 0;
-      float radius = 0;
-      for (const auto& observer : occurrence->getConnectedObservers()) {
-        amount += observer.second->getRemainingLifetimeFraction();
-        float dist = occurrence->position().distance(observer.second->position());
-        if (dist > radius) {
-          radius = dist;
-        }
-      }
-      occurrence->setAmountOfObservation(amount);
-      occurrence->setActualRadius(radius);
     }
   });
 

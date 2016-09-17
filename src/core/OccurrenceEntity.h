@@ -84,6 +84,8 @@ public:
     return _connectedOccurrences;
   }
 
+  void update();
+
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
   virtual void deserializeFields(const Json& obj,
