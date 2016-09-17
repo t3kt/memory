@@ -7,6 +7,7 @@
 //
 
 #include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
 #include "../navigation/NavigatorState.h"
 
 void PointNavState::outputFields(std::ostream& os) const {
@@ -19,7 +20,8 @@ void PointNavState::fillInfo(Info &info,
 }
 
 NavigatorStatePtr PointNavState::nextState(Context &context) {
-  auto point = context.appParams.core.bounds.randomPoint();
+  const auto& bounds = AppSystem::get().params()->core.bounds;
+  auto point = bounds.randomPoint();
   return std::make_shared<PointNavState>(point);
 }
 

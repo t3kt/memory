@@ -108,22 +108,9 @@ public:
     }
   }
 
-  void performAction(PtrRefAction<T> action) {
+  template<typename A>
+  void performAction(A action) {
     for (EntityPtr& entity : _objects) {
-      action(entity);
-    }
-  }
-
-  template<typename Base>
-  void performTypedAction(PtrAction<Base> action) {
-    for (EntityPtr& entity : _objects) {
-      action(entity);
-    }
-  }
-
-  template<typename Base>
-  void performTypedAction(PtrAction<Base> action) const {
-    for (const EntityPtr& entity : _objects) {
       action(entity);
     }
   }

@@ -30,8 +30,7 @@ public:
   static AppSystem& get();
 
   AppSystem()
-  : _context(_appParams)
-  , _log(_appParams.debug.logging) { }
+  : _log(_appParams.debug.logging) { }
 
   void main();
 

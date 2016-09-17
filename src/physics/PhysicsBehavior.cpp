@@ -25,8 +25,8 @@ void BoundsBehavior::applyToWorld(Context& context) {
   PtrAction<ParticleObject> action = [&](std::shared_ptr<ParticleObject> entity) {
     applyToEntity(context, entity.get());
   };
-  context.observers.performTypedAction(action);
-  context.occurrences.performTypedAction(action);
+  context.observers.performAction(action);
+  context.occurrences.performAction(action);
 }
 
 void BoundsBehavior::applyToEntity(Context& context,

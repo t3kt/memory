@@ -18,7 +18,6 @@
 #include "../core/State.h"
 
 class AnimationObject;
-class MemoryAppParameters;
 class NavigatorEntity;
 class ObserverEntity;
 class OccurrenceEntity;
@@ -30,9 +29,6 @@ class Context
 , public JsonWritable
 , public JsonReadable {
 public:
-  Context(MemoryAppParameters& appPars)
-  : appParams(appPars) { }
-
   float time() const { return state.time; }
 
   template<typename E>
@@ -41,22 +37,9 @@ public:
   template<typename E>
   const ObjectManager<E>& getEntities() const;
 
-  template<typename E, typename T>
-  void performEntityAction(PtrRefAction<T> action) {
-    getEntities<E>().performTypedAction(action);
-  }
-
-  template<typename E, typename T>
-  void performTypedActionOnEntities(PtrRefAction<T> action) {
-    getEntities<E>().performTypedAction(action);
-  }
-
-  template<typename T>
-  void performTypedActionOnAllEntities(PtrRefAction<T> action) {
-    performTypedActionOnEntities<AnimationObject>(action);
-    performTypedActionOnEntities<NavigatorEntity>(action);
-    performTypedActionOnEntities<ObserverEntity>(action);
-    performTypedActionOnEntities<OccurrenceEntity>(action);
+  template<typename E, typename A>
+  void performEntityAction(A action) {
+    getEntities<E>().performAction(action);
   }
 
   void performActionOnParticleEntityPtrs(std::function<void(std::shared_ptr<ParticleObject>)> action);
@@ -64,7 +47,6 @@ public:
   Json to_json() const override;
   void read_json(const Json& val) override;
 
-  MemoryAppParameters& appParams;
   State state;
   ObjectManager<AnimationObject> animations;
   ObjectManager<NavigatorEntity> navigators;
