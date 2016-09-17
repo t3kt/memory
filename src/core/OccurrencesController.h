@@ -53,8 +53,6 @@ public:
   void setup() override;
   void update() override;
 
-  bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
-
   bool performAction(AppAction action) override;
   
 private:

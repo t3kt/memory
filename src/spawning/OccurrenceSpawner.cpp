@@ -8,16 +8,25 @@
 
 #include <ofMath.h>
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../core/Actions.h"
 #include "../core/Bounds.h"
 #include "../core/Context.h"
 #include "../core/Logging.h"
-#include "../core/OccurrencesController.h"
 #include "../spawning/OccurrenceSpawner.h"
 
 static void logNotice(Logger::Statement statement) {
   AppSystem::get().log().occurrence().logNotice(statement);
 }
+
+OccurrenceSpawner::OccurrenceSpawner(Context& context,
+                                     const Params& params,
+                                     const Bounds& bounds)
+: RateSpawner(context, params)
+, _context(context)
+, _params(params)
+, _bounds(bounds)
+, _events(AppSystem::get().simulation()->getEvents()) { }
 
 class OccurrenceSequenceSpawnAction
 : public Action {
@@ -102,7 +111,7 @@ bool OccurrenceSpawner::spawnNewSequence() {
   return true;
 }
 
-int OccurrenceSpawner::spawnEntities() {
+int OccurrenceSpawner::spawnEntityGroup() {
   if (_params.sequence.getValue()) {
     return spawnNewSequence() ? 1 : 0;
   }
@@ -159,7 +168,7 @@ OccurrenceSpawner::spawnEntity(float radius,
                                                        radius,
                                                        radiusFraction,
                                                        _context.state);
-  if (_controller.tryAddEntity(occurrence)) {
+  if (tryAddEntity(occurrence)) {
     if (prev) {
       prev->addOccurrence(occurrence);
       occurrence->addOccurrence(prev);
@@ -170,9 +179,34 @@ OccurrenceSpawner::spawnEntity(float radius,
   return nullptr;
 }
 
+bool OccurrenceSpawner::tryAddEntity(std::shared_ptr<OccurrenceEntity> occurrence) {
+  bool connected = false;
+  _context.observers.performAction([&](std::shared_ptr<ObserverEntity>& observer) {
+    float dist = occurrence->position().distance(observer->position());
+    if (dist <= occurrence->originalRadius()) {
+      occurrence->addObserver(observer);
+      observer->addOccurrence(occurrence);
+      connected = true;
+    }
+  });
+
+  if (connected) {
+    _context.occurrences.add(occurrence);
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
+                          *occurrence);
+    _events.occurrenceSpawned.notifyListeners(e);
+    return true;
+  } else {
+    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
+                          *occurrence);
+    _events.occurrenceSpawnFailed.notifyListeners(e);
+    return false;
+  }
+}
+
 void OccurrenceSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
-    spawnEntities();
+    spawnEntityGroup();
   }
 }
 

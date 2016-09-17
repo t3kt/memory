@@ -36,8 +36,6 @@ public:
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }
 
-  virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
-
   void killEntities(int count) {
     int i = 0;
     for (auto& entity : _entities) {

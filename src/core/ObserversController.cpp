@@ -62,21 +62,6 @@ void ObserversController::update() {
   _context.state.observerCount = _entities.size();
 }
 
-bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-  bool connected = false;
-  
-  _entities.performAction([&] (std::shared_ptr<ObserverEntity>& observer) {
-    float dist = occurrence->position().distance(observer->position());
-    if (dist <= occurrence->originalRadius()) {
-      occurrence->addObserver(observer);
-      observer->addOccurrence(occurrence);
-      connected = true;
-    }
-    
-  });
-  return connected;
-}
-
 bool ObserversController::tryAddEntity(std::shared_ptr<ObserverEntity> entity) {
   _entities.add(entity);
   ObserverEventArgs e(SimulationEventType::OBSERVER_SPAWNED,

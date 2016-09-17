@@ -26,8 +26,7 @@ void OccurrencesController::setup() {
   _rateSpawner =
   std::make_shared<OccurrenceSpawner>(_context,
                                       _params.rateSpawner,
-                                      _bounds,
-                                      *this);
+                                      _bounds);
 }
 
 void OccurrencesController::update() {
@@ -58,24 +57,6 @@ void OccurrencesController::update() {
 
   _rateSpawner->update();
   _context.state.occurrenceCount = _entities.size();
-}
-
-bool OccurrencesController::tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) {
-
-  bool connected = _observers.registerOccurrence(entity);
-
-  if (connected) {
-    _entities.add(entity);
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWNED,
-                          *entity);
-    _events.occurrenceSpawned.notifyListeners(e);
-    return true;
-  } else {
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_SPAWN_FAILED,
-                          *entity);
-    _events.occurrenceSpawnFailed.notifyListeners(e);
-    return false;
-  }
 }
 
 bool OccurrencesController::performAction(AppAction action) {

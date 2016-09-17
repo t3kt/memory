@@ -18,6 +18,7 @@ class Bounds;
 class Context;
 class OccurrenceEntity;
 class OccurrencesController;
+class SimulationEvents;
 
 class RateOccurrenceSpawnerParams
 : public RateSpawnerParams {
@@ -85,13 +86,7 @@ class OccurrenceSpawner
 public:
   OccurrenceSpawner(Context& context,
                     const Params& params,
-                    const Bounds& bounds,
-                    OccurrencesController& controller)
-  : RateSpawner(context, params)
-  , _context(context)
-  , _params(params)
-  , _bounds(bounds)
-  , _controller(controller) { }
+                    const Bounds& bounds);
 
   std::shared_ptr<OccurrenceEntity>
   spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
@@ -102,7 +97,7 @@ protected:
   void spawnEntities(int count) override;
 
 private:
-  int spawnEntities();
+  int spawnEntityGroup();
 
   std::shared_ptr<OccurrenceEntity>
   spawnEntity(float radius,
@@ -111,10 +106,12 @@ private:
 
   bool spawnNewSequence();
 
+  bool tryAddEntity(std::shared_ptr<OccurrenceEntity> occurrence);
+
   const Params& _params;
   const Bounds& _bounds;
   Context& _context;
-  OccurrencesController& _controller;
+  SimulationEvents& _events;
 
   friend class OccurrenceSequenceSpawnAction;
 };

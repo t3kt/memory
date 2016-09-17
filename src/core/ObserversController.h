@@ -54,12 +54,10 @@ public:
   
   void setup() override;
   void update() override;
-  
-  bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
   bool performAction(AppAction action) override;
 
-  bool tryAddEntity(std::shared_ptr<ObserverEntity> entity) override;
+  bool tryAddEntity(std::shared_ptr<ObserverEntity> entity);
   
 private:
   const Params& _params;
