@@ -13,8 +13,5 @@
 void State::outputFields(std::ostream &os) const {
   os << "time: " << time
       << ", timeDelta: " << timeDelta
-      << ", running: " << running
-      << ", observerCount: " << observerCount
-      << ", occurrenceCount: " << occurrenceCount
-      << ", animationCount: " << animationCount;
+      << ", running: " << running;
 }

@@ -57,5 +57,4 @@ void ObserversController::update() {
   });
 
   _rateSpawner->update();
-  _context.state.observerCount = _entities.size();
 }

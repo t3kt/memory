@@ -45,7 +45,6 @@ void AnimationsController::update() {
       _events.animationDied.notifyListeners(e);
     }
   });
-  _context.state.animationCount = _animations.size();
 }
 
 void AnimationsController::draw() {

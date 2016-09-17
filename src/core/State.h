@@ -20,9 +20,6 @@ public:
   
   float time;
   float timeDelta;
-  int observerCount;
-  int occurrenceCount;
-  int animationCount;
   bool running;
   std::string typeName() const override { return "State"; }
 protected:

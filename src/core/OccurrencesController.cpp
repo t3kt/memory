@@ -40,7 +40,6 @@ void OccurrencesController::update() {
   });
 
   _rateSpawner->update();
-  _context.state.occurrenceCount = _entities.size();
 }
 
 bool OccurrencesController::performAction(AppAction action) {
