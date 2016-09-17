@@ -57,10 +57,6 @@ public:
 
   SimulationEvents& getEvents() { return _events; }
 
-  ofAppGLFWWindow& getWindow() {
-    return static_cast<ofAppGLFWWindow&>(*_window);
-  }
-
   const State& state() const { return _context.state; }
 
   ActionsController& actions() { return *_actions; }

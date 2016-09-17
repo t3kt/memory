@@ -27,7 +27,7 @@ void SimulationApp::setup() {
 
   _renderingController =
   std::make_shared<RenderingController>(_appParams.rendering,
-                                        getWindow(),
+                                        *_window,
                                         _context);
   _renderingController->setup();
 
