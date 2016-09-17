@@ -80,9 +80,6 @@ void OccurrencesController::update() {
   _context.state.occurrenceCount = _entities.size();
 }
 
-void OccurrencesController::draw() {
-}
-
 void OccurrencesController::spawnOccurrences(int count) {
   if (_rateSpawner->spawnNow(count)) {
     return;

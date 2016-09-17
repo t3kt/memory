@@ -53,7 +53,6 @@ public:
   
   void setup() override;
   void update() override;
-  void draw() override;
   
   bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 

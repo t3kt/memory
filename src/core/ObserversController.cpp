@@ -73,9 +73,6 @@ void ObserversController::update() {
   _context.state.observerCount = _entities.size();
 }
 
-void ObserversController::draw() {
-}
-
 bool ObserversController::registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   bool connected = false;
   

@@ -27,7 +27,6 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		321380F61D4310BC005B27F9 /* OscController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321380F41D4310BC005B27F9 /* OscController.cpp */; };
-		32324C601D55C1D900D05EDF /* EntityController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C5E1D55C1D900D05EDF /* EntityController.cpp */; };
 		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
@@ -260,7 +259,6 @@
 		31B54CB694BC1A6A5BD11120 /* ofxGuiPage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiPage.cpp; path = ../../of_v0.9.3_osx_release/addons/ofxGuiExtended/src/ofxGuiPage.cpp; sourceTree = SOURCE_ROOT; };
 		321380F41D4310BC005B27F9 /* OscController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OscController.cpp; path = control/OscController.cpp; sourceTree = "<group>"; };
 		321380F51D4310BC005B27F9 /* OscController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OscController.h; path = control/OscController.h; sourceTree = "<group>"; };
-		32324C5E1D55C1D900D05EDF /* EntityController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityController.cpp; path = core/EntityController.cpp; sourceTree = "<group>"; };
 		32324C5F1D55C1D900D05EDF /* EntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityController.h; path = core/EntityController.h; sourceTree = "<group>"; };
 		32324C661D56C6C500D05EDF /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spawner.cpp; path = spawning/Spawner.cpp; sourceTree = "<group>"; };
 		32324C671D56C6C500D05EDF /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = spawning/Spawner.h; sourceTree = "<group>"; };
@@ -1346,7 +1344,6 @@
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */,
 				32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */,
-				32324C5E1D55C1D900D05EDF /* EntityController.cpp */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
 				32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */,
@@ -1758,7 +1755,6 @@
 				181CD762F1D8EA879018AC62 /* ofxVerticalSlider.cpp in Sources */,
 				5DB01AD86B2EF04AC056AAE8 /* ofxRtMidiIn.cpp in Sources */,
 				DE842250EDC2CC68811C21A2 /* ofxRtMidiOut.cpp in Sources */,
-				32324C601D55C1D900D05EDF /* EntityController.cpp in Sources */,
 				32324CA51D59690500D05EDF /* Info.cpp in Sources */,
 				CB2F1BB8D1EC09DEBB0052ED /* ofxBaseMidi.cpp in Sources */,
 				C9A120BFEC3FCDAA49B97863 /* ofxMidi.cpp in Sources */,
