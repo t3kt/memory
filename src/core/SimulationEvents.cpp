@@ -68,3 +68,43 @@ AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {
       return nullptr;
   }
 }
+
+template<>
+SimulationEvent<AnimationObject>& SimulationEvents::spawned() {
+  return animationSpawned;
+}
+
+template<>
+SimulationEvent<ObserverEntity>& SimulationEvents::spawned() {
+  return observerSpawned;
+}
+
+template<>
+SimulationEvent<OccurrenceEntity>& SimulationEvents::spawned() {
+  return occurrenceSpawned;
+}
+
+template<>
+SimulationEvent<NavigatorEntity>& SimulationEvents::spawned() {
+  return navigatorSpawned;
+}
+
+template<>
+SimulationEvent<AnimationObject>& SimulationEvents::died() {
+  return animationDied;
+}
+
+template<>
+SimulationEvent<ObserverEntity>& SimulationEvents::died() {
+  return observerDied;
+}
+
+template<>
+SimulationEvent<OccurrenceEntity>& SimulationEvents::died() {
+  return occurrenceDied;
+}
+
+template<>
+SimulationEvent<NavigatorEntity>& SimulationEvents::died() {
+  return navigatorDied;
+}

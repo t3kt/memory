@@ -54,21 +54,24 @@ private:
   T& _value;
 };
 
+template<typename T>
+using SimulationEvent = TEvent<SimulationEventArgs<T>>;
+
 class AnimationObject;
 using AnimationEventArgs = SimulationEventArgs<AnimationObject>;
-using AnimationEvent = TEvent<AnimationEventArgs>;
+using AnimationEvent = SimulationEvent<AnimationObject>;
 
 class OccurrenceEntity;
 using OccurrenceEventArgs = SimulationEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
+using OccurrenceEvent = SimulationEvent<OccurrenceEntity>;
 
 class ObserverEntity;
 using ObserverEventArgs = SimulationEventArgs<ObserverEntity>;
-using ObserverEvent = TEvent<ObserverEventArgs>;
+using ObserverEvent = SimulationEvent<ObserverEntity>;
 
 class NavigatorEntity;
 using NavigatorEventArgs = SimulationEventArgs<NavigatorEntity>;
-using NavigatorEvent = TEvent<NavigatorEventArgs>;
+using NavigatorEvent = SimulationEvent<NavigatorEntity>;
 
 class SimulationEvents {
 public:
@@ -87,6 +90,12 @@ public:
   NavigatorEvent navigatorDied;
 
   AbstractEvent* getEvent(SimulationEventType type);
+
+  template<typename T>
+  SimulationEvent<T>& spawned();
+
+  template<typename T>
+  SimulationEvent<T>& died();
 };
 
 #endif /* SimulationEvents_h */
