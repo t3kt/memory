@@ -123,8 +123,8 @@ bool ActionsController::performAction(AppAction action) {
   switch (action) {
     case AppAction::TEST_ACTION:
       addDelayed(10, std::make_shared<LoggingAction>("omglol"));
+      return true;
     default:
       return false;
   }
-  return true;
 }
