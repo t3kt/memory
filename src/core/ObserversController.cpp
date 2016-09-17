@@ -47,15 +47,14 @@ bool ObserversController::performAction(AppAction action) {
 
 void ObserversController::update() {
   _sickness->update();
-  _entities.performAction([&](std::shared_ptr<ObserverEntity>& observer) {
+  _entities.processAndCullObjects([&](std::shared_ptr<ObserverEntity>& observer) {
     observer->update(_context.state);
-  });
-
-  _entities.cullDeadObjects([&](std::shared_ptr<ObserverEntity> observer) {
-    observer->detachConnections();
-    ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
-                        *observer);
-    _events.observerDied.notifyListeners(e);
+    if (!observer->alive()) {
+      observer->detachConnections();
+      ObserverEventArgs e(SimulationEventType::OBSERVER_DIED,
+                          *observer);
+      _events.observerDied.notifyListeners(e);
+    }
   });
 
   _rateSpawner->update();

@@ -80,9 +80,12 @@ void NavigatorsController::update() {
   }
   float now = _context.time();
   float stepTime = _params.stepDuration.get();
-  _navigators.performAction([&](NavEntityPtr navigator) {
+  _navigators.processAndCullObjects([&](NavEntityPtr navigator) {
     if (!navigator->prevState() || !navigator->stateAlive()) {
       navigator->kill();
+      NavigatorEventArgs e(SimulationEventType::NAVIGATOR_DIED,
+                           *navigator);
+      _events.navigatorDied.notifyListenersUntilHandled(e);
     } else {
       navLog().logNotice([&](ofLog& log) {
         log << "Updating navigator: " << *navigator;
@@ -134,11 +137,6 @@ void NavigatorsController::update() {
     navLog().logNotice([&](ofLog& log) {
       log << "Updated navigator: " << *navigator;
     });
-  });
-  _navigators.cullDeadObjects([&](NavEntityPtr navigator) {
-    NavigatorEventArgs e(SimulationEventType::NAVIGATOR_DIED,
-                         *navigator);
-    _events.navigatorDied.notifyListenersUntilHandled(e);
   });
 
   _observerNavSpawner->update();

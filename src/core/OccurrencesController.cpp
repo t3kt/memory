@@ -30,29 +30,27 @@ void OccurrencesController::setup() {
 }
 
 void OccurrencesController::update() {
-  for (auto& occurrence : _entities) {
+  _entities.processAndCullObjects([&](std::shared_ptr<OccurrenceEntity> & occurrence) {
     if (!occurrence->hasConnectedObservers()) {
       occurrence->kill();
       occurrence->setAmountOfObservation(0);
-      continue;
-    }
-    float amount = 0;
-    float radius = 0;
-    for (const auto& observer : occurrence->getConnectedObservers()) {
-      amount += observer.second->getRemainingLifetimeFraction();
-      float dist = occurrence->position().distance(observer.second->position());
-      if (dist > radius) {
-        radius = dist;
+      occurrence->detachConnections();
+      OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
+                            *occurrence);
+      _events.occurrenceDied.notifyListeners(e);
+    } else {
+      float amount = 0;
+      float radius = 0;
+      for (const auto& observer : occurrence->getConnectedObservers()) {
+        amount += observer.second->getRemainingLifetimeFraction();
+        float dist = occurrence->position().distance(observer.second->position());
+        if (dist > radius) {
+          radius = dist;
+        }
       }
+      occurrence->setAmountOfObservation(amount);
+      occurrence->setActualRadius(radius);
     }
-    occurrence->setAmountOfObservation(amount);
-    occurrence->setActualRadius(radius);
-  }
-  _entities.cullDeadObjects([&](std::shared_ptr<OccurrenceEntity> occurrence) {
-    occurrence->detachConnections();
-    OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
-                          *occurrence);
-    _events.occurrenceDied.notifyListeners(e);
   });
 
   _rateSpawner->update();

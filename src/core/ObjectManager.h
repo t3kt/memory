@@ -28,19 +28,6 @@ public:
   using iterator = typename StorageList::iterator;
   using const_iterator = typename StorageList::const_iterator;
   using EntityPtr = std::shared_ptr<T>;
-
-  void cullDeadObjects(std::function<void(std::shared_ptr<T>)> callback) {
-    for (auto i = this->begin();
-         i != this->end();) {
-      auto& object = *i;
-      if (object->alive()) {
-        i++;
-      } else {
-        callback(object);
-        i = this->_objects.erase(i);
-      }
-    }
-  }
   
   void add(std::shared_ptr<T> object) {
     this->_objects.push_back(object);
@@ -105,6 +92,19 @@ public:
         throw SerializationException("Entity not found: " + ofToString(id));
       }
       entities.add(entity);
+    }
+  }
+
+  void processAndCullObjects(std::function<void(EntityPtr&)> callback) {
+    for (auto i = begin();
+         i != end();) {
+      auto& object = *i;
+      callback(object);
+      if (object->alive()) {
+        i++;
+      } else {
+        i = _objects.erase(i);
+      }
     }
   }
 
