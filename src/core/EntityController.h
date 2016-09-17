@@ -12,6 +12,7 @@
 #include <memory>
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
+#include "../core/SimulationEvents.h"
 
 class Context;
 class SimulationEvents;
@@ -26,6 +27,10 @@ template<typename E>
 class EntityController
 : public AbstractEntityController {
 public:
+  using EntityPtr = std::shared_ptr<E>;
+  using EntityEvent = SimulationEvent<E>;
+  using EntityEventArgs = SimulationEventArgs<E>;
+
   EntityController(Context& context,
                    SimulationEvents& events,
                    ObjectManager<E>& entities)
@@ -45,6 +50,16 @@ public:
       entity->kill();
       i++;
     }
+  }
+
+  virtual void update() {
+    _entities.processAndCullObjects([&](EntityPtr& entity) {
+      entity->update(_context.state);
+      if (!entity->alive()) {
+        EntityEventArgs e(diedEventType<E>(), *entity);
+        _events.died<E>().notifyListeners(e);
+      }
+    });
   }
 
 protected:

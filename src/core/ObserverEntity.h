@@ -14,6 +14,7 @@
 #include "../core/Common.h"
 #include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
+#include "../core/State.h"
 #include "../core/ValueSupplier.h"
 #include "../core/WorldObject.h"
 

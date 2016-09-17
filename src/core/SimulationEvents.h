@@ -27,6 +27,42 @@ enum class SimulationEventType {
   NAVIGATOR_DIED,
 };
 
+template<typename T>
+constexpr SimulationEventType spawnedEventType();
+
+template<>
+constexpr SimulationEventType spawnedEventType<AnimationObject>() {
+  return SimulationEventType::ANIMATION_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<ObserverEntity>() {
+  return SimulationEventType::OBSERVER_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<OccurrenceEntity>() {
+  return SimulationEventType::OCCURRENCE_SPAWNED;
+}
+
+template<typename T>
+constexpr SimulationEventType diedEventType();
+
+template<>
+constexpr SimulationEventType diedEventType<AnimationObject>() {
+  return SimulationEventType::ANIMATION_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<ObserverEntity>() {
+  return SimulationEventType::OBSERVER_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<OccurrenceEntity>() {
+  return SimulationEventType::OCCURRENCE_DIED;
+}
+
 extern EnumTypeInfo<SimulationEventType> SimulationEventTypeType;
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value);

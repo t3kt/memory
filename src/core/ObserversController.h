@@ -56,8 +56,6 @@ public:
   void update() override;
 
   bool performAction(AppAction action) override;
-
-  bool tryAddEntity(std::shared_ptr<ObserverEntity> entity);
   
 private:
   const Params& _params;

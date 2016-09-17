@@ -49,7 +49,7 @@ void OccurrenceEntity::detachConnections() {
   }
 }
 
-void OccurrenceEntity::update() {
+void OccurrenceEntity::update(const State& state) {
   if (!hasConnectedObservers()) {
     kill();
     setAmountOfObservation(0);

@@ -30,14 +30,7 @@ void OccurrencesController::setup() {
 }
 
 void OccurrencesController::update() {
-  _entities.processAndCullObjects([&](std::shared_ptr<OccurrenceEntity> & occurrence) {
-    occurrence->update();
-    if (!occurrence->alive()) {
-      OccurrenceEventArgs e(SimulationEventType::OCCURRENCE_DIED,
-                            *occurrence);
-      _events.occurrenceDied.notifyListeners(e);
-    }
-  });
+  EntityController::update();
 
   _rateSpawner->update();
 }
