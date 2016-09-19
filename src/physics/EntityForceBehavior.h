@@ -47,14 +47,16 @@ public:
     TParam<float> magnitude;
   };
 
-  AbstractEntityForceBehavior(const Params& params)
-  : _params(params) { }
+  AbstractEntityForceBehavior(Context& context,
+                              const Params& params)
+  : AbstractPhysicsBehavior(context)
+  , _params(params) { }
 
-  void debugDraw(Context& context) override {
+  void debugDraw() override {
     if (!_params.enabled.get()) {
       return;
     }
-    AbstractPhysicsBehavior::debugDraw(context);
+    AbstractPhysicsBehavior::debugDraw();
   }
 
 protected:
@@ -71,16 +73,17 @@ template<typename T1, typename T2>
 class EntityForceBehavior
 : public AbstractEntityForceBehavior {
 public:
-  EntityForceBehavior(const Params& params)
-  : AbstractEntityForceBehavior(params) { }
+  EntityForceBehavior(Context& context,
+                      const Params& params)
+  : AbstractEntityForceBehavior(context, params) { }
 
-  void applyToWorld(Context& context) override {
+  void applyToWorld() override {
     if (!_params.enabled()) {
       return;
     }
-    performAction(context, [&](T1& entity,
-                               T2& other,
-                               const ofVec3f& force) {
+    performAction([&](T1& entity,
+                      T2& other,
+                      const ofVec3f& force) {
       entity.addForce(force);
       other.addForce(-force);
     });
@@ -89,16 +92,15 @@ public:
 protected:
   using Action = std::function<void(T1&, T2&, const ofVec3f&)>;
 
-  void performAction(Context& context,
-                     Action action);
+  void performAction(Action action);
 
-  void debugDrawBehavior(Context& context) override {
-    performAction(context, [&](T1& entity,
-                               T2& other,
-                               const ofVec3f& force) {
-      if (!context.highlightedEntities.empty() &&
-          !context.highlightedEntities.containsId(entity.id()) &&
-          !context.highlightedEntities.containsId(other.id())) {
+  void debugDrawBehavior() override {
+    performAction([&](T1& entity,
+                      T2& other,
+                      const ofVec3f& force) {
+      if (!_context.highlightedEntities.empty() &&
+          !_context.highlightedEntities.containsId(entity.id()) &&
+          !_context.highlightedEntities.containsId(other.id())) {
         return;
       }
       drawForceArrow(entity.position(), force);

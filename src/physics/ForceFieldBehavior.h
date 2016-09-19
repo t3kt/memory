@@ -17,12 +17,13 @@
 class AbstractForceFieldBehavior
 : public AbstractPhysicsBehavior {
 public:
+  AbstractForceFieldBehavior(Context& context)
+  : AbstractPhysicsBehavior(context) { }
 
 protected:
-  virtual ofVec3f getForceForEntity(Context& context,
-                                    ParticleObject* entity) = 0;
-  void applyToEntity(Context& context, ParticleObject* entity);
-  void debugDrawEntity(Context& context, ParticleObject* entity);
+  virtual ofVec3f getForceForEntity(ParticleObject* entity) = 0;
+  void applyToEntity(ParticleObject* entity);
+  void debugDrawEntity(ParticleObject* entity);
   void beginDebugDraw() override;
   void endDebugDraw() override;
 };
@@ -55,12 +56,13 @@ public:
     TParam<float> magnitude;
   };
 
-  AbstractNoiseForceFieldBehavior(const Params& params)
-  : _params(params) { }
+  AbstractNoiseForceFieldBehavior(Context& context,
+                                  const Params& params)
+  : AbstractForceFieldBehavior(context)
+  , _params(params) { }
 
 protected:
-  ofVec3f getForceForEntity(Context& context,
-                            ParticleObject* entity) override;
+  ofVec3f getForceForEntity(ParticleObject* entity) override;
 
   const Params& _params;
 };
@@ -69,25 +71,25 @@ template<typename E>
 class NoiseForceFieldBehavior
 : public AbstractNoiseForceFieldBehavior {
 public:
-  NoiseForceFieldBehavior(const Params& params)
-  : AbstractNoiseForceFieldBehavior(params) { }
+  NoiseForceFieldBehavior(Context& context, const Params& params)
+  : AbstractNoiseForceFieldBehavior(context, params) { }
 
-  void applyToWorld(Context& context) override {
+  void applyToWorld() override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : context.getEntities<E>()) {
-      applyToEntity(context, entity.get());
+    for (auto& entity : _context.getEntities<E>()) {
+      applyToEntity(entity.get());
     }
   }
 
 protected:
-  void debugDrawBehavior(Context& context) override {
+  void debugDrawBehavior() override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : context.getEntities<E>()) {
-      debugDrawEntity(context, entity.get());
+    for (auto& entity : _context.getEntities<E>()) {
+      debugDrawEntity(entity.get());
     }
   }
 };

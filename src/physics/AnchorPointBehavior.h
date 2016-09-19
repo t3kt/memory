@@ -18,8 +18,9 @@
 class AbstractAnchorPointBehavior
 : public AbstractAttractionBehavior {
 public:
-  AbstractAnchorPointBehavior(const Params& params)
-  : AbstractAttractionBehavior(params) { }
+  AbstractAnchorPointBehavior(Context& context,
+                              const Params& params)
+  : AbstractAttractionBehavior(context, params) { }
 protected:
   ofVec3f calcAttractionForce(const ofVec3f& entityPosition,
                               const ofVec3f& anchorPosition,
@@ -36,16 +37,17 @@ template<typename E>
 class AnchorPointBehavior
 : public AbstractAnchorPointBehavior {
 public:
-  AnchorPointBehavior(const Params& params)
-  : AbstractAnchorPointBehavior(params) { }
+  AnchorPointBehavior(Context& context,
+                      const Params& params)
+  : AbstractAnchorPointBehavior(context, params) { }
 
 protected:
-  void processWorld(Context& context, ApplyMode mode) override {
+  void processWorld(ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
     float midDist = getInterpolated(lowBound, highBound, 0.5);
-    for (auto& entity : context.getEntities<E>()) {
+    for (auto& entity : _context.getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }
@@ -63,8 +65,8 @@ protected:
           entity->addForce(force);
           break;
         case ApplyMode::DEBUG_DRAW:
-          if (!context.highlightedEntities.empty() &&
-              !context.highlightedEntities.containsId(entity->id())) {
+          if (!_context.highlightedEntities.empty() &&
+              !_context.highlightedEntities.containsId(entity->id())) {
             break;
           }
           debugDrawEntity(entity.get(), force);

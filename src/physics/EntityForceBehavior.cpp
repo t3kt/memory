@@ -29,8 +29,8 @@ void AbstractEntityForceBehavior::endDebugDraw() {
 }
 
 template<>
-void EntityForceBehavior<ObserverEntity, OccurrenceEntity>::performAction(Context& context, Action action) {
-  for (auto& entity : context.observers) {
+void EntityForceBehavior<ObserverEntity, OccurrenceEntity>::performAction(Action action) {
+  for (auto& entity : _context.observers) {
     if (!entity->alive()) {
       continue;
     }
@@ -47,8 +47,8 @@ void EntityForceBehavior<ObserverEntity, OccurrenceEntity>::performAction(Contex
 }
 
 template<>
-void EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>::performAction(Context &context, Action action) {
-  for (auto& entity : context.occurrences) {
+void EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>::performAction(Action action) {
+  for (auto& entity : _context.occurrences) {
     if (!entity->alive()) {
       continue;
     }

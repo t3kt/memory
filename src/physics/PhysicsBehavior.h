@@ -17,19 +17,24 @@
 
 class AbstractPhysicsBehavior {
 public:
-  virtual void applyToWorld(Context& context) = 0;
-  virtual void debugDraw(Context& context) {
+  AbstractPhysicsBehavior(Context& context)
+  : _context(context) { }
+
+  virtual void applyToWorld() = 0;
+  virtual void debugDraw() {
     beginDebugDraw();
-    debugDrawBehavior(context);
+    debugDrawBehavior();
     endDebugDraw();
   }
 protected:
   virtual void beginDebugDraw() { }
-  virtual void debugDrawBehavior(Context& context) {}
+  virtual void debugDrawBehavior() {}
   virtual void endDebugDraw() { }
 
   static void drawForceArrow(ofVec3f position,
                              ofVec3f force);
+
+  Context& _context;
 };
 
 class BoundsBehavior
@@ -37,14 +42,17 @@ class BoundsBehavior
 public:
   using Params = ::ParamsWithEnabled;
 
-  BoundsBehavior(const Params& params, const Bounds& bounds)
-  : _params(params)
+  BoundsBehavior(Context& context,
+                 const Params& params,
+                 const Bounds& bounds)
+  : AbstractPhysicsBehavior(context)
+  , _params(params)
   , _bounds(bounds) { }
 
-  void applyToWorld(Context& context) override;
+  void applyToWorld() override;
 
 private:
-  void applyToEntity(Context& context, ParticleObject* entity);
+  void applyToEntity(ParticleObject* entity);
 
   const Params& _params;
   const Bounds& _bounds;
