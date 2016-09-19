@@ -9,7 +9,6 @@
 #ifndef ObserverEntity_h
 #define ObserverEntity_h
 
-#include <iostream>
 #include <ofTypes.h>
 #include "../core/Common.h"
 #include "../core/EntityMap.h"

@@ -23,6 +23,7 @@ const ObjectId NO_OBJECT_ID = -1;
 enum class EntityType {
   ANIMATION,
   NAVIGATOR,
+  NODE,
   OBSERVER,
   OCCURRENCE,
 };

@@ -19,6 +19,7 @@
 
 class AnimationObject;
 class NavigatorEntity;
+class NodeEntity;
 class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
@@ -50,6 +51,7 @@ public:
   State state;
   ObjectManager<AnimationObject> animations;
   ObjectManager<NavigatorEntity> navigators;
+  ObjectManager<NodeEntity> nodes;
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
 
