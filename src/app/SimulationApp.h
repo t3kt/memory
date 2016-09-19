@@ -21,6 +21,7 @@
 #include "../core/InspectionController.h"
 #include "../control/MidiController.h"
 #include "../navigation/NavigatorsController.h"
+#include "../core/NodesController.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
 #include "../control/OscController.h"
@@ -84,6 +85,7 @@ private:
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
   std::shared_ptr<NavigatorsController> _navigators;
+  std::shared_ptr<NodesController> _nodes;
   std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;

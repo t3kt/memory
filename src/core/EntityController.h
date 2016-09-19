@@ -17,15 +17,8 @@
 class Context;
 class SimulationEvents;
 
-class AbstractEntityController {
-public:
-  virtual void setup() = 0;
-  virtual void update() = 0;
-};
-
 template<typename E>
-class EntityController
-: public AbstractEntityController {
+class EntityController {
 public:
   using EntityPtr = std::shared_ptr<E>;
   using EntityEvent = SimulationEvent<E>;
@@ -37,6 +30,8 @@ public:
   : _context(context)
   , _events(events)
   , _entities(entities) { }
+
+  virtual void setup() {}
 
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }

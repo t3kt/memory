@@ -57,6 +57,10 @@ void SimulationApp::setup() {
                                          _context);
   _animations->setup();
 
+  _nodes =
+  std::make_shared<NodesController>(_context,
+                                    _events);
+
   _physics = std::make_shared<PhysicsController>(_appParams.physics,
                                                  _appParams.core.bounds,
                                                  _appParams.debug,
@@ -108,6 +112,7 @@ void SimulationApp::update() {
   _osc->update();
   _midi->update();
   _clock->update();
+  _nodes->update();
   _observers->update();
   _occurrences->update();
   _animations->update();

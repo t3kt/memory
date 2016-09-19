@@ -12,7 +12,6 @@
 #include <iostream>
 #include "../core/Common.h"
 #include "../core/Events.h"
-#include "../navigation/NavigatorEntity.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,
@@ -25,7 +24,15 @@ enum class SimulationEventType {
   NAVIGATOR_SPAWNED,
   NAVIGATOR_REACHED_LOCATION,
   NAVIGATOR_DIED,
+  NODE_SPAWNED,
+  NODE_DIED,
 };
+
+class AnimationObject;
+class ObserverEntity;
+class OccurrenceEntity;
+class NavigatorEntity;
+class NodeEntity;
 
 template<typename T>
 constexpr SimulationEventType spawnedEventType();
@@ -50,6 +57,11 @@ constexpr SimulationEventType spawnedEventType<NavigatorEntity>() {
   return SimulationEventType::NAVIGATOR_SPAWNED;
 }
 
+template<>
+constexpr SimulationEventType spawnedEventType<NodeEntity>() {
+  return SimulationEventType::NODE_SPAWNED;
+}
+
 template<typename T>
 constexpr SimulationEventType diedEventType();
 
@@ -71,6 +83,11 @@ constexpr SimulationEventType diedEventType<OccurrenceEntity>() {
 template<>
 constexpr SimulationEventType diedEventType<NavigatorEntity>() {
   return SimulationEventType::NAVIGATOR_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<NodeEntity>() {
+  return SimulationEventType::NODE_DIED;
 }
 
 extern EnumTypeInfo<SimulationEventType> SimulationEventTypeType;
@@ -103,21 +120,20 @@ private:
 template<typename T>
 using SimulationEvent = TEvent<SimulationEventArgs<T>>;
 
-class AnimationObject;
 using AnimationEventArgs = SimulationEventArgs<AnimationObject>;
 using AnimationEvent = SimulationEvent<AnimationObject>;
 
-class OccurrenceEntity;
 using OccurrenceEventArgs = SimulationEventArgs<OccurrenceEntity>;
 using OccurrenceEvent = SimulationEvent<OccurrenceEntity>;
 
-class ObserverEntity;
 using ObserverEventArgs = SimulationEventArgs<ObserverEntity>;
 using ObserverEvent = SimulationEvent<ObserverEntity>;
 
-class NavigatorEntity;
 using NavigatorEventArgs = SimulationEventArgs<NavigatorEntity>;
 using NavigatorEvent = SimulationEvent<NavigatorEntity>;
+
+using NodeEventArgs = SimulationEventArgs<NodeEntity>;
+using NodeEvent = SimulationEvent<NodeEntity>;
 
 class SimulationEvents {
 public:
@@ -134,6 +150,9 @@ public:
   NavigatorEvent navigatorSpawned;
   NavigatorEvent navigatorReachedLocation;
   NavigatorEvent navigatorDied;
+
+  NodeEvent nodeSpawned;
+  NodeEvent nodeDied;
 
   AbstractEvent* getEvent(SimulationEventType type);
 

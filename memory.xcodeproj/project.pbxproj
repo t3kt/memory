@@ -28,6 +28,7 @@
 		318023B2E4596A1DB11C6C93 /* TimelineItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F33944FF8FBC3A60D55011ED /* TimelineItem.cpp */; };
 		321380F61D4310BC005B27F9 /* OscController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321380F41D4310BC005B27F9 /* OscController.cpp */; };
 		321F50F81D8F9E9D00B3BCA8 /* NodeEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321F50F61D8F9E9D00B3BCA8 /* NodeEntity.cpp */; };
+		321F50FC1D8FA3FA00B3BCA8 /* NodesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */; };
 		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
@@ -262,6 +263,8 @@
 		321380F51D4310BC005B27F9 /* OscController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OscController.h; path = control/OscController.h; sourceTree = "<group>"; };
 		321F50F61D8F9E9D00B3BCA8 /* NodeEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeEntity.cpp; path = core/NodeEntity.cpp; sourceTree = "<group>"; };
 		321F50F71D8F9E9D00B3BCA8 /* NodeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeEntity.h; path = core/NodeEntity.h; sourceTree = "<group>"; };
+		321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodesController.cpp; path = core/NodesController.cpp; sourceTree = "<group>"; };
+		321F50FB1D8FA3FA00B3BCA8 /* NodesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodesController.h; path = core/NodesController.h; sourceTree = "<group>"; };
 		32324C5F1D55C1D900D05EDF /* EntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityController.h; path = core/EntityController.h; sourceTree = "<group>"; };
 		32324C661D56C6C500D05EDF /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spawner.cpp; path = spawning/Spawner.cpp; sourceTree = "<group>"; };
 		32324C671D56C6C500D05EDF /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = spawning/Spawner.h; sourceTree = "<group>"; };
@@ -1362,6 +1365,8 @@
 				32EEAEA71D470CA2003A503F /* Logging.h */,
 				321F50F61D8F9E9D00B3BCA8 /* NodeEntity.cpp */,
 				321F50F71D8F9E9D00B3BCA8 /* NodeEntity.h */,
+				321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */,
+				321F50FB1D8FA3FA00B3BCA8 /* NodesController.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
 				060B900FD66542BB0792E633 /* ObserverEntity.cpp */,
 				73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */,
@@ -1701,6 +1706,7 @@
 				7DE30FC333652825841CEBCD /* State.cpp in Sources */,
 				D84252FB2EB2F6FE3B325CAA /* Status.cpp in Sources */,
 				32F74A681D409C0600C1A911 /* ofxOscBundle.cpp in Sources */,
+				321F50FC1D8FA3FA00B3BCA8 /* NodesController.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
 				D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */,

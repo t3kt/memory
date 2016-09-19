@@ -11,7 +11,6 @@
 
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
 #include "../core/WorldObject.h"
@@ -23,6 +22,8 @@ public:
 
   NodeEntity() {}
   virtual ~NodeEntity() {}
+
+  virtual void update(const State& state) {}
 
   std::string typeName() const override { return "Node"; }
 private:

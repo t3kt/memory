@@ -21,6 +21,8 @@ EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
   {"navigatorSpawned", SimulationEventType::NAVIGATOR_SPAWNED},
   {"navigatorReachedLocation", SimulationEventType::NAVIGATOR_REACHED_LOCATION},
   {"navigatorDied", SimulationEventType::NAVIGATOR_DIED},
+  {"nodeSpawned", SimulationEventType::NODE_SPAWNED},
+  {"nodeDied", SimulationEventType::NODE_DIED},
 };
 
 std::ostream& operator<<(std::ostream& os,
@@ -63,6 +65,10 @@ AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {
       return &navigatorReachedLocation;
     case SimulationEventType::NAVIGATOR_DIED:
       return &navigatorDied;
+    case SimulationEventType::NODE_SPAWNED:
+      return &nodeSpawned;
+    case SimulationEventType::NODE_DIED:
+      return &nodeDied;
     default:
       AppSystem::get().log().control().logWarning("Unsupported event type: " + SimulationEventTypeType.toString(type));
       return nullptr;
@@ -90,6 +96,11 @@ SimulationEvent<NavigatorEntity>& SimulationEvents::spawned() {
 }
 
 template<>
+SimulationEvent<NodeEntity>& SimulationEvents::spawned() {
+  return nodeSpawned;
+}
+
+template<>
 SimulationEvent<AnimationObject>& SimulationEvents::died() {
   return animationDied;
 }
@@ -107,4 +118,9 @@ SimulationEvent<OccurrenceEntity>& SimulationEvents::died() {
 template<>
 SimulationEvent<NavigatorEntity>& SimulationEvents::died() {
   return navigatorDied;
+}
+
+template<>
+SimulationEvent<NodeEntity>& SimulationEvents::died() {
+  return nodeDied;
 }
