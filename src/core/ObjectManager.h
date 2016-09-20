@@ -95,6 +95,10 @@ public:
     }
   }
 
+  void cullObjects() {
+    processAndCullObjects([](EntityPtr&) { });
+  }
+
   void processAndCullObjects(std::function<void(EntityPtr&)> callback) {
     for (auto i = begin();
          i != end();) {

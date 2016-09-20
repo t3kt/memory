@@ -19,33 +19,33 @@
 #include "../physics/PhysicsBehavior.h"
 #include "../core/ValueSequence.h"
 
-using ForceRangeSequence = ValueSequence<float, 2>;
+class AbstractEntityForceBehaviorParams : public ParamsWithEnabled {
+public:
+  AbstractEntityForceBehaviorParams() {
+    add(force
+        .setKey("force")
+        .setName("Force"));
+    force.setValueRanges(-15, 15);
+    force.setLengthRanges(0, 100);
+    force.startValue.setValueAndDefault(-2);
+    force.values[0].setValueAndDefault(2);
+    force.values[1].setValueAndDefault(5);
+    force.lengths[0].setValueAndDefault(5);
+    force.lengths[1].setValueAndDefault(15);
+    add(magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setRange(0, 3)
+        .setValueAndDefault(1));
+  }
+  ValueSequence<float, 2> force;
+  TParam<float> magnitude;
+};
 
 class AbstractEntityForceBehavior
 : public AbstractPhysicsBehavior {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(force
-          .setKey("force")
-          .setName("Force"));
-      force.setValueRanges(-15, 15);
-      force.setLengthRanges(0, 100);
-      force.startValue.setValueAndDefault(-2);
-      force.values[0].setValueAndDefault(2);
-      force.values[1].setValueAndDefault(5);
-      force.lengths[0].setValueAndDefault(5);
-      force.lengths[1].setValueAndDefault(15);
-      add(magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setRange(0, 3)
-          .setValueAndDefault(1));
-    }
-    ForceRangeSequence force;
-    TParam<float> magnitude;
-  };
+  using Params = AbstractEntityForceBehaviorParams;
 
   AbstractEntityForceBehavior(Context& context,
                               const Params& params)

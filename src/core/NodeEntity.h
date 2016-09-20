@@ -20,13 +20,11 @@ class NodeEntity
 public:
   static const auto type = EntityType::NODE;
 
-  NodeEntity() {}
-  virtual ~NodeEntity() {}
+  NodeEntity(ofVec3f pos) : ParticleObject(pos) { }
 
   virtual void update(const State& state) {}
 
   std::string typeName() const override { return "Node"; }
-private:
 };
 
 #endif /* NodeEntity_h */

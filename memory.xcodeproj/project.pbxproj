@@ -29,6 +29,7 @@
 		321380F61D4310BC005B27F9 /* OscController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321380F41D4310BC005B27F9 /* OscController.cpp */; };
 		321F50F81D8F9E9D00B3BCA8 /* NodeEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321F50F61D8F9E9D00B3BCA8 /* NodeEntity.cpp */; };
 		321F50FC1D8FA3FA00B3BCA8 /* NodesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */; };
+		321F51031D8FAF2500B3BCA8 /* ForceNodeBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 321F51011D8FAF2500B3BCA8 /* ForceNodeBehavior.cpp */; };
 		32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C661D56C6C500D05EDF /* Spawner.cpp */; };
 		32324C6B1D56C80B00D05EDF /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C691D56C80B00D05EDF /* ObserverSpawner.cpp */; };
 		32324C6E1D56E2D700D05EDF /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32324C6C1D56E2D700D05EDF /* OccurrenceSpawner.cpp */; };
@@ -265,6 +266,8 @@
 		321F50F71D8F9E9D00B3BCA8 /* NodeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeEntity.h; path = core/NodeEntity.h; sourceTree = "<group>"; };
 		321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodesController.cpp; path = core/NodesController.cpp; sourceTree = "<group>"; };
 		321F50FB1D8FA3FA00B3BCA8 /* NodesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodesController.h; path = core/NodesController.h; sourceTree = "<group>"; };
+		321F51011D8FAF2500B3BCA8 /* ForceNodeBehavior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForceNodeBehavior.cpp; path = physics/ForceNodeBehavior.cpp; sourceTree = "<group>"; };
+		321F51021D8FAF2500B3BCA8 /* ForceNodeBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForceNodeBehavior.h; path = physics/ForceNodeBehavior.h; sourceTree = "<group>"; };
 		32324C5F1D55C1D900D05EDF /* EntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityController.h; path = core/EntityController.h; sourceTree = "<group>"; };
 		32324C661D56C6C500D05EDF /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spawner.cpp; path = spawning/Spawner.cpp; sourceTree = "<group>"; };
 		32324C671D56C6C500D05EDF /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spawner.h; path = spawning/Spawner.h; sourceTree = "<group>"; };
@@ -1117,6 +1120,8 @@
 				32EEAECC1D530EAF003A503F /* EntityForceBehavior.h */,
 				256465114FA04BE629E19AC8 /* ForceFieldBehavior.cpp */,
 				F8D061C4847D133FFDF60B1E /* ForceFieldBehavior.h */,
+				321F51011D8FAF2500B3BCA8 /* ForceNodeBehavior.cpp */,
+				321F51021D8FAF2500B3BCA8 /* ForceNodeBehavior.h */,
 				8DF242C4518B8602BC224D0D /* PhysicsBehavior.cpp */,
 				1324084D010EA3700F964757 /* PhysicsBehavior.h */,
 				03D6AC75A420CA1A8047336C /* PhysicsController.cpp */,
@@ -1741,6 +1746,7 @@
 				321F50F81D8F9E9D00B3BCA8 /* NodeEntity.cpp in Sources */,
 				CFB1F10331DE8059FDC79C1D /* ofxSliderGroup.cpp in Sources */,
 				BEC7011B31196451456DBC43 /* ofxToggle.cpp in Sources */,
+				321F51031D8FAF2500B3BCA8 /* ForceNodeBehavior.cpp in Sources */,
 				6A6DCC07458DC20B3A9FB114 /* ofxFpsPlotter.cpp in Sources */,
 				9F911CA1037567F4865A10D7 /* ofxGuiBaseDraws.cpp in Sources */,
 				C255A0483A81BF31B4EBCB2F /* ofxGuiGroupExtended.cpp in Sources */,
