@@ -20,6 +20,7 @@ public:
   AbstractPhysicsBehavior(Context& context)
   : _context(context) { }
 
+  virtual void setup() {}
   virtual void applyToWorld() = 0;
   virtual void debugDraw() {
     beginDebugDraw();

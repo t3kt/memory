@@ -9,6 +9,7 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
+#include <vector>
 #include "../physics/AnchorPointBehavior.h"
 #include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
@@ -21,6 +22,8 @@
 #include "../core/OccurrenceEntity.h"
 #include "../core/Params.h"
 #include "../physics/PhysicsBehavior.h"
+
+using PhysicsBehaviorList = std::vector<std::shared_ptr<AbstractPhysicsBehavior>>;
 
 class DebugParams;
 
@@ -122,6 +125,16 @@ public:
   bool performAction(AppAction action) override;
 
 private:
+  template<typename B, typename ...Args>
+  std::shared_ptr<B> addBehavior(Args&& ...args) {
+    auto behavior =
+    std::make_shared<B>(std::forward<Args>(args)...);
+    _behaviors.push_back(behavior);
+    behavior->setup();
+    return behavior;
+  }
+
+
   void beginEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
@@ -129,17 +142,7 @@ private:
   Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-
-  std::shared_ptr<BoundsBehavior> _rebound;
-  std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
-  std::shared_ptr<ObserverOccurrenceForceBehavior> _observerOccurrenceForce;
-  std::shared_ptr<OccurrenceOccurrenceForceBehavior> _occurrenceOccurrenceForce;
-  std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
-  std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
-  std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;
-  std::shared_ptr<AnchorPointBehavior<OccurrenceEntity>> _occurrenceAnchorPointAttraction;
-  std::shared_ptr<DampingBehavior<ObserverEntity>> _observerDamping;
-  std::shared_ptr<DampingBehavior<OccurrenceEntity>> _occurrenceDamping;
+  PhysicsBehaviorList _behaviors;
 };
 
 #endif /* PhysicsController_h */
