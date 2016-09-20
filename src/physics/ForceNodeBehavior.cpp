@@ -32,9 +32,6 @@ ofVec3f AbstractVortexForceNodeBehavior::calculateForce(const VortexForceNode &n
   dist = posDiff.length();
   auto magnitude =
   _params.force.evaluate(dist) * _params.magnitude.get();
-
-
-  //...
-  //...
-  throw NOT_IMPLEMENTED();
+  auto force = posDiff.getRotated(90, node.velocity());
+  return force * magnitude;
 }
