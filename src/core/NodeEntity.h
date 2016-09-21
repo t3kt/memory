@@ -25,6 +25,8 @@ public:
   virtual void update(const State& state) {}
 
   std::string typeName() const override { return "Node"; }
+
+  EntityType entityType() const override { return EntityType::NODE; }
 };
 
 #endif /* NodeEntity_h */

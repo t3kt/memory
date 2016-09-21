@@ -18,6 +18,7 @@
 #include "../physics/DampingBehavior.h"
 #include "../physics/EntityForceBehavior.h"
 #include "../physics/ForceFieldBehavior.h"
+#include "../physics/ForceNodeBehavior.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../core/Params.h"
@@ -75,6 +76,9 @@ public:
     add(occurrenceAnchorPointAttraction
         .setKey("occurrenceAnchorPointAttraction")
         .setName("Occurrence Anchoring"));
+    add(observerVortexNodes
+        .setKey("observerVortexNodes")
+        .setName("Observer Vortex Nodes"));
     add(observerDamping
         .setKey("observerDamping")
         .setName("Observer Damping"));
@@ -87,6 +91,7 @@ public:
     occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
     observerObserverAttraction.setEnabledValueAndDefault(false);
     observerOccurrenceForce.setEnabledValueAndDefault(false);
+    observerVortexNodes.setEnabledValueAndDefault(false);
     observerDamping.setEnabledValueAndDefault(true);
     occurrenceDamping.setEnabledValueAndDefault(true);
   }
@@ -103,6 +108,7 @@ public:
   AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
   AbstractDampingBehavior::Params observerDamping;
   AbstractDampingBehavior::Params occurrenceDamping;
+  AbstractVortexForceNodeBehavior::Params observerVortexNodes;
 };
 
 class PhysicsController

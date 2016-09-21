@@ -173,6 +173,10 @@
         "enabled": false,
         "level": 1
       },
+      "node": {
+        "enabled": true,
+        "level": 1
+      },
       "obs": {
         "enabled": false,
         "level": 1
@@ -303,6 +307,21 @@
       "magnitude": 0.61224490404129028,
       "rate": 0.038265306502580643,
       "scale": 98.979591369628906
+    },
+    "observerVortexNodes": {
+      "enabled": true,
+      "force": {
+        "length0": 0.33881717920303345,
+        "length1": 0.65639317035675049,
+        "startValue": 8.4402332305908203,
+        "value0": 5.7850894927978516,
+        "value1": -1.5556020736694336
+      },
+      "magnitude": 31.12244987487793,
+      "radius": {
+        "high": 200,
+        "low": 107.33027648925781
+      }
     },
     "observers": {
       "speed": 1.2755101919174194

@@ -38,10 +38,10 @@ public:
     add(magnitude
         .setKey("magnitude")
         .setName("Magnitude")
-        .setRange(0, 3)
-        .setValueAndDefault(1));
+        .setRange(0, 100)
+        .setValueAndDefault(10));
   }
-  FloatValueRange radius;
+  RandomValueSupplier<float> radius;
   ValueSequence<float, 2> force;
   TParam<float> magnitude;
 };
@@ -72,11 +72,15 @@ public:
   : AbstractPhysicsBehavior(context)
   , _params(params) { }
 
+  std::shared_ptr<VortexForceNode> spawnNode(ofVec3f pos);
+
 protected:
   void cullDeadNodes();
   void applyToEntity(ParticleObject* entity);
   ofVec3f calculateForce(const VortexForceNode& node,
                          ParticleObject* entity);
+  void debugDrawEntity(ParticleObject* entity);
+  void debugDrawNodes();
 
   const Params& _params;
   ObjectManager<VortexForceNode> _nodes;
@@ -98,6 +102,15 @@ public:
     for (auto& entity : _context.getEntities<E>()) {
       applyToEntity(entity.get());
     }
+  }
+  void debugDrawBehavior() override {
+    if (!_params.enabled.get()) {
+      return;
+    }
+    for (auto& entity : _context.getEntities<E>()) {
+      debugDrawEntity(entity.get());
+    }
+    debugDrawNodes();
   }
 };
 
