@@ -12,7 +12,12 @@
 std::shared_ptr<VortexForceNode>
 AbstractVortexForceNodeBehavior::spawnNode(ofVec3f pos) {
   auto radius = _params.radius.getValue();
-  auto node = std::make_shared<VortexForceNode>(pos, radius);
+  auto axis = ofVec3f(ofRandom(1),
+                      ofRandom(1),
+                      ofRandom(1));
+  auto node = std::make_shared<VortexForceNode>(pos,
+                                                axis,
+                                                radius);
   _nodes.add(node);
   _context.nodes.add(node);
   return node;
@@ -42,9 +47,7 @@ ofVec3f AbstractVortexForceNodeBehavior::calculateForce(const VortexForceNode &n
   dist /= node.radius();
   auto magnitude =
   _params.force.evaluate(dist) * _params.magnitude.get();
-  auto axis = node.velocity();
-  axis = ofVec3f(1, 0, 0);//!!!!!!!!!!!!!!!!!!!!!!
-  auto force = posDiff.getRotated(90, axis);
+  auto force = posDiff.getRotated(90, node.axis());
   return force * magnitude;
 }
 

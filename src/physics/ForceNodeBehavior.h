@@ -50,15 +50,19 @@ class VortexForceNode
 : public NodeEntity {
 public:
   VortexForceNode(ofVec3f pos,
+                  ofVec3f axis,
                   float radius)
   : NodeEntity(pos)
+  , _axis(axis)
   , _radius(radius) { }
 
   std::string typeName() const { return "VortexForceNode"; }
 
+  const ofVec3f& axis() const { return _axis; }
   float radius() const { return _radius; }
 
 private:
+  ofVec3f _axis;
   float _radius;
 };
 
