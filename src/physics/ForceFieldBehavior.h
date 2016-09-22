@@ -28,33 +28,35 @@ protected:
   void endDebugDraw() override;
 };
 
+class NoiseForceFieldParams : public ParamsWithEnabled {
+public:
+  NoiseForceFieldParams() {
+    add(scale
+        .setKey("scale")
+        .setName("Scale")
+        .setValueAndDefault(10)
+        .setRange(0, 200));
+    add(rate
+        .setKey("rate")
+        .setName("Rate")
+        .setValueAndDefault(0.1)
+        .setRange(0, 0.5));
+    add(magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setValueAndDefault(5)
+        .setRange(0, 20));
+  }
+
+  TParam<float> scale;
+  TParam<float> rate;
+  TParam<float> magnitude;
+};
+
 class AbstractNoiseForceFieldBehavior
 : public AbstractForceFieldBehavior {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(scale
-          .setKey("scale")
-          .setName("Scale")
-          .setValueAndDefault(10)
-          .setRange(0, 200));
-      add(rate
-          .setKey("rate")
-          .setName("Rate")
-          .setValueAndDefault(0.1)
-          .setRange(0, 0.5));
-      add(magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setValueAndDefault(5)
-          .setRange(0, 20));
-    }
-
-    TParam<float> scale;
-    TParam<float> rate;
-    TParam<float> magnitude;
-  };
+  using Params = NoiseForceFieldParams;
 
   AbstractNoiseForceFieldBehavior(Context& context,
                                   const Params& params)

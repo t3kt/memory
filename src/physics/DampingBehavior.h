@@ -15,21 +15,23 @@
 #include "../core/ParticleObject.h"
 #include "../physics/PhysicsBehavior.h"
 
+class DampingBehaviorParams : public ParamsWithEnabled {
+public:
+  DampingBehaviorParams() {
+    add(magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setValueAndDefault(2)
+        .setRange(0, 20));
+  }
+
+  TParam<float> magnitude;
+};
+
 class AbstractDampingBehavior
 : public AbstractForceFieldBehavior {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setValueAndDefault(2)
-          .setRange(0, 20));
-    }
-
-    TParam<float> magnitude;
-  };
+  using Params = DampingBehaviorParams;
 
   AbstractDampingBehavior(Context& context,
                           const Params& params)
