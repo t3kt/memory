@@ -10,7 +10,7 @@
 #include "../core/JsonIO.h"
 #include "../core/SimulationEvents.h"
 
-EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
+EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {
   {"animationSpawned", SimulationEventType::ANIMATION_SPAWNED},
   {"animationDied", SimulationEventType::ANIMATION_DIED},
   {"observerSpawned", SimulationEventType::OBSERVER_SPAWNED},
@@ -27,19 +27,19 @@ EnumTypeInfo<SimulationEventType> SimulationEventTypeType {
 
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value) {
-  return os << SimulationEventTypeType.toString(value);
+  return os << SimulationEventTypeInfo.toString(value);
 }
 
 namespace JsonUtil {
   template<>
   Json toJson(const SimulationEventType& value) {
-    return SimulationEventTypeType.toString(value);
+    return SimulationEventTypeInfo.toString(value);
   }
 
   template<>
   SimulationEventType fromJson<SimulationEventType>(const Json& value) {
     assertHasType(value, Json::STRING);
-    return SimulationEventTypeType.parseString(value.string_value());
+    return SimulationEventTypeInfo.parseString(value.string_value());
   }
 }
 
@@ -70,7 +70,7 @@ AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {
     case SimulationEventType::NODE_DIED:
       return &nodeDied;
     default:
-      AppSystem::get().log().control().logWarning("Unsupported event type: " + SimulationEventTypeType.toString(type));
+      AppSystem::get().log().control().logWarning("Unsupported event type: " + SimulationEventTypeInfo.toString(type));
       return nullptr;
   }
 }

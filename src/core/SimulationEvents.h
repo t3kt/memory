@@ -90,7 +90,7 @@ constexpr SimulationEventType diedEventType<NodeEntity>() {
   return SimulationEventType::NODE_DIED;
 }
 
-extern EnumTypeInfo<SimulationEventType> SimulationEventTypeType;
+extern EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo;
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value);
 

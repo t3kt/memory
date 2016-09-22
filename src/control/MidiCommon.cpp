@@ -9,7 +9,7 @@
 #include <boost/functional/hash.hpp>
 #include "../control/MidiCommon.h"
 
-EnumTypeInfo<MidiMessageType> MidiMessageTypeType {
+EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
   {"cc", MidiMessageType::CONTROL_CHANGE},
   {"noteOn", MidiMessageType::NOTE_ON},
   {"noteOff", MidiMessageType::NOTE_OFF},
@@ -18,7 +18,7 @@ EnumTypeInfo<MidiMessageType> MidiMessageTypeType {
 
 std::ostream& operator<<(std::ostream& os,
                          const MidiMessageType& messageType) {
-  return os << MidiMessageTypeType.toString(messageType);
+  return os << MidiMessageTypeInfo.toString(messageType);
 }
 
 MidiMessageType statusToMessageType(const MidiStatus& status) {
@@ -68,13 +68,13 @@ std::size_t MidiMappingKey::hash() const {
 namespace JsonUtil {
   template<>
   Json toJson(const MidiMessageType& value) {
-    return MidiMessageTypeType.toString(value);
+    return MidiMessageTypeInfo.toString(value);
   }
 
   template<>
   MidiMessageType fromJson<MidiMessageType>(const Json& value) {
     assertHasType(value, Json::STRING);
-    return MidiMessageTypeType.parseString(value.string_value());
+    return MidiMessageTypeInfo.parseString(value.string_value());
   }
 }
 
