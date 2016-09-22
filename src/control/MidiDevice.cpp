@@ -99,6 +99,6 @@ void MidiDevice::sendMessage(MidiMessageType type,
       _midiOut.sendNoteOff(channel, key, value);
       break;
     default:
-      AppSystem::get().log().control().logWarning("Unsupported midi mapping type: " + MidiMessageTypeInfo.toString(type));
+      AppSystem::get().log().control().logWarning("Unsupported midi mapping type: " + enumToString(type));
   }
 }

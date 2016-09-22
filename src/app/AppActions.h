@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "../core/Common.h"
+#include "../core/Enums.h"
 #include "../core/Events.h"
 
 // Type of action
@@ -43,8 +44,6 @@ enum class AppAction {
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
 using AppActionEvent = ValueEvent<AppAction>;
-
-extern EnumTypeInfo<AppAction> AppActionType;
 
 // A component which can handle AppActions
 class AppActionHandler {

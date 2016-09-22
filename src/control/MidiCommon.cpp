@@ -16,6 +16,11 @@ EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
   {"other", MidiMessageType::OTHER},
 };
 
+template<>
+const EnumTypeInfo<MidiMessageType>& getEnumInfo() {
+  return MidiMessageTypeInfo;
+}
+
 std::ostream& operator<<(std::ostream& os,
                          const MidiMessageType& messageType) {
   return os << MidiMessageTypeInfo.toString(messageType);
@@ -65,24 +70,11 @@ std::size_t MidiMappingKey::hash() const {
   return seed;
 }
 
-namespace JsonUtil {
-  template<>
-  Json toJson(const MidiMessageType& value) {
-    return MidiMessageTypeInfo.toString(value);
-  }
-
-  template<>
-  MidiMessageType fromJson<MidiMessageType>(const Json& value) {
-    assertHasType(value, Json::STRING);
-    return MidiMessageTypeInfo.parseString(value.string_value());
-  }
-}
-
 Json MidiMappingKey::to_json() const {
   return Json::object {
     {"device", JsonUtil::toJson(_device)},
     {"channel", JsonUtil::toJson(_channel)},
-    {"type", JsonUtil::toJson(_type)},
+    {"type", JsonUtil::enumToJson(_type)},
     {"cc", JsonUtil::toJson(_cc)},
   };
 }
@@ -91,7 +83,7 @@ void MidiMappingKey::read_json(const Json &obj) {
   JsonUtil::assertHasType(obj, Json::OBJECT);
   _device = JsonUtil::fromJson<MidiDeviceId>(obj["device"]);
   _channel = JsonUtil::fromJson<MidiChannel>(obj["channel"]);
-  _type = JsonUtil::fromJson<MidiMessageType>(obj["type"]);
+  _type = JsonUtil::enumFromJson<MidiMessageType>(obj["type"]);
   _cc = JsonUtil::fromJson<int>(obj["cc"]);
 }
 

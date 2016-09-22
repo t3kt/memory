@@ -25,22 +25,14 @@ EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {
   {"nodeDied", SimulationEventType::NODE_DIED},
 };
 
-std::ostream& operator<<(std::ostream& os,
-                         const SimulationEventType& value) {
-  return os << SimulationEventTypeInfo.toString(value);
+template<>
+const EnumTypeInfo<SimulationEventType>& getEnumInfo() {
+  return SimulationEventTypeInfo;
 }
 
-namespace JsonUtil {
-  template<>
-  Json toJson(const SimulationEventType& value) {
-    return SimulationEventTypeInfo.toString(value);
-  }
-
-  template<>
-  SimulationEventType fromJson<SimulationEventType>(const Json& value) {
-    assertHasType(value, Json::STRING);
-    return SimulationEventTypeInfo.parseString(value.string_value());
-  }
+std::ostream& operator<<(std::ostream& os,
+                         const SimulationEventType& value) {
+  return os << enumToString(value);
 }
 
 AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {

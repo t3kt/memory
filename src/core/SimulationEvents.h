@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "../core/Common.h"
+#include "../core/Enums.h"
 #include "../core/Events.h"
 
 enum class SimulationEventType {
@@ -90,7 +91,6 @@ constexpr SimulationEventType diedEventType<NodeEntity>() {
   return SimulationEventType::NODE_DIED;
 }
 
-extern EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo;
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value);
 

@@ -47,6 +47,7 @@
 		324CF7081D3CB1E9003DD487 /* ObserverRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7061D3CB1E9003DD487 /* ObserverRenderer.cpp */; };
 		324CF70B1D3CB279003DD487 /* OccurrenceRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 324CF7091D3CB279003DD487 /* OccurrenceRenderer.cpp */; };
 		32BB6DA81D8916B100C84DED /* Actions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB6DA61D8916B100C84DED /* Actions.cpp */; };
+		32C174311D939F80009742AD /* Enums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1742F1D939F80009742AD /* Enums.cpp */; };
 		32CBCEC41D6D780900AEECC1 /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */; };
 		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
@@ -307,6 +308,8 @@
 		324CF70A1D3CB279003DD487 /* OccurrenceRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccurrenceRenderer.h; path = rendering/OccurrenceRenderer.h; sourceTree = "<group>"; };
 		32BB6DA61D8916B100C84DED /* Actions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Actions.cpp; path = core/Actions.cpp; sourceTree = "<group>"; };
 		32BB6DA71D8916B100C84DED /* Actions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Actions.h; path = core/Actions.h; sourceTree = "<group>"; };
+		32C1742F1D939F80009742AD /* Enums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enums.cpp; path = core/Enums.cpp; sourceTree = "<group>"; };
+		32C174301D939F80009742AD /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enums.h; path = core/Enums.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = core/EntityAttributes.cpp; sourceTree = "<group>"; };
 		32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = core/EntityAttributes.h; sourceTree = "<group>"; };
@@ -1357,6 +1360,8 @@
 				32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
+				32C1742F1D939F80009742AD /* Enums.cpp */,
+				32C174301D939F80009742AD /* Enums.h */,
 				32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */,
 				32CBCEE71D72B21400AEECC1 /* EventLogging.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,
@@ -1730,6 +1735,7 @@
 				789C276BFDE07DB1F2FC3273 /* ofxAssimpMeshHelper.cpp in Sources */,
 				BA80EC1312CA78AACB7A3C45 /* ofxAssimpModelLoader.cpp in Sources */,
 				8AFFBB76CB2F6EB013036AF3 /* ofxAssimpTexture.cpp in Sources */,
+				32C174311D939F80009742AD /* Enums.cpp in Sources */,
 				C75113DB6CDAC81FB36E7C95 /* Cue.cpp in Sources */,
 				E915AD058D8CFBCF94867948 /* MotionGroup.cpp in Sources */,
 				929A03C47EC36B0C9514C249 /* Timeline.cpp in Sources */,

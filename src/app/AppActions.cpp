@@ -33,8 +33,13 @@ EnumTypeInfo<AppAction> AppActionType({
   {"testAction", AppAction::TEST_ACTION},
 });
 
+template<>
+const EnumTypeInfo<AppAction>& getEnumInfo() {
+  return AppActionType;
+}
+
 std::ostream& operator<<(std::ostream& os, const AppAction& action) {
-  return os << AppActionType.toString(action);
+  return os << enumToString(action);
 }
 
 AppActionHandler::AppActionHandler() {

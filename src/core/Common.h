@@ -10,9 +10,9 @@
 #define __behavior__Common__
 
 #include <iostream>
-#include <map>
+#include <functional>
+#include <memory>
 #include <stdexcept>
-#include <vector>
 
 #ifdef TARGET_OSX
 #define ENABLE_SYPHON
@@ -33,56 +33,6 @@ protected:
 std::ostream& operator<<(std::ostream& os, const Outputable& obj);
 
 std::string ofToString(const Outputable& obj);
-
-template<typename T>
-class EnumTypeInfo {
-public:
-  EnumTypeInfo(std::initializer_list<std::pair<std::string, T>> entries) {
-    for (std::pair<std::string, T> entry : entries) {
-      _stringToEnum.insert(entry);
-      _enumToString.insert(std::make_pair(entry.second, entry.first));
-      _values.push_back(entry.second);
-    }
-  }
-
-  bool tryParseString(const std::string& str, T* result) const {
-    auto iter = _stringToEnum.find(str);
-    if (iter == _stringToEnum.end()) {
-      return false;
-    } else {
-      *result = iter->second;
-      return true;
-    }
-  }
-  bool tryToString(const T& value, std::string* result) const {
-    auto iter = _enumToString.find(value);
-    if (iter == _enumToString.end()) {
-      return false;
-    } else {
-      *result = iter->second;
-      return true;
-    }
-  }
-  std::string toString(T value) const {
-    std::string name;
-    if (!tryToString(value, &name)) {
-      throw std::invalid_argument("Unknown enum value");
-    }
-    return name;
-  }
-  T parseString(const std::string& str) const {
-    T value;
-    if (!tryParseString(str, &value)) {
-      throw std::invalid_argument("Unknown enum value: " + str);
-    }
-    return value;
-  }
-  const std::vector<T>& values() const { return _values; }
-private:
-  std::map<std::string, T> _stringToEnum;
-  std::map<T, std::string> _enumToString;
-  std::vector<T> _values;
-};
 
 class NonCopyable {
 public:
