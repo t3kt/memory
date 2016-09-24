@@ -30,7 +30,7 @@ void PhysicsController::setup() {
   _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.damping);
   _behaviors.add<BoundsBehavior>(_context, _params.rebound, _bounds);
   auto behavior =
-  _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.observerVortexNodes);
+  _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.vortexNodes);
   for (int i = 0; i < 2; i++) {
     auto pos = _bounds.randomPoint();
     behavior->spawnNode(pos);

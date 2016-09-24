@@ -74,9 +74,9 @@ public:
     add(occurrenceAnchorPointAttraction
         .setKey("occurrenceAnchorPointAttraction")
         .setName("Occurrence Anchoring"));
-    add(observerVortexNodes
-        .setKey("observerVortexNodes")
-        .setName("Observer Vortex Nodes"));
+    add(vortexNodes
+        .setKey("vortexNodes")
+        .setName("Vortex Nodes"));
     add(damping
         .setKey("damping")
         .setName("Damping"));
@@ -86,7 +86,7 @@ public:
     occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
     observerObserverAttraction.setEnabledValueAndDefault(false);
     observerOccurrenceForce.setEnabledValueAndDefault(false);
-    observerVortexNodes.setEnabledValueAndDefault(false);
+    vortexNodes.setEnabledValueAndDefault(false);
     damping.setEnabledValueAndDefault(true);
   }
 
@@ -100,7 +100,7 @@ public:
   AbstractAttractionBehavior::Params observerAnchorPointAttraction;
   AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
   AbstractDampingBehavior::Params damping;
-  AbstractVortexForceNodeBehavior::Params observerVortexNodes;
+  AbstractVortexForceNodeBehavior::Params vortexNodes;
 };
 
 class PhysicsController
