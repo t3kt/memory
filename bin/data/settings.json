@@ -269,6 +269,10 @@
     }
   },
   "physics": {
+    "damping": {
+      "enabled": true,
+      "magnitude": 2
+    },
     "observerAnchorPointAttraction": {
       "distanceBounds": {
         "high": 0.30000001192092896,
@@ -277,10 +281,6 @@
       "enabled": false,
       "magnitude": 9.9999997473787516e-05,
       "reverse": false
-    },
-    "observerDamping": {
-      "enabled": true,
-      "magnitude": 0.10204081237316132
     },
     "observerObserverAttraction": {
       "distanceBounds": {
@@ -334,10 +334,6 @@
       "enabled": false,
       "magnitude": 2.8571429252624512,
       "reverse": false
-    },
-    "occurrenceDamping": {
-      "enabled": true,
-      "magnitude": 0.34183672070503235
     },
     "occurrenceOccurrenceForce": {
       "enabled": true,
@@ -406,13 +402,6 @@
         "enabled": true,
         "highlightAmount": 0.60000002384185791,
         "size": 5.7351107597351074
-      },
-      "thresholdRenderer": {
-        "enabled": false,
-        "range": {
-          "high": 0.10000000149011612,
-          "low": 0
-        }
       }
     },
     "occurrences": {

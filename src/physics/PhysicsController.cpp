@@ -26,8 +26,8 @@ void PhysicsController::setup() {
   _behaviors.add<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.occurrenceSpatialNoiseForce);
   _behaviors.add<AnchorPointBehavior<ObserverEntity>>(_context, _params.observerAnchorPointAttraction);
   _behaviors.add<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
-  _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.observerDamping);
-  _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.occurrenceDamping);
+  _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.damping);
+  _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.damping);
   _behaviors.add<BoundsBehavior>(_context, _params.rebound, _bounds);
   auto behavior =
   _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.observerVortexNodes);

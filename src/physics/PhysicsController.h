@@ -80,12 +80,9 @@ public:
     add(observerVortexNodes
         .setKey("observerVortexNodes")
         .setName("Observer Vortex Nodes"));
-    add(observerDamping
-        .setKey("observerDamping")
-        .setName("Observer Damping"));
-    add(occurrenceDamping
-        .setKey("occurrenceDamping")
-        .setName("Occurrence Damping"));
+    add(damping
+        .setKey("damping")
+        .setName("Damping"));
     rebound.setEnabledValueAndDefault(true);
     observerSpatialNoiseForce.setEnabledValueAndDefault(false);
     observerAnchorPointAttraction.setEnabledValueAndDefault(false);
@@ -93,8 +90,7 @@ public:
     observerObserverAttraction.setEnabledValueAndDefault(false);
     observerOccurrenceForce.setEnabledValueAndDefault(false);
     observerVortexNodes.setEnabledValueAndDefault(false);
-    observerDamping.setEnabledValueAndDefault(true);
-    occurrenceDamping.setEnabledValueAndDefault(true);
+    damping.setEnabledValueAndDefault(true);
   }
 
   EntityPhysicsParams observers;
@@ -107,8 +103,7 @@ public:
   AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
   AbstractAttractionBehavior::Params observerAnchorPointAttraction;
   AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
-  AbstractDampingBehavior::Params observerDamping;
-  AbstractDampingBehavior::Params occurrenceDamping;
+  AbstractDampingBehavior::Params damping;
   AbstractVortexForceNodeBehavior::Params observerVortexNodes;
 };
 
