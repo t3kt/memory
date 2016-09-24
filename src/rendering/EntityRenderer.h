@@ -15,6 +15,7 @@
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../rendering/Colors.h"
+#include "../rendering/Renderer.h"
 
 class Context;
 
@@ -30,7 +31,7 @@ public:
 };
 
 template<typename T, typename P = EntityPreRendererParams>
-class EntityPreRenderer {
+class EntityPreRenderer : public PreRenderer {
 public:
   using Params = P;
 
@@ -44,7 +45,6 @@ public:
   , _entities(entities)
   , _fadeIn(params.fadeIn) { }
 
-  virtual void update() = 0;
 protected:
   const P& _params;
   const ColorTheme& _colors;

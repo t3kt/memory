@@ -310,6 +310,7 @@
 		32C1742F1D939F80009742AD /* Enums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enums.cpp; path = core/Enums.cpp; sourceTree = "<group>"; };
 		32C174301D939F80009742AD /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enums.h; path = core/Enums.h; sourceTree = "<group>"; };
 		32C1743A1D962635009742AD /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Component.h; path = core/Component.h; sourceTree = "<group>"; };
+		32C1743B1D962AEB009742AD /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = rendering/Renderer.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = core/EntityAttributes.cpp; sourceTree = "<group>"; };
 		32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = core/EntityAttributes.h; sourceTree = "<group>"; };
@@ -956,6 +957,7 @@
 				324CF70A1D3CB279003DD487 /* OccurrenceRenderer.h */,
 				3EEDD94E96E3A4D29CC0A83A /* PostProcController.cpp */,
 				2A61C85F50CE0EA044F147DA /* PostProcController.h */,
+				32C1743B1D962AEB009742AD /* Renderer.h */,
 				F1FD0AB6A67218938F842099 /* RenderingController.cpp */,
 				AEA8DEB472FF302C435980BA /* RenderingController.h */,
 			);

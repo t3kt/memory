@@ -9,11 +9,12 @@
 #ifndef OccurrenceRenderer_h
 #define OccurrenceRenderer_h
 
-#include "../rendering/EntityRenderer.h"
+#include "../rendering/Renderer.h"
 
 class MemoryAppParameters;
 
-class OccurrenceRenderer {
+class OccurrenceRenderer
+: public Renderer {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -66,7 +67,7 @@ public:
                      const ColorTheme& colors,
                      Context& context);
 
-  void draw();
+  void draw() override;
 private:
   const Params& _params;
   Context& _context;

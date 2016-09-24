@@ -28,38 +28,14 @@ void RenderingController::setup() {
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
   const auto& occurrenceParams = _params.occurrences;
-  _observerPreRenderer =
-  std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
-                                        colors,
-                                        _context);
-  _occurrencePreRenderer =
-  std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
-                                          colors,
-                                          _context);
-  _observerRenderer =
-  std::make_shared<ObserverRenderer>(observerParams.renderer,
-                                     colors,
-                                     _context);
-  //  _instancedObserverRenderer =
-  //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
-  //                                              _context);
-  //  _instancedObserverRenderer->setup();
-  _observerConnectorRenderer =
-  std::make_shared<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer,
-                                                      colors.observerConnector.get(),
-                                                      _context.observers);
-  _occurrenceRenderer =
-  std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
-                                       colors,
-                                       _context);
-  _observerOccurrenceConnectorRenderer =
-  std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
-                                                        colors.occurrenceObserverConnector.get(),
-                                                        _context.occurrences);
-  _occurrenceOccurrenceConnectorRenderer =
-  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer,
-                                                          colors.occurrenceConnector.get(),
-                                                          _context.occurrences);
+  _preRenderers.add<ObserverPreRenderer>(observerParams.preRenderer, colors, _context);
+  _preRenderers.add<OccurrencePreRenderer>(occurrenceParams.preRenderer, colors, _context);
+  _renderers.add<ObserverRenderer>(observerParams.renderer, colors, _context);
+//  _renderers.add<InstancedObserverRenderer>(observerParams.instancedRenderer, _context);
+  _renderers.add<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer, colors.observerConnector.get(), _context.observers);
+  _renderers.add<OccurrenceRenderer>(occurrenceParams.renderer, colors, _context);
+  _renderers.add<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer, colors.occurrenceObserverConnector.get(), _context.occurrences);
+  _renderers.add<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer, colors.occurrenceConnector.get(), _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();
@@ -85,13 +61,12 @@ void RenderingController::update() {
     entity->setScreenPos(cam.worldToScreen(entity->position()));
   });
   cam.end();
-  //  _instancedObserverRenderer->update();
+  _renderers.update();
   _postProc->update();
 }
 
 void RenderingController::beginDraw() {
-  _observerPreRenderer->update();
-  _occurrencePreRenderer->update();
+  _preRenderers.update();
 
   ofBackground(_colors.background.get());
   glPushAttrib(GL_ENABLE_BIT);
@@ -110,12 +85,7 @@ void RenderingController::beginDraw() {
 }
 
 void RenderingController::draw() {
-  _observerRenderer->draw();
-  //  _instancedObserverRenderer->draw();
-  _observerConnectorRenderer->draw();
-  _occurrenceRenderer->draw();
-  _observerOccurrenceConnectorRenderer->draw();
-  _occurrenceOccurrenceConnectorRenderer->draw();
+  _renderers.draw();
 }
 
 void RenderingController::endDraw() {

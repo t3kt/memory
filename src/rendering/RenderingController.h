@@ -158,14 +158,8 @@ private:
   const ColorTheme& _colors;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
-  std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;
-  std::shared_ptr<OccurrencePreRenderer> _occurrencePreRenderer;
-  std::shared_ptr<ObserverRenderer> _observerRenderer;
-  std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
-  std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  std::shared_ptr<OccurrenceRenderer> _occurrenceRenderer;
-  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
-  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
+  PreRendererCollection _preRenderers;
+  RendererCollection _renderers;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;
 };
