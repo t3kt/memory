@@ -458,9 +458,6 @@
       "enabled": true,
       "fxaa": {
         "enabled": true
-      },
-      "rimHighlight": {
-        "enabled": false
       }
     }
   }

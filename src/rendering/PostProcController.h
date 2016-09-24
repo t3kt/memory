@@ -78,9 +78,6 @@ public:
     add(dof
         .setKey("dof")
         .setName("Depth of Field"));
-    add(rimHighlight
-        .setKey("rimHighlight")
-        .setName("Rim Highlight"));
     add(bloom
         .setKey("bloom")
         .setName("Bloom"));
@@ -89,7 +86,6 @@ public:
         .setName("Color Adjust"));
     setEnabledValueAndDefault(true);
     fxaa.setEnabledValueAndDefault(true);
-    rimHighlight.setEnabledValueAndDefault(false);
     bloom.setEnabledValueAndDefault(true);
     colorAdjust.setEnabledValueAndDefault(false);
   }
@@ -97,7 +93,6 @@ public:
   ParamsWithEnabled fxaa;
   EdgePassParams edge;
   DofPassParams dof;
-  ParamsWithEnabled rimHighlight;
   ParamsWithEnabled bloom;
   ColorAdjustPass::Params colorAdjust;
 };
@@ -127,7 +122,6 @@ private:
   std::shared_ptr<FxaaPass> _fxaaPass;
   std::shared_ptr<EdgePass> _edgePass;
   std::shared_ptr<DofPass> _dofPass;
-  std::shared_ptr<RimHighlightingPass> _rimHighlightPass;
   std::shared_ptr<BloomPass> _bloomPass;
   std::shared_ptr<ColorAdjustPass> _colorAdjustPass;
 };
