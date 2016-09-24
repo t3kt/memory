@@ -10,7 +10,6 @@
 #include "../core/Info.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/State.h"
 
 ObserverEntity::ObserverEntity(ofVec3f pos, float decay, const State& state)
 : ParticleObject(pos)

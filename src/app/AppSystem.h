@@ -16,11 +16,11 @@
 #include "../app/AppParameters.h"
 #include "../core/Context.h"
 #include "../core/Events.h"
-#include "../core/State.h"
 #include "../core/Logging.h"
 
 class ActionsController;
 class SimulationApp;
+class State;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
 

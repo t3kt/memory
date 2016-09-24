@@ -19,7 +19,6 @@
 #include "../core/OccurrenceEntity.h"
 #include "../spawning/OccurrenceSpawner.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class OccurrencesController;
 class SimulationEvents;

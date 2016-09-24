@@ -13,7 +13,6 @@
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
-#include "../core/State.h"
 
 class AbstractPhysicsBehavior {
 public:

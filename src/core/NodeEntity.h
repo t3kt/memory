@@ -12,8 +12,9 @@
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/ParticleObject.h"
-#include "../core/State.h"
 #include "../core/WorldObject.h"
+
+class State;
 
 class NodeEntity
 : public ParticleObject {

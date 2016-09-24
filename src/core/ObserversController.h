@@ -19,7 +19,6 @@
 #include "../spawning/ObserverSpawner.h"
 #include "../rules/ObserverSickness.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class SimulationEvents;
 

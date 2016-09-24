@@ -14,7 +14,6 @@
 #include "../core/Context.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class SimulationEvents;
 
