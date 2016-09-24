@@ -98,7 +98,7 @@ public:
                           const Params& params)
   : AbstractVortexForceNodeBehavior(context, params) { }
 
-  void applyToWorld() override {
+  void update() override {
     if (!_params.enabled.get()) {
       return;
     }

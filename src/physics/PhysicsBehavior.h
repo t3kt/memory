@@ -20,7 +20,7 @@ public:
   : _context(context) { }
 
   virtual void setup() {}
-  virtual void applyToWorld() = 0;
+  virtual void update() = 0;
   virtual void debugDraw() {
     beginDebugDraw();
     debugDrawBehavior();
@@ -49,7 +49,7 @@ public:
   , _params(params)
   , _bounds(bounds) { }
 
-  void applyToWorld() override;
+  void update() override;
 
 private:
   void applyToEntity(ParticleObject* entity);

@@ -76,7 +76,7 @@ public:
   NoiseForceFieldBehavior(Context& context, const Params& params)
   : AbstractNoiseForceFieldBehavior(context, params) { }
 
-  void applyToWorld() override {
+  void update() override {
     if (!_params.enabled()) {
       return;
     }

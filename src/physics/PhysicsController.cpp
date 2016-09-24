@@ -19,18 +19,18 @@ PhysicsController::PhysicsController(PhysicsController::Params& params,
 , _debugParams(debugParams) {}
 
 void PhysicsController::setup() {
-  addBehavior<AttractionBehavior<ObserverEntity, ObserverEntity>>(_context, _params.observerObserverAttraction);
-  addBehavior<ObserverOccurrenceForceBehavior>(_context, _params.observerOccurrenceForce);
-  addBehavior<OccurrenceOccurrenceForceBehavior>(_context, _params.occurrenceOccurrenceForce);
-  addBehavior<NoiseForceFieldBehavior<ObserverEntity>>(_context, _params.observerSpatialNoiseForce);
-  addBehavior<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.occurrenceSpatialNoiseForce);
-  addBehavior<AnchorPointBehavior<ObserverEntity>>(_context, _params.observerAnchorPointAttraction);
-  addBehavior<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
-  addBehavior<DampingBehavior<ObserverEntity>>(_context, _params.observerDamping);
-  addBehavior<DampingBehavior<OccurrenceEntity>>(_context, _params.occurrenceDamping);
-  addBehavior<BoundsBehavior>(_context, _params.rebound, _bounds);
+  _behaviors.add<AttractionBehavior<ObserverEntity, ObserverEntity>>(_context, _params.observerObserverAttraction);
+  _behaviors.add<ObserverOccurrenceForceBehavior>(_context, _params.observerOccurrenceForce);
+  _behaviors.add<OccurrenceOccurrenceForceBehavior>(_context, _params.occurrenceOccurrenceForce);
+  _behaviors.add<NoiseForceFieldBehavior<ObserverEntity>>(_context, _params.observerSpatialNoiseForce);
+  _behaviors.add<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.occurrenceSpatialNoiseForce);
+  _behaviors.add<AnchorPointBehavior<ObserverEntity>>(_context, _params.observerAnchorPointAttraction);
+  _behaviors.add<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
+  _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.observerDamping);
+  _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.occurrenceDamping);
+  _behaviors.add<BoundsBehavior>(_context, _params.rebound, _bounds);
   auto behavior =
-  addBehavior<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.observerVortexNodes);
+  _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.observerVortexNodes);
   for (int i = 0; i < 2; i++) {
     auto pos = _bounds.randomPoint();
     behavior->spawnNode(pos);
@@ -77,9 +77,7 @@ void PhysicsController::update() {
   for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  for (auto& behavior : _behaviors) {
-    behavior->applyToWorld();
-  }
+  _behaviors.update();
   for (auto& entity : _context.observers) {
     endEntityUpdate(entity.get(), _params.observers);
   }

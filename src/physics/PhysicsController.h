@@ -9,11 +9,11 @@
 #ifndef PhysicsController_h
 #define PhysicsController_h
 
-#include <vector>
 #include "../physics/AnchorPointBehavior.h"
 #include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
 #include "../core/Bounds.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../physics/DampingBehavior.h"
 #include "../physics/EntityForceBehavior.h"
@@ -24,7 +24,8 @@
 #include "../core/Params.h"
 #include "../physics/PhysicsBehavior.h"
 
-using PhysicsBehaviorList = std::vector<std::shared_ptr<AbstractPhysicsBehavior>>;
+using PhysicsBehaviorCollection
+= ComponentCollection<AbstractPhysicsBehavior>;
 
 class DebugParams;
 
@@ -131,16 +132,6 @@ public:
   bool performAction(AppAction action) override;
 
 private:
-  template<typename B, typename ...Args>
-  std::shared_ptr<B> addBehavior(Args&& ...args) {
-    auto behavior =
-    std::make_shared<B>(std::forward<Args>(args)...);
-    _behaviors.push_back(behavior);
-    behavior->setup();
-    return behavior;
-  }
-
-
   void beginEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
@@ -148,7 +139,7 @@ private:
   Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-  PhysicsBehaviorList _behaviors;
+  PhysicsBehaviorCollection _behaviors;
 };
 
 #endif /* PhysicsController_h */

@@ -57,7 +57,7 @@ public:
   : AbstractPhysicsBehavior(context)
   , _params(params) { }
 
-  void applyToWorld() override {
+  void update() override {
     if (!_params.enabled()) {
       return;
     }
