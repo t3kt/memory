@@ -271,7 +271,7 @@
   "physics": {
     "damping": {
       "enabled": true,
-      "magnitude": 2
+      "magnitude": 0.10204081237316132
     },
     "observerAnchorPointAttraction": {
       "distanceBounds": {
@@ -301,12 +301,6 @@
         "value1": 5.9412746429443359
       },
       "magnitude": 0.76530611515045166
-    },
-    "observerSpatialNoiseForce": {
-      "enabled": false,
-      "magnitude": 0.61224490404129028,
-      "rate": 0.038265306502580643,
-      "scale": 98.979591369628906
     },
     "observerVortexNodes": {
       "enabled": true,
@@ -346,17 +340,17 @@
       },
       "magnitude": 1.3622448444366455
     },
-    "occurrenceSpatialNoiseForce": {
-      "enabled": false,
-      "magnitude": 0.40816324949264526,
-      "rate": 0.028061224147677422,
-      "scale": 20.408163070678711
-    },
     "occurrences": {
       "speed": 1.6326529979705811
     },
     "rebound": {
       "enabled": true
+    },
+    "spatialNoiseForce": {
+      "enabled": false,
+      "magnitude": 0.61224490404129028,
+      "rate": 0.038265306502580643,
+      "scale": 98.979591369628906
     }
   },
   "rendering": {

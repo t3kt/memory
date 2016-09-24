@@ -65,12 +65,9 @@ public:
     add(occurrenceOccurrenceForce
         .setKey("occurrenceOccurrenceForce")
         .setName("Occ/Occ Force"));
-    add(observerSpatialNoiseForce
-        .setKey("observerSpatialNoiseForce")
-        .setName("Observer Spatial Noise"));
-    add(occurrenceSpatialNoiseForce
-        .setKey("occurrenceSpatialNoiseForce")
-        .setName("Occurrence Spatial Noise"));
+    add(spatialNoiseForce
+        .setKey("spatialNoiseForce")
+        .setName("Spatial Noise"));
     add(observerAnchorPointAttraction
         .setKey("observerAnchorPointAttraction")
         .setName("Observer Anchoring"));
@@ -84,7 +81,7 @@ public:
         .setKey("damping")
         .setName("Damping"));
     rebound.setEnabledValueAndDefault(true);
-    observerSpatialNoiseForce.setEnabledValueAndDefault(false);
+    spatialNoiseForce.setEnabledValueAndDefault(false);
     observerAnchorPointAttraction.setEnabledValueAndDefault(false);
     occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
     observerObserverAttraction.setEnabledValueAndDefault(false);
@@ -99,8 +96,7 @@ public:
   AbstractAttractionBehavior::Params observerObserverAttraction;
   ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
   OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
-  AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
-  AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
+  AbstractNoiseForceFieldBehavior::Params spatialNoiseForce;
   AbstractAttractionBehavior::Params observerAnchorPointAttraction;
   AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
   AbstractDampingBehavior::Params damping;

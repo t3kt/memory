@@ -22,8 +22,8 @@ void PhysicsController::setup() {
   _behaviors.add<AttractionBehavior<ObserverEntity, ObserverEntity>>(_context, _params.observerObserverAttraction);
   _behaviors.add<ObserverOccurrenceForceBehavior>(_context, _params.observerOccurrenceForce);
   _behaviors.add<OccurrenceOccurrenceForceBehavior>(_context, _params.occurrenceOccurrenceForce);
-  _behaviors.add<NoiseForceFieldBehavior<ObserverEntity>>(_context, _params.observerSpatialNoiseForce);
-  _behaviors.add<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.occurrenceSpatialNoiseForce);
+  _behaviors.add<NoiseForceFieldBehavior<ObserverEntity>>(_context, _params.spatialNoiseForce);
+  _behaviors.add<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.spatialNoiseForce);
   _behaviors.add<AnchorPointBehavior<ObserverEntity>>(_context, _params.observerAnchorPointAttraction);
   _behaviors.add<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
   _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.damping);
