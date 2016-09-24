@@ -22,7 +22,6 @@
 #include "../rendering/OccurrenceRenderer.h"
 #include "../core/Params.h"
 #include "../rendering/PostProcController.h"
-#include "../rendering/ThresholdRenderer.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -43,16 +42,12 @@ public:
     add(connectorRenderer
         .setKey("connectorRenderer")
         .setName("Connector Renderer"));
-    add(thresholdRenderer
-        .setKey("thresholdRenderer")
-        .setName("Threshold"));
   }
 
   ObserverPreRenderer::Params preRenderer;
   ObserverRenderer::Params renderer;
   InstancedObserverRenderer::Params instancedRenderer;
   ObserverObserverConnectorRenderer::Params connectorRenderer;
-  AbstractThresholdRenderer::Params thresholdRenderer;
 };
 
 class OccurrenceRenderingParams : public Params {
@@ -168,7 +163,6 @@ private:
   std::shared_ptr<ObserverRenderer> _observerRenderer;
   std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
   std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  std::shared_ptr<ObserverThresholdRenderer> _observerThresholdRenderer;
   std::shared_ptr<OccurrenceRenderer> _occurrenceRenderer;
   std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
   std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;

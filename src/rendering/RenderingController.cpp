@@ -36,10 +36,6 @@ void RenderingController::setup() {
   std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
                                           colors,
                                           _context);
-  _observerThresholdRenderer =
-  std::make_shared<ObserverThresholdRenderer>(_context.observers,
-                                              observerParams.thresholdRenderer,
-                                              colors.observerThresholdConnector.get());
   _observerRenderer =
   std::make_shared<ObserverRenderer>(observerParams.renderer,
                                      colors,
@@ -90,7 +86,6 @@ void RenderingController::update() {
   });
   cam.end();
   //  _instancedObserverRenderer->update();
-  _observerThresholdRenderer->update();
   _postProc->update();
 }
 
@@ -118,7 +113,6 @@ void RenderingController::draw() {
   _observerRenderer->draw();
   //  _instancedObserverRenderer->draw();
   _observerConnectorRenderer->draw();
-  _observerThresholdRenderer->draw();
   _occurrenceRenderer->draw();
   _observerOccurrenceConnectorRenderer->draw();
   _occurrenceOccurrenceConnectorRenderer->draw();
