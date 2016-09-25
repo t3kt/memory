@@ -12,6 +12,7 @@
 #include "../core/Common.h"
 #include "../core/EntityMap.h"
 #include "../core/ObjectId.h"
+#include "../core/ParticleObject.h"
 
 class NodeEntity;
 class ObserverEntity;
@@ -26,8 +27,8 @@ public:
   EntityMap<E>& getEntities();
 
   template<typename E>
-  void add(std::shared_ptr<E> entity) {
-    getEntities<E>().add(entity);
+  bool add(std::shared_ptr<E> entity) {
+    return getEntities<E>().add(entity);
   }
 
   template<typename E, typename A>
@@ -41,8 +42,19 @@ public:
     return _nodes.size() + _observers.size() + _occurrences.size();
   }
 
+  bool containsId(ObjectId objId) const {
+    return _nodes.containsId(objId) || _observers.containsId(objId) || _occurrences.containsId(objId);
+  }
+
   void cullDeadObjects();
+
+  void clear();
 private:
+  bool addSingle(ParticlePtr entity);
+  bool addWithConnections(ParticlePtr fromEntity);
+  void addConnections(ParticlePtr fromEntity,
+                      std::size_t depthLimit = -1);
+
   ObjectId _id;
   EntityMap<NodeEntity> _nodes;
   EntityMap<ObserverEntity> _observers;

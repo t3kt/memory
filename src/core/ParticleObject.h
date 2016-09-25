@@ -19,6 +19,8 @@ class ParticleObject : public WorldObject {
 public:
   ParticleObject(ofVec3f pos);
 
+  bool isParticle() const override { return true; }
+
   void setVelocity(ofVec3f velocity) { _velocity = velocity; }
 
   void resetForce();

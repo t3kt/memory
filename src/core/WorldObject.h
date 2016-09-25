@@ -36,6 +36,8 @@ public:
   
   const ObjectId& id() const { return _id; }
 
+  virtual bool isParticle() const { return false; }
+
   bool alive() const { return _alive; }
 
   void kill();

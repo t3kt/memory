@@ -26,7 +26,10 @@ public:
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
-  void add(EntityPtr entity) { _map[entity->id()] = entity; }
+  bool add(EntityPtr entity) {
+    auto result = _map.insert(std::make_pair(entity->id(), entity));
+    return result.second;
+  }
 
   EntityPtr getAtIndex(std::size_t index) {
     if (index >= size()) {

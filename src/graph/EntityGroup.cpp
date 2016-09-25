@@ -10,7 +10,6 @@
 #include "../core/NodeEntity.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/ParticleObject.h"
 
 template<>
 EntityMap<NodeEntity>&
@@ -43,4 +42,21 @@ void EntityGroup::cullDeadObjects() {
   _nodes.cullDeadObjects();
   _observers.cullDeadObjects();
   _occurrences.cullDeadObjects();
+}
+
+void EntityGroup::clear() {
+  _nodes.clear();
+  _observers.clear();
+  _occurrences.clear();
+}
+
+void EntityGroup::addConnections(ParticlePtr fromEntity,
+                                 std::size_t depthLimit) {
+  bool descendants = depthLimit == -1 || depthLimit > 0;
+  fromEntity->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
+    auto type = entity->entityType();
+    //
+  });
+  //...
+  //...
 }
