@@ -65,6 +65,13 @@ public:
   const_iterator begin() const { return _map.begin(); }
   const_iterator end() const { return _map.end(); }
 
+  template<typename A>
+  void performAction(A action) {
+    for (auto& entry : _map) {
+      action(entry.second);
+    }
+  }
+
   Json idsToJson() const {
     Json::array arr;
     for (const auto& entity : _map) {
@@ -82,6 +89,18 @@ public:
       }
     }
     return std::shared_ptr<T>();
+  }
+
+  void cullDeadObjects() {
+    for(auto iter = _map.begin();
+        iter != _map.end();) {
+      auto& entity = *iter;
+      if (entity->alive()) {
+        iter++;
+      } else {
+        iter = _map.erase(iter);
+      }
+    }
   }
 private:
   Storage _map;

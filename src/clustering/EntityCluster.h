@@ -9,30 +9,41 @@
 #ifndef EntityCluster_h
 #define EntityCluster_h
 
+#include "../core/Common.h"
 #include "../core/EntityMap.h"
+#include "../core/ObjectId.h"
 
-class AnimationObject;
-class NavigatorEntity;
 class NodeEntity;
 class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
-class WorldObject;
 
 class EntityCluster {
 public:
-  template<typename E>
-  void add(std::shared_ptr<E> entity);
+  EntityCluster();
 
   template<typename E>
-  EntityMap<E>& getEntityMap();
+  EntityMap<E>& getEntities();
 
-private:
   template<typename E>
-  void addToMap(std::shared_ptr<E> entity) {
-    getEntityMap<E>().add(entity);
+  void add(std::shared_ptr<E> entity) {
+    getEntities<E>().add(entity);
   }
 
+  template<typename E, typename A>
+  void performEntityAction(A action) {
+    getEntities<E>().performAction(action);
+  }
+
+  void performAllEntityAction(PtrAction<ParticleObject> action);
+
+  std::size_t size() const {
+    return _nodes.size() + _observers.size() + _occurrences.size();
+  }
+
+  void cullDeadObjects();
+private:
+  ObjectId _id;
   EntityMap<NodeEntity> _nodes;
   EntityMap<ObserverEntity> _observers;
   EntityMap<OccurrenceEntity> _occurrences;

@@ -7,15 +7,40 @@
 //
 
 #include "../clustering/EntityCluster.h"
+#include "../core/NodeEntity.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
+#include "../core/ParticleObject.h"
 
 template<>
 EntityMap<NodeEntity>&
-EntityCluster::getEntityMap() { return _nodes; }
+EntityCluster::getEntities() { return _nodes; }
 
 template<>
 EntityMap<ObserverEntity>&
-EntityCluster::getEntityMap() { return _observers; }
+EntityCluster::getEntities() { return _observers; }
 
 template<>
 EntityMap<OccurrenceEntity>&
-EntityCluster::getEntityMap() { return _occurrences; }
+EntityCluster::getEntities() { return _occurrences; }
+
+EntityCluster::EntityCluster()
+: _id(ObjectIds::next()) { }
+
+void EntityCluster::performAllEntityAction(PtrAction<ParticleObject> action) {
+  performEntityAction<NodeEntity>([&](std::shared_ptr<NodeEntity>& entity) {
+    action(std::dynamic_pointer_cast<ParticleObject>(entity));
+  });
+  performEntityAction<ObserverEntity>([&](std::shared_ptr<ObserverEntity>& entity) {
+    action(std::dynamic_pointer_cast<ParticleObject>(entity));
+  });
+  performEntityAction<OccurrenceEntity>([&](std::shared_ptr<OccurrenceEntity>& entity) {
+    action(std::dynamic_pointer_cast<ParticleObject>(entity));
+  });
+}
+
+void EntityCluster::cullDeadObjects() {
+  _nodes.cullDeadObjects();
+  _observers.cullDeadObjects();
+  _occurrences.cullDeadObjects();
+}
