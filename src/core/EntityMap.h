@@ -94,8 +94,7 @@ public:
   void cullDeadObjects() {
     for(auto iter = _map.begin();
         iter != _map.end();) {
-      auto& entity = *iter;
-      if (entity->alive()) {
+      if (iter->second->alive()) {
         iter++;
       } else {
         iter = _map.erase(iter);
