@@ -13,12 +13,9 @@
 #include <iostream>
 #include <memory>
 #include "../core/Common.h"
+#include "../core/ObjectId.h"
 #include "../core/JsonIO.h"
 #include "../core/Serialization.h"
-
-typedef int ObjectId;
-
-const ObjectId NO_OBJECT_ID = -1;
 
 enum class EntityType {
   ANIMATION,

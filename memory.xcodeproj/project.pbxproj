@@ -49,6 +49,7 @@
 		32BB6DA81D8916B100C84DED /* Actions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB6DA61D8916B100C84DED /* Actions.cpp */; };
 		32C174311D939F80009742AD /* Enums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1742F1D939F80009742AD /* Enums.cpp */; };
 		32C174471D975FCB009742AD /* EntityCluster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174451D975FCB009742AD /* EntityCluster.cpp */; };
+		32C1744A1D976343009742AD /* ObjectId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174481D976343009742AD /* ObjectId.cpp */; };
 		32CBCEC41D6D780900AEECC1 /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */; };
 		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
@@ -314,6 +315,8 @@
 		32C1743B1D962AEB009742AD /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = rendering/Renderer.h; sourceTree = "<group>"; };
 		32C174451D975FCB009742AD /* EntityCluster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityCluster.cpp; path = clustering/EntityCluster.cpp; sourceTree = "<group>"; };
 		32C174461D975FCB009742AD /* EntityCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityCluster.h; path = clustering/EntityCluster.h; sourceTree = "<group>"; };
+		32C174481D976343009742AD /* ObjectId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectId.cpp; path = core/ObjectId.cpp; sourceTree = "<group>"; };
+		32C174491D976343009742AD /* ObjectId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectId.h; path = core/ObjectId.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = core/EntityAttributes.cpp; sourceTree = "<group>"; };
 		32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = core/EntityAttributes.h; sourceTree = "<group>"; };
@@ -1388,6 +1391,8 @@
 				321F50F71D8F9E9D00B3BCA8 /* NodeEntity.h */,
 				321F50FA1D8FA3FA00B3BCA8 /* NodesController.cpp */,
 				321F50FB1D8FA3FA00B3BCA8 /* NodesController.h */,
+				32C174481D976343009742AD /* ObjectId.cpp */,
+				32C174491D976343009742AD /* ObjectId.h */,
 				6DA7C49D614EE11BC0871180 /* ObjectManager.h */,
 				060B900FD66542BB0792E633 /* ObserverEntity.cpp */,
 				73A80F2F0DCFC1E5BBB37370 /* ObserverEntity.h */,
@@ -1704,6 +1709,7 @@
 				B6C962E732C4D744A2600D32 /* MidiRouter.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
+				32C1744A1D976343009742AD /* ObjectId.cpp in Sources */,
 				A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */,
 				32F74A611D409C0600C1A911 /* UdpSocket.cpp in Sources */,
 				32F74A5F1D409C0600C1A911 /* IpEndpointName.cpp in Sources */,

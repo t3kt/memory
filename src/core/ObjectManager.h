@@ -67,8 +67,8 @@ public:
     JsonUtil::assertHasType(arr, Json::ARRAY);
     for (const auto& val : arr.array_items()) {
       JsonUtil::assertHasType(val, Json::OBJECT);
-      ObjectId id = JsonUtil::fromJsonField(val, "id", NO_OBJECT_ID);
-      if (id == NO_OBJECT_ID) {
+      ObjectId id = JsonUtil::fromJsonField(val, "id", ObjectIds::NONE);
+      if (id == ObjectIds::NONE) {
         throw SerializationException("Missing ID for object: " + val.dump());
       }
       auto entity = (*this)[id];
