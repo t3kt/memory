@@ -1,13 +1,13 @@
 //
-//  EntityCluster.h
+//  EntityGroup.h
 //  memory
 //
 //  Created by tekt on 9/24/16.
 //
 //
 
-#ifndef EntityCluster_h
-#define EntityCluster_h
+#ifndef EntityGroup_h
+#define EntityGroup_h
 
 #include "../core/Common.h"
 #include "../core/EntityMap.h"
@@ -18,9 +18,9 @@ class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
 
-class EntityCluster {
+class EntityGroup {
 public:
-  EntityCluster();
+  EntityGroup();
 
   template<typename E>
   EntityMap<E>& getEntities();
@@ -49,4 +49,4 @@ private:
   EntityMap<OccurrenceEntity> _occurrences;
 };
 
-#endif /* EntityCluster_h */
+#endif /* EntityGroup_h */

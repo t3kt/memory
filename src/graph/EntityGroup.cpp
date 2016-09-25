@@ -1,12 +1,12 @@
 //
-//  EntityCluster.cpp
+//  EntityGroup.cpp
 //  memory
 //
 //  Created by tekt on 9/24/16.
 //
 //
 
-#include "../graph/EntityCluster.h"
+#include "../graph/EntityGroup.h"
 #include "../core/NodeEntity.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
@@ -14,20 +14,20 @@
 
 template<>
 EntityMap<NodeEntity>&
-EntityCluster::getEntities() { return _nodes; }
+EntityGroup::getEntities() { return _nodes; }
 
 template<>
 EntityMap<ObserverEntity>&
-EntityCluster::getEntities() { return _observers; }
+EntityGroup::getEntities() { return _observers; }
 
 template<>
 EntityMap<OccurrenceEntity>&
-EntityCluster::getEntities() { return _occurrences; }
+EntityGroup::getEntities() { return _occurrences; }
 
-EntityCluster::EntityCluster()
+EntityGroup::EntityGroup()
 : _id(ObjectIds::next()) { }
 
-void EntityCluster::performAllEntityAction(PtrAction<ParticleObject> action) {
+void EntityGroup::performAllEntityAction(PtrAction<ParticleObject> action) {
   performEntityAction<NodeEntity>([&](std::shared_ptr<NodeEntity>& entity) {
     action(std::dynamic_pointer_cast<ParticleObject>(entity));
   });
@@ -39,7 +39,7 @@ void EntityCluster::performAllEntityAction(PtrAction<ParticleObject> action) {
   });
 }
 
-void EntityCluster::cullDeadObjects() {
+void EntityGroup::cullDeadObjects() {
   _nodes.cullDeadObjects();
   _observers.cullDeadObjects();
   _occurrences.cullDeadObjects();

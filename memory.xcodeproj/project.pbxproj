@@ -49,7 +49,7 @@
 		32BB6DA81D8916B100C84DED /* Actions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32BB6DA61D8916B100C84DED /* Actions.cpp */; };
 		32C174311D939F80009742AD /* Enums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1742F1D939F80009742AD /* Enums.cpp */; };
 		32C1744A1D976343009742AD /* ObjectId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174481D976343009742AD /* ObjectId.cpp */; };
-		32C1744E1D976B39009742AD /* EntityCluster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1744C1D976B39009742AD /* EntityCluster.cpp */; };
+		32C174511D977C06009742AD /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1744F1D977C06009742AD /* EntityGroup.cpp */; };
 		32CBCEC41D6D780900AEECC1 /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */; };
 		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
@@ -315,8 +315,8 @@
 		32C1743B1D962AEB009742AD /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = rendering/Renderer.h; sourceTree = "<group>"; };
 		32C174481D976343009742AD /* ObjectId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectId.cpp; path = core/ObjectId.cpp; sourceTree = "<group>"; };
 		32C174491D976343009742AD /* ObjectId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectId.h; path = core/ObjectId.h; sourceTree = "<group>"; };
-		32C1744C1D976B39009742AD /* EntityCluster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityCluster.cpp; path = graph/EntityCluster.cpp; sourceTree = "<group>"; };
-		32C1744D1D976B39009742AD /* EntityCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityCluster.h; path = graph/EntityCluster.h; sourceTree = "<group>"; };
+		32C1744F1D977C06009742AD /* EntityGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityGroup.cpp; path = graph/EntityGroup.cpp; sourceTree = "<group>"; };
+		32C174501D977C06009742AD /* EntityGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityGroup.h; path = graph/EntityGroup.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = core/EntityAttributes.cpp; sourceTree = "<group>"; };
 		32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = core/EntityAttributes.h; sourceTree = "<group>"; };
@@ -754,8 +754,8 @@
 		32C1744B1D976AFD009742AD /* graph */ = {
 			isa = PBXGroup;
 			children = (
-				32C1744C1D976B39009742AD /* EntityCluster.cpp */,
-				32C1744D1D976B39009742AD /* EntityCluster.h */,
+				32C1744F1D977C06009742AD /* EntityGroup.cpp */,
+				32C174501D977C06009742AD /* EntityGroup.h */,
 			);
 			name = graph;
 			sourceTree = "<group>";
@@ -1694,6 +1694,7 @@
 			files = (
 				55592031663A7C81C1FEB895 /* AppActions.cpp in Sources */,
 				32324C7D1D57F90900D05EDF /* OccurrencePreRenderer.cpp in Sources */,
+				32C174511D977C06009742AD /* EntityGroup.cpp in Sources */,
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,
 				60C0F24E43C2E04399F8A80E /* AppParameters.cpp in Sources */,
 				F81FD2E8043A882838897E5E /* AppSystem.cpp in Sources */,
@@ -1736,7 +1737,6 @@
 				32F74A681D409C0600C1A911 /* ofxOscBundle.cpp in Sources */,
 				321F50FC1D8FA3FA00B3BCA8 /* NodesController.cpp in Sources */,
 				444C9249C057E8536013952B /* ValueSupplier.cpp in Sources */,
-				32C1744E1D976B39009742AD /* EntityCluster.cpp in Sources */,
 				B09A0952D83A495AC78C00A0 /* WorldObject.cpp in Sources */,
 				D28F6C9117D51DFE7296F40D /* json11.cpp in Sources */,
 				32E58A3D1D3C3006001AA5E4 /* NavigatorState.cpp in Sources */,
