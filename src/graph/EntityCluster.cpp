@@ -6,7 +6,7 @@
 //
 //
 
-#include "../clustering/EntityCluster.h"
+#include "../graph/EntityCluster.h"
 #include "../core/NodeEntity.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
