@@ -51,7 +51,7 @@
 		32C1744A1D976343009742AD /* ObjectId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174481D976343009742AD /* ObjectId.cpp */; };
 		32C174511D977C06009742AD /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1744F1D977C06009742AD /* EntityGroup.cpp */; };
 		32C174541D978463009742AD /* EntityScanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174521D978463009742AD /* EntityScanner.cpp */; };
-		32CBCEC41D6D780900AEECC1 /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */; };
+		32C1745B1D98B613009742AD /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174591D98B613009742AD /* EntityAttributes.cpp */; };
 		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
 		32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */; };
@@ -320,9 +320,9 @@
 		32C174501D977C06009742AD /* EntityGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityGroup.h; path = graph/EntityGroup.h; sourceTree = "<group>"; };
 		32C174521D978463009742AD /* EntityScanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityScanner.cpp; path = graph/EntityScanner.cpp; sourceTree = "<group>"; };
 		32C174531D978463009742AD /* EntityScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityScanner.h; path = graph/EntityScanner.h; sourceTree = "<group>"; };
+		32C174591D98B613009742AD /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = rules/EntityAttributes.cpp; sourceTree = "<group>"; };
+		32C1745A1D98B613009742AD /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = rules/EntityAttributes.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
-		32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = core/EntityAttributes.cpp; sourceTree = "<group>"; };
-		32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = core/EntityAttributes.h; sourceTree = "<group>"; };
 		32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventLogging.cpp; path = core/EventLogging.cpp; sourceTree = "<group>"; };
 		32CBCEE71D72B21400AEECC1 /* EventLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventLogging.h; path = core/EventLogging.h; sourceTree = "<group>"; };
 		32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectorRenderer.cpp; path = rendering/ConnectorRenderer.cpp; sourceTree = "<group>"; };
@@ -733,6 +733,8 @@
 		323EEE151D7D44CA001C7A72 /* rules */ = {
 			isa = PBXGroup;
 			children = (
+				32C174591D98B613009742AD /* EntityAttributes.cpp */,
+				32C1745A1D98B613009742AD /* EntityAttributes.h */,
 				323EEE191D7E57E3001C7A72 /* EntityRule.cpp */,
 				323EEE1A1D7E57E3001C7A72 /* EntityRule.h */,
 				323EEE161D7D4514001C7A72 /* EntitySelector.cpp */,
@@ -1375,8 +1377,6 @@
 				32C1743A1D962635009742AD /* Component.h */,
 				A9ADD6203ACA4F47673ED063 /* Context.cpp */,
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
-				32CBCEC21D6D780900AEECC1 /* EntityAttributes.cpp */,
-				32CBCEC31D6D780900AEECC1 /* EntityAttributes.h */,
 				32324C5F1D55C1D900D05EDF /* EntityController.h */,
 				32324CAA1D59861800D05EDF /* EntityMap.h */,
 				32C1742F1D939F80009742AD /* Enums.cpp */,
@@ -1706,6 +1706,7 @@
 				D265D6207B2184FB12FD93AC /* main.cpp in Sources */,
 				8363E3A3FB38459F28C32F67 /* SimulationApp.cpp in Sources */,
 				32E58A391D3C2FC7001AA5E4 /* NavigatorEntity.cpp in Sources */,
+				32C1745B1D98B613009742AD /* EntityAttributes.cpp in Sources */,
 				9EBFB565EFF37317583CA299 /* MidiCommon.cpp in Sources */,
 				323EEE1B1D7E57E3001C7A72 /* EntityRule.cpp in Sources */,
 				323EEE181D7D4514001C7A72 /* EntitySelector.cpp in Sources */,
@@ -1785,7 +1786,6 @@
 				32F74A671D409C0600C1A911 /* OscTypes.cpp in Sources */,
 				A8CB1442D1F973D75A04B553 /* ofxGuiMatrix.cpp in Sources */,
 				58CD289EFAEEC7EEB247011B /* ofxGuiPage.cpp in Sources */,
-				32CBCEC41D6D780900AEECC1 /* EntityAttributes.cpp in Sources */,
 				38FE3902961260B795814660 /* ofxGuiSpacer.cpp in Sources */,
 				32324C681D56C6C500D05EDF /* Spawner.cpp in Sources */,
 				22C92F741F435881FAEB2316 /* ofxGuiZoomableBaseDraws.cpp in Sources */,

@@ -6,4 +6,4 @@
 //
 //
 
-#include "../core/EntityAttributes.h"
+#include "../rules/EntityAttributes.h"
