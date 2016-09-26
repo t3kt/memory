@@ -12,7 +12,7 @@
 WorldObject::WorldObject()
 : _id(ObjectIds::next())
 , _alive(true)
-, _alpha(1) { }
+, _color(1, 1, 1, 1) { }
 
 void WorldObject::kill() {
   _alive = false;

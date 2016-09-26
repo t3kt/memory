@@ -124,7 +124,7 @@
     },
     "clock": {
       "paused": false,
-      "rate": 1.6734694242477417
+      "rate": 1.0025542974472046
     },
     "midi": {
       "enabled": false,
@@ -230,7 +230,7 @@
   "occurrences": {
     "rateSpawner": {
       "chain": {
-        "chance": 0.10974594950675964
+        "chance": 0
       },
       "chainCount": {
         "high": 4,
@@ -247,8 +247,8 @@
         "low": 0
       },
       "radius": {
-        "high": 148.02166748046875,
-        "low": 33.486049652099609
+        "high": 73.052894592285156,
+        "low": 16.826326370239258
       },
       "rate": 4.5153059959411621,
       "sequence": {

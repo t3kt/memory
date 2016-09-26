@@ -42,10 +42,13 @@ public:
 
   void kill();
   
-  virtual bool visible() const { return this->alive() && _alpha > 0; }
+  virtual bool visible() const { return this->alive() && alpha() > 0; }
 
-  float alpha() const { return _alpha; }
-  void setAlpha(float alpha) { _alpha = alpha; }
+  float alpha() const { return _color.a; }
+  void setAlpha(float alpha) { _color.a = alpha; }
+
+  const ofFloatColor& color() const { return _color; }
+  void setColor(const ofFloatColor& color) { _color = color; }
 
   const ofVec3f& screenPos() const { return _screenPos; }
 
@@ -72,7 +75,7 @@ protected:
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
 private:
-  float _alpha;
+  ofFloatColor _color;
   bool _alive;
   ObjectId _id;
   ofVec3f _screenPos;

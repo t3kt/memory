@@ -17,26 +17,24 @@
 #include "../rules/EntityAttributes.h"
 
 class Context;
-
-class ObserverAttributesParams
-: public Params {
-  ObserverAttributesParams() {
-  }
-};
+class ObserverParams;
+class ObserverRenderingParams;
 
 class ObserverAttributes
 : public ComponentBase {
 public:
-  using Params = ObserverAttributesParams;
+  using Params = ObserverParams;
 
   ObserverAttributes(Context& context,
-                     const Params& params);
+                     const ObserverParams& params,
+                     const ObserverRenderingParams& renderParams);
 
   void setup() override;
   void update() override;
 
 private:
-  const Params& _params;
+  const ObserverParams& _params;
+  const ObserverRenderingParams& _renderParams;
   const ColorTheme& _colorTheme;
   Context& _context;
 
