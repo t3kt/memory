@@ -12,6 +12,7 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <ofVec3f.h>
 #include "../core/Common.h"
 #include "../core/ObjectId.h"
 #include "../core/JsonIO.h"

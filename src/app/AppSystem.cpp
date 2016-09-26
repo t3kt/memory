@@ -74,7 +74,7 @@ void AppSystem::setup() {
   simWinSettings.width = 1400;
   simWinSettings.height = 800;
   simWinSettings.resizable = false;
-  simWinSettings.setPosition(ofVec3f(0, 0));
+  simWinSettings.setPosition(glm::vec2(0, 0));
   _simulationWindow =
   std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(simWinSettings));
 

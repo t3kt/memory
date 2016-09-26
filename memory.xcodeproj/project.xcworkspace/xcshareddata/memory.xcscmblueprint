@@ -6,6 +6,7 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : 0,
     "90E2F969A762FB62C413A0C44D1F334E6EC3F531" : 0,
+    "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : 0,
     "886341EB263A49F7CBA1642BA1C0B5444E645742" : 0,
     "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : 0,
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : 0,
@@ -13,21 +14,27 @@
     "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : 0,
     "95F70890EFD46183734FEDFE52CF53391DE6937E" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CCD2B218-CC48-4CD8-903B-26E08A41CFFB",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1D43BA6F-CA1A-4180-8343-29ADD473358D",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/of_v0.9.3_osx_release\/addons\/ofxLiquidEvent",
-    "90E2F969A762FB62C413A0C44D1F334E6EC3F531" : "..\/of_v0.9.3_osx_release\/addons\/ofxMidi",
-    "886341EB263A49F7CBA1642BA1C0B5444E645742" : "..\/of_v0.9.3_osx_release\/addons\/ofxChoreograph",
-    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : "..\/of_v0.9.3_osx_release\/addons\/ofxSyphon",
+    "F6FB2705B3D7C82B526C84D3B04A0A2338ECDE64" : "..\/openFrameworks\/addons\/ofxLiquidEvent",
+    "90E2F969A762FB62C413A0C44D1F334E6EC3F531" : "..\/openFrameworks\/addons\/ofxMidi",
+    "2DE9C8846D9375EAACFABA8963120E8E7719BAF5" : "..\/openFrameworks",
+    "886341EB263A49F7CBA1642BA1C0B5444E645742" : "..\/openFrameworks\/addons\/ofxChoreograph",
+    "F4CCB893AFADB97238A965FD2F28717F1CAAE613" : "..\/openFrameworks\/addons\/ofxSyphon",
     "5C4F98D1E32128123613498B488D73B56E9A53F8" : "memory\/",
-    "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/of_v0.9.3_osx_release\/addons\/ofxTextAlign",
-    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : "..\/of_v0.9.3_osx_release\/addons\/ofxGuiExtended",
-    "95F70890EFD46183734FEDFE52CF53391DE6937E" : "..\/of_v0.9.3_osx_release\/addons\/ofxPostProcessing"
+    "D08E1224D3E9B278133ABA5D69376C337D7BD443" : "..\/openFrameworks\/addons\/ofxTextAlign",
+    "5C3A8CDA5E958C03C8E8E4C674FD32B019D96FDB" : "..\/openFrameworks\/addons\/ofxGuiExtended",
+    "95F70890EFD46183734FEDFE52CF53391DE6937E" : "..\/openFrameworks\/addons\/ofxPostProcessing"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "memory",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "memory.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/openframeworks\/openFrameworks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2DE9C8846D9375EAACFABA8963120E8E7719BAF5"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/frauzufall\/ofxGuiExtended.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
