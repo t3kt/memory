@@ -13,7 +13,6 @@ void PostProcController::setup() {
   _fxaaPass = _postProc.createPass<FxaaPass>();
   _edgePass = _postProc.createPass<EdgePass>();
   _dofPass = _postProc.createPass<DofPass>();
-  _rimHighlightPass = _postProc.createPass<RimHighlightingPass>();
   _bloomPass = _postProc.createPass<BloomPass>();
   _colorAdjustPass = _postProc.createPass<ColorAdjustPass>();
   _colorAdjustPass->setParams(&_params.colorAdjust);
@@ -39,7 +38,6 @@ void PostProcController::update() {
   } else {
     _dofPass->setEnabled(false);
   }
-  _rimHighlightPass->setEnabled(_params.rimHighlight.enabled());
   _bloomPass->setEnabled(_params.bloom.enabled());
   _colorAdjustPass->setEnabled(_params.colorAdjust.enabled.get());
 }

@@ -7,18 +7,17 @@
 //
 
 #include "../core/Info.h"
-#include "../core/State.h"
 #include "../core/WorldObject.h"
 
-static ObjectId nextId() {
-  static ObjectId lastId = 0;
-  return ++lastId;
-}
-
 WorldObject::WorldObject()
-: _id(nextId())
+: _id(ObjectIds::next())
 , _alive(true)
-, _alpha(1) { }
+, _color(1, 1, 1, 1) { }
+
+void WorldObject::kill() {
+  _alive = false;
+  this->detachConnections();
+}
 
 std::string WorldObject::typeName() const {
   return "WorldObject";

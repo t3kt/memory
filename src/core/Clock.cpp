@@ -6,18 +6,13 @@
 #include <ofUtils.h>
 #include "../core/Clock.h"
 
-Clock::Clock(Clock::Params& params, State& state)
-: _params(params)
-, _state(state) {
-}
+const float maxTimeStep = 1/30.0f;
 
 void Clock::setup() {
   _lastTime = ofGetElapsedTimef();
   _state.running = true;
   _state.time = 0;
   _state.timeDelta = 0;
-
-  registerAsActionHandler();
 }
 
 bool Clock::performAction(AppAction action) {
@@ -56,6 +51,9 @@ void Clock::update() {
     }
     float nowTime = ofGetElapsedTimef();
     float rawDelta = nowTime - _lastTime;
+    if (rawDelta > maxTimeStep) {
+      rawDelta = maxTimeStep;
+    }
     float delta = rawDelta * _params.rate();
     _state.timeDelta = delta;
     _state.time += delta;

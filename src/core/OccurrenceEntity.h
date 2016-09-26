@@ -9,14 +9,12 @@
 #ifndef OccurrenceEntity_h
 #define OccurrenceEntity_h
 
-#include <iostream>
 #include <ofTypes.h>
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
-#include "../core/ValueSupplier.h"
 #include "../core/WorldObject.h"
 
 class ObserverEntity;
@@ -24,6 +22,8 @@ class ObserverEntity;
 class OccurrenceEntity
 : public ParticleObject {
 public:
+  static const auto type = EntityType::OCCURRENCE;
+
   static std::shared_ptr<OccurrenceEntity> createEmpty() {
     return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
   }
@@ -54,7 +54,7 @@ public:
     return !_connectedObservers.empty();
   }
 
-  void detachConnections();
+  void detachConnections() override;
   
   float getAmountOfObservation() const { return _amountOfObservation; }
 
@@ -66,11 +66,11 @@ public:
 
   float actualRadius() const { return _actualRadius; }
 
-  const EntityMap<ObserverEntity>& connectedObservers() const {
+  const EntityMap<ObserverEntity>& getConnectedObservers() const {
     return _connectedObservers;
   }
 
-  EntityMap<ObserverEntity>& connectedObservers() {
+  EntityMap<ObserverEntity>& getConnectedObservers() {
     return _connectedObservers;
   }
 
@@ -82,6 +82,8 @@ public:
     return _connectedOccurrences;
   }
 
+  void update(const State& state);
+
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
   virtual void deserializeFields(const Json& obj,
@@ -91,7 +93,10 @@ public:
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
-  virtual void performActionOnConnected(ObjectPtrAction action) override;
+  virtual void performActionOnConnected(ObjectPtrRefAction action) override;
+  virtual bool hasConnections() const override {
+    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+  }
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;

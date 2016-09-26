@@ -13,14 +13,19 @@
 #include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
 #include "../core/Bounds.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../physics/DampingBehavior.h"
 #include "../physics/EntityForceBehavior.h"
 #include "../physics/ForceFieldBehavior.h"
+#include "../physics/ForceNodeBehavior.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../core/Params.h"
 #include "../physics/PhysicsBehavior.h"
+
+using PhysicsBehaviorCollection
+= ComponentCollection<AbstractPhysicsBehavior>;
 
 class DebugParams;
 
@@ -38,71 +43,70 @@ public:
   TParam<float> speed;
 };
 
+class PhysicsParams
+: public Params {
+public:
+  PhysicsParams() {
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(rebound
+        .setKey("rebound")
+        .setName("Rebound"));
+    add(observerObserverAttraction
+        .setKey("observerObserverAttraction")
+        .setName("Observer to Observer"));
+    add(observerOccurrenceForce
+        .setKey("observerOccurrenceForce")
+        .setName("Obs/Occ Force"));
+    add(occurrenceOccurrenceForce
+        .setKey("occurrenceOccurrenceForce")
+        .setName("Occ/Occ Force"));
+    add(spatialNoiseForce
+        .setKey("spatialNoiseForce")
+        .setName("Spatial Noise"));
+    add(observerAnchorPointAttraction
+        .setKey("observerAnchorPointAttraction")
+        .setName("Observer Anchoring"));
+    add(occurrenceAnchorPointAttraction
+        .setKey("occurrenceAnchorPointAttraction")
+        .setName("Occurrence Anchoring"));
+    add(vortexNodes
+        .setKey("vortexNodes")
+        .setName("Vortex Nodes"));
+    add(damping
+        .setKey("damping")
+        .setName("Damping"));
+    rebound.setEnabledValueAndDefault(true);
+    spatialNoiseForce.setEnabledValueAndDefault(false);
+    observerAnchorPointAttraction.setEnabledValueAndDefault(false);
+    occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
+    observerObserverAttraction.setEnabledValueAndDefault(false);
+    observerOccurrenceForce.setEnabledValueAndDefault(false);
+    vortexNodes.setEnabledValueAndDefault(false);
+    damping.setEnabledValueAndDefault(true);
+  }
+
+  EntityPhysicsParams observers;
+  EntityPhysicsParams occurrences;
+  ParamsWithEnabled rebound;
+  AbstractAttractionBehavior::Params observerObserverAttraction;
+  ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
+  OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
+  AbstractNoiseForceFieldBehavior::Params spatialNoiseForce;
+  AbstractAttractionBehavior::Params observerAnchorPointAttraction;
+  AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
+  AbstractDampingBehavior::Params damping;
+  AbstractVortexForceNodeBehavior::Params vortexNodes;
+};
+
 class PhysicsController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(observers
-          .setKey("observers")
-          .setName("Observers"));
-      add(occurrences
-          .setKey("occurrences")
-          .setName("Occurrences"));
-      add(rebound
-          .setKey("rebound")
-          .setName("Rebound"));
-      add(observerObserverAttraction
-          .setKey("observerObserverAttraction")
-          .setName("Observer to Observer"));
-      add(observerOccurrenceForce
-          .setKey("observerOccurrenceForce")
-          .setName("Obs/Occ Force"));
-      add(occurrenceOccurrenceForce
-          .setKey("occurrenceOccurrenceForce")
-          .setName("Occ/Occ Force"));
-      add(observerSpatialNoiseForce
-          .setKey("observerSpatialNoiseForce")
-          .setName("Observer Spatial Noise"));
-      add(occurrenceSpatialNoiseForce
-          .setKey("occurrenceSpatialNoiseForce")
-          .setName("Occurrence Spatial Noise"));
-      add(observerAnchorPointAttraction
-          .setKey("observerAnchorPointAttraction")
-          .setName("Observer Anchoring"));
-      add(occurrenceAnchorPointAttraction
-          .setKey("occurrenceAnchorPointAttraction")
-          .setName("Occurrence Anchoring"));
-      add(observerDamping
-          .setKey("observerDamping")
-          .setName("Observer Damping"));
-      add(occurrenceDamping
-          .setKey("occurrenceDamping")
-          .setName("Occurrence Damping"));
-      rebound.setEnabledValueAndDefault(true);
-      observerSpatialNoiseForce.setEnabledValueAndDefault(false);
-      observerAnchorPointAttraction.setEnabledValueAndDefault(false);
-      occurrenceAnchorPointAttraction.setEnabledValueAndDefault(true);
-      observerObserverAttraction.setEnabledValueAndDefault(false);
-      observerOccurrenceForce.setEnabledValueAndDefault(false);
-      observerDamping.setEnabledValueAndDefault(true);
-      occurrenceDamping.setEnabledValueAndDefault(true);
-    }
-
-    EntityPhysicsParams observers;
-    EntityPhysicsParams occurrences;
-    ParamsWithEnabled rebound;
-    AbstractAttractionBehavior::Params observerObserverAttraction;
-    ObserverOccurrenceForceBehavior::Params observerOccurrenceForce;
-    OccurrenceOccurrenceForceBehavior::Params occurrenceOccurrenceForce;
-    AbstractNoiseForceFieldBehavior::Params observerSpatialNoiseForce;
-    AbstractNoiseForceFieldBehavior::Params occurrenceSpatialNoiseForce;
-    AbstractAttractionBehavior::Params observerAnchorPointAttraction;
-    AbstractAttractionBehavior::Params occurrenceAnchorPointAttraction;
-    AbstractDampingBehavior::Params observerDamping;
-    AbstractDampingBehavior::Params occurrenceDamping;
-  };
+  using Params = PhysicsParams;
 
   PhysicsController(Params& params,
                     Bounds& bounds,
@@ -126,17 +130,7 @@ private:
   Context& _context;
   Bounds& _bounds;
   DebugParams& _debugParams;
-
-  std::shared_ptr<BoundsBehavior> _rebound;
-  std::shared_ptr<AttractionBehavior<ObserverEntity, ObserverEntity>> _observerObserverAttraction;
-  std::shared_ptr<ObserverOccurrenceForceBehavior> _observerOccurrenceForce;
-  std::shared_ptr<OccurrenceOccurrenceForceBehavior> _occurrenceOccurrenceForce;
-  std::shared_ptr<NoiseForceFieldBehavior<ObserverEntity>> _observerSpatialNoiseForce;
-  std::shared_ptr<NoiseForceFieldBehavior<OccurrenceEntity>> _occurrenceSpatialNoiseForce;
-  std::shared_ptr<AnchorPointBehavior<ObserverEntity>> _observerAnchorPointAttraction;
-  std::shared_ptr<AnchorPointBehavior<OccurrenceEntity>> _occurrenceAnchorPointAttraction;
-  std::shared_ptr<DampingBehavior<ObserverEntity>> _observerDamping;
-  std::shared_ptr<DampingBehavior<OccurrenceEntity>> _occurrenceDamping;
+  PhysicsBehaviorCollection _behaviors;
 };
 
 #endif /* PhysicsController_h */

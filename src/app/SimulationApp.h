@@ -10,6 +10,7 @@
 #define SimulationApp_h
 
 #include <ofMain.h>
+#include "../core/Actions.h"
 #include "../core/AnimationsController.h"
 #include "../app/AppActions.h"
 #include "../app/AppGui.h"
@@ -20,8 +21,10 @@
 #include "../core/InspectionController.h"
 #include "../control/MidiController.h"
 #include "../navigation/NavigatorsController.h"
+#include "../core/NodesController.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
+#include "../control/OscController.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
 #include "../core/SimulationEvents.h"
@@ -55,11 +58,9 @@ public:
 
   SimulationEvents& getEvents() { return _events; }
 
-  ofAppGLFWWindow& getWindow() {
-    return static_cast<ofAppGLFWWindow&>(*_window);
-  }
-
   const State& state() const { return _context.state; }
+
+  ActionsController& actions() { return *_actions; }
 
 private:
   void loadSettings();
@@ -77,11 +78,14 @@ private:
   std::shared_ptr<EventLoggers> _eventLoggers;
   std::shared_ptr<ofAppGLFWWindow> _window;
   std::shared_ptr<AppGui> _gui;
+  std::shared_ptr<ActionsController> _actions;
   std::shared_ptr<MidiController> _midi;
+  std::shared_ptr<OscController> _osc;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
   std::shared_ptr<NavigatorsController> _navigators;
+  std::shared_ptr<NodesController> _nodes;
   std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;

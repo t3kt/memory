@@ -6,29 +6,48 @@
 //
 //
 
+#include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../core/Bounds.h"
 #include "../core/Context.h"
-#include "../core/ObserversController.h"
 #include "../spawning/ObserverSpawner.h"
 
-void RateObserverSpawner::spawnEntities(Context &context, int count) {
+RateObserverSpawner::RateObserverSpawner(Context& context,
+                                         const Params& params,
+                                         const Bounds& bounds)
+: RateSpawner(context, params)
+, _bounds(bounds)
+, _events(AppSystem::get().simulation()->getEvents()) { }
+
+void RateObserverSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
     auto pos = _bounds.randomPoint();
-    auto life = _params.lifetime.getValue();
+    auto decay = _params.decayRate.getValue();
     auto observer = std::make_shared<ObserverEntity>(pos,
-                                                     life,
-                                                     context.state);
+                                                     decay,
+                                                     _context.state);
     observer->setVelocity(_params.initialVelocity.getValue());
-    _controller.tryAddEntity(observer);
+    addEntity(observer);
   }
 }
 
-void IntervalObserverSpawner::spawnEntities(Context &context) {
-  auto pos = _bounds.randomPoint();
-  auto life = _params.lifetime.getValue();
-  auto observer = std::make_shared<ObserverEntity>(pos,
-                                                   life,
-                                                   context.state);
-  observer->setVelocity(_params.initialVelocity.getValue());
-  _controller.tryAddEntity(observer);
+void RateObserverSpawner::addEntity(std::shared_ptr<ObserverEntity> entity) {
+  _context.observers.add(entity);
+  _events.spawned(*entity);
+}
+
+bool RateObserverSpawner::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SPAWN_FEW_OBSERVERS:
+      spawnEntities(5);
+      return true;
+    case AppAction::SPAWN_MANY_OBSERVERS:
+      spawnEntities(100);
+      return true;
+    case AppAction::SPAWN_TONS_OF_OBSERVERS:
+      spawnEntities(4000);
+      return true;
+    default:
+      return false;
+  }
 }

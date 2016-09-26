@@ -15,28 +15,31 @@
 #include "../core/ParticleObject.h"
 #include "../physics/PhysicsBehavior.h"
 
+class DampingBehaviorParams : public ParamsWithEnabled {
+public:
+  DampingBehaviorParams() {
+    add(magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setValueAndDefault(2)
+        .setRange(0, 20));
+  }
+
+  TParam<float> magnitude;
+};
+
 class AbstractDampingBehavior
 : public AbstractForceFieldBehavior {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setValueAndDefault(2)
-          .setRange(0, 20));
-    }
+  using Params = DampingBehaviorParams;
 
-    TParam<float> magnitude;
-  };
-
-  AbstractDampingBehavior(const Params& params)
-  : _params(params) { }
+  AbstractDampingBehavior(Context& context,
+                          const Params& params)
+  : AbstractForceFieldBehavior(context)
+  , _params(params) { }
 
 protected:
-  ofVec3f getForceForEntity(Context& context,
-                            ParticleObject* entity) override {
+  ofVec3f getForceForEntity(ParticleObject* entity) override {
     return -entity->velocity() * _params.magnitude();
   }
 
@@ -47,29 +50,30 @@ template<typename E>
 class DampingBehavior
 : public AbstractDampingBehavior {
 public:
-  DampingBehavior(const Params& params)
-  : AbstractDampingBehavior(params) { }
+  DampingBehavior(Context& context,
+                  const Params& params)
+  : AbstractDampingBehavior(context, params) { }
 
-  void applyToWorld(Context& context) override {
+  void update() override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : context.getEntities<E>()) {
-      applyToEntity(context, entity.get());
+    for (auto& entity : _context.getEntities<E>()) {
+      applyToEntity(entity.get());
     }
   }
 
 protected:
-  void debugDrawBehavior(Context& context) override {
+  void debugDrawBehavior() override {
     if (!_params.enabled()) {
       return;
     }
-    for (auto& entity : context.getEntities<E>()) {
-      if (!context.highlightedEntities.empty() &&
-          !context.highlightedEntities.containsId(entity->id())) {
+    for (auto& entity : _context.getEntities<E>()) {
+      if (!_context.highlightedEntities.empty() &&
+          !_context.highlightedEntities.containsId(entity->id())) {
         return;
       }
-      debugDrawEntity(context, entity.get());
+      debugDrawEntity(entity.get());
     }
   }
 };

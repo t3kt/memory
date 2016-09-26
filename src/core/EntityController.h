@@ -10,28 +10,20 @@
 #define EntityController_h
 
 #include <memory>
-#include "../app/AppActions.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
+#include "../core/SimulationEvents.h"
 
 class Context;
 class SimulationEvents;
 
-class AbstractEntityController
-: public AppActionHandler {
-public:
-  class Params : public ::Params {
-  };
-
-  virtual void setup() = 0;
-  virtual void update() = 0;
-  virtual void draw() {};
-};
-
 template<typename E>
-class EntityController
-: public AbstractEntityController {
+class EntityController {
 public:
+  using EntityPtr = std::shared_ptr<E>;
+  using EntityEvent = SimulationEvent<E>;
+  using EntityEventArgs = SimulationEventArgs<E>;
+
   EntityController(Context& context,
                    SimulationEvents& events,
                    ObjectManager<E>& entities)
@@ -39,10 +31,30 @@ public:
   , _events(events)
   , _entities(entities) { }
 
+  virtual void setup() {}
+
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }
 
-  virtual bool tryAddEntity(std::shared_ptr<E> entity) = 0;
+  void killEntities(int count) {
+    int i = 0;
+    for (auto& entity : _entities) {
+      if (i >= count) {
+        return;
+      }
+      entity->kill();
+      i++;
+    }
+  }
+
+  virtual void update() {
+    _entities.processAndCullObjects([&](EntityPtr& entity) {
+      entity->update(_context.state);
+      if (!entity->alive()) {
+        _events.died<E>(*entity);
+      }
+    });
+  }
 
 protected:
   Context& _context;

@@ -40,13 +40,16 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'h', AppAction::RESET_CAMERA},
   {'l', AppAction::TOGGLE_LOGGING},
   {' ', AppAction::TOGGLE_CLOCK_STATE},
-  {'9', AppAction::SPAWN_FEW_OCCURRENCES},
   {'0', AppAction::SPAWN_FEW_OBSERVERS},
-  {'(', AppAction::SPAWN_MANY_OCCURRENCES},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
-  {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {'-', AppAction::KILL_FEW_OBSERVERS},
   {'_', AppAction::KILL_MANY_OBSERVERS},
+  {'9', AppAction::SPAWN_FEW_OCCURRENCES},
+  {'(', AppAction::SPAWN_MANY_OCCURRENCES},
+  {'=', AppAction::KILL_FEW_OCCURRENCES},
+  {'+', AppAction::KILL_MANY_OCCURRENCES},
+  {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
+  {'n', AppAction::SPAWN_OBSERVER_NAVIGATOR},
   {'r', AppAction::LOAD_SETTINGS},
   {'w', AppAction::SAVE_SETTINGS},
   {'x', AppAction::STOP_ALL_ENTITIES},
@@ -55,6 +58,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'d', AppAction::DUMP_ENTITY_STATE},
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
+  {'z', AppAction::TEST_ACTION},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
@@ -79,6 +83,10 @@ void AppSystem::setup() {
                                                    _simulationWindow);
 }
 
+ActionsController& AppSystem::actions() {
+  return _simulationApp->actions();
+}
+
 void AppSystem::main() {
   setup();
 
@@ -90,7 +98,7 @@ bool AppSystem::performAction(AppAction action) {
   auto args = AppActionEventArgs(action);
   bool handled = appActionTriggered.notifyListenersUntilHandled(args);
   if (!handled) {
-    _log.app().logWarning("App action not handled: " + AppActionType.toString(action));
+    _log.app().logWarning("App action not handled: " + enumToString(action));
   }
   return handled;
 }

@@ -10,12 +10,10 @@
 #define AnimationsController_h
 
 #include "../core/AnimationObject.h"
-#include "../core/Colors.h"
-#include "../core/Context.h"
+#include "../rendering/Colors.h"
 #include "../core/Context.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class SimulationEvents;
 

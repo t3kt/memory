@@ -10,7 +10,7 @@
 #include "../core/AnimationsController.h"
 #include "../core/Bounds.h"
 #include "../core/Clock.h"
-#include "../core/Colors.h"
+#include "../rendering/Colors.h"
 #include "../core/Events.h"
 #include "../core/InspectionController.h"
 #include "../core/Logging.h"
@@ -18,6 +18,7 @@
 #include "../navigation/NavigatorsController.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
+#include "../control/OscController.h"
 #include "../core/Params.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
@@ -77,22 +78,24 @@ public:
     add(bounds
         .setKey("bounds")
         .setName("Bounds"));
-    add(debug
-        .setKey("debug")
-        .setName("Debug"));
     add(output
         .setKey("output")
         .setName("Output"));
     add(midi
         .setKey("midi")
-        .setName("Midi"));
+        .setName("Midi")
+        .setSupportsOsc(false));
+    add(osc
+        .setKey("osc")
+        .setName("OSC")
+        .setSupportsOsc(false));
   }
 
   Clock::Params clock;
   Bounds bounds;
-  DebugParams debug;
   OutputParams output;
   MidiController::Params midi;
+  OscController::Params osc;
 };
 
 class MemoryAppParameters : public Params {
@@ -122,6 +125,9 @@ public:
     add(physics
         .setKey("physics")
         .setName("Physics"));
+    add(debug
+        .setKey("debug")
+        .setName("Debug"));
   }
 
   CoreParams core;
@@ -132,6 +138,7 @@ public:
   NavigatorsController::Params navigators;
   RenderingController::Params rendering;
   PhysicsController::Params physics;
+  DebugParams debug;
 };
 
 #endif /* AppParameters_h */

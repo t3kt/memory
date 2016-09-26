@@ -17,9 +17,10 @@
 #include <vector>
 #include "../core/AnimationObject.h"
 #include "../core/Context.h"
-#include "../rendering/EntityRenderer.h"
+#include "../rendering/Renderer.h"
 
-class ObserverRenderer {
+class ObserverRenderer
+: public Renderer {
 public:
 
   class Params : public ParamsWithEnabled {
@@ -41,18 +42,20 @@ public:
   };
 
   ObserverRenderer(const Params& params,
+                   const ColorTheme& colors,
                    Context& context);
 
-  void draw();
+  void draw() override;
 
 private:
   Context& _context;
   const Params& _params;
-  const ofFloatColor& _color;
+  const ColorTheme& _colors;
   ObjectManager<ObserverEntity>& _entities;
 };
 
-class InstancedObserverRenderer {
+class InstancedObserverRenderer
+: public Renderer {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -72,15 +75,16 @@ public:
   };
 
   InstancedObserverRenderer(const Params& params,
+                            const ColorTheme& colors,
                             Context& context);
 
-  void setup();
-  void update();
-  void draw();
+  void setup() override;
+  void update() override;
+  void draw() override;
 private:
   Context& _context;
   const Params& _params;
-  const ofFloatColor& _color;
+  const ColorTheme& _colors;
   const ofShader& _instanceShader;
   ofVboMesh _mesh;
   std::vector<ofMatrix4x4> _matrices;

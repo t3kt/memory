@@ -13,16 +13,14 @@
 #include <iostream>
 #include <memory>
 #include "../core/Common.h"
+#include "../core/ObjectId.h"
 #include "../core/JsonIO.h"
 #include "../core/Serialization.h"
-
-typedef int ObjectId;
-
-const ObjectId NO_OBJECT_ID = -1;
 
 enum class EntityType {
   ANIMATION,
   NAVIGATOR,
+  NODE,
   OBSERVER,
   OCCURRENCE,
 };
@@ -38,14 +36,19 @@ public:
   
   const ObjectId& id() const { return _id; }
 
+  virtual bool isParticle() const { return false; }
+
   bool alive() const { return _alive; }
 
-  void kill() { _alive = false; }
+  void kill();
   
-  virtual bool visible() const { return this->alive() && _alpha > 0; }
+  virtual bool visible() const { return this->alive() && alpha() > 0; }
 
-  float alpha() const { return _alpha; }
-  void setAlpha(float alpha) { _alpha = alpha; }
+  float alpha() const { return _color.a; }
+  void setAlpha(float alpha) { _color.a = alpha; }
+
+  const ofFloatColor& color() const { return _color; }
+  void setColor(const ofFloatColor& color) { _color = color; }
 
   const ofVec3f& screenPos() const { return _screenPos; }
 
@@ -59,15 +62,20 @@ public:
 
   virtual void fillInfo(Info& info) const;
 
-  using ObjectPtrAction =
+  using ObjectPtrRefAction =
   std::function<void(std::shared_ptr<WorldObject>)>;
-  virtual void performActionOnConnected(ObjectPtrAction action) {}
+  virtual void performActionOnConnected(ObjectPtrRefAction action) {}
+
+  virtual const ofVec3f& position() const = 0;
+
+  virtual bool hasConnections() const { return false; }
+  virtual void detachConnections() { }
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
 private:
-  float _alpha;
+  ofFloatColor _color;
   bool _alive;
   ObjectId _id;
   ofVec3f _screenPos;

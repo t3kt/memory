@@ -16,6 +16,7 @@
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../core/Params.h"
+#include "../rendering/Renderer.h"
 
 class ConnectorRendererParams
 : public ParamsWithEnabled {
@@ -31,7 +32,8 @@ public:
   TParam<float> lineWidth;
 };
 
-class ObserverOccurrenceConnectorRenderer {
+class ObserverOccurrenceConnectorRenderer
+: public Renderer {
 public:
   using Params = ConnectorRendererParams;
 
@@ -40,7 +42,7 @@ public:
   , _color(color)
   , _occurrences(occurrences) { }
 
-  void draw();
+  void draw() override;
 
 private:
   const Params& _params;
@@ -48,7 +50,8 @@ private:
   const ObjectManager<OccurrenceEntity>& _occurrences;
 };
 
-class ObserverObserverConnectorRenderer {
+class ObserverObserverConnectorRenderer
+: public Renderer {
 public:
   using Params = ConnectorRendererParams;
 
@@ -59,7 +62,7 @@ public:
   , _color(color)
   , _entities(entities) { }
 
-  void draw();
+  void draw() override;
 
 private:
   const Params& _params;
@@ -67,7 +70,8 @@ private:
   const ObjectManager<ObserverEntity>& _entities;
 };
 
-class OccurrenceOccurrenceConnectorRenderer {
+class OccurrenceOccurrenceConnectorRenderer
+: public Renderer {
 public:
   using Params = ConnectorRendererParams;
 
@@ -78,7 +82,7 @@ public:
   , _color(color)
   , _entities(entities) { }
 
-  void draw();
+  void draw() override;
 
 private:
   const Params& _params;

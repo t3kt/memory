@@ -16,28 +16,33 @@
 #include "../core/Params.h"
 #include "../core/State.h"
 
+class ClockParams
+: public Params {
+public:
+  ClockParams() {
+    add(paused
+        .setKey("paused")
+        .setName("Paused")
+        .setValueAndDefault(false));
+    add(rate
+        .setKey("rate")
+        .setName("Rate")
+        .setValueAndDefault(1)
+        .setRange(0, 10));
+  }
+
+  TParam<bool> paused;
+  TParam<float> rate;
+};
+
 class Clock
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(paused
-          .setKey("paused")
-          .setName("Paused")
-          .setValueAndDefault(false));
-      add(rate
-          .setKey("rate")
-          .setName("Rate")
-          .setValueAndDefault(1)
-          .setRange(0, 10));
-    }
+  using Params = ClockParams;
 
-    TParam<bool> paused;
-    TParam<float> rate;
-  };
-
-  Clock(Params& params, State& state);
+  Clock(Params& params, State& state)
+  : _params(params)
+  , _state(state) { }
 
   void setup();
 

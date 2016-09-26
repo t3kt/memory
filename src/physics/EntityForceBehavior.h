@@ -19,42 +19,44 @@
 #include "../physics/PhysicsBehavior.h"
 #include "../core/ValueSequence.h"
 
-using ForceRangeSequence = ValueSequence<float, 2>;
+class AbstractEntityForceBehaviorParams : public ParamsWithEnabled {
+public:
+  AbstractEntityForceBehaviorParams() {
+    add(force
+        .setKey("force")
+        .setName("Force"));
+    force.setValueRanges(-15, 15);
+    force.setLengthRanges(0, 100);
+    force.startValue.setValueAndDefault(-2);
+    force.values[0].setValueAndDefault(2);
+    force.values[1].setValueAndDefault(5);
+    force.lengths[0].setValueAndDefault(5);
+    force.lengths[1].setValueAndDefault(15);
+    add(magnitude
+        .setKey("magnitude")
+        .setName("Magnitude")
+        .setRange(0, 3)
+        .setValueAndDefault(1));
+  }
+  ValueSequence<float, 2> force;
+  TParam<float> magnitude;
+};
 
 class AbstractEntityForceBehavior
 : public AbstractPhysicsBehavior {
 public:
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(force
-          .setKey("force")
-          .setName("Force"));
-      force.setValueRanges(-15, 15);
-      force.setLengthRanges(0, 100);
-      force.startValue.setValueAndDefault(-2);
-      force.values[0].setValueAndDefault(2);
-      force.values[1].setValueAndDefault(5);
-      force.lengths[0].setValueAndDefault(5);
-      force.lengths[1].setValueAndDefault(15);
-      add(magnitude
-          .setKey("magnitude")
-          .setName("Magnitude")
-          .setRange(0, 3)
-          .setValueAndDefault(1));
-    }
-    ForceRangeSequence force;
-    TParam<float> magnitude;
-  };
+  using Params = AbstractEntityForceBehaviorParams;
 
-  AbstractEntityForceBehavior(const Params& params)
-  : _params(params) { }
+  AbstractEntityForceBehavior(Context& context,
+                              const Params& params)
+  : AbstractPhysicsBehavior(context)
+  , _params(params) { }
 
-  void debugDraw(Context& context) override {
+  void debugDraw() override {
     if (!_params.enabled.get()) {
       return;
     }
-    AbstractPhysicsBehavior::debugDraw(context);
+    AbstractPhysicsBehavior::debugDraw();
   }
 
 protected:
@@ -71,16 +73,17 @@ template<typename T1, typename T2>
 class EntityForceBehavior
 : public AbstractEntityForceBehavior {
 public:
-  EntityForceBehavior(const Params& params)
-  : AbstractEntityForceBehavior(params) { }
+  EntityForceBehavior(Context& context,
+                      const Params& params)
+  : AbstractEntityForceBehavior(context, params) { }
 
-  void applyToWorld(Context& context) override {
+  void update() override {
     if (!_params.enabled()) {
       return;
     }
-    performAction(context, [&](T1& entity,
-                               T2& other,
-                               const ofVec3f& force) {
+    performAction([&](T1& entity,
+                      T2& other,
+                      const ofVec3f& force) {
       entity.addForce(force);
       other.addForce(-force);
     });
@@ -89,16 +92,15 @@ public:
 protected:
   using Action = std::function<void(T1&, T2&, const ofVec3f&)>;
 
-  void performAction(Context& context,
-                     Action action);
+  void performAction(Action action);
 
-  void debugDrawBehavior(Context& context) override {
-    performAction(context, [&](T1& entity,
-                               T2& other,
-                               const ofVec3f& force) {
-      if (!context.highlightedEntities.empty() &&
-          !context.highlightedEntities.containsId(entity.id()) &&
-          !context.highlightedEntities.containsId(other.id())) {
+  void debugDrawBehavior() override {
+    performAction([&](T1& entity,
+                      T2& other,
+                      const ofVec3f& force) {
+      if (!_context.highlightedEntities.empty() &&
+          !_context.highlightedEntities.containsId(entity.id()) &&
+          !_context.highlightedEntities.containsId(other.id())) {
         return;
       }
       drawForceArrow(entity.position(), force);

@@ -22,6 +22,8 @@ public:
 
   bool reflect(ofVec3f* velocity, ofVec3f* position) const;
 
+  ofVec3f clampPoint(const ofVec3f& position) const;
+
   ofVec3f randomPoint() const;
 
   TParam<float> size;

@@ -30,7 +30,6 @@ enum class MidiMessageType {
   OTHER
 };
 
-extern EnumTypeInfo<MidiMessageType> MidiMessageTypeType;
 std::ostream& operator<<(std::ostream& os,
                          const MidiMessageType& messageType);
 

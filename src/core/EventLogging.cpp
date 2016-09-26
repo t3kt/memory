@@ -9,6 +9,13 @@
 #include "../app/AppSystem.h"
 #include "../core/EventLogging.h"
 #include "../core/Logging.h"
+#include "../core/NodeEntity.h"
+#include "../navigation/NavigatorEntity.h"
+
+std::ostream& operator<<(std::ostream& os, const NodeEntity& e) {
+  e.output(os);
+  return os;
+}
 
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(Logger& logger,
@@ -44,6 +51,12 @@ makeNavigatorLogger(const std::string message) {
   return makeEntityEventLogger<NavigatorEventArgs>(logger, message);
 }
 
+std::function<void(NodeEventArgs&)>
+makeNodeLogger(const std::string message) {
+  auto& logger = AppSystem::get().log().node();
+  return makeEntityEventLogger<NodeEventArgs>(logger, message);
+}
+
 EventLoggers::EventLoggers()
 : _animationSpawned(makeAnimationLogger("Animation spawned: "))
 , _animationDied(makeAnimationLogger("Animation died: "))
@@ -54,7 +67,9 @@ EventLoggers::EventLoggers()
 , _occurrenceDied(makeOccurrenceLogger("Occurrence died: "))
 , _navigatorSpawned(makeNavigatorLogger("Navigator spawned: "))
 , _navigatorReachedLocation(makeNavigatorLogger("Navigator reached location: "))
-, _navigatorDied(makeNavigatorLogger("Navigator died: ")) {}
+, _navigatorDied(makeNavigatorLogger("Navigator died: "))
+, _nodeSpawned(makeNodeLogger("Node spawned: "))
+, _nodeDied(makeNodeLogger("Node died: ")) {}
 
 void EventLoggers::attach(SimulationEvents& events) {
   detach(events);
@@ -68,6 +83,8 @@ void EventLoggers::attach(SimulationEvents& events) {
   events.navigatorSpawned.addListener(_navigatorSpawned, this);
   events.navigatorReachedLocation.addListener(_navigatorReachedLocation, this);
   events.navigatorDied.addListener(_navigatorDied, this);
+  events.nodeSpawned.addListener(_nodeSpawned, this);
+  events.nodeDied.addListener(_nodeDied, this);
 }
 
 void EventLoggers::detach(SimulationEvents& events) {
@@ -81,4 +98,6 @@ void EventLoggers::detach(SimulationEvents& events) {
   events.navigatorSpawned.removeListeners(this);
   events.navigatorReachedLocation.removeListeners(this);
   events.navigatorDied.removeListeners(this);
+  events.nodeSpawned.removeListeners(this);
+  events.nodeDied.removeListeners(this);
 }

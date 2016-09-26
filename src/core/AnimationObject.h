@@ -19,6 +19,8 @@
 
 class AnimationObject : public WorldObject {
 public:
+  static const auto type = EntityType::ANIMATION;
+
   static std::shared_ptr<AnimationObject> createEmpty() {
     // unsupported
     return std::shared_ptr<AnimationObject>();
@@ -48,7 +50,7 @@ public:
   virtual void update(const State& state);
   virtual void draw(const State& state) = 0;
 
-  ofVec3f position() const { return _position; }
+  const ofVec3f& position() const override { return _position; }
   
   void show() { _visible = true; }
   void hide() { _visible = false; }
@@ -115,36 +117,40 @@ private:
 };
 
 template<typename T>
+class RampFactoryParams
+: public Params {
+public:
+  RampFactoryParams() {
+    add(_duration
+        .setKey("duration")
+        .setName("Duration")
+        .setRange(0, 4)
+        .setValueAndDefault(1));
+    add(_startValue
+        .setKey("startValue")
+        .setName("Start Value")
+        .setRange(0, 1)
+        .setValueAndDefault(0));
+    add(_endValue
+        .setKey("endValue")
+        .setName("End Value")
+        .setRange(0, 1)
+        .setValueAndDefault(1));
+  }
+
+  float duration() const { return _duration.get(); }
+  const T& startValue() const { return _startValue.get(); }
+  const T& endValue() const { return _endValue.get(); }
+private:
+  TParam<float> _duration;
+  TParam<T> _startValue;
+  TParam<T> _endValue;
+};
+
+template<typename T>
 class RampFactory {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(_duration
-          .setKey("duration")
-          .setName("Duration")
-          .setRange(0, 4)
-          .setValueAndDefault(1));
-      add(_startValue
-          .setKey("startValue")
-          .setName("Start Value")
-          .setRange(0, 1)
-          .setValueAndDefault(0));
-      add(_endValue
-          .setKey("endValue")
-          .setName("End Value")
-          .setRange(0, 1)
-          .setValueAndDefault(1));
-    }
-
-    float duration() const { return _duration.get(); }
-    const T& startValue() const { return _startValue.get(); }
-    const T& endValue() const { return _endValue.get(); }
-  private:
-    TParam<float> _duration;
-    TParam<T> _startValue;
-    TParam<T> _endValue;
-  };
+  using Params = RampFactoryParams<T>;
 
   RampFactory(const Params& params)
   : _params(params)

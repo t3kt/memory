@@ -19,18 +19,22 @@ PhysicsController::PhysicsController(PhysicsController::Params& params,
 , _debugParams(debugParams) {}
 
 void PhysicsController::setup() {
-  _rebound = std::make_shared<BoundsBehavior>(_params.rebound, _bounds);
-  _observerObserverAttraction = std::make_shared<AttractionBehavior<ObserverEntity, ObserverEntity>>(_params.observerObserverAttraction);
-  _observerOccurrenceForce = std::make_shared<ObserverOccurrenceForceBehavior>(_params.observerOccurrenceForce);
-  _occurrenceOccurrenceForce = std::make_shared<OccurrenceOccurrenceForceBehavior>(_params.occurrenceOccurrenceForce);
-  _observerSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<ObserverEntity>>(_params.observerSpatialNoiseForce);
-  _occurrenceSpatialNoiseForce = std::make_shared<NoiseForceFieldBehavior<OccurrenceEntity>>(_params.occurrenceSpatialNoiseForce);
-  _observerAnchorPointAttraction = std::make_shared<AnchorPointBehavior<ObserverEntity>>(_params.observerAnchorPointAttraction);
-  _occurrenceAnchorPointAttraction = std::make_shared<AnchorPointBehavior<OccurrenceEntity>>(_params.occurrenceAnchorPointAttraction);
-  _observerDamping = std::make_shared<DampingBehavior<ObserverEntity>>(_params.observerDamping);
-  _occurrenceDamping = std::make_shared<DampingBehavior<OccurrenceEntity>>(_params.occurrenceDamping);
-
-  registerAsActionHandler();
+  _behaviors.add<AttractionBehavior<ObserverEntity, ObserverEntity>>(_context, _params.observerObserverAttraction);
+  _behaviors.add<ObserverOccurrenceForceBehavior>(_context, _params.observerOccurrenceForce);
+  _behaviors.add<OccurrenceOccurrenceForceBehavior>(_context, _params.occurrenceOccurrenceForce);
+  _behaviors.add<NoiseForceFieldBehavior<ObserverEntity>>(_context, _params.spatialNoiseForce);
+  _behaviors.add<NoiseForceFieldBehavior<OccurrenceEntity>>(_context, _params.spatialNoiseForce);
+  _behaviors.add<AnchorPointBehavior<ObserverEntity>>(_context, _params.observerAnchorPointAttraction);
+  _behaviors.add<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
+  _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.damping);
+  _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.damping);
+  _behaviors.add<BoundsBehavior>(_context, _params.rebound, _bounds);
+  auto behavior =
+  _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.vortexNodes);
+  for (int i = 0; i < 2; i++) {
+    auto pos = _bounds.randomPoint();
+    behavior->spawnNode(pos);
+  }
 }
 
 bool PhysicsController::performAction(AppAction action) {
@@ -73,16 +77,7 @@ void PhysicsController::update() {
   for (auto& entity : _context.occurrences) {
     beginEntityUpdate(entity.get(), _params.occurrences);
   }
-  _observerObserverAttraction->applyToWorld(_context);
-  _observerOccurrenceForce->applyToWorld(_context);
-  _occurrenceOccurrenceForce->applyToWorld(_context);
-  _observerSpatialNoiseForce->applyToWorld(_context);
-  _occurrenceSpatialNoiseForce->applyToWorld(_context);
-  _observerAnchorPointAttraction->applyToWorld(_context);
-  _occurrenceAnchorPointAttraction->applyToWorld(_context);
-  _observerDamping->applyToWorld(_context);
-  _occurrenceDamping->applyToWorld(_context);
-  _rebound->applyToWorld(_context);
+  _behaviors.update();
   for (auto& entity : _context.observers) {
     endEntityUpdate(entity.get(), _params.observers);
   }
@@ -93,16 +88,9 @@ void PhysicsController::update() {
 
 void PhysicsController::draw() {
   if (_debugParams.showPhysics()) {
-    _observerObserverAttraction->debugDraw(_context);
-    _observerOccurrenceForce->debugDraw(_context);
-    _occurrenceOccurrenceForce->debugDraw(_context);
-    _observerSpatialNoiseForce->debugDraw(_context);
-    _occurrenceSpatialNoiseForce->debugDraw(_context);
-    _observerAnchorPointAttraction->debugDraw(_context);
-    _occurrenceAnchorPointAttraction->debugDraw(_context);
-    _observerDamping->debugDraw(_context);
-    _occurrenceDamping->debugDraw(_context);
-    _rebound->debugDraw(_context);
+    for (auto& behavior : _behaviors) {
+      behavior->debugDraw();
+    }
   }
 }
 

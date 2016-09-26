@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "../core/Common.h"
+#include "../core/Enums.h"
 #include "../core/Events.h"
 
 // Type of action
@@ -25,8 +26,11 @@ enum class AppAction {
   SPAWN_TONS_OF_OBSERVERS,
   SPAWN_TONS_OF_OCCURRENCES,
   SPAWN_LOAD_TEST_ENTITIES,
+  SPAWN_OBSERVER_NAVIGATOR,
   KILL_FEW_OBSERVERS,
+  KILL_FEW_OCCURRENCES,
   KILL_MANY_OBSERVERS,
+  KILL_MANY_OCCURRENCES,
   LOAD_SETTINGS,
   SAVE_SETTINGS,
   STOP_ALL_ENTITIES,
@@ -35,20 +39,18 @@ enum class AppAction {
   DUMP_ENTITY_STATE,
   SAVE_ENTITY_STATE,
   LOAD_ENTITY_STATE,
+  TEST_ACTION,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
 using AppActionEvent = ValueEvent<AppAction>;
 
-extern EnumTypeInfo<AppAction> AppActionType;
-
 // A component which can handle AppActions
 class AppActionHandler {
 public:
-  virtual bool performAction(AppAction action) = 0;
+  AppActionHandler();
 
-protected:
-  void registerAsActionHandler();
+  virtual bool performAction(AppAction action) = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action);

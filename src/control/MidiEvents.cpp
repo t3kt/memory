@@ -58,7 +58,7 @@ void MidiEventMapping::outputFields(std::ostream &os) const {
 
 Json MidiEventMapping::to_json() const {
   Json::object obj {
-    {"event", JsonUtil::toJson(_eventType)},
+    {"event", JsonUtil::enumToJson(_eventType)},
     {"key", _key},
     {"value", JsonUtil::toJson(_value)},
   };
@@ -70,7 +70,7 @@ Json MidiEventMapping::to_json() const {
 
 void MidiEventMapping::read_json(const Json &obj) {
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  _eventType = JsonUtil::fromJson<SimulationEventType>(obj["event"]);
+  _eventType = JsonUtil::enumFromJson<SimulationEventType>(obj["event"]);
   _key.read_json(obj["key"]);
   _value = JsonUtil::fromJson<int>(obj["value"]);
   _autoOff = JsonUtil::fromJsonField(obj, "autoOff", true);

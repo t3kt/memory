@@ -11,8 +11,8 @@
 
 #include <iostream>
 #include "../core/Common.h"
+#include "../core/Enums.h"
 #include "../core/Events.h"
-#include "../navigation/NavigatorEntity.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,
@@ -25,9 +25,72 @@ enum class SimulationEventType {
   NAVIGATOR_SPAWNED,
   NAVIGATOR_REACHED_LOCATION,
   NAVIGATOR_DIED,
+  NODE_SPAWNED,
+  NODE_DIED,
 };
 
-extern EnumTypeInfo<SimulationEventType> SimulationEventTypeType;
+class AnimationObject;
+class ObserverEntity;
+class OccurrenceEntity;
+class NavigatorEntity;
+class NodeEntity;
+
+template<typename T>
+constexpr SimulationEventType spawnedEventType();
+
+template<>
+constexpr SimulationEventType spawnedEventType<AnimationObject>() {
+  return SimulationEventType::ANIMATION_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<ObserverEntity>() {
+  return SimulationEventType::OBSERVER_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<OccurrenceEntity>() {
+  return SimulationEventType::OCCURRENCE_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<NavigatorEntity>() {
+  return SimulationEventType::NAVIGATOR_SPAWNED;
+}
+
+template<>
+constexpr SimulationEventType spawnedEventType<NodeEntity>() {
+  return SimulationEventType::NODE_SPAWNED;
+}
+
+template<typename T>
+constexpr SimulationEventType diedEventType();
+
+template<>
+constexpr SimulationEventType diedEventType<AnimationObject>() {
+  return SimulationEventType::ANIMATION_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<ObserverEntity>() {
+  return SimulationEventType::OBSERVER_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<OccurrenceEntity>() {
+  return SimulationEventType::OCCURRENCE_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<NavigatorEntity>() {
+  return SimulationEventType::NAVIGATOR_DIED;
+}
+
+template<>
+constexpr SimulationEventType diedEventType<NodeEntity>() {
+  return SimulationEventType::NODE_DIED;
+}
+
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value);
 
@@ -54,21 +117,23 @@ private:
   T& _value;
 };
 
-class AnimationObject;
+template<typename T>
+using SimulationEvent = TEvent<SimulationEventArgs<T>>;
+
 using AnimationEventArgs = SimulationEventArgs<AnimationObject>;
-using AnimationEvent = TEvent<AnimationEventArgs>;
+using AnimationEvent = SimulationEvent<AnimationObject>;
 
-class OccurrenceEntity;
 using OccurrenceEventArgs = SimulationEventArgs<OccurrenceEntity>;
-using OccurrenceEvent = TEvent<OccurrenceEventArgs>;
+using OccurrenceEvent = SimulationEvent<OccurrenceEntity>;
 
-class ObserverEntity;
 using ObserverEventArgs = SimulationEventArgs<ObserverEntity>;
-using ObserverEvent = TEvent<ObserverEventArgs>;
+using ObserverEvent = SimulationEvent<ObserverEntity>;
 
-class NavigatorEntity;
 using NavigatorEventArgs = SimulationEventArgs<NavigatorEntity>;
-using NavigatorEvent = TEvent<NavigatorEventArgs>;
+using NavigatorEvent = SimulationEvent<NavigatorEntity>;
+
+using NodeEventArgs = SimulationEventArgs<NodeEntity>;
+using NodeEvent = SimulationEvent<NodeEntity>;
 
 class SimulationEvents {
 public:
@@ -86,7 +151,28 @@ public:
   NavigatorEvent navigatorReachedLocation;
   NavigatorEvent navigatorDied;
 
+  NodeEvent nodeSpawned;
+  NodeEvent nodeDied;
+
   AbstractEvent* getEvent(SimulationEventType type);
+
+  template<typename T>
+  SimulationEvent<T>& spawned();
+
+  template<typename T>
+  void spawned(T& entity) {
+    SimulationEventArgs<T> e(spawnedEventType<T>(), entity);
+    spawned<T>().notifyListeners(e);
+  }
+
+  template<typename T>
+  SimulationEvent<T>& died();
+
+  template<typename T>
+  void died(T& entity) {
+    SimulationEventArgs<T> e(diedEventType<T>(), entity);
+    died<T>().notifyListeners(e);
+  }
 };
 
 #endif /* SimulationEvents_h */

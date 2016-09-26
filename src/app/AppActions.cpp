@@ -17,8 +17,11 @@ EnumTypeInfo<AppAction> AppActionType({
   {"spawnTonsOfObservers", AppAction::SPAWN_TONS_OF_OBSERVERS},
   {"spawnTonsOfOccurrences", AppAction::SPAWN_TONS_OF_OCCURRENCES},
   {"spawnLoadTestEntities", AppAction::SPAWN_LOAD_TEST_ENTITIES},
+  {"spawnObserverNavigator", AppAction::SPAWN_OBSERVER_NAVIGATOR},
   {"killFewObservers", AppAction::KILL_FEW_OBSERVERS},
+  {"killFewOccurrences", AppAction::KILL_FEW_OCCURRENCES},
   {"killManyObservers", AppAction::KILL_MANY_OBSERVERS},
+  {"killManyOccurrences", AppAction::KILL_MANY_OCCURRENCES},
   {"loadSettings", AppAction::LOAD_SETTINGS},
   {"saveSettings", AppAction::SAVE_SETTINGS},
   {"stopAllEntities", AppAction::STOP_ALL_ENTITIES},
@@ -27,13 +30,19 @@ EnumTypeInfo<AppAction> AppActionType({
   {"dumpEntityState", AppAction::DUMP_ENTITY_STATE},
   {"loadEntityState", AppAction::LOAD_ENTITY_STATE},
   {"saveEntityState", AppAction::SAVE_ENTITY_STATE},
+  {"testAction", AppAction::TEST_ACTION},
 });
 
-std::ostream& operator<<(std::ostream& os, const AppAction& action) {
-  return os << AppActionType.toString(action);
+template<>
+const EnumTypeInfo<AppAction>& getEnumInfo() {
+  return AppActionType;
 }
 
-void AppActionHandler::registerAsActionHandler() {
+std::ostream& operator<<(std::ostream& os, const AppAction& action) {
+  return os << enumToString(action);
+}
+
+AppActionHandler::AppActionHandler() {
   AppSystem::get().appActionTriggered += [&](AppActionEventArgs& event) {
     if (performAction(event.value())) {
       event.markHandled();

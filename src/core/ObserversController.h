@@ -17,31 +17,34 @@
 #include "../core/ObjectManager.h"
 #include "../core/ObserverEntity.h"
 #include "../spawning/ObserverSpawner.h"
+#include "../rules/ObserverSickness.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class SimulationEvents;
 
-class ObserversController
-: public EntityController<ObserverEntity> {
+class ObserverParams : public ::Params {
 public:
+  ObserverParams() {
+    add(rateSpawner
+        .setKey("rateSpawner")
+        .setName("Rate Spawner"));
+    rateSpawner.rate.setRange(0, 5);
+    rateSpawner.rate.setValueAndDefault(0.5);
+    add(sickness
+        .setKey("sickness")
+        .setName("Sickness"));
+    sickness.setEnabledValueAndDefault(false);
+  }
 
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(spawner
-          .setKey("spawner")
-          .setName("Interval Spawner"));
-      add(rateSpawner
-          .setRateRange(0, 5)
-          .setRateValueAndDefault(0.5)
-          .setKey("rateSpawner")
-          .setName("Rate Spawner"));
-    }
+  RateObserverSpawner::Params rateSpawner;
+  ObserverSicknessParams sickness;
+};
 
-    IntervalObserverSpawner::Params spawner;
-    RateObserverSpawner::Params rateSpawner;
-  };
+class ObserversController
+: public EntityController<ObserverEntity>
+, public AppActionHandler {
+public:
+  using Params = ObserverParams;
   
   ObserversController(const Params& params,
                       const Bounds& bounds,
@@ -50,23 +53,14 @@ public:
   
   void setup() override;
   void update() override;
-  void draw() override;
-  
-  bool registerOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
-
-  void spawnObservers(int count);
-
-  void killObservers(int count);
 
   bool performAction(AppAction action) override;
-
-  bool tryAddEntity(std::shared_ptr<ObserverEntity> entity) override;
   
 private:
   const Params& _params;
   const Bounds& _bounds;
-  std::shared_ptr<IntervalObserverSpawner> _spawner;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
+  std::shared_ptr<ObserverSickness> _sickness;
 
   friend class IntervalObserverSpawner;
 };

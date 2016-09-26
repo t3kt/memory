@@ -97,6 +97,9 @@ public:
       add(navigation
           .setKey("nav")
           .setName("Navigation"));
+      add(node
+          .setKey("node")
+          .setName("Node"));
       add(observer
           .setKey("obs")
           .setName("Observer"));
@@ -108,6 +111,7 @@ public:
     Logger::Params control;
     Logger::Params animation;
     Logger::Params navigation;
+    Logger::Params node;
     Logger::Params observer;
     Logger::Params occurrence;
   };
@@ -118,6 +122,7 @@ public:
   , _control(params.control, params.enabled.get())
   , _animation(params.animation, params.enabled.get())
   , _navigation(params.navigation, params.enabled.get())
+  , _node(params.node, params.enabled.get())
   , _observer(params.observer, params.enabled.get())
   , _occurrence(params.occurrence, params.enabled.get()) { }
 
@@ -125,6 +130,7 @@ public:
   Logger& control() { return _control; }
   Logger& animation() { return _animation; }
   Logger& navigation() { return _navigation; }
+  Logger& node() { return _node; }
   Logger& observer() { return _observer; }
   Logger& occurrence() { return _occurrence; }
 
@@ -134,6 +140,7 @@ private:
   Logger _control;
   Logger _animation;
   Logger _navigation;
+  Logger _node;
   Logger _observer;
   Logger _occurrence;
 };

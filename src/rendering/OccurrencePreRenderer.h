@@ -32,6 +32,7 @@ class OccurrencePreRenderer
 public:
 
   OccurrencePreRenderer(const Params& params,
+                        const ColorTheme& colors,
                         Context& context);
 
   void update() override;

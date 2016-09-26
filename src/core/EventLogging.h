@@ -29,6 +29,8 @@ private:
   std::function<void(NavigatorEventArgs&)> _navigatorSpawned;
   std::function<void(NavigatorEventArgs&)> _navigatorReachedLocation;
   std::function<void(NavigatorEventArgs&)> _navigatorDied;
+  std::function<void(NodeEventArgs&)> _nodeSpawned;
+  std::function<void(NodeEventArgs&)> _nodeDied;
 };
 
 #endif /* EventLogging_h */

@@ -12,7 +12,7 @@
 #include <ofAppGLFWWindow.h>
 #include "../app/AppActions.h"
 #include "../rendering/CameraController.h"
-#include "../core/Colors.h"
+#include "../rendering/Colors.h"
 #include "../core/Common.h"
 #include "../rendering/ConnectorRenderer.h"
 #include "../core/Context.h"
@@ -22,7 +22,6 @@
 #include "../rendering/OccurrenceRenderer.h"
 #include "../core/Params.h"
 #include "../rendering/PostProcController.h"
-#include "../rendering/ThresholdRenderer.h"
 
 #ifdef ENABLE_SYPHON
 #include <ofxSyphon.h>
@@ -43,16 +42,12 @@ public:
     add(connectorRenderer
         .setKey("connectorRenderer")
         .setName("Connector Renderer"));
-    add(thresholdRenderer
-        .setKey("thresholdRenderer")
-        .setName("Threshold"));
   }
 
   ObserverPreRenderer::Params preRenderer;
   ObserverRenderer::Params renderer;
   InstancedObserverRenderer::Params instancedRenderer;
   ObserverObserverConnectorRenderer::Params connectorRenderer;
-  AbstractThresholdRenderer::Params thresholdRenderer;
 };
 
 class OccurrenceRenderingParams : public Params {
@@ -103,35 +98,39 @@ public:
   TParam<bool> useBackgroundColor;
 };
 
+
+class RenderingParams
+: public Params {
+public:
+  RenderingParams() {
+    add(camera
+        .setKey("camera")
+        .setName("Camera"));
+    add(observers
+        .setKey("observers")
+        .setName("Observers"));
+    add(occurrences
+        .setKey("occurrences")
+        .setName("Occurrences"));
+    add(fog
+        .setKey("fog")
+        .setName("Fog"));
+    add(postProc
+        .setKey("postProc")
+        .setName("Post Processing"));
+  }
+
+  CameraController::Params camera;
+  ObserverRenderingParams observers;
+  OccurrenceRenderingParams occurrences;
+  FogParams fog;
+  PostProcController::Params postProc;
+};
+
 class RenderingController
 : public AppActionHandler {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(camera
-          .setKey("camera")
-          .setName("Camera"));
-      add(observers
-          .setKey("observers")
-          .setName("Observers"));
-      add(occurrences
-          .setKey("occurrences")
-          .setName("Occurrences"));
-      add(fog
-          .setKey("fog")
-          .setName("Fog"));
-      add(postProc
-          .setKey("postProc")
-          .setName("Post Processing"));
-    }
-
-    CameraController::Params camera;
-    ObserverRenderingParams observers;
-    OccurrenceRenderingParams occurrences;
-    FogParams fog;
-    PostProcController::Params postProc;
-  };
+  using Params = RenderingParams;
 
   RenderingController(Params& params,
                       ofAppGLFWWindow& window,
@@ -157,19 +156,10 @@ private:
   Params& _params;
   Context& _context;
   const ColorTheme& _colors;
-  const ofFloatColor& _backgroundColor;
-  const ofFloatColor& _fogColor;
   ofAppGLFWWindow& _window;
   std::shared_ptr<CameraController> _camera;
-  std::shared_ptr<ObserverPreRenderer> _observerPreRenderer;
-  std::shared_ptr<OccurrencePreRenderer> _occurrencePreRenderer;
-  std::shared_ptr<ObserverRenderer> _observerRenderer;
-  std::shared_ptr<InstancedObserverRenderer> _instancedObserverRenderer;
-  std::shared_ptr<ObserverObserverConnectorRenderer> _observerConnectorRenderer;
-  std::shared_ptr<ObserverThresholdRenderer> _observerThresholdRenderer;
-  std::shared_ptr<OccurrenceRenderer> _occurrenceRenderer;
-  std::shared_ptr<ObserverOccurrenceConnectorRenderer> _observerOccurrenceConnectorRenderer;
-  std::shared_ptr<OccurrenceOccurrenceConnectorRenderer> _occurrenceOccurrenceConnectorRenderer;
+  PreRendererCollection _preRenderers;
+  RendererCollection _renderers;
   std::shared_ptr<PostProcController> _postProc;
   //  ofLight _light;
 };

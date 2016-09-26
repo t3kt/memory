@@ -52,14 +52,16 @@ class AbstractAttractionBehavior
 public:
   using Params = RangedForceParams;
 
-  AbstractAttractionBehavior(const Params& params)
-  : _params(params) { }
+  AbstractAttractionBehavior(Context& context,
+                             const Params& params)
+  : AbstractPhysicsBehavior(context)
+  , _params(params) { }
 
-  void applyToWorld(Context& context) override {
+  void update() override {
     if (!_params.enabled()) {
       return;
     }
-    processWorld(context, ApplyMode::ADD_FORCE);
+    processWorld(ApplyMode::ADD_FORCE);
   }
 
 protected:
@@ -68,15 +70,14 @@ protected:
     DEBUG_DRAW,
   };
 
-  void debugDrawBehavior(Context& context) override {
+  void debugDrawBehavior() override {
     if (!_params.enabled()) {
       return;
     }
-    processWorld(context, ApplyMode::DEBUG_DRAW);
+    processWorld(ApplyMode::DEBUG_DRAW);
   }
 
-  virtual void processWorld(Context& context,
-                            ApplyMode mode) = 0;
+  virtual void processWorld(ApplyMode mode) = 0;
 
   ofVec3f calcAttractionForce(const ofVec3f& entityPosition,
                               const ofVec3f& otherPosition,
@@ -99,15 +100,15 @@ template<typename E, typename O>
 class AttractionBehavior
 : public AbstractAttractionBehavior {
 public:
-  AttractionBehavior(const Params& params)
-  : AbstractAttractionBehavior(params) { }
+  AttractionBehavior(Context& context, const Params& params)
+  : AbstractAttractionBehavior(context, params) { }
 
 protected:
-  void processWorld(Context& context, ApplyMode mode) override {
+  void processWorld(ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto& entity : context.getEntities<E>()) {
+    for (auto& entity : _context.getEntities<E>()) {
       if (!entity->alive()) {
         continue;
       }
@@ -142,15 +143,15 @@ template<>
 class AttractionBehavior<ObserverEntity, ObserverEntity>
 : public AbstractAttractionBehavior {
 public:
-  AttractionBehavior(const Params& params)
-  : AbstractAttractionBehavior(params) { }
+  AttractionBehavior(Context& context, const Params& params)
+  : AbstractAttractionBehavior(context, params) { }
 
 protected:
-  void processWorld(Context& context, ApplyMode mode) override {
+  void processWorld(ApplyMode mode) override {
     float lowBound = _params.distanceBounds.lowValue();
     float highBound = _params.distanceBounds.highValue();
     float magnitude = _params.signedMagnitude();
-    for (auto& entity : context.getEntities<ObserverEntity>()) {
+    for (auto& entity : _context.getEntities<ObserverEntity>()) {
       if (!entity->alive()) {
         continue;
       }
@@ -171,8 +172,8 @@ protected:
             entity->addForce(force);
             break;
           case ApplyMode::DEBUG_DRAW:
-            if (!context.highlightedEntities.empty() &&
-                !context.highlightedEntities.containsId(entity->id())) {
+            if (!_context.highlightedEntities.empty() &&
+                !_context.highlightedEntities.containsId(entity->id())) {
               break;
             }
             debugDrawEntity(entity.get(), force);

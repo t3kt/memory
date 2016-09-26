@@ -26,7 +26,10 @@ public:
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
-  void add(EntityPtr entity) { _map[entity->id()] = entity; }
+  bool add(EntityPtr entity) {
+    auto result = _map.insert(std::make_pair(entity->id(), entity));
+    return result.second;
+  }
 
   EntityPtr getAtIndex(std::size_t index) {
     if (index >= size()) {
@@ -65,6 +68,13 @@ public:
   const_iterator begin() const { return _map.begin(); }
   const_iterator end() const { return _map.end(); }
 
+  template<typename A>
+  void performAction(A action) {
+    for (auto& entry : _map) {
+      action(entry.second);
+    }
+  }
+
   Json idsToJson() const {
     Json::array arr;
     for (const auto& entity : _map) {
@@ -72,6 +82,27 @@ public:
       arr.push_back(idVal);
     }
     return arr;
+  }
+
+  template<typename T>
+  std::shared_ptr<T> getFirstOfType() {
+    for (auto& entry : _map) {
+      if (entry.second->entityType() == T::type) {
+        return std::dynamic_pointer_cast<T>(entry.second);
+      }
+    }
+    return std::shared_ptr<T>();
+  }
+
+  void cullDeadObjects() {
+    for(auto iter = _map.begin();
+        iter != _map.end();) {
+      if (iter->second->alive()) {
+        iter++;
+      } else {
+        iter = _map.erase(iter);
+      }
+    }
   }
 private:
   Storage _map;

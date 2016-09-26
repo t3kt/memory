@@ -16,10 +16,11 @@
 #include "../app/AppParameters.h"
 #include "../core/Context.h"
 #include "../core/Events.h"
-#include "../core/State.h"
 #include "../core/Logging.h"
 
+class ActionsController;
 class SimulationApp;
+class State;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
 
@@ -29,8 +30,7 @@ public:
   static AppSystem& get();
 
   AppSystem()
-  : _context(_appParams)
-  , _log(_appParams.core.debug.logging) { }
+  : _log(_appParams.debug.logging) { }
 
   void main();
 
@@ -49,6 +49,8 @@ public:
   const Context& context() const { return _context; }
 
   LoggingController& log() { return _log; }
+
+  ActionsController& actions();
 
   bool performAction(AppAction action);
 

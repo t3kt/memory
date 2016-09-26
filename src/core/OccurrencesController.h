@@ -19,30 +19,29 @@
 #include "../core/OccurrenceEntity.h"
 #include "../spawning/OccurrenceSpawner.h"
 #include "../core/Params.h"
-#include "../core/State.h"
 
 class OccurrencesController;
 class SimulationEvents;
 
-class OccurrencesController
-: public EntityController<OccurrenceEntity> {
+class OccurrenceParams
+: public Params {
 public:
-  class Params : public ::Params {
-  public:
-    Params() {
-      add(spawner
-          .setKey("spawner")
-          .setName("Inteval Spawner"));
-      add(rateSpawner
-          .setRateRange(0, 5)
-          .setRateValueAndDefault(0.5)
-          .setKey("rateSpawner")
-          .setName("Rate Spawner"));
-    }
+  OccurrenceParams() {
+    add(rateSpawner
+        .setKey("rateSpawner")
+        .setName("Rate Spawner"));
+    rateSpawner.rate.setRange(0, 5);
+    rateSpawner.rate.setValueAndDefault(0.5);
+  }
 
-    IntervalOccurrenceSpawner::Params spawner;
-    RateOccurrenceSpawner::Params rateSpawner;
-  };
+  OccurrenceSpawner::Params rateSpawner;
+};
+
+class OccurrencesController
+: public EntityController<OccurrenceEntity>
+, public AppActionHandler {
+public:
+  using Params = OccurrenceParams;
 
   OccurrencesController(const Params& params,
                         const Bounds& bounds,
@@ -52,20 +51,14 @@ public:
   
   void setup() override;
   void update() override;
-  void draw() override;
-
-  void spawnOccurrences(int count);
 
   bool performAction(AppAction action) override;
-
-  bool tryAddEntity(std::shared_ptr<OccurrenceEntity> entity) override;
   
 private:
   const Params& _params;
   const Bounds& _bounds;
   ObserversController& _observers;
-  std::shared_ptr<IntervalOccurrenceSpawner> _spawner;
-  std::shared_ptr<RateOccurrenceSpawner> _rateSpawner;
+  std::shared_ptr<OccurrenceSpawner> _rateSpawner;
 
   friend class IntervalOccurrenceSpawner;
   friend class DescendantOccurrenceSpawner;

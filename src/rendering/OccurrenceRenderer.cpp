@@ -8,19 +8,18 @@
 
 #include <ofMain.h>
 #include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../rendering/OccurrenceRenderer.h"
 
 OccurrenceRenderer::OccurrenceRenderer(const Params& params,
-                                       const MemoryAppParameters& appParams,
+                                       const ColorTheme& colors,
                                        Context& context)
 : _context(context)
 , _entities(context.occurrences)
 , _params(params)
-, _color(ColorTheme::get().getColor(ColorId::OCCURRENCE_MARKER))
-, _rangeColor(ColorTheme::get().getColor(ColorId::OCCURRENCE_RANGE))
-, _appParams(appParams) { }
+, _colors(colors) { }
 
 void OccurrenceRenderer::draw() {
   if (!_params.enabled.get()) {
@@ -31,8 +30,8 @@ void OccurrenceRenderer::draw() {
   renderer->pushStyle();
 
   auto darkening = 1.0 - _params.highlightAmount.get();
-  auto baseColor = _color;
-  auto darkendColor = ofFloatColor(_color, _color.a * darkening);
+  auto baseColor = _colors.occurrenceMarker.get();
+  auto darkendColor = ofFloatColor(baseColor, baseColor.a * darkening);
   auto hasHighlights = !_context.highlightedEntities.empty();
 
   for (const auto& entity : _entities) {
@@ -90,8 +89,8 @@ void OccurrenceRenderer::draw() {
   if (_params.showRange.get()) {
     renderer->setBlendMode(OF_BLENDMODE_ALPHA);
     renderer->setFillMode(OF_FILLED);
-    auto baseRangeColor = _rangeColor;
-    auto darkenedRangeColor = ofFloatColor(_rangeColor, _rangeColor.a * darkening);
+    auto baseRangeColor = _colors.occurrenceRange.get();
+    auto darkenedRangeColor = ofFloatColor(baseRangeColor, baseRangeColor.a * darkening);
     for (const auto& entity : _entities) {
       if (!entity->visible()) {
         continue;

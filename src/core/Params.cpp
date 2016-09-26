@@ -36,6 +36,17 @@ TParamBase* Params::lookupPath(const std::string &path) {
   return group->lookupPath(subpath);
 }
 
+void Params::performRecursiveParamAction(ParamBaseAction action) {
+  for (auto param : _paramBases) {
+    if (param->isGroup()) {
+      auto group = dynamic_cast<Params*>(param);
+      group->performRecursiveParamAction(action);
+    } else {
+      action(*param);
+    }
+  }
+}
+
 void Params::readJsonField(const Json& obj) {
   const Json& val = obj[getKey()];
   if (!val.is_null()) {

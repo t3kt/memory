@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "../app/AppParameters.h"
+#include "../app/AppSystem.h"
 #include "../rendering/RenderingController.h"
 
 RenderingController::RenderingController(Params& params,
@@ -15,61 +16,32 @@ RenderingController::RenderingController(Params& params,
                                          Context& context)
 : _params(params)
 , _window(window)
-, _colors(ColorTheme::get())
-, _context(context)
-, _backgroundColor(ColorTheme::get().getColor(ColorId::BACKGROUND))
-, _fogColor(ColorTheme::get().getColor(ColorId::FOG)) {
+, _colors(AppSystem::get().params()->colors)
+, _context(context) {
 }
 
 void RenderingController::setup() {
   ofEnableAlphaBlending();
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
-  _camera->setup();
-  const auto& appParams = _context.appParams;
+  const auto& appParams = *AppSystem::get().params();
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
   const auto& occurrenceParams = _params.occurrences;
-  _observerPreRenderer =
-  std::make_shared<ObserverPreRenderer>(observerParams.preRenderer,
-                                        _context);
-  _occurrencePreRenderer =
-  std::make_shared<OccurrencePreRenderer>(occurrenceParams.preRenderer,
-                                          _context);
-  _observerThresholdRenderer =
-  std::make_shared<ObserverThresholdRenderer>(_context.observers,
-                                              observerParams.thresholdRenderer,
-                                              colors.getColor(ColorId::OBSERVER_THRESHOLD_CONNECTOR));
-  _observerRenderer =
-  std::make_shared<ObserverRenderer>(observerParams.renderer,
-                                     _context);
-  //  _instancedObserverRenderer =
-  //  std::make_shared<InstancedObserverRenderer>(observerParams.instancedRenderer,
-  //                                              _context);
-  //  _instancedObserverRenderer->setup();
-  _observerConnectorRenderer =
-  std::make_shared<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer,
-                                                      colors.getColor(ColorId::OBSERVER_CONNECTOR),
-                                                      _context.observers);
-  _occurrenceRenderer =
-  std::make_shared<OccurrenceRenderer>(occurrenceParams.renderer,
-                                       appParams,
-                                       _context);
-  _observerOccurrenceConnectorRenderer =
-  std::make_shared<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer,
-                                                        colors.getColor(ColorId::OCCURRENCE_OBSERVER_CONNECTOR),
-                                                        _context.occurrences);
-  _occurrenceOccurrenceConnectorRenderer =
-  std::make_shared<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer,
-                                                          colors.getColor(ColorId::OCCURRENCE_CONNECTOR),
-                                                          _context.occurrences);
+  _preRenderers.add<ObserverPreRenderer>(observerParams.preRenderer, colors, _context);
+  _preRenderers.add<OccurrencePreRenderer>(occurrenceParams.preRenderer, colors, _context);
+  _renderers.add<ObserverRenderer>(observerParams.renderer, colors, _context);
+//  _renderers.add<InstancedObserverRenderer>(observerParams.instancedRenderer, _context);
+  _renderers.add<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer, colors.observerConnector.get(), _context.observers);
+  _renderers.add<OccurrenceRenderer>(occurrenceParams.renderer, colors, _context);
+  _renderers.add<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer, colors.occurrenceObserverConnector.get(), _context.occurrences);
+  _renderers.add<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer, colors.occurrenceConnector.get(), _context.occurrences);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
-  registerAsActionHandler();
 }
 
 void RenderingController::updateResolution() {
@@ -89,50 +61,56 @@ void RenderingController::update() {
     entity->setScreenPos(cam.worldToScreen(entity->position()));
   });
   cam.end();
-  //  _instancedObserverRenderer->update();
-  _observerThresholdRenderer->update();
+  _renderers.update();
   _postProc->update();
 }
 
 void RenderingController::beginDraw() {
-  _observerPreRenderer->update();
-  _occurrencePreRenderer->update();
+  _preRenderers.update();
 
-  ofBackground(_backgroundColor);
+  ofBackground(_colors.background.get());
+  glPushAttrib(GL_ENABLE_BIT);
+//  ofEnableDepthTest();
+  //glEnable(GL_DEPTH_TEST);
+//  ofEnableLighting();
+  glEnable(GL_CULL_FACE);
+//  _light.enable();
   _postProc->beginDraw(_camera->getCamera());
   _camera->applyTransform();
   if (_params.fog.enabled()) {
     beginFog();
   }
+
+  ofPushMatrix();
 }
 
 void RenderingController::draw() {
-  _observerRenderer->draw();
-  //  _instancedObserverRenderer->draw();
-  _observerConnectorRenderer->draw();
-  _observerThresholdRenderer->draw();
-  _occurrenceRenderer->draw();
-  _observerOccurrenceConnectorRenderer->draw();
-  _occurrenceOccurrenceConnectorRenderer->draw();
+  _renderers.draw();
 }
 
 void RenderingController::endDraw() {
+  ofPopMatrix();
   if (_params.fog.enabled()) {
     endFog();
   }
   _postProc->endDraw(_camera->getCamera());
+//  ofDisableDepthTest();
+//  ofDisableLighting();
+  glPopAttrib();
 }
 
 void RenderingController::beginFog() {
   GLfloat fogCol[4];
   if (_params.fog.useBackgroundColor()) {
-    fogCol[0] = _backgroundColor.r;
-    fogCol[1] = _backgroundColor.g;
-    fogCol[2] = _backgroundColor.b;
+    const auto& color = _colors.background.get();
+    fogCol[0] = color.r;
+    fogCol[1] = color.g;
+    fogCol[2] = color.b;
   } else {
-    fogCol[0] = _fogColor.r;
-    fogCol[1] = _fogColor.g;
-    fogCol[2] = _fogColor.b;
+    const auto& color = _colors.fog.get();
+    fogCol[0] = color.r;
+    fogCol[1] = color.g;
+    fogCol[2] = color.b;
   }
   fogCol[3] = 1; // not used by opengl?
 
