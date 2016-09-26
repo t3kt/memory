@@ -9,7 +9,6 @@
 #ifndef EntityAttributes_h
 #define EntityAttributes_h
 
-#include <ofTypes.h>
 #include "../rules/EntityRule.h"
 
 template<typename E, typename T>
@@ -19,27 +18,37 @@ public:
   using RuleSeqT = EntityRuleSequence<E, T>;
   using RulePtrT = typename RuleSeqT::RulePtr;
 
-  EntityAttribute(const T& baseValue)
-  : _baseValue(baseValue) { }
+  EntityAttribute() { }
+
+  AttrT& setBase(const T& baseValue) {
+    _baseValue = &baseValue;
+    return *this;
+  }
 
   AttrT& addRule(RulePtrT rule) {
     _rules.add(rule);
     return *this;
   }
 
+  template<typename R, typename ...Args>
+  std::shared_ptr<R> addRule(Args&& ...args) {
+    auto rule = std::make_shared<R>(std::forward<Args>(args)...);
+    _rules.push_back(rule);
+    rule->setup();
+    return rule;
+  }
+
   T calculateValue(std::shared_ptr<E> entity) {
-    return _rules.calculateValue(entity, _baseValue);
+    T baseValue;
+    if (_baseValue != nullptr) {
+      baseValue = *_baseValue;
+    }
+    return _rules.calculateValue(entity, baseValue);
   }
 
 private:
-  const T& _baseValue;
+  const T* _baseValue;
   RuleSeqT _rules;
-};
-
-template<typename E>
-class EntityAttributes {
-public:
-  EntityAttribute<E, ofFloatColor> color;
 };
 
 /*
