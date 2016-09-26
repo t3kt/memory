@@ -20,6 +20,7 @@ using EntityRuleFn
 template<typename E, typename T>
 class EntityRule {
 public:
+  virtual void setup() { }
   virtual T calculateValue(const T& prevValue,
                            std::shared_ptr<E>& entity) = 0;
 };

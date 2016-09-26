@@ -52,6 +52,7 @@
 		32C174511D977C06009742AD /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1744F1D977C06009742AD /* EntityGroup.cpp */; };
 		32C174541D978463009742AD /* EntityScanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174521D978463009742AD /* EntityScanner.cpp */; };
 		32C1745B1D98B613009742AD /* EntityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C174591D98B613009742AD /* EntityAttributes.cpp */; };
+		32C1745E1D98BAB1009742AD /* ObserverAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C1745C1D98BAB1009742AD /* ObserverAttributes.cpp */; };
 		32CBCEE81D72B21400AEECC1 /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */; };
 		32DB79E11D3DD2F000ED4EB7 /* ConnectorRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32DB79DF1D3DD2F000ED4EB7 /* ConnectorRenderer.cpp */; };
 		32DB79E81D3DD81600ED4EB7 /* marker-shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 32DB79E61D3DD81600ED4EB7 /* marker-shader.vert */; };
@@ -322,6 +323,8 @@
 		32C174531D978463009742AD /* EntityScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityScanner.h; path = graph/EntityScanner.h; sourceTree = "<group>"; };
 		32C174591D98B613009742AD /* EntityAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityAttributes.cpp; path = rules/EntityAttributes.cpp; sourceTree = "<group>"; };
 		32C1745A1D98B613009742AD /* EntityAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityAttributes.h; path = rules/EntityAttributes.h; sourceTree = "<group>"; };
+		32C1745C1D98BAB1009742AD /* ObserverAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObserverAttributes.cpp; path = rules/ObserverAttributes.cpp; sourceTree = "<group>"; };
+		32C1745D1D98BAB1009742AD /* ObserverAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObserverAttributes.h; path = rules/ObserverAttributes.h; sourceTree = "<group>"; };
 		32C61823763A8EC46251B768 /* ofxPostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPostProcessing.h; path = ../../of_v0.9.3_osx_release/addons/ofxPostProcessing/src/ofxPostProcessing.h; sourceTree = SOURCE_ROOT; };
 		32CBCEE61D72B21400AEECC1 /* EventLogging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventLogging.cpp; path = core/EventLogging.cpp; sourceTree = "<group>"; };
 		32CBCEE71D72B21400AEECC1 /* EventLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventLogging.h; path = core/EventLogging.h; sourceTree = "<group>"; };
@@ -739,6 +742,8 @@
 				323EEE1A1D7E57E3001C7A72 /* EntityRule.h */,
 				323EEE161D7D4514001C7A72 /* EntitySelector.cpp */,
 				323EEE171D7D4514001C7A72 /* EntitySelector.h */,
+				32C1745C1D98BAB1009742AD /* ObserverAttributes.cpp */,
+				32C1745D1D98BAB1009742AD /* ObserverAttributes.h */,
 				323EEE271D7E687D001C7A72 /* ObserverSickness.cpp */,
 				323EEE281D7E687D001C7A72 /* ObserverSickness.h */,
 			);
@@ -1844,6 +1849,7 @@
 				B6B7568EC592C9325B0750F8 /* ofxSyphonClient.mm in Sources */,
 				CA9E1ED3D8C68176CA8E2ABB /* ofxSyphonServer.mm in Sources */,
 				323EEE291D7E687D001C7A72 /* ObserverSickness.cpp in Sources */,
+				32C1745E1D98BAB1009742AD /* ObserverAttributes.cpp in Sources */,
 				2AD48BA65F1504A93216D3CA /* ofxSyphonServerDirectory.mm in Sources */,
 				32EEAEC31D4C5AB8003A503F /* SimulationEvents.cpp in Sources */,
 				32EEAEC11D4C5A9E003A503F /* MidiEvents.cpp in Sources */,

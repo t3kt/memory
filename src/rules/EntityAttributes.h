@@ -18,38 +18,37 @@ public:
   using RuleSeqT = EntityRuleSequence<E, T>;
   using RulePtrT = typename RuleSeqT::RulePtr;
 
-  EntityAttribute() { }
+  EntityAttribute(const T& baseValue)
+  : _baseValue(baseValue) { }
 
-  AttrT& setBase(const T& baseValue) {
-    _baseValue = &baseValue;
-    return *this;
-  }
-
-  AttrT& addRule(RulePtrT rule) {
+  RulePtrT addRule(RulePtrT rule) {
     _rules.add(rule);
-    return *this;
+    return rule;
   }
 
   template<typename R, typename ...Args>
   std::shared_ptr<R> addRule(Args&& ...args) {
     auto rule = std::make_shared<R>(std::forward<Args>(args)...);
-    _rules.push_back(rule);
+    _rules.addRule(rule);
     rule->setup();
     return rule;
   }
 
+  RulePtrT addRule(EntityRuleFn<E, T> callback) {
+    return addRule<CallbackEntityRule<E, T>>(callback);
+  }
+
   T calculateValue(std::shared_ptr<E> entity) {
-    T baseValue;
-    if (_baseValue != nullptr) {
-      baseValue = *_baseValue;
-    }
-    return _rules.calculateValue(entity, baseValue);
+    return _rules.calculateValue(entity, _baseValue);
   }
 
 private:
-  const T* _baseValue;
+  const T& _baseValue;
   RuleSeqT _rules;
 };
+
+template<typename E, typename T>
+using EntityAttributePtr = std::shared_ptr<EntityAttribute<E, T>>;
 
 /*
  rules:
