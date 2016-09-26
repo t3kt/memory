@@ -76,24 +76,50 @@ private:
 
   ofxGui _gui;
 };
-//
-//static void setBackgroundAlpha(ofxBaseGui* gui, float alpha) {
-//  gui->setBackgroundColor(ofColor(gui->getBackgroundColor(), alpha*255));
-//}
-//
-void AppGuiImpl::setup() {
-  _gui.setConfig(ofJson{
-    {"background-color", "#FFFFFF"},
-  });
-  auto mainPanel = _gui.addPanel("", ofJson{
-    {"background-color", "#FFFFFF"},
-  });
 
-  auto rootTabs = mainPanel->addTabs();
+#define _STRINGIFY(A) #A
+
+const std::string themeText =
+R""(
+{
+  "default": {
+    "base": {
+      "background-color": "rgba(255,255,255,0.4)",
+      "fill-color": "rgba(255,255,255,0.8)",
+      "border-width": 0,
+      "padding": 1,
+      "margin": 3,
+      "text-color": "#000000",
+      "text-padding": 2
+    },
+    "group": {
+      "border-color": "#2da1e3",
+      "padding": 1,
+      "border-width": 1,
+      "margin-left": 10,
+      "show-header": true
+    },
+    "group-header": {
+      "background-color": "#2da1e3",
+      "text-color": "#ffffff"
+    },
+    "panel": {
+      "background-color": "#FFFFFF"
+    }
+  }
+}
+)"";
+
+void AppGuiImpl::setup() {
+//  _gui.setupFlexBoxLayout();
+  auto mainPanel = _gui.addPanel();
+  mainPanel->setTheme(ofJson::parse(themeText));
+
+//  auto rootTabs = mainPanel->addTabs();
   {
-    auto coreTab = rootTabs->addGroup(_appParams.core, ofJson{
-      {"show-header", true},
-    });
+    auto coreTab = mainPanel->addGroup(_appParams.core);//, ofJson{
+//      {"show-header", true},
+//    });
   }
 
 //  _gui.addGroup(_appParams);
