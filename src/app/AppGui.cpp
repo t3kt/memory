@@ -87,16 +87,16 @@ R""(
       "background-color": "rgba(255,255,255,0.4)",
       "fill-color": "rgba(255,255,255,0.8)",
       "border-width": 0,
-      "padding": 1,
-      "margin": 3,
+      "padding": 0.5,
+      "margin": 1,
       "text-color": "#000000",
-      "text-padding": 2
+      "text-padding": 1
     },
     "group": {
       "border-color": "#2da1e3",
       "padding": 1,
       "border-width": 1,
-      "margin-left": 10,
+      "margin-left": 5,
       "show-header": true
     },
     "group-header": {
@@ -111,78 +111,30 @@ R""(
 )"";
 
 void AppGuiImpl::setup() {
-//  _gui.setupFlexBoxLayout();
+  _gui.setupFlexBoxLayout();
   auto mainPanel = _gui.addPanel();
-  mainPanel->setTheme(ofJson::parse(themeText));
+  mainPanel->setBackgroundColor(ofFloatColor(1, 1, 1, 0.5));
+  auto rootGroup = mainPanel->addGroup();
 
-//  auto rootTabs = mainPanel->addTabs();
+  auto rootTabs = rootGroup->addTabs();
+  rootTabs->setTabHeight(6);
+  rootTabs->setTabWidth(44);
+  auto coreTab = rootTabs->addGroup(_appParams.core);
   {
-    auto coreTab = mainPanel->addGroup(_appParams.core);//, ofJson{
-//      {"show-header", true},
-//    });
+    auto entityTabs = rootTabs->addTabs("Ent");
+    entityTabs->setTabHeight(6);
+    entityTabs->setTabWidth(44);
+    entityTabs->addGroup(_appParams.observers)->setName("Obs");
+    entityTabs->addGroup(_appParams.occurrences)->setName("Occ");
+    entityTabs->addGroup(_appParams.navigators)->setName("Nav");
   }
+  rootTabs->addGroup(_appParams.animations)->setName("Ani");
+  rootTabs->addGroup(_appParams.colors)->setName("Col");
+  rootTabs->addGroup(_appParams.rendering)->setName("Ren");
+  rootTabs->addGroup(_appParams.physics)->setName("Phys");
+  rootTabs->addGroup(_appParams.debug)->setName("Dbg");
 
-//  _gui.addGroup(_appParams);
-
-//  _pages.setup();
-//  _pages.setSize(240, 700);
-//  _pages.setShowHeader(false);
-//  _pages.setPosition(0, 60);
-//
-//  _corePage.setup("Core");
-//  _corePage.add(new ofxGuiGroupExtended(_appParams.core));
-//  _pages.add(&_corePage);
-//
-//  _entityPages.setup();
-//  _entityPages.setSize(230, 700);
-//  _entityPages.setShowHeader(false);
-//
-//  _entityPage.setup();
-//  _entityPage.setName("Ent");
-//  _entityPage.add(&_entityPages);
-//  _pages.add(&_entityPage);
-//
-//  _observersPage.setup("Obs");
-//  auto observersGroup = new ofxGuiGroupExtended(_appParams.observers);
-//  _observersPage.add(observersGroup);
-//  _observersPage.setSize(230, 700);
-//  observersGroup->setPosition(15, 100);
-//  _entityPages.add(&_observersPage);
-//
-//  _occurrencesPage.setup("Occ");
-//  _occurrencesPage.add(new ofxGuiGroupExtended(_appParams.occurrences));
-//  _occurrencesPage.setSize(230, 700);
-//  _entityPages.add(&_occurrencesPage);
-//
-//  _navigatorsPage.setup("Nav");
-//  _navigatorsPage.add(new ofxGuiGroupExtended(_appParams.navigators));
-//  _navigatorsPage.setSize(230, 700);
-//  _entityPages.add(&_navigatorsPage);
-//
-//  _animationsPage.setup("Ani");
-//  _animationsPage.add(new ofxGuiGroupExtended(_appParams.animations));
-//  _pages.add(&_animationsPage);
-//
-//  _colorsPage.setup("Col");
-//  _colorsPage.add(new ofxGuiGroupExtended(_appParams.colors));
-//  _pages.add(&_colorsPage);
-//
-//  _renderingPage.setup("Ren");
-//  _renderingPage.add(new ofxGuiGroupExtended(_appParams.rendering));
-//  _pages.add(&_renderingPage);
-//
-//  _physicsPage.setup("Phy");
-//  _physicsPage.add(new ofxGuiGroupExtended(_appParams.physics));
-//  _pages.add(&_physicsPage);
-//
-//  _debugPage.setup("Dbg");
-//  _debugPage.add(new ofxGuiGroupExtended(_appParams.debug));
-//  _pages.add(&_debugPage);
-//
-//  _actions.setPosition(0, 0);
-//
-//  setBackgroundAlpha(&_pages, 0.5);
-//  setBackgroundAlpha(&_entityPages, 0.7);
+  mainPanel->setTheme(ofJson::parse(themeText));
 }
 
 AppGui::AppGui(MemoryAppParameters& appParams,
