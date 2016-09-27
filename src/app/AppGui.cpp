@@ -25,9 +25,14 @@ void AppGui::setup() {
     entityTabs->addGroup(_appParams.occurrences)->setName("Occ");
     entityTabs->addGroup(_appParams.navigators)->setName("Nav");
   }
-  rootTabs->addGroup(_appParams.animations)->setName("Ani");
-  rootTabs->addGroup(_appParams.colors)->setName("Col");
-  rootTabs->addGroup(_appParams.rendering)->setName("Ren");
+  {
+    auto visTabs = rootTabs->addTabs("Vis");
+    visTabs->setTabHeight(6);
+    visTabs->setTabWidth(44);
+    visTabs->addGroup(_appParams.animations)->setName("Ani");
+    visTabs->addGroup(_appParams.colors)->setName("Col");
+    visTabs->addGroup(_appParams.rendering)->setName("Ren");
+  }
   rootTabs->addGroup(_appParams.physics)->setName("Phys");
   rootTabs->addGroup(_appParams.debug)->setName("Dbg");
 

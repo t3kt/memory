@@ -13,7 +13,7 @@
       "border-color": "#2da1e3",
       "padding": 1,
       "border-width": 1,
-      "margin-left": 2,
+      "margin-left": 0.5,
       "show-header": true
     },
     "group-header": {
