@@ -59,6 +59,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
   {'z', AppAction::TEST_ACTION},
+  {'t', AppAction::RELOAD_THEME},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {

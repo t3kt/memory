@@ -31,6 +31,7 @@ EnumTypeInfo<AppAction> AppActionType({
   {"loadEntityState", AppAction::LOAD_ENTITY_STATE},
   {"saveEntityState", AppAction::SAVE_ENTITY_STATE},
   {"testAction", AppAction::TEST_ACTION},
+  {"reloadTheme", AppAction::RELOAD_THEME},
 });
 
 template<>

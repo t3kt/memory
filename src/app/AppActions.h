@@ -40,6 +40,7 @@ enum class AppAction {
   SAVE_ENTITY_STATE,
   LOAD_ENTITY_STATE,
   TEST_ACTION,
+  RELOAD_THEME,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;

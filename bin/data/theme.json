@@ -1,0 +1,24 @@
+{
+  "theme": {
+    "base": {
+      "background-color": "rgba(0,0,0,0.4)",
+      "fill-color": "rgba(127,127,127,0.8)",
+      "border-width": 0,
+      "padding": 0.5,
+      "margin": 1,
+      "text-color": "#ffffff",
+      "text-padding": 1
+    },
+    "group": {
+      "border-color": "#2da1e3",
+      "padding": 1,
+      "border-width": 1,
+      "margin-left": 2,
+      "show-header": true
+    },
+    "group-header": {
+    },
+    "panel": {
+    }
+  }
+}
