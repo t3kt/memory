@@ -11,11 +11,11 @@
 
 #include <functional>
 #include "../core/Common.h"
-#include "../core/EntityMap.h"
 #include "../core/JsonIO.h"
 #include "../core/ObjectManager.h"
 #include "../core/Serialization.h"
 #include "../core/State.h"
+#include "../graph/EntityGroup.h"
 
 class AnimationObject;
 class NavigatorEntity;
@@ -55,7 +55,7 @@ public:
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
 
-  EntityMap<WorldObject> highlightedEntities;
+  EntityGroup highlightedEntities;
 
 private:
   void clear();

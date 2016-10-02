@@ -68,6 +68,13 @@ public:
   const_iterator begin() const { return _map.begin(); }
   const_iterator end() const { return _map.end(); }
 
+  EntityPtr getFirst() {
+    if (empty()) {
+      return EntityPtr();
+    }
+    return begin()->second;
+  }
+
   template<typename A>
   void performAction(A action) {
     for (auto& entry : _map) {

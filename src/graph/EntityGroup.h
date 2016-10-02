@@ -42,8 +42,17 @@ public:
     return _nodes.size() + _observers.size() + _occurrences.size();
   }
 
+  bool empty() const {
+    return _nodes.empty() && _observers.empty() && _occurrences.empty();
+  }
+
   bool containsId(ObjectId objId) const {
     return _nodes.containsId(objId) || _observers.containsId(objId) || _occurrences.containsId(objId);
+  }
+
+  template<typename E>
+  std::shared_ptr<E> getFirst() {
+    return getEntities<E>().getFirst();
   }
 
   void cullDeadObjects();

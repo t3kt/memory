@@ -178,7 +178,7 @@ bool NavigatorsController::spawnHighlightedObserverNavigator() {
   if (_context.highlightedEntities.empty()) {
     return false;
   }
-  auto observer = _context.highlightedEntities.getFirstOfType<ObserverEntity>();
+  auto observer = _context.highlightedEntities.getFirst<ObserverEntity>();
   if (!observer) {
     return false;
   }
