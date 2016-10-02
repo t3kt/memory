@@ -153,7 +153,7 @@ void NavigatorsController::draw() {
     ofPushMatrix();
     ofTranslate(navigator->position());
 //    ofScale(ofVec3f(1));
-    ofRotate(_context.time() * 8);
+    ofRotateDeg(_context.time() * 8);
     AppAssets::navMarkerMesh().draw();
     ofPopMatrix();
   }
