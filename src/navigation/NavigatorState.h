@@ -21,7 +21,8 @@ class NavigatorState;
 using NavigatorStatePtr = std::shared_ptr<NavigatorState>;
 
 class NavigatorState
-: public Outputable {
+: public Outputable
+, public NonCopyable {
 public:
   virtual const ofVec3f& position() const = 0;
   virtual NavigatorStatePtr nextState(Context& context) = 0;

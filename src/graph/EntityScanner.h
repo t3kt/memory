@@ -79,7 +79,8 @@ public:
  scan all the entities in some collection plus their connections
 */
 
-class EntityScanner {
+class EntityScanner
+: public NonCopyable {
 public:
 
   EntityScanner(EntityScanPolicy policy,

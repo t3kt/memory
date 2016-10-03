@@ -11,6 +11,7 @@
 
 #include <memory>
 #include "../app/AppActions.h"
+#include "../core/Common.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../spawning/Spawner.h"
@@ -55,7 +56,8 @@ public:
 };
 
 class NavigatorsController
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   using Params = NavigatorParams;
 

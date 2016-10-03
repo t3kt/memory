@@ -19,7 +19,8 @@ class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
 
-class EntityGroup {
+class EntityGroup
+: public NonCopyable {
 public:
   EntityGroup();
 

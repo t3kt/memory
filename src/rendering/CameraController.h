@@ -11,6 +11,7 @@
 
 #include <ofEasyCam.h>
 #include "../app/AppActions.h"
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 
@@ -34,7 +35,8 @@ public:
 };
 
 class CameraController
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   using Params = CameraParams;
 

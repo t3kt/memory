@@ -13,6 +13,7 @@
 #include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
 #include "../core/Bounds.h"
+#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Context.h"
 #include "../physics/DampingBehavior.h"
@@ -104,7 +105,8 @@ public:
 };
 
 class PhysicsController
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   using Params = PhysicsParams;
 

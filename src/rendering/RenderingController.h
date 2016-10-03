@@ -128,7 +128,8 @@ public:
 };
 
 class RenderingController
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   using Params = RenderingParams;
 
