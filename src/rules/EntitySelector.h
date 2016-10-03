@@ -17,7 +17,8 @@
 #include "../core/WorldObject.h"
 
 template<typename E>
-class EntitySelector {
+class EntitySelector
+: public NonCopyable {
 public:
   using ActionT = PtrRefAction<E>;
 

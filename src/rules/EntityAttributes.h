@@ -9,10 +9,12 @@
 #ifndef EntityAttributes_h
 #define EntityAttributes_h
 
+#include "../core/Common.h"
 #include "../rules/EntityRule.h"
 
 template<typename E, typename T>
-class EntityAttribute {
+class EntityAttribute
+: public NonCopyable {
 public:
   using AttrT = EntityAttribute<E, T>;
   using RuleSeqT = EntityRuleSequence<E, T>;

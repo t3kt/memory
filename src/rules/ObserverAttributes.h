@@ -21,7 +21,8 @@ class ObserverParams;
 class ObserverRenderingParams;
 
 class ObserverAttributes
-: public ComponentBase {
+: public ComponentBase
+, public NonCopyable {
 public:
   using Params = ObserverParams;
 
