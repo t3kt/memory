@@ -32,6 +32,7 @@
 		2C68D3A329673D7462B5234C /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D4CD30ED468C2E07DC9107 /* ofxXmlSettings.cpp */; };
 		2E89EF75F526B6F174C26D78 /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC33459852E509988748F9 /* EntityGroup.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
+		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -279,6 +280,8 @@
 		315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AttractionBehavior.cpp; path = src/physics/AttractionBehavior.cpp; sourceTree = SOURCE_ROOT; };
 		31860E07B1A989084A92A47F /* Actions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Actions.h; path = src/core/Actions.h; sourceTree = SOURCE_ROOT; };
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
+		32308A781DA23D820005F875 /* Connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Connection.cpp; path = core/Connection.cpp; sourceTree = "<group>"; };
+		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -1286,6 +1289,8 @@
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
 				B3EEDA7B64C0798C62DF3743 /* Component.h */,
+				32308A781DA23D820005F875 /* Connection.cpp */,
+				32308A791DA23D820005F875 /* Connection.h */,
 				A9ADD6203ACA4F47673ED063 /* Context.cpp */,
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				292C7C3356DE4828CC45FD68 /* EntityController.h */,
@@ -1805,6 +1810,7 @@
 				49DB631B47D98ACE1C37E307 /* ofxGuiPanel.cpp in Sources */,
 				AEE1ED99CB574EC12C8AAC90 /* ofxGuiSliderGroup.cpp in Sources */,
 				226EC6AEF3C41439295F7D81 /* ofxGuiTabs.cpp in Sources */,
+				32308A7A1DA23D820005F875 /* Connection.cpp in Sources */,
 				98C4BBEE2711A7CB8B918FBD /* ofxGuiButton.cpp in Sources */,
 				42DACEDF7CA1FE1D5A2C67B7 /* ofxGuiFpsPlotter.cpp in Sources */,
 				FDC5BCCB083B0B19DE3F7D30 /* ofxGuiFunctionPlotter.cpp in Sources */,
