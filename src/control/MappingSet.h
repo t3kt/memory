@@ -17,7 +17,8 @@ template<typename T>
 class MappingSet
 : public JsonReadable
 , public JsonWritable
-, public Outputable {
+, public Outputable
+, public NonCopyable {
 public:
   using Storage = std::vector<T>;
   using iterator = typename Storage::iterator;

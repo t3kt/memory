@@ -8,13 +8,15 @@
 #include <memory>
 #include "../app/AppActions.h"
 #include "../app/AppParameters.h"
+#include "../core/Common.h"
 
 class ofxGui;
 class ofxGuiPanel;
 
 // Control panel GUI which modifies Params
 class AppGui
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   AppGui(MemoryAppParameters& appParams,
          AppActionHandler& actionHandler)

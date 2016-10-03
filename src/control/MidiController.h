@@ -10,6 +10,7 @@
 #define MidiController_h
 
 #include <memory>
+#include "../core/Common.h"
 #include "../core/Events.h"
 #include "../control/MidiCommon.h"
 #include "../core/Params.h"
@@ -18,7 +19,8 @@ class MemoryAppParameters;
 class MidiDevice;
 class MidiRouter;
 
-class MidiController {
+class MidiController
+: public NonCopyable {
 public:
   using Params = MidiParams;
 

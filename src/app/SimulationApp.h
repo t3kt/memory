@@ -39,7 +39,8 @@ class EventLoggers;
 
 class SimulationApp
 : public ofBaseApp
-, public AppActionHandler {
+, public AppActionHandler
+, public NonCopyable {
 public:
   SimulationApp(MemoryAppParameters& appParams,
                 Context& context,

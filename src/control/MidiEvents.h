@@ -61,7 +61,8 @@ private:
 
 using MidiEventMappingSet = MappingSet<MidiEventMapping>;
 
-class MidiEventRouter {
+class MidiEventRouter
+: public NonCopyable {
 public:
   using BindingList = std::vector<std::shared_ptr<MidiEventBinding>>;
 

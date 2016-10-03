@@ -12,10 +12,12 @@
 #include <ofxMidi.h>
 #include <string>
 #include "../control/MidiCommon.h"
+#include "../core/Common.h"
 #include "../core/Params.h"
 
 class MidiDevice
-: public ofxMidiListener {
+: public ofxMidiListener
+, public NonCopyable {
 public:
   using Params = MidiDeviceParams;
 

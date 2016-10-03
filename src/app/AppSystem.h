@@ -14,6 +14,7 @@
 #include <ofSystemUtils.h>
 #include "../app/AppActions.h"
 #include "../app/AppParameters.h"
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Events.h"
 #include "../core/Logging.h"
@@ -24,7 +25,8 @@ class State;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
 
-class AppSystem {
+class AppSystem
+: public NonCopyable {
 public:
   static void initialize();
   static AppSystem& get();
