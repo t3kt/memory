@@ -62,6 +62,8 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'t', AppAction::RELOAD_THEME},
   {'<', AppAction::SELECT_PREV_OBSERVER},
   {'>', AppAction::SELECT_NEXT_OBSERVER},
+  {',', AppAction::SELECT_PREV_OCCURRENCE},
+  {'.', AppAction::SELECT_NEXT_OCCURRENCE},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {

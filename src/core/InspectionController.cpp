@@ -155,6 +155,12 @@ bool InspectionController::performAction(AppAction action) {
     case AppAction::SELECT_NEXT_OBSERVER:
       selectNextEntity<ObserverEntity>();
       return true;
+    case AppAction::SELECT_PREV_OCCURRENCE:
+      selectPrevEntity<OccurrenceEntity>();
+      return true;
+    case AppAction::SELECT_NEXT_OCCURRENCE:
+      selectNextEntity<OccurrenceEntity>();
+      return true;
     default:
       return false;
   }
@@ -169,7 +175,7 @@ void InspectionController::selectPrevEntity() {
   if (_selectedEntity &&
       _selectedEntity->entityType() == E::type &&
       _selectedEntity->alive()) {
-    _selectedEntity = _context.getEntities<E>().beforeOrLast(std::dynamic_pointer_cast<ObserverEntity>(_selectedEntity));
+    _selectedEntity = _context.getEntities<E>().beforeOrLast(std::dynamic_pointer_cast<E>(_selectedEntity));
   } else {
     _selectedEntity = _context.getEntities<E>().last();
   }
@@ -180,7 +186,7 @@ void InspectionController::selectNextEntity() {
   if (_selectedEntity &&
       _selectedEntity->entityType() == E::type &&
       _selectedEntity->alive()) {
-    _selectedEntity = _context.getEntities<E>().afterOrFirst(std::dynamic_pointer_cast<ObserverEntity>(_selectedEntity));
+    _selectedEntity = _context.getEntities<E>().afterOrFirst(std::dynamic_pointer_cast<E>(_selectedEntity));
   } else {
     _selectedEntity = _context.getEntities<E>().first();
   }

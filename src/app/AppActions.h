@@ -43,6 +43,8 @@ enum class AppAction {
   RELOAD_THEME,
   SELECT_PREV_OBSERVER,
   SELECT_NEXT_OBSERVER,
+  SELECT_PREV_OCCURRENCE,
+  SELECT_NEXT_OCCURRENCE,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;

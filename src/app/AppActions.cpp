@@ -34,6 +34,8 @@ EnumTypeInfo<AppAction> AppActionType({
   {"reloadTheme", AppAction::RELOAD_THEME},
   {"selectPrevObserver", AppAction::SELECT_PREV_OBSERVER},
   {"selectNextObserver", AppAction::SELECT_NEXT_OBSERVER},
+  {"selectPrevOccurrence", AppAction::SELECT_PREV_OCCURRENCE},
+  {"selectNextOccurrence", AppAction::SELECT_NEXT_OCCURRENCE},
 });
 
 template<>
