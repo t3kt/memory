@@ -15,9 +15,11 @@
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "../core/Common.h"
 
 template<typename _T>
-class EnumTypeInfo {
+class EnumTypeInfo
+: public NonCopyable {
 public:
   using T = typename std::enable_if<std::is_enum<_T>::value, _T>::type;
 

@@ -10,6 +10,7 @@
 #define EntityController_h
 
 #include <memory>
+#include "../core/Common.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../core/SimulationEvents.h"
@@ -18,7 +19,8 @@ class Context;
 class SimulationEvents;
 
 template<typename E>
-class EntityController {
+class EntityController
+: public NonCopyable {
 public:
   using EntityPtr = std::shared_ptr<E>;
   using EntityEvent = SimulationEvent<E>;

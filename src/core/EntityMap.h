@@ -19,7 +19,8 @@
 #include "../core/WorldObject.h"
 
 template<typename E>
-class EntityMap {
+class EntityMap
+: public NonCopyable {
 public:
   using EntityPtr = std::shared_ptr<E>;
   using Storage = std::unordered_map<ObjectId, EntityPtr>;

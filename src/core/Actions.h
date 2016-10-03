@@ -13,6 +13,7 @@
 #include <memory>
 #include <vector>
 #include "../app/AppActions.h"
+#include "../core/Common.h"
 #include "../core/Logging.h"
 
 class ActionsController;
@@ -49,7 +50,8 @@ public:
 };
 
 class ActionsController
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 private:
   class Entry {
   public:

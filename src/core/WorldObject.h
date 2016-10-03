@@ -30,7 +30,8 @@ class Info;
 
 class WorldObject
 : public Outputable
-, public Serializable {
+, public Serializable
+, public NonCopyable {
 public:
   WorldObject();
   virtual ~WorldObject() {}

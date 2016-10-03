@@ -58,7 +58,7 @@ void AnimationsController::attachToEvents() {
     if (!_params.enabled() || !_params.observerDied.enabled()) {
       return;
     }
-    auto observer = e.value();
+    auto& observer = e.value();
     auto animation = std::make_shared<ExpandingSphereAnimation>(observer.position(), _params.observerDied, _colors.observerDied.get(), _context.state);
     addAnimation(animation);
   };
@@ -66,7 +66,7 @@ void AnimationsController::attachToEvents() {
     if (!_params.enabled() || !_params.occurrenceDied.enabled()) {
       return;
     }
-    auto occurrence = e.value();
+    auto& occurrence = e.value();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.observerDied, _colors.occurrenceDied.get(), _context.state);
     addAnimation(animation);
   };
@@ -74,7 +74,7 @@ void AnimationsController::attachToEvents() {
     if (!_params.enabled() || !_params.occurrenceSpawnFailed.enabled()) {
       return;
     }
-    auto occurrence = e.value();
+    auto& occurrence = e.value();
     auto animation = std::make_shared<ExpandingSphereAnimation>(occurrence.position(), _params.occurrenceSpawnFailed, _colors.occurrenceSpawnFailed.get(), _context.state);
     addAnimation(animation);
   };

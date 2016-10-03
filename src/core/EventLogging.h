@@ -10,9 +10,11 @@
 #define EventLogging_h
 
 #include <functional>
+#include "../core/Common.h"
 #include "../core/SimulationEvents.h"
 
-class EventLoggers {
+class EventLoggers
+: public NonCopyable {
 public:
   EventLoggers();
 
