@@ -41,6 +41,8 @@ enum class AppAction {
   LOAD_ENTITY_STATE,
   TEST_ACTION,
   RELOAD_THEME,
+  SELECT_PREV_OBSERVER,
+  SELECT_NEXT_OBSERVER,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;

@@ -98,4 +98,9 @@ using PtrPredicate = std::function<bool(std::shared_ptr<E>)>;
 template<typename E>
 using PtrRefPredicate = std::function<bool(std::shared_ptr<E>&)>;
 
+enum class SequenceDirection {
+  BACKWARD,
+  FORWARD
+};
+
 #endif /* defined(__behavior__Common__) */

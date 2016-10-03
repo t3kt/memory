@@ -163,9 +163,97 @@ public:
     return EntityPtr();
   }
 
+  EntityPtr before(const EntityPtr& nextEntity) {
+    if (!nextEntity) {
+      return nullptr;
+    }
+    auto iter = std::find(begin(), end(), nextEntity);
+    if (iter == begin()) {
+      return nullptr;
+    }
+    --iter;
+    if (iter == begin()) {
+      return nullptr;
+    }
+    return *iter;
+  }
+
+  EntityPtr beforeOrLast(const EntityPtr& nextEntity) {
+    if (empty()) {
+      return nullptr;
+    }
+    auto entity = before(nextEntity);
+    if (entity) {
+      return entity;
+    }
+    return last();
+  }
+
+  EntityPtr after(const EntityPtr& prevEntity) {
+    if (!prevEntity) {
+      return nullptr;
+    }
+    auto iter = std::find(begin(), end(), prevEntity);
+    if (iter == end()) {
+      return nullptr;
+    }
+    ++iter;
+    if (iter == end()) {
+      return nullptr;
+    }
+    return *iter;
+  }
+
+  EntityPtr afterOrFirst(const EntityPtr& prevEntity) {
+    if (empty()) {
+      return nullptr;
+    }
+    auto entity = after(prevEntity);
+    if (entity) {
+      return entity;
+    }
+    return first();
+  }
+
+  EntityPtr first() {
+    if (empty()) {
+      return nullptr;
+    }
+    return _objects.front();
+  }
+  EntityPtr last() {
+    if (empty()) {
+      return nullptr;
+    }
+    return _objects.back();
+  }
+
 private:
   StorageList _objects;
 };
+
+//template<SequenceDirection>
+//struct ObjectManagerDirection;
+//
+//template<>
+//struct ObjectManagerDirection<SequenceDirection::BACKWARD> {
+//  template<typename E>
+//  static std::shared_ptr<E>
+//  relative(ObjectManager<E>& entities,
+//           const std::shared_ptr<E>& entity) {
+//    return entities.before(entity);
+//  }
+//};
+//
+//template<>
+//struct ObjectManagerDirection<SequenceDirection::FORWARD> {
+//  template<typename E>
+//  static std::shared_ptr<E>
+//  relative(ObjectManager<E>& entities,
+//           const std::shared_ptr<E>& entity) {
+//    return entities.after(entity);
+//  }
+//};
 
 template<typename E>
 std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
