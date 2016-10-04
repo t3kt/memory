@@ -11,6 +11,7 @@
 
 #include <ofTypes.h>
 #include "../core/Common.h"
+#include "../core/Connection.h"
 #include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
@@ -40,13 +41,19 @@ public:
   void removeObserver(ObjectId otherId) {
     _connectedObservers.erase(otherId);
   }
-  
-  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
-    return _connectedOccurrences;
-  }
 
   EntityMap<ObserverEntity>& getConnectedObservers() {
     return _connectedObservers;
+  }
+
+  EntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+  getOccurrenceConnections() {
+    return _occurrenceConnections;
+  }
+
+  const EntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+  getOccurrenceConnections() const {
+    return _occurrenceConnections;
   }
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
@@ -73,7 +80,7 @@ public:
   virtual void fillInfo(Info& info) const override;
   virtual void performActionOnConnected(ObjectPtrRefAction action) override;
   virtual bool hasConnections() const override {
-    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+    return !_connectedObservers.empty() || !_occurrenceConnections.empty();
   }
   std::string typeName() const override { return "ObserverEntity"; }
 protected:
@@ -90,8 +97,8 @@ private:
   float _lifeFraction;
   bool _sick;
   float _decayRate;
-  EntityMap<OccurrenceEntity> _connectedOccurrences;
   EntityMap<ObserverEntity> _connectedObservers;
+  EntityConnectionMap<EntityConnection<OccurrenceEntity>> _occurrenceConnections;
 };
 
 #endif /* ObserverEntity_h */

@@ -16,6 +16,7 @@
 #include <ofMath.h>
 #include <ofUtils.h>
 #include "../core/Common.h"
+#include "../core/Connection.h"
 #include "../core/EntityMap.h"
 #include "../core/Events.h"
 #include "../core/Serialization.h"
@@ -92,6 +93,24 @@ public:
         throw SerializationException("Entity not found: " + ofToString(id));
       }
       entities.add(entity);
+    }
+  }
+
+  void loadDeserializedRefsInto(EntityConnectionMap<EntityConnection<T>>& connections,
+                                const Json& array) {
+    if (array.is_null()) {
+      return;
+    }
+    JsonUtil::assertHasType(array, Json::ARRAY);
+    for (const auto& val : array.array_items()) {
+      JsonUtil::assertHasType(val, Json::OBJECT);
+      auto id = JsonUtil::fromJson<ObjectId>(val["id"]);
+      auto entity = (*this)[id];
+      if (!entity) {
+        throw SerializationException("Entity not found: " + ofToString(id));
+      }
+      auto conn = std::make_shared<EntityConnection<T>>(entity);
+      connections.addConnection(conn);
     }
   }
 

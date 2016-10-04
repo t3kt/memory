@@ -44,7 +44,7 @@ void OccurrenceNavState::fillInfo(Info &info,
 }
 
 NavigatorStatePtr ObserverNavState::nextState(Context& context) {
-  auto other = getRandomEntity(_entity->getConnectedOccurrences());
+  auto other = _entity->getOccurrenceConnections().getRandomEntity();
   if (!other) {
     return NavigatorStatePtr();
   }
