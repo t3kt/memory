@@ -24,7 +24,8 @@ void ObserverOccurrenceConnectorRenderer::draw() {
     }
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
-    for (const auto& observer : occurrence->getConnectedObservers()) {
+    for (const auto& connection : occurrence->getObserverConnections()) {
+      const auto& observer = connection->entity();
       if (!observer->visible()) {
         continue;
       }
@@ -84,7 +85,8 @@ void OccurrenceOccurrenceConnectorRenderer::draw() {
     }
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
-    for (const auto& other : occurrence->getConnectedOccurrences()) {
+    for (const auto& connection : occurrence->getOccurrenceConnections()) {
+      const auto& other = connection->entity();
       if (!other->visible()) {
         continue;
       }

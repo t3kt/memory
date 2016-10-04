@@ -12,7 +12,6 @@
 #include <ofTypes.h>
 #include "../core/Common.h"
 #include "../core/Connection.h"
-#include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
 #include "../core/ValueSupplier.h"
@@ -82,7 +81,7 @@ public:
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
-  virtual void performActionOnConnected(ObjectPtrRefAction action) override;
+  virtual void performActionOnConnected(ObjectPtrAction action) override;
   virtual bool hasConnections() const override {
     return !_observerConnections.empty() || !_occurrenceConnections.empty();
   }

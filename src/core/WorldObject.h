@@ -65,9 +65,9 @@ public:
 
   virtual void fillInfo(Info& info) const;
 
-  using ObjectPtrRefAction =
+  using ObjectPtrAction =
   std::function<void(std::shared_ptr<WorldObject>)>;
-  virtual void performActionOnConnected(ObjectPtrRefAction action) {}
+  virtual void performActionOnConnected(ObjectPtrAction action) {}
 
   virtual const ofVec3f& position() const = 0;
 

@@ -19,7 +19,8 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float decay, const State& state)
 }
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-  for (auto& other : occurrence->getConnectedObservers()) {
+  for (auto& connection : occurrence->getObserverConnections()) {
+    auto& other = connection->entity();
     if (other->id() == id()) {
       continue;
     }
@@ -109,7 +110,7 @@ void ObserverEntity::deserializeRefs(const Json &obj,
   context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
 }
 
-void ObserverEntity::performActionOnConnected(ObjectPtrRefAction action) {
+void ObserverEntity::performActionOnConnected(ObjectPtrAction action) {
   _observerConnections.performAction(action);
   _occurrenceConnections.performAction(action);
 }

@@ -52,7 +52,7 @@ NavigatorStatePtr ObserverNavState::nextState(Context& context) {
 }
 
 NavigatorStatePtr OccurrenceNavState::nextState(Context& context) {
-  auto other = getRandomEntity(_entity->getConnectedObservers());
+  auto other = _entity->getObserverConnections().getRandomEntity();
   if (!other) {
     return NavigatorStatePtr();
   }

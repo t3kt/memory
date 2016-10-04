@@ -11,8 +11,8 @@
 
 #include <ofTypes.h>
 #include "../core/Common.h"
+#include "../core/Connection.h"
 #include "../core/Context.h"
-#include "../core/EntityMap.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
 #include "../core/WorldObject.h"
@@ -35,23 +35,27 @@ public:
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
-    _connectedObservers.add(observer);
+    auto connection =
+    std::make_shared<EntityConnection<ObserverEntity>>(observer);
+    _observerConnections.addConnection(connection);
   }
   
   void removeObserver(ObjectId id) {
-    _connectedObservers.erase(id);
+    _observerConnections.erase(id);
   }
 
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-    _connectedOccurrences.add(occurrence);
+    auto connection =
+    std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);
+    _occurrenceConnections.addConnection(connection);
   }
 
   void removeOccurrence(ObjectId id) {
-    _connectedOccurrences.erase(id);
+    _occurrenceConnections.erase(id);
   }
   
   bool hasConnectedObservers() const {
-    return !_connectedObservers.empty();
+    return !_occurrenceConnections.empty();
   }
 
   void detachConnections() override;
@@ -66,20 +70,24 @@ public:
 
   float actualRadius() const { return _actualRadius; }
 
-  const EntityMap<ObserverEntity>& getConnectedObservers() const {
-    return _connectedObservers;
+  EntityConnectionMap<ObserverEntity>&
+  getObserverConnections() {
+    return _observerConnections;
   }
 
-  EntityMap<ObserverEntity>& getConnectedObservers() {
-    return _connectedObservers;
+  const EntityConnectionMap<ObserverEntity>&
+  getObserverConnections() const {
+    return _observerConnections;
   }
 
-  const EntityMap<OccurrenceEntity>& getConnectedOccurrences() const {
-    return _connectedOccurrences;
+  EntityConnectionMap<OccurrenceEntity>&
+  getOccurrenceConnections() {
+    return _occurrenceConnections;
   }
 
-  EntityMap<OccurrenceEntity>& getConnectedOccurrences() {
-    return _connectedOccurrences;
+  const EntityConnectionMap<OccurrenceEntity>&
+  getOccurrenceConnections() const {
+    return _occurrenceConnections;
   }
 
   void update(const State& state);
@@ -93,9 +101,9 @@ public:
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
-  virtual void performActionOnConnected(ObjectPtrRefAction action) override;
+  virtual void performActionOnConnected(ObjectPtrAction action) override;
   virtual bool hasConnections() const override {
-    return !_connectedObservers.empty() || !_connectedOccurrences.empty();
+    return !_observerConnections.empty() || !_occurrenceConnections.empty();
   }
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
@@ -121,8 +129,8 @@ private:
   float _actualRadius;
   float _startTime;
   float _amountOfObservation;
-  EntityMap<ObserverEntity> _connectedObservers;
-  EntityMap<OccurrenceEntity> _connectedOccurrences;
+  EntityConnectionMap<ObserverEntity> _observerConnections;
+  EntityConnectionMap<OccurrenceEntity> _occurrenceConnections;
 
   friend class OccurrencesController;
 };
