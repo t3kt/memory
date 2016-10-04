@@ -12,6 +12,7 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <ofColor.h>
 #include <ofVec3f.h>
 #include "../core/Common.h"
 #include "../core/ObjectId.h"
