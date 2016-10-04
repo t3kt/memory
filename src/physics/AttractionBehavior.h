@@ -156,7 +156,7 @@ protected:
         continue;
       }
       for (const auto& connection : entity->getObserverConnections()) {
-        const auto& other = connection.second->entity();
+        const auto& other = connection->entity();
         if (!other->alive()) {
           continue;
         }

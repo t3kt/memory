@@ -70,8 +70,8 @@ public:
   using ConnPtr = std::shared_ptr<ConnT>;
   using EntityPtr = typename ConnT::EntityPtr;
   using Storage = std::unordered_map<ObjectId, ConnPtr>;
-  using iterator = typename Storage::iterator;
-  using const_iterator = typename Storage::const_iterator;
+  using iterator = MapToValueIterator<ObjectId, ConnPtr>;
+  using const_iterator = ConstMapToValueIterator<ObjectId, ConnPtr>;
 
   bool addConnection(ConnPtr connection) {
     auto result = _map.insert(std::make_pair(connection->entity()->id(),
@@ -174,8 +174,8 @@ private:
     if (index >= size()) {
       return nullptr;
     }
-    auto iter = std::next(begin(), index);
-    if (iter == end()) {
+    auto iter = std::next(_map.begin(), index);
+    if (iter == _map.end()) {
       return nullptr;
     }
     return iter->second;

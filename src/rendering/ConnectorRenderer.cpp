@@ -54,7 +54,7 @@ void ObserverObserverConnectorRenderer::draw() {
     }
     ofFloatColor connectorStartColor(_color, _color.a * observer->alpha());
     for (const auto& connection : observer->getObserverConnections()) {
-      const auto& other = connection.second->entity();
+      const auto& other = connection->entity();
       if (!other->visible()) {
         continue;
       }

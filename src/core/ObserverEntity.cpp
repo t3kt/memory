@@ -46,10 +46,10 @@ void ObserverEntity::update(const State &state) {
 
 void ObserverEntity::detachConnections() {
   for (auto& connection : _occurrenceConnections) {
-    connection.second->entity()->removeObserver(id());
+    connection->entity()->removeObserver(id());
   }
   for (auto& connection : _observerConnections) {
-    connection.second->entity()->removeObserver(id());
+    connection->entity()->removeObserver(id());
   }
 }
 
