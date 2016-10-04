@@ -51,8 +51,7 @@ void EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>::performAction(Acti
     if (!entity->alive()) {
       continue;
     }
-    for (auto& otherEntry : entity->getConnectedOccurrences()) {
-      auto& other = otherEntry.second;
+    for (auto& other : entity->getConnectedOccurrences()) {
       if (!other->alive()) {
         continue;
       }

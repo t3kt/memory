@@ -25,14 +25,14 @@ void ObserverOccurrenceConnectorRenderer::draw() {
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
     for (const auto& observer : occurrence->getConnectedObservers()) {
-      if (!observer.second->visible()) {
+      if (!observer->visible()) {
         continue;
       }
       connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(observer.second->position());
+      connectorMesh.addVertex(observer->position());
       connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * observer.second->alpha()));
+                                          _color.a * observer->alpha()));
     }
   }
   connectorMesh.draw();
@@ -85,14 +85,14 @@ void OccurrenceOccurrenceConnectorRenderer::draw() {
     ofFloatColor connectorStartColor(_color,
                                      _color.a * occurrence->alpha());
     for (const auto& other : occurrence->getConnectedOccurrences()) {
-      if (!other.second->visible()) {
+      if (!other->visible()) {
         continue;
       }
       connectorMesh.addVertex(occurrence->position());
       connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(other.second->position());
+      connectorMesh.addVertex(other->position());
       connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * other.second->alpha()));
+                                          _color.a * other->alpha()));
     }
   }
   connectorMesh.draw();

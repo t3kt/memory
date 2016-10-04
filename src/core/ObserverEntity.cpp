@@ -20,10 +20,10 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float decay, const State& state)
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
   for (auto& other : occurrence->getConnectedObservers()) {
-    if (other.first == id()) {
+    if (other->id() == id()) {
       continue;
     }
-    addObserver(other.second);
+    addObserver(other);
   }
   auto connection =
   std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);

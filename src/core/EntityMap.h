@@ -24,8 +24,8 @@ class EntityMap
 public:
   using EntityPtr = std::shared_ptr<E>;
   using Storage = std::unordered_map<ObjectId, EntityPtr>;
-  using iterator = typename Storage::iterator;
-  using const_iterator = typename Storage::const_iterator;
+  using iterator = MapToValueIterator<ObjectId, EntityPtr>;
+  using const_iterator = ConstMapToValueIterator<ObjectId, EntityPtr>;
 
   bool add(EntityPtr entity) {
     auto result = _map.insert(std::make_pair(entity->id(), entity));
@@ -36,8 +36,8 @@ public:
     if (index >= size()) {
       return EntityPtr();
     }
-    auto iter = std::next(begin(), index);
-    if (iter != end()) {
+    auto iter = std::next(_map.begin(), index);
+    if (iter != _map.end()) {
       return iter->second;
     }
     return EntityPtr();
@@ -45,7 +45,7 @@ public:
 
   EntityPtr operator[](ObjectId id) {
     auto iter = _map.find(id);
-    if (iter == end()) {
+    if (iter == _map.end()) {
       return EntityPtr();
     }
     return iter->second;
@@ -73,7 +73,7 @@ public:
     if (empty()) {
       return EntityPtr();
     }
-    return begin()->second;
+    return _map. begin()->second;
   }
 
   template<typename A>

@@ -42,10 +42,10 @@ void OccurrenceEntity::fillInfo(Info& info) const {
 
 void OccurrenceEntity::detachConnections() {
   for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeOccurrence(id());
+    occurrence->removeOccurrence(id());
   }
   for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id());
+    observer->removeObserver(id());
   }
 }
 
@@ -57,8 +57,8 @@ void OccurrenceEntity::update(const State& state) {
     float amount = 0;
     float radius = 0;
     for (const auto& observer : getConnectedObservers()) {
-      amount += observer.second->getRemainingLifetimeFraction();
-      float dist = position().distance(observer.second->position());
+      amount += observer->getRemainingLifetimeFraction();
+      float dist = position().distance(observer->position());
       if (dist > radius) {
         radius = dist;
       }
@@ -105,10 +105,6 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
 }
 
 void OccurrenceEntity::performActionOnConnected(ObjectPtrRefAction action) {
-  for (auto& entity : _connectedObservers) {
-    action(entity.second);
-  }
-  for (auto& entity : _connectedOccurrences) {
-    action(entity.second);
-  }
+  _connectedObservers.performAction(action);
+  _connectedOccurrences.performAction(action);
 }
