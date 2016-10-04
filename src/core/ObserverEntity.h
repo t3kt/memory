@@ -46,12 +46,12 @@ public:
     return _connectedObservers;
   }
 
-  EntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+  EntityConnectionMap<OccurrenceEntity>&
   getOccurrenceConnections() {
     return _occurrenceConnections;
   }
 
-  const EntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+  const EntityConnectionMap<OccurrenceEntity>&
   getOccurrenceConnections() const {
     return _occurrenceConnections;
   }
@@ -98,7 +98,7 @@ private:
   bool _sick;
   float _decayRate;
   EntityMap<ObserverEntity> _connectedObservers;
-  EntityConnectionMap<EntityConnection<OccurrenceEntity>> _occurrenceConnections;
+  EntityConnectionMap<OccurrenceEntity> _occurrenceConnections;
 };
 
 #endif /* ObserverEntity_h */

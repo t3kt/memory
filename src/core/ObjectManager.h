@@ -96,7 +96,8 @@ public:
     }
   }
 
-  void loadDeserializedRefsInto(EntityConnectionMap<EntityConnection<T>>& connections,
+  template<typename TConn>
+  void loadDeserializedRefsInto(TypedEntityConnectionMap<TConn>& connections,
                                 const Json& array) {
     if (array.is_null()) {
       return;
@@ -109,7 +110,7 @@ public:
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));
       }
-      auto conn = std::make_shared<EntityConnection<T>>(entity);
+      auto conn = std::make_shared<TConn>(entity);
       connections.addConnection(conn);
     }
   }

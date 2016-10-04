@@ -62,7 +62,7 @@ private:
 };
 
 template<typename TConn>
-class EntityConnectionMap
+class TypedEntityConnectionMap
 : public NonCopyable
 , public JsonWritable {
 public:
@@ -183,5 +183,8 @@ private:
 
   Storage _map;
 };
+
+template<typename E>
+using EntityConnectionMap = TypedEntityConnectionMap<EntityConnection<E>>;
 
 #endif /* Connection_h */
