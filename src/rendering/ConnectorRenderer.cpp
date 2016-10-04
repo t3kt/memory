@@ -53,15 +53,16 @@ void ObserverObserverConnectorRenderer::draw() {
       continue;
     }
     ofFloatColor connectorStartColor(_color, _color.a * observer->alpha());
-    for (const auto& other : observer->getConnectedObservers()) {
-      if (!other.second->visible()) {
+    for (const auto& connection : observer->getObserverConnections()) {
+      const auto& other = connection.second->entity();
+      if (!other->visible()) {
         continue;
       }
       connectorMesh.addVertex(observer->position());
       connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(other.second->position());
+      connectorMesh.addVertex(other->position());
       connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * other.second->alpha()));
+                                          _color.a * other->alpha()));
     }
   }
   connectorMesh.draw();

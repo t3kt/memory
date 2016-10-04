@@ -34,16 +34,20 @@ public:
   
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence);
 
-  void addObserver(std::shared_ptr<ObserverEntity> observer) {
-    _connectedObservers.add(observer);
-  }
+  void addObserver(std::shared_ptr<ObserverEntity> observer);
 
   void removeObserver(ObjectId otherId) {
-    _connectedObservers.erase(otherId);
+    _observerConnections.erase(otherId);
   }
 
-  EntityMap<ObserverEntity>& getConnectedObservers() {
-    return _connectedObservers;
+  EntityConnectionMap<ObserverEntity>&
+  getObserverConnections() {
+    return _observerConnections;
+  }
+
+  const EntityConnectionMap<ObserverEntity>&
+  getObserverConnections() const {
+    return _observerConnections;
   }
 
   EntityConnectionMap<OccurrenceEntity>&
@@ -80,7 +84,7 @@ public:
   virtual void fillInfo(Info& info) const override;
   virtual void performActionOnConnected(ObjectPtrRefAction action) override;
   virtual bool hasConnections() const override {
-    return !_connectedObservers.empty() || !_occurrenceConnections.empty();
+    return !_observerConnections.empty() || !_occurrenceConnections.empty();
   }
   std::string typeName() const override { return "ObserverEntity"; }
 protected:
@@ -97,7 +101,7 @@ private:
   float _lifeFraction;
   bool _sick;
   float _decayRate;
-  EntityMap<ObserverEntity> _connectedObservers;
+  EntityConnectionMap<ObserverEntity> _observerConnections;
   EntityConnectionMap<OccurrenceEntity> _occurrenceConnections;
 };
 

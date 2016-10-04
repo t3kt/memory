@@ -25,8 +25,15 @@ void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence)
     }
     addObserver(other.second);
   }
-  auto connection = std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);
+  auto connection =
+  std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);
   _occurrenceConnections.addConnection(connection);
+}
+
+void ObserverEntity::addObserver(std::shared_ptr<ObserverEntity> observer) {
+  auto connection =
+  std::make_shared<EntityConnection<ObserverEntity>>(observer);
+  _observerConnections.addConnection(connection);
 }
 
 void ObserverEntity::update(const State &state) {
@@ -41,8 +48,8 @@ void ObserverEntity::detachConnections() {
   for (auto& connection : _occurrenceConnections) {
     connection.second->entity()->removeObserver(id());
   }
-  for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id());
+  for (auto& connection : _observerConnections) {
+    connection.second->entity()->removeObserver(id());
   }
 }
 
@@ -51,16 +58,16 @@ void ObserverEntity::outputFields(std::ostream &os) const {
   os << ", lifeFraction: " << _lifeFraction
       << ", decayRate: " << _decayRate
       << ", sick: " << _sick
-      << ", connectedOccurrences: " << _occurrenceConnections.size()
-      << ", connectedObservers: " << _connectedObservers.size();
+      << ", occurrenceConnections: " << _occurrenceConnections.size()
+      << ", observerConnections: " << _observerConnections.size();
 }
 
 void ObserverEntity::fillInfo(Info& info) const {
   ParticleObject::fillInfo(info);
   info.add("lifeFraction:", _lifeFraction);
   info.add("decayRate:", _decayRate);
-  info.add("connObservers:", _connectedObservers.size());
   info.add("connOccurrences:", _occurrenceConnections.size());
+  info.add("connObservers:", _observerConnections.size());
   if (_sick) {
     info.add("sick:", _sick);
   }
@@ -88,8 +95,8 @@ void ObserverEntity::deserializeFields(const Json &obj,
 
 void ObserverEntity::addSerializedRefs(Json::object &obj,
                                        const SerializationContext &context) const {
-  obj["connectedObservers"] = _connectedObservers.idsToJson();
-  obj["connectedOccurrences"] = _occurrenceConnections.to_json();
+  obj["observerConnections"] = _observerConnections.to_json();
+  obj["occurrenceConnections"] = _occurrenceConnections.to_json();
 }
 
 void ObserverEntity::deserializeRefs(const Json &obj,
@@ -98,13 +105,11 @@ void ObserverEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
-  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["connectedOccurrences"]);
+  context.observers.loadDeserializedRefsInto(_observerConnections, obj["observerConnections"]);
+  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
 }
 
 void ObserverEntity::performActionOnConnected(ObjectPtrRefAction action) {
-  for (auto& entity : _connectedObservers) {
-    action(entity.second);
-  }
+  _observerConnections.performAction(action);
   _occurrenceConnections.performAction(action);
 }
