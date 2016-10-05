@@ -21,15 +21,15 @@ class AbstractConnection
 : public NonCopyable
 , public JsonWritable {
 public:
-  virtual std::shared_ptr<ParticleObject> entityBase() = 0;
   bool alive() const {
-    return getConstEntityRef().id();
+    return getEntityRef().id();
   }
   ObjectId entityId() const {
-    return getConstEntityRef().id();
+    return getEntityRef().id();
   }
 protected:
-  virtual const ParticleObject& getConstEntityRef() const = 0;
+  virtual ParticleObject& getEntityRef() = 0;
+  virtual const ParticleObject& getEntityRef() const = 0;
 };
 
 template<typename E>
@@ -42,10 +42,6 @@ public:
   explicit EntityConnection(EntityPtr& entity)
   : _entity(entity) { }
 
-  std::shared_ptr<ParticleObject> entityBase() override {
-    return _entity;
-  }
-
   EntityPtr& entity() { return _entity; }
   const EntityPtr& entity() const { return _entity; }
 
@@ -55,7 +51,10 @@ public:
     };
   }
 protected:
-  const ParticleObject& getConstEntityRef() const override {
+  ParticleObject& getEntityRef() override {
+    return *_entity;
+  }
+  const ParticleObject& getEntityRef() const override {
     return *_entity;
   }
 private:
