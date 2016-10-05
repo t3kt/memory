@@ -14,13 +14,14 @@
 #include <unordered_map>
 #include "../core/Common.h"
 #include "../core/JsonIO.h"
+#include "../core/ParticleObject.h"
 #include "../core/WorldObject.h"
 
 class AbstractConnection
 : public NonCopyable
 , public JsonWritable {
 public:
-  virtual std::shared_ptr<WorldObject> entityBase() = 0;
+  virtual std::shared_ptr<ParticleObject> entityBase() = 0;
   bool alive() const {
     return getConstEntityRef().id();
   }
@@ -28,7 +29,7 @@ public:
     return getConstEntityRef().id();
   }
 protected:
-  virtual const WorldObject& getConstEntityRef() const = 0;
+  virtual const ParticleObject& getConstEntityRef() const = 0;
 };
 
 template<typename E>
@@ -41,7 +42,7 @@ public:
   explicit EntityConnection(EntityPtr& entity)
   : _entity(entity) { }
 
-  std::shared_ptr<WorldObject> entityBase() override {
+  std::shared_ptr<ParticleObject> entityBase() override {
     return _entity;
   }
 
@@ -54,7 +55,7 @@ public:
     };
   }
 protected:
-  const WorldObject& getConstEntityRef() const override {
+  const ParticleObject& getConstEntityRef() const override {
     return *_entity;
   }
 private:
