@@ -35,9 +35,7 @@ public:
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
-    auto connection =
-    std::make_shared<EntityConnection<ObserverEntity>>(observer);
-    _observerConnections.addConnection(connection);
+    _observerConnections.getOrAdd(observer);
   }
   
   void removeObserver(ObjectId id) {
@@ -45,9 +43,7 @@ public:
   }
 
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-    auto connection =
-    std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);
-    _occurrenceConnections.addConnection(connection);
+    _occurrenceConnections.getOrAdd(occurrence);
   }
 
   void removeOccurrence(ObjectId id) {

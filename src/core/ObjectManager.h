@@ -110,8 +110,7 @@ public:
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));
       }
-      auto conn = std::make_shared<TConn>(entity);
-      connections.addConnection(conn);
+      connections.getOrAdd(entity);
     }
   }
 

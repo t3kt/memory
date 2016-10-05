@@ -39,7 +39,7 @@ public:
   using EntityT = E;
   using EntityPtr = std::shared_ptr<E>;
 
-  explicit EntityConnection(EntityPtr& entity)
+  explicit EntityConnection(EntityPtr entity)
   : _entity(entity) { }
 
   EntityPtr& entity() { return _entity; }
@@ -79,20 +79,21 @@ public:
     return result.second;
   }
 
-//  template<typename E, typename ...Args>
-//  ConnT getOrAdd(std::shared_ptr<E> entity, Args&& ...args) {
-//    auto conn = getConnectionTo(entity->id());
-//    if (conn) {
-//      return conn;
-//    }
-//    conn = std::make_shared<ConnT>(entity, std::forward<Args>(args)...);
-//    addConnection(conn);
-//    return conn;
-//  }
+  template<typename E, typename ...Args>
+  std::pair<ConnPtr, bool>
+  getOrAdd(std::shared_ptr<E> entity, Args&& ...args) {
+    auto conn = getConnectionTo(entity->id());
+    if (conn) {
+      return std::make_pair(conn, false);
+    }
+    conn = std::make_shared<ConnT>(entity, std::forward<Args>(args)...);
+    addConnection(conn);
+    return std::make_pair(conn, true);
+  }
 
   ConnPtr getConnectionTo(ObjectId entityId) {
     auto iter = _map.find(entityId);
-    if (iter == end()) {
+    if (iter == _map.end()) {
       return nullptr;
     }
     return iter->second;
@@ -108,7 +109,7 @@ public:
 
   bool containsId(ObjectId entityId) const {
     auto iter = _map.find(entityId);
-    return iter != end();
+    return iter != _map.end();
   }
 
   void clear() { _map.clear(); }

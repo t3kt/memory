@@ -26,15 +26,11 @@ void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence)
     }
     addObserver(other);
   }
-  auto connection =
-  std::make_shared<EntityConnection<OccurrenceEntity>>(occurrence);
-  _occurrenceConnections.addConnection(connection);
+  _occurrenceConnections.getOrAdd(occurrence);
 }
 
 void ObserverEntity::addObserver(std::shared_ptr<ObserverEntity> observer) {
-  auto connection =
-  std::make_shared<EntityConnection<ObserverEntity>>(observer);
-  _observerConnections.addConnection(connection);
+  _observerConnections.getOrAdd(observer);
 }
 
 void ObserverEntity::update(const State &state) {
