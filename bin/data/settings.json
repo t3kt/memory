@@ -394,7 +394,7 @@
       },
       "renderer": {
         "enabled": true,
-        "highlightAmount": 0.60000002384185791,
+        "highlightAmount": 0.76371949911117554,
         "size": 5.7351107597351074
       }
     },
@@ -420,7 +420,7 @@
       },
       "renderer": {
         "enabled": true,
-        "highlightAmount": 0.60000002384185791,
+        "highlightAmount": 0.76676827669143677,
         "showRange": false,
         "sizeRange": {
           "high": 10.751474380493164,

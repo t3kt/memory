@@ -110,6 +110,16 @@ void OccurrenceRenderer::draw() {
     }
   }
 
+  _context.highlightedEntities.performEntityAction<OccurrenceEntity>([&](std::shared_ptr<OccurrenceEntity>& entity) {
+    renderer->setFillMode(OF_OUTLINE);
+    renderer->setColor(ofFloatColor(1, 1, 1, 0.5));
+    float size = ofMap(entity->originalRadiusFraction(),
+                       0, 1,
+                       _params.sizeRange.lowValue.get(),
+                       _params.sizeRange.highValue.get());
+    renderer->drawBox(entity->position(), size * 1.5);
+  });
+
   renderer->popStyle();
 
 }
