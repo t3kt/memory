@@ -15,6 +15,7 @@
 #include <string>
 #include <unordered_map>
 #include "../app/AppParameters.h"
+#include "../core/Common.h"
 #include "../core/Events.h"
 #include "../core/JsonIO.h"
 #include "../control/MidiDevice.h"
@@ -24,7 +25,8 @@
 
 class AbstractMidiBinding;
 
-class MidiRouter {
+class MidiRouter
+: public NonCopyable {
 public:
   using DeviceMap = std::unordered_map<MidiDeviceId, std::shared_ptr<MidiDevice>>;
   using BindingMap = std::unordered_map<MidiMappingKey, std::shared_ptr<AbstractMidiBinding>>;

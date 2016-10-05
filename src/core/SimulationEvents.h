@@ -135,7 +135,8 @@ using NavigatorEvent = SimulationEvent<NavigatorEntity>;
 using NodeEventArgs = SimulationEventArgs<NodeEntity>;
 using NodeEvent = SimulationEvent<NodeEntity>;
 
-class SimulationEvents {
+class SimulationEvents
+: public NonCopyable {
 public:
   AnimationEvent animationSpawned;
   AnimationEvent animationDied;

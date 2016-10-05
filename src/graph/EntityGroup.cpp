@@ -50,6 +50,36 @@ void EntityGroup::clear() {
   _occurrences.clear();
 }
 
+template<>
+bool EntityGroup::add(std::shared_ptr<WorldObject> entity) {
+  auto type = entity->entityType();
+  switch (type) {
+    case EntityType::NODE:
+      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
+    case EntityType::OBSERVER:
+      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+    case EntityType::OCCURRENCE:
+      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+    default:
+      return false;
+  }
+}
+
+template<>
+bool EntityGroup::add(std::shared_ptr<ParticleObject> entity) {
+  auto type = entity->entityType();
+  switch (type) {
+    case EntityType::NODE:
+      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
+    case EntityType::OBSERVER:
+      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+    case EntityType::OCCURRENCE:
+      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+    default:
+      return false;
+  }
+}
+
 void EntityGroup::addConnections(ParticlePtr fromEntity,
                                  std::size_t depthLimit) {
   bool descendants = depthLimit == -1 || depthLimit > 0;

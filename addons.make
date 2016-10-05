@@ -1,6 +1,5 @@
 ofxAssimpModelLoader
 ofxChoreograph
-ofxGui
 ofxGuiExtended
 ofxLiquidEvent
 ofxMidi

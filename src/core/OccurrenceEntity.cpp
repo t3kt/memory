@@ -27,8 +27,8 @@ void OccurrenceEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
   os << ", originalRadius: " << _originalRadius
       << ", actualRadius: " << _actualRadius
-      << ", connectedOccurrences: " << _connectedOccurrences.size()
-      << ", connectedObservers: " << _connectedObservers.size();
+      << ", occurrenceConnections: " << _occurrenceConnections.size()
+      << ", observerConnections: " << _observerConnections.size();
 }
 
 void OccurrenceEntity::fillInfo(Info& info) const {
@@ -36,16 +36,16 @@ void OccurrenceEntity::fillInfo(Info& info) const {
   info.add("origRadius:", _originalRadius);
   info.add("actualRadius:", _actualRadius);
   info.add("amountOfObs:", _amountOfObservation);
-  info.add("connObservers:", _connectedObservers.size());
-  info.add("connOccurrences:", _connectedOccurrences.size());
+  info.add("connOccurrences:", _occurrenceConnections.size());
+  info.add("connObservers:", _observerConnections.size());
 }
 
 void OccurrenceEntity::detachConnections() {
-  for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeOccurrence(id());
+  for (auto& connection : _occurrenceConnections) {
+    connection->entity()->removeOccurrence(id());
   }
-  for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id());
+  for (auto& connection  : _observerConnections) {
+    connection->entity()->removeObserver(id());
   }
 }
 
@@ -56,9 +56,10 @@ void OccurrenceEntity::update(const State& state) {
   } else {
     float amount = 0;
     float radius = 0;
-    for (const auto& observer : getConnectedObservers()) {
-      amount += observer.second->getRemainingLifetimeFraction();
-      float dist = position().distance(observer.second->position());
+    for (const auto& connection : _observerConnections) {
+      const auto& observer = connection->entity();
+      amount += observer->getRemainingLifetimeFraction();
+      float dist = position().distance(observer->position());
       if (dist > radius) {
         radius = dist;
       }
@@ -90,8 +91,8 @@ void OccurrenceEntity::deserializeFields(const Json &obj,
 
 void OccurrenceEntity::addSerializedRefs(Json::object &obj,
                                          const SerializationContext &context) const {
-  obj["connectedObservers"] = _connectedObservers.idsToJson();
-  obj["connectedOccurrences"] = _connectedOccurrences.idsToJson();
+  obj["observerConnections"] = _observerConnections.to_json();
+  obj["occurrenceConnections"] = _occurrenceConnections.to_json();
 }
 
 void OccurrenceEntity::deserializeRefs(const Json &obj,
@@ -100,15 +101,11 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
-  context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+  context.observers.loadDeserializedRefsInto(_observerConnections, obj["observerConnections"]);
+  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
 }
 
-void OccurrenceEntity::performActionOnConnected(ObjectPtrRefAction action) {
-  for (auto& entity : _connectedObservers) {
-    action(entity.second);
-  }
-  for (auto& entity : _connectedOccurrences) {
-    action(entity.second);
-  }
+void OccurrenceEntity::performActionOnConnected(ObjectPtrAction action) {
+  _observerConnections.performAction(action);
+  _occurrenceConnections.performAction(action);
 }

@@ -34,15 +34,14 @@ void EntityForceBehavior<ObserverEntity, OccurrenceEntity>::performAction(Action
     if (!entity->alive()) {
       continue;
     }
-    for (auto& otherEntry : entity->getConnectedOccurrences()) {
-      auto& other = otherEntry.second;
+    entity->getOccurrenceConnections().performAction([&](std::shared_ptr<OccurrenceEntity> other) {
       if (!other->alive()) {
-        continue;
+        return;
       }
       ofVec3f force = calcAttraction(entity->position(),
                                      other->position());
       action(*entity, *other, force);
-    }
+    });
   }
 }
 
@@ -52,8 +51,8 @@ void EntityForceBehavior<OccurrenceEntity, OccurrenceEntity>::performAction(Acti
     if (!entity->alive()) {
       continue;
     }
-    for (auto& otherEntry : entity->getConnectedOccurrences()) {
-      auto& other = otherEntry.second;
+    for (auto& connection : entity->getOccurrenceConnections()) {
+      auto& other = connection->entity();
       if (!other->alive()) {
         continue;
       }

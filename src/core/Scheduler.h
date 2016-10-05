@@ -10,6 +10,7 @@
 #define Scheduler_h
 
 #include <ofMath.h>
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/ValueSupplier.h"
@@ -28,7 +29,8 @@ public:
   TParam<float> chance;
 };
 
-class Scheduler {
+class Scheduler
+: public NonCopyable {
 public:
   using Params = SchedulerParams;
 

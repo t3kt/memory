@@ -31,7 +31,7 @@ void CameraController::update() {
 }
 
 void CameraController::applyTransform() {
-  ofRotateX(_rotation.x);
-  ofRotateY(_rotation.y);
-  ofRotateZ(_rotation.z);
+  ofRotateXDeg(_rotation.x);
+  ofRotateYDeg(_rotation.y);
+  ofRotateZDeg(_rotation.z);
 }

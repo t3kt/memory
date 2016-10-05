@@ -16,8 +16,10 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "../core/Common.h"
 
-class Info {
+class Info
+: public NonCopyable {
 public:
   using Line = std::pair<std::string, std::string>;
   using StorageList = std::vector<Line>;

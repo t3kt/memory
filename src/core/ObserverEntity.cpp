@@ -19,13 +19,18 @@ ObserverEntity::ObserverEntity(ofVec3f pos, float decay, const State& state)
 }
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-  for (auto& other : occurrence->getConnectedObservers()) {
-    if (other.first == id()) {
+  for (auto& connection : occurrence->getObserverConnections()) {
+    auto& other = connection->entity();
+    if (other->id() == id()) {
       continue;
     }
-    addObserver(other.second);
+    addObserver(other);
   }
-  _connectedOccurrences.add(occurrence);
+  _occurrenceConnections.getOrAdd(occurrence);
+}
+
+void ObserverEntity::addObserver(std::shared_ptr<ObserverEntity> observer) {
+  _observerConnections.getOrAdd(observer);
 }
 
 void ObserverEntity::update(const State &state) {
@@ -37,11 +42,11 @@ void ObserverEntity::update(const State &state) {
 }
 
 void ObserverEntity::detachConnections() {
-  for (auto& occurrence : _connectedOccurrences) {
-    occurrence.second->removeObserver(id());
+  for (auto& connection : _occurrenceConnections) {
+    connection->entity()->removeObserver(id());
   }
-  for (auto& observer : _connectedObservers) {
-    observer.second->removeObserver(id());
+  for (auto& connection : _observerConnections) {
+    connection->entity()->removeObserver(id());
   }
 }
 
@@ -50,16 +55,16 @@ void ObserverEntity::outputFields(std::ostream &os) const {
   os << ", lifeFraction: " << _lifeFraction
       << ", decayRate: " << _decayRate
       << ", sick: " << _sick
-      << ", connectedOccurrences: " << _connectedOccurrences.size()
-      << ", connectedObservers: " << _connectedObservers.size();
+      << ", occurrenceConnections: " << _occurrenceConnections.size()
+      << ", observerConnections: " << _observerConnections.size();
 }
 
 void ObserverEntity::fillInfo(Info& info) const {
   ParticleObject::fillInfo(info);
   info.add("lifeFraction:", _lifeFraction);
   info.add("decayRate:", _decayRate);
-  info.add("connObservers:", _connectedObservers.size());
-  info.add("connOccurrences:", _connectedOccurrences.size());
+  info.add("connOccurrences:", _occurrenceConnections.size());
+  info.add("connObservers:", _observerConnections.size());
   if (_sick) {
     info.add("sick:", _sick);
   }
@@ -87,8 +92,8 @@ void ObserverEntity::deserializeFields(const Json &obj,
 
 void ObserverEntity::addSerializedRefs(Json::object &obj,
                                        const SerializationContext &context) const {
-  obj["connectedObservers"] = _connectedObservers.idsToJson();
-  obj["connectedOccurrences"] = _connectedOccurrences.idsToJson();
+  obj["observerConnections"] = _observerConnections.to_json();
+  obj["occurrenceConnections"] = _occurrenceConnections.to_json();
 }
 
 void ObserverEntity::deserializeRefs(const Json &obj,
@@ -97,15 +102,11 @@ void ObserverEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.observers.loadDeserializedRefsInto(_connectedObservers, obj["connectedObservers"]);
-  context.occurrences.loadDeserializedRefsInto(_connectedOccurrences, obj["connectedOccurrences"]);
+  context.observers.loadDeserializedRefsInto(_observerConnections, obj["observerConnections"]);
+  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
 }
 
-void ObserverEntity::performActionOnConnected(ObjectPtrRefAction action) {
-  for (auto& entity : _connectedObservers) {
-    action(entity.second);
-  }
-  for (auto& entity : _connectedOccurrences) {
-    action(entity.second);
-  }
+void ObserverEntity::performActionOnConnected(ObjectPtrAction action) {
+  _observerConnections.performAction(action);
+  _occurrenceConnections.performAction(action);
 }

@@ -153,7 +153,7 @@ void NavigatorsController::draw() {
     ofPushMatrix();
     ofTranslate(navigator->position());
 //    ofScale(ofVec3f(1));
-    ofRotate(_context.time() * 8);
+    ofRotateDeg(_context.time() * 8);
     AppAssets::navMarkerMesh().draw();
     ofPopMatrix();
   }
@@ -178,7 +178,7 @@ bool NavigatorsController::spawnHighlightedObserverNavigator() {
   if (_context.highlightedEntities.empty()) {
     return false;
   }
-  auto observer = _context.highlightedEntities.getFirstOfType<ObserverEntity>();
+  auto observer = _context.highlightedEntities.getFirst<ObserverEntity>();
   if (!observer) {
     return false;
   }

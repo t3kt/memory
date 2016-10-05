@@ -9,6 +9,7 @@
 #ifndef ObserverSickness_h
 #define ObserverSickness_h
 
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/Scheduler.h"
@@ -31,7 +32,8 @@ public:
   TParam<float> decayRateAmount;
 };
 
-class ObserverSickness {
+class ObserverSickness
+: public NonCopyable {
 public:
   using Params = ObserverSicknessParams;
 

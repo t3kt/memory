@@ -155,12 +155,13 @@ protected:
       if (!entity->alive()) {
         continue;
       }
-      for (const auto& other : entity->getConnectedObservers()) {
-        if (!other.second->alive()) {
+      for (const auto& connection : entity->getObserverConnections()) {
+        const auto& other = connection->entity();
+        if (!other->alive()) {
           continue;
         }
         ofVec3f force = calcAttractionForce(entity->position(),
-                                            other.second->position(),
+                                            other->position(),
                                             lowBound,
                                             highBound,
                                             magnitude);

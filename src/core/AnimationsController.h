@@ -11,13 +11,15 @@
 
 #include "../core/AnimationObject.h"
 #include "../rendering/Colors.h"
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 
 class SimulationEvents;
 
-class AnimationsController {
+class AnimationsController
+: public NonCopyable {
 public:
   class Params : public ParamsWithEnabled {
   public:

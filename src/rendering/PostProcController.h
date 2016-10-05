@@ -97,7 +97,8 @@ public:
   ColorAdjustPass::Params colorAdjust;
 };
 
-class PostProcController {
+class PostProcController
+: public NonCopyable {
 public:
   using Params = PostProcParams;
 

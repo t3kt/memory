@@ -9,13 +9,16 @@
 #ifndef Renderer_h
 #define Renderer_h
 
+#include "../core/Common.h"
 #include "../core/Component.h"
 
 class Renderer
-: public ComponentBase { };
+: public ComponentBase
+, public NonCopyable { };
 
 class PreRenderer
-: public ComponentBase {
+: public ComponentBase
+, public NonCopyable {
 public:
   void draw() final { }
 };

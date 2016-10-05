@@ -59,6 +59,11 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
   {'z', AppAction::TEST_ACTION},
+  {'t', AppAction::RELOAD_THEME},
+  {'<', AppAction::SELECT_PREV_OBSERVER},
+  {'>', AppAction::SELECT_NEXT_OBSERVER},
+  {',', AppAction::SELECT_PREV_OCCURRENCE},
+  {'.', AppAction::SELECT_NEXT_OCCURRENCE},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
@@ -74,7 +79,7 @@ void AppSystem::setup() {
   simWinSettings.width = 1400;
   simWinSettings.height = 800;
   simWinSettings.resizable = false;
-  simWinSettings.setPosition(ofVec3f(0, 0));
+  simWinSettings.setPosition(glm::vec2(0, 0));
   _simulationWindow =
   std::static_pointer_cast<ofAppGLFWWindow>(ofCreateWindow(simWinSettings));
 

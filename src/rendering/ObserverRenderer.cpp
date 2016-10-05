@@ -13,6 +13,8 @@
 #include "../core/ObserverEntity.h"
 #include "../rendering/ObserverRenderer.h"
 
+ofSpherePrimitive basicSphere(1, 4);
+
 ObserverRenderer::ObserverRenderer(const Params& params,
                                    const ColorTheme& colors,
                                    Context& context)
@@ -56,6 +58,16 @@ void ObserverRenderer::draw() {
 
     renderer->drawSphere(entity->position(), size);
   }
+
+  _context.highlightedEntities.performEntityAction<ObserverEntity>([&](std::shared_ptr<ObserverEntity>& entity) {
+    renderer->setFillMode(OF_OUTLINE);
+    renderer->setColor(ofFloatColor(1, 1, 1, 0.5));
+    renderer->pushMatrix();
+    renderer->translate(entity->position());
+    renderer->scale(size * 1.5, size * 1.5, size * 1.5);
+    renderer->draw(basicSphere, OF_MESH_WIREFRAME);
+    renderer->popMatrix();
+  });
 
   renderer->popStyle();
 }

@@ -12,6 +12,8 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <ofColor.h>
+#include <ofVec3f.h>
 #include "../core/Common.h"
 #include "../core/ObjectId.h"
 #include "../core/JsonIO.h"
@@ -29,7 +31,8 @@ class Info;
 
 class WorldObject
 : public Outputable
-, public Serializable {
+, public Serializable
+, public NonCopyable {
 public:
   WorldObject();
   virtual ~WorldObject() {}
@@ -62,9 +65,9 @@ public:
 
   virtual void fillInfo(Info& info) const;
 
-  using ObjectPtrRefAction =
+  using ObjectPtrAction =
   std::function<void(std::shared_ptr<WorldObject>)>;
-  virtual void performActionOnConnected(ObjectPtrRefAction action) {}
+  virtual void performActionOnConnected(ObjectPtrAction action) {}
 
   virtual const ofVec3f& position() const = 0;
 

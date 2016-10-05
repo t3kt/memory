@@ -13,6 +13,7 @@
 #include <memory>
 #include <ofParameter.h>
 #include "../app/AppActions.h"
+#include "../core/Common.h"
 #include "../core/Params.h"
 #include "../core/State.h"
 
@@ -36,7 +37,8 @@ public:
 };
 
 class Clock
-: public AppActionHandler {
+: public AppActionHandler
+, public NonCopyable {
 public:
   using Params = ClockParams;
 

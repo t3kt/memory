@@ -20,7 +20,7 @@ std::ostream& operator<<(std::ostream& os, const NodeEntity& e) {
 template<typename A>
 std::function<void(A&)> makeEntityEventLogger(Logger& logger,
                                               const std::string message) {
-  return [=](A& e) {
+  return [&](A& e) {
     logger.logNotice([&](ofLog& log) {
       log << message << e.value();
     });

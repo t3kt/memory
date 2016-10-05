@@ -10,6 +10,8 @@
 #include <set>
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
+#include "../core/ObserverEntity.h"
+#include "../core/OccurrenceEntity.h"
 
 struct ParticleScreenDepthLess {
   constexpr bool operator()(const ParticlePtr& lha,
@@ -143,4 +145,49 @@ void InspectionController::onMousePressed(ofMouseEventArgs &event) {
   }
   _clickPos = event;
   _hasClick = true;
+}
+
+bool InspectionController::performAction(AppAction action) {
+  switch (action) {
+    case AppAction::SELECT_PREV_OBSERVER:
+      selectPrevEntity<ObserverEntity>();
+      return true;
+    case AppAction::SELECT_NEXT_OBSERVER:
+      selectNextEntity<ObserverEntity>();
+      return true;
+    case AppAction::SELECT_PREV_OCCURRENCE:
+      selectPrevEntity<OccurrenceEntity>();
+      return true;
+    case AppAction::SELECT_NEXT_OCCURRENCE:
+      selectNextEntity<OccurrenceEntity>();
+      return true;
+    default:
+      return false;
+  }
+}
+
+bool InspectionController::isTypeSelected(EntityType type) const {
+  return _selectedEntity && _selectedEntity->entityType() == type;
+}
+
+template<typename E>
+void InspectionController::selectPrevEntity() {
+  if (_selectedEntity &&
+      _selectedEntity->entityType() == E::type &&
+      _selectedEntity->alive()) {
+    _selectedEntity = _context.getEntities<E>().beforeOrLast(std::dynamic_pointer_cast<E>(_selectedEntity));
+  } else {
+    _selectedEntity = _context.getEntities<E>().last();
+  }
+}
+
+template<typename E>
+void InspectionController::selectNextEntity() {
+  if (_selectedEntity &&
+      _selectedEntity->entityType() == E::type &&
+      _selectedEntity->alive()) {
+    _selectedEntity = _context.getEntities<E>().afterOrFirst(std::dynamic_pointer_cast<E>(_selectedEntity));
+  } else {
+    _selectedEntity = _context.getEntities<E>().first();
+  }
 }

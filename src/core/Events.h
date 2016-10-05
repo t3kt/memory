@@ -37,7 +37,8 @@ private:
   T& _value;
 };
 
-class AbstractEvent {
+class AbstractEvent
+: public NonCopyable {
 public:
   using VoidFunctor = std::function<void()>;
 

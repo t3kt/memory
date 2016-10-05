@@ -12,10 +12,12 @@
 #include <ofxTextAlignTTF.h>
 #include <utility>
 #include <vector>
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Info.h"
 
-class StatusInfoController {
+class StatusInfoController
+: public NonCopyable {
 public:
   StatusInfoController(const Context& context);
 

@@ -10,11 +10,13 @@
 #define PhysicsBehavior_h
 
 #include "../core/Bounds.h"
+#include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
 
-class AbstractPhysicsBehavior {
+class AbstractPhysicsBehavior
+: public NonCopyable {
 public:
   AbstractPhysicsBehavior(Context& context)
   : _context(context) { }

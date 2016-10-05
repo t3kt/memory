@@ -31,6 +31,11 @@ EnumTypeInfo<AppAction> AppActionType({
   {"loadEntityState", AppAction::LOAD_ENTITY_STATE},
   {"saveEntityState", AppAction::SAVE_ENTITY_STATE},
   {"testAction", AppAction::TEST_ACTION},
+  {"reloadTheme", AppAction::RELOAD_THEME},
+  {"selectPrevObserver", AppAction::SELECT_PREV_OBSERVER},
+  {"selectNextObserver", AppAction::SELECT_NEXT_OBSERVER},
+  {"selectPrevOccurrence", AppAction::SELECT_PREV_OCCURRENCE},
+  {"selectNextOccurrence", AppAction::SELECT_NEXT_OCCURRENCE},
 });
 
 template<>

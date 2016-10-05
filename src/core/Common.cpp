@@ -9,6 +9,8 @@
 #include <cmath>
 #include <ofMath.h>
 #include <ofTypes.h>
+#include <ofVec2f.h>
+#include <ofVec3f.h>
 #include <sstream>
 #include <string>
 #include "../core/Common.h"

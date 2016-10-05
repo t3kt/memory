@@ -12,12 +12,14 @@
 #include <memory>
 #include <ofxOsc.h>
 #include <unordered_map>
+#include "../core/Common.h"
 #include "../core/Params.h"
 
 class AbstractOscBinding;
 class MemoryAppParameters;
 
-class OscController {
+class OscController
+: public NonCopyable {
 public:
   using BindingMap = std::unordered_map<std::string, std::shared_ptr<AbstractOscBinding>>;
 

@@ -124,7 +124,7 @@
     },
     "clock": {
       "paused": false,
-      "rate": 1.0025542974472046
+      "rate": 1.3383458852767944
     },
     "midi": {
       "enabled": false,
@@ -247,8 +247,8 @@
         "low": 0
       },
       "radius": {
-        "high": 73.052894592285156,
-        "low": 16.826326370239258
+        "high": 100.60975646972656,
+        "low": 25
       },
       "rate": 4.5153059959411621,
       "sequence": {
@@ -300,7 +300,7 @@
         "value0": 1.2557258605957031,
         "value1": 5.9412746429443359
       },
-      "magnitude": 0.76530611515045166
+      "magnitude": 0.75338339805603027
     },
     "observers": {
       "speed": 1.2755101919174194
@@ -338,7 +338,7 @@
       "scale": 98.979591369628906
     },
     "vortexNodes": {
-      "enabled": true,
+      "enabled": false,
       "force": {
         "length0": 0.33881717920303345,
         "length1": 0.65639317035675049,
@@ -394,7 +394,7 @@
       },
       "renderer": {
         "enabled": true,
-        "highlightAmount": 0.60000002384185791,
+        "highlightAmount": 0.76371949911117554,
         "size": 5.7351107597351074
       }
     },
@@ -420,7 +420,7 @@
       },
       "renderer": {
         "enabled": true,
-        "highlightAmount": 0.60000002384185791,
+        "highlightAmount": 0.76676827669143677,
         "showRange": false,
         "sizeRange": {
           "high": 10.751474380493164,

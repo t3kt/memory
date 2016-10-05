@@ -12,13 +12,17 @@
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
+#include "../app/AppActions.h"
+#include "../core/Common.h"
 #include "../core/Info.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
 
 class Context;
 
-class InspectionController {
+class InspectionController
+: public AppActionHandler
+, public NonCopyable {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -49,6 +53,8 @@ public:
   void setup();
   void update();
   void draw();
+
+  bool performAction(AppAction action) override;
 private:
   void onMousePressed(ofMouseEventArgs& event);
   void attachToEvents();
@@ -57,6 +63,14 @@ private:
   void updateHighlights();
   void updateInfo();
   void drawInfo();
+
+  template<typename E>
+  void selectPrevEntity();
+
+  template<typename E>
+  void selectNextEntity();
+
+  bool isTypeSelected(EntityType type) const;
 
   Params& _params;
   Context& _context;

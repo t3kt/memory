@@ -16,7 +16,8 @@
 #include "../core/Common.h"
 #include "../core/Params.h"
 
-class Logger {
+class Logger
+: public NonCopyable {
 public:
   using Statement = std::function<void(ofLog& log)>;
 
@@ -80,7 +81,8 @@ protected:
   const bool& _allEnabled;
 };
 
-class LoggingController {
+class LoggingController
+: public NonCopyable {
 public:
   class Params : public ParamsWithEnabled {
   public:

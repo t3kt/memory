@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <functional>
+#include <unordered_map>
 #include <memory>
 #include <stdexcept>
 
@@ -97,5 +98,103 @@ using PtrPredicate = std::function<bool(std::shared_ptr<E>)>;
 
 template<typename E>
 using PtrRefPredicate = std::function<bool(std::shared_ptr<E>&)>;
+
+//enum class SequenceDirection {
+//  BACKWARD,
+//  FORWARD
+//};
+
+template<typename K, typename V>
+class MapToValueIterator {
+public:
+  using MapT = std::unordered_map<K, V>;
+  using InnerIterator = typename MapT::iterator;
+  using IteratorT = MapToValueIterator<K, V>;
+
+  MapToValueIterator() = default;
+
+  MapToValueIterator(const IteratorT& other) = default;
+
+  MapToValueIterator(InnerIterator iter)
+  : _iter(iter) { }
+
+  V& operator*() {
+    return _iter->second;
+  }
+  V* operator->() {
+    return &(_iter->second);
+  }
+
+  IteratorT& operator++() {
+    ++_iter;
+    return *this;
+  }
+
+  IteratorT operator++(int) {
+    IteratorT i(*this);
+    ++(*this);
+    return i;
+  }
+
+  friend bool operator==(const IteratorT& lha,
+                         const IteratorT& rha) {
+    return lha._iter == rha.__iter;
+  }
+
+  friend bool operator!=(const IteratorT& lha,
+                         const IteratorT& rha) {
+    return lha._iter != rha._iter;
+  }
+
+private:
+  InnerIterator _iter;
+};
+
+template<typename K, typename V>
+class ConstMapToValueIterator {
+public:
+  using MapT = std::unordered_map<K, V>;
+  using InnerIterator = typename MapT::const_iterator;
+  using IteratorT = ConstMapToValueIterator<K, V>;
+
+  ConstMapToValueIterator() = default;
+
+  ConstMapToValueIterator(const IteratorT& other) = default;
+
+  ConstMapToValueIterator(InnerIterator iter)
+  : _iter(iter) { }
+
+  const V& operator*() const {
+    return _iter->second;
+  }
+
+  const V* operator->() const {
+    return &(_iter->second);
+  }
+
+  IteratorT& operator++() {
+    ++_iter;
+    return *this;
+  }
+
+  IteratorT operator++(int) {
+    IteratorT i(*this);
+    ++(*this);
+    return i;
+  }
+
+  friend bool operator==(const IteratorT& lha,
+                         const IteratorT& rha) {
+    return lha._iter == rha.__iter;
+  }
+
+  friend bool operator!=(const IteratorT& lha,
+                         const IteratorT& rha) {
+    return lha._iter != rha._iter;
+  }
+
+private:
+  InnerIterator _iter;
+};
 
 #endif /* defined(__behavior__Common__) */

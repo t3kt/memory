@@ -12,13 +12,15 @@
 #include <functional>
 #include <memory>
 #include <vector>
+#include "../core/Common.h"
 
 template<typename E, typename T>
 using EntityRuleFn
 = std::function<T(const T&, std::shared_ptr<E>&)>;
 
 template<typename E, typename T>
-class EntityRule {
+class EntityRule
+: public NonCopyable {
 public:
   virtual void setup() { }
   virtual T calculateValue(const T& prevValue,
