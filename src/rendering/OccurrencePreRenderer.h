@@ -17,6 +17,11 @@ class OccurrencePreRendererParams
 : public EntityPreRendererParams {
 public:
   OccurrencePreRendererParams() {
+    add(sizeRange
+        .setKey("sizeRange")
+        .setName("Draw Size Range")
+        .setParamValuesAndDefaults(10, 25)
+        .setParamRanges(0, 100));
     add(connectionCountRange
         .setKey("connectionCountRange")
         .setName("Connection Amount Scale")
@@ -24,6 +29,7 @@ public:
         .setParamRanges(0, 20));
   }
 
+  ValueRange<float> sizeRange;
   ValueRange<float> connectionCountRange;
 };
 

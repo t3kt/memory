@@ -49,12 +49,7 @@ void OccurrenceRenderer::draw() {
     color.a *= entity->alpha();
     renderer->setColor(color);
 
-    float size = ofMap(entity->originalRadiusFraction(),
-                       0, 1,
-                       _params.sizeRange.lowValue.get(),
-                       _params.sizeRange.highValue.get());
-
-    renderer->drawBox(entity->position(), size);
+    renderer->drawBox(entity->position(), entity->size());
   }
 
   if (_params.wireEnabled.get()) {
@@ -64,11 +59,7 @@ void OccurrenceRenderer::draw() {
         continue;
       }
 
-      float size = ofMap(entity->originalRadiusFraction(),
-                         0, 1,
-                         _params.sizeRange.lowValue.get(),
-                         _params.sizeRange.highValue.get());
-      size *= _params.wireScale.get();
+      float size = entity->size() * _params.wireScale.get();
 
       ofFloatColor color;
       if (hasHighlights &&
@@ -113,11 +104,8 @@ void OccurrenceRenderer::draw() {
   _context.highlightedEntities.performEntityAction<OccurrenceEntity>([&](std::shared_ptr<OccurrenceEntity>& entity) {
     renderer->setFillMode(OF_OUTLINE);
     renderer->setColor(ofFloatColor(1, 1, 1, 0.5));
-    float size = ofMap(entity->originalRadiusFraction(),
-                       0, 1,
-                       _params.sizeRange.lowValue.get(),
-                       _params.sizeRange.highValue.get());
-    renderer->drawBox(entity->position(), size * 1.5);
+    float size = entity->size() * 1.5;
+    renderer->drawBox(entity->position(), size);
   });
 
   renderer->popStyle();

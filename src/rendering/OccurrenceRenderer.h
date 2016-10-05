@@ -19,11 +19,6 @@ public:
   class Params : public ParamsWithEnabled {
   public:
     Params() {
-      add(sizeRange
-          .setKey("sizeRange")
-          .setName("Draw Size Range")
-          .setParamValuesAndDefaults(10, 25)
-          .setParamRanges(0, 100));
       add(showRange
           .setKey("showRange")
           .setName("Show Range")
@@ -54,7 +49,6 @@ public:
           .setRange(0, 1));
     }
 
-    ValueRange<float> sizeRange;
     TParam<bool> showRange;
     TParam<bool> wireEnabled;
     TParam<float> wireScale;

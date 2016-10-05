@@ -416,16 +416,16 @@
           "duration": 1,
           "endValue": 1,
           "startValue": 0
+        },
+        "sizeRange": {
+          "high": 10.751474380493164,
+          "low": 1.1891320943832397
         }
       },
       "renderer": {
         "enabled": true,
         "highlightAmount": 0.76676827669143677,
         "showRange": false,
-        "sizeRange": {
-          "high": 10.751474380493164,
-          "low": 1.1891320943832397
-        },
         "wireBrightness": 1.5,
         "wireEnabled": false,
         "wireSaturation": 0.19897958636283875,

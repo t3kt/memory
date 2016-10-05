@@ -35,5 +35,9 @@ void OccurrencePreRenderer::update() {
     }
     alpha = ofClamp(alpha, 0, 1);
     entity->setAlpha(alpha);
+    entity->setSize(ofMap(entity->originalRadiusFraction(),
+                          0, 1,
+                          _params.sizeRange.lowValue.get(),
+                          _params.sizeRange.highValue.get()));
   }
 }
