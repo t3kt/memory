@@ -23,17 +23,7 @@ class ObserverRenderer
 : public Renderer {
 public:
 
-  class Params : public ParamsWithEnabled {
-  public:
-    Params() {
-      add(highlightAmount
-          .setKey("highlightAmount")
-          .setName("Highlighting")
-          .setValueAndDefault(0.6)
-          .setRange(0, 1));
-    }
-    TParam<float> highlightAmount;
-  };
+  using Params = ParamsWithEnabled;
 
   ObserverRenderer(const Params& params,
                    const ColorTheme& colors,

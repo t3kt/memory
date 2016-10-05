@@ -391,11 +391,11 @@
           "endValue": 1,
           "startValue": 0
         },
+        "highlightAmount": 0.40000000596046448,
         "size": 5.7351107597351074
       },
       "renderer": {
-        "enabled": true,
-        "highlightAmount": 0.76371949911117554
+        "enabled": true
       }
     },
     "occurrences": {
@@ -417,6 +417,7 @@
           "endValue": 1,
           "startValue": 0
         },
+        "highlightAmount": 0.40000000596046448,
         "sizeRange": {
           "high": 10.751474380493164,
           "low": 1.1891320943832397

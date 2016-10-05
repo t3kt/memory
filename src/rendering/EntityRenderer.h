@@ -25,9 +25,15 @@ public:
     add(fadeIn
         .setKey("fadeIn")
         .setName("Fade In"));
+    add(highlightAmount
+        .setKey("highlightAmount")
+        .setName("Highlighting")
+        .setValueAndDefault(0.4)
+        .setRange(0, 1));
   }
 
   RampFactory<float>::Params fadeIn;
+  TParam<float> highlightAmount;
 };
 
 template<typename T, typename P = EntityPreRendererParams>

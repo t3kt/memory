@@ -31,29 +31,12 @@ void ObserverRenderer::draw() {
 
   renderer->pushStyle();
 
-  auto darkening = 1.0 - _params.highlightAmount.get();
-  auto baseColor = _colors.observerMarker.get();
-  auto darkenedColor = ofFloatColor(baseColor, baseColor.a * darkening);
-  auto hasHighlights = !_context.highlightedEntities.empty();
-
   for (const auto& entity : _entities) {
     if (!entity->visible()) {
       continue;
     }
 
-    ofFloatColor color;
-    if (hasHighlights &&
-        !_context.highlightedEntities.containsId(entity->id())) {
-      color = darkenedColor;
-    } else {
-      color = baseColor;
-    }
-    if (entity->sick()) {
-      color.setSaturation(0);
-    }
-    color.a *= entity->alpha();
-    renderer->setColor(color);
-
+    renderer->setColor(entity->color());
     renderer->drawSphere(entity->position(), entity->size());
   }
 

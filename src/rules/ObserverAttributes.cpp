@@ -17,7 +17,7 @@ class ObserverHighlightDarkenRule
 : public EntityRule<ObserverEntity, ofFloatColor> {
 public:
   ObserverHighlightDarkenRule(const ObserverRenderingParams& params)
-  : _highlightAmount(params.renderer.highlightAmount.get()) { }
+  : _highlightAmount(params.preRenderer.highlightAmount.get()) { }
   
 private:
   const float& _highlightAmount;

@@ -22,14 +22,33 @@ void ObserverPreRenderer::update() {
   _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
   auto size = _params.size.get();
+
+  auto darkening = 1.0 - _params.highlightAmount.get();
+  auto baseColor = _colors.observerMarker.get();
+  auto darkenedColor = ofFloatColor(baseColor, baseColor.a * darkening);
+  auto hasHighlights = !_context.highlightedEntities.empty();
+
   for (auto& entity : _entities) {
-    auto alpha = entity->getRemainingLifetimeFraction();
+    if (!entity->visible()) {
+      continue;
+    }
+    ofFloatColor color;
+    if (hasHighlights &&
+        !_context.highlightedEntities.containsId(entity->id())) {
+      color = darkenedColor;
+    } else {
+      color = baseColor;
+    }
+    if (entity->sick()) {
+      color.setSaturation(0);
+    }
+    color.a = entity->getRemainingLifetimeFraction();
     auto age = entity->getAge(_context.state);
     if (age < fadeIn->getDuration()) {
-      alpha *= fadeIn->getValue(age);
+      color.a *= fadeIn->getValue(age);
     }
-    alpha = ofClamp(alpha, 0, 1);
-    entity->setAlpha(alpha);
+    color.a = ofClamp(color.a, 0, 1);
+    entity->setColor(color);
     entity->setSize(size);
   }
 }
