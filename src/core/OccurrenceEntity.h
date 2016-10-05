@@ -51,7 +51,7 @@ public:
   }
   
   bool hasConnectedObservers() const {
-    return !_occurrenceConnections.empty();
+    return !_observerConnections.empty();
   }
 
   void detachConnections() override;
