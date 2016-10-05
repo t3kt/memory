@@ -425,7 +425,6 @@
       },
       "renderer": {
         "enabled": true,
-        "highlightAmount": 0.76676827669143677,
         "showRange": false,
         "wireBrightness": 1.5,
         "wireEnabled": false,

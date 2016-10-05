@@ -29,25 +29,11 @@ void OccurrenceRenderer::draw() {
 
   renderer->pushStyle();
 
-  auto darkening = 1.0 - _params.highlightAmount.get();
-  auto baseColor = _colors.occurrenceMarker.get();
-  auto darkendColor = ofFloatColor(baseColor, baseColor.a * darkening);
-  auto hasHighlights = !_context.highlightedEntities.empty();
-
   for (const auto& entity : _entities) {
     if (!entity->visible()) {
       continue;
     }
-
-    ofFloatColor color;
-    if (hasHighlights &&
-        !_context.highlightedEntities.containsId(entity->id())) {
-      color = darkendColor;
-    } else {
-      color = baseColor;
-    }
-    color.a *= entity->alpha();
-    renderer->setColor(color);
+    renderer->setColor(entity->color());
 
     renderer->drawBox(entity->position(), entity->size());
   }
@@ -61,14 +47,7 @@ void OccurrenceRenderer::draw() {
 
       float size = entity->size() * _params.wireScale.get();
 
-      ofFloatColor color;
-      if (hasHighlights &&
-          !_context.highlightedEntities.containsId(entity->id())) {
-        color = darkendColor;
-      } else {
-        color = baseColor;
-      }
-      color.a *= entity->alpha();
+      auto color = entity->color();
 
       color.setSaturation(_params.wireSaturation());
       color.setBrightness(_params.wireBrightness());
@@ -81,19 +60,19 @@ void OccurrenceRenderer::draw() {
     renderer->setBlendMode(OF_BLENDMODE_ALPHA);
     renderer->setFillMode(OF_FILLED);
     auto baseRangeColor = _colors.occurrenceRange.get();
-    auto darkenedRangeColor = ofFloatColor(baseRangeColor, baseRangeColor.a * darkening);
+//    auto darkenedRangeColor = ofFloatColor(baseRangeColor, baseRangeColor.a * darkening);
     for (const auto& entity : _entities) {
       if (!entity->visible()) {
         continue;
       }
 
       ofFloatColor color;
-      if (hasHighlights &&
-          !_context.highlightedEntities.containsId(entity->id())) {
-        color = darkenedRangeColor;
-      } else {
+//      if (hasHighlights &&
+//          !_context.highlightedEntities.containsId(entity->id())) {
+//        color = darkenedRangeColor;
+//      } else {
         color = baseRangeColor;
-      }
+//      }
       color.a *= entity->alpha();
       renderer->setColor(color);
       float radius = entity->actualRadius();
