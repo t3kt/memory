@@ -13,8 +13,22 @@
 
 class ObserverEntity;
 
+class ObserverPreRendererParams
+: public EntityPreRendererParams {
+public:
+  ObserverPreRendererParams() {
+    add(size
+        .setKey("size")
+        .setName("Draw Size")
+        .setValueAndDefault(2)
+        .setRange(0, 20));
+  }
+
+  TParam<float> size;
+};
+
 class ObserverPreRenderer
-: public EntityPreRenderer<ObserverEntity> {
+: public EntityPreRenderer<ObserverEntity, ObserverPreRendererParams> {
 public:
 
   ObserverPreRenderer(const Params& params,

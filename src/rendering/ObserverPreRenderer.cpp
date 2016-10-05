@@ -21,6 +21,7 @@ ObserverPreRenderer::ObserverPreRenderer(const Params& params,
 void ObserverPreRenderer::update() {
   _fadeIn.update(_context.state);
   auto fadeIn = _fadeIn.getPhrase();
+  auto size = _params.size.get();
   for (auto& entity : _entities) {
     auto alpha = entity->getRemainingLifetimeFraction();
     auto age = entity->getAge(_context.state);
@@ -29,5 +30,6 @@ void ObserverPreRenderer::update() {
     }
     alpha = ofClamp(alpha, 0, 1);
     entity->setAlpha(alpha);
+    entity->setSize(size);
   }
 }

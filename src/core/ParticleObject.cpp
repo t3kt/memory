@@ -13,7 +13,8 @@ ParticleObject::ParticleObject(ofVec3f pos)
 : _position(pos)
 , _velocity(0)
 , _force(0)
-, _startPosition(pos) { }
+, _startPosition(pos)
+, _size(1) { }
 
 void ParticleObject::resetForce() {
   _force.set(0);

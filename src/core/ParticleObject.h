@@ -37,6 +37,9 @@ public:
   ofVec3f* velocityPtr() { return &_velocity; }
   ofVec3f* forcePtr() { return &_force; }
 
+  float size() const { return _size; }
+  void setSize(float size) { _size = size; }
+
   virtual void deserializeFields(const Json& obj,
                                  const SerializationContext& context) override;
 
@@ -53,6 +56,7 @@ private:
   ofVec3f _velocity;
   ofVec3f _force;
   ofVec3f _startPosition;
+  float _size;
 };
 
 using ParticlePtr = std::shared_ptr<ParticleObject>;

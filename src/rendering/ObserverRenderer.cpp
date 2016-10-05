@@ -36,8 +36,6 @@ void ObserverRenderer::draw() {
   auto darkenedColor = ofFloatColor(baseColor, baseColor.a * darkening);
   auto hasHighlights = !_context.highlightedEntities.empty();
 
-  float size = _params.size.get();
-
   for (const auto& entity : _entities) {
     if (!entity->visible()) {
       continue;
@@ -56,7 +54,7 @@ void ObserverRenderer::draw() {
     color.a *= entity->alpha();
     renderer->setColor(color);
 
-    renderer->drawSphere(entity->position(), size);
+    renderer->drawSphere(entity->position(), entity->size());
   }
 
   _context.highlightedEntities.performEntityAction<ObserverEntity>([&](std::shared_ptr<ObserverEntity>& entity) {
@@ -64,7 +62,8 @@ void ObserverRenderer::draw() {
     renderer->setColor(ofFloatColor(1, 1, 1, 0.5));
     renderer->pushMatrix();
     renderer->translate(entity->position());
-    renderer->scale(size * 1.5, size * 1.5, size * 1.5);
+    auto highlightSize = entity->size() * 1.5;
+    renderer->scale(highlightSize, highlightSize, highlightSize);
     renderer->draw(basicSphere, OF_MESH_WIREFRAME);
     renderer->popMatrix();
   });
