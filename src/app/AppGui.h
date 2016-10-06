@@ -11,6 +11,7 @@
 #include "../core/Common.h"
 
 class ofxGui;
+class ofxGuiContainer;
 class ofxGuiPanel;
 
 // Control panel GUI which modifies Params
@@ -18,10 +19,8 @@ class AppGui
 : public AppActionHandler
 , public NonCopyable {
 public:
-  AppGui(MemoryAppParameters& appParams,
-         AppActionHandler& actionHandler)
-  : _appParams(appParams)
-  , _actionHandler(actionHandler) { }
+  AppGui(MemoryAppParameters& appParams)
+  : _appParams(appParams) { }
 
   void setup();
   void draw();
@@ -29,16 +28,9 @@ public:
   bool performAction(AppAction action) override;
 private:
   void loadTheme();
-//  void onLoad() {
-//    _actionHandler.performAction(AppAction::LOAD_SETTINGS);
-//  }
-//
-//  void onSave() {
-//    _actionHandler.performAction(AppAction::SAVE_SETTINGS);
-//  }
+  void addActionButtons(ofxGuiContainer* container);
 
   MemoryAppParameters& _appParams;
-  AppActionHandler& _actionHandler;
   std::shared_ptr<ofxGui> _gui;
   ofxGuiPanel* _mainPanel;
 };

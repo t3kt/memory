@@ -84,7 +84,7 @@ void SimulationApp::setup() {
                                          _events);
   _navigators->setup();
 
-  _gui = std::make_shared<AppGui>(_appParams, *this);
+  _gui = std::make_shared<AppGui>(_appParams);
   _gui->setup();
 
   _midi = std::make_shared<MidiController>(_appParams);

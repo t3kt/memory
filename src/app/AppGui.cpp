@@ -4,6 +4,27 @@
 
 #include <ofxGuiExtended.h>
 #include "../app/AppGui.h"
+#include "../app/AppSystem.h"
+
+class ActionButton
+: public ofxGuiButton {
+public:
+  explicit ActionButton(AppAction action)
+  : ofxGuiButton(enumToString(action))
+  , _action(action) {
+    setType(ofxGuiToggleType::FULLSIZE);
+    addListener(this, &ActionButton::onClick);
+  }
+  ~ActionButton() {
+    removeListener(this, &ActionButton::onClick);
+  }
+private:
+  void onClick() {
+    AppSystem::get().performAction(_action);
+  }
+
+  const AppAction _action;
+};
 
 void AppGui::setup() {
   _gui = std::make_shared<ofxGui>();
@@ -35,9 +56,23 @@ void AppGui::setup() {
   }
   rootTabs->addGroup(_appParams.physics)->setName("Phys");
   rootTabs->addGroup(_appParams.debug)->setName("Dbg");
+  {
+    auto actionsTab = rootTabs->addGroup();
+    actionsTab->setName("Act");
+    addActionButtons(actionsTab);
+  }
 
   loadTheme();
   _mainPanel->setWidth(150);
+}
+
+void AppGui::addActionButtons(ofxGuiContainer *container) {
+  for (auto action : enumValues<AppAction>()) {
+    if (action == AppAction::NONE) {
+      continue;
+    }
+    container->add<ActionButton>(action);
+  }
 }
 
 void AppGui::loadTheme() {
