@@ -86,7 +86,7 @@ public:
     return _occurrenceConnections;
   }
 
-  void update(const State& state);
+  void update(const State& state) override;
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 

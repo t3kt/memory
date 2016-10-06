@@ -28,6 +28,7 @@ enum class EntityType {
 };
 
 class Info;
+class State;
 
 class WorldObject
 : public Outputable
@@ -73,6 +74,8 @@ public:
 
   virtual bool hasConnections() const { return false; }
   virtual void detachConnections() { }
+
+  virtual void update(const State& state) {}
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

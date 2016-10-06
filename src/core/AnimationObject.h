@@ -47,7 +47,7 @@ public:
 
   AnimationObject(const Params& params, const State& state);
 
-  virtual void update(const State& state);
+  virtual void update(const State& state) override;
   virtual void draw(const State& state) = 0;
 
   const ofVec3f& position() const override { return _position; }

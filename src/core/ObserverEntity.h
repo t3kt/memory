@@ -72,7 +72,7 @@ public:
 
   void detachConnections() override;
 
-  void update(const State& state);
+  void update(const State& state) override;
 
   bool sick() const { return _sick; }
   void setSick(bool sick) { _sick = sick; }
