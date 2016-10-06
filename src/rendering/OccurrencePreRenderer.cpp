@@ -31,7 +31,7 @@ void OccurrencePreRenderer::update() {
   auto hasHighlights = !_context.highlightedEntities.empty();
 
   for (auto& entity : _entities) {
-    if (!entity->visible()) {
+    if (!entity->alive()) {
       continue;
     }
     ofFloatColor color;
