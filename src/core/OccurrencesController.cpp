@@ -43,6 +43,9 @@ bool OccurrencesController::performAction(AppAction action) {
     case AppAction::KILL_MANY_OCCURRENCES:
       killEntities(100);
       break;
+    case AppAction::KILL_ALL_OCCURRENCES:
+      killAllEntities();
+      break;
     default:
       return false;
   }

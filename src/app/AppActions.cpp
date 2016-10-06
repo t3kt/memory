@@ -22,6 +22,8 @@ EnumTypeInfo<AppAction> AppActionType({
   {"killFewOccurrences", AppAction::KILL_FEW_OCCURRENCES},
   {"killManyObservers", AppAction::KILL_MANY_OBSERVERS},
   {"killManyOccurrences", AppAction::KILL_MANY_OCCURRENCES},
+  {"killAllObservers", AppAction::KILL_ALL_OBSERVERS},
+  {"killAllOccurrences", AppAction::KILL_ALL_OCCURRENCES},
   {"loadSettings", AppAction::LOAD_SETTINGS},
   {"saveSettings", AppAction::SAVE_SETTINGS},
   {"stopAllEntities", AppAction::STOP_ALL_ENTITIES},

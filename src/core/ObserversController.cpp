@@ -39,6 +39,9 @@ bool ObserversController::performAction(AppAction action) {
     case AppAction::KILL_MANY_OBSERVERS:
       killEntities(100);
       break;
+    case AppAction::KILL_ALL_OBSERVERS:
+      killAllEntities();
+      break;
     default:
       return false;
   }

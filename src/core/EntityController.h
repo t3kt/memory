@@ -49,6 +49,12 @@ public:
     }
   }
 
+  void killAllEntities() {
+    for (auto& entity : _entities) {
+      entity->kill();
+    }
+  }
+
   virtual void update() {
     _entities.processAndCullObjects([&](EntityPtr& entity) {
       entity->update(_context.state);
