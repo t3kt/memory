@@ -13,13 +13,15 @@
 #include <ofxOsc.h>
 #include <unordered_map>
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Params.h"
 
 class AbstractOscBinding;
 class MemoryAppParameters;
 
 class OscController
-: public NonCopyable {
+: public NonCopyable
+, public ComponentBase {
 public:
   using BindingMap = std::unordered_map<std::string, std::shared_ptr<AbstractOscBinding>>;
 
@@ -63,7 +65,7 @@ public:
 
   ~OscController();
 
-  void update();
+  void update() override;
 
 private:
   void handleOpen();

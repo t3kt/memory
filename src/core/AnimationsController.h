@@ -12,6 +12,7 @@
 #include "../core/AnimationObject.h"
 #include "../rendering/Colors.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
@@ -19,7 +20,8 @@
 class SimulationEvents;
 
 class AnimationsController
-: public NonCopyable {
+: public NonCopyable
+, public ComponentBase {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -48,12 +50,12 @@ public:
                        SimulationEvents& events,
                        Context& context);
 
-  void setup();
+  void setup() override;
 
   void addAnimation(std::shared_ptr<AnimationObject> animation);
   
-  void update();
-  void draw();
+  void update() override;
+  void draw() override;
 
   int count() const { return _animations.size(); }
   

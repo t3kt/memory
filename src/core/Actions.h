@@ -14,6 +14,7 @@
 #include <vector>
 #include "../app/AppActions.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Logging.h"
 
 class ActionsController;
@@ -51,7 +52,8 @@ public:
 
 class ActionsController
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 private:
   class Entry {
   public:
@@ -71,7 +73,7 @@ public:
   void addDelayed(float delay, ActionFn action);
   void addRepeating(float interval, std::function<bool()> action);
 
-  void update();
+  void update() override;
 
   void logAction(std::string message);
   void logAction(Logger::Statement statement);

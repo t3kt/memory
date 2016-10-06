@@ -14,6 +14,7 @@
 #include "../rendering/CameraController.h"
 #include "../rendering/Colors.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../rendering/ConnectorRenderer.h"
 #include "../core/Context.h"
 #include "../rendering/ObserverPreRenderer.h"
@@ -129,7 +130,8 @@ public:
 
 class RenderingController
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 public:
   using Params = RenderingParams;
 
@@ -137,10 +139,10 @@ public:
                       ofAppGLFWWindow& window,
                       Context& context);
 
-  void setup();
-  void update();
+  void setup() override;
+  void update() override;
   void beginDraw();
-  void draw();
+  void draw() override;
   void endDraw();
   void updateResolution();
 

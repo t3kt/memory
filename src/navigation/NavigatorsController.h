@@ -12,6 +12,7 @@
 #include <memory>
 #include "../app/AppActions.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/ObjectManager.h"
 #include "../core/Params.h"
 #include "../spawning/Spawner.h"
@@ -57,7 +58,8 @@ public:
 
 class NavigatorsController
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 public:
   using Params = NavigatorParams;
 
@@ -65,9 +67,9 @@ public:
                        Params& params,
                        SimulationEvents& events);
 
-  void setup();
-  void update();
-  void draw();
+  void setup() override;
+  void update() override;
+  void draw() override;
 
   bool performAction(AppAction action) override;
 private:

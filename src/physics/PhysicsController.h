@@ -106,7 +106,8 @@ public:
 
 class PhysicsController
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 public:
   using Params = PhysicsParams;
 
@@ -117,10 +118,10 @@ public:
 
   void stopAllEntities();
 
-  void setup();
+  void setup() override;
 
-  void update();
-  void draw();
+  void update() override;
+  void draw() override;
 
   bool performAction(AppAction action) override;
 

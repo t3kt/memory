@@ -11,6 +11,7 @@
 
 #include <memory>
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Events.h"
 #include "../control/MidiCommon.h"
 #include "../core/Params.h"
@@ -20,14 +21,15 @@ class MidiDevice;
 class MidiRouter;
 
 class MidiController
-: public NonCopyable {
+: public NonCopyable
+, public ComponentBase {
 public:
   using Params = MidiParams;
 
   MidiController(MemoryAppParameters& appParams);
 
-  void setup();
-  void update();
+  void setup() override;
+  void update() override;
 
 private:
   MemoryAppParameters& _appParams;

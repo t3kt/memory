@@ -14,6 +14,7 @@
 #include <ofEvents.h>
 #include "../app/AppActions.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Info.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
@@ -22,7 +23,8 @@ class Context;
 
 class InspectionController
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -50,9 +52,9 @@ public:
   , _window(window)
   , _infoBox(InfoBox::Position::BOTTOM_RIGHT) { }
 
-  void setup();
-  void update();
-  void draw();
+  void setup() override;
+  void update() override;
+  void draw() override;
 
   bool performAction(AppAction action) override;
 private:

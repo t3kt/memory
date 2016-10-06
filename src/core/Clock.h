@@ -14,6 +14,7 @@
 #include <ofParameter.h>
 #include "../app/AppActions.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Params.h"
 #include "../core/State.h"
 
@@ -38,7 +39,8 @@ public:
 
 class Clock
 : public AppActionHandler
-, public NonCopyable {
+, public NonCopyable
+, public ComponentBase {
 public:
   using Params = ClockParams;
 
@@ -46,11 +48,11 @@ public:
   : _params(params)
   , _state(state) { }
 
-  void setup();
+  void setup() override;
 
   void toggleState();
 
-  void update();
+  void update() override;
 
   bool performAction(AppAction action) override;
 private:

@@ -13,16 +13,18 @@
 #include <utility>
 #include <vector>
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/Info.h"
 
 class StatusInfoController
-: public NonCopyable {
+: public NonCopyable
+, public ComponentBase {
 public:
   StatusInfoController(const Context& context);
 
-  void update();
-  void draw();
+  void update() override;
+  void draw() override;
 private:
   const Context& _context;
   ofxTextAlignTTF _text;
