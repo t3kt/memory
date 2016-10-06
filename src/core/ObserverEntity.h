@@ -39,6 +39,10 @@ public:
     _observerConnections.erase(otherId);
   }
 
+  void removeOccurrence(ObjectId otherId) {
+    _occurrenceConnections.erase(otherId);
+  }
+
   EntityConnectionMap<ObserverEntity>&
   getObserverConnections() {
     return _observerConnections;

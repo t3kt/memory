@@ -45,7 +45,7 @@ void OccurrenceEntity::detachConnections() {
     connection->entity()->removeOccurrence(id());
   }
   for (auto& connection  : _observerConnections) {
-    connection->entity()->removeObserver(id());
+    connection->entity()->removeOccurrence(id());
   }
 }
 
