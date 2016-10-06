@@ -33,6 +33,7 @@
 		2E89EF75F526B6F174C26D78 /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC33459852E509988748F9 /* EntityGroup.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
+		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -282,6 +283,7 @@
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		32308A781DA23D820005F875 /* Connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Connection.cpp; path = core/Connection.cpp; sourceTree = "<group>"; };
 		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
+		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -1289,6 +1291,7 @@
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
 				8AEEEA82825BAC378C9E347D /* Common.h */,
 				B3EEDA7B64C0798C62DF3743 /* Component.h */,
+				329F51091DA6100C00063471 /* Component.cpp */,
 				32308A781DA23D820005F875 /* Connection.cpp */,
 				32308A791DA23D820005F875 /* Connection.h */,
 				A9ADD6203ACA4F47673ED063 /* Context.cpp */,
@@ -1802,6 +1805,7 @@
 				76A23C1C5CE1337CC5EA8454 /* ofxAssimpModelLoader.cpp in Sources */,
 				1DD2DFE5A017DC672650B9C7 /* ofxAssimpTexture.cpp in Sources */,
 				AAEB7CD4F15BE8D9C093C4EB /* Cue.cpp in Sources */,
+				329F510A1DA6100C00063471 /* Component.cpp in Sources */,
 				8E658C2DF9F913309870919A /* MotionGroup.cpp in Sources */,
 				1B49623E57316DD214E6B885 /* Timeline.cpp in Sources */,
 				02D119229A70877DB9B981D4 /* TimelineItem.cpp in Sources */,
