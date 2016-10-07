@@ -7,13 +7,19 @@
 //
 
 #include <ofMain.h>
+#include "../app/AppParameters.h"
 #include "../core/Status.h"
 
-StatusInfoController::StatusInfoController(const Context& context)
-: _context(context)
+StatusInfoController::StatusInfoController(const Params& params,
+                                           const Context& context)
+: _params(params)
+, _context(context)
 , _infoBox(InfoBox::Position::TOP_RIGHT) { }
 
 void StatusInfoController::update() {
+  if (!_params.showStatus.get()) {
+    return;
+  }
   _info.clear();
   _info.add("State:", _context.state.running ? "Playing" : "Paused");
   _info.add("Time:", ofToString(_context.time(), 2));
@@ -30,5 +36,8 @@ void StatusInfoController::update() {
 }
 
 void StatusInfoController::draw() {
+  if (!_params.showStatus.get()) {
+    return;
+  }
   _infoBox.drawInfo(_info);
 }

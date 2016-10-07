@@ -17,15 +17,21 @@
 #include "../core/Context.h"
 #include "../core/Info.h"
 
+class DebugParams;
+
 class StatusInfoController
 : public NonCopyable
 , public ComponentBase {
 public:
-  StatusInfoController(const Context& context);
+  using Params = DebugParams;
+
+  StatusInfoController(const Params& params,
+                       const Context& context);
 
   void update() override;
   void draw() override;
 private:
+  const Params& _params;
   const Context& _context;
   ofxTextAlignTTF _text;
   InfoBox _infoBox;

@@ -55,6 +55,7 @@ void InspectionController::detachFromEvents() {
 
 // must not be called while camera is active
 void InspectionController::update() {
+  _context.highlightedEntities.clear();
   if (!_params.enabled.get()) {
     return;
   }

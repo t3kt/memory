@@ -70,7 +70,9 @@ void SimulationApp::setup() {
   _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
 
-  _statusController = std::make_shared<StatusInfoController>(_context);
+  _statusController =
+  std::make_shared<StatusInfoController>(_appParams.debug,
+                                         _context);
 
   _inspectionController =
   std::make_shared<InspectionController>(_appParams.debug.inspect,
@@ -121,12 +123,9 @@ void SimulationApp::update() {
   _navigators->update();
   _renderingController->update();
 
-  _context.highlightedEntities.clear();
   _inspectionController->update();
 
-  if (_appParams.debug.showStatus()) {
-    _statusController->update();
-  }
+  _statusController->update();
 }
 
 void SimulationApp::draw() {
@@ -158,10 +157,7 @@ void SimulationApp::draw() {
   }
 #endif
 
-  if (_appParams.debug.showStatus()) {
-    _statusController->draw();
-  }
-
+  _statusController->draw();
   _inspectionController->draw();
   _gui->draw();
 }
