@@ -23,75 +23,67 @@ void SimulationApp::setup() {
   updateLogState();
 
   _actions =
-  std::make_shared<ActionsController>(_context);
+  _components.add<ActionsController>(_context);
 
   _renderingController =
-  std::make_shared<RenderingController>(_appParams.rendering,
+  _components.add<RenderingController>(_appParams.rendering,
                                         *_window,
                                         _context);
-  _renderingController->setup();
 
   _appParams.core.output.fullscreen.changed += [&](bool& fullscreen) {
     _window->setFullscreen(fullscreen);
     _renderingController->updateResolution();
   };
 
-  _physics = std::make_shared<PhysicsController>(_appParams.physics,
+  _physics =
+  _components.add<PhysicsController>(_appParams.physics,
                                                  _appParams.debug,
                                                  _context);
-  _physics->setup();
 
   _observers =
-  std::make_shared<ObserversController>(_appParams.observers,
+  _components.add<ObserversController>(_appParams.observers,
                                         _physics->bounds(),
                                         _context,
                                         _events);
-  _observers->setup();
 
   _occurrences =
-  std::make_shared<OccurrencesController>(_appParams.occurrences,
+  _components.add<OccurrencesController>(_appParams.occurrences,
                                           _physics->bounds(),
                                           *_observers,
                                           _context,
                                           _events);
-  _occurrences->setup();
 
   _animations =
-  std::make_shared<AnimationsController>(_appParams.animations,
+  _components.add<AnimationsController>(_appParams.animations,
                                          _events,
                                          _context);
-  _animations->setup();
 
   _nodes =
-  std::make_shared<NodesController>(_context,
+  _components.add<NodesController>(_context,
                                     _events);
 
-  _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
-  _clock->setup();
+  _clock = _components.add<Clock>(_appParams.core.clock, _context.state);
 
   _statusController =
-  std::make_shared<StatusInfoController>(_appParams.debug,
+  _components.add<StatusInfoController>(_appParams.debug,
                                          _context);
 
   _inspectionController =
-  std::make_shared<InspectionController>(_appParams.debug.inspect,
+  _components.add<InspectionController>(_appParams.debug.inspect,
                                          _context,
                                          *_window);
   _inspectionController->setup();
 
   _navigators =
-  std::make_shared<NavigatorsController>(_context,
+  _components.add<NavigatorsController>(_context,
                                          _appParams.navigators,
                                          _events);
-  _navigators->setup();
 
-  _gui = std::make_shared<AppGui>(_appParams);
-  _gui->setup();
+  _gui = _components.add<AppGui>(_appParams);
 
-  _midi = std::make_shared<MidiController>(_appParams);
-  _midi->setup();
+  _midi = _components.add<MidiController>(_appParams);
 
-  _osc = std::make_shared<OscController>(_appParams);
+  _osc = _components.add<OscController>(_appParams);
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");

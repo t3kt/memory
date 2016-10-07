@@ -17,6 +17,7 @@
 #include "../app/AppParameters.h"
 #include "../core/Clock.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
 #include "../control/MidiController.h"
@@ -100,6 +101,7 @@ private:
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
 #endif
+  ComponentCollection<ComponentBase> _components;
 };
 
 #endif /* SimulationApp_h */
