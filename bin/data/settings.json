@@ -119,9 +119,6 @@
     ]
   },
   "core": {
-    "bounds": {
-      "size": 1000
-    },
     "clock": {
       "paused": false,
       "rate": 1.3383458852767944
@@ -269,6 +266,9 @@
     }
   },
   "physics": {
+    "bounds": {
+      "size": 1000
+    },
     "damping": {
       "enabled": true,
       "magnitude": 0.10204081237316132
