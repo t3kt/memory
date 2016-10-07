@@ -10,7 +10,7 @@
 #define ObserversController_h
 
 #include "../app/AppActions.h"
-#include "../core/Bounds.h"
+#include "../physics/BoundsController.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
 #include "../core/Events.h"
@@ -47,7 +47,7 @@ public:
   using Params = ObserverParams;
   
   ObserversController(const Params& params,
-                      const Bounds& bounds,
+                      const BoundsController& bounds,
                       Context& context,
                       SimulationEvents& events);
   
@@ -58,7 +58,7 @@ public:
   
 private:
   const Params& _params;
-  const Bounds& _bounds;
+  const BoundsController& _bounds;
   std::shared_ptr<RateObserverSpawner> _rateSpawner;
   std::shared_ptr<ObserverSickness> _sickness;
 

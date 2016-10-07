@@ -8,7 +8,6 @@
 #define AppParameters_h
 
 #include "../core/AnimationsController.h"
-#include "../core/Bounds.h"
 #include "../core/Clock.h"
 #include "../rendering/Colors.h"
 #include "../core/Events.h"
@@ -75,9 +74,6 @@ public:
     add(clock
         .setKey("clock")
         .setName("Clock"));
-    add(bounds
-        .setKey("bounds")
-        .setName("Bounds"));
     add(output
         .setKey("output")
         .setName("Output"));
@@ -92,7 +88,6 @@ public:
   }
 
   Clock::Params clock;
-  Bounds bounds;
   OutputParams output;
   MidiController::Params midi;
   OscController::Params osc;

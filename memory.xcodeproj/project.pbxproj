@@ -34,6 +34,7 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
+		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -108,7 +109,6 @@
 		98C4BBEE2711A7CB8B918FBD /* ofxGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D95E198F8993B103475010F3 /* ofxGuiButton.cpp */; };
 		9EBFB565EFF37317583CA299 /* MidiCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */; };
 		A2BE4FE4EFC9CE08DCFCF107 /* ofxGuiInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52E722D7006220C4C6F79F11 /* ofxGuiInputField.cpp */; };
-		A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */; };
 		A3C7825CC9DD15F503185429 /* AppAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D80DA2E84AA73C5D84C6666 /* AppAssets.cpp */; };
 		A596DAB3C903671A1E0281E0 /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71E0591EB284514FEAE7DC /* Spawner.cpp */; };
 		A7FEFFFE09400F8FF8B9FA9A /* EventLogging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB0D97C4A4783D5E224D8376 /* EventLogging.cpp */; };
@@ -209,7 +209,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Bounds.cpp; path = src/core/Bounds.cpp; sourceTree = SOURCE_ROOT; };
 		023AF0F088AA35F135CFDADA /* pushpack1.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = pushpack1.h; path = ../../openFrameworks/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/Compiler/pushpack1.h; sourceTree = SOURCE_ROOT; };
 		02EF6980DA1E0ABB19C6B255 /* material.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = material.h; path = ../../openFrameworks/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/material.h; sourceTree = SOURCE_ROOT; };
 		034554E698EA9A934DCAE3BE /* ofxGuiFunctionPlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiFunctionPlotter.cpp; path = ../../openFrameworks/addons/ofxGuiExtended/src/controls/ofxGuiFunctionPlotter.cpp; sourceTree = SOURCE_ROOT; };
@@ -284,6 +283,8 @@
 		32308A781DA23D820005F875 /* Connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Connection.cpp; path = core/Connection.cpp; sourceTree = "<group>"; };
 		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
+		329F510D1DA765BF00063471 /* BoundsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoundsController.cpp; path = physics/BoundsController.cpp; sourceTree = "<group>"; };
+		329F510E1DA765BF00063471 /* BoundsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoundsController.h; path = physics/BoundsController.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -486,7 +487,6 @@
 		B10D9A4C4D69F318E4DF5F5B /* Common.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Common.cpp; path = src/core/Common.cpp; sourceTree = SOURCE_ROOT; };
 		B140131288EB550CA80730AC /* Layout.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Layout.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/DOM/Layout.h; sourceTree = SOURCE_ROOT; };
 		B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MidiCommon.h; path = src/control/MidiCommon.h; sourceTree = SOURCE_ROOT; };
-		B235D09E719D526194402149 /* Bounds.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Bounds.h; path = src/core/Bounds.h; sourceTree = SOURCE_ROOT; };
 		B3EEDA7B64C0798C62DF3743 /* Component.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Component.h; path = src/core/Component.h; sourceTree = SOURCE_ROOT; };
 		B435F280334BE688BF136963 /* Clock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Clock.cpp; path = src/core/Clock.cpp; sourceTree = SOURCE_ROOT; };
 		B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EntityRenderer.h; path = src/rendering/EntityRenderer.h; sourceTree = SOURCE_ROOT; };
@@ -1079,6 +1079,8 @@
 				BD12DAB4968A513EE609AB9C /* AnchorPointBehavior.h */,
 				315B7660A6984A1B7D390BD0 /* AttractionBehavior.cpp */,
 				A7C0C87BD3DB6D5D17C0004F /* AttractionBehavior.h */,
+				329F510D1DA765BF00063471 /* BoundsController.cpp */,
+				329F510E1DA765BF00063471 /* BoundsController.h */,
 				B7D940FA20BA3C63C0163141 /* DampingBehavior.h */,
 				D428C30FED3CCEE825EA1A0D /* EntityForceBehavior.cpp */,
 				C6A84A0E5F9DC5FE62AC33D8 /* EntityForceBehavior.h */,
@@ -1284,8 +1286,6 @@
 				BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */,
 				2F4C85EEEB5DF2381CA513CF /* AnimationsController.cpp */,
 				871145729C2A812E6085F6DD /* AnimationsController.h */,
-				01E2025ACF9E0E495D7F12F8 /* Bounds.cpp */,
-				B235D09E719D526194402149 /* Bounds.h */,
 				B435F280334BE688BF136963 /* Clock.cpp */,
 				D9C3827264F0C34537CE0F6E /* Clock.h */,
 				B10D9A4C4D69F318E4DF5F5B /* Common.cpp */,
@@ -1743,7 +1743,6 @@
 				18311F2ECC7FF29AAD8E20ED /* Actions.cpp in Sources */,
 				6D70CF36E4B34CF9AEDE1A0E /* AnimationObject.cpp in Sources */,
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
-				A3777C3E983C9FEB544D37B1 /* Bounds.cpp in Sources */,
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
@@ -1784,6 +1783,7 @@
 				4D93988C4818BD27BE899E23 /* PhysicsBehavior.cpp in Sources */,
 				1518C0B3AAD2C1012B1FE216 /* PhysicsController.cpp in Sources */,
 				D40AED9187D21FE8E9B98573 /* CameraController.cpp in Sources */,
+				329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */,
 				0A774070EB7FA796C5E065AB /* ConnectorRenderer.cpp in Sources */,
 				030DD56F693973EA1E22EF5A /* ColorAdjustPass.cpp in Sources */,
 				B47BA9DF1EEAAA1F3DF37E8A /* ObserverPreRenderer.cpp in Sources */,

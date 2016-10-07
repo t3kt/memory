@@ -8,13 +8,13 @@
 
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
-#include "../core/Bounds.h"
+#include "../physics/BoundsController.h"
 #include "../core/Context.h"
 #include "../spawning/ObserverSpawner.h"
 
 RateObserverSpawner::RateObserverSpawner(Context& context,
                                          const Params& params,
-                                         const Bounds& bounds)
+                                         const BoundsController& bounds)
 : RateSpawner(context, params)
 , _bounds(bounds)
 , _events(AppSystem::get().simulation()->getEvents()) { }

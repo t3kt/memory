@@ -35,6 +35,7 @@
 #include <ofxSyphon.h>
 #endif
 
+class BoundsController;
 class EventLoggers;
 
 class SimulationApp
@@ -62,6 +63,10 @@ public:
   const State& state() const { return _context.state; }
 
   ActionsController& actions() { return *_actions; }
+
+  const BoundsController& bounds() const {
+    return _physics->bounds();
+  }
 
 private:
   void loadSettings();

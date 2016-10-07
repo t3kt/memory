@@ -8,7 +8,9 @@
 
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../navigation/NavigatorState.h"
+#include "../physics/BoundsController.h"
 
 void PointNavState::outputFields(std::ostream& os) const {
   os << "point: " << _point;
@@ -20,7 +22,7 @@ void PointNavState::fillInfo(Info &info,
 }
 
 NavigatorStatePtr PointNavState::nextState(Context &context) {
-  const auto& bounds = AppSystem::get().params()->core.bounds;
+  const auto& bounds = AppSystem::get().simulation()->bounds();
   auto point = bounds.randomPoint();
   return std::make_shared<PointNavState>(point);
 }

@@ -12,7 +12,7 @@
 #include "../physics/AnchorPointBehavior.h"
 #include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
-#include "../core/Bounds.h"
+#include "../physics/BoundsController.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Context.h"
@@ -48,6 +48,9 @@ class PhysicsParams
 : public Params {
 public:
   PhysicsParams() {
+    add(bounds
+        .setKey("bounds")
+        .setName("Bounds"));
     add(observers
         .setKey("observers")
         .setName("Observers"));
@@ -91,6 +94,7 @@ public:
     damping.setEnabledValueAndDefault(true);
   }
 
+  BoundsParams bounds;
   EntityPhysicsParams observers;
   EntityPhysicsParams occurrences;
   ParamsWithEnabled rebound;
@@ -112,7 +116,6 @@ public:
   using Params = PhysicsParams;
 
   PhysicsController(Params& params,
-                    Bounds& bounds,
                     DebugParams& debugParams,
                     Context& context);
 
@@ -125,14 +128,16 @@ public:
 
   bool performAction(AppAction action) override;
 
+  const BoundsController& bounds() const { return *_bounds; }
+
 private:
   void beginEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
   void endEntityUpdate(ParticleObject* entity, const EntityPhysicsParams& params);
 
   Params& _params;
   Context& _context;
-  Bounds& _bounds;
   DebugParams& _debugParams;
+  std::shared_ptr<BoundsController> _bounds;
   PhysicsBehaviorCollection _behaviors;
 };
 

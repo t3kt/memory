@@ -10,15 +10,15 @@
 #include "../physics/PhysicsController.h"
 
 PhysicsController::PhysicsController(PhysicsController::Params& params,
-                                     Bounds& bounds,
                                      DebugParams& debugParams,
                                      Context& context)
 : _params(params)
 , _context(context)
-, _bounds(bounds)
 , _debugParams(debugParams) {}
 
 void PhysicsController::setup() {
+  _bounds =
+  std::make_shared<BoundsController>(_params.bounds, _debugParams);
   _behaviors.add<AttractionBehavior<ObserverEntity, ObserverEntity>>(_context, _params.observerObserverAttraction);
   _behaviors.add<ObserverOccurrenceForceBehavior>(_context, _params.observerOccurrenceForce);
   _behaviors.add<OccurrenceOccurrenceForceBehavior>(_context, _params.occurrenceOccurrenceForce);
@@ -28,11 +28,11 @@ void PhysicsController::setup() {
   _behaviors.add<AnchorPointBehavior<OccurrenceEntity>>(_context, _params.occurrenceAnchorPointAttraction);
   _behaviors.add<DampingBehavior<ObserverEntity>>(_context, _params.damping);
   _behaviors.add<DampingBehavior<OccurrenceEntity>>(_context, _params.damping);
-  _behaviors.add<BoundsBehavior>(_context, _params.rebound, _bounds);
+  _behaviors.add<BoundsBehavior>(_context, _params.rebound, *_bounds);
   auto behavior =
   _behaviors.add<VortexForceNodeBehavior<ObserverEntity>>(_context, _params.vortexNodes);
   for (int i = 0; i < 2; i++) {
-    auto pos = _bounds.randomPoint();
+    auto pos = _bounds->randomPoint();
     behavior->spawnNode(pos);
   }
 }
@@ -41,9 +41,6 @@ bool PhysicsController::performAction(AppAction action) {
   switch (action) {
     case AppAction::STOP_ALL_ENTITIES:
       stopAllEntities();
-      break;
-    case AppAction::TOGGLE_SHOW_BOUNDS:
-      _debugParams.showBounds.toggle();
       break;
     case AppAction::TOGGLE_SHOW_PHYSICS:
       _debugParams.showPhysics.toggle();
@@ -87,6 +84,7 @@ void PhysicsController::update() {
 }
 
 void PhysicsController::draw() {
+  _bounds->draw();
   if (_debugParams.showPhysics()) {
     for (auto& behavior : _behaviors) {
       behavior->debugDraw();

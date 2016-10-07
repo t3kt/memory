@@ -10,15 +10,15 @@
 #define OccurrencesController_h
 
 #include "../app/AppActions.h"
-#include "../core/Bounds.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
 #include "../core/Events.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrenceEntity.h"
-#include "../spawning/OccurrenceSpawner.h"
 #include "../core/Params.h"
+#include "../physics/BoundsController.h"
+#include "../spawning/OccurrenceSpawner.h"
 
 class OccurrencesController;
 class SimulationEvents;
@@ -44,7 +44,7 @@ public:
   using Params = OccurrenceParams;
 
   OccurrencesController(const Params& params,
-                        const Bounds& bounds,
+                        const BoundsController& bounds,
                         ObserversController& observers,
                         Context& context,
                         SimulationEvents& events);
@@ -56,7 +56,7 @@ public:
   
 private:
   const Params& _params;
-  const Bounds& _bounds;
+  const BoundsController& _bounds;
   ObserversController& _observers;
   std::shared_ptr<OccurrenceSpawner> _rateSpawner;
 

@@ -14,7 +14,7 @@
 #include "../core/ValueSupplier.h"
 #include "../spawning/Spawner.h"
 
-class Bounds;
+class BoundsController;
 class Context;
 class SimulationEvents;
 
@@ -52,7 +52,7 @@ class RateObserverSpawner
 public:
   RateObserverSpawner(Context& context,
                       const Params& params,
-                      const Bounds& bounds);
+                      const BoundsController& bounds);
 
   bool performAction(AppAction action) override;
 
@@ -61,7 +61,7 @@ protected:
 
   void addEntity(std::shared_ptr<ObserverEntity> entity);
 
-  const Bounds& _bounds;
+  const BoundsController& _bounds;
   SimulationEvents& _events;
 };
 

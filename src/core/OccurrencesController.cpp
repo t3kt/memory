@@ -11,7 +11,7 @@
 #include "../core/SimulationEvents.h"
 
 OccurrencesController::OccurrencesController(const Params& params,
-                                             const Bounds& bounds,
+                                             const BoundsController& bounds,
                                              ObserversController& observers,
                                              Context& context,
                                              SimulationEvents& events)

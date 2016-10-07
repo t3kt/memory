@@ -12,7 +12,7 @@
 #include "../core/SimulationEvents.h"
 
 ObserversController::ObserversController(const Params& params,
-                                         const Bounds& bounds,
+                                         const BoundsController& bounds,
                                          Context& context,
                                          SimulationEvents& events)
 : EntityController(context,

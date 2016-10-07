@@ -9,11 +9,12 @@
 #ifndef PhysicsBehavior_h
 #define PhysicsBehavior_h
 
-#include "../core/Bounds.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
+
+class BoundsController;
 
 class AbstractPhysicsBehavior
 : public NonCopyable {
@@ -46,7 +47,7 @@ public:
 
   BoundsBehavior(Context& context,
                  const Params& params,
-                 const Bounds& bounds)
+                 const BoundsController& bounds)
   : AbstractPhysicsBehavior(context)
   , _params(params)
   , _bounds(bounds) { }
@@ -57,7 +58,7 @@ private:
   void applyToEntity(ParticleObject* entity);
 
   const Params& _params;
-  const Bounds& _bounds;
+  const BoundsController& _bounds;
 };
 
 

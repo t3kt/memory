@@ -14,7 +14,7 @@
 #include "../core/ValueSupplier.h"
 #include "../spawning/Spawner.h"
 
-class Bounds;
+class BoundsController;
 class Context;
 class OccurrenceEntity;
 class OccurrencesController;
@@ -86,7 +86,7 @@ class OccurrenceSpawner
 public:
   OccurrenceSpawner(Context& context,
                     const Params& params,
-                    const Bounds& bounds);
+                    const BoundsController& bounds);
 
   std::shared_ptr<OccurrenceEntity>
   spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
@@ -109,7 +109,7 @@ private:
   bool tryAddEntity(std::shared_ptr<OccurrenceEntity> occurrence);
 
   const Params& _params;
-  const Bounds& _bounds;
+  const BoundsController& _bounds;
   SimulationEvents& _events;
 
   friend class OccurrenceSequenceSpawnAction;

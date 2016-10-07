@@ -10,6 +10,7 @@
 #include "../app/AppSystem.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
+#include "../physics/BoundsController.h"
 #include "../physics/PhysicsBehavior.h"
 
 void AbstractPhysicsBehavior::drawForceArrow(ofVec3f position,

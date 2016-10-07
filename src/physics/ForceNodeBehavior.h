@@ -15,6 +15,7 @@
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
 #include "../core/ValueSequence.h"
+#include "../core/ValueSupplier.h"
 #include "../physics/PhysicsBehavior.h"
 
 class VortexForceBehaviorParams : public ParamsWithEnabled {

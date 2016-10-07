@@ -36,16 +36,21 @@ void SimulationApp::setup() {
     _renderingController->updateResolution();
   };
 
+  _physics = std::make_shared<PhysicsController>(_appParams.physics,
+                                                 _appParams.debug,
+                                                 _context);
+  _physics->setup();
+
   _observers =
   std::make_shared<ObserversController>(_appParams.observers,
-                                        _appParams.core.bounds,
+                                        _physics->bounds(),
                                         _context,
                                         _events);
   _observers->setup();
 
   _occurrences =
   std::make_shared<OccurrencesController>(_appParams.occurrences,
-                                          _appParams.core.bounds,
+                                          _physics->bounds(),
                                           *_observers,
                                           _context,
                                           _events);
@@ -60,12 +65,6 @@ void SimulationApp::setup() {
   _nodes =
   std::make_shared<NodesController>(_context,
                                     _events);
-
-  _physics = std::make_shared<PhysicsController>(_appParams.physics,
-                                                 _appParams.core.bounds,
-                                                 _appParams.debug,
-                                                 _context);
-  _physics->setup();
 
   _clock = std::make_shared<Clock>(_appParams.core.clock, _context.state);
   _clock->setup();
@@ -135,19 +134,6 @@ void SimulationApp::draw() {
   _animations->draw();
   _navigators->draw();
   _physics->draw();
-
-  if (_appParams.debug.showBounds()) {
-    ofPushStyle();
-    ofNoFill();
-    ofSetColor(_appParams.colors.bounds.get());
-    ofDrawBox(_appParams.core.bounds.size());
-    ofPopStyle();
-    ofDrawGrid(
-               _appParams.core.bounds.size.get() / 2 / 4, // step size
-               4, // number of steps
-               true // labels
-               );
-  }
 
   _renderingController->endDraw();
 

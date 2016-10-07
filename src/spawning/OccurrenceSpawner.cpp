@@ -10,9 +10,9 @@
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
 #include "../core/Actions.h"
-#include "../core/Bounds.h"
 #include "../core/Context.h"
 #include "../core/Logging.h"
+#include "../physics/BoundsController.h"
 #include "../spawning/OccurrenceSpawner.h"
 
 static void logNotice(Logger::Statement statement) {
@@ -21,7 +21,7 @@ static void logNotice(Logger::Statement statement) {
 
 OccurrenceSpawner::OccurrenceSpawner(Context& context,
                                      const Params& params,
-                                     const Bounds& bounds)
+                                     const BoundsController& bounds)
 : RateSpawner(context, params)
 , _params(params)
 , _bounds(bounds)
