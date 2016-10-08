@@ -59,16 +59,19 @@ void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
   if (!entityA.visible() || !entityB.visible()) {
     return;
   }
+  auto ratio = ofWrap(_rawRatio
+                      + static_cast<float>(entityA.id() % 4) / 4.0f,
+                      0, 1);
+
   const auto& posA = entityA.position();
   const auto& posB = entityB.position();
-  auto tracerPos = getInterpolated(posA, posB, _ratio);
+  auto tracerPos = getInterpolated(posA, posB, ratio);
   auto color = ofFloatColor::white;
   color.a *= getInterpolated(entityA.alpha(),
                              entityB.alpha(),
-                             _ratio);
+                             ratio);
+  color.a *= _params.alphaFade.evaluate(ratio);
 
-  renderer->drawBox(glm::vec3(tracerPos.x,
-                              tracerPos.y,
-                              tracerPos.z),
-                       _params.drawRadius.get());
+  renderer->drawBox(tracerPos,
+                    _params.drawRadius.get());
 }

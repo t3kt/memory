@@ -12,6 +12,7 @@
 #include "../core/Connection.h"
 #include "../core/Params.h"
 #include "../core/ParticleObject.h"
+#include "../core/ValueSequence.h"
 #include "../rendering/Renderer.h"
 
 class Context;
@@ -30,10 +31,23 @@ public:
         .setName("Rate")
         .setRange(0, 2)
         .setDefaultValue(0.4));
+    add(alphaFade
+        .setKey("alphaFade")
+        .setName("Alpha Fade"));
+    alphaFade.setValueRanges(0, 1);
+    alphaFade.setLengthRanges(0, 1);
+    alphaFade.startValue.setValueAndDefault(0);
+    alphaFade.values[0].setValueAndDefault(1);
+    alphaFade.values[1].setValueAndDefault(1);
+    alphaFade.values[2].setValueAndDefault(0);
+    alphaFade.lengths[0].setValueAndDefault(0.3);
+    alphaFade.lengths[1].setValueAndDefault(0.7);
+    alphaFade.lengths[2].setValueAndDefault(1);
   }
 
   TParam<float> drawRadius;
   TParam<float> rate;
+  ValueSequence<float, 3> alphaFade;
 };
 
 class ConnectionTracerRenderer
