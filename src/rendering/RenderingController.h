@@ -16,6 +16,7 @@
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../rendering/ConnectorRenderer.h"
+#include "../rendering/ConnectionTracerRenderer.h"
 #include "../core/Context.h"
 #include "../rendering/ObserverPreRenderer.h"
 #include "../rendering/ObserverRenderer.h"
@@ -113,6 +114,9 @@ public:
     add(occurrences
         .setKey("occurrences")
         .setName("Occurrences"));
+    add(connections
+        .setKey("connections")
+        .setName("Connections"));
     add(fog
         .setKey("fog")
         .setName("Fog"));
@@ -124,6 +128,7 @@ public:
   CameraController::Params camera;
   ObserverRenderingParams observers;
   OccurrenceRenderingParams occurrences;
+  ConnectionTracerRendererParams connections;
   FogParams fog;
   PostProcController::Params postProc;
 };

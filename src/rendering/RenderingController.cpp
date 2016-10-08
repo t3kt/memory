@@ -36,6 +36,8 @@ void RenderingController::setup() {
   _renderers.add<OccurrenceRenderer>(occurrenceParams.renderer, colors, _context);
   _renderers.add<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer, colors.occurrenceObserverConnector.get(), _context.occurrences);
   _renderers.add<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer, colors.occurrenceConnector.get(), _context.occurrences);
+  _renderers.add<ConnectionTracerRenderer>(_params.connections,
+                                           _context);
   _postProc = std::make_shared<PostProcController>(_params.postProc);
   _postProc->setup();
   //  _light.setDirectional();

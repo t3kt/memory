@@ -35,6 +35,7 @@
 		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
+		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -285,6 +286,8 @@
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
 		329F510D1DA765BF00063471 /* BoundsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoundsController.cpp; path = physics/BoundsController.cpp; sourceTree = "<group>"; };
 		329F510E1DA765BF00063471 /* BoundsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoundsController.h; path = physics/BoundsController.h; sourceTree = "<group>"; };
+		329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectionTracerRenderer.cpp; path = rendering/ConnectionTracerRenderer.cpp; sourceTree = "<group>"; };
+		329F51151DA89A4E00063471 /* ConnectionTracerRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionTracerRenderer.h; path = rendering/ConnectionTracerRenderer.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -846,6 +849,8 @@
 				44AD3004CA90A5528D855784 /* Colors.h */,
 				74BF3899617DBB18D339C0C6 /* ConnectorRenderer.cpp */,
 				7005526C4407078A1F3DBE9B /* ConnectorRenderer.h */,
+				329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */,
+				329F51151DA89A4E00063471 /* ConnectionTracerRenderer.h */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
 				0DA6137D85EC6DA808188217 /* fx */,
 				A116FCE6C1DF53255E1BA46C /* ObserverPreRenderer.cpp */,
@@ -1737,6 +1742,7 @@
 				684827C1C4E22CB31E360F24 /* MidiController.cpp in Sources */,
 				1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */,
 				E05A6CAB8CBE20EFC17B773E /* MidiEvents.cpp in Sources */,
+				329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */,
 				BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */,
 				B6C962E732C4D744A2600D32 /* MidiRouter.cpp in Sources */,
 				E667D2346637EF388691BB91 /* OscController.cpp in Sources */,
