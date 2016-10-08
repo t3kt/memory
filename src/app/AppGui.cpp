@@ -83,6 +83,7 @@ void AppGui::setup() {
       renderTabs->addGroup(_appParams.rendering.camera)->setName("Cam");
       renderTabs->addGroup(_appParams.rendering.observers)->setName("Obs");
       renderTabs->addGroup(_appParams.rendering.occurrences)->setName("Occ");
+      renderTabs->addGroup(_appParams.rendering.connections)->setName("Con");
       renderTabs->addGroup(_appParams.rendering.fog)->setName("Fog");
       renderTabs->addGroup(_appParams.rendering.postProc)->setName("Post");
     }
