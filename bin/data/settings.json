@@ -362,6 +362,20 @@
         -0.099958419799804688
       ]
     },
+    "connections": {
+      "alphaFade": {
+        "length0": 0.46279948949813843,
+        "length1": 0.52080708742141724,
+        "length2": 1,
+        "startValue": 0,
+        "value0": 1,
+        "value1": 1,
+        "value2": 0
+      },
+      "drawRadius": 1.8000000715255737,
+      "enabled": true,
+      "rate": 0.41999998688697815
+    },
     "fog": {
       "density": 0.0013061225181445479,
       "distance": {

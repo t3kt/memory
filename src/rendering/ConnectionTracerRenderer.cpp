@@ -66,7 +66,8 @@ void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
   const auto& posA = entityA.position();
   const auto& posB = entityB.position();
   auto tracerPos = getInterpolated(posA, posB, ratio);
-  auto color = ofFloatColor::white;
+  auto color = getInterpolated(entityA.color(), entityB.color(), ratio);
+  color.setBrightness(color.getBrightness() * 1.2);
   color.a *= getInterpolated(entityA.alpha(),
                              entityB.alpha(),
                              ratio);
