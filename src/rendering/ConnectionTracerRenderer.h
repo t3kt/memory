@@ -23,8 +23,8 @@ public:
     add(drawRadius
         .setKey("drawRadius")
         .setName("Draw Radius")
-        .setRange(0, 25)
-        .setDefaultValue(5));
+        .setRange(0, 10)
+        .setDefaultValue(1));
     add(rate
         .setKey("rate")
         .setName("Rate")

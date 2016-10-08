@@ -20,10 +20,7 @@ void ConnectionTracerRenderer::update() {
     return;
   }
   _rawRatio += _context.state.timeDelta * _params.rate.get();
-  _ratio = ofWrap(_rawRatio, 0, 2);
-  if (_ratio > 1) {
-    _ratio = 1.0f - _ratio;
-  }
+  _ratio = ofWrap(_rawRatio, 0, 1);
 }
 
 void ConnectionTracerRenderer::draw() {
@@ -66,9 +63,12 @@ void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
   const auto& posB = entityB.position();
   auto tracerPos = getInterpolated(posA, posB, _ratio);
   auto color = ofFloatColor::white;
+  color.a *= getInterpolated(entityA.alpha(),
+                             entityB.alpha(),
+                             _ratio);
 
-  renderer->drawSphere(tracerPos.x,
-                       tracerPos.y,
-                       tracerPos.z,
+  renderer->drawBox(glm::vec3(tracerPos.x,
+                              tracerPos.y,
+                              tracerPos.z),
                        _params.drawRadius.get());
 }
