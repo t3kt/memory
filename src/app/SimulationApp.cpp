@@ -205,6 +205,9 @@ void SimulationApp::loadSettings() {
   AppSystem::get().log().app().logNotice([&](ofLog& log) {
     log << ".. read from JSON finished\n\t" << _appParams;
   });
+  if (_gui) {
+    _gui->collapseDisabled();
+  }
 }
 
 void SimulationApp::saveSettings() {
