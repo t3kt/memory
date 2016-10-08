@@ -60,7 +60,7 @@ void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
     return;
   }
   auto ratio = ofWrap(_rawRatio
-                      + static_cast<float>(entityA.id() % 4) / 4.0f,
+                      + static_cast<float>(entityA.id() % 12) / 12.0f,
                       0, 1);
 
   const auto& posA = entityA.position();
@@ -71,7 +71,7 @@ void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
                              entityB.alpha(),
                              ratio);
   color.a *= _params.alphaFade.evaluate(ratio);
-
+  renderer->setColor(color);
   renderer->drawBox(tracerPos,
                     _params.drawRadius.get());
 }
