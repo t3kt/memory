@@ -28,6 +28,7 @@ public:
   void draw() override;
 
   bool performAction(AppAction action) override;
+  void collapseDisabled();
 private:
   void loadTheme();
   void addActionButtons(ofxGuiContainer* container);
