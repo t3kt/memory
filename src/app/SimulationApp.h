@@ -88,16 +88,16 @@ private:
   std::shared_ptr<ActionsController> _actions;
   std::shared_ptr<MidiController> _midi;
   std::shared_ptr<OscController> _osc;
+  std::shared_ptr<Clock> _clock;
+  std::shared_ptr<PhysicsController> _physics;
+  std::shared_ptr<NodesController> _nodes;
   std::shared_ptr<ObserversController> _observers;
   std::shared_ptr<OccurrencesController> _occurrences;
   std::shared_ptr<AnimationsController> _animations;
   std::shared_ptr<NavigatorsController> _navigators;
-  std::shared_ptr<NodesController> _nodes;
-  std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;
-  std::shared_ptr<PhysicsController> _physics;
-  std::shared_ptr<Clock> _clock;
+  std::shared_ptr<StatusInfoController> _statusController;
 #ifdef ENABLE_SYPHON
   ofxSyphonServer _syphonServer;
 #endif

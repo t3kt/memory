@@ -22,8 +22,50 @@ void SimulationApp::setup() {
 
   updateLogState();
 
+  _gui = _components.add<AppGui>(_appParams);
+
   _actions =
   _components.add<ActionsController>(_context);
+
+  _midi = _components.add<MidiController>(_appParams);
+
+  _osc = _components.add<OscController>(_appParams);
+
+  _clock =
+  _components.add<Clock>(_appParams.core.clock,
+                         _context.state);
+
+  _physics =
+  _components.add<PhysicsController>(_appParams.physics,
+                                     _appParams.debug,
+                                     _context);
+
+  _nodes =
+  _components.add<NodesController>(_context,
+                                   _events);
+
+  _observers =
+  _components.add<ObserversController>(_appParams.observers,
+                                       _physics->bounds(),
+                                       _context,
+                                       _events);
+
+  _occurrences =
+  _components.add<OccurrencesController>(_appParams.occurrences,
+                                         _physics->bounds(),
+                                         *_observers,
+                                         _context,
+                                         _events);
+
+  _animations =
+  _components.add<AnimationsController>(_appParams.animations,
+                                        _events,
+                                        _context);
+
+  _navigators =
+  _components.add<NavigatorsController>(_context,
+                                        _appParams.navigators,
+                                        _events);
 
   _renderingController =
   _components.add<RenderingController>(_appParams.rendering,
@@ -35,55 +77,14 @@ void SimulationApp::setup() {
     _renderingController->updateResolution();
   };
 
-  _physics =
-  _components.add<PhysicsController>(_appParams.physics,
-                                                 _appParams.debug,
-                                                 _context);
-
-  _observers =
-  _components.add<ObserversController>(_appParams.observers,
-                                        _physics->bounds(),
+  _inspectionController =
+  _components.add<InspectionController>(_appParams.debug.inspect,
                                         _context,
-                                        _events);
-
-  _occurrences =
-  _components.add<OccurrencesController>(_appParams.occurrences,
-                                          _physics->bounds(),
-                                          *_observers,
-                                          _context,
-                                          _events);
-
-  _animations =
-  _components.add<AnimationsController>(_appParams.animations,
-                                         _events,
-                                         _context);
-
-  _nodes =
-  _components.add<NodesController>(_context,
-                                    _events);
-
-  _clock = _components.add<Clock>(_appParams.core.clock, _context.state);
+                                        *_window);
 
   _statusController =
   _components.add<StatusInfoController>(_appParams.debug,
-                                         _context);
-
-  _inspectionController =
-  _components.add<InspectionController>(_appParams.debug.inspect,
-                                         _context,
-                                         *_window);
-  _inspectionController->setup();
-
-  _navigators =
-  _components.add<NavigatorsController>(_context,
-                                         _appParams.navigators,
-                                         _events);
-
-  _gui = _components.add<AppGui>(_appParams);
-
-  _midi = _components.add<MidiController>(_appParams);
-
-  _osc = _components.add<OscController>(_appParams);
+                                        _context);
 
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
@@ -102,21 +103,7 @@ void SimulationApp::updateLogState() {
 }
 
 void SimulationApp::update() {
-  _actions->update();
-  _osc->update();
-  _midi->update();
-  _clock->update();
-  _nodes->update();
-  _observers->update();
-  _occurrences->update();
-  _animations->update();
-  _physics->update();
-  _navigators->update();
-  _renderingController->update();
-
-  _inspectionController->update();
-
-  _statusController->update();
+  _components.update();
 }
 
 void SimulationApp::draw() {
