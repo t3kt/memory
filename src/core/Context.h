@@ -10,6 +10,7 @@
 #define Context_h
 
 #include <functional>
+#include <linq.hpp>
 #include "../core/Common.h"
 #include "../core/JsonIO.h"
 #include "../core/ObjectManager.h"
@@ -54,6 +55,11 @@ public:
   ObjectManager<NodeEntity> nodes;
   ObjectManager<ObserverEntity> observers;
   ObjectManager<OccurrenceEntity> occurrences;
+
+  template<typename E>
+  typename ObjectManager<E>::LinqDriver fromEntities() {
+    return getEntities<E>().from();
+  }
 
   EntityGroup highlightedEntities;
 

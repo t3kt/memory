@@ -11,6 +11,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <linq.hpp>
 #include <list>
 #include <memory>
 #include <ofMath.h>
@@ -29,7 +30,16 @@ public:
   using iterator = typename StorageList::iterator;
   using const_iterator = typename StorageList::const_iterator;
   using EntityPtr = std::shared_ptr<T>;
-  
+  using LinqCursor = cpplinq::iter_cursor<iterator>;
+  template<template<typename> class L>
+  using LinqWrapper = L<LinqCursor>;
+
+  using LinqDriver = LinqWrapper<cpplinq::linq_driver>;
+
+  LinqDriver from() {
+    return cpplinq::from(*this);
+  }
+
   void add(std::shared_ptr<T> object) {
     this->_objects.push_back(object);
   }
