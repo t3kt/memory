@@ -16,7 +16,7 @@ RenderingController::RenderingController(Params& params,
                                          Context& context)
 : _params(params)
 , _window(window)
-, _colors(AppSystem::get().params()->colors)
+, _colors(AppSystem::get().params().colors)
 , _context(context) {
 }
 
@@ -24,7 +24,7 @@ void RenderingController::setup() {
   ofEnableAlphaBlending();
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
-  const auto& appParams = *AppSystem::get().params();
+  const auto& appParams = AppSystem::get().params();
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
   const auto& occurrenceParams = _params.occurrences;

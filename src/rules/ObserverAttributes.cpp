@@ -28,7 +28,7 @@ ObserverAttributes::ObserverAttributes(Context& context,
                                        const ObserverRenderingParams& renderParams)
 : _params(params)
 , _renderParams(renderParams)
-, _colorTheme(AppSystem::get().params()->colors)
+, _colorTheme(AppSystem::get().params().colors)
 , _context(context) { }
 
 void ObserverAttributes::setup() {

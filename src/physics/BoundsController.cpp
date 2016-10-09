@@ -16,7 +16,7 @@ BoundsController::BoundsController(const Params& params,
                                    DebugParams& debugParams)
 : _params(params)
 , _debugParams(debugParams)
-, _boundsColor(AppSystem::get().params()->colors.bounds.get()) { }
+, _boundsColor(AppSystem::get().params().colors.bounds.get()) { }
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   float newPos = *pos + *vel;

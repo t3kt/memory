@@ -19,7 +19,7 @@ AnimationsController::AnimationsController(const Params& params,
                                            Context& context)
 : _params(params)
 , _context(context)
-, _colors(AppSystem::get().params()->colors)
+, _colors(AppSystem::get().params().colors)
 , _events(events)
 , _animations(context.animations) {
 }
