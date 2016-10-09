@@ -382,6 +382,17 @@
 		325642011DAA1227004A1A6D /* rx-replaysubject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "rx-replaysubject.hpp"; sourceTree = "<group>"; };
 		325642021DAA1227004A1A6D /* rx-subject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "rx-subject.hpp"; sourceTree = "<group>"; };
 		325642031DAA1227004A1A6D /* rx-synchronize.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "rx-synchronize.hpp"; sourceTree = "<group>"; };
+		325642051DAA1379004A1A6D /* linq.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq.hpp; sourceTree = "<group>"; };
+		325642061DAA1379004A1A6D /* linq_cursor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_cursor.hpp; sourceTree = "<group>"; };
+		325642071DAA1379004A1A6D /* linq_groupby.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_groupby.hpp; sourceTree = "<group>"; };
+		325642081DAA1379004A1A6D /* linq_iterators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_iterators.hpp; sourceTree = "<group>"; };
+		325642091DAA1379004A1A6D /* linq_last.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_last.hpp; sourceTree = "<group>"; };
+		3256420A1DAA1379004A1A6D /* linq_select.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_select.hpp; sourceTree = "<group>"; };
+		3256420B1DAA1379004A1A6D /* linq_selectmany.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_selectmany.hpp; sourceTree = "<group>"; };
+		3256420C1DAA1379004A1A6D /* linq_skip.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_skip.hpp; sourceTree = "<group>"; };
+		3256420D1DAA1379004A1A6D /* linq_take.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_take.hpp; sourceTree = "<group>"; };
+		3256420E1DAA1379004A1A6D /* linq_where.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linq_where.hpp; sourceTree = "<group>"; };
+		3256420F1DAA1379004A1A6D /* util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = util.hpp; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
 		329F510D1DA765BF00063471 /* BoundsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoundsController.cpp; path = physics/BoundsController.cpp; sourceTree = "<group>"; };
 		329F510E1DA765BF00063471 /* BoundsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoundsController.h; path = physics/BoundsController.h; sourceTree = "<group>"; };
@@ -866,6 +877,7 @@
 		3256419D1DAA1227004A1A6D /* RxCpp */ = {
 			isa = PBXGroup;
 			children = (
+				325642041DAA1379004A1A6D /* cpplinq */,
 				3256419E1DAA1227004A1A6D /* rxcpp */,
 			);
 			name = RxCpp;
@@ -1007,6 +1019,25 @@
 			);
 			path = subjects;
 			sourceTree = "<group>";
+		};
+		325642041DAA1379004A1A6D /* cpplinq */ = {
+			isa = PBXGroup;
+			children = (
+				325642051DAA1379004A1A6D /* linq.hpp */,
+				325642061DAA1379004A1A6D /* linq_cursor.hpp */,
+				325642071DAA1379004A1A6D /* linq_groupby.hpp */,
+				325642081DAA1379004A1A6D /* linq_iterators.hpp */,
+				325642091DAA1379004A1A6D /* linq_last.hpp */,
+				3256420A1DAA1379004A1A6D /* linq_select.hpp */,
+				3256420B1DAA1379004A1A6D /* linq_selectmany.hpp */,
+				3256420C1DAA1379004A1A6D /* linq_skip.hpp */,
+				3256420D1DAA1379004A1A6D /* linq_take.hpp */,
+				3256420E1DAA1379004A1A6D /* linq_where.hpp */,
+				3256420F1DAA1379004A1A6D /* util.hpp */,
+			);
+			name = cpplinq;
+			path = RxCpp/Ix/CPP/src/cpplinq;
+			sourceTree = SOURCE_ROOT;
 		};
 		36D7EC7EF50E326EAC88A0AD /* frameworks */ = {
 			isa = PBXGroup;
