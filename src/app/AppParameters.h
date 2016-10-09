@@ -18,6 +18,7 @@
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
 #include "../control/OscController.h"
+#include "../rendering/OutputController.h"
 #include "../core/Params.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
@@ -50,22 +51,6 @@ public:
   TParam<bool> showPhysics;
   InspectionController::Params inspect;
   LoggingController::Params logging;
-};
-
-class OutputParams : public Params {
-public:
-  OutputParams() {
-    add(fullscreen
-        .setKey("fullscreen")
-        .setName("Fullscreen"));
-    add(externalEnabled
-        .setKey("externalEnabled")
-        .setName("Enable External Send")
-        .setValueAndDefault(false));
-  }
-
-  TParam<bool> fullscreen;
-  TParam<bool> externalEnabled;
 };
 
 class CoreParams : public Params {

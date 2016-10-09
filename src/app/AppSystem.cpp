@@ -64,6 +64,7 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'>', AppAction::SELECT_NEXT_OBSERVER},
   {',', AppAction::SELECT_PREV_OCCURRENCE},
   {'.', AppAction::SELECT_NEXT_OCCURRENCE},
+  {OF_KEY_F11, AppAction::TOGGLE_FULLSCREEN},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {

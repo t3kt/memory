@@ -72,11 +72,6 @@ void SimulationApp::setup() {
                                         *_window,
                                         _context);
 
-  _appParams.core.output.fullscreen.changed += [&](bool& fullscreen) {
-    _window->setFullscreen(fullscreen);
-    _renderingController->updateResolution();
-  };
-
   _inspectionController =
   _components.add<InspectionController>(_appParams.debug.inspect,
                                         _context,
@@ -85,10 +80,6 @@ void SimulationApp::setup() {
   _statusController =
   _components.add<StatusInfoController>(_appParams.debug,
                                         _context);
-
-#ifdef ENABLE_SYPHON
-  _syphonServer.setName("Memory Main Output");
-#endif
 }
 
 void SimulationApp::updateLogState() {
@@ -115,12 +106,6 @@ void SimulationApp::draw() {
   _physics->draw();
 
   _renderingController->endDraw();
-
-#ifdef ENABLE_SYPHON
-  if (_appParams.core.output.externalEnabled()) {
-    _renderingController->pushToSyphon(_syphonServer);
-  }
-#endif
 
   _statusController->draw();
   _inspectionController->draw();

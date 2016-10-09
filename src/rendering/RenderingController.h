@@ -22,12 +22,9 @@
 #include "../rendering/ObserverRenderer.h"
 #include "../rendering/OccurrencePreRenderer.h"
 #include "../rendering/OccurrenceRenderer.h"
+#include "../rendering/OutputController.h"
 #include "../core/Params.h"
 #include "../rendering/PostProcController.h"
-
-#ifdef ENABLE_SYPHON
-#include <ofxSyphon.h>
-#endif
 
 class ObserverRenderingParams : public Params {
 public:
@@ -149,13 +146,8 @@ public:
   void beginDraw();
   void draw() override;
   void endDraw();
-  void updateResolution();
 
   bool performAction(AppAction action) override;
-
-#ifdef ENABLE_SYPHON
-  void pushToSyphon(ofxSyphonServer& syphonServer);
-#endif
 
 private:
   void beginFog();
@@ -169,6 +161,7 @@ private:
   PreRendererCollection _preRenderers;
   RendererCollection _renderers;
   std::shared_ptr<PostProcController> _postProc;
+  std::shared_ptr<OutputController> _output;
   //  ofLight _light;
 };
 

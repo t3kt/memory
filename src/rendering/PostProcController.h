@@ -11,14 +11,13 @@
 
 #include <memory>
 #include <ofCamera.h>
+#include <ofConstants.h>
 #include <ofxPostProcessing.h>
 #include "../rendering/fx/ColorAdjustPass.h"
 #include "../core/Common.h"
 #include "../core/Params.h"
 
-#ifdef ENABLE_SYPHON
-#include <ofxSyphon.h>
-#endif
+class OutputController;
 
 class EdgePassParams : public ParamsWithEnabled {
 public:
@@ -106,16 +105,14 @@ public:
   : _params(params) {}
 
   void setup();
-  void updateResolution(ofVec2f size);
+  void updateResolution(glm::ivec2 size);
 
   void update();
 
   void beginDraw(ofCamera& cam);
   void endDraw(ofCamera& cam);
-  
-#ifdef ENABLE_SYPHON
-  void pushToSyphon(ofxSyphonServer& syphonServer);
-#endif
+
+  void pushToOutput(OutputController &output);
 
 private:
   const Params& _params;

@@ -6,6 +6,7 @@
 //
 //
 
+#include "../rendering/OutputController.h"
 #include "../rendering/PostProcController.h"
 
 void PostProcController::setup() {
@@ -42,7 +43,7 @@ void PostProcController::update() {
   _colorAdjustPass->setEnabled(_params.colorAdjust.enabled.get());
 }
 
-void PostProcController::updateResolution(ofVec2f size) {
+void PostProcController::updateResolution(glm::ivec2 size) {
   _postProc.init(size.x, size.y);
 }
 
@@ -62,12 +63,10 @@ void PostProcController::endDraw(ofCamera& cam) {
   }
 }
 
-#ifdef ENABLE_SYPHON
-void PostProcController::pushToSyphon(ofxSyphonServer &syphonServer) {
+void PostProcController::pushToOutput(OutputController &output) {
   if (_params.enabled()) {
-    syphonServer.publishTexture(&_postProc.getProcessedTextureReference());
+    output.pushTexture(&_postProc.getProcessedTextureReference());
   } else {
-    syphonServer.publishScreen();
+    output.pushScreen();
   }
 }
-#endif

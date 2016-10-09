@@ -44,11 +44,14 @@ void RenderingController::setup() {
   //  _light.setPosition(ofVec3f(0, 3, 0));
   //  _light.setDiffuseColor(ofFloatColor::red);
   //  _light.setAttenuation(4);
-}
 
-void RenderingController::updateResolution() {
-  auto size = ofVec2f(_window.getWidth(), _window.getHeight());
-  _postProc->updateResolution(size);
+  _output =
+  std::make_shared<OutputController>(AppSystem::get().params().core.output,
+                                     _window);
+  _output->setup();
+  _output->resolutionChanged += [&](ValueEventArgs<glm::ivec2> e) {
+    _postProc->updateResolution(e.value());
+  };
 }
 
 bool RenderingController::performAction(AppAction action) {
@@ -96,9 +99,12 @@ void RenderingController::endDraw() {
     endFog();
   }
   _postProc->endDraw(_camera->getCamera());
+  
 //  ofDisableDepthTest();
 //  ofDisableLighting();
   glPopAttrib();
+
+  _postProc->pushToOutput(*_output);
 }
 
 void RenderingController::beginFog() {
@@ -129,9 +135,3 @@ void RenderingController::beginFog() {
 void RenderingController::endFog() {
   glDisable(GL_FOG);
 }
-
-#ifdef ENABLE_SYPHON
-void RenderingController::pushToSyphon(ofxSyphonServer& syphonServer) {
-  _postProc->pushToSyphon(syphonServer);
-}
-#endif

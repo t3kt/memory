@@ -15,10 +15,6 @@
 #include <memory>
 #include <stdexcept>
 
-#ifdef TARGET_OSX
-#define ENABLE_SYPHON
-#endif
-
 template<typename T>
 T getInterpolated(const T& a, const T& b, float amount);
 

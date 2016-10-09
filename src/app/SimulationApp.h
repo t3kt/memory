@@ -32,10 +32,6 @@
 #include "../core/State.h"
 #include "../core/Status.h"
 
-#ifdef ENABLE_SYPHON
-#include <ofxSyphon.h>
-#endif
-
 class BoundsController;
 class EventLoggers;
 
@@ -98,9 +94,6 @@ private:
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;
   std::shared_ptr<StatusInfoController> _statusController;
-#ifdef ENABLE_SYPHON
-  ofxSyphonServer _syphonServer;
-#endif
   ComponentCollection<ComponentBase> _components;
 };
 

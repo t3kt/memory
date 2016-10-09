@@ -47,6 +47,7 @@ enum class AppAction {
   SELECT_NEXT_OBSERVER,
   SELECT_PREV_OCCURRENCE,
   SELECT_NEXT_OCCURRENCE,
+  TOGGLE_FULLSCREEN,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
