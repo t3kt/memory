@@ -18,6 +18,7 @@
 #include "../rendering/ConnectorRenderer.h"
 #include "../rendering/ConnectionTracerRenderer.h"
 #include "../core/Context.h"
+#include "../rendering/FogController.h"
 #include "../rendering/ObserverPreRenderer.h"
 #include "../rendering/ObserverRenderer.h"
 #include "../rendering/OccurrencePreRenderer.h"
@@ -70,31 +71,6 @@ public:
   OccurrenceRenderer::Params renderer;
   ObserverOccurrenceConnectorRenderer::Params connectorRenderer;
   OccurrenceOccurrenceConnectorRenderer::Params occurrenceConnectorRenderer;
-};
-
-class FogParams : public ParamsWithEnabled {
-public:
-  FogParams() {
-    add(density
-        .setKey("density")
-        .setName("Density")
-        .setValueAndDefault(0.001f)
-        .setRange(0, 0.004f));
-    add(useBackgroundColor
-        .setKey("useBackgroundColor")
-        .setName("Use Background Color")
-        .setValueAndDefault(true));
-    add(distance
-        .setKey("distance")
-        .setName("Distance")
-        .setParamValuesAndDefaults(0.3, 0.9)
-        .setParamRanges(0, 8));
-    setEnabledValueAndDefault(true);
-  }
-
-  ValueRange<float> distance;
-  TParam<float> density;
-  TParam<bool> useBackgroundColor;
 };
 
 
@@ -150,8 +126,6 @@ public:
   bool performAction(AppAction action) override;
 
 private:
-  void beginFog();
-  void endFog();
 
   Params& _params;
   Context& _context;
@@ -160,6 +134,7 @@ private:
   std::shared_ptr<CameraController> _camera;
   PreRendererCollection _preRenderers;
   RendererCollection _renderers;
+  std::shared_ptr<FogController> _fog;
   std::shared_ptr<PostProcController> _postProc;
   std::shared_ptr<OutputController> _output;
   //  ofLight _light;

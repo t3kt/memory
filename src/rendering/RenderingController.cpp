@@ -28,6 +28,9 @@ void RenderingController::setup() {
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
   const auto& occurrenceParams = _params.occurrences;
+
+  _fog = std::make_shared<FogController>(_params.fog);
+
   _preRenderers.add<ObserverPreRenderer>(observerParams.preRenderer, colors, _context);
   _preRenderers.add<OccurrencePreRenderer>(occurrenceParams.preRenderer, colors, _context);
   _renderers.add<ObserverRenderer>(observerParams.renderer, colors, _context);
@@ -82,9 +85,7 @@ void RenderingController::beginDraw() {
 //  _light.enable();
   _postProc->beginDraw(_camera->getCamera());
   _camera->applyTransform();
-  if (_params.fog.enabled()) {
-    beginFog();
-  }
+  _fog->beginDraw();
 
   ofPushMatrix();
 }
@@ -95,9 +96,7 @@ void RenderingController::draw() {
 
 void RenderingController::endDraw() {
   ofPopMatrix();
-  if (_params.fog.enabled()) {
-    endFog();
-  }
+  _fog->endDraw();
   _postProc->endDraw(_camera->getCamera());
   
 //  ofDisableDepthTest();
@@ -105,33 +104,4 @@ void RenderingController::endDraw() {
   glPopAttrib();
 
   _postProc->pushToOutput(*_output);
-}
-
-void RenderingController::beginFog() {
-  GLfloat fogCol[4];
-  if (_params.fog.useBackgroundColor()) {
-    const auto& color = _colors.background.get();
-    fogCol[0] = color.r;
-    fogCol[1] = color.g;
-    fogCol[2] = color.b;
-  } else {
-    const auto& color = _colors.fog.get();
-    fogCol[0] = color.r;
-    fogCol[1] = color.g;
-    fogCol[2] = color.b;
-  }
-  fogCol[3] = 1; // not used by opengl?
-
-  glFogi(GL_FOG_MODE, GL_EXP2);
-  glFogfv(GL_FOG_COLOR, fogCol);
-  glFogf(GL_FOG_DENSITY, _params.fog.density());
-  glHint(GL_FOG_HINT, GL_DONT_CARE);
-  glFogf(GL_FOG_START, _params.fog.distance.lowValue());
-  glFogf(GL_FOG_END, _params.fog.distance.highValue());
-  glFogi(GL_FOG_COORD_SRC, GL_FRAGMENT_DEPTH);
-  glEnable(GL_FOG);
-}
-
-void RenderingController::endFog() {
-  glDisable(GL_FOG);
 }

@@ -37,6 +37,7 @@
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
 		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
 		329F511F1DA9F73F00063471 /* OutputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F511D1DA9F73F00063471 /* OutputController.cpp */; };
+		329F51221DAA089600063471 /* FogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51201DAA089600063471 /* FogController.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -291,6 +292,8 @@
 		329F51151DA89A4E00063471 /* ConnectionTracerRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionTracerRenderer.h; path = rendering/ConnectionTracerRenderer.h; sourceTree = "<group>"; };
 		329F511D1DA9F73F00063471 /* OutputController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OutputController.cpp; path = rendering/OutputController.cpp; sourceTree = "<group>"; };
 		329F511E1DA9F73F00063471 /* OutputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutputController.h; path = rendering/OutputController.h; sourceTree = "<group>"; };
+		329F51201DAA089600063471 /* FogController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogController.cpp; path = rendering/FogController.cpp; sourceTree = "<group>"; };
+		329F51211DAA089600063471 /* FogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogController.h; path = rendering/FogController.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -856,6 +859,8 @@
 				329F51151DA89A4E00063471 /* ConnectionTracerRenderer.h */,
 				B4CC8A45BB3258E17FA521FE /* EntityRenderer.h */,
 				0DA6137D85EC6DA808188217 /* fx */,
+				329F51201DAA089600063471 /* FogController.cpp */,
+				329F51211DAA089600063471 /* FogController.h */,
 				A116FCE6C1DF53255E1BA46C /* ObserverPreRenderer.cpp */,
 				48593BC5092FC4938702EEEC /* ObserverPreRenderer.h */,
 				1FB2B0FBF9D1C7BC78038E4B /* ObserverRenderer.cpp */,
@@ -1874,6 +1879,7 @@
 				BC4C8332D4CC56AE599351D4 /* DofAltPass.cpp in Sources */,
 				329F511F1DA9F73F00063471 /* OutputController.cpp in Sources */,
 				FBFCCDFDAAFEC28F3A9E3177 /* DofPass.cpp in Sources */,
+				329F51221DAA089600063471 /* FogController.cpp in Sources */,
 				F8A78BBDEC87FD837B8C39E0 /* EdgePass.cpp in Sources */,
 				963ABA8F36626DE136C8945C /* FakeSSSPass.cpp in Sources */,
 				D6175A040959B743FAA86CD9 /* FxaaPass.cpp in Sources */,
