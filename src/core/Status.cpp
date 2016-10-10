@@ -33,6 +33,8 @@ void StatusInfoController::update() {
     _info.add("Highlighted:",
               _context.highlightedEntities.size());
   }
+  _info.add("Mouse X:", ofToString(ofGetMouseX()));
+  _info.add("Mouse Y:", ofToString(ofGetMouseY()));
 }
 
 void StatusInfoController::draw() {

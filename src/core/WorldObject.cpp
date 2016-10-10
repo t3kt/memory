@@ -31,6 +31,8 @@ void WorldObject::outputFields(std::ostream& os) const {
 void WorldObject::fillInfo(Info &info) const {
   info.add("type:", typeName());
   info.add("id:", id());
+  info.add("screen x:", screenPos().x);
+  info.add("screen y:", screenPos().y);
 }
 
 void WorldObject::addSerializedFields(Json::object &obj,
