@@ -88,7 +88,39 @@ void AppGui::setup() {
       renderTabs->addGroup(_appParams.rendering.postProc)->setName("Post");
     }
   }
-  rootTabs->addGroup(_appParams.physics)->setName("Phys");
+  {
+    auto physTabs = rootTabs->addTabs("Phys");
+    physTabs->setTabHeight(6);
+    physTabs->setTabWidth(54);
+    physTabs->addGroup(_appParams.physics.bounds)->setName("Bound");
+    {
+      auto entityTabs = physTabs->addTabs("Entity");
+      entityTabs->setTabHeight(6);
+      entityTabs->addGroup(_appParams.physics.observers)->setName("Obs");
+      entityTabs->addGroup(_appParams.physics.occurrences)->setName("Occ");
+    }
+    {
+      auto connTabs = physTabs->addTabs("Conn");
+      connTabs->setTabHeight(6);
+      connTabs->addGroup(_appParams.physics.observerObserverAttraction)->setName("Obs/Obs");
+      connTabs->addGroup(_appParams.physics.observerOccurrenceForce)->setName("Obs/Occ");
+    }
+    {
+      auto anchorTabs = physTabs->addTabs("Anchor");
+      anchorTabs->setTabHeight(6);
+      anchorTabs->addGroup(_appParams.physics.observerAnchorPointAttraction)->setName("Obs");
+      anchorTabs->addGroup(_appParams.physics.occurrenceAnchorPointAttraction)->setName("Occ");
+    }
+    {
+      auto forceTabs = physTabs->addTabs("Frc");
+      forceTabs->setTabHeight(6);
+      forceTabs->setTabWidth(54);
+      forceTabs->addGroup(_appParams.physics.rebound)->setName("Rebound");
+      forceTabs->addGroup(_appParams.physics.spatialNoiseForce)->setName("Noise");
+      forceTabs->addGroup(_appParams.physics.vortexNodes)->setName("Vortex");
+      forceTabs->addGroup(_appParams.physics.damping)->setName("Damp");
+    }
+  }
   rootTabs->addGroup(_appParams.debug)->setName("Dbg");
   {
     auto actionsTab = rootTabs->addGroup();
