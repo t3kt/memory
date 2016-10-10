@@ -56,6 +56,7 @@ public:
   ObjectManager<OccurrenceEntity> occurrences;
 
   EntityGroup highlightedEntities;
+  std::shared_ptr<WorldObject> primaryHighlightedEntity;
 
 private:
   void clear();

@@ -74,11 +74,14 @@ private:
 
   bool isTypeSelected(EntityType type) const;
 
+  std::shared_ptr<WorldObject>& selectedEntity();
+
+  const std::shared_ptr<WorldObject>& selectedEntity() const;
+
   Params& _params;
   Context& _context;
   ofAppGLFWWindow& _window;
 
-  ParticlePtr _selectedEntity;
   ofVec2f _clickPos;
   bool _hasClick;
 

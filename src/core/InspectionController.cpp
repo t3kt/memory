@@ -30,6 +30,16 @@ void InspectionController::setup() {
   onEnabledChanged(_params.enabled.get());
 }
 
+std::shared_ptr<WorldObject>&
+InspectionController::selectedEntity() {
+  return _context.primaryHighlightedEntity;
+}
+
+const std::shared_ptr<WorldObject>&
+InspectionController::selectedEntity() const {
+  return _context.primaryHighlightedEntity;
+}
+
 void InspectionController::onEnabledChanged(bool enabled) {
   if (enabled) {
     attachToEvents();
@@ -75,15 +85,15 @@ void InspectionController::update() {
     });
 
     if (candidates.empty()) {
-      _selectedEntity.reset();
+      selectedEntity().reset();
     } else {
-      _selectedEntity = *candidates.begin();
+      selectedEntity() = *candidates.begin();
     }
 
     _hasClick = false;
   }
-  if (_selectedEntity && !_selectedEntity->alive()) {
-    _selectedEntity.reset();
+  if (selectedEntity() && !selectedEntity()->alive()) {
+    selectedEntity().reset();
   }
   updateHighlights();
   updateInfo();
@@ -91,11 +101,11 @@ void InspectionController::update() {
 
 void InspectionController::updateHighlights() {
   _context.highlightedEntities.clear();
-  if (!_selectedEntity) {
+  if (!selectedEntity()) {
     return;
   }
-  _context.highlightedEntities.add(_selectedEntity);
-  _selectedEntity->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
+  _context.highlightedEntities.add(selectedEntity());
+  selectedEntity()->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
     _context.highlightedEntities.add(entity);
   });
 }
@@ -105,11 +115,11 @@ void InspectionController::updateInfo() {
   if (!_params.showInfo.get()) {
     return;
   }
-  if (!_selectedEntity || !_selectedEntity->alive()) {
+  if (!selectedEntity() || !selectedEntity()->alive()) {
     return;
   }
 
-  _selectedEntity->fillInfo(_info);
+  selectedEntity()->fillInfo(_info);
 }
 
 // must not be called while camera is active
@@ -117,11 +127,11 @@ void InspectionController::draw() {
   if (!_params.enabled.get()) {
     return;
   }
-  if (_selectedEntity) {
+  if (selectedEntity()) {
     ofPushStyle();
     ofSetColor(ofFloatColor::white);
     auto winSize = _window.getWindowSize();
-    const auto& pos = _selectedEntity->screenPos();
+    const auto& pos = selectedEntity()->screenPos();
     ofVec3f sidePos(0, pos.y);
 //    if (pos.x > winSize.x / 2) {
       sidePos.x = winSize.x;
@@ -168,27 +178,27 @@ bool InspectionController::performAction(AppAction action) {
 }
 
 bool InspectionController::isTypeSelected(EntityType type) const {
-  return _selectedEntity && _selectedEntity->entityType() == type;
+  return selectedEntity() && selectedEntity()->entityType() == type;
 }
 
 template<typename E>
 void InspectionController::selectPrevEntity() {
-  if (_selectedEntity &&
-      _selectedEntity->entityType() == E::type &&
-      _selectedEntity->alive()) {
-    _selectedEntity = _context.getEntities<E>().beforeOrLast(std::dynamic_pointer_cast<E>(_selectedEntity));
+  if (selectedEntity() &&
+      selectedEntity()->entityType() == E::type &&
+      selectedEntity()->alive()) {
+    selectedEntity() = _context.getEntities<E>().beforeOrLast(std::dynamic_pointer_cast<E>(selectedEntity()));
   } else {
-    _selectedEntity = _context.getEntities<E>().last();
+    selectedEntity() = _context.getEntities<E>().last();
   }
 }
 
 template<typename E>
 void InspectionController::selectNextEntity() {
-  if (_selectedEntity &&
-      _selectedEntity->entityType() == E::type &&
-      _selectedEntity->alive()) {
-    _selectedEntity = _context.getEntities<E>().afterOrFirst(std::dynamic_pointer_cast<E>(_selectedEntity));
+  if (selectedEntity() &&
+      selectedEntity()->entityType() == E::type &&
+      selectedEntity()->alive()) {
+    selectedEntity() = _context.getEntities<E>().afterOrFirst(std::dynamic_pointer_cast<E>(selectedEntity()));
   } else {
-    _selectedEntity = _context.getEntities<E>().first();
+    selectedEntity() = _context.getEntities<E>().first();
   }
 }
