@@ -30,10 +30,9 @@ void SimulationApp::setup() {
   _midi = _components.add<MidiController>(_appParams);
 
   _osc = _components.add<OscController>(_appParams);
-
-  _clock =
-  _components.add<Clock>(_appParams.core.clock,
-                         _context.state);
+  _timing =
+  _components.add<TimingController>(_appParams.core.timing,
+                                    _context);
 
   _physics =
   _components.add<PhysicsController>(_appParams.physics,

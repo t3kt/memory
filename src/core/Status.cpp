@@ -21,7 +21,7 @@ void StatusInfoController::update() {
     return;
   }
   _info.clear();
-  _info.add("State:", _context.state.running ? "Playing" : "Paused");
+  _info.add("State:", _context.rootState.running ? "Playing" : "Paused");
   _info.add("Time:", ofToString(_context.time(), 2));
   _info.add("FPS:", ofToString(ofGetFrameRate(), 2));
   _info.add("Observers:", _context.observers.size());

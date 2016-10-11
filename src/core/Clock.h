@@ -11,8 +11,6 @@
 #define Clock_h
 
 #include <memory>
-#include <ofParameter.h>
-#include "../app/AppActions.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Params.h"
@@ -37,32 +35,34 @@ public:
   TParam<float> rate;
 };
 
-class Clock
-: public AppActionHandler
-, public NonCopyable
-, public ComponentBase {
+class ClockNode
+: public ComponentBase
+, public NonCopyable {
 public:
   using Params = ClockParams;
 
-  Clock(Params& params, State& state)
+  ClockNode(Params& params,
+            ClockState& state,
+            std::shared_ptr<ClockNode> parentClock)
   : _params(params)
-  , _state(state) { }
+  , _state(state)
+  , _parentClock(parentClock) { }
 
   void setup() override;
-
-  void toggleState();
-
   void update() override;
 
-  bool performAction(AppAction action) override;
+  void toggleState();
 private:
+  void setPaused(bool paused);
+  bool isPaused() const;
+  float getEffectiveRate() const;
   void start();
   void stop();
-  void onPausedChanged(bool& paused);
 
-  State& _state;
+  const std::shared_ptr<ClockNode> _parentClock;
   Params& _params;
-  float _lastTime;
+  ClockState& _state;
+  float _lastAbsoluteTime;
 };
 
 #endif /* Clock_h */

@@ -21,7 +21,6 @@
 
 class ActionsController;
 class SimulationApp;
-class State;
 
 using FileAction = std::function<bool(ofFileDialogResult&)>;
 
@@ -43,9 +42,6 @@ public:
   }
 
   SimulationApp* simulation() { return _simulationApp.get(); }
-
-  State& state() { return _context.state; }
-  const State& state() const { return _context.state; }
 
   Context& context() { return _context; }
   const Context& context() const { return _context; }

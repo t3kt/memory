@@ -19,7 +19,7 @@ ObserverPreRenderer::ObserverPreRenderer(const Params& params,
                     context.observers) { }
 
 void ObserverPreRenderer::update() {
-  _fadeIn.update(_context.state);
+  _fadeIn.update(_context.rootState);
   auto fadeIn = _fadeIn.getPhrase();
   auto size = _params.size.get();
 
@@ -43,7 +43,7 @@ void ObserverPreRenderer::update() {
       color.setSaturation(0);
     }
     color.a *= entity->getRemainingLifetimeFraction();
-    auto age = entity->getAge(_context.state);
+    auto age = entity->getAge(_context.entityState);
     if (age < fadeIn->getDuration()) {
       color.a *= fadeIn->getValue(age);
     }

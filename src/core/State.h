@@ -11,17 +11,22 @@
 
 #include "../core/Common.h"
 
-class State
-: public Outputable
-, public NonCopyable {
+class ClockState
+: public NonCopyable
+, public Outputable {
 public:
-  State()
-  : running(true) { }
-  
-  float time;
+  ClockState()
+  : localTime(0)
+  , timeDelta(0)
+  , running(true) { }
+
+  float localTime;
   float timeDelta;
   bool running;
-  std::string typeName() const override { return "State"; }
+  float rate;
+
+  std::string typeName() const override { return "ClockState"; }
+
 protected:
   void outputFields(std::ostream& os) const override;
 };

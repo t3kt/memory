@@ -19,7 +19,7 @@ void ConnectionTracerRenderer::update() {
   if (!_params.enabled.get()) {
     return;
   }
-  _rawRatio += _context.state.timeDelta * _params.rate.get();
+  _rawRatio += _context.rootState.timeDelta * _params.rate.get();
   _ratio = ofWrap(_rawRatio, 0, 1);
 }
 

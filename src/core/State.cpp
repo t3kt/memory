@@ -6,12 +6,11 @@
 //
 //
 
-#include <iostream>
-#include <string>
 #include "../core/State.h"
 
-void State::outputFields(std::ostream &os) const {
-  os << "time: " << time
+void ClockState::outputFields(std::ostream &os) const {
+  os << "localTime: " << localTime
       << ", timeDelta: " << timeDelta
-      << ", running: " << running;
+      << ", running: " << running
+      << ", rate: " << rate;
 }

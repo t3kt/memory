@@ -16,6 +16,7 @@ int IntervalScheduler::query() {
     return 0;
   }
   bool wasInitial = _nextTime < 0;
+  // TODO: fix to use appropriate clock
   auto nowTime = _context.time();
   if (wasInitial || nowTime >= _nextTime) {
     _nextTime = nowTime + _params.interval.getValue();
@@ -35,6 +36,7 @@ int RateScheduler::query() {
     _lastTime = now;
     return 0;
   }
+  // TODO: fix to use appropriate clock
   float elapsed = now - _lastTime;
   float count = elapsed * _params.rate.get();
   if (count < 1) {

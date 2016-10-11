@@ -45,10 +45,10 @@ public:
     TParam<float> _duration;
   };
 
-  AnimationObject(const Params& params, const State& state);
+  AnimationObject(const Params& params, const ClockState& state);
 
-  virtual void update(const State& state) override;
-  virtual void draw(const State& state) = 0;
+  virtual void update(const ClockState& state) override;
+  virtual void draw(const ClockState& state) = 0;
 
   const ofVec3f& position() const override { return _position; }
   
@@ -103,9 +103,9 @@ public:
   ExpandingSphereAnimation(ofVec3f position,
                            const Params& params,
                            const ofFloatColor& color,
-                           const State& state);
+                           const ClockState& state);
 
-  virtual void draw(const State& state) override;
+  virtual void draw(const ClockState& state) override;
 
   virtual std::string typeName() const override {
     return "ExpandingSphereAnimation";
@@ -156,7 +156,7 @@ public:
   : _params(params)
   , _lastParams(params) { }
 
-  void update(const State& state) {
+  void update(const ClockState& state) {
     ParamVals newParams(_params);
     if (newParams != _lastParams) {
       _phrase.reset();

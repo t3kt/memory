@@ -37,7 +37,7 @@ void ObserverAttributes::setup() {
   _color->addRule([&](const ofFloatColor& prevColor,
                       std::shared_ptr<ObserverEntity>& entity) {
     auto alpha = entity->getRemainingLifetimeFraction();
-    auto age = entity->getAge(_context.state);
+    auto age = entity->getAge(_context.entityState);
     //...
     return prevColor;
   });

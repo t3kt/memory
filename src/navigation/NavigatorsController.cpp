@@ -75,10 +75,10 @@ void NavigatorsController::setup() {
 }
 
 void NavigatorsController::update() {
-  if (!_context.state.running) {
+  if (!_context.entityState.running) {
     return;
   }
-  float now = _context.time();
+  float now = _context.entityState.localTime;
   float stepTime = _params.stepDuration.get();
   _navigators.processAndCullObjects([&](NavEntityPtr navigator) {
     if (!navigator->prevState() || !navigator->stateAlive()) {
@@ -116,13 +116,13 @@ void NavigatorsController::update() {
 //      if (dist > _params.reachRange.get()) {
 //
 //        diff.normalize();
-//        ofVec3f velocity = diff * _params.moveRate.get() * _context.state.timeDelta;
+//        ofVec3f velocity = diff * _params.moveRate.get() * _context.entityState.timeDelta;
 //        if (velocity.length() > dist) {
 //          velocity.normalize();
 //          velocity *= dist;
 //        }
 //        navigator->setVelocity(velocity);
-//        navigator->updateVelocityAndPosition(_context.state, 1);
+//        navigator->updateVelocityAndPosition(_context.physicsState, 1);
 //
 //        diff = targetPoint - navigator->position();
 //        dist = diff.length();

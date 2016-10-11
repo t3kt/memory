@@ -24,7 +24,7 @@ void ParticleObject::addForce(ofVec3f force) {
   _force += force;
 }
 
-void ParticleObject::updateVelocityAndPosition(const State &state,
+void ParticleObject::updateVelocityAndPosition(const ClockState &state,
                                                float speed) {
   if (state.timeDelta > 0) {
     _velocity += _force * state.timeDelta;

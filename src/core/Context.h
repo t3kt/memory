@@ -30,7 +30,7 @@ class Context
 , public JsonWritable
 , public JsonReadable {
 public:
-  float time() const { return state.time; }
+  float time() const { return rootState.localTime; }
 
   template<typename E>
   ObjectManager<E>& getEntities();
@@ -48,7 +48,10 @@ public:
   Json to_json() const override;
   void read_json(const Json& val) override;
 
-  State state;
+  ClockState rootState;
+  ClockState entityState;
+  ClockState physicsState;
+
   ObjectManager<AnimationObject> animations;
   ObjectManager<NavigatorEntity> navigators;
   ObjectManager<NodeEntity> nodes;

@@ -61,6 +61,7 @@ public:
       return ActionResult::cancel();
     }
     float interval = _spawner._params.sequenceInterval.getValue();
+    // TODO: fix timing to use proper clock
     return ActionResult::reschedule(context.time() + interval);
   }
 private:
@@ -166,7 +167,7 @@ OccurrenceSpawner::spawnEntity(float radius,
   auto occurrence = std::make_shared<OccurrenceEntity>(pos,
                                                        radius,
                                                        radiusFraction,
-                                                       _context.state);
+                                                       _context.entityState);
   if (tryAddEntity(occurrence)) {
     if (prev) {
       prev->addOccurrence(occurrence);

@@ -8,55 +8,73 @@
 
 const float maxTimeStep = 1/30.0f;
 
-void Clock::setup() {
-  _lastTime = ofGetElapsedTimef();
+float ClockNode::getEffectiveRate() const {
+  if (isPaused()) {
+    return 0;
+  }
+  auto rate = _params.rate.get();
+  if (_parentClock) {
+    return rate * _parentClock->getEffectiveRate();
+  }
+  return rate;
+}
+
+bool ClockNode::isPaused() const {
+  if (_params.paused.get()) {
+    return true;
+  }
+  if (_parentClock) {
+    return _parentClock->isPaused();
+  }
+  return false;
+}
+
+void ClockNode::setPaused(bool paused) {
+  _params.paused.set(paused);
+  // when unpausing, also unpause the parent clock
+  if (!paused && _parentClock) {
+    _parentClock->setPaused(false);
+  }
+}
+
+void ClockNode::toggleState() {
+  setPaused(!_params.paused.get());
+}
+
+void ClockNode::start() {
+  _lastAbsoluteTime = ofGetElapsedTimef();
   _state.running = true;
-  _state.time = 0;
+}
+
+void ClockNode::stop() {
+  _state.running = false;
+  _state.rate = 0;
   _state.timeDelta = 0;
 }
 
-bool Clock::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::TOGGLE_CLOCK_STATE:
-      toggleState();
-      break;
-    default:
-      return false;
-  }
-  return true;
+void ClockNode::setup() {
+  _lastAbsoluteTime = ofGetElapsedTimef();
 }
 
-void Clock::start() {
-  _lastTime = ofGetElapsedTimef();
-  _state.running = true;
-}
-
-void Clock::stop() {
-  _state.running = false;
-}
-
-void Clock::toggleState() {
-  _params.paused.toggle();
-}
-
-void Clock::update() {
-  if (_params.paused()) {
+void ClockNode::update() {
+  if (isPaused()) {
     if (_state.running) {
       stop();
     }
-    _state.timeDelta = 0;
   } else {
     if (!_state.running) {
       start();
     }
-    float nowTime = ofGetElapsedTimef();
-    float rawDelta = nowTime - _lastTime;
+    auto absNowTime = ofGetElapsedTimef();
+    auto rawDelta = absNowTime = _lastAbsoluteTime;
     if (rawDelta > maxTimeStep) {
       rawDelta = maxTimeStep;
     }
-    float delta = rawDelta * _params.rate();
+    auto rate = getEffectiveRate();
+    auto delta = rawDelta * rate;
     _state.timeDelta = delta;
-    _state.time += delta;
-    _lastTime = nowTime;
+    _state.localTime += delta;
+    _state.rate = rate;
+    _lastAbsoluteTime = absNowTime;
   }
 }

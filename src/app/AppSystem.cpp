@@ -10,8 +10,8 @@
 class PauseHandler {
 public:
   PauseHandler(MemoryAppParameters& appParams)
-  : _paused(appParams.core.clock.paused)
-  , _wasPaused(appParams.core.clock.paused.get()) {
+  : _paused(appParams.core.timing.root.paused)
+  , _wasPaused(appParams.core.timing.root.paused.get()) {
     if (!_wasPaused) {
       _paused.set(true);
     }

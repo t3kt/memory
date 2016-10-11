@@ -59,7 +59,7 @@ public:
 
   virtual void update() {
     _entities.processAndCullObjects([&](EntityPtr& entity) {
-      entity->update(_context.state);
+      entity->update(_context.entityState);
       if (!entity->alive()) {
         _events.died<E>(*entity);
       }

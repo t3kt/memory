@@ -64,7 +64,7 @@ void PhysicsController::endEntityUpdate(ParticleObject *entity,
   if (!entity->alive()) {
     return;
   }
-  entity->updateVelocityAndPosition(_context.state, params.speed());
+  entity->updateVelocityAndPosition(_context.physicsState, params.speed());
 }
 
 void PhysicsController::update() {

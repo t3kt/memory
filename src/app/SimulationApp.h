@@ -31,6 +31,7 @@
 #include "../core/SimulationEvents.h"
 #include "../core/State.h"
 #include "../core/Status.h"
+#include "../core/TimingController.h"
 
 class BoundsController;
 class EventLoggers;
@@ -57,8 +58,6 @@ public:
 
   SimulationEvents& getEvents() { return _events; }
 
-  const State& state() const { return _context.state; }
-
   ActionsController& actions() { return *_actions; }
 
   const BoundsController& bounds() const {
@@ -84,7 +83,7 @@ private:
   std::shared_ptr<ActionsController> _actions;
   std::shared_ptr<MidiController> _midi;
   std::shared_ptr<OscController> _osc;
-  std::shared_ptr<Clock> _clock;
+  std::shared_ptr<TimingController> _timing;
   std::shared_ptr<PhysicsController> _physics;
   std::shared_ptr<NodesController> _nodes;
   std::shared_ptr<ObserversController> _observers;

@@ -25,7 +25,7 @@ void RateObserverSpawner::spawnEntities(int count) {
     auto decay = _params.decayRate.getValue();
     auto observer = std::make_shared<ObserverEntity>(pos,
                                                      decay,
-                                                     _context.state);
+                                                     _context.entityState);
     observer->setVelocity(_params.initialVelocity.getValue());
     addEntity(observer);
   }

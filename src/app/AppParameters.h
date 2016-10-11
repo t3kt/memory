@@ -22,6 +22,7 @@
 #include "../core/Params.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
+#include "../core/TimingController.h"
 
 class DebugParams : public Params {
 public:
@@ -56,9 +57,9 @@ public:
 class CoreParams : public Params {
 public:
   CoreParams() {
-    add(clock
-        .setKey("clock")
-        .setName("Clock"));
+    add(timing
+        .setKey("timing")
+        .setName("Timing"));
     add(output
         .setKey("output")
         .setName("Output"));
@@ -72,7 +73,7 @@ public:
         .setSupportsOsc(false));
   }
 
-  Clock::Params clock;
+  TimingParams timing;
   OutputParams output;
   MidiController::Params midi;
   OscController::Params osc;

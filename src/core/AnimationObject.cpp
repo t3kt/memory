@@ -10,14 +10,14 @@
 #include "../core/AnimationObject.h"
 
 AnimationObject::AnimationObject(const Params& params,
-                                 const State& state)
+                                 const ClockState& state)
 : _duration(params.duration())
 , _visible(true)
 , _percentage(0)
-, _startTime(state.time) {}
+, _startTime(state.localTime) {}
 
-void AnimationObject::update(const State &state) {
-  float age = state.time - _startTime;
+void AnimationObject::update(const ClockState &state) {
+  float age = state.localTime - _startTime;
   if (age >= _duration) {
     _percentage = 1;
     kill();
@@ -34,14 +34,14 @@ void AnimationObject::outputFields(std::ostream &os) const {
 ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position,
                                                    const Params& params,
                                                    const ofFloatColor& color,
-                                                   const State& state)
+                                                   const ClockState& state)
 : AnimationObject(params, state)
 , _params(params)
 , _color(color) {
   _position = position;
 }
 
-void ExpandingSphereAnimation::draw(const State &state) {
+void ExpandingSphereAnimation::draw(const ClockState &state) {
   ofPushStyle();
 
   ofFloatColor color = _color;

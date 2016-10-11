@@ -15,12 +15,12 @@
 OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
                                    float radius,
                                    float radiusFraction,
-                                   const State& state)
+                                   const ClockState& state)
 : ParticleObject(pos)
 , _actualRadius(0)
 , _originalRadius(radius)
 , _originalRadiusFraction(radiusFraction)
-, _startTime(state.time)
+, _startTime(state.localTime)
 , _amountOfObservation(0) {}
 
 void OccurrenceEntity::outputFields(std::ostream &os) const {
@@ -49,7 +49,7 @@ void OccurrenceEntity::detachConnections() {
   }
 }
 
-void OccurrenceEntity::update(const State& state) {
+void OccurrenceEntity::update(const ClockState& state) {
   if (!hasConnectedObservers()) {
     kill();
     setAmountOfObservation(0);
@@ -76,7 +76,7 @@ void OccurrenceEntity::addSerializedFields(Json::object &obj,
     {"originalRadius", _originalRadius},
     {"originalRadiusFraction", _originalRadiusFraction},
     // omit actualRadius since it's calculated
-    {"startTime", _startTime - context.time()},
+    {"startTime", _startTime - context.entityState.localTime},
     // omit amountOfObservation since it's calculated
   });
 }
@@ -86,7 +86,7 @@ void OccurrenceEntity::deserializeFields(const Json &obj,
   ParticleObject::deserializeFields(obj, context);
   _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
   _originalRadiusFraction = JsonUtil::fromJson<float>(obj["originalRadiusFraction"]);
-  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.time();
+  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.entityState.localTime;
 }
 
 void OccurrenceEntity::addSerializedRefs(Json::object &obj,

@@ -27,8 +27,8 @@ enum class EntityType {
   OCCURRENCE,
 };
 
+class ClockState;
 class Info;
-class State;
 
 class WorldObject
 : public Outputable
@@ -75,7 +75,7 @@ public:
   virtual bool hasConnections() const { return false; }
   virtual void detachConnections() { }
 
-  virtual void update(const State& state) {}
+  virtual void update(const ClockState& state) {}
 protected:
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

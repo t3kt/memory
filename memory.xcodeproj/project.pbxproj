@@ -33,6 +33,7 @@
 		2E89EF75F526B6F174C26D78 /* EntityGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC33459852E509988748F9 /* EntityGroup.cpp */; };
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
+		327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 327C58881DAC82C00089FE80 /* TimingController.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
 		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
@@ -285,6 +286,8 @@
 		318805936D902B4C2CFCA5B7 /* OccurrenceEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OccurrenceEntity.h; path = src/core/OccurrenceEntity.h; sourceTree = SOURCE_ROOT; };
 		32308A781DA23D820005F875 /* Connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Connection.cpp; path = core/Connection.cpp; sourceTree = "<group>"; };
 		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
+		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
+		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
 		329F510D1DA765BF00063471 /* BoundsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoundsController.cpp; path = physics/BoundsController.cpp; sourceTree = "<group>"; };
 		329F510E1DA765BF00063471 /* BoundsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoundsController.h; path = physics/BoundsController.h; sourceTree = "<group>"; };
@@ -1355,6 +1358,8 @@
 				27F7A6AF265FCB06BA639098 /* State.h */,
 				DCBEBF66C39747BD1534C1B5 /* Status.cpp */,
 				52DA674F75908A4AD4029805 /* Status.h */,
+				327C58881DAC82C00089FE80 /* TimingController.cpp */,
+				327C58891DAC82C00089FE80 /* TimingController.h */,
 				BD956060FA767ABE0920762D /* ValueSequence.cpp */,
 				803359AB03C6A03B84A72A69 /* ValueSequence.h */,
 				0BA4009FCDB9E3981E59A2ED /* ValueSupplier.cpp */,
@@ -1889,6 +1894,7 @@
 				591625414631FF5EAAD46547 /* KaleidoscopePass.cpp in Sources */,
 				9542646BAA8BF278A609F010 /* LimbDarkeningPass.cpp in Sources */,
 				8253417391DE251DBE1F669A /* LUTPass.cpp in Sources */,
+				327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */,
 				E39243AEF8A07C8EA90740C2 /* NoiseWarpPass.cpp in Sources */,
 				6C6EF13610CA2101155372DB /* PixelatePass.cpp in Sources */,
 				502109CFF164921BAE0F7E71 /* PostProcessing.cpp in Sources */,

@@ -31,7 +31,7 @@ public:
   OccurrenceEntity(ofVec3f pos,
                    float radius,
                    float radiusFraction,
-                   const State& state);
+                   const ClockState& state);
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
@@ -58,7 +58,7 @@ public:
   
   float getAmountOfObservation() const { return _amountOfObservation; }
 
-  float getAge(const State& state) const { return state.time - _startTime; }
+  float getAge(const ClockState& state) const { return state.localTime - _startTime; }
   
   float originalRadius() const { return _originalRadius; }
 
@@ -86,7 +86,7 @@ public:
     return _occurrenceConnections;
   }
 
-  void update(const State& state) override;
+  void update(const ClockState& state) override;
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 

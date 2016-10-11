@@ -25,7 +25,8 @@ public:
   void resetForce();
   void addForce(ofVec3f force);
 
-  void updateVelocityAndPosition(const State& state, float speed);
+  void updateVelocityAndPosition(const ClockState& state,
+                                 float speed);
 
   const ofVec3f& position() const override { return _position; }
 
