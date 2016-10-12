@@ -9,8 +9,8 @@
 #ifndef ParamPresets_h
 #define ParamPresets_h
 
+#include "../control/Params.h"
 #include "../core/JsonIO.h"
-#include "../core/Params.h"
 
 class ParamPreset
 : public JsonReadable

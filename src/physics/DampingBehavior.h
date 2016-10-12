@@ -11,7 +11,7 @@
 
 #include "../core/Context.h"
 #include "../physics/ForceFieldBehavior.h"
-#include "../core/Params.h"
+#include "../control/Params.h"
 #include "../core/ParticleObject.h"
 #include "../physics/PhysicsBehavior.h"
 

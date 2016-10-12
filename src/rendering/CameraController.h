@@ -11,9 +11,9 @@
 
 #include <ofEasyCam.h>
 #include "../app/AppActions.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
 
 class CameraParams
 : public Params {

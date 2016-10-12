@@ -12,9 +12,9 @@
 #include <memory>
 #include <ofxOsc.h>
 #include <unordered_map>
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
-#include "../core/Params.h"
 
 class AbstractOscBinding;
 class MemoryAppParameters;

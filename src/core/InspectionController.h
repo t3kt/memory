@@ -13,10 +13,10 @@
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
 #include "../app/AppActions.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Info.h"
-#include "../core/Params.h"
 #include "../core/ParticleObject.h"
 
 class Context;

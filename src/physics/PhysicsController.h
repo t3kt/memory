@@ -22,7 +22,7 @@
 #include "../physics/ForceNodeBehavior.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/Params.h"
+#include "../control/Params.h"
 #include "../physics/PhysicsBehavior.h"
 
 using PhysicsBehaviorCollection

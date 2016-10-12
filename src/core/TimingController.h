@@ -10,10 +10,10 @@
 #define TimingController_h
 
 #include "../app/AppActions.h"
+#include "../control/Params.h"
 #include "../core/Clock.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
-#include "../core/Params.h"
 
 class Context;
 

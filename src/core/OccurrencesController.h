@@ -10,13 +10,13 @@
 #define OccurrencesController_h
 
 #include "../app/AppActions.h"
+#include "../control/Params.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
 #include "../core/Events.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/Params.h"
 #include "../physics/BoundsController.h"
 #include "../spawning/OccurrenceSpawner.h"
 

@@ -10,7 +10,7 @@
 #define Colors_h
 
 #include <ofColor.h>
-#include "../core/Params.h"
+#include "../control/Params.h"
 
 class ColorTheme
 : public Params {

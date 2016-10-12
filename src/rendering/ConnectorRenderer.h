@@ -12,10 +12,10 @@
 #include <ofGraphics.h>
 #include <ofTypes.h>
 #include <ofVboMesh.h>
+#include "../control/Params.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/Params.h"
 #include "../rendering/Renderer.h"
 
 class ConnectorRendererParams

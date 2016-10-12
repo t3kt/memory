@@ -9,9 +9,9 @@
 #ifndef ObserverSickness_h
 #define ObserverSickness_h
 
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
 #include "../core/Scheduler.h"
 
 class ObserverSicknessParams

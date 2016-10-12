@@ -8,7 +8,7 @@
 
 #include <cmath>
 #include <ofMain.h>
-#include "../core/ValueSupplier.h"
+#include "../control/ValueSupplier.h"
 
 template<>
 float RandomValueSupplier<float>::getValue() const {

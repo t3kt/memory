@@ -14,7 +14,6 @@
 #include "../core/Connection.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
-#include "../core/ValueSupplier.h"
 #include "../core/WorldObject.h"
 
 class OccurrenceEntity;

@@ -13,9 +13,9 @@
 #include <ofCamera.h>
 #include <ofConstants.h>
 #include <ofxPostProcessing.h>
-#include "../rendering/fx/ColorAdjustPass.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/Params.h"
+#include "../rendering/fx/ColorAdjustPass.h"
 
 class OutputController;
 

@@ -9,8 +9,8 @@
 #ifndef FogController_h
 #define FogController_h
 
+#include "../control/Params.h"
 #include "../core/Component.h"
-#include "../core/Params.h"
 
 class ColorTheme;
 

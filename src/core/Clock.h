@@ -11,9 +11,9 @@
 #define Clock_h
 
 #include <memory>
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
-#include "../core/Params.h"
 #include "../core/State.h"
 
 class ClockParams

@@ -9,9 +9,9 @@
 #ifndef PhysicsBehavior_h
 #define PhysicsBehavior_h
 
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
 #include "../core/ParticleObject.h"
 
 class BoundsController;

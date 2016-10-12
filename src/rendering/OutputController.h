@@ -12,9 +12,9 @@
 #include <memory>
 #include <ofConstants.h>
 #include "../app/AppActions.h"
+#include "../control/Params.h"
 #include "../core/Component.h"
 #include "../core/Events.h"
-#include "../core/Params.h"
 
 #ifdef TARGET_OSX
 #define ENABLE_SYPHON

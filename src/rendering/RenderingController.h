@@ -24,7 +24,7 @@
 #include "../rendering/OccurrencePreRenderer.h"
 #include "../rendering/OccurrenceRenderer.h"
 #include "../rendering/OutputController.h"
-#include "../core/Params.h"
+#include "../control/Params.h"
 #include "../rendering/PostProcController.h"
 
 class ObserverRenderingParams : public Params {

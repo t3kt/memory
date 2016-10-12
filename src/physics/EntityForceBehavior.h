@@ -11,13 +11,13 @@
 
 #include <ofTypes.h>
 #include <ofxChoreograph.h>
+#include "../control/Params.h"
+#include "../control/ValueSequence.h"
 #include "../core/Context.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
-#include "../core/Params.h"
 #include "../core/ParticleObject.h"
 #include "../physics/PhysicsBehavior.h"
-#include "../core/ValueSequence.h"
 
 class AbstractEntityForceBehaviorParams : public ParamsWithEnabled {
 public:

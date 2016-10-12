@@ -9,10 +9,10 @@
 #ifndef ConnectionTracerRenderer_h
 #define ConnectionTracerRenderer_h
 
+#include "../control/Params.h"
+#include "../control/ValueSequence.h"
 #include "../core/Connection.h"
-#include "../core/Params.h"
 #include "../core/ParticleObject.h"
-#include "../core/ValueSequence.h"
 #include "../rendering/Renderer.h"
 
 class Context;

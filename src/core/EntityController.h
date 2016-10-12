@@ -10,10 +10,10 @@
 #define EntityController_h
 
 #include <memory>
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/ObjectManager.h"
-#include "../core/Params.h"
 #include "../core/SimulationEvents.h"
 
 class Context;

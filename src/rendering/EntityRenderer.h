@@ -11,9 +11,9 @@
 
 #include <ofGraphics.h>
 #include <ofxChoreograph.h>
+#include "../control/Params.h"
 #include "../core/AnimationObject.h"
 #include "../core/ObjectManager.h"
-#include "../core/Params.h"
 #include "../rendering/Colors.h"
 #include "../rendering/Renderer.h"
 

@@ -10,12 +10,12 @@
 #define MidiEvents_h
 
 #include <vector>
+#include "../control/MappingSet.h"
+#include "../control/MidiCommon.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Events.h"
 #include "../core/JsonIO.h"
-#include "../control/MappingSet.h"
-#include "../control/MidiCommon.h"
-#include "../core/Params.h"
 #include "../core/SimulationEvents.h"
 
 class MidiRouter;

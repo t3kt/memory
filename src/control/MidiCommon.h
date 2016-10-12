@@ -13,10 +13,10 @@
 #include <iostream>
 #include <JsonIO.h>
 #include <ofxMidi.h>
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Events.h"
 #include "../core/JsonIO.h"
-#include "../core/Params.h"
 
 using MidiDeviceId = int;
 using MidiChannel = int;

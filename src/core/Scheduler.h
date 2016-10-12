@@ -10,10 +10,10 @@
 #define Scheduler_h
 
 #include <ofMath.h>
+#include "../control/Params.h"
+#include "../control/ValueSupplier.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
-#include "../core/ValueSupplier.h"
 
 class SchedulerParams
 : public ParamsWithEnabled {

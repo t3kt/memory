@@ -104,7 +104,7 @@ private:
   ScanReceiver _receiver;
   const EntityScanPolicy _policy;
   int _total;
-  std::set<ObjectId> _scannedIds;
+  std::unordered_set<ObjectId> _scannedIds;
 };
 
 #endif /* EntityScanner_h */

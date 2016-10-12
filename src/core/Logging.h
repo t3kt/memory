@@ -13,8 +13,8 @@
 #include <memory>
 #include <ofLog.h>
 #include <string>
+#include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/Params.h"
 
 class Logger
 : public NonCopyable {

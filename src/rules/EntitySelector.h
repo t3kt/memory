@@ -13,7 +13,6 @@
 #include <memory>
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
 #include "../core/WorldObject.h"
 
 template<typename E>

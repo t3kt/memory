@@ -10,9 +10,9 @@
 #define ObserverAttributes_h
 
 #include <ofTypes.h>
+#include "../control/Params.h"
 #include "../core/Component.h"
 #include "../core/ObserverEntity.h"
-#include "../core/Params.h"
 #include "../rendering/Colors.h"
 #include "../rules/EntityAttributes.h"
 

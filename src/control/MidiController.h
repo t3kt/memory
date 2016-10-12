@@ -10,11 +10,11 @@
 #define MidiController_h
 
 #include <memory>
+#include "../control/MidiCommon.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Events.h"
-#include "../control/MidiCommon.h"
-#include "../core/Params.h"
 
 class MemoryAppParameters;
 class MidiDevice;

@@ -19,7 +19,7 @@
 #include "../core/OccurrencesController.h"
 #include "../control/OscController.h"
 #include "../rendering/OutputController.h"
-#include "../core/Params.h"
+#include "../control/Params.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
 #include "../core/TimingController.h"

@@ -6,7 +6,7 @@
 //
 //
 
-#include "../core/ParamPresets.h"
+#include "../control/ParamPresets.h"
 
 Json ParamPreset::to_json() const {
   return Json::object {

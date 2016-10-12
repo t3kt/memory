@@ -12,8 +12,8 @@
 #include <ofxMidi.h>
 #include <string>
 #include "../control/MidiCommon.h"
+#include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/Params.h"
 
 class MidiDevice
 : public ofxMidiListener

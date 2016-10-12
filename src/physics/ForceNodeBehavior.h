@@ -9,13 +9,13 @@
 #ifndef ForceNodeBehavior_h
 #define ForceNodeBehavior_h
 
+#include "../control/Params.h"
+#include "../control/ValueSequence.h"
+#include "../control/ValueSupplier.h"
 #include "../core/Context.h"
 #include "../core/NodeEntity.h"
 #include "../core/ObjectManager.h"
-#include "../core/Params.h"
 #include "../core/ParticleObject.h"
-#include "../core/ValueSequence.h"
-#include "../core/ValueSupplier.h"
 #include "../physics/PhysicsBehavior.h"
 
 class VortexForceBehaviorParams : public ParamsWithEnabled {

@@ -11,7 +11,7 @@
 
 #include "../physics/AttractionBehavior.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
+#include "../control/Params.h"
 #include "../core/ParticleObject.h"
 #include "../physics/PhysicsBehavior.h"
 

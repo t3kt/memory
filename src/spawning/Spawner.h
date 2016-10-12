@@ -10,9 +10,9 @@
 #define Spawner_h
 
 #include <memory>
+#include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Params.h"
 #include "../core/Scheduler.h"
 
 class Spawner

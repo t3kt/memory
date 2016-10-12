@@ -10,8 +10,8 @@
 #define OccurrenceSpawner_h
 
 #include "../app/AppActions.h"
-#include "../core/Params.h"
-#include "../core/ValueSupplier.h"
+#include "../control/Params.h"
+#include "../control/ValueSupplier.h"
 #include "../spawning/Spawner.h"
 
 class BoundsController;
