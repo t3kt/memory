@@ -45,7 +45,7 @@ void OccurrencePreRenderer::update() {
                      lowCount,
                      highCount,
                      0, 1, true);
-    auto age = entity->getAge(_context.entityState);
+    auto age = entity->age().get();
     if (age < fadeIn->getDuration()) {
       color.a *= fadeIn->getValue(age);
     }

@@ -9,8 +9,10 @@
 #include "../core/Info.h"
 #include "../core/ParticleObject.h"
 
-ParticleObject::ParticleObject(ofVec3f pos)
-: _position(pos)
+ParticleObject::ParticleObject(ofVec3f pos,
+                               const ClockState& state)
+: WorldObject(state)
+, _position(pos)
 , _velocity(0)
 , _force(0)
 , _startPosition(pos)

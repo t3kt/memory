@@ -24,8 +24,8 @@ class OccurrenceEntity
 public:
   static const auto type = EntityType::OCCURRENCE;
 
-  static std::shared_ptr<OccurrenceEntity> createEmpty() {
-    return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity());
+  static std::shared_ptr<OccurrenceEntity> createEmpty(const Context& context) {
+    return std::shared_ptr<OccurrenceEntity>(new OccurrenceEntity(context.entityState));
   }
 
   OccurrenceEntity(ofVec3f pos,
@@ -57,8 +57,6 @@ public:
   void detachConnections() override;
   
   float getAmountOfObservation() const { return _amountOfObservation; }
-
-  float getAge(const ClockState& state) const { return state.localTime - _startTime; }
   
   float originalRadius() const { return _originalRadius; }
 
@@ -110,7 +108,8 @@ protected:
                                  const SerializationContext& context) const override;
   
 private:
-  OccurrenceEntity() { }
+  OccurrenceEntity(const ClockState& state)
+  : ParticleObject(state) { }
 
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;
@@ -123,7 +122,6 @@ private:
   float _originalRadius;
   float _originalRadiusFraction;
   float _actualRadius;
-  float _startTime;
   float _amountOfObservation;
   EntityConnectionMap<ObserverEntity> _observerConnections;
   EntityConnectionMap<OccurrenceEntity> _occurrenceConnections;

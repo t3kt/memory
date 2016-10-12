@@ -24,9 +24,7 @@ class ObserverEntity
 public:
   static const auto type = EntityType::OBSERVER;
 
-  static std::shared_ptr<ObserverEntity> createEmpty() {
-    return std::shared_ptr<ObserverEntity>(new ObserverEntity());
-  }
+  static std::shared_ptr<ObserverEntity> createEmpty(const Context& context);
 
   ObserverEntity(ofVec3f pos, float decay, const ClockState& state);
   virtual ~ObserverEntity() override {}
@@ -65,8 +63,6 @@ public:
   
   float getRemainingLifetimeFraction() const { return _lifeFraction; }
 
-  float getAge(const ClockState& state) const { return state.localTime - _startTime; }
-
   float getDecayRate() const { return _decayRate; }
   void setDecayRate(float decayRate) { _decayRate = decayRate; }
 
@@ -98,9 +94,8 @@ protected:
                                  const SerializationContext& context) const override;
 
 private:
-  ObserverEntity() { }
+  ObserverEntity(const ClockState& state) : ParticleObject(state) { }
 
-  float _startTime;
   float _lifeFraction;
   bool _sick;
   float _decayRate;

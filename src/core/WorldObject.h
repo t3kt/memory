@@ -18,6 +18,7 @@
 #include "../core/ObjectId.h"
 #include "../core/JsonIO.h"
 #include "../core/Serialization.h"
+#include "../core/State.h"
 
 enum class EntityType {
   ANIMATION,
@@ -27,7 +28,6 @@ enum class EntityType {
   OCCURRENCE,
 };
 
-class ClockState;
 class Info;
 
 class WorldObject
@@ -35,12 +35,14 @@ class WorldObject
 , public Serializable
 , public NonCopyable {
 public:
-  WorldObject();
+  WorldObject(const ClockState& state);
   virtual ~WorldObject() {}
   
   const ObjectId& id() const { return _id; }
 
   virtual bool isParticle() const { return false; }
+
+  const AgeTracker& age() const { return _age; }
 
   bool alive() const { return _alive; }
 
@@ -81,6 +83,7 @@ protected:
   virtual void addSerializedFields(Json::object& obj,
                                    const SerializationContext& context) const override;
 private:
+  AgeTracker _age;
   ofFloatColor _color;
   bool _alive;
   ObjectId _id;

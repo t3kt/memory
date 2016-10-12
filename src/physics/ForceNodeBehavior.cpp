@@ -17,7 +17,8 @@ AbstractVortexForceNodeBehavior::spawnNode(ofVec3f pos) {
                       ofRandom(1));
   auto node = std::make_shared<VortexForceNode>(pos,
                                                 axis,
-                                                radius);
+                                                radius,
+                                                _context.physicsState);
   _nodes.add(node);
   _context.nodes.add(node);
   return node;

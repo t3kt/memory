@@ -7,17 +7,22 @@
 //
 
 #include <ofMain.h>
+#include "../core/Context.h"
 #include "../core/Info.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 
+std::shared_ptr<ObserverEntity>
+ObserverEntity::createEmpty(const Context& context) {
+  return std::shared_ptr<ObserverEntity>(new ObserverEntity(context.entityState));
+}
+
 ObserverEntity::ObserverEntity(ofVec3f pos,
                                float decay,
                                const ClockState& state)
-: ParticleObject(pos)
+: ParticleObject(pos, state)
 , _decayRate(decay)
-, _lifeFraction(1)
-, _startTime(state.localTime) {
+, _lifeFraction(1) {
 }
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
@@ -76,7 +81,6 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
                                          const SerializationContext& context) const {
   ParticleObject::addSerializedFields(obj, context);
   JsonUtil::mergeInto(obj, {
-    {"startTime", _startTime - context.entityState.localTime},
     {"lifeFraction", _lifeFraction},
     {"decayRate", _decayRate},
     {"sick", _sick},
@@ -86,7 +90,6 @@ void ObserverEntity::addSerializedFields(Json::object &obj,
 void ObserverEntity::deserializeFields(const Json &obj,
                                        const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
-  _startTime = JsonUtil::fromJson<float>(obj["startTime"]) + context.entityState.localTime;
   _decayRate = JsonUtil::fromJson<float>(obj["decayRate"]);
   _lifeFraction = JsonUtil::fromJson<float>(obj["lifeFraction"]);
   _sick = JsonUtil::fromJson<bool>(obj["sick"]);

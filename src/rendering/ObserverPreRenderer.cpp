@@ -43,7 +43,7 @@ void ObserverPreRenderer::update() {
       color.setSaturation(0);
     }
     color.a *= entity->getRemainingLifetimeFraction();
-    auto age = entity->getAge(_context.entityState);
+    auto age = entity->age().get();
     if (age < fadeIn->getDuration()) {
       color.a *= fadeIn->getValue(age);
     }

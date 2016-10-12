@@ -14,3 +14,12 @@ void ClockState::outputFields(std::ostream &os) const {
       << ", running: " << running
       << ", rate: " << rate;
 }
+
+void AgeTracker::outputFields(std::ostream &os) const {
+  os << "age: " << get();
+//  os << ", startTime: " << _startTime;
+}
+
+void AgeTracker::setAge(float age) {
+  _startTime = _state.localTime - age;
+}

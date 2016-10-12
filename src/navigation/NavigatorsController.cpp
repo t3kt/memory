@@ -166,7 +166,8 @@ bool NavigatorsController::spawnObserverNavigator(std::shared_ptr<ObserverEntity
   }
   auto startState = std::make_shared<ObserverNavState>(entity);
   auto navigator = std::make_shared<NavigatorEntity>(startState,
-                                                     _context);
+                                                     _context,
+                                                     _context.entityState);
   _navigators.add(navigator);
   NavigatorEventArgs e(SimulationEventType::NAVIGATOR_SPAWNED,
                        *navigator);

@@ -31,4 +31,32 @@ protected:
   void outputFields(std::ostream& os) const override;
 };
 
+class AgeTracker
+: public NonCopyable
+, public Outputable {
+public:
+  AgeTracker(const ClockState& state)
+  : _state(state)
+  , _startTime(state.localTime) { }
+
+  float get() const {
+    return _state.localTime - _startTime;
+  }
+
+  operator float() const { return get(); }
+
+  float startTime() const { return _startTime; }
+
+  void setAge(float age);
+
+  std::string typeName() const override { return "Age"; }
+
+protected:
+  void outputFields(std::ostream& os) const override;
+
+private:
+  const ClockState& _state;
+  float _startTime;
+};
+
 #endif /* defined(__behavior__State__) */

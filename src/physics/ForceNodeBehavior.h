@@ -52,8 +52,9 @@ class VortexForceNode
 public:
   VortexForceNode(ofVec3f pos,
                   ofVec3f axis,
-                  float radius)
-  : NodeEntity(pos)
+                  float radius,
+                  const ClockState& state)
+  : NodeEntity(pos, state)
   , _axis(axis)
   , _radius(radius) { }
 

@@ -57,7 +57,7 @@ public:
     JsonUtil::assertHasType(arr, Json::ARRAY);
     for (const auto& val : arr.array_items()) {
       JsonUtil::assertHasType(val, Json::OBJECT);
-      auto entity = T::createEmpty();
+      auto entity = T::createEmpty(context);
       entity->deserializeFields(val, context);
       add(entity);
     }

@@ -16,7 +16,8 @@
 
 class ParticleObject : public WorldObject {
 public:
-  ParticleObject(ofVec3f pos);
+  ParticleObject(ofVec3f pos,
+                 const ClockState& state);
 
   bool isParticle() const override { return true; }
 
@@ -46,7 +47,7 @@ public:
   virtual void fillInfo(Info& info) const override;
 
 protected:
-  ParticleObject() { }
+  ParticleObject(const ClockState& state) : WorldObject(state) { }
 
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

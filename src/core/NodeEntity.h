@@ -12,6 +12,7 @@
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/ParticleObject.h"
+#include "../core/State.h"
 #include "../core/WorldObject.h"
 
 class NodeEntity
@@ -19,7 +20,9 @@ class NodeEntity
 public:
   static const auto type = EntityType::NODE;
 
-  NodeEntity(ofVec3f pos) : ParticleObject(pos) { }
+  NodeEntity(ofVec3f pos,
+             const ClockState& state)
+  : ParticleObject(pos, state) { }
 
   std::string typeName() const override { return "Node"; }
 

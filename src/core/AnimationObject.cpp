@@ -11,7 +11,8 @@
 
 AnimationObject::AnimationObject(const Params& params,
                                  const ClockState& state)
-: _duration(params.duration())
+: WorldObject(state)
+, _duration(params.duration())
 , _visible(true)
 , _percentage(0)
 , _startTime(state.localTime) {}

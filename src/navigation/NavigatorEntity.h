@@ -28,7 +28,8 @@ public:
   }
 
   NavigatorEntity(NavigatorStatePtr prevState,
-                  Context& context);
+                  Context& context,
+                  const ClockState& state);
 
   const ofVec3f& prevPosition() const;
   const ofVec3f& nextPosition() const;
@@ -71,7 +72,8 @@ public:
   static const auto type = EntityType::NAVIGATOR;
 
   NavigatorEntity_2(NavigatorStatePtr prevState,
-                    const float& stepTime);
+                    const float& stepTime,
+                    const ClockState& state);
 
   const ofVec3f& prevPosition() const;
   const ofVec3f& nextPosition() const;

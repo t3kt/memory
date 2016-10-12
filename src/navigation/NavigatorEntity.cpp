@@ -12,8 +12,9 @@
 #include "../navigation/NavigatorState.h"
 
 NavigatorEntity::NavigatorEntity(NavigatorStatePtr prevState,
-                                 Context& context)
-: ParticleObject(prevState->position())
+                                 Context& context,
+                                 const ClockState& state)
+: ParticleObject(prevState->position(), state)
 , _prevState(prevState)
 , _lastChangeTime(context.time()) { }
 
@@ -84,8 +85,10 @@ bool NavigatorEntity::stateAlive() const {
 }
 
 NavigatorEntity_2::NavigatorEntity_2(NavigatorStatePtr prevState,
-                                     const float& stepTime)
-: _prevState(prevState)
+                                     const float& stepTime,
+                                     const ClockState& state)
+: WorldObject(state)
+, _prevState(prevState)
 , _stepTime(stepTime) {
   _timeline.setFinishFn([this]() {
     this->onTimelineFinished();

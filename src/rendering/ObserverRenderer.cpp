@@ -108,7 +108,7 @@ void InstancedObserverRenderer::update() {
   std::size_t i = 0;
   for (const auto& entity : entities) {
     float alpha = entity->getRemainingLifetimeFraction();
-    float age = entity->getAge(_context.entityState);
+    auto age = entity->age().get();
     if (age < fadeIn->getDuration()) {
       alpha *= fadeIn->getValue(age);
     }
