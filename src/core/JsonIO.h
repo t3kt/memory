@@ -71,6 +71,13 @@ namespace JsonUtil {
     }
   }
 
+  template<typename T>
+  T fromJsonField(const Json& obj,
+                  const std::string& key) {
+    T defaultValue;
+    return fromJsonField(obj, key, defaultValue);
+  }
+
   Json merge(const Json obj1, const Json obj2);
   void mergeInto(Json::object& targetObj, const Json::object& sourceObj);
 

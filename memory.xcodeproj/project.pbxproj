@@ -39,6 +39,7 @@
 		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
 		329F511F1DA9F73F00063471 /* OutputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F511D1DA9F73F00063471 /* OutputController.cpp */; };
 		329F51221DAA089600063471 /* FogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51201DAA089600063471 /* FogController.cpp */; };
+		32CCB2F31DAE080E00BAE226 /* ParamPresets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F11DAE080E00BAE226 /* ParamPresets.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -297,6 +298,8 @@
 		329F511E1DA9F73F00063471 /* OutputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutputController.h; path = rendering/OutputController.h; sourceTree = "<group>"; };
 		329F51201DAA089600063471 /* FogController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogController.cpp; path = rendering/FogController.cpp; sourceTree = "<group>"; };
 		329F51211DAA089600063471 /* FogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogController.h; path = rendering/FogController.h; sourceTree = "<group>"; };
+		32CCB2F11DAE080E00BAE226 /* ParamPresets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamPresets.cpp; path = core/ParamPresets.cpp; sourceTree = "<group>"; };
+		32CCB2F21DAE080E00BAE226 /* ParamPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamPresets.h; path = core/ParamPresets.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -1346,6 +1349,8 @@
 				DFC44816FA79F669BBF0EC7A /* OccurrencesController.h */,
 				581F497F9FA3425721AEB3DC /* Params.cpp */,
 				EF3A3B4184C0BD92ED93C143 /* Params.h */,
+				32CCB2F11DAE080E00BAE226 /* ParamPresets.cpp */,
+				32CCB2F21DAE080E00BAE226 /* ParamPresets.h */,
 				F38907EC6905E539FB6235FC /* ParticleObject.cpp */,
 				A11D7F9F3E9B04FB05B5168A /* ParticleObject.h */,
 				3AFE9244501E08A7D7726BCD /* Scheduler.cpp */,
@@ -1768,6 +1773,7 @@
 				3FE0CFF89D530BE09E0C2503 /* Common.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
 				51D64A959F3A0E1CB153A3F7 /* Enums.cpp in Sources */,
+				32CCB2F31DAE080E00BAE226 /* ParamPresets.cpp in Sources */,
 				A7FEFFFE09400F8FF8B9FA9A /* EventLogging.cpp in Sources */,
 				E0194FE44814C8337B696F06 /* Info.cpp in Sources */,
 				A9EA0DA3681A4682D890F307 /* InspectionController.cpp in Sources */,

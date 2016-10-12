@@ -22,7 +22,10 @@ class TParamBase
 : public JsonReadable
 , public JsonWritable {
 public:
+  static const char pathSeparator = '.';
+
   virtual std::string getKey() const = 0;
+
   virtual Json::object::value_type toJsonField() const {
     return { getKey(), to_json() };
   }
@@ -272,6 +275,10 @@ public:
   TParamBase* lookupPath(const std::string& path);
 
   std::vector<TParamBase*>& getParamBases() { return _paramBases; }
+
+  const std::vector<TParamBase*>& getParamBases() const {
+    return _paramBases;
+  }
 
   void performRecursiveParamAction(ParamBaseAction action);
 
