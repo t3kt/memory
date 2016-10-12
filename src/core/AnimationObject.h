@@ -13,6 +13,7 @@
 #include <ofxChoreograph.h>
 #include <string>
 #include "../control/Params.h"
+#include "../control/ValueRange.h"
 #include "../control/ValueSupplier.h"
 #include "../core/State.h"
 #include "../core/WorldObject.h"

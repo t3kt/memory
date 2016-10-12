@@ -10,6 +10,7 @@
 #define AttractionBehavior_h
 
 #include "../control/Params.h"
+#include "../control/ValueRange.h"
 #include "../core/Context.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"

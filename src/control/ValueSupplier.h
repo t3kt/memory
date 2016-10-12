@@ -14,6 +14,7 @@
 #include <ofTypes.h>
 #include <string>
 #include "../control/Params.h"
+#include "../control/ValueRange.h"
 
 template <typename T>
 class RandomValueSupplier : public ValueRange<T> {

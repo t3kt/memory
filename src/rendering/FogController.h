@@ -10,6 +10,7 @@
 #define FogController_h
 
 #include "../control/Params.h"
+#include "../control/ValueRange.h"
 #include "../core/Component.h"
 
 class ColorTheme;

@@ -12,6 +12,7 @@
 #include <ofGraphics.h>
 #include <ofxChoreograph.h>
 #include "../control/Params.h"
+#include "../control/ValueRange.h" 
 #include "../core/AnimationObject.h"
 #include "../core/ObjectManager.h"
 #include "../rendering/Colors.h"

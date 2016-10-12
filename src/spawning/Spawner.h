@@ -11,6 +11,7 @@
 
 #include <memory>
 #include "../control/Params.h"
+#include "../control/ValueRange.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
 #include "../core/Scheduler.h"
