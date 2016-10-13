@@ -12,6 +12,7 @@
 #include <ofTypes.h>
 #include <ofUtils.h>
 #include <sstream>
+#include <type_traits>
 #include "../app/AppSystem.h"
 #include "../core/JsonIO.h"
 
@@ -223,6 +224,13 @@ namespace JsonUtil {
     assertHasType(value, Json::STRING);
     return value.string_value();
   }
+
+//  template<typename T>
+//  std::enable_if<std::is_trivially_constructible<T>::value && !std::is_fundamental<T>::value, T> fromJson(const Json& value) {
+//    T result;
+//    result.read_json(value);
+//    return result;
+//  }
 
   void mergeInto(Json::object& targetObj,
                  const Json::object& sourceObj) {

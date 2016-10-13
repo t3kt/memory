@@ -9,7 +9,10 @@
 #ifndef ParametersController_h
 #define ParametersController_h
 
+#include <memory>
+#include <vector>
 #include "../app/AppActions.h"
+#include "../control/ParamPresets.h"
 #include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
@@ -22,13 +25,23 @@ class ParametersState
 , public JsonReadable
 , public JsonWritable {
 public:
+  using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
+
   ParametersState(MemoryAppParameters& params)
   : _params(params) { }
 
   Json to_json() const override;
   void read_json(const Json& obj) override;
+
+  PresetList& presets() { return _presets; }
+  const PresetList& presets() const { return _presets; }
+
+  void addPreset(std::shared_ptr<ParamPreset> preset) {
+    _presets.push_back(preset);
+  }
 private:
   MemoryAppParameters& _params;
+  PresetList _presets;
 };
 
 class ParametersController
@@ -48,6 +61,7 @@ public:
   bool performAction(AppAction action) override;
   void load();
   void save();
+  void captureNewPreset();
 private:
   MemoryAppParameters& _params;
   ParametersState _state;
