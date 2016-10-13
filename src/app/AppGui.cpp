@@ -32,8 +32,9 @@ private:
 class LoadPresetButton
 : public ofxGuiButton {
 public:
-  explicit LoadPresetButton(const ParamPreset& preset)
-  : ofxGuiButton("load preset")
+  explicit LoadPresetButton(std::string name,
+                            const ParamPreset& preset)
+  : ofxGuiButton("load " + name)
   , _preset(preset) {
     setType(ofxGuiToggleType::FULLSIZE);
     addListener(this, &LoadPresetButton::onClick);
@@ -160,9 +161,15 @@ void AppGui::setup() {
 }
 
 void AppGui::addPresetButtons(ofxGuiContainer *container) {
-  for (const auto& preset
-       : AppSystem::get().simulation()->parameters().presets()) {
-    container->add<LoadPresetButton>(*preset);
+  const auto& presets =
+    AppSystem::get().simulation()->parameters().presets();
+  for (std::size_t i = 0; i < presets.size(); i++) {
+    const auto& preset = *(presets[i]);
+    auto name = preset.name();
+    if (name.empty()) {
+      name = "[" + ofToString(i) + "]";
+    }
+    container->add<LoadPresetButton>(name, preset);
   }
 }
 

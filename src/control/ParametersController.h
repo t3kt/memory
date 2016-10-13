@@ -68,9 +68,11 @@ public:
   void load();
   void save();
   void captureNewPreset();
+  void resetParams();
 private:
   MemoryAppParameters& _params;
   ParametersState _state;
+  bool _isCapturingPreset; // ugly hack...
 };
 
 #endif /* ParametersController_h */

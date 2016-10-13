@@ -69,9 +69,17 @@ bool ParametersController::performAction(AppAction action) {
     case AppAction::CAPTURE_PRESET:
       captureNewPreset();
       return true;
+    case AppAction::RESET_PARAMS:
+      resetParams();
+      return true;
     default:
       return false;
   }
+}
+
+void ParametersController::resetParams() {
+  AppSystem::get().log().app().logNotice("Resetting parameters...");
+  _params.resetToDefault();
 }
 
 void ParametersController::load() {
@@ -97,10 +105,29 @@ void ParametersController::save() {
 }
 
 void ParametersController::captureNewPreset() {
+  if (_isCapturingPreset) {
+    // see https://github.com/t3kt/memory#15
+    AppSystem::get().log().app().logWarning("Already capturing preset... it's that annoying duplicate action bug...");
+    return;
+  }
+  _isCapturingPreset = true;
   AppSystem::get().log().app().logNotice("Capturing preset...");
+  auto defaultName =
+    "preset " + ofToString(_state.presets().size() + 1);
+  auto name = AppSystem::promptForText("Preset name",
+                                       defaultName);
+  if (name.empty()) {
+    AppSystem::get().log().app().logNotice("Not creating preset");
+    return;
+  }
   auto preset = std::make_shared<ParamPreset>();
+  preset->setName(name);
   preset->captureParams(_params);
   _state.addPreset(preset);
+
+  AppSystem::get().log().app()
+  .logNotice("Captured preset: '" + name + "'");
+  _isCapturingPreset = false;
 }
 
 void ParametersController::loadPreset(const ParamPreset &preset) {

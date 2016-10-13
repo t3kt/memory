@@ -40,6 +40,7 @@ EnumTypeInfo<AppAction> AppActionType({
   {"selectNextOccurrence", AppAction::SELECT_NEXT_OCCURRENCE},
   {"toggleFullscreen", AppAction::TOGGLE_FULLSCREEN},
   {"capturePreset", AppAction::CAPTURE_PRESET},
+  {"resetParams", AppAction::RESET_PARAMS},
 });
 
 template<>

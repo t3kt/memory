@@ -11,7 +11,7 @@
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
-#include <ofSystemUtils.h>
+#include <string>
 #include "../app/AppActions.h"
 #include "../app/AppParameters.h"
 #include "../core/Common.h"
@@ -64,6 +64,9 @@ public:
   bool performFileLoadAction(FileAction action,
                              std::string windowTitle = "",
                              std::string defaultPath = "");
+
+  static std::string promptForText(std::string message,
+                                   std::string initialText = "");
 
 private:
   void setup();

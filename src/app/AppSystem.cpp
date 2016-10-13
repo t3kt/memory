@@ -4,6 +4,7 @@
 //
 
 #include <map>
+#include <ofSystemUtils.h>
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
 #include "../core/TimingController.h"
@@ -83,6 +84,7 @@ void AppSystem::main() {
 }
 
 bool AppSystem::performAction(AppAction action) {
+  _log.app().logNotice("Performing AppAction: " + enumToString(action) + "...");
   auto args = AppActionEventArgs(action);
   bool handled = appActionTriggered.notifyListenersUntilHandled(args);
   if (!handled) {
@@ -119,4 +121,11 @@ bool AppSystem::performFileLoadAction(FileAction action,
     }
     return action(result);
   });
+}
+
+/*static */
+std::string AppSystem::promptForText(std::string message,
+                                     std::string initialText) {
+  return ofSystemTextBoxDialog(message,
+                               initialText);
 }

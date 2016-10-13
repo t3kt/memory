@@ -49,6 +49,7 @@ enum class AppAction {
   SELECT_NEXT_OCCURRENCE,
   TOGGLE_FULLSCREEN,
   CAPTURE_PRESET,
+  RESET_PARAMS,
 };
 
 using AppActionEventArgs = ValueEventArgs<AppAction>;
