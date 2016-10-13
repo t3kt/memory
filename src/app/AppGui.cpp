@@ -5,6 +5,9 @@
 #include <ofxGuiExtended.h>
 #include "../app/AppGui.h"
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
+#include "../control/ParametersController.h"
+#include "../control/ParamPresets.h"
 
 class ActionButton
 : public ofxGuiButton {
@@ -24,6 +27,26 @@ private:
   }
 
   const AppAction _action;
+};
+
+class LoadPresetButton
+: public ofxGuiButton {
+public:
+  explicit LoadPresetButton(const ParamPreset& preset)
+  : ofxGuiButton("load preset")
+  , _preset(preset) {
+    setType(ofxGuiToggleType::FULLSIZE);
+    addListener(this, &LoadPresetButton::onClick);
+  }
+
+  ~LoadPresetButton() {
+    removeListener(this, &LoadPresetButton::onClick);
+  }
+private:
+  void onClick() {
+    AppSystem::get().simulation()->parameters().loadPreset(_preset);
+  }
+  const ParamPreset& _preset;
 };
 
 //static void collapseDisabled(ofxGuiElement* element) {
@@ -121,9 +144,12 @@ void AppGui::setup() {
   }
   rootTabs->addGroup(_appParams.debug)->setName("Dbg");
   {
-    auto actionsTab = rootTabs->addGroup();
-    actionsTab->setName("Act");
+    auto actionsTab = rootTabs->addGroup("Act");
     addActionButtons(actionsTab);
+  }
+  {
+    auto presetsTab = rootTabs->addGroup("Preset");
+    addPresetButtons(presetsTab);
   }
   rootTabs->setTabHeight(6);
   rootTabs->setTabWidth(44);
@@ -131,6 +157,13 @@ void AppGui::setup() {
 
   loadTheme();
   _mainPanel->blockLayout(false);
+}
+
+void AppGui::addPresetButtons(ofxGuiContainer *container) {
+  for (const auto& preset
+       : AppSystem::get().simulation()->parameters().presets()) {
+    container->add<LoadPresetButton>(*preset);
+  }
 }
 
 void AppGui::addActionButtons(ofxGuiContainer *container) {

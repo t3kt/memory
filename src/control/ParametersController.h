@@ -20,12 +20,13 @@
 
 class MemoryAppParameters;
 
+using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
+
 class ParametersState
 : public NonCopyable
 , public JsonReadable
 , public JsonWritable {
 public:
-  using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
 
   ParametersState(MemoryAppParameters& params)
   : _params(params) { }
@@ -57,6 +58,11 @@ public:
 
   void setup() override;
   void update() override;
+
+  PresetList& presets() { return _state.presets();; }
+  const PresetList& presets() const { return _state.presets(); }
+
+  void loadPreset(const ParamPreset& preset);
 
   bool performAction(AppAction action) override;
   void load();

@@ -32,6 +32,7 @@ public:
 private:
   void loadTheme();
   void addActionButtons(ofxGuiContainer* container);
+  void addPresetButtons(ofxGuiContainer* container);
 
   MemoryAppParameters& _appParams;
   std::shared_ptr<ofxGui> _gui;

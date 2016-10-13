@@ -217,7 +217,7 @@
         },
         "enabled": true,
         "initialVelocity": {
-          "high": 13.341836929321289,
+          "high": 7.7134523391723633,
           "low": 0
         },
         "rate": 4.1071429252624512
@@ -366,7 +366,7 @@
     },
     "rendering": {
       "camera": {
-        "spinEnabled": false,
+        "spinEnabled": true,
         "spinRate": [
           0.0041656494140625,
           0.21241188049316406,
@@ -1349,6 +1349,497 @@
         "rendering": {
           "camera": {
             "spinEnabled": false,
+            "spinRate": [
+              0.0041656494140625,
+              0.21241188049316406,
+              -0.099958419799804688
+            ]
+          },
+          "connections": {
+            "alphaFade": {
+              "length0": 0.46279948949813843,
+              "length1": 0.52080708742141724,
+              "length2": 1,
+              "startValue": 0,
+              "value0": 1,
+              "value1": 1,
+              "value2": 0
+            },
+            "drawRadius": 1.8000000715255737,
+            "enabled": true,
+            "rate": 0.41999998688697815
+          },
+          "fog": {
+            "density": 0.0013061225181445479,
+            "distance": {
+              "high": 4.0016660690307617,
+              "low": 3.3769264221191406
+            },
+            "enabled": false,
+            "useBackgroundColor": true
+          },
+          "observers": {
+            "connectorRenderer": {
+              "enabled": true,
+              "lineWidth": 2.5114538669586182
+            },
+            "instancedRenderer": {
+              "enabled": false,
+              "fadeIn": {
+                "duration": 1,
+                "endValue": 1,
+                "startValue": 0
+              },
+              "size": 10
+            },
+            "preRenderer": {
+              "fadeIn": {
+                "duration": 1,
+                "endValue": 1,
+                "startValue": 0
+              },
+              "highlightAmount": 0.40000000596046448,
+              "size": 5.7351107597351074
+            },
+            "renderer": {
+              "enabled": true
+            }
+          },
+          "occurrences": {
+            "connectorRenderer": {
+              "enabled": true,
+              "lineWidth": 1.8867141008377075
+            },
+            "occurrenceConnectorRenderer": {
+              "enabled": true,
+              "lineWidth": 4.07330322265625
+            },
+            "preRenderer": {
+              "connectionCountRange": {
+                "high": 4,
+                "low": 0
+              },
+              "fadeIn": {
+                "duration": 1,
+                "endValue": 1,
+                "startValue": 0
+              },
+              "highlightAmount": 0.40000000596046448,
+              "sizeRange": {
+                "high": 10.751474380493164,
+                "low": 1.1891320943832397
+              }
+            },
+            "renderer": {
+              "enabled": true,
+              "showRange": false,
+              "wireBrightness": 1.5,
+              "wireEnabled": false,
+              "wireSaturation": 0.19897958636283875,
+              "wireScale": 1.0928571224212646
+            }
+          },
+          "postProc": {
+            "bloom": {
+              "enabled": true
+            },
+            "colorAdjust": {
+              "brightness": 0,
+              "contrast": 1,
+              "enabled": true,
+              "hueOffset": 0,
+              "saturationMult": 1.0008330345153809,
+              "valueMult": 1
+            },
+            "dof": {
+              "aperture": 0.33785924315452576,
+              "enabled": true,
+              "focus": 0.99490213394165039,
+              "maxBlur": 0.70324862003326416
+            },
+            "edge": {
+              "enabled": false,
+              "hue": 0.5,
+              "saturation": 0.5
+            },
+            "enabled": true,
+            "fxaa": {
+              "enabled": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "",
+      "params": {
+        "animations": {
+          "enabled": false,
+          "observerDied": {
+            "alpha": {
+              "high": 0,
+              "low": 1
+            },
+            "duration": 2.3265306949615479,
+            "enabled": true,
+            "radius": {
+              "high": 0.20000000298023224,
+              "low": 0
+            }
+          },
+          "occurrenceDied": {
+            "alpha": {
+              "high": 0,
+              "low": 1
+            },
+            "duration": 3.3469388484954834,
+            "enabled": true,
+            "radius": {
+              "high": 0.20000000298023224,
+              "low": 0
+            }
+          },
+          "occurrenceSpawnFailed": {
+            "alpha": {
+              "high": 0,
+              "low": 1
+            },
+            "duration": 1,
+            "enabled": true,
+            "radius": {
+              "high": 0.17509371042251587,
+              "low": 0
+            }
+          }
+        },
+        "colors": {
+          "background": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "bounds": [
+            0.20000000298023224,
+            0.20000000298023224,
+            0.20000000298023224,
+            1
+          ],
+          "fog": [
+            0.60000002384185791,
+            0.60000002384185791,
+            0.60000002384185791,
+            0.5
+          ],
+          "observerConnector": [
+            0.38265305757522583,
+            0.70918369293212891,
+            0.33163264393806458,
+            0.12244898080825806
+          ],
+          "observerDied": [
+            0.66000598669052124,
+            0.64406800270080566,
+            0.78750300407409668,
+            0.27551019191741943
+          ],
+          "observerMarker": [
+            0.52499997615814209,
+            0.69999998807907104,
+            0.34999999403953552,
+            1
+          ],
+          "observerThresholdConnector": [
+            0.69999998807907104,
+            0.69999998807907104,
+            0.85000002384185791,
+            0.47959184646606445
+          ],
+          "occurrenceConnector": [
+            1,
+            0.5,
+            0.34000000357627869,
+            1
+          ],
+          "occurrenceDied": [
+            0.7662540078163147,
+            0.64406800270080566,
+            0.4528219997882843,
+            0.1785714328289032
+          ],
+          "occurrenceMarker": [
+            1,
+            0.5,
+            0.34000000357627869,
+            1
+          ],
+          "occurrenceObserverConnector": [
+            0.83673471212387085,
+            0.63265305757522583,
+            0.37244898080825806,
+            1
+          ],
+          "occurrenceRange": [
+            0.5,
+            0.5,
+            0.5,
+            0.13775509595870972
+          ],
+          "occurrenceSpawnFailed": [
+            0.81406599283218384,
+            0.68125498294830322,
+            0.51125800609588623,
+            0.36224490404129028
+          ]
+        },
+        "core": {
+          "midi": {
+            "enabled": false,
+            "max": {
+              "enabled": true
+            },
+            "twister": {
+              "enabled": false
+            }
+          },
+          "osc": {
+            "enabled": true,
+            "inputEnabled": true,
+            "inputPort": 9999,
+            "outputEnabled": true,
+            "outputHost": "localhost",
+            "outputPort": 9000,
+            "paramPrefix": "/param/"
+          },
+          "output": {
+            "externalEnabled": true,
+            "fullscreen": false
+          },
+          "timing": {
+            "root": {
+              "entity": {
+                "paused": false,
+                "rate": 7.2216100692749023
+              },
+              "paused": false,
+              "physics": {
+                "paused": false,
+                "rate": 7.5744209289550781
+              },
+              "rate": 7.1772427558898926
+            }
+          }
+        },
+        "debug": {
+          "inspect": {
+            "clickRange": 13.577677726745605,
+            "enabled": true,
+            "showInfo": true
+          },
+          "logging": {
+            "anim": {
+              "enabled": false,
+              "level": 1
+            },
+            "app": {
+              "enabled": true,
+              "level": 1
+            },
+            "ctrl": {
+              "enabled": false,
+              "level": 1
+            },
+            "enabled": true,
+            "nav": {
+              "enabled": false,
+              "level": 1
+            },
+            "node": {
+              "enabled": true,
+              "level": 1
+            },
+            "obs": {
+              "enabled": false,
+              "level": 1
+            },
+            "occ": {
+              "enabled": false,
+              "level": 1
+            }
+          },
+          "showBounds": false,
+          "showPhysics": false,
+          "showStatus": true
+        },
+        "navigators": {
+          "moveRate": 23.25,
+          "observerNavigatorSpawner": {
+            "chance": 1,
+            "enabled": false,
+            "rate": 0.55102038383483887
+          },
+          "reachRange": 8.25,
+          "stepDuration": 1
+        },
+        "observers": {
+          "rateSpawner": {
+            "chance": 1,
+            "decayRate": {
+              "high": 0.090000003576278687,
+              "low": 0.004999999888241291
+            },
+            "enabled": true,
+            "initialVelocity": {
+              "high": 7.7134523391723633,
+              "low": 0
+            },
+            "rate": 4.1071429252624512
+          },
+          "sickness": {
+            "decayRateAmount": 0.059999998658895493,
+            "enabled": true,
+            "scheduler": {
+              "chance": 1,
+              "enabled": true,
+              "interval": {
+                "high": 10,
+                "low": 4
+              }
+            }
+          }
+        },
+        "occurrences": {
+          "rateSpawner": {
+            "chain": {
+              "chance": 0
+            },
+            "chainCount": {
+              "high": 4,
+              "low": 1
+            },
+            "chainDistance": {
+              "high": 100,
+              "low": 94.273223876953125
+            },
+            "chance": 1,
+            "enabled": true,
+            "initialVelocity": {
+              "high": 1.0495628118515015,
+              "low": 0
+            },
+            "radius": {
+              "high": 100.60975646972656,
+              "low": 25
+            },
+            "rate": 4.5153059959411621,
+            "sequence": {
+              "chance": 0.10000000149011612
+            },
+            "sequenceCount": {
+              "high": 10,
+              "low": 2
+            },
+            "sequenceInterval": {
+              "high": 20,
+              "low": 5
+            },
+            "sequenceStepDistance": {
+              "high": 50,
+              "low": 10
+            }
+          }
+        },
+        "physics": {
+          "bounds": {
+            "size": 1000
+          },
+          "damping": {
+            "enabled": true,
+            "magnitude": 0.10204081237316132
+          },
+          "observerAnchorPointAttraction": {
+            "distanceBounds": {
+              "high": 0.30000001192092896,
+              "low": 0.039999999105930328
+            },
+            "enabled": false,
+            "magnitude": 9.9999997473787516e-05,
+            "reverse": false
+          },
+          "observerObserverAttraction": {
+            "distanceBounds": {
+              "high": 140.77468872070312,
+              "low": 21.032907485961914
+            },
+            "enabled": true,
+            "magnitude": 1.5306122303009033,
+            "reverse": true
+          },
+          "observerOccurrenceForce": {
+            "enabled": true,
+            "force": {
+              "length0": 31.799251556396484,
+              "length1": 37.526031494140625,
+              "startValue": -11.082881927490234,
+              "value0": 1.2557258605957031,
+              "value1": 5.9412746429443359
+            },
+            "magnitude": 0.75338339805603027
+          },
+          "observers": {
+            "speed": 1.2755101919174194
+          },
+          "occurrenceAnchorPointAttraction": {
+            "distanceBounds": {
+              "high": 174.61474609375,
+              "low": 39.254482269287109
+            },
+            "enabled": false,
+            "magnitude": 2.8571429252624512,
+            "reverse": false
+          },
+          "occurrenceOccurrenceForce": {
+            "enabled": true,
+            "force": {
+              "length0": 5,
+              "length1": 35.443565368652344,
+              "startValue": -5.1478548049926758,
+              "value0": -2.3365259170532227,
+              "value1": 0.78717327117919922
+            },
+            "magnitude": 1.3622448444366455
+          },
+          "occurrences": {
+            "speed": 1.6326529979705811
+          },
+          "rebound": {
+            "enabled": true
+          },
+          "spatialNoiseForce": {
+            "enabled": false,
+            "magnitude": 0.61224490404129028,
+            "rate": 0.038265306502580643,
+            "scale": 98.979591369628906
+          },
+          "vortexNodes": {
+            "enabled": false,
+            "force": {
+              "length0": 0.33881717920303345,
+              "length1": 0.65639317035675049,
+              "startValue": 8.4402332305908203,
+              "value0": 5.7850894927978516,
+              "value1": -1.5556020736694336
+            },
+            "magnitude": 31.12244987487793,
+            "radius": {
+              "high": 200,
+              "low": 107.33027648925781
+            }
+          }
+        },
+        "rendering": {
+          "camera": {
+            "spinEnabled": true,
             "spinRate": [
               0.0041656494140625,
               0.21241188049316406,

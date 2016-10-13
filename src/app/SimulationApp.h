@@ -65,6 +65,8 @@ public:
     return _physics->bounds();
   }
 
+  ParametersController& parameters() { return *_paramsController; }
+
 private:
   void dumpEntityState();
   void loadEntityState();

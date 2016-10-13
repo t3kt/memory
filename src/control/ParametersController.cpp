@@ -95,3 +95,8 @@ void ParametersController::captureNewPreset() {
   preset->captureParams(_params);
   _state.addPreset(preset);
 }
+
+void ParametersController::loadPreset(const ParamPreset &preset) {
+  AppSystem::get().log().app().logNotice("Loading preset...");
+  preset.applyToParams(_params);
+}
