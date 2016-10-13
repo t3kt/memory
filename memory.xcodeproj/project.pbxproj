@@ -43,6 +43,7 @@
 		32CCB2FD1DAE13F900BAE226 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F61DAE13F900BAE226 /* Params.cpp */; };
 		32CCB2FE1DAE13F900BAE226 /* ValueSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */; };
 		32CCB2FF1DAE13F900BAE226 /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2FA1DAE13F900BAE226 /* ValueSupplier.cpp */; };
+		32CCB3061DAE1C9100BAE226 /* ParametersController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -306,6 +307,8 @@
 		32CCB2FA1DAE13F900BAE226 /* ValueSupplier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ValueSupplier.cpp; path = control/ValueSupplier.cpp; sourceTree = "<group>"; };
 		32CCB2FB1DAE13F900BAE226 /* ValueSupplier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValueSupplier.h; path = control/ValueSupplier.h; sourceTree = "<group>"; };
 		32CCB3001DAE172400BAE226 /* ValueRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ValueRange.h; path = control/ValueRange.h; sourceTree = "<group>"; };
+		32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParametersController.cpp; path = control/ParametersController.cpp; sourceTree = "<group>"; };
+		32CCB3051DAE1C9100BAE226 /* ParametersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParametersController.h; path = control/ParametersController.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -693,6 +696,8 @@
 				0F6CC7B53C156FC973DBA2E5 /* MidiRouter.h */,
 				0B109A62623688769C87E563 /* OscController.cpp */,
 				6E6276FBDEDD87C80290BA68 /* OscController.h */,
+				32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */,
+				32CCB3051DAE1C9100BAE226 /* ParametersController.h */,
 				32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */,
 				32CCB2F51DAE13F900BAE226 /* ParamPresets.h */,
 				32CCB2F61DAE13F900BAE226 /* Params.cpp */,
@@ -1907,6 +1912,7 @@
 				6C6EF13610CA2101155372DB /* PixelatePass.cpp in Sources */,
 				502109CFF164921BAE0F7E71 /* PostProcessing.cpp in Sources */,
 				5186E72FCC97A817CBDA64A4 /* RenderPass.cpp in Sources */,
+				32CCB3061DAE1C9100BAE226 /* ParametersController.cpp in Sources */,
 				FFD812BC482A52A6E0DCF0E9 /* RGBShiftPass.cpp in Sources */,
 				E7679FC1D4DE67C46C353869 /* RimHighlightingPass.cpp in Sources */,
 				4B18515D60ADCBD91C1078BB /* SSAOPass.cpp in Sources */,

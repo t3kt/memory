@@ -12,7 +12,8 @@
 #include "../core/EventLogging.h"
 
 void SimulationApp::setup() {
-  loadSettings();
+  _paramsController =
+  _components.add<ParametersController>(_appParams);
 
   _eventLoggers = std::make_shared<EventLoggers>();
 
@@ -155,12 +156,6 @@ bool SimulationApp::performAction(AppAction action) {
       AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
       AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
       break;
-    case AppAction::LOAD_SETTINGS:
-      loadSettings();
-      break;
-    case AppAction::SAVE_SETTINGS:
-      saveSettings();
-      break;
     case AppAction::TOGGLE_LOGGING:
       _appParams.debug.logging.enabled.toggle();
       break;
@@ -168,21 +163,4 @@ bool SimulationApp::performAction(AppAction action) {
       return false;
   }
   return true;
-}
-
-void SimulationApp::loadSettings() {
-  AppSystem::get().log().app().logNotice("Reading JSON settings...");
-  _appParams.readFromFile("settings.json");
-  AppSystem::get().log().app().logNotice([&](ofLog& log) {
-    log << ".. read from JSON finished\n\t" << _appParams;
-  });
-  if (_gui) {
-    _gui->collapseDisabled();
-  }
-}
-
-void SimulationApp::saveSettings() {
-  AppSystem::get().log().app().logNotice("Writing JSON settings...");
-  _appParams.writeToFile("settings.json");
-  AppSystem::get().log().app().logNotice(".. write to JSON finished");
 }

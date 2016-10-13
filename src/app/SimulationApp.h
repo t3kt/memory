@@ -26,6 +26,7 @@
 #include "../core/ObserversController.h"
 #include "../core/OccurrencesController.h"
 #include "../control/OscController.h"
+#include "../control/ParametersController.h"
 #include "../physics/PhysicsController.h"
 #include "../rendering/RenderingController.h"
 #include "../core/SimulationEvents.h"
@@ -65,9 +66,6 @@ public:
   }
 
 private:
-  void loadSettings();
-  void saveSettings();
-
   void dumpEntityState();
   void loadEntityState();
   void saveEntityState();
@@ -93,6 +91,7 @@ private:
   std::shared_ptr<RenderingController> _renderingController;
   std::shared_ptr<InspectionController> _inspectionController;
   std::shared_ptr<StatusInfoController> _statusController;
+  std::shared_ptr<ParametersController> _paramsController;
   ComponentCollection<ComponentBase> _components;
 };
 
