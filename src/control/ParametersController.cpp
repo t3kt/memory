@@ -76,16 +76,23 @@ bool ParametersController::performAction(AppAction action) {
 
 void ParametersController::load() {
   AppSystem::get().log().app().logNotice("Reading JSON settings...");
-  _state.readFromFile("settings.json");
+
+  AppSystem::get().doWhilePaused([&]() {
+    _state.readFromFile("settings.json");
+    //...
+    return true;
+  });
   AppSystem::get().log().app().logNotice([&](ofLog& log) {
     log << ".. read from JSON finished\n\t" << _params;
   });
-  //...
 }
 
 void ParametersController::save() {
   AppSystem::get().log().app().logNotice("Writing JSON settings...");
-  _state.writeToFile("settings.json");
+  AppSystem::get().doWhilePaused([&]() {
+    _state.writeToFile("settings.json");
+    return true;
+  });
   AppSystem::get().log().app().logNotice(".. write to JSON finished");
 }
 

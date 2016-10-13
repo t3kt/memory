@@ -67,6 +67,8 @@ public:
 
   ParametersController& parameters() { return *_paramsController; }
 
+  TimingController& timing() { return *_timing; }
+
 private:
   void dumpEntityState();
   void loadEntityState();

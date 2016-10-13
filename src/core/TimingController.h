@@ -9,6 +9,7 @@
 #ifndef TimingController_h
 #define TimingController_h
 
+#include <functional>
 #include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../core/Clock.h"
@@ -53,6 +54,8 @@ public:
   void update() override;
 
   bool performAction(AppAction action) override;
+
+  bool doWhilePaused(std::function<bool(void)> action);
 
 private:
   Params& _params;

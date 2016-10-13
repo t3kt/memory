@@ -6,25 +6,7 @@
 #include <map>
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
-
-class PauseHandler {
-public:
-  PauseHandler(MemoryAppParameters& appParams)
-  : _paused(appParams.core.timing.root.paused)
-  , _wasPaused(appParams.core.timing.root.paused.get()) {
-    if (!_wasPaused) {
-      _paused.set(true);
-    }
-  }
-
-  ~PauseHandler() {
-    _paused.set(_wasPaused);
-  }
-
-private:
-  TParam<bool>& _paused;
-  bool _wasPaused;
-};
+#include "../core/TimingController.h"
 
 static std::unique_ptr<AppSystem> instance;
 
@@ -109,26 +91,32 @@ bool AppSystem::performAction(AppAction action) {
   return handled;
 }
 
+bool AppSystem::doWhilePaused(std::function<bool(void)> action) {
+  return _simulationApp->timing().doWhilePaused(action);
+}
+
 bool AppSystem::performFileSaveAction(FileAction action,
                                       std::string messageName,
                                       std::string defaultName) {
-  PauseHandler pauseHandler(_appParams);
-  auto result = ofSystemSaveDialog(defaultName, messageName);
-  if (!result.bSuccess) {
-    return false;
-  }
-  return action(result);
+  return doWhilePaused([&]() {
+    auto result = ofSystemSaveDialog(defaultName, messageName);
+    if (!result.bSuccess) {
+      return false;
+    }
+    return action(result);
+  });
 }
 
 bool AppSystem::performFileLoadAction(FileAction action,
                                       std::string windowTitle,
                                       std::string defaultPath) {
-  PauseHandler pauseHandler(_appParams);
-  auto result = ofSystemLoadDialog(windowTitle,
-                                   false,
-                                   defaultPath);
-  if (!result.bSuccess) {
-    return false;
-  }
-  return action(result);
+  return doWhilePaused([&]() {
+    auto result = ofSystemLoadDialog(windowTitle,
+                                     false,
+                                     defaultPath);
+    if (!result.bSuccess) {
+      return false;
+    }
+    return action(result);
+  });
 }

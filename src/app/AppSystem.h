@@ -56,6 +56,8 @@ public:
 
   AppActionEvent appActionTriggered;
 
+  bool doWhilePaused(std::function<bool(void)> action);
+
   bool performFileSaveAction(FileAction action,
                              std::string messageName,
                              std::string defaultName);
