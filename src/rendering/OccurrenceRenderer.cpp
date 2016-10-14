@@ -7,19 +7,21 @@
 //
 
 #include <ofMain.h>
+#include "../app/AppAssets.h"
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
 #include "../core/ObserverEntity.h"
 #include "../core/OccurrenceEntity.h"
 #include "../rendering/OccurrenceRenderer.h"
 
-OccurrenceRenderer::OccurrenceRenderer(const Params& params,
+OccurrenceRenderer::OccurrenceRenderer(Params& params,
                                        const ColorTheme& colors,
                                        Context& context)
 : _context(context)
 , _entities(context.occurrences)
 , _params(params)
-, _colors(colors) { }
+, _colors(colors)
+, _images(AppAssets::textureImages()) { }
 
 void OccurrenceRenderer::draw() {
   if (!_params.enabled.get()) {
@@ -29,13 +31,38 @@ void OccurrenceRenderer::draw() {
 
   renderer->pushStyle();
 
-  for (const auto& entity : _entities) {
-    if (!entity->visible()) {
-      continue;
+  auto useTextures = _params.useTextures.get();
+  if (useTextures) {
+    if (_images.empty()) {
+      _params.useTextures.set(false);
+      useTextures = false;
     }
-    renderer->setColor(entity->color());
+  }
 
-    renderer->drawBox(entity->position(), entity->size());
+  if (useTextures) {
+    for (const auto& entity : _entities) {
+      if (!entity->visible()) {
+        continue;
+      }
+
+      renderer->setColor(entity->color());
+
+      auto imageIndex = entity->id() % _images.size();
+      const auto& image = _images[imageIndex];
+      image.bind();
+      renderer->drawBox(entity->position(), entity->size());
+      image.unbind();
+    }
+  } else {
+    for (const auto& entity : _entities) {
+      if (!entity->visible()) {
+        continue;
+      }
+
+      renderer->setColor(entity->color());
+
+      renderer->drawBox(entity->position(), entity->size());
+    }
   }
 
   if (_params.wireEnabled.get()) {

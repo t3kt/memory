@@ -138,6 +138,7 @@ private:
   std::shared_ptr<PostProcController> _postProc;
   std::shared_ptr<OutputController> _output;
   //  ofLight _light;
+  bool _previousNormalizedTexCoords;
 };
 
 #endif /* RenderingController_h */

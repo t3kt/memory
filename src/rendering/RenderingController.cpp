@@ -27,7 +27,7 @@ void RenderingController::setup() {
   const auto& appParams = AppSystem::get().params();
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;
-  const auto& occurrenceParams = _params.occurrences;
+  auto& occurrenceParams = _params.occurrences;
 
   _fog = std::make_shared<FogController>(_params.fog);
 
@@ -76,6 +76,9 @@ void RenderingController::update() {
 void RenderingController::beginDraw() {
   _preRenderers.update();
 
+  _previousNormalizedTexCoords = ofGetUsingNormalizedTexCoords();
+  ofEnableNormalizedTexCoords();
+
   ofBackground(_colors.background.get());
   glPushAttrib(GL_ENABLE_BIT);
 //  ofEnableDepthTest();
@@ -102,6 +105,10 @@ void RenderingController::endDraw() {
 //  ofDisableDepthTest();
 //  ofDisableLighting();
   glPopAttrib();
+
+  if (!_previousNormalizedTexCoords) {
+    ofDisableNormalizedTexCoords();
+  }
 
   _postProc->pushToOutput(*_output);
 }

@@ -9,6 +9,7 @@
 #ifndef OccurrenceRenderer_h
 #define OccurrenceRenderer_h
 
+#include <vector>
 #include "../rendering/Renderer.h"
 
 class MemoryAppParameters;
@@ -23,6 +24,10 @@ public:
           .setKey("showRange")
           .setName("Show Range")
           .setValueAndDefault(true));
+      add(useTextures
+          .setKey("useTextures")
+          .setName("Use Textures")
+          .setValueAndDefault(false));
       add(wireEnabled
           .setKey("wireEnabled")
           .setName("Wireframe Enabled")
@@ -45,22 +50,24 @@ public:
     }
 
     TParam<bool> showRange;
+    TParam<bool> useTextures;
     TParam<bool> wireEnabled;
     TParam<float> wireScale;
     TParam<float> wireSaturation;
     TParam<float> wireBrightness;
   };
 
-  OccurrenceRenderer(const Params& params,
+  OccurrenceRenderer(Params& params,
                      const ColorTheme& colors,
                      Context& context);
 
   void draw() override;
 private:
-  const Params& _params;
+  Params& _params;
   Context& _context;
   const ColorTheme& _colors;
   ObjectManager<OccurrenceEntity>& _entities;
+  const std::vector<ofImage>& _images;
 };
 
 #endif /* OccurrenceRenderer_h */
