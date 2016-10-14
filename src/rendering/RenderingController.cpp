@@ -21,7 +21,6 @@ RenderingController::RenderingController(Params& params,
 }
 
 void RenderingController::setup() {
-  ofEnableAlphaBlending();
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
   const auto& appParams = AppSystem::get().params();
@@ -81,7 +80,8 @@ void RenderingController::beginDraw() {
 
   ofBackground(_colors.background.get());
   glPushAttrib(GL_ENABLE_BIT);
-//  ofEnableDepthTest();
+  ofEnableDepthTest();
+  ofEnableAlphaBlending();
   //glEnable(GL_DEPTH_TEST);
 //  ofEnableLighting();
   glEnable(GL_CULL_FACE);
@@ -109,6 +109,7 @@ void RenderingController::endDraw() {
   if (!_previousNormalizedTexCoords) {
     ofDisableNormalizedTexCoords();
   }
+  ofDisableDepthTest();
 
   _postProc->pushToOutput(*_output);
 }
