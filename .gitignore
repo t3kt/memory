@@ -40,3 +40,7 @@ memory.VC*
 *.pdb
 *.trace
 etc/states
+bin/data/textures/*.jpg
+bin/data/textures/*.bmp
+bin/data/textures/*.png
+
