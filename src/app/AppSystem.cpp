@@ -84,7 +84,7 @@ void AppSystem::main() {
 }
 
 bool AppSystem::performAction(AppAction action) {
-  _log.app().logNotice("Performing AppAction: " + enumToString(action) + "...");
+  _log.app().logVerbose("Performing AppAction: " + enumToString(action) + "...");
   auto args = AppActionEventArgs(action);
   bool handled = appActionTriggered.notifyListenersUntilHandled(args);
   if (!handled) {
