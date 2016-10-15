@@ -58,7 +58,8 @@ public:
   ConnectionTracerRenderer(const Params& params,
                            Context& context)
   : _params(params)
-  , _context(context) { }
+  , _context(context)
+  , _rawRatio(0) { }
 
   void update() override;
   void draw() override;
@@ -71,7 +72,6 @@ private:
   const Params& _params;
   Context& _context;
   float _rawRatio;
-  float _ratio;
 };
 
 #endif /* ConnectionTracerRenderer_h */
