@@ -24,6 +24,10 @@ class TParamBase
 public:
   static const char pathSeparator = '.';
 
+  TParamBase()
+  : _supportsOsc(true)
+  , _supportsPresets(true) { }
+
   virtual std::string getKey() const = 0;
 
   virtual Json::object::value_type toJsonField() const {
@@ -36,7 +40,12 @@ public:
 
   virtual std::string asString() const = 0;
   virtual const std::type_info& getTypeInfo() const = 0;
-  virtual bool supportsOsc() const = 0;
+  bool supportsOsc() const { return _supportsOsc; }
+  bool supportsPresets() const { return _supportsPresets; }
+
+protected:
+  bool _supportsOsc;
+  bool _supportsPresets;
 };
 
 template<typename T, typename ParT>
@@ -44,8 +53,7 @@ class TTypedParamBase
 : public ofParameter<T>
 , public TParamBase {
 public:
-  TTypedParamBase()
-  : _supportsOsc(true) {
+  TTypedParamBase() {
     ofParameter<T>::addListener(this,
                                 &TTypedParamBase::onChanged);
   }
@@ -142,10 +150,13 @@ public:
     }
   }
 
-  bool supportsOsc() const override { return _supportsOsc; }
-
   ParT& setSupportsOsc(bool supportsOsc) {
     _supportsOsc = supportsOsc;
+    return selfRef();
+  }
+
+  ParT& setSupportsPresets(bool supportsPresets) {
+    _supportsPresets = supportsPresets;
     return selfRef();
   }
   
@@ -160,7 +171,6 @@ private:
   std::string _key;
   bool _hasDefaultValue;
   T _defaultValue;
-  bool _supportsOsc;
 };
 
 template<typename T>
@@ -208,6 +218,7 @@ protected:
 };
 
 using ParamBaseAction = std::function<void(TParamBase&)>;
+using ConstParamPredicate = std::function<bool(const TParamBase&)>;
 
 class Params
 : public ofParameterGroup
@@ -251,9 +262,13 @@ public:
 
   Json to_json() const override;
 
+  Json toFilteredJson(ConstParamPredicate filter) const;
+
   void read_json(const Json& val) override;
 
   void readJsonField(const Json& obj) override;
+
+  void readFilteredJson(const Json& obj, ConstParamPredicate filter);
 
   virtual void resetToDefault() override {
     for (auto param : _paramBases) {
@@ -282,16 +297,18 @@ public:
 
   void performRecursiveParamAction(ParamBaseAction action);
 
-  bool supportsOsc() const override { return _supportsOsc; }
-
   Params& setSupportsOsc(bool supportsOsc) {
     _supportsOsc = supportsOsc;
+    return *this;
+  }
+
+  Params& setSupportsPresets(bool supportsPresets) {
+    _supportsPresets = supportsPresets;
     return *this;
   }
 private:
   std::string _key;
   std::vector<TParamBase*> _paramBases;
-  bool _supportsOsc = true;
 };
 
 class ParamsWithEnabled : public Params {

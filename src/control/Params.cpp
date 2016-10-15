@@ -73,3 +73,25 @@ void Params::read_json(const Json &val) {
     param->readJsonField(val);
   }
 }
+
+Json Params::toFilteredJson(ConstParamPredicate filter) const {
+  Json::object obj;
+  for (auto param : _paramBases) {
+    if (filter(*param)) {
+      obj.insert(param->toJsonField());
+    }
+  }
+  return obj;
+}
+
+void Params::readFilteredJson(const Json &obj,
+                              ConstParamPredicate filter) {
+  for (auto param : _paramBases) {
+    if (filter(*param)) {
+      const auto val = obj[param->getKey()];
+      if (!val.is_null()) {
+        param->read_json(val);
+      }
+    }
+  }
+}
