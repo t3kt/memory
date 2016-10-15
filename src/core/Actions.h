@@ -22,17 +22,22 @@ class Context;
 
 class ActionResult {
 public:
-  static ActionResult cancel() { return ActionResult(-1); }
+  static ActionResult cancel() { return ActionResult(-1, false); }
   static ActionResult reschedule(float time) {
-    return ActionResult(time);
+    return ActionResult(time, false);
   }
+  static ActionResult continuous() { return ActionResult(-1, true); }
 
   bool isReschedule() const { return _time >= 0; }
   float rescheduleTime() const { return _time; }
+  bool isContinuous() const { return _continuous; }
 private:
-  ActionResult(float time) : _time(time) { }
+  ActionResult(float time, bool continuous)
+  : _time(time)
+  , _continuous(continuous) { }
 
   const float _time;
+  const bool _continuous;
 };
 
 class Action;
@@ -72,6 +77,10 @@ public:
   void addDelayed(float delay, ActionPtr action);
   void addDelayed(float delay, ActionFn action);
   void addRepeating(float interval, std::function<bool()> action);
+  void addContinuous(ActionPtr action);
+  void addContinuous(ActionFn action);
+  void addContinuous(float duration,
+                     std::function<bool()> action);
 
   void update() override;
 
@@ -82,6 +91,7 @@ public:
 private:
   Context& _context;
   std::vector<Entry> _actions;
+  std::vector<ActionPtr> _continuousActions;
 };
 
 #endif /* Actions_h */
