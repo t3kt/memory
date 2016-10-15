@@ -50,6 +50,12 @@ void ParamTransitionSet::apply(float ratio) {
   }
 }
 
+std::shared_ptr<Action>
+AbstractParamTransition::createApplyAction(float duration,
+                                           const Context &context) {
+  return std::shared_ptr<Action>(new ApplyParamTransitionAction(shared_from_this(), duration, context));
+}
+
 template<typename T>
 static ParamTransitionPtr
 createTypedTransition(TParamBase& param, const Json& endJsonVal) {

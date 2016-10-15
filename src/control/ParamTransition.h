@@ -14,13 +14,19 @@
 #include "../control/Params.h"
 #include "../core/Common.h"
 
+class Action;
+class Context;
 class ParamPreset;
 
 class AbstractParamTransition
 : public NonCopyable
-, public Outputable {
+, public Outputable
+, public std::enable_shared_from_this<AbstractParamTransition> {
 public:
   virtual void apply(float ratio) = 0;
+
+  std::shared_ptr<Action> createApplyAction(float duration,
+                                            const Context& context);
 };
 
 using ParamTransitionPtr = std::shared_ptr<AbstractParamTransition>;

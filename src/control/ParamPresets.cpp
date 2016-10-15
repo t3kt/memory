@@ -8,6 +8,11 @@
 
 #include "../control/ParamPresets.h"
 
+static ConstParamPredicate presetPredicate =
+[](const TParamBase& param) {
+  return param.supportsPresets();
+};
+
 Json ParamPreset::to_json() const {
   return Json::object {
     {"name", _name},
@@ -24,9 +29,9 @@ void ParamPreset::read_json(const Json &obj) {
 }
 
 void ParamPreset::captureParams(const Params &params) {
-  _values = params.to_json();
+  _values = params.toFilteredJson(presetPredicate);
 }
 
 void ParamPreset::applyToParams(Params &params) const {
-  params.read_json(_values);
+  params.readFilteredJson(_values, presetPredicate);
 }

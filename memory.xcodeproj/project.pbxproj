@@ -705,13 +705,13 @@
 				32CCB2F51DAE13F900BAE226 /* ParamPresets.h */,
 				32CCB2F61DAE13F900BAE226 /* Params.cpp */,
 				32CCB2F71DAE13F900BAE226 /* Params.h */,
+				323AA1601DB1F9020022C990 /* ParamTransition.cpp */,
+				323AA1611DB1F9020022C990 /* ParamTransition.h */,
 				32CCB3001DAE172400BAE226 /* ValueRange.h */,
 				32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */,
 				32CCB2F91DAE13F900BAE226 /* ValueSequence.h */,
 				32CCB2FA1DAE13F900BAE226 /* ValueSupplier.cpp */,
 				32CCB2FB1DAE13F900BAE226 /* ValueSupplier.h */,
-				323AA1601DB1F9020022C990 /* ParamTransition.cpp */,
-				323AA1611DB1F9020022C990 /* ParamTransition.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
