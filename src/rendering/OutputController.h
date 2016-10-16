@@ -36,7 +36,8 @@ public:
     add(externalEnabled
         .setKey("externalEnabled")
         .setName("Enable External Send")
-        .setValueAndDefault(false));
+        .setValueAndDefault(false)
+        .setSupportsPresets(false));
   }
 
   TParam<bool> fullscreen;

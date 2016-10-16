@@ -66,11 +66,13 @@ public:
     add(midi
         .setKey("midi")
         .setName("Midi")
-        .setSupportsOsc(false));
+        .setSupportsOsc(false)
+        .setSupportsPresets(false));
     add(osc
         .setKey("osc")
         .setName("OSC")
-        .setSupportsOsc(false));
+        .setSupportsOsc(false)
+        .setSupportsPresets(false));
   }
 
   TimingParams timing;
@@ -108,7 +110,9 @@ public:
         .setName("Physics"));
     add(debug
         .setKey("debug")
-        .setName("Debug"));
+        .setName("Debug")
+        .setSupportsPresets(false)
+        .setSupportsOsc(false));
   }
 
   CoreParams core;

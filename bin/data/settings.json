@@ -148,7 +148,7 @@
             "paused": false,
             "rate": 1
           },
-          "paused": false,
+          "paused": true,
           "physics": {
             "paused": false,
             "rate": 1
@@ -451,6 +451,7 @@
         "renderer": {
           "enabled": true,
           "showRange": false,
+          "useTextures": false,
           "wireBrightness": 1.5,
           "wireEnabled": false,
           "wireSaturation": 0.19897958636283875,
@@ -611,26 +612,7 @@
           ]
         },
         "core": {
-          "midi": {
-            "enabled": false,
-            "max": {
-              "enabled": true
-            },
-            "twister": {
-              "enabled": false
-            }
-          },
-          "osc": {
-            "enabled": true,
-            "inputEnabled": true,
-            "inputPort": 9999,
-            "outputEnabled": true,
-            "outputHost": "localhost",
-            "outputPort": 9000,
-            "paramPrefix": "/param/"
-          },
           "output": {
-            "externalEnabled": true,
             "fullscreen": false
           },
           "timing": {
@@ -647,47 +629,6 @@
               "rate": 1
             }
           }
-        },
-        "debug": {
-          "inspect": {
-            "clickRange": 13.577677726745605,
-            "enabled": true,
-            "showInfo": true
-          },
-          "logging": {
-            "anim": {
-              "enabled": false,
-              "level": 1
-            },
-            "app": {
-              "enabled": true,
-              "level": 1
-            },
-            "ctrl": {
-              "enabled": false,
-              "level": 1
-            },
-            "enabled": true,
-            "nav": {
-              "enabled": false,
-              "level": 1
-            },
-            "node": {
-              "enabled": true,
-              "level": 1
-            },
-            "obs": {
-              "enabled": false,
-              "level": 1
-            },
-            "occ": {
-              "enabled": false,
-              "level": 1
-            }
-          },
-          "showBounds": false,
-          "showPhysics": false,
-          "showStatus": true
         },
         "navigators": {
           "moveRate": 23.25,
@@ -1102,26 +1043,7 @@
           ]
         },
         "core": {
-          "midi": {
-            "enabled": false,
-            "max": {
-              "enabled": true
-            },
-            "twister": {
-              "enabled": false
-            }
-          },
-          "osc": {
-            "enabled": true,
-            "inputEnabled": true,
-            "inputPort": 9999,
-            "outputEnabled": true,
-            "outputHost": "localhost",
-            "outputPort": 9000,
-            "paramPrefix": "/param/"
-          },
           "output": {
-            "externalEnabled": true,
             "fullscreen": false
           },
           "timing": {
@@ -1138,47 +1060,6 @@
               "rate": 1
             }
           }
-        },
-        "debug": {
-          "inspect": {
-            "clickRange": 13.577677726745605,
-            "enabled": true,
-            "showInfo": true
-          },
-          "logging": {
-            "anim": {
-              "enabled": false,
-              "level": 1
-            },
-            "app": {
-              "enabled": true,
-              "level": 1
-            },
-            "ctrl": {
-              "enabled": false,
-              "level": 1
-            },
-            "enabled": true,
-            "nav": {
-              "enabled": false,
-              "level": 1
-            },
-            "node": {
-              "enabled": true,
-              "level": 1
-            },
-            "obs": {
-              "enabled": false,
-              "level": 1
-            },
-            "occ": {
-              "enabled": false,
-              "level": 1
-            }
-          },
-          "showBounds": false,
-          "showPhysics": false,
-          "showStatus": true
         },
         "navigators": {
           "moveRate": 23.25,
@@ -1593,26 +1474,7 @@
           ]
         },
         "core": {
-          "midi": {
-            "enabled": false,
-            "max": {
-              "enabled": true
-            },
-            "twister": {
-              "enabled": false
-            }
-          },
-          "osc": {
-            "enabled": true,
-            "inputEnabled": true,
-            "inputPort": 9999,
-            "outputEnabled": true,
-            "outputHost": "localhost",
-            "outputPort": 9000,
-            "paramPrefix": "/param/"
-          },
           "output": {
-            "externalEnabled": true,
             "fullscreen": false
           },
           "timing": {
@@ -1629,47 +1491,6 @@
               "rate": 7.1772427558898926
             }
           }
-        },
-        "debug": {
-          "inspect": {
-            "clickRange": 13.577677726745605,
-            "enabled": true,
-            "showInfo": true
-          },
-          "logging": {
-            "anim": {
-              "enabled": false,
-              "level": 1
-            },
-            "app": {
-              "enabled": true,
-              "level": 1
-            },
-            "ctrl": {
-              "enabled": false,
-              "level": 1
-            },
-            "enabled": true,
-            "nav": {
-              "enabled": false,
-              "level": 1
-            },
-            "node": {
-              "enabled": true,
-              "level": 1
-            },
-            "obs": {
-              "enabled": false,
-              "level": 1
-            },
-            "occ": {
-              "enabled": false,
-              "level": 1
-            }
-          },
-          "showBounds": false,
-          "showPhysics": false,
-          "showStatus": true
         },
         "navigators": {
           "moveRate": 23.25,
