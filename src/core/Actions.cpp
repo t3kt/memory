@@ -98,60 +98,78 @@ void ActionsController::logAction(Logger::Statement statement) {
   });
 }
 
-void ActionsController::addAt(float time, ActionPtr action) {
-  _actions.push_back(Entry(action, time));
+void ActionsController::addAt(float time,
+                              ActionPtr action,
+                              ActionFinishCallback onFinish) {
+  _actions.push_back(Entry(action, time, onFinish));
 }
 
-void ActionsController::addAt(float time, ActionFn action) {
-  addAt(time, Action::of(action));
+void ActionsController::addAt(float time,
+                              ActionFn action,
+                              ActionFinishCallback onFinish) {
+  addAt(time, Action::of(action), onFinish);
 }
 
-void ActionsController::addDelayed(float delay, ActionPtr action) {
-  addAt(_context.time() + delay, action);
+void ActionsController::addDelayed(float delay,
+                                   ActionPtr action,
+                                   ActionFinishCallback onFinish) {
+  addAt(_context.time() + delay, action, onFinish);
 }
 
-void ActionsController::addDelayed(float delay, ActionFn action) {
-  addDelayed(delay, Action::of(action));
+void ActionsController::addDelayed(float delay,
+                                   ActionFn action,
+                                   ActionFinishCallback onFinish) {
+  addDelayed(delay, Action::of(action), onFinish);
 }
 
 void ActionsController::addRepeating(float interval,
-                                     std::function<bool ()> action) {
+                                     std::function<bool ()> action,
+                                     ActionFinishCallback onFinish) {
   _actions
   .emplace_back(std::make_shared<RepeatingAction>(interval, action),
-                interval);
+                interval,
+                onFinish);
 }
 
-void ActionsController::addContinuous(ActionPtr action) {
-  _continuousActions.push_back(action);
+void ActionsController::addContinuous(ActionPtr action,
+                                      ActionFinishCallback onFinish) {
+  _continuousActions.push_back(Entry(action, -1, onFinish));
 }
 
-void ActionsController::addContinuous(ActionFn action) {
-  addContinuous(Action::of(action));
+void ActionsController::addContinuous(ActionFn action,
+                                      ActionFinishCallback onFinish) {
+  addContinuous(Action::of(action), onFinish);
 }
 
 void ActionsController::addContinuous(float duration,
-                                      std::function<bool ()> action) {
+                                      std::function<bool ()> action,
+                                      ActionFinishCallback onFinish) {
   auto contAction =
   std::make_shared<ContinuousDurationFnAction>(duration,
                                                action,
                                                _context.rootState);
-  addContinuous(contAction);
+  addContinuous(contAction, onFinish);
 }
 
 void ActionsController::update() {
   auto now = _context.time();
   std::vector<Entry> newEntries;
-  std::vector<ActionPtr> newContinuousActions;
+  std::vector<Entry> newContinuousActions;
+  std::vector<ActionFinishCallback> finishCallbacks;
   if (_context.rootState.running) {
     for (auto i = _continuousActions.begin();
          i != _continuousActions.end();) {
-      auto action = *i;
-      auto result = (*action)(_context, *this);
+      auto& entry = *i;
+      auto result = (*entry.action)(_context, *this);
       if (result.isContinuous()) {
         i++;
       } else {
         if (result.isReschedule()) {
-          newEntries.push_back(Entry(action, result.rescheduleTime()));
+          newEntries.push_back(entry.withTime(result.rescheduleTime()));
+        } else {
+          if (entry.onFinish) {
+            finishCallbacks.push_back(entry.onFinish);
+          }
         }
         i = _continuousActions.erase(i);
       }
@@ -163,9 +181,13 @@ void ActionsController::update() {
     if (now >= entry.time) {
       auto result = (*entry.action)(_context, *this);
       if (result.isContinuous()) {
-        newContinuousActions.push_back(entry.action);
+        newContinuousActions.push_back(entry.asContinuous());
       } else if (result.isReschedule()) {
         newEntries.push_back(entry.withTime(result.rescheduleTime()));
+      } else {
+        if (entry.onFinish) {
+          finishCallbacks.push_back(entry.onFinish);
+        }
       }
       i = _actions.erase(i);
     } else {
@@ -178,6 +200,9 @@ void ActionsController::update() {
   _continuousActions.insert(_continuousActions.end(),
                             newContinuousActions.begin(),
                             newContinuousActions.end());
+  for (auto& callback : finishCallbacks) {
+    callback();
+  }
 }
 
 bool ActionsController::performAction(AppAction action) {

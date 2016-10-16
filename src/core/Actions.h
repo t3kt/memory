@@ -55,6 +55,8 @@ public:
   static ActionPtr of(ActionFn action);
 };
 
+using ActionFinishCallback = std::function<void()>;
+
 class ActionsController
 : public AppActionHandler
 , public NonCopyable
@@ -63,24 +65,44 @@ private:
   class Entry {
   public:
     Entry(ActionPtr a, float t) : action(a), time(t) { }
+    Entry(ActionPtr a, float t, ActionFinishCallback f)
+    : action(a)
+    , time(t)
+    , onFinish(f) { }
+
     ActionPtr action;
     float time;
+    ActionFinishCallback onFinish;
 
-    Entry withTime(float t) { return Entry(action, t); }
+    Entry withTime(float t) { return Entry(action, t, onFinish); }
+    Entry asContinuous() { return Entry(action, -1, onFinish); }
   };
 public:
   ActionsController(Context& context)
   : _context(context) { }
 
-  void addAt(float time, ActionPtr action);
-  void addAt(float time, ActionFn action);
-  void addDelayed(float delay, ActionPtr action);
-  void addDelayed(float delay, ActionFn action);
-  void addRepeating(float interval, std::function<bool()> action);
-  void addContinuous(ActionPtr action);
-  void addContinuous(ActionFn action);
+  void addAt(float time,
+             ActionPtr action,
+             ActionFinishCallback onFinish=nullptr);
+  void addAt(float time,
+             ActionFn action,
+             ActionFinishCallback onFinish=nullptr);
+  void addDelayed(float delay,
+                  ActionPtr action,
+                  ActionFinishCallback onFinish=nullptr);
+  void addDelayed(float delay,
+                  ActionFn action,
+                  ActionFinishCallback onFinish=nullptr);
+  void addRepeating(float interval,
+                    std::function<bool()> action,
+                    ActionFinishCallback onFinish=nullptr);
+  void addContinuous(ActionPtr action,
+                     ActionFinishCallback onFinish=nullptr);
+  void addContinuous(ActionFn action,
+                     ActionFinishCallback onFinish=nullptr);
   void addContinuous(float duration,
-                     std::function<bool()> action);
+                     std::function<bool()> action,
+                     ActionFinishCallback onFinish=nullptr);
 
   void update() override;
 
@@ -91,7 +113,7 @@ public:
 private:
   Context& _context;
   std::vector<Entry> _actions;
-  std::vector<ActionPtr> _continuousActions;
+  std::vector<Entry> _continuousActions;
 };
 
 #endif /* Actions_h */

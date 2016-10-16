@@ -140,9 +140,13 @@ void ParametersController::loadPreset(const ParamPreset &preset) {
 
 void
 ParametersController::transitionToPreset(const ParamPreset &preset) {
-  AppSystem::get().log().app().logNotice("Transitioning to preset...");
+  AppSystem::get().log().app().logNotice("Transitioning to preset " + preset.name() + "...");
   auto transitions = std::make_shared<ParamTransitionSet>();
   transitions->loadCurrentToPreset(_params, preset);
   auto action = transitions->createApplyAction(2, _context);
-  AppSystem::get().actions().addContinuous(action);
+  ActionFinishCallback onFinish = [&]() {
+    AppSystem::get().log().app().logNotice("Finished transitioning to preset " + preset.name());
+  };
+  AppSystem::get().actions().addContinuous(action,
+                                           onFinish);
 }
