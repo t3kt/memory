@@ -17,6 +17,15 @@ TParamBase* Params::findKey(const std::string &key) {
   return nullptr;
 }
 
+const TParamBase* Params::findKey(const std::string &key) const {
+  for (auto param : _paramBases) {
+    if (param->getKey() == key) {
+      return param;
+    }
+  }
+  return nullptr;
+}
+
 TParamBase* Params::lookupPath(const std::string &path) {
   if (path.empty()) {
     return nullptr;

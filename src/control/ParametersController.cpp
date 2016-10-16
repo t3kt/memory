@@ -38,6 +38,7 @@ void ParametersState::read_json(const Json &obj) {
       for (const auto& presetObj : presetsArr.array_items()) {
         auto preset = std::make_shared<ParamPreset>();
         preset->read_json(presetObj);
+        preset->stripUnsupportedParams(_params);
         _presets.push_back(preset);
       }
     }

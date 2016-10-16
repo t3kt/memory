@@ -286,6 +286,7 @@ public:
   std::string asString() const override { return ofParameterGroup::toString(); }
 
   TParamBase* findKey(const std::string& key);
+  const TParamBase* findKey(const std::string& key) const;
 
   TParamBase* lookupPath(const std::string& path);
 

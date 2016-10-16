@@ -55,6 +55,8 @@ public:
 
   const Json& values() const { return _values; }
 
+  void stripUnsupportedParams(const Params& params);
+
 private:
   std::string _name;
   Json _values;

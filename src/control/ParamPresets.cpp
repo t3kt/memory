@@ -35,3 +35,36 @@ void ParamPreset::captureParams(const Params &params) {
 void ParamPreset::applyToParams(Params &params) const {
   params.readFilteredJson(_values, presetPredicate);
 }
+
+static Json stripUnsupported(const Json& obj, const Params& params) {
+  if (!params.supportsPresets() || !obj.is_object()) {
+    return nullptr;
+  }
+  Json::object result;
+  for (const auto& entry : obj.object_items()) {
+    auto param = params.findKey(entry.first);
+    if (param && param->supportsPresets()) {
+      if (param->isGroup()) {
+        auto group = dynamic_cast<const Params*>(param);
+        if (group) {
+          auto val = stripUnsupported(entry.second, *group);
+          if (!val.is_null()) {
+            result.insert(std::make_pair(entry.first, val));
+          }
+        }
+      } else {
+        result.insert(entry);
+      }
+    }
+  }
+  return result;
+}
+
+void ParamPreset::stripUnsupportedParams(const Params &params) {
+  auto values = stripUnsupported(_values, params);
+  if (values.is_object()) {
+    _values = values;
+  } else {
+    _values = Json::object();
+  }
+}
