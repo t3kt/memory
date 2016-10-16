@@ -77,6 +77,11 @@ public:
 
   void apply(float ratio) override;
 
+  std::string typeName() const override { return "ParamTransitionSet"; }
+
+protected:
+  void outputFields(std::ostream& os) const override;
+
 private:
   Storage _transitions;
 };

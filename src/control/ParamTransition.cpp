@@ -32,6 +32,7 @@ public:
                           ActionsController& controller) override {
     auto age = _age.get();
     if (age > _duration) {
+      getLog().logNotice("Finished param transition");
       return ActionResult::cancel();
     }
     auto ratio = age / _duration;
@@ -138,4 +139,13 @@ void ParamTransitionSet::loadCurrentToPreset(Params &params,
   CurrentToPresetLoader loader(_transitions);
   loader.load(params,
               preset.values());
+}
+
+void ParamTransitionSet::outputFields(std::ostream &os) const {
+  os << "transitions: [";
+  for (const auto transition : _transitions) {
+    os << *transition;
+    os << ", ";
+  }
+  os << "]";
 }

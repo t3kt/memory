@@ -18,6 +18,7 @@
 #include "../core/Component.h"
 #include "../core/JsonIO.h"
 
+class Context;
 class MemoryAppParameters;
 
 using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
@@ -52,9 +53,11 @@ class ParametersController
 public:
   using State = ParametersState;
 
-  ParametersController(MemoryAppParameters& params)
+  ParametersController(MemoryAppParameters& params,
+                       Context& context)
   : _params(params)
-  , _state(params) { }
+  , _state(params)
+  , _context(context) { }
 
   void setup() override;
   void update() override;
@@ -63,6 +66,7 @@ public:
   const PresetList& presets() const { return _state.presets(); }
 
   void loadPreset(const ParamPreset& preset);
+  void transitionToPreset(const ParamPreset& preset);
 
   bool performAction(AppAction action) override;
   void load();
@@ -73,6 +77,7 @@ private:
   MemoryAppParameters& _params;
   ParametersState _state;
   bool _isCapturingPreset; // ugly hack...
+  Context& _context;
 };
 
 #endif /* ParametersController_h */

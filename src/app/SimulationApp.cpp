@@ -13,7 +13,8 @@
 
 void SimulationApp::setup() {
   _paramsController =
-  _components.add<ParametersController>(_appParams);
+  _components.add<ParametersController>(_appParams,
+                                        _context);
 
   _eventLoggers = std::make_shared<EventLoggers>();
 

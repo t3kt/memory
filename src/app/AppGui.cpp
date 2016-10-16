@@ -45,7 +45,8 @@ public:
   }
 private:
   void onClick() {
-    AppSystem::get().simulation()->parameters().loadPreset(_preset);
+    //    AppSystem::get().simulation()->parameters().loadPreset(_preset);
+    AppSystem::get().simulation()->parameters().transitionToPreset(_preset);
   }
   const ParamPreset& _preset;
 };

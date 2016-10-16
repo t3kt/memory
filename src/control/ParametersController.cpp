@@ -9,6 +9,8 @@
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
 #include "../control/ParametersController.h"
+#include "../control/ParamTransition.h"
+#include "../core/Actions.h"
 
 Json ParametersState::to_json() const {
   auto obj = Json::object {
@@ -134,4 +136,13 @@ void ParametersController::captureNewPreset() {
 void ParametersController::loadPreset(const ParamPreset &preset) {
   AppSystem::get().log().app().logNotice("Loading preset...");
   preset.applyToParams(_params);
+}
+
+void
+ParametersController::transitionToPreset(const ParamPreset &preset) {
+  AppSystem::get().log().app().logNotice("Transitioning to preset...");
+  auto transitions = std::make_shared<ParamTransitionSet>();
+  transitions->loadCurrentToPreset(_params, preset);
+  auto action = transitions->createApplyAction(2, _context);
+  AppSystem::get().actions().addContinuous(action);
 }
