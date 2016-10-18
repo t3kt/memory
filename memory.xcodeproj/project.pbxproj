@@ -34,6 +34,10 @@
 		303A7699975BE096AF46BF57 /* ObserversController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF472E5FA7491303FFC0EA9F /* ObserversController.cpp */; };
 		32308A7A1DA23D820005F875 /* Connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32308A781DA23D820005F875 /* Connection.cpp */; };
 		323AA1621DB1F9020022C990 /* ParamTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1601DB1F9020022C990 /* ParamTransition.cpp */; };
+		323AA1721DB447930022C990 /* DataChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1701DB447930022C990 /* DataChannel.cpp */; };
+		323AA1781DB5D39A0022C990 /* UT_Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1741DB5D39A0022C990 /* UT_Mutex.cpp */; };
+		323AA1791DB5D39A0022C990 /* UT_SharedMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1761DB5D39A0022C990 /* UT_SharedMem.cpp */; };
+		323AA17C1DB5D45B0022C990 /* SharedMemChopOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */; };
 		327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 327C58881DAC82C00089FE80 /* TimingController.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
@@ -290,6 +294,15 @@
 		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
 		323AA1601DB1F9020022C990 /* ParamTransition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamTransition.cpp; path = control/ParamTransition.cpp; sourceTree = "<group>"; };
 		323AA1611DB1F9020022C990 /* ParamTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamTransition.h; path = control/ParamTransition.h; sourceTree = "<group>"; };
+		323AA1701DB447930022C990 /* DataChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DataChannel.cpp; path = data/DataChannel.cpp; sourceTree = "<group>"; };
+		323AA1711DB447930022C990 /* DataChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataChannel.h; path = data/DataChannel.h; sourceTree = "<group>"; };
+		323AA1731DB5D39A0022C990 /* CHOP_SharedMemHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHOP_SharedMemHeader.h; sourceTree = "<group>"; };
+		323AA1741DB5D39A0022C990 /* UT_Mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UT_Mutex.cpp; sourceTree = "<group>"; };
+		323AA1751DB5D39A0022C990 /* UT_Mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UT_Mutex.h; sourceTree = "<group>"; };
+		323AA1761DB5D39A0022C990 /* UT_SharedMem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UT_SharedMem.cpp; sourceTree = "<group>"; };
+		323AA1771DB5D39A0022C990 /* UT_SharedMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UT_SharedMem.h; sourceTree = "<group>"; };
+		323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SharedMemChopOutput.cpp; path = data/SharedMemChopOutput.cpp; sourceTree = "<group>"; };
+		323AA17B1DB5D45B0022C990 /* SharedMemChopOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedMemChopOutput.h; path = data/SharedMemChopOutput.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -792,6 +805,30 @@
 			name = osc;
 			sourceTree = "<group>";
 		};
+		323AA1651DB4301E0022C990 /* touch */ = {
+			isa = PBXGroup;
+			children = (
+				323AA1731DB5D39A0022C990 /* CHOP_SharedMemHeader.h */,
+				323AA1741DB5D39A0022C990 /* UT_Mutex.cpp */,
+				323AA1751DB5D39A0022C990 /* UT_Mutex.h */,
+				323AA1761DB5D39A0022C990 /* UT_SharedMem.cpp */,
+				323AA1771DB5D39A0022C990 /* UT_SharedMem.h */,
+			);
+			name = touch;
+			path = lib/touch;
+			sourceTree = "<group>";
+		};
+		323AA16F1DB4476B0022C990 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				323AA1701DB447930022C990 /* DataChannel.cpp */,
+				323AA1711DB447930022C990 /* DataChannel.h */,
+				323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */,
+				323AA17B1DB5D45B0022C990 /* SharedMemChopOutput.h */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		36D7EC7EF50E326EAC88A0AD /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,6 +1186,7 @@
 		965168FECD51AAD1D9169011 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				323AA1651DB4301E0022C990 /* touch */,
 				E19D04C1AD1A7DF029A38221 /* json11.cpp */,
 				05563B9E7C908ABE1950F384 /* json11.hpp */,
 			);
@@ -1535,6 +1573,7 @@
 				BE9DD360F550B0DF4D357E7B /* app */,
 				102C17DAD08FCB5A66E3A9C0 /* control */,
 				BC405D98CD8417CE9E222B0C /* core */,
+				323AA16F1DB4476B0022C990 /* data */,
 				5E6D237FE3954D34767EDED7 /* graph */,
 				965168FECD51AAD1D9169011 /* lib */,
 				FE3477CB45F1D13FBDF8C3A2 /* navigation */,
@@ -1788,6 +1827,7 @@
 				A7FEFFFE09400F8FF8B9FA9A /* EventLogging.cpp in Sources */,
 				E0194FE44814C8337B696F06 /* Info.cpp in Sources */,
 				A9EA0DA3681A4682D890F307 /* InspectionController.cpp in Sources */,
+				323AA17C1DB5D45B0022C990 /* SharedMemChopOutput.cpp in Sources */,
 				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				4550C0A277C1DA94EA84509A /* Logging.cpp in Sources */,
 				C8FF926ED1C1C5FB0CF45E30 /* NodeEntity.cpp in Sources */,
@@ -1845,6 +1885,7 @@
 				329F510A1DA6100C00063471 /* Component.cpp in Sources */,
 				8E658C2DF9F913309870919A /* MotionGroup.cpp in Sources */,
 				1B49623E57316DD214E6B885 /* Timeline.cpp in Sources */,
+				323AA1721DB447930022C990 /* DataChannel.cpp in Sources */,
 				02D119229A70877DB9B981D4 /* TimelineItem.cpp in Sources */,
 				46F00978240A55FDF8CAD51E /* ofxGuiContainer.cpp in Sources */,
 				56A321B53B8DAC80A12B6FDB /* ofxGuiGroup.cpp in Sources */,
@@ -1879,6 +1920,7 @@
 				45C697F3B2EFB0FA8798FDC8 /* ofxRtMidiOut.cpp in Sources */,
 				FEEEE8BBF5DCD3E699478538 /* ofxBaseMidi.cpp in Sources */,
 				8E1D86BF400D96182FB6E6F8 /* ofxMidi.cpp in Sources */,
+				323AA1791DB5D39A0022C990 /* UT_SharedMem.cpp in Sources */,
 				0B27600A3FD28D57E5A300A8 /* ofxMidiIn.cpp in Sources */,
 				CDF6EA4FD22064751A8CA433 /* ofxMidiMessage.cpp in Sources */,
 				37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */,
@@ -1888,6 +1930,7 @@
 				74F4B2F96114F547C43F8EA9 /* ofxOscMessage.cpp in Sources */,
 				E7CD44F4788C7F120D05EB35 /* ofxOscParameterSync.cpp in Sources */,
 				AFD853E250ADB382E9A76A4C /* ofxOscReceiver.cpp in Sources */,
+				323AA1781DB5D39A0022C990 /* UT_Mutex.cpp in Sources */,
 				1110B7683CF26BDDECD16873 /* ofxOscSender.cpp in Sources */,
 				84EE99C779A301E5D63CDA9F /* IpEndpointName.cpp in Sources */,
 				1D7223480EF577F7398744F8 /* NetworkingUtils.cpp in Sources */,
