@@ -42,7 +42,7 @@ UT_SharedMem::open(const char *name,  unsigned int size, bool supportInfo)
     strcpy(m, myName);
     strcat(m, "Mutex");
     myMutex = new UT_Mutex(m);
-    delete m;
+    delete[] m;
 
     if (size > 0)
 		myAmOwner = true;
@@ -335,7 +335,7 @@ UT_SharedMem::createInfo()
 	strcat(infoName, UT_SHM_INFO_DECORATION);
 	mySharedMemInfo = new UT_SharedMem(infoName, 
 									   myAmOwner ? sizeof(UT_SharedMemInfo) : 0, false);
-	delete infoName;
+	delete[] infoName;
 	if (myAmOwner)
 	{
 		if (mySharedMemInfo->getErrorState() != UT_SHM_ERR_NONE)
