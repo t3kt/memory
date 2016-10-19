@@ -12,6 +12,8 @@
 #include "../core/WorldObject.h"
 #include "../data/DataChannel.h"
 
+class ParticleObject;
+
 enum class EntityChannelId {
   // WorldObject
   ENTITY_ID,
@@ -44,12 +46,18 @@ class EntityDataChannels {
 public:
   EntityDataChannels();
 
+  void addEntity(const ParticleObject& entity);
+  void reset();
+
   ScalarDataOutputChannel<EntityType> entityType;
   BoolDataOutputChannel alive;
   FloatDataOutputChannel age;
   Vec3fDataOutputChannel position;
   ColorDataOutputChannel color;
   FloatDataOutputChannel size;
+
+private:
+  std::size_t _index;
 };
 
 #endif /* EntityDataChannels_h */

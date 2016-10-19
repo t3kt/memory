@@ -7,6 +7,7 @@
 //
 
 #include "../core/Common.h"
+#include "../core/ParticleObject.h"
 #include "../data/EntityDataChannels.h"
 
 EnumTypeInfo<EntityChannelId> EntityChannelIdType({
@@ -42,3 +43,23 @@ EntityDataChannels::EntityDataChannels()
 , position(enumToString(EntityChannelId::POSITION))
 , color(enumToString(EntityChannelId::COLOR))
 , size(enumToString(EntityChannelId::SIZE)) { }
+
+void EntityDataChannels::reset() {
+  entityType.wipe();
+  alive.wipe();
+  age.wipe();
+  position.wipe();
+  color.wipe();
+  size.wipe();
+  _index = 0;
+}
+
+void EntityDataChannels::addEntity(const ParticleObject &entity) {
+  entityType.setSlice(_index, entity.entityType());
+  alive.setSlice(_index, entity.alive());
+  age.setSlice(_index, entity.age().get());
+  position.setSlice(_index, entity.position());
+  color.setSlice(_index, entity.color());
+  size.setSlice(_index, entity.size());
+  _index++;
+}
