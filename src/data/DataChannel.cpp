@@ -9,185 +9,90 @@
 #include <cstring>
 #include <ofConstants.h>
 #include <ofVec3f.h>
-#include <type_traits>
 #include "../data/DataChannel.h"
 
-template<>
-class DataOutputChannel<float>
-: public AbstractDataOutputChannel {
-public:
-  DataOutputChannel(std::string name)
-  : AbstractDataOutputChannel(name)
-  , _data(nullptr) { }
+Vec3fDataOutputChannel::Vec3fDataOutputChannel(std::string name)
+: TypedDataOutputChannelBase(name)
+, _xChannel(name + 'x')
+, _yChannel(name + 'y')
+, _zChannel(name + 'z') { }
 
-  void bind(float* data, std::size_t size) {
-    _data = data;
-    _size = size;
-  }
+void Vec3fDataOutputChannel::bind(float* xData,
+                                  float* yData,
+                                  float* zData,
+                                  std::size_t size) {
+  _xChannel.bind(xData, size);
+  _yChannel.bind(yData, size);
+  _zChannel.bind(zData, size);
+  _size = size;
+}
 
-  void unbind() {
-    bind(nullptr, 0);
-  }
+void Vec3fDataOutputChannel::unbind() {
+  bind(nullptr,
+       nullptr,
+       nullptr,
+       0);
+}
 
-  bool ready() const override {
-    return _data != nullptr && _size > 0;
-  }
+bool Vec3fDataOutputChannel::ready() const {
+  return _xChannel.ready() && _yChannel.ready() && _zChannel.ready() && _size > 0;
+}
 
-  void wipe() override {
-    //  if (!ready()) {
-    //    return;
-    //  }
-    std::memset(_data, 0, size() * sizeof(float));
-  }
+void Vec3fDataOutputChannel::wipe() {
+  _xChannel.wipe();
+  _yChannel.wipe();
+  _zChannel.wipe();
+}
 
-  void setSlice(std::size_t index, const float& value) {
-    _data[index] = value;
-  }
-private:
-  float* _data;
-};
+void Vec3fDataOutputChannel::setSlice(std::size_t index,
+                                      const ofVec3f &value) {
+  _xChannel.setSlice(index, value.x);
+  _yChannel.setSlice(index, value.y);
+  _zChannel.setSlice(index, value.z);
+}
 
-template<typename T>
-class StaticCastDataOutputChannel
-: public AbstractDataOutputChannel {
-public:
-  StaticCastDataOutputChannel(std::string name)
-  : AbstractDataOutputChannel(name)
-  , _channel(name) { }
+ColorDataOutputChannel::ColorDataOutputChannel(std::string name)
+: TypedDataOutputChannelBase(name)
+, _rChannel(name + 'r')
+, _gChannel(name + 'g')
+, _bChannel(name + 'b')
+, _aChannel(name + 'a') { }
 
-  void bind(float* data, std::size_t size) {
-    _channel.bind(data, size);
-  }
+void ColorDataOutputChannel::bind(float* rData,
+                                  float* gData,
+                                  float* bData,
+                                  float* aData,
+                                  std::size_t size) {
+  _rChannel.bind(rData, size);
+  _gChannel.bind(gData, size);
+  _bChannel.bind(bData, size);
+  _aChannel.bind(aData, size);
+  _size = size;
+}
 
-  void unbind() {
-    _channel.unbind();
-  }
+void ColorDataOutputChannel::unbind() {
+  bind(nullptr,
+       nullptr,
+       nullptr,
+       nullptr,
+       0);
+}
 
-  bool ready() const override {
-    return _channel.ready();
-  }
+bool ColorDataOutputChannel::ready() const {
+  return _rChannel.ready() && _gChannel.ready() && _bChannel.ready() && _aChannel.ready() && _size > 0;
+}
 
-  void wipe() override {
-    _channel.wipe();
-  }
+void ColorDataOutputChannel::wipe() {
+  _rChannel.wipe();
+  _gChannel.wipe();
+  _bChannel.wipe();
+  _aChannel.wipe();
+}
 
-  void setSlice(std::size_t index, const T& value) {
-    _channel.setSlice(index, static_cast<float>(value));
-  }
-
-private:
-  DataOutputChannel<float> _channel;
-};
-
-template<>
-class DataOutputChannel<int>
-: public StaticCastDataOutputChannel<int> {
-public:
-  DataOutputChannel(std::string name)
-  : StaticCastDataOutputChannel(name) { }
-};
-
-template<>
-class DataOutputChannel<bool>
-: public StaticCastDataOutputChannel<bool> {
-public:
-  DataOutputChannel(std::string name)
-  : StaticCastDataOutputChannel(name) { }
-};
-
-template<>
-class DataOutputChannel<ofVec3f>
-: public AbstractDataOutputChannel {
-public:
-  DataOutputChannel(std::string name,
-                    std::string xSuffix = "x",
-                    std::string ySuffix = "y",
-                    std::string zSuffix = "z")
-  : AbstractDataOutputChannel(name)
-  , _xChannel(name + xSuffix)
-  , _yChannel(name + ySuffix)
-  , _zChannel(name + zSuffix) { }
-
-  void bind(float* xData,
-            float* yData,
-            float* zData,
-            std::size_t size) {
-    _xChannel.bind(xData, size);
-    _yChannel.bind(yData, size);
-    _zChannel.bind(zData, size);
-    _size = size;
-  }
-
-  void unbind() {
-    bind(nullptr,
-         nullptr,
-         nullptr,
-         0);
-  }
-
-  bool ready() const override {
-    return _xChannel.ready() && _yChannel.ready() && _zChannel.ready() && _size > 0;
-  }
-
-  void wipe() override {
-    _xChannel.wipe();
-    _yChannel.wipe();
-    _zChannel.wipe();
-  }
-private:
-  DataOutputChannel<float> _xChannel;
-  DataOutputChannel<float> _yChannel;
-  DataOutputChannel<float> _zChannel;
-};
-
-template<>
-class DataOutputChannel<ofFloatColor>
-: public AbstractDataOutputChannel {
-public:
-  DataOutputChannel(std::string name,
-                    std::string rSuffix = "r",
-                    std::string gSuffix = "g",
-                    std::string bSuffix = "b",
-                    std::string aSuffix = "a")
-  : AbstractDataOutputChannel(name)
-  , _rChannel(name + rSuffix)
-  , _gChannel(name + gSuffix)
-  , _bChannel(name + bSuffix)
-  , _aChannel(name + aSuffix) { }
-
-  void bind(float* rData,
-            float* gData,
-            float* bData,
-            float* aData,
-            std::size_t size) {
-    _rChannel.bind(rData, size);
-    _gChannel.bind(gData, size);
-    _bChannel.bind(bData, size);
-    _aChannel.bind(aData, size);
-    _size = size;
-  }
-
-  void unbind() {
-    bind(nullptr,
-         nullptr,
-         nullptr,
-         nullptr,
-         0);
-  }
-
-  bool ready() const override {
-    return _rChannel.ready() && _gChannel.ready() && _bChannel.ready() && _aChannel.ready() && _size > 0;
-  }
-
-  void wipe() override {
-    _rChannel.wipe();
-    _gChannel.wipe();
-    _bChannel.wipe();
-    _aChannel.wipe();
-  }
-private:
-  DataOutputChannel<float> _rChannel;
-  DataOutputChannel<float> _gChannel;
-  DataOutputChannel<float> _bChannel;
-  DataOutputChannel<float> _aChannel;
-};
+void ColorDataOutputChannel::setSlice(std::size_t index,
+                                      const ofFloatColor& value) {
+  _rChannel.setSlice(index, value.r);
+  _gChannel.setSlice(index, value.g);
+  _bChannel.setSlice(index, value.b);
+  _aChannel.setSlice(index, value.a);
+}

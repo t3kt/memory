@@ -38,6 +38,7 @@
 		323AA1781DB5D39A0022C990 /* UT_Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1741DB5D39A0022C990 /* UT_Mutex.cpp */; };
 		323AA1791DB5D39A0022C990 /* UT_SharedMem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1761DB5D39A0022C990 /* UT_SharedMem.cpp */; };
 		323AA17C1DB5D45B0022C990 /* SharedMemChopOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */; };
+		323AA17F1DB723110022C990 /* EntityDataChannels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA17D1DB723110022C990 /* EntityDataChannels.cpp */; };
 		327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 327C58881DAC82C00089FE80 /* TimingController.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
@@ -303,6 +304,8 @@
 		323AA1771DB5D39A0022C990 /* UT_SharedMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UT_SharedMem.h; sourceTree = "<group>"; };
 		323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SharedMemChopOutput.cpp; path = data/SharedMemChopOutput.cpp; sourceTree = "<group>"; };
 		323AA17B1DB5D45B0022C990 /* SharedMemChopOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedMemChopOutput.h; path = data/SharedMemChopOutput.h; sourceTree = "<group>"; };
+		323AA17D1DB723110022C990 /* EntityDataChannels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityDataChannels.cpp; path = data/EntityDataChannels.cpp; sourceTree = "<group>"; };
+		323AA17E1DB723110022C990 /* EntityDataChannels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityDataChannels.h; path = data/EntityDataChannels.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -823,6 +826,8 @@
 			children = (
 				323AA1701DB447930022C990 /* DataChannel.cpp */,
 				323AA1711DB447930022C990 /* DataChannel.h */,
+				323AA17D1DB723110022C990 /* EntityDataChannels.cpp */,
+				323AA17E1DB723110022C990 /* EntityDataChannels.h */,
 				323AA17A1DB5D45B0022C990 /* SharedMemChopOutput.cpp */,
 				323AA17B1DB5D45B0022C990 /* SharedMemChopOutput.h */,
 			);
@@ -1956,6 +1961,7 @@
 				591625414631FF5EAAD46547 /* KaleidoscopePass.cpp in Sources */,
 				9542646BAA8BF278A609F010 /* LimbDarkeningPass.cpp in Sources */,
 				8253417391DE251DBE1F669A /* LUTPass.cpp in Sources */,
+				323AA17F1DB723110022C990 /* EntityDataChannels.cpp in Sources */,
 				327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */,
 				E39243AEF8A07C8EA90740C2 /* NoiseWarpPass.cpp in Sources */,
 				6C6EF13610CA2101155372DB /* PixelatePass.cpp in Sources */,
