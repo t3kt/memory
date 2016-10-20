@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef EntityMap_h
-#define EntityMap_h
+#pragma once
 
 #include <iterator>
 #include <memory>
@@ -18,6 +17,7 @@
 #include "../core/JsonIO.h"
 #include "../core/WorldObject.h"
 
+// A map of references to entities, keyed by entity ID.
 template<typename E>
 class EntityMap
 : public NonCopyable {
@@ -37,33 +37,20 @@ public:
       return EntityPtr();
     }
     auto iter = std::next(_map.begin(), index);
-    if (iter != _map.end()) {
-      return iter->second;
-    }
-    return EntityPtr();
+    return iter == _map.end() ? nullptr : iter->second;
   }
 
   EntityPtr operator[](ObjectId id) {
     auto iter = _map.find(id);
-    if (iter == _map.end()) {
-      return EntityPtr();
-    }
-    return iter->second;
+    return iter == _map.end() ? nullptr : iter->second;
   }
 
-  bool containsId(ObjectId id) const {
-    auto iter = _map.find(id);
-    return iter != end();
-  }
+  bool containsId(ObjectId id) const { return _map.find(id) != end(); }
 
   void clear() { _map.clear(); }
-
   std::size_t erase(ObjectId id) { return _map.erase(id); }
-
   std::size_t size() const { return _map.size(); }
-
   bool empty() const { return _map.empty(); }
-
   iterator begin() { return _map.begin(); }
   iterator end() { return _map.end(); }
   const_iterator begin() const { return _map.begin(); }
@@ -76,6 +63,7 @@ public:
     return _map. begin()->second;
   }
 
+  // Perform an action on each entity in the map.
   template<typename A>
   void performAction(A action) {
     for (auto& entry : _map) {
@@ -102,6 +90,7 @@ public:
     return std::shared_ptr<T>();
   }
 
+  // Remove references to dead entities from the map.
   void cullDeadObjects() {
     for(auto iter = _map.begin();
         iter != _map.end();) {
@@ -112,17 +101,14 @@ public:
       }
     }
   }
+
+  EntityPtr getRandomEntity() {
+    if (empty()) {
+      return nullptr;
+    }
+    auto index = static_cast<int>(ofRandom(0, size() - 1));
+    return getAtIndex(index);
+  }
 private:
   Storage _map;
 };
-
-template<typename E>
-std::shared_ptr<E> getRandomEntity(EntityMap<E>& entities) {
-  if (entities.empty()) {
-    return std::shared_ptr<E>();
-  }
-  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
-  return entities.getAtIndex(index);
-}
-
-#endif /* EntityMap_h */

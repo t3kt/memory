@@ -19,7 +19,7 @@ void ObserverSickness::update() {
   auto& log = AppSystem::get().log().observer();
   auto addDecay = _params.decayRateAmount.get();
   for (int i = 0; i < count; ++i) {
-    auto entity = getRandomEntity(_context.observers);
+    auto entity = _context.observers.getRandomEntity();
     if (entity && entity->alive() && !entity->sick()) {
       auto oldDecayRate = entity->getDecayRate();
       entity->setDecayRate(oldDecayRate + addDecay);

@@ -227,38 +227,14 @@ public:
   EntityPtr first() { return empty() ? nullptr : _objects.front(); }
   EntityPtr last() { return empty() ? nullptr : _objects.back(); }
 
+  EntityPtr getRandomEntity() {
+    if (empty()) {
+      return nullptr;
+    }
+    auto index = static_cast<int>(ofRandom(0, size() - 1));
+    return getAtIndex(index);
+  }
+
 private:
   StorageList _objects;
 };
-
-//template<SequenceDirection>
-//struct ObjectManagerDirection;
-//
-//template<>
-//struct ObjectManagerDirection<SequenceDirection::BACKWARD> {
-//  template<typename E>
-//  static std::shared_ptr<E>
-//  relative(ObjectManager<E>& entities,
-//           const std::shared_ptr<E>& entity) {
-//    return entities.before(entity);
-//  }
-//};
-//
-//template<>
-//struct ObjectManagerDirection<SequenceDirection::FORWARD> {
-//  template<typename E>
-//  static std::shared_ptr<E>
-//  relative(ObjectManager<E>& entities,
-//           const std::shared_ptr<E>& entity) {
-//    return entities.after(entity);
-//  }
-//};
-
-template<typename E>
-std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
-  if (entities.empty()) {
-    return std::shared_ptr<E>();
-  }
-  auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
-  return entities.getAtIndex(index);
-}
