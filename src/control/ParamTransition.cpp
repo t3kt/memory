@@ -19,7 +19,7 @@ static inline Logger& getLog() {
 }
 
 class ApplyParamTransitionAction
-: public Action {
+: public AbortableAction {
 public:
   ApplyParamTransitionAction(ParamTransitionPtr transition,
                              float duration,
@@ -30,6 +30,10 @@ public:
 
   ActionResult operator()(Context& context,
                           ActionsController& controller) override {
+    if (_aborted) {
+      getLog().logNotice("Param transition aborted");
+      return ActionResult::cancel();
+    }
     auto age = _age.get();
     if (age > _duration) {
       getLog().logNotice("Finished param transition");
@@ -51,10 +55,23 @@ void ParamTransitionSet::apply(float ratio) {
   }
 }
 
-std::shared_ptr<Action>
+std::shared_ptr<AbortableAction>
 AbstractParamTransition::createApplyAction(float duration,
                                            const Context &context) {
-  return std::shared_ptr<Action>(new ApplyParamTransitionAction(shared_from_this(), duration, context));
+  if (_applyAction) {
+    throw std::logic_error("Param transition already has apply action");
+  }
+  _applyAction.reset(new ApplyParamTransitionAction(shared_from_this(), duration, context));
+  return _applyAction;
+}
+
+void AbstractParamTransition::abortApplyAction() {
+  if (!_applyAction) {
+    throw std::logic_error("Param transition does not have apply action to abort");
+  }
+  AppSystem::get().log().app().logNotice("Aborting param transition apply action");
+  _applyAction->abort();
+  _applyAction.reset();
 }
 
 template<typename T>

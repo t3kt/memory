@@ -55,6 +55,14 @@ public:
   static ActionPtr of(ActionFn action);
 };
 
+class AbortableAction
+: public Action {
+public:
+  void abort() { _aborted = true; }
+protected:
+  bool _aborted;
+};
+
 using ActionFinishCallback = std::function<void()>;
 
 class ActionsController

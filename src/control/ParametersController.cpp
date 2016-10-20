@@ -6,6 +6,7 @@
 //
 //
 
+#include <ofUtils.h>
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
 #include "../control/ParametersController.h"
@@ -40,6 +41,9 @@ void ParametersState::read_json(const Json &obj) {
       for (const auto& presetObj : presetsArr.array_items()) {
         auto preset = std::make_shared<ParamPreset>();
         preset->read_json(presetObj);
+        if (preset->name().empty()) {
+          preset->setName("preset " + ofToString(_presets.size()));
+        }
         preset->stripUnsupportedParams(_params);
         _presets.push_back(preset);
       }
@@ -140,12 +144,21 @@ void ParametersController::loadPreset(const ParamPreset &preset) {
 
 void
 ParametersController::transitionToPreset(const ParamPreset &preset) {
+  if (_activeTransition) {
+    AppSystem::get().log().app().logNotice("Aborting active transition");
+    _activeTransition->abortApplyAction();
+    _activeTransition.reset();
+  }
   AppSystem::get().log().app().logNotice("Transitioning to preset " + preset.name() + "...");
   auto transitions = std::make_shared<ParamTransitionSet>();
   transitions->loadCurrentToPreset(_params, preset);
-  auto action = transitions->createApplyAction(2, _context);
+  auto action = transitions->createApplyAction(5, _context);
+  _activeTransition = transitions;
   ActionFinishCallback onFinish = [&]() {
     AppSystem::get().log().app().logNotice("Finished transitioning to preset " + preset.name());
+    if (transitions == _activeTransition) {
+      _activeTransition.reset();
+    }
   };
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);

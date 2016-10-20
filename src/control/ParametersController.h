@@ -20,6 +20,7 @@
 
 class Context;
 class MemoryAppParameters;
+class ParamTransitionSet;
 
 using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
 
@@ -78,6 +79,7 @@ private:
   ParametersState _state;
   bool _isCapturingPreset; // ugly hack...
   Context& _context;
+  std::shared_ptr<ParamTransitionSet> _activeTransition;
 };
 
 #endif /* ParametersController_h */

@@ -14,7 +14,7 @@
 #include "../control/Params.h"
 #include "../core/Common.h"
 
-class Action;
+class AbortableAction;
 class Context;
 class ParamPreset;
 
@@ -25,8 +25,13 @@ class AbstractParamTransition
 public:
   virtual void apply(float ratio) = 0;
 
-  std::shared_ptr<Action> createApplyAction(float duration,
-                                            const Context& context);
+  std::shared_ptr<AbortableAction>
+  createApplyAction(float duration,
+                    const Context& context);
+
+  void abortApplyAction();
+private:
+  std::shared_ptr<AbortableAction> _applyAction;
 };
 
 using ParamTransitionPtr = std::shared_ptr<AbstractParamTransition>;
