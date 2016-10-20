@@ -6,17 +6,19 @@
 //
 //
 
-#ifndef Connection_h
-#define Connection_h
+#pragma once
 
 #include <memory>
 #include <ofMath.h>
 #include <unordered_map>
+#include <type_traits>
 #include "../core/Common.h"
 #include "../core/JsonIO.h"
 #include "../core/ParticleObject.h"
 #include "../core/WorldObject.h"
 
+// Base class for a connection to an entity (generally from
+// another entity).
 class AbstractConnection
 : public NonCopyable
 , public JsonWritable {
@@ -32,6 +34,7 @@ protected:
   virtual const ParticleObject& getEntityRef() const = 0;
 };
 
+// A connection to an entity of type E.
 template<typename E>
 class EntityConnection
 : public AbstractConnection {
@@ -61,14 +64,17 @@ private:
   EntityPtr _entity;
 };
 
+// A map of connections to various entities.
+// TConn is the type of connection (a subclass of AbstractConnection).
 template<typename TConn>
 class TypedEntityConnectionMap
 : public NonCopyable
 , public JsonWritable {
+  static_assert(std::is_base_of<AbstractConnection, TConn>::value,
+                "TConn must be a subclass of AbstractConnection");
 public:
-  using ConnT = TConn;
-  using ConnPtr = std::shared_ptr<ConnT>;
-  using EntityPtr = typename ConnT::EntityPtr;
+  using ConnPtr = std::shared_ptr<TConn>;
+  using EntityPtr = typename TConn::EntityPtr;
   using Storage = std::unordered_map<ObjectId, ConnPtr>;
   using iterator = MapToValueIterator<ObjectId, ConnPtr>;
   using const_iterator = ConstMapToValueIterator<ObjectId, ConnPtr>;
@@ -86,7 +92,7 @@ public:
     if (conn) {
       return std::make_pair(conn, false);
     }
-    conn = std::make_shared<ConnT>(entity, std::forward<Args>(args)...);
+    conn = std::make_shared<TConn>(entity, std::forward<Args>(args)...);
     addConnection(conn);
     return std::make_pair(conn, true);
   }
@@ -108,8 +114,7 @@ public:
   }
 
   bool containsId(ObjectId entityId) const {
-    auto iter = _map.find(entityId);
-    return iter != _map.end();
+    return _map.find(entityId) != _map.end();
   }
 
   void clear() { _map.clear(); }
@@ -125,6 +130,8 @@ public:
   const_iterator begin() const { return _map.begin(); }
   const_iterator end() const { return _map.end(); }
 
+  // Perform an action on the entities connected to by connections
+  // in the map.
   template<typename A>
   void performAction(A action) {
     for (auto& entry : _map) {
@@ -132,6 +139,7 @@ public:
     }
   }
 
+  // Perform an action on the connections in the map.
   template<typename A>
   void performConnectionAction(A action) {
     for (auto& entry : _map) {
@@ -139,6 +147,7 @@ public:
     }
   }
 
+  // Remove connections to dead entities.
   void cullDeadConnections() {
     for (auto iter = begin();
          iter != end();) {
@@ -164,10 +173,7 @@ public:
     }
     auto index = static_cast<std::size_t>(ofRandom(0, size() - 1));
     auto conn = getConnectionAtIndex(index);
-    if (conn) {
-      return conn->entity();
-    }
-    return nullptr;
+    return conn ? conn->entity() : nullptr;
   }
 
 private:
@@ -176,10 +182,7 @@ private:
       return nullptr;
     }
     auto iter = std::next(_map.begin(), index);
-    if (iter == _map.end()) {
-      return nullptr;
-    }
-    return iter->second;
+    return iter == _map.end() ? nullptr : iter->second;
   }
 
   Storage _map;
@@ -187,5 +190,3 @@ private:
 
 template<typename E>
 using EntityConnectionMap = TypedEntityConnectionMap<EntityConnection<E>>;
-
-#endif /* Connection_h */

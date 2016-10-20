@@ -1,13 +1,10 @@
 //
 //  ObjectId.h
-//  memory
 //
-//  Created by tekt on 9/24/16.
-//
+//  Unique identifiers for objects.
 //
 
-#ifndef ObjectId_h
-#define ObjectId_h
+#pragma once
 
 using ObjectId = int;
 
@@ -16,5 +13,3 @@ namespace ObjectIds {
 
   ObjectId next();
 }
-
-#endif /* ObjectId_h */

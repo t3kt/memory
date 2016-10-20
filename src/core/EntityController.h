@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef EntityController_h
-#define EntityController_h
+#pragma once
 
 #include <memory>
 #include "../control/Params.h"
@@ -19,14 +18,13 @@
 class Context;
 class SimulationEvents;
 
+// A controller which manages a set of entities of a particular type E.
 template<typename E>
 class EntityController
 : public NonCopyable
 , public ComponentBase {
 public:
   using EntityPtr = std::shared_ptr<E>;
-  using EntityEvent = SimulationEvent<E>;
-  using EntityEventArgs = SimulationEventArgs<E>;
 
   EntityController(Context& context,
                    SimulationEvents& events,
@@ -40,6 +38,7 @@ public:
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }
 
+  // Kill the first N entities managed by the controller.
   void killEntities(int count) {
     int i = 0;
     for (auto& entity : _entities) {
@@ -51,12 +50,14 @@ public:
     }
   }
 
+  // Kill all entities managed by the controller.
   void killAllEntities() {
     for (auto& entity : _entities) {
       entity->kill();
     }
   }
 
+  // Update each entity and remove the ones that die.
   virtual void update() {
     _entities.processAndCullObjects([&](EntityPtr& entity) {
       entity->update(_context.entityState);
@@ -71,5 +72,3 @@ protected:
   SimulationEvents& _events;
   ObjectManager<E>& _entities;
 };
-
-#endif /* EntityController_h */
