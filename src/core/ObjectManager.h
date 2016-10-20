@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef ObjectManager_h
-#define ObjectManager_h
+#pragma once
 
 #include <algorithm>
 #include <functional>
@@ -21,6 +20,7 @@
 #include "../core/Events.h"
 #include "../core/Serialization.h"
 
+// Container that stores and owns a set of entities.
 template <typename T>
 class ObjectManager
 : public NonCopyable {
@@ -32,10 +32,6 @@ public:
   
   void add(std::shared_ptr<T> object) {
     this->_objects.push_back(object);
-  }
-
-  void clear() {
-    this->_objects.clear();
   }
 
   Json serializeEntities(const SerializationContext& context) const {
@@ -114,10 +110,13 @@ public:
     }
   }
 
+  // Remove dead entities from the manager.
   void cullObjects() {
     processAndCullObjects([](EntityPtr&) { });
   }
 
+  // Perform an action on each entity. After performing the action,
+  // if the entity has died, remove it from the manager.
   void processAndCullObjects(std::function<void(EntityPtr&)> callback) {
     for (auto i = begin();
          i != end();) {
@@ -131,6 +130,7 @@ public:
     }
   }
 
+  // Perform an action on each entity owned by the manager
   template<typename A>
   void performAction(A action) {
     for (EntityPtr& entity : _objects) {
@@ -138,29 +138,13 @@ public:
     }
   }
 
-  std::size_t size() const {
-    return _objects.size();
-  }
-
-  bool empty() const {
-    return _objects.empty();
-  }
-
-  iterator begin() {
-    return _objects.begin();
-  }
-
-  iterator end() {
-    return _objects.end();
-  }
-
-  const_iterator begin() const {
-    return _objects.cbegin();
-  }
-
-  const_iterator end() const {
-    return _objects.cend();
-  }
+  void clear() { _objects.clear(); }
+  std::size_t size() const { return _objects.size(); }
+  bool empty() const { return _objects.empty(); }
+  iterator begin() { return _objects.begin(); }
+  iterator end() { return _objects.end(); }
+  const_iterator begin() const { return _objects.begin(); }
+  const_iterator end() const { return _objects.end(); }
 
   EntityPtr getAtIndex(std::size_t index) {
     if (index >= size()) {
@@ -182,6 +166,7 @@ public:
     return EntityPtr();
   }
 
+  // Gets the entity before nextEntity, if any, or null otherwise
   EntityPtr before(const EntityPtr& nextEntity) {
     if (!nextEntity) {
       return nullptr;
@@ -197,6 +182,8 @@ public:
     return *iter;
   }
 
+  // Gets the entity before nextEntity, if any, or the last entity
+  // in the manager otherwise. Used for looping through the entities.
   EntityPtr beforeOrLast(const EntityPtr& nextEntity) {
     if (empty()) {
       return nullptr;
@@ -208,6 +195,7 @@ public:
     return last();
   }
 
+  // Gets the entity after prevEntity, if any, or null otherwise
   EntityPtr after(const EntityPtr& prevEntity) {
     if (!prevEntity) {
       return nullptr;
@@ -223,6 +211,8 @@ public:
     return *iter;
   }
 
+  // Gets the entity after prevEntity, if any, or the first entity
+  // in the manager otherwise. Used for looping through the entities.
   EntityPtr afterOrFirst(const EntityPtr& prevEntity) {
     if (empty()) {
       return nullptr;
@@ -234,18 +224,8 @@ public:
     return first();
   }
 
-  EntityPtr first() {
-    if (empty()) {
-      return nullptr;
-    }
-    return _objects.front();
-  }
-  EntityPtr last() {
-    if (empty()) {
-      return nullptr;
-    }
-    return _objects.back();
-  }
+  EntityPtr first() { return empty() ? nullptr : _objects.front(); }
+  EntityPtr last() { return empty() ? nullptr : _objects.back(); }
 
 private:
   StorageList _objects;
@@ -282,5 +262,3 @@ std::shared_ptr<E> getRandomEntity(ObjectManager<E>& entities) {
   auto index = static_cast<int>(ofRandom(0, entities.size() - 1));
   return entities.getAtIndex(index);
 }
-
-#endif /* ObjectManager_h */
