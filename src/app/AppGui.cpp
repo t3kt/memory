@@ -45,8 +45,8 @@ public:
   }
 private:
   void onClick() {
-    //    AppSystem::get().simulation()->parameters().loadPreset(_preset);
-    AppSystem::get().simulation()->parameters().transitionToPreset(_preset);
+    //    AppSystem::get().simulation().parameters().loadPreset(_preset);
+    AppSystem::get().simulation().parameters().transitionToPreset(_preset);
   }
   const ParamPreset& _preset;
 };
@@ -171,7 +171,7 @@ void AppGui::updatePresetButtons() {
 
 void AppGui::addPresetButtons(ofxGuiContainer *container) {
   const auto& presets =
-    AppSystem::get().simulation()->parameters().presets();
+    AppSystem::get().simulation().parameters().presets();
   for (std::size_t i = 0; i < presets.size(); i++) {
     const auto& preset = *(presets[i]);
     auto name = preset.name();

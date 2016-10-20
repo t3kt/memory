@@ -134,7 +134,7 @@ void ParametersController::captureNewPreset() {
   .logNotice("Captured preset: '" + name + "'");
   _isCapturingPreset = false;
 
-  AppSystem::get().simulation()->gui().updatePresetButtons();
+  AppSystem::get().simulation().gui().updatePresetButtons();
 }
 
 void ParametersController::loadPreset(const ParamPreset &preset) {

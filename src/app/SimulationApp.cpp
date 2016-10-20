@@ -86,11 +86,11 @@ void SimulationApp::setup() {
 void SimulationApp::updateLogState() {
   bool enabled = _appParams.debug.logging.enabled.get();
   ofSetLogLevel(enabled ? OF_LOG_NOTICE : OF_LOG_ERROR);
-  auto simulation = AppSystem::get().simulation();
+  auto& events = AppSystem::get().simulation().getEvents();
   if (enabled) {
-    _eventLoggers->attach(simulation->getEvents());
+    _eventLoggers->attach(events);
   } else {
-    _eventLoggers->detach(simulation->getEvents());
+    _eventLoggers->detach(events);
   }
 }
 

@@ -22,7 +22,7 @@ void PointNavState::fillInfo(Info &info,
 }
 
 NavigatorStatePtr PointNavState::nextState(Context &context) {
-  const auto& bounds = AppSystem::get().simulation()->bounds();
+  const auto& bounds = AppSystem::get().simulation().bounds();
   auto point = bounds.randomPoint();
   return std::make_shared<PointNavState>(point);
 }

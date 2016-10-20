@@ -41,7 +41,7 @@ public:
     return _simulationWindow;
   }
 
-  SimulationApp* simulation() { return _simulationApp.get(); }
+  SimulationApp& simulation() { return *_simulationApp; }
 
   Context& context() { return _context; }
   const Context& context() const { return _context; }

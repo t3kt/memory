@@ -17,7 +17,7 @@ RateObserverSpawner::RateObserverSpawner(Context& context,
                                          const BoundsController& bounds)
 : RateSpawner(context, params)
 , _bounds(bounds)
-, _events(AppSystem::get().simulation()->getEvents()) { }
+, _events(AppSystem::get().simulation().getEvents()) { }
 
 void RateObserverSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
