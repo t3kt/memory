@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef __behavior__Common__
-#define __behavior__Common__
+#pragma once
 
 #include <iostream>
 #include <functional>
@@ -47,42 +46,6 @@ public:
   : std::runtime_error("NOT IMPLEMENTED") { }
 };
 
-template<typename T>
-class ValueOrRef {
-public:
-  static ValueOrRef<T> fromRef(T* val) {
-    return ValueOrRef<T>(false, val);
-  }
-
-  static ValueOrRef<T> owningValue(T initialValue) {
-    auto result = owningValue();
-    result._value = initialValue;
-    return result;
-  }
-
-  static ValueOrRef<T> owningValue() {
-    ValueOrRef<T> result(true, new T());
-    return result;
-  }
-
-  ~ValueOrRef() {
-    if (_ownsValue) {
-      delete _value;
-    }
-  }
-
-  const T& get() const { return *_value; }
-  void set(const T& value) { *_value = value; }
-
-private:
-  ValueOrRef(bool owns, T* val)
-  : _ownsValue(owns)
-  , _value(val) { }
-
-  const bool _ownsValue;
-  T* _value;
-};
-
 template<typename E>
 using PtrRefAction = std::function<void(std::shared_ptr<E>&)>;
 
@@ -94,11 +57,6 @@ using PtrPredicate = std::function<bool(std::shared_ptr<E>)>;
 
 template<typename E>
 using PtrRefPredicate = std::function<bool(std::shared_ptr<E>&)>;
-
-//enum class SequenceDirection {
-//  BACKWARD,
-//  FORWARD
-//};
 
 template<typename K, typename V>
 class MapToValueIterator {
@@ -192,5 +150,3 @@ public:
 private:
   InnerIterator _iter;
 };
-
-#endif /* defined(__behavior__Common__) */
