@@ -151,13 +151,21 @@ void AppGui::setup() {
   }
   {
     auto presetsTab = rootTabs->addGroup("Preset");
-    addPresetButtons(presetsTab);
+    _presetsContainer = presetsTab->addGroup();
+    addPresetButtons(_presetsContainer);
   }
   rootTabs->setTabHeight(6);
   rootTabs->setTabWidth(44);
   collapseDisabled();
 
   loadTheme();
+  _mainPanel->blockLayout(false);
+}
+
+void AppGui::updatePresetButtons() {
+  _mainPanel->blockLayout(true);
+  _presetsContainer->clear();
+  addPresetButtons(_presetsContainer);
   _mainPanel->blockLayout(false);
 }
 
@@ -170,7 +178,7 @@ void AppGui::addPresetButtons(ofxGuiContainer *container) {
     if (name.empty()) {
       name = "[" + ofToString(i) + "]";
     }
-    container->add<LoadPresetButton>(name, preset);
+    _presetsContainer->add<LoadPresetButton>(name, preset);
   }
 }
 

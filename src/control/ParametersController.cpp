@@ -9,6 +9,7 @@
 #include <ofUtils.h>
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../control/ParametersController.h"
 #include "../control/ParamTransition.h"
 #include "../core/Actions.h"
@@ -119,10 +120,7 @@ void ParametersController::captureNewPreset() {
   }
   _isCapturingPreset = true;
   AppSystem::get().log().app().logNotice("Capturing preset...");
-  auto defaultName =
-    "preset " + ofToString(_state.presets().size() + 1);
-  auto name = AppSystem::promptForText("Preset name",
-                                       defaultName);
+  auto name = AppSystem::promptForText("Preset name");
   if (name.empty()) {
     AppSystem::get().log().app().logNotice("Not creating preset");
     return;
@@ -135,6 +133,8 @@ void ParametersController::captureNewPreset() {
   AppSystem::get().log().app()
   .logNotice("Captured preset: '" + name + "'");
   _isCapturingPreset = false;
+
+  AppSystem::get().simulation()->gui().updatePresetButtons();
 }
 
 void ParametersController::loadPreset(const ParamPreset &preset) {
