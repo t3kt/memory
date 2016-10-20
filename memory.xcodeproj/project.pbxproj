@@ -290,6 +290,7 @@
 		32308A791DA23D820005F875 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Connection.h; path = core/Connection.h; sourceTree = "<group>"; };
 		323AA1601DB1F9020022C990 /* ParamTransition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamTransition.cpp; path = control/ParamTransition.cpp; sourceTree = "<group>"; };
 		323AA1611DB1F9020022C990 /* ParamTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamTransition.h; path = control/ParamTransition.h; sourceTree = "<group>"; };
+		323AA1861DB89DF80022C990 /* RampFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RampFactory.h; path = control/RampFactory.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -707,6 +708,7 @@
 				32CCB2F71DAE13F900BAE226 /* Params.h */,
 				323AA1601DB1F9020022C990 /* ParamTransition.cpp */,
 				323AA1611DB1F9020022C990 /* ParamTransition.h */,
+				323AA1861DB89DF80022C990 /* RampFactory.h */,
 				32CCB3001DAE172400BAE226 /* ValueRange.h */,
 				32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */,
 				32CCB2F91DAE13F900BAE226 /* ValueSequence.h */,
