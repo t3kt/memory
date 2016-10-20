@@ -8,6 +8,7 @@
 
 #include <ofMain.h>
 #include "../app/AppParameters.h"
+#include "../control/ParamTransition.h"
 #include "../core/Status.h"
 
 StatusInfoController::StatusInfoController(const Params& params,
@@ -32,6 +33,10 @@ void StatusInfoController::update() {
   if (!_context.highlightedEntities.empty()) {
     _info.add("Highlighted:",
               _context.highlightedEntities.size());
+  }
+  if (_context.activeTransition) {
+    _info.add("Transitioning:",
+              _context.activeTransition->name());
   }
 }
 

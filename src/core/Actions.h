@@ -21,23 +21,38 @@ class ActionsController;
 class Context;
 
 class ActionResult {
-public:
-  static ActionResult cancel() { return ActionResult(-1, false); }
-  static ActionResult reschedule(float time) {
-    return ActionResult(time, false);
-  }
-  static ActionResult continuous() { return ActionResult(-1, true); }
-
-  bool isReschedule() const { return _time >= 0; }
-  float rescheduleTime() const { return _time; }
-  bool isContinuous() const { return _continuous; }
 private:
-  ActionResult(float time, bool continuous)
+  enum class ResultType {
+    RESCHEDULE,
+    CONTINUOUS,
+    CANCEL,
+    ABORT,
+  };
+public:
+  static ActionResult cancel() {
+    return ActionResult(-1, ResultType::CANCEL);
+  }
+  static ActionResult reschedule(float time) {
+    return ActionResult(time, ResultType::RESCHEDULE);
+  }
+  static ActionResult continuous() {
+    return ActionResult(-1, ResultType::CONTINUOUS);
+  }
+  static ActionResult abort() {
+    return ActionResult(-1, ResultType::ABORT);
+  }
+
+  bool isReschedule() const { return _type == ResultType::RESCHEDULE; }
+  float rescheduleTime() const { return _time; }
+  bool isContinuous() const { return _type == ResultType::CONTINUOUS; }
+  bool isAbort() const { return _type == ResultType::ABORT; }
+private:
+  ActionResult(float time, ResultType type)
   : _time(time)
-  , _continuous(continuous) { }
+  , _type(type) { }
 
   const float _time;
-  const bool _continuous;
+  const ResultType _type;
 };
 
 class Action;

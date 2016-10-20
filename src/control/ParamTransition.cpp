@@ -32,7 +32,7 @@ public:
                           ActionsController& controller) override {
     if (_aborted) {
       getLog().logNotice("Param transition aborted");
-      return ActionResult::cancel();
+      return ActionResult::abort();
     }
     auto age = _age.get();
     if (age > _duration) {
@@ -159,6 +159,9 @@ void ParamTransitionSet::loadCurrentToPreset(Params &params,
 }
 
 void ParamTransitionSet::outputFields(std::ostream &os) const {
+  if (!name().empty()) {
+    os << "name: " << name() << ", ";
+  }
   os << "transitions: [";
   for (const auto transition : _transitions) {
     os << *transition;

@@ -144,21 +144,20 @@ void ParametersController::loadPreset(const ParamPreset &preset) {
 
 void
 ParametersController::transitionToPreset(const ParamPreset &preset) {
-  if (_activeTransition) {
-    AppSystem::get().log().app().logNotice("Aborting active transition");
-    _activeTransition->abortApplyAction();
-    _activeTransition.reset();
+  if (_context.activeTransition) {
+    AppSystem::get().log().app().logNotice("Aborting active transition: " + _context.activeTransition->name());
+    _context.activeTransition->abortApplyAction();
+    _context.activeTransition.reset();
   }
   AppSystem::get().log().app().logNotice("Transitioning to preset " + preset.name() + "...");
   auto transitions = std::make_shared<ParamTransitionSet>();
   transitions->loadCurrentToPreset(_params, preset);
+  transitions->setName("to preset '" + preset.name() + "'");
   auto action = transitions->createApplyAction(5, _context);
-  _activeTransition = transitions;
+  _context.activeTransition = transitions;
   ActionFinishCallback onFinish = [&]() {
-    AppSystem::get().log().app().logNotice("Finished transitioning to preset " + preset.name());
-    if (transitions == _activeTransition) {
-      _activeTransition.reset();
-    }
+    AppSystem::get().log().app().logNotice("Finished transition: " + _context.activeTransition->name());
+    _context.activeTransition.reset();
   };
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);

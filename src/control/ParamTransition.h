@@ -30,8 +30,12 @@ public:
                     const Context& context);
 
   void abortApplyAction();
+
+  const std::string& name() const { return _name; }
+  void setName(std::string name) { _name = name; }
 private:
   std::shared_ptr<AbortableAction> _applyAction;
+  std::string _name;
 };
 
 using ParamTransitionPtr = std::shared_ptr<AbstractParamTransition>;
