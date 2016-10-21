@@ -19,6 +19,9 @@ public:
                       DataChannelList& dataChannels);
 
   bool setup();
+
+  void lock();
+  void unlock();
 private:
   const std::string _memoryName;
   const std::size_t _maxEntities;

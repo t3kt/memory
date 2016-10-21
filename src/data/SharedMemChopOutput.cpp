@@ -63,3 +63,11 @@ bool SharedMemChopOutput::setup() {
   }
   return true;
 }
+
+void SharedMemChopOutput::lock() {
+  _sharedMem->lock();
+}
+
+void SharedMemChopOutput::unlock() {
+  _sharedMem->unlock();
+}
