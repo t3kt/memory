@@ -25,7 +25,7 @@ OccurrenceSpawner::OccurrenceSpawner(Context& context,
 : RateSpawner(context, params)
 , _params(params)
 , _bounds(bounds)
-, _events(AppSystem::get().simulation()->getEvents()) { }
+, _events(AppSystem::get().simulation().getEvents()) { }
 
 class OccurrenceSequenceSpawnAction
 : public Action {

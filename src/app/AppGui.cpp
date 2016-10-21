@@ -45,8 +45,8 @@ public:
   }
 private:
   void onClick() {
-    //    AppSystem::get().simulation()->parameters().loadPreset(_preset);
-    AppSystem::get().simulation()->parameters().transitionToPreset(_preset);
+    //    AppSystem::get().simulation().parameters().loadPreset(_preset);
+    AppSystem::get().simulation().parameters().transitionToPreset(_preset);
   }
   const ParamPreset& _preset;
 };
@@ -151,7 +151,8 @@ void AppGui::setup() {
   }
   {
     auto presetsTab = rootTabs->addGroup("Preset");
-    addPresetButtons(presetsTab);
+    _presetsContainer = presetsTab->addGroup();
+    addPresetButtons(_presetsContainer);
   }
   rootTabs->setTabHeight(6);
   rootTabs->setTabWidth(44);
@@ -161,16 +162,23 @@ void AppGui::setup() {
   _mainPanel->blockLayout(false);
 }
 
+void AppGui::updatePresetButtons() {
+  _mainPanel->blockLayout(true);
+  _presetsContainer->clear();
+  addPresetButtons(_presetsContainer);
+  _mainPanel->blockLayout(false);
+}
+
 void AppGui::addPresetButtons(ofxGuiContainer *container) {
   const auto& presets =
-    AppSystem::get().simulation()->parameters().presets();
+    AppSystem::get().simulation().parameters().presets();
   for (std::size_t i = 0; i < presets.size(); i++) {
     const auto& preset = *(presets[i]);
     auto name = preset.name();
     if (name.empty()) {
       name = "[" + ofToString(i) + "]";
     }
-    container->add<LoadPresetButton>(name, preset);
+    _presetsContainer->add<LoadPresetButton>(name, preset);
   }
 }
 

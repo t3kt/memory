@@ -92,7 +92,7 @@ void MidiRouter::setup(std::initializer_list<std::shared_ptr<MidiDevice>> device
   loadMappings();
   _eventRouter = std::make_shared<MidiEventRouter>(*this);
   _eventRouter->setup();
-  _eventRouter->attach(AppSystem::get().simulation()->getEvents());
+  _eventRouter->attach(AppSystem::get().simulation().getEvents());
 }
 
 void MidiRouter::addDevice(std::shared_ptr<MidiDevice> device) {

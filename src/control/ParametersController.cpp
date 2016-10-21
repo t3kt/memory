@@ -6,8 +6,10 @@
 //
 //
 
+#include <ofUtils.h>
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
 #include "../control/ParametersController.h"
 #include "../control/ParamTransition.h"
 #include "../core/Actions.h"
@@ -40,6 +42,9 @@ void ParametersState::read_json(const Json &obj) {
       for (const auto& presetObj : presetsArr.array_items()) {
         auto preset = std::make_shared<ParamPreset>();
         preset->read_json(presetObj);
+        if (preset->name().empty()) {
+          preset->setName("preset " + ofToString(_presets.size()));
+        }
         preset->stripUnsupportedParams(_params);
         _presets.push_back(preset);
       }
@@ -115,10 +120,7 @@ void ParametersController::captureNewPreset() {
   }
   _isCapturingPreset = true;
   AppSystem::get().log().app().logNotice("Capturing preset...");
-  auto defaultName =
-    "preset " + ofToString(_state.presets().size() + 1);
-  auto name = AppSystem::promptForText("Preset name",
-                                       defaultName);
+  auto name = AppSystem::promptForText("Preset name");
   if (name.empty()) {
     AppSystem::get().log().app().logNotice("Not creating preset");
     return;
@@ -131,6 +133,8 @@ void ParametersController::captureNewPreset() {
   AppSystem::get().log().app()
   .logNotice("Captured preset: '" + name + "'");
   _isCapturingPreset = false;
+
+  AppSystem::get().simulation().gui().updatePresetButtons();
 }
 
 void ParametersController::loadPreset(const ParamPreset &preset) {
@@ -140,12 +144,20 @@ void ParametersController::loadPreset(const ParamPreset &preset) {
 
 void
 ParametersController::transitionToPreset(const ParamPreset &preset) {
+  if (_context.activeTransition) {
+    AppSystem::get().log().app().logNotice("Aborting active transition: " + _context.activeTransition->name());
+    _context.activeTransition->abortApplyAction();
+    _context.activeTransition.reset();
+  }
   AppSystem::get().log().app().logNotice("Transitioning to preset " + preset.name() + "...");
   auto transitions = std::make_shared<ParamTransitionSet>();
   transitions->loadCurrentToPreset(_params, preset);
-  auto action = transitions->createApplyAction(2, _context);
+  transitions->setName("to preset '" + preset.name() + "'");
+  auto action = transitions->createApplyAction(5, _context);
+  _context.activeTransition = transitions;
   ActionFinishCallback onFinish = [&]() {
-    AppSystem::get().log().app().logNotice("Finished transitioning to preset " + preset.name());
+    AppSystem::get().log().app().logNotice("Finished transition: " + _context.activeTransition->name());
+    _context.activeTransition.reset();
   };
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);

@@ -37,7 +37,7 @@ public:
 protected:
   void spawnEntities(int count) override {
     if (count == 1) {
-      auto entity = getRandomEntity(_context.observers);
+      auto entity = _context.observers.getRandomEntity();
       if (entity) {
         _controller.spawnObserverNavigator(entity);
       }

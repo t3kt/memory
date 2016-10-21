@@ -29,6 +29,7 @@ public:
 
   bool performAction(AppAction action) override;
   void collapseDisabled();
+  void updatePresetButtons();
 private:
   void loadTheme();
   void addActionButtons(ofxGuiContainer* container);
@@ -37,6 +38,7 @@ private:
   MemoryAppParameters& _appParams;
   std::shared_ptr<ofxGui> _gui;
   ofxGuiPanel* _mainPanel;
+  ofxGuiContainer* _presetsContainer;
 };
 
 #endif /* AppGui_h */

@@ -167,7 +167,7 @@ void ActionsController::update() {
         if (result.isReschedule()) {
           newEntries.push_back(entry.withTime(result.rescheduleTime()));
         } else {
-          if (entry.onFinish) {
+          if (!result.isAbort() && entry.onFinish) {
             finishCallbacks.push_back(entry.onFinish);
           }
         }
@@ -185,7 +185,7 @@ void ActionsController::update() {
       } else if (result.isReschedule()) {
         newEntries.push_back(entry.withTime(result.rescheduleTime()));
       } else {
-        if (entry.onFinish) {
+        if (!result.isAbort() && entry.onFinish) {
           finishCallbacks.push_back(entry.onFinish);
         }
       }

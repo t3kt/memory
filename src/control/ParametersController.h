@@ -20,6 +20,7 @@
 
 class Context;
 class MemoryAppParameters;
+class ParamTransitionSet;
 
 using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
 

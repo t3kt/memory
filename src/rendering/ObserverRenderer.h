@@ -15,7 +15,7 @@
 #include <ofTexture.h>
 #include <ofVboMesh.h>
 #include <vector>
-#include "../core/AnimationObject.h"
+#include "../control/RampFactory.h"
 #include "../core/Context.h"
 #include "../rendering/Renderer.h"
 

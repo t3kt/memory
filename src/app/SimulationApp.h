@@ -69,6 +69,8 @@ public:
 
   TimingController& timing() { return *_timing; }
 
+  AppGui& gui() { return *_gui; }
+
 private:
   void dumpEntityState();
   void loadEntityState();

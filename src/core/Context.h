@@ -17,6 +17,7 @@
 #include "../core/State.h"
 #include "../graph/EntityGroup.h"
 
+class AbstractParamTransition;
 class AnimationObject;
 class NavigatorEntity;
 class NodeEntity;
@@ -59,6 +60,8 @@ public:
   ObjectManager<OccurrenceEntity> occurrences;
 
   EntityGroup highlightedEntities;
+
+  std::shared_ptr<AbstractParamTransition> activeTransition;
 
 private:
   void clear();

@@ -1,13 +1,11 @@
 //
 //  Scheduler.h
-//  memory
 //
-//  Created by tekt on 9/5/16.
-//
+//  Objects used to determine whether some action should performed
+//  at the current time.
 //
 
-#ifndef Scheduler_h
-#define Scheduler_h
+#pragma once
 
 #include <ofMath.h>
 #include "../control/Params.h"
@@ -29,16 +27,22 @@ public:
   TParam<float> chance;
 };
 
+// Base class for objects used to determine whether some action
+// should be performed at the current time.
+template<typename P>
 class Scheduler
 : public NonCopyable {
 public:
-  using Params = SchedulerParams;
+  using Params = P;
 
   Scheduler(Context& context,
             const Params& params)
   : _context(context)
   , _params(params) { }
 
+  // Check to see how many times the action should be performed.
+  // Returning a count rather than a bool allows some scheduler
+  // implementations to be triggered multiple times per update cycle.
   virtual int query() {
     if (!checkEnabled()) {
       return 0;
@@ -63,18 +67,8 @@ protected:
   }
 
   Context& _context;
-private:
   const Params& _params;
 };
-
-//template<typename P = SchedulerParams>
-//class Scheduler
-//: public AbstractScheduler {
-//public:
-//  using Params = typename P;
-//
-//protected:
-//};
 
 class IntervalSchedulerParams
 : public SchedulerParams {
@@ -91,19 +85,15 @@ public:
 };
 
 class IntervalScheduler
-: public Scheduler {
+: public Scheduler<IntervalSchedulerParams> {
 public:
-  using Params = IntervalSchedulerParams;
-
   IntervalScheduler(Context& context, const Params& params)
   : Scheduler(context, params)
-  , _params(params)
   , _nextTime(-1) { }
 
   int query() override;
 
 protected:
-  const Params& _params;
   float _nextTime;
 };
 
@@ -122,20 +112,14 @@ public:
 };
 
 class RateScheduler
-: public Scheduler {
+: public Scheduler<RateSchedulerParams> {
 public:
-  using Params = RateSchedulerParams;
-
   RateScheduler(Context& context, const Params& params)
   : Scheduler(context, params)
-  , _params(params)
   , _lastTime(-1) { }
 
   int query() override;
 
 protected:
-  const Params& _params;
   float _lastTime;
 };
-
-#endif /* Scheduler_h */
