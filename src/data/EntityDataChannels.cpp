@@ -36,30 +36,34 @@ std::ostream& operator<<(std::ostream& os,
   return os << enumToString(action);
 }
 
-EntityDataChannels::EntityDataChannels()
-: entityType(enumToString(EntityChannelId::ENTITY_TYPE))
-, alive(enumToString(EntityChannelId::ALIVE))
-, age(enumToString(EntityChannelId::AGE))
-, position(enumToString(EntityChannelId::POSITION))
-, color(enumToString(EntityChannelId::COLOR))
-, size(enumToString(EntityChannelId::SIZE)) { }
+EntityDataChannels::EntityDataChannels() {
+  entityType =
+  addChannel<EntityType>(EntityChannelId::ENTITY_TYPE);
+  alive =
+  addChannel<bool>(EntityChannelId::ALIVE);
+  age =
+  addChannel<float>(EntityChannelId::AGE);
+  position =
+  addChannel<ofVec3f>(EntityChannelId::POSITION);
+  color =
+  addChannel<ofFloatColor>(EntityChannelId::COLOR);
+  size =
+  addChannel<float>(EntityChannelId::SIZE);
+}
 
 void EntityDataChannels::reset() {
-  entityType.wipe();
-  alive.wipe();
-  age.wipe();
-  position.wipe();
-  color.wipe();
-  size.wipe();
+  for (auto& channel : _channels) {
+    channel->wipe();
+  }
   _index = 0;
 }
 
 void EntityDataChannels::addEntity(const ParticleObject &entity) {
-  entityType.setSlice(_index, entity.entityType());
-  alive.setSlice(_index, entity.alive());
-  age.setSlice(_index, entity.age().get());
-  position.setSlice(_index, entity.position());
-  color.setSlice(_index, entity.color());
-  size.setSlice(_index, entity.size());
+  entityType->setSlice(_index, entity.entityType());
+  alive->setSlice(_index, entity.alive());
+  age->setSlice(_index, entity.age().get());
+  position->setSlice(_index, entity.position());
+  color->setSlice(_index, entity.color());
+  size->setSlice(_index, entity.size());
   _index++;
 }

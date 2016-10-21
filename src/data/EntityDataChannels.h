@@ -49,14 +49,23 @@ public:
   void addEntity(const ParticleObject& entity);
   void reset();
 
-  ScalarDataOutputChannel<EntityType> entityType;
-  BoolDataOutputChannel alive;
-  FloatDataOutputChannel age;
-  Vec3fDataOutputChannel position;
-  ColorDataOutputChannel color;
-  FloatDataOutputChannel size;
+  DataChannelPtr<EntityType> entityType;
+  DataChannelPtr<bool> alive;
+  DataChannelPtr<float> age;
+  DataChannelPtr<ofVec3f> position;
+  DataChannelPtr<ofFloatColor> color;
+  DataChannelPtr<float> size;
+
+  const DataChannelList& channels() const { return _channels; }
 
 private:
+  template<typename T>
+  DataChannelPtr<T> addChannel(EntityChannelId channelId) {
+    return _channels.add<T>(enumToString(channelId));
+  }
+
+  DataChannelList _channels;
+
   std::size_t _index;
 };
 
