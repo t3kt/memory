@@ -69,7 +69,6 @@
 		50031EC589A30CA642DAFB58 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 621C325921DFEE3475FD5D7A /* OscOutboundPacketStream.cpp */; };
 		502109CFF164921BAE0F7E71 /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02D210F3CC4A1637C340A2F /* PostProcessing.cpp */; };
 		5186E72FCC97A817CBDA64A4 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7190435E05437240987B30AB /* RenderPass.cpp */; };
-		51D64A959F3A0E1CB153A3F7 /* Enums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 130704D6FD0C39406A1A19BC /* Enums.cpp */; };
 		53EFF84794FA0C5FD82DC868 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 471F2ED7E965E94FB8FB74D1 /* Document.cpp */; };
 		5462FEA088101825AE10D6F3 /* EntityRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5193B31B267C4F4F24D8F66 /* EntityRule.cpp */; };
 		55592031663A7C81C1FEB895 /* AppActions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BD70E18A6F64136478D47F2 /* AppActions.cpp */; };
@@ -241,7 +240,6 @@
 		112A3A974C9F38EC86CB0F47 /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscBundle.h; path = ../../openFrameworks/addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
 		1228236AF77C863520CFAC40 /* NavigatorEntity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NavigatorEntity.h; path = src/navigation/NavigatorEntity.h; sourceTree = SOURCE_ROOT; };
 		12821F190AFDF20BD92F1AAB /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NoiseWarpPass.cpp; path = ../../openFrameworks/addons/ofxPostProcessing/src/NoiseWarpPass.cpp; sourceTree = SOURCE_ROOT; };
-		130704D6FD0C39406A1A19BC /* Enums.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Enums.cpp; path = src/core/Enums.cpp; sourceTree = SOURCE_ROOT; };
 		1324084D010EA3700F964757 /* PhysicsBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PhysicsBehavior.h; path = src/physics/PhysicsBehavior.h; sourceTree = SOURCE_ROOT; };
 		1329F0EF2EE250082A8CF02E /* ObserverRenderer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ObserverRenderer.h; path = src/rendering/ObserverRenderer.h; sourceTree = SOURCE_ROOT; };
 		1377D65F1D12D476E2BB7034 /* vector2.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = vector2.h; path = ../../openFrameworks/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/vector2.h; sourceTree = SOURCE_ROOT; };
@@ -293,6 +291,7 @@
 		323AA1861DB89DF80022C990 /* RampFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RampFactory.h; path = control/RampFactory.h; sourceTree = "<group>"; };
 		323AA1981DBB271F0022C990 /* ofxTCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = ofxTCommon.h; sourceTree = "<group>"; };
 		323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTCommon.cpp; sourceTree = "<group>"; };
+		323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTEnums.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -809,6 +808,7 @@
 			children = (
 				323AA1981DBB271F0022C990 /* ofxTCommon.h */,
 				323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */,
+				323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1360,7 +1360,6 @@
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				292C7C3356DE4828CC45FD68 /* EntityController.h */,
 				CEDAB2464241B3DE53644E3D /* EntityMap.h */,
-				130704D6FD0C39406A1A19BC /* Enums.cpp */,
 				181B8436156A201B98F79E16 /* Enums.h */,
 				EB0D97C4A4783D5E224D8376 /* EventLogging.cpp */,
 				F25CE82328FE513EF55EF4A7 /* EventLogging.h */,
@@ -1805,7 +1804,6 @@
 				FCACC58AC5D08858CCD6A152 /* AnimationsController.cpp in Sources */,
 				BB97C84AA833E40F86213E9B /* Clock.cpp in Sources */,
 				6D0E482EF8B20BA8FA5544E8 /* Context.cpp in Sources */,
-				51D64A959F3A0E1CB153A3F7 /* Enums.cpp in Sources */,
 				A7FEFFFE09400F8FF8B9FA9A /* EventLogging.cpp in Sources */,
 				E0194FE44814C8337B696F06 /* Info.cpp in Sources */,
 				A9EA0DA3681A4682D890F307 /* InspectionController.cpp in Sources */,

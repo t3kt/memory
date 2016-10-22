@@ -45,7 +45,7 @@ EnumTypeInfo<AppAction> AppActionType({
 });
 
 template<>
-const EnumTypeInfo<AppAction>& getEnumInfo() {
+const EnumTypeInfo<AppAction>& ofxTCommon::getEnumInfo() {
   return AppActionType;
 }
 

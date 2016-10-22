@@ -9,3 +9,5 @@
 #pragma once
 
 #include <ofxTCommon.h>
+
+using namespace ofxTCommon;

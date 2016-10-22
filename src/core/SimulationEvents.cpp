@@ -26,7 +26,7 @@ EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {
 };
 
 template<>
-const EnumTypeInfo<SimulationEventType>& getEnumInfo() {
+const EnumTypeInfo<SimulationEventType>& ofxTCommon::getEnumInfo() {
   return SimulationEventTypeInfo;
 }
 

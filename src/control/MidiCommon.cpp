@@ -17,7 +17,7 @@ EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
 };
 
 template<>
-const EnumTypeInfo<MidiMessageType>& getEnumInfo() {
+const EnumTypeInfo<MidiMessageType>& ofxTCommon::getEnumInfo() {
   return MidiMessageTypeInfo;
 }
 
