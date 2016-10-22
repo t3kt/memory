@@ -14,7 +14,6 @@
 #include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
-#include "../core/Events.h"
 
 class MemoryAppParameters;
 class MidiDevice;

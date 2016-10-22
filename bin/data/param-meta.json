@@ -1,0 +1,2574 @@
+{
+  "key": "group",
+  "name": "",
+  "params": [
+    {
+      "key": "core",
+      "name": "Core",
+      "params": [
+        {
+          "key": "timing",
+          "name": "Timing",
+          "params": [
+            {
+              "key": "root",
+              "name": "Root Clock",
+              "params": [
+                {
+                  "default": false,
+                  "key": "paused",
+                  "max": true,
+                  "min": false,
+                  "name": "Paused",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "rate",
+                  "max": 10,
+                  "min": 0,
+                  "name": "Rate",
+                  "type": "f"
+                },
+                {
+                  "key": "entity",
+                  "name": "Entity Clock",
+                  "params": [
+                    {
+                      "default": false,
+                      "key": "paused",
+                      "max": true,
+                      "min": false,
+                      "name": "Paused",
+                      "type": "b"
+                    },
+                    {
+                      "default": 1,
+                      "key": "rate",
+                      "max": 10,
+                      "min": 0,
+                      "name": "Rate",
+                      "type": "f"
+                    }
+                  ]
+                },
+                {
+                  "key": "physics",
+                  "name": "Physics Clock",
+                  "params": [
+                    {
+                      "default": false,
+                      "key": "paused",
+                      "max": true,
+                      "min": false,
+                      "name": "Paused",
+                      "type": "b"
+                    },
+                    {
+                      "default": 1,
+                      "key": "rate",
+                      "max": 10,
+                      "min": 0,
+                      "name": "Rate",
+                      "type": "f"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "output",
+          "name": "Output",
+          "params": [
+            {
+              "key": "fullscreen",
+              "max": true,
+              "min": false,
+              "name": "Fullscreen",
+              "type": "b"
+            },
+            {
+              "default": false,
+              "key": "externalEnabled",
+              "max": true,
+              "min": false,
+              "name": "Enable External Send",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "midi",
+          "name": "Midi",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "twister",
+              "name": "MF Twister",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                }
+              ]
+            },
+            {
+              "key": "max",
+              "name": "Max/MSP Relay",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "osc",
+          "name": "OSC",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "inputEnabled",
+              "max": true,
+              "min": false,
+              "name": "Input Enabled",
+              "type": "b"
+            },
+            {
+              "default": 9999,
+              "key": "inputPort",
+              "max": 65535,
+              "min": 0,
+              "name": "Input Port",
+              "type": "i"
+            },
+            {
+              "key": "outputEnabled",
+              "max": true,
+              "min": false,
+              "name": "Output Enabled",
+              "type": "b"
+            },
+            {
+              "default": "localhost",
+              "key": "outputHost",
+              "max": "",
+              "min": "",
+              "name": "Output Host",
+              "type": "NSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE"
+            },
+            {
+              "default": 9000,
+              "key": "outputPort",
+              "max": 65535,
+              "min": 0,
+              "name": "Output Port",
+              "type": "i"
+            },
+            {
+              "default": "/param/",
+              "key": "paramPrefix",
+              "max": "",
+              "min": "",
+              "name": "Param Prefix",
+              "type": "NSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "observers",
+      "name": "Observers",
+      "params": [
+        {
+          "key": "rateSpawner",
+          "name": "Rate Spawner",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "chance",
+              "max": 1,
+              "min": 0,
+              "name": "Chance",
+              "type": "f"
+            },
+            {
+              "default": 0.5,
+              "key": "rate",
+              "max": 5,
+              "min": 0,
+              "name": "Rate",
+              "type": "f"
+            },
+            {
+              "key": "decayRate",
+              "name": "Decay Rate Range",
+              "params": [
+                {
+                  "default": 0.004999999888241291,
+                  "key": "low",
+                  "max": 0.5,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 0.090000003576278687,
+                  "key": "high",
+                  "max": 0.5,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "initialVelocity",
+              "name": "Initial Velocity",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 20,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 4,
+                  "key": "high",
+                  "max": 20,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "sickness",
+          "name": "Sickness",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "scheduler",
+              "name": "Scheduler",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "chance",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Chance",
+                  "type": "f"
+                },
+                {
+                  "key": "interval",
+                  "name": "Interval",
+                  "params": [
+                    {
+                      "default": 4,
+                      "key": "low",
+                      "max": 60,
+                      "min": 0,
+                      "name": "Low",
+                      "type": "f"
+                    },
+                    {
+                      "default": 10,
+                      "key": "high",
+                      "max": 60,
+                      "min": 0,
+                      "name": "High",
+                      "type": "f"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "default": 0.059999998658895493,
+              "key": "decayRateAmount",
+              "max": 0.20000000298023224,
+              "min": -0.20000000298023224,
+              "name": "Decay Rate Amount",
+              "type": "f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "occurrences",
+      "name": "Occurrences",
+      "params": [
+        {
+          "key": "rateSpawner",
+          "name": "Rate Spawner",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "chance",
+              "max": 1,
+              "min": 0,
+              "name": "Chance",
+              "type": "f"
+            },
+            {
+              "default": 0.5,
+              "key": "rate",
+              "max": 5,
+              "min": 0,
+              "name": "Rate",
+              "type": "f"
+            },
+            {
+              "key": "radius",
+              "name": "Radius Range",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 400,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 80,
+                  "key": "high",
+                  "max": 400,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "initialVelocity",
+              "name": "Initial Velocity",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 20,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 2,
+                  "key": "high",
+                  "max": 20,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "chain",
+              "name": "Chain",
+              "params": [
+                {
+                  "default": 0.20000000298023224,
+                  "key": "chance",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Chance",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "chainCount",
+              "name": "Chain Count",
+              "params": [
+                {
+                  "default": 1,
+                  "key": "low",
+                  "max": 20,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "i"
+                },
+                {
+                  "default": 5,
+                  "key": "high",
+                  "max": 20,
+                  "min": 0,
+                  "name": "High",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "chainDistance",
+              "name": "Chain Distance",
+              "params": [
+                {
+                  "default": 8,
+                  "key": "low",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 40,
+                  "key": "high",
+                  "max": 100,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "sequence",
+              "name": "Sequence",
+              "params": [
+                {
+                  "default": 0.10000000149011612,
+                  "key": "chance",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Chance",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "sequenceCount",
+              "name": "Sequence Count",
+              "params": [
+                {
+                  "default": 2,
+                  "key": "low",
+                  "max": 30,
+                  "min": 2,
+                  "name": "Low",
+                  "type": "i"
+                },
+                {
+                  "default": 10,
+                  "key": "high",
+                  "max": 30,
+                  "min": 2,
+                  "name": "High",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "sequenceInterval",
+              "name": "Sequence Interval",
+              "params": [
+                {
+                  "default": 5,
+                  "key": "low",
+                  "max": 60,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 20,
+                  "key": "high",
+                  "max": 60,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "sequenceStepDistance",
+              "name": "Seq Step Distance",
+              "params": [
+                {
+                  "default": 10,
+                  "key": "low",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 50,
+                  "key": "high",
+                  "max": 100,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "navigators",
+      "name": "Navigators",
+      "params": [
+        {
+          "key": "observerNavigatorSpawner",
+          "name": "Observer Nav Spawner",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "chance",
+              "max": 1,
+              "min": 0,
+              "name": "Chance",
+              "type": "f"
+            },
+            {
+              "default": 0.039999999105930328,
+              "key": "rate",
+              "max": 2,
+              "min": 0,
+              "name": "Rate",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "default": 10,
+          "key": "moveRate",
+          "max": 50,
+          "min": 0,
+          "name": "Move Rate",
+          "type": "f"
+        },
+        {
+          "default": 1,
+          "key": "stepDuration",
+          "max": 10,
+          "min": 0,
+          "name": "Step Duration",
+          "type": "f"
+        },
+        {
+          "default": 10,
+          "key": "reachRange",
+          "max": 50,
+          "min": 0,
+          "name": "Reach Range",
+          "type": "f"
+        }
+      ]
+    },
+    {
+      "key": "animations",
+      "name": "Animations",
+      "params": [
+        {
+          "default": true,
+          "key": "enabled",
+          "max": true,
+          "min": false,
+          "name": "Enabled",
+          "type": "b"
+        },
+        {
+          "key": "observerDied",
+          "name": "Observer Died",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "duration",
+              "max": 8,
+              "min": 0,
+              "name": "Duration",
+              "type": "f"
+            },
+            {
+              "key": "radius",
+              "name": "Radius",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 0.40000000596046448,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 0.20000000298023224,
+                  "key": "high",
+                  "max": 0.40000000596046448,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "alpha",
+              "name": "Alpha",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "high",
+                  "max": 1,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "occurrenceDied",
+          "name": "Occurrence Died",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "duration",
+              "max": 8,
+              "min": 0,
+              "name": "Duration",
+              "type": "f"
+            },
+            {
+              "key": "radius",
+              "name": "Radius",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 0.40000000596046448,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 0.20000000298023224,
+                  "key": "high",
+                  "max": 0.40000000596046448,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "alpha",
+              "name": "Alpha",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "high",
+                  "max": 1,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "occurrenceSpawnFailed",
+          "name": "Occurrence Spawn Failed",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "duration",
+              "max": 8,
+              "min": 0,
+              "name": "Duration",
+              "type": "f"
+            },
+            {
+              "key": "radius",
+              "name": "Radius",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 20,
+                  "key": "high",
+                  "max": 100,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "alpha",
+              "name": "Alpha",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "low",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Start",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "high",
+                  "max": 1,
+                  "min": 0,
+                  "name": "End",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "colors",
+      "name": "Colors",
+      "params": [
+        {
+          "default": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "key": "background",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Background",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.20000000298023224,
+            0.20000000298023224,
+            0.20000000298023224,
+            0.30000001192092896
+          ],
+          "key": "bounds",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Bounds",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.52499997615814209,
+            0.69999998807907104,
+            0.34999999403953552,
+            1
+          ],
+          "key": "observerMarker",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Observer Marker",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.69999998807907104,
+            0.69999998807907104,
+            0.85000002384185791,
+            0.40000000596046448
+          ],
+          "key": "observerThresholdConnector",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Observer Threshold Connector",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.20000000298023224,
+            0.5,
+            0.69999998807907104,
+            1
+          ],
+          "key": "observerConnector",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Observer Connector",
+          "type": "color"
+        },
+        {
+          "default": [
+            1,
+            0.5,
+            0.34000000357627869,
+            1
+          ],
+          "key": "occurrenceMarker",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Marker",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.5,
+            0.5,
+            0.5,
+            0.57999998331069946
+          ],
+          "key": "occurrenceRange",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Range",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.5,
+            0.5,
+            0.5,
+            1
+          ],
+          "key": "occurrenceObserverConnector",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Observer Connector",
+          "type": "color"
+        },
+        {
+          "default": [
+            1,
+            0.5,
+            0.34000000357627869,
+            1
+          ],
+          "key": "occurrenceConnector",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Connector",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.66000598669052124,
+            0.64406800270080566,
+            0.78750300407409668,
+            0.68656802177429199
+          ],
+          "key": "observerDied",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Observer Died",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.7662540078163147,
+            0.64406800270080566,
+            0.4528219997882843,
+            0.79281598329544067
+          ],
+          "key": "occurrenceDied",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Died",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.81406599283218384,
+            0.68125498294830322,
+            0.51125800609588623,
+            0.56969499588012695
+          ],
+          "key": "occurrenceSpawnFailed",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Occurrence Spawn Failed",
+          "type": "color"
+        },
+        {
+          "default": [
+            0.60000002384185791,
+            0.60000002384185791,
+            0.60000002384185791,
+            0.5
+          ],
+          "key": "fog",
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "min": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Fog",
+          "type": "color"
+        }
+      ]
+    },
+    {
+      "key": "rendering",
+      "name": "Rendering",
+      "params": [
+        {
+          "key": "camera",
+          "name": "Camera",
+          "params": [
+            {
+              "default": false,
+              "key": "spinEnabled",
+              "max": true,
+              "min": false,
+              "name": "Spin Enabled",
+              "type": "b"
+            },
+            {
+              "default": [
+                2,
+                4,
+                5
+              ],
+              "key": "spinRate",
+              "max": [
+                10,
+                10,
+                10
+              ],
+              "min": [
+                -10,
+                -10,
+                -10
+              ],
+              "name": "Spin Rate",
+              "type": "7ofVec3f"
+            }
+          ]
+        },
+        {
+          "key": "observers",
+          "name": "Observers",
+          "params": [
+            {
+              "key": "preRenderer",
+              "name": "Pre Renderer",
+              "params": [
+                {
+                  "key": "fadeIn",
+                  "name": "Fade In",
+                  "params": [
+                    {
+                      "default": 1,
+                      "key": "duration",
+                      "max": 4,
+                      "min": 0,
+                      "name": "Duration",
+                      "type": "f"
+                    },
+                    {
+                      "default": 0,
+                      "key": "startValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "Start Value",
+                      "type": "f"
+                    },
+                    {
+                      "default": 1,
+                      "key": "endValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "End Value",
+                      "type": "f"
+                    }
+                  ]
+                },
+                {
+                  "default": 0.40000000596046448,
+                  "key": "highlightAmount",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Highlighting",
+                  "type": "f"
+                },
+                {
+                  "default": 2,
+                  "key": "size",
+                  "max": 20,
+                  "min": 0,
+                  "name": "Draw Size",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "renderer",
+              "name": "Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                }
+              ]
+            },
+            {
+              "key": "instancedRenderer",
+              "name": "Instanced Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 10,
+                  "key": "size",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Draw Size",
+                  "type": "f"
+                },
+                {
+                  "key": "fadeIn",
+                  "name": "Fade In",
+                  "params": [
+                    {
+                      "default": 1,
+                      "key": "duration",
+                      "max": 4,
+                      "min": 0,
+                      "name": "Duration",
+                      "type": "f"
+                    },
+                    {
+                      "default": 0,
+                      "key": "startValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "Start Value",
+                      "type": "f"
+                    },
+                    {
+                      "default": 1,
+                      "key": "endValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "End Value",
+                      "type": "f"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "connectorRenderer",
+              "name": "Connector Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 2,
+                  "key": "lineWidth",
+                  "max": 30,
+                  "min": 0,
+                  "name": "Line Width",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "occurrences",
+          "name": "Occurrences",
+          "params": [
+            {
+              "key": "preRenderer",
+              "name": "Pre Renderer",
+              "params": [
+                {
+                  "key": "fadeIn",
+                  "name": "Fade In",
+                  "params": [
+                    {
+                      "default": 1,
+                      "key": "duration",
+                      "max": 4,
+                      "min": 0,
+                      "name": "Duration",
+                      "type": "f"
+                    },
+                    {
+                      "default": 0,
+                      "key": "startValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "Start Value",
+                      "type": "f"
+                    },
+                    {
+                      "default": 1,
+                      "key": "endValue",
+                      "max": 1,
+                      "min": 0,
+                      "name": "End Value",
+                      "type": "f"
+                    }
+                  ]
+                },
+                {
+                  "default": 0.40000000596046448,
+                  "key": "highlightAmount",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Highlighting",
+                  "type": "f"
+                },
+                {
+                  "key": "sizeRange",
+                  "name": "Draw Size Range",
+                  "params": [
+                    {
+                      "default": 10,
+                      "key": "low",
+                      "max": 100,
+                      "min": 0,
+                      "name": "Low",
+                      "type": "f"
+                    },
+                    {
+                      "default": 25,
+                      "key": "high",
+                      "max": 100,
+                      "min": 0,
+                      "name": "High",
+                      "type": "f"
+                    }
+                  ]
+                },
+                {
+                  "key": "connectionCountRange",
+                  "name": "Connection Amount Scale",
+                  "params": [
+                    {
+                      "default": 0,
+                      "key": "low",
+                      "max": 20,
+                      "min": 0,
+                      "name": "Low",
+                      "type": "f"
+                    },
+                    {
+                      "default": 4,
+                      "key": "high",
+                      "max": 20,
+                      "min": 0,
+                      "name": "High",
+                      "type": "f"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "renderer",
+              "name": "Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": true,
+                  "key": "showRange",
+                  "max": true,
+                  "min": false,
+                  "name": "Show Range",
+                  "type": "b"
+                },
+                {
+                  "default": false,
+                  "key": "useTextures",
+                  "max": true,
+                  "min": false,
+                  "name": "Use Textures",
+                  "type": "b"
+                },
+                {
+                  "default": false,
+                  "key": "wireEnabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Wireframe Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1.2000000476837158,
+                  "key": "wireScale",
+                  "max": 1.7999999523162842,
+                  "min": 0.89999997615814209,
+                  "name": "Wire Scale",
+                  "type": "f"
+                },
+                {
+                  "default": 0.5,
+                  "key": "wireSaturation",
+                  "max": 1.5,
+                  "min": 0,
+                  "name": "Wire Saturation",
+                  "type": "f"
+                },
+                {
+                  "default": 1.1000000238418579,
+                  "key": "wireBrightness",
+                  "max": 1.5,
+                  "min": 0.5,
+                  "name": "Wire Brightness",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "connectorRenderer",
+              "name": "Connector Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 2,
+                  "key": "lineWidth",
+                  "max": 30,
+                  "min": 0,
+                  "name": "Line Width",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "occurrenceConnectorRenderer",
+              "name": "Occurrence Connector Renderer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 2,
+                  "key": "lineWidth",
+                  "max": 30,
+                  "min": 0,
+                  "name": "Line Width",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "connections",
+          "name": "Connections",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 1,
+              "key": "drawRadius",
+              "max": 10,
+              "min": 0,
+              "name": "Draw Radius",
+              "type": "f"
+            },
+            {
+              "default": 0.40000000596046448,
+              "key": "rate",
+              "max": 2,
+              "min": 0,
+              "name": "Rate",
+              "type": "f"
+            },
+            {
+              "key": "alphaFade",
+              "name": "Alpha Fade",
+              "params": [
+                {
+                  "default": 0,
+                  "key": "startValue",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Start Value",
+                  "type": "f"
+                },
+                {
+                  "default": 0.30000001192092896,
+                  "key": "length0",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "value0",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Value 0",
+                  "type": "f"
+                },
+                {
+                  "default": 0.69999998807907104,
+                  "key": "length1",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Length 1",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "value1",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Value 1",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "length2",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Length 2",
+                  "type": "f"
+                },
+                {
+                  "default": 0,
+                  "key": "value2",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Value 2",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "fog",
+          "name": "Fog",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 0.0010000000474974513,
+              "key": "density",
+              "max": 0.0040000001899898052,
+              "min": 0,
+              "name": "Density",
+              "type": "f"
+            },
+            {
+              "default": true,
+              "key": "useBackgroundColor",
+              "max": true,
+              "min": false,
+              "name": "Use Background Color",
+              "type": "b"
+            },
+            {
+              "key": "distance",
+              "name": "Distance",
+              "params": [
+                {
+                  "default": 0.30000001192092896,
+                  "key": "low",
+                  "max": 8,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 0.89999997615814209,
+                  "key": "high",
+                  "max": 8,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "postProc",
+          "name": "Post Processing",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "fxaa",
+              "name": "FXAA",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                }
+              ]
+            },
+            {
+              "key": "edge",
+              "name": "Edge",
+              "params": [
+                {
+                  "default": false,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 0.5,
+                  "key": "hue",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Hue",
+                  "type": "f"
+                },
+                {
+                  "default": 0.5,
+                  "key": "saturation",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Saturation",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "dof",
+              "name": "Depth of Field",
+              "params": [
+                {
+                  "default": false,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 0.98500001430511475,
+                  "key": "focus",
+                  "max": 1.0099999904632568,
+                  "min": 0.99000000953674316,
+                  "name": "Focus",
+                  "type": "f"
+                },
+                {
+                  "default": 0.80000001192092896,
+                  "key": "aperture",
+                  "max": 1.2000000476837158,
+                  "min": 0,
+                  "name": "Aperture",
+                  "type": "f"
+                },
+                {
+                  "default": 0.60000002384185791,
+                  "key": "maxBlur",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Max Blur",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "bloom",
+              "name": "Bloom",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                }
+              ]
+            },
+            {
+              "key": "colorAdjust",
+              "name": "Color Adjust",
+              "params": [
+                {
+                  "default": false,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 0,
+                  "key": "brightness",
+                  "max": 1,
+                  "min": -1,
+                  "name": "Brightness",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "contrast",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Contrast",
+                  "type": "f"
+                },
+                {
+                  "default": 0,
+                  "key": "hueOffset",
+                  "max": 1,
+                  "min": -1,
+                  "name": "Hue Offset",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "saturationMult",
+                  "max": 3,
+                  "min": 0,
+                  "name": "Saturation Mult",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "valueMult",
+                  "max": 3,
+                  "min": 0,
+                  "name": "Value Mult",
+                  "type": "f"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "physics",
+      "name": "Physics",
+      "params": [
+        {
+          "key": "bounds",
+          "name": "Bounds",
+          "params": [
+            {
+              "default": 500,
+              "key": "size",
+              "max": 1000,
+              "min": 0,
+              "name": "Size",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "observers",
+          "name": "Observers",
+          "params": [
+            {
+              "default": 10,
+              "key": "speed",
+              "max": 50,
+              "min": 0,
+              "name": "Speed",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "occurrences",
+          "name": "Occurrences",
+          "params": [
+            {
+              "default": 10,
+              "key": "speed",
+              "max": 50,
+              "min": 0,
+              "name": "Speed",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "rebound",
+          "name": "Rebound",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "observerObserverAttraction",
+          "name": "Observer to Observer",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "distanceBounds",
+              "name": "Distance Bounds",
+              "params": [
+                {
+                  "default": 5,
+                  "key": "low",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Near",
+                  "type": "f"
+                },
+                {
+                  "default": 100,
+                  "key": "high",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Far",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 4,
+              "key": "magnitude",
+              "max": 20,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            },
+            {
+              "default": false,
+              "key": "reverse",
+              "max": true,
+              "min": false,
+              "name": "Reverse",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "observerOccurrenceForce",
+          "name": "Obs/Occ Force",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "force",
+              "name": "Force",
+              "params": [
+                {
+                  "default": -2,
+                  "key": "startValue",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Start Value",
+                  "type": "f"
+                },
+                {
+                  "default": 5,
+                  "key": "length0",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 2,
+                  "key": "value0",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 0",
+                  "type": "f"
+                },
+                {
+                  "default": 15,
+                  "key": "length1",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Length 1",
+                  "type": "f"
+                },
+                {
+                  "default": 5,
+                  "key": "value1",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 1",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 1,
+              "key": "magnitude",
+              "max": 3,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "occurrenceOccurrenceForce",
+          "name": "Occ/Occ Force",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "force",
+              "name": "Force",
+              "params": [
+                {
+                  "default": -2,
+                  "key": "startValue",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Start Value",
+                  "type": "f"
+                },
+                {
+                  "default": 5,
+                  "key": "length0",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 2,
+                  "key": "value0",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 0",
+                  "type": "f"
+                },
+                {
+                  "default": 15,
+                  "key": "length1",
+                  "max": 100,
+                  "min": 0,
+                  "name": "Length 1",
+                  "type": "f"
+                },
+                {
+                  "default": 5,
+                  "key": "value1",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 1",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 1,
+              "key": "magnitude",
+              "max": 3,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "spatialNoiseForce",
+          "name": "Spatial Noise",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 10,
+              "key": "scale",
+              "max": 200,
+              "min": 0,
+              "name": "Scale",
+              "type": "f"
+            },
+            {
+              "default": 0.10000000149011612,
+              "key": "rate",
+              "max": 0.5,
+              "min": 0,
+              "name": "Rate",
+              "type": "f"
+            },
+            {
+              "default": 5,
+              "key": "magnitude",
+              "max": 20,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "observerAnchorPointAttraction",
+          "name": "Observer Anchoring",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "distanceBounds",
+              "name": "Distance Bounds",
+              "params": [
+                {
+                  "default": 5,
+                  "key": "low",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Near",
+                  "type": "f"
+                },
+                {
+                  "default": 100,
+                  "key": "high",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Far",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 4,
+              "key": "magnitude",
+              "max": 20,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            },
+            {
+              "default": false,
+              "key": "reverse",
+              "max": true,
+              "min": false,
+              "name": "Reverse",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "occurrenceAnchorPointAttraction",
+          "name": "Occurrence Anchoring",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "distanceBounds",
+              "name": "Distance Bounds",
+              "params": [
+                {
+                  "default": 5,
+                  "key": "low",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Near",
+                  "type": "f"
+                },
+                {
+                  "default": 100,
+                  "key": "high",
+                  "max": 500,
+                  "min": 0,
+                  "name": "Far",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 4,
+              "key": "magnitude",
+              "max": 20,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            },
+            {
+              "default": false,
+              "key": "reverse",
+              "max": true,
+              "min": false,
+              "name": "Reverse",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "vortexNodes",
+          "name": "Vortex Nodes",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "radius",
+              "name": "Radius",
+              "params": [
+                {
+                  "default": 10,
+                  "key": "low",
+                  "max": 200,
+                  "min": 0,
+                  "name": "Low",
+                  "type": "f"
+                },
+                {
+                  "default": 80,
+                  "key": "high",
+                  "max": 200,
+                  "min": 0,
+                  "name": "High",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "key": "force",
+              "name": "Force",
+              "params": [
+                {
+                  "default": 10,
+                  "key": "startValue",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Start Value",
+                  "type": "f"
+                },
+                {
+                  "default": 0.5,
+                  "key": "length0",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 6,
+                  "key": "value0",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 0",
+                  "type": "f"
+                },
+                {
+                  "default": 1,
+                  "key": "length1",
+                  "max": 1,
+                  "min": 0,
+                  "name": "Length 1",
+                  "type": "f"
+                },
+                {
+                  "default": 2,
+                  "key": "value1",
+                  "max": 15,
+                  "min": -15,
+                  "name": "Value 1",
+                  "type": "f"
+                }
+              ]
+            },
+            {
+              "default": 10,
+              "key": "magnitude",
+              "max": 100,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            }
+          ]
+        },
+        {
+          "key": "damping",
+          "name": "Damping",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 2,
+              "key": "magnitude",
+              "max": 20,
+              "min": 0,
+              "name": "Magnitude",
+              "type": "f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "debug",
+      "name": "Debug",
+      "params": [
+        {
+          "default": false,
+          "key": "showBounds",
+          "max": true,
+          "min": false,
+          "name": "Show Bounds",
+          "type": "b"
+        },
+        {
+          "default": true,
+          "key": "showStatus",
+          "max": true,
+          "min": false,
+          "name": "Show Status",
+          "type": "b"
+        },
+        {
+          "default": false,
+          "key": "showPhysics",
+          "max": true,
+          "min": false,
+          "name": "Show Physics",
+          "type": "b"
+        },
+        {
+          "key": "inspect",
+          "name": "Inspect",
+          "params": [
+            {
+              "default": false,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "default": 10,
+              "key": "clickRange",
+              "max": 100,
+              "min": 0,
+              "name": "Click Range",
+              "type": "f"
+            },
+            {
+              "default": false,
+              "key": "showInfo",
+              "max": true,
+              "min": false,
+              "name": "Show Info",
+              "type": "b"
+            }
+          ]
+        },
+        {
+          "key": "logging",
+          "name": "Logging",
+          "params": [
+            {
+              "default": true,
+              "key": "enabled",
+              "max": true,
+              "min": false,
+              "name": "Enabled",
+              "type": "b"
+            },
+            {
+              "key": "app",
+              "name": "App",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "ctrl",
+              "name": "Control",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "anim",
+              "name": "Animation",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "nav",
+              "name": "Navigation",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "node",
+              "name": "Node",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "obs",
+              "name": "Observer",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            },
+            {
+              "key": "occ",
+              "name": "Occurrence",
+              "params": [
+                {
+                  "default": true,
+                  "key": "enabled",
+                  "max": true,
+                  "min": false,
+                  "name": "Enabled",
+                  "type": "b"
+                },
+                {
+                  "default": 1,
+                  "key": "level",
+                  "max": 4,
+                  "min": 0,
+                  "name": "Level",
+                  "type": "i"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

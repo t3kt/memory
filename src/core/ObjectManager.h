@@ -17,7 +17,6 @@
 #include "../core/Common.h"
 #include "../core/Connection.h"
 #include "../core/EntityMap.h"
-#include "../core/Events.h"
 #include "../core/Serialization.h"
 
 // Container that stores and owns a set of entities.

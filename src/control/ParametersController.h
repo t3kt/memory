@@ -74,6 +74,7 @@ public:
   void save();
   void captureNewPreset();
   void resetParams();
+  void writeMetadata();
 private:
   MemoryAppParameters& _params;
   ParametersState _state;

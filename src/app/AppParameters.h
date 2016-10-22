@@ -10,7 +10,6 @@
 #include "../core/AnimationsController.h"
 #include "../core/Clock.h"
 #include "../rendering/Colors.h"
-#include "../core/Events.h"
 #include "../core/InspectionController.h"
 #include "../core/Logging.h"
 #include "../control/MidiController.h"

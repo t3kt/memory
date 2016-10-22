@@ -13,7 +13,6 @@
 #include "../control/Params.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
-#include "../core/Events.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrenceEntity.h"

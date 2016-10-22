@@ -8,3 +8,4 @@ ofxPostProcessing
 ofxSyphon
 ofxTextAlign
 ofxXmlSettings
+./addons/ofxTCommon

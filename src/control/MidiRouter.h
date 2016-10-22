@@ -20,7 +20,6 @@
 #include "../control/MidiMapping.h"
 #include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/Events.h"
 #include "../core/JsonIO.h"
 
 class AbstractMidiBinding;

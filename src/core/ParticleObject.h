@@ -10,7 +10,6 @@
 #define ParticleObject_h
 
 #include <vector>
-#include "../core/Events.h"
 #include "../core/State.h"
 #include "../core/WorldObject.h"
 

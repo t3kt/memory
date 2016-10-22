@@ -9,9 +9,8 @@
 #define AppActions_h
 
 #include <iostream>
+#include <ofxTEvents.h>
 #include "../core/Common.h"
-#include "../core/Enums.h"
-#include "../core/Events.h"
 
 // Type of action
 enum class AppAction {
@@ -53,8 +52,8 @@ enum class AppAction {
   RESET_PARAMS,
 };
 
-using AppActionEventArgs = ValueEventArgs<AppAction>;
-using AppActionEvent = ValueEvent<AppAction>;
+using AppActionEventArgs = ofxTCommon::ValueEventArgs<AppAction>;
+using AppActionEvent = ofxTCommon::ValueEvent<AppAction>;
 
 // A component which can handle AppActions
 class AppActionHandler {

@@ -119,6 +119,13 @@ namespace JsonUtil {
     writer.write(value);
   }
 
+  void prettyPrintJsonToFile(const Json &value, std::string filepath) {
+    filepath = ofToDataPath(filepath);
+    std::ofstream out(filepath.c_str());
+    prettyPrintJsonToStream(value, out);
+    out.close();
+  }
+
   void assertHasShape(const Json& value, Json::shape shape) {
     std::string message;
     if (!value.has_shape(shape, message)) {
@@ -274,11 +281,7 @@ void JsonReadable::readFromFile(std::string filepath) {
 }
 
 void JsonWritable::writeToFile(std::string filepath) const {
-  Json obj = to_json();
-  filepath = ofToDataPath(filepath);
-  std::ofstream out(filepath.c_str());
-  prettyPrintJsonToStream(obj, out);
-  out.close();
+  JsonUtil::prettyPrintJsonToFile(to_json(), filepath);
 }
 
 void JsonWritable::writeJsonTo(std::ostream& os) const {

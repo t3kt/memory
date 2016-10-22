@@ -9,6 +9,7 @@
 #ifndef EntityDataChannels_h
 #define EntityDataChannels_h
 
+#include <ofxTEvents.h>
 #include "../core/WorldObject.h"
 #include "../data/DataChannel.h"
 
@@ -61,7 +62,7 @@ public:
 private:
   template<typename T>
   DataChannelPtr<T> addChannel(EntityChannelId channelId) {
-    return _channels.add<T>(enumToString(channelId));
+    return _channels.add<T>(ofxTCommon::enumToString(channelId));
   }
 
   DataChannelList _channels;

@@ -10,7 +10,7 @@
 #include "../core/ParticleObject.h"
 #include "../data/EntityDataChannels.h"
 
-EnumTypeInfo<EntityChannelId> EntityChannelIdType({
+ofxTCommon::EnumTypeInfo<EntityChannelId> EntityChannelIdType({
   {"id", EntityChannelId::ENTITY_ID},
   {"type", EntityChannelId::ENTITY_TYPE},
   {"alive", EntityChannelId::ALIVE},
@@ -27,13 +27,13 @@ EnumTypeInfo<EntityChannelId> EntityChannelIdType({
 });
 
 template<>
-const EnumTypeInfo<EntityChannelId>& getEnumInfo() {
+const EnumTypeInfo<EntityChannelId>& ofxTCommon::getEnumInfo() {
   return EntityChannelIdType;
 }
 
 std::ostream& operator<<(std::ostream& os,
                          const EntityChannelId& action) {
-  return os << enumToString(action);
+  return os << ofxTCommon::enumToString(action);
 }
 
 EntityDataChannels::EntityDataChannels() {

@@ -16,7 +16,6 @@
 #include "../app/AppParameters.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
-#include "../core/Events.h"
 #include "../core/Logging.h"
 
 class ActionsController;
