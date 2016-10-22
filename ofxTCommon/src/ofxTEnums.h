@@ -18,7 +18,6 @@ namespace ofxTCommon {
   class EnumTypeInfo
   : public NonCopyable {
   public:
-    static_assert(std::is_enum<_T>::value, "T must be an enum type");
     using T = typename std::enable_if<std::is_enum<_T>::value, _T>::type;
 
     EnumTypeInfo(std::initializer_list<std::pair<std::string, T>> entries) {
