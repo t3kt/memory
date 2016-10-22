@@ -1,8 +1,5 @@
 //
-//  Common.cpp
-//  behavior
-//
-//  Created by tekt on 1/19/15.
+//  ofxTCommon.cpp
 //
 //
 
@@ -13,7 +10,7 @@
 #include <ofVec3f.h>
 #include <sstream>
 #include <string>
-#include "../core/Common.h"
+#include "./ofxTCommon.h"
 
 void Outputable::output(std::ostream &os) const {
   os << typeName() << "{";
