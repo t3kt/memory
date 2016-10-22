@@ -33,6 +33,7 @@ public:
   virtual Json::object::value_type toJsonField() const {
     return { getKey(), to_json() };
   }
+  virtual Json toJsonMetadata() const = 0;
   virtual void readJsonField(const Json& obj) = 0;
   virtual void resetToDefault() = 0;
   virtual bool hasDefault() const = 0;
@@ -40,6 +41,7 @@ public:
 
   virtual std::string asString() const = 0;
   virtual const std::type_info& getTypeInfo() const = 0;
+  virtual const char* getTypeName() const = 0;
   bool supportsOsc() const { return _supportsOsc; }
   bool supportsPresets() const { return _supportsPresets; }
 
@@ -150,6 +152,20 @@ public:
     }
   }
 
+  Json toJsonMetadata() const override {
+    auto metadata = Json::object {
+      {"key", getKey()},
+      {"name", ofParameter<T>::getName()},
+      {"type", getTypeName()},
+      {"min", JsonUtil::toJson(ofParameter<T>::getMin())},
+      {"max", JsonUtil::toJson(ofParameter<T>::getMax())},
+    };
+    if (hasDefault()) {
+      metadata["default"] = JsonUtil::toJson(getDefaultValue());
+    }
+    return metadata;
+  }
+
   ParT& setSupportsOsc(bool supportsOsc) {
     _supportsOsc = supportsOsc;
     return selfRef();
@@ -192,6 +208,10 @@ public:
                  1.0f);
   }
 
+  const char* getTypeName() const override {
+    return TTypedParamBase<T, TParam<T>>::getTypeInfo().name();
+  }
+
 protected:
   TParam<T>& selfRef() override { return *this; }
 };
@@ -211,6 +231,10 @@ public:
 
   void toggle() {
     ofParameter<bool>::set(!ofParameter<bool>::get());
+  }
+
+  const char* getTypeName() const override {
+    return TTypedParamBase<bool, TParam<bool>>::getTypeInfo().name();
   }
 
 protected:
@@ -270,6 +294,18 @@ public:
 
   void readFilteredJson(const Json& obj, ConstParamPredicate filter);
 
+  Json toJsonMetadata() const override {
+    auto paramMetas = Json::array {};
+    for (const auto param : _paramBases) {
+      paramMetas.push_back(param->toJsonMetadata());
+    }
+    return Json::object {
+      {"key", getKey()},
+      {"name", ofParameterGroup::getName()},
+      {"params", paramMetas},
+    };
+  }
+
   virtual void resetToDefault() override {
     for (auto param : _paramBases) {
       param->resetToDefault();
@@ -281,6 +317,10 @@ public:
   bool isGroup() const override { return true; }
   const std::type_info& getTypeInfo() const override {
     return typeid(Params);
+  }
+
+  const char* getTypeName() const override {
+    return "group";
   }
 
   std::string asString() const override { return ofParameterGroup::toString(); }

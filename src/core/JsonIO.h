@@ -82,6 +82,7 @@ namespace JsonUtil {
   void mergeInto(Json::object& targetObj, const Json::object& sourceObj);
 
   void prettyPrintJsonToStream(const Json& value, std::ostream& os);
+  void prettyPrintJsonToFile(const Json& value, std::string filepath);
 }
 
 #endif /* JsonIO_h */

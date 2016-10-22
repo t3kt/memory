@@ -6,7 +6,13 @@
 //
 //
 
+#include <ofColor.h>
 #include "../control/Params.h"
+
+template<>
+const char* TParam<ofFloatColor>::getTypeName() const {
+  return "color";
+}
 
 TParamBase* Params::findKey(const std::string &key) {
   for (auto param : _paramBases) {

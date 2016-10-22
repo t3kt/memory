@@ -59,6 +59,7 @@ void ParametersState::read_json(const Json &obj) {
 }
 
 void ParametersController::setup() {
+  writeMetadata();
   load();
 }
 
@@ -110,6 +111,16 @@ void ParametersController::save() {
     return true;
   });
   AppSystem::get().log().app().logNotice(".. write to JSON finished");
+}
+
+void ParametersController::writeMetadata() {
+  AppSystem::get().log().app().logNotice("Writing JSON metadata...");
+  AppSystem::get().doWhilePaused([&]() {
+    auto meta = _params.toJsonMetadata();
+    JsonUtil::prettyPrintJsonToFile(meta, "param-meta.json");
+    return true;
+  });
+  AppSystem::get().log().app().logNotice(".. write metadata JSON finished");
 }
 
 void ParametersController::captureNewPreset() {
