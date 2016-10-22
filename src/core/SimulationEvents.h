@@ -10,8 +10,8 @@
 #define SimulationEvents_h
 
 #include <iostream>
+#include <ofxTEnums.h>
 #include "../core/Common.h"
-#include "../core/Enums.h"
 #include "../core/Events.h"
 
 enum class SimulationEventType {

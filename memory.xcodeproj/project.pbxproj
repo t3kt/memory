@@ -248,7 +248,6 @@
 		171BD0097DB30EF463C43306 /* NoiseWarpPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NoiseWarpPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/NoiseWarpPass.h; sourceTree = SOURCE_ROOT; };
 		178CB7A5A166ABF0CFE87B4C /* ofxGuiSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiSlider.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/controls/ofxGuiSlider.h; sourceTree = SOURCE_ROOT; };
 		1792BF2CDB1C45D67B28E89D /* NavigatorState.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NavigatorState.h; path = src/navigation/NavigatorState.h; sourceTree = SOURCE_ROOT; };
-		181B8436156A201B98F79E16 /* Enums.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Enums.h; path = src/core/Enums.h; sourceTree = SOURCE_ROOT; };
 		19E1E83CFBFB27D491BE7597 /* EdgePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EdgePass.cpp; path = ../../openFrameworks/addons/ofxPostProcessing/src/EdgePass.cpp; sourceTree = SOURCE_ROOT; };
 		19F022856F460DB4EB61E8EC /* defs.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = defs.h; path = ../../openFrameworks/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/defs.h; sourceTree = SOURCE_ROOT; };
 		1AD726FFDAA7680FB5236701 /* DofAltPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DofAltPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/DofAltPass.h; sourceTree = SOURCE_ROOT; };
@@ -1360,7 +1359,6 @@
 				4C78D667B9CE5E13556D4BE0 /* Context.h */,
 				292C7C3356DE4828CC45FD68 /* EntityController.h */,
 				CEDAB2464241B3DE53644E3D /* EntityMap.h */,
-				181B8436156A201B98F79E16 /* Enums.h */,
 				EB0D97C4A4783D5E224D8376 /* EventLogging.cpp */,
 				F25CE82328FE513EF55EF4A7 /* EventLogging.h */,
 				8630FD4BD2D04BDECA67876B /* Events.h */,

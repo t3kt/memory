@@ -10,7 +10,6 @@
 
 #include <iostream>
 #include "../core/Common.h"
-#include "../core/Enums.h"
 #include "../core/Events.h"
 
 // Type of action

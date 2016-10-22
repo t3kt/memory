@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <json11.hpp>
-#include "../core/Enums.h"
+#include <ofxTEnums.h>
 
 using json11::Json;
 
@@ -51,12 +51,12 @@ namespace JsonUtil {
   typename std::enable_if<std::is_enum<T>::value, T>::type
   enumFromJson(const Json& value) {
     assertHasType(value, Json::STRING);
-    return parseEnum<T>(value.string_value());
+    return ofxTCommon::parseEnum<T>(value.string_value());
   }
 
   template<typename T>
   Json enumToJson(const T& value) {
-    return enumToString(value);
+    return ofxTCommon::enumToString(value);
   }
 
   template<typename T>

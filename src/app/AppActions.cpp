@@ -2,8 +2,11 @@
 //  AppActions.cpp
 //
 
+#include <ofxTEnums.h>
 #include "../app/AppActions.h"
 #include "../app/AppSystem.h"
+
+using namespace ofxTCommon;
 
 EnumTypeInfo<AppAction> AppActionType({
   {"(none)", AppAction::NONE},

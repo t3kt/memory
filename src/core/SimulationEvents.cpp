@@ -10,7 +10,7 @@
 #include "../core/JsonIO.h"
 #include "../core/SimulationEvents.h"
 
-EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {
+ofxTCommon::EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {
   {"animationSpawned", SimulationEventType::ANIMATION_SPAWNED},
   {"animationDied", SimulationEventType::ANIMATION_DIED},
   {"observerSpawned", SimulationEventType::OBSERVER_SPAWNED},
@@ -32,7 +32,7 @@ const EnumTypeInfo<SimulationEventType>& ofxTCommon::getEnumInfo() {
 
 std::ostream& operator<<(std::ostream& os,
                          const SimulationEventType& value) {
-  return os << enumToString(value);
+  return os << ofxTCommon::enumToString(value);
 }
 
 AbstractEvent* SimulationEvents::getEvent(SimulationEventType type) {
