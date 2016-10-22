@@ -1,0 +1,46 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+build/*.build
+xcuserdata
+
+memory.xcodeproj/project.xcworkspace/xcuserdata/tekt.xcuserdatad/UserInterfaceState.xcuserstate
+obj/
+.vs/
+memory.VC*
+*.ilk
+*.exp
+*.pdb
+*.trace
+etc/states
+bin/data/textures/*.jpg
+bin/data/textures/*.bmp
+bin/data/textures/*.png
+

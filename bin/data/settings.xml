@@ -1,0 +1,211 @@
+<group>
+	<Observers>
+		<Observers>
+			<Damping>0.00264473</Damping>
+			<Lifetime_Range>
+				<Low>10</Low>
+				<High>60</High>
+			</Lifetime_Range>
+			<Color>0.525, 0.7, 0.35, 1</Color>
+			<Draw_Radius>0.0781341</Draw_Radius>
+		<Speed>1.20158</Speed>
+		</Observers>
+		<Spawning>
+			<Interval>
+				<Low>1.40656</Low>
+				<High>4.16901</High>
+			</Interval>
+		</Spawning>
+		<Initial_Velocity>
+			<Low>0.0135777</Low>
+			<High>0.044294</High>
+		</Initial_Velocity>
+		<Occurrence_Attraction>
+			<Enabled>1</Enabled>
+			<Distance_Bounds>
+				<Low>0.04</Low>
+				<High>0.495321</High>
+			</Distance_Bounds>
+			<Force_Range>
+				<Low>0.0021313</Low>
+				<High>0</High>
+			</Force_Range>
+		</Occurrence_Attraction>
+		<Threshold>
+			<Enabled>0</Enabled>
+			<Color>0.7, 0.7, 0.85, 0.4</Color>
+			<Range>
+				<Low>0</Low>
+				<High>1.7951</High>
+			</Range>
+		</Threshold>
+	<Spatial_Noise_Force>
+			<Enabled>1</Enabled>
+			<Scale>1</Scale>
+			<Rate>0.1</Rate>
+			<Magnitude>0.000756976</Magnitude>
+		</Spatial_Noise_Force>
+	</Observers>
+	<Occurrences>
+		<Occurrences>
+			<Damping>0.0255519</Damping>
+			<Radius_Range>
+				<Low>0.897551</Low>
+				<High>2.38503</High>
+			</Radius_Range>
+			<Fade_In>1</Fade_In>
+			<Marker_Color>1, 0.5, 0.341261, 1</Marker_Color>
+			<Range_Color>0.5, 0.5, 0.5, 0.585632</Range_Color>
+			<Connector_Color>0.5, 0.5, 0.5, 1</Connector_Color>
+			<Marker_Size>0.317784</Marker_Size>
+		<Speed>0</Speed>
+		</Occurrences>
+		<Spawning>
+			<Interval>
+				<Low>0.769068</Low>
+				<High>2.25654</High>
+			</Interval>
+		</Spawning>
+		<Initial_Velocity>
+			<Low>0.00264473</Low>
+			<High>0.00628905</High>
+		</Initial_Velocity>
+		<Observer_Attraction>
+			<Enabled>0</Enabled>
+			<Distance_Bounds>
+				<Low>0.04</Low>
+				<High>0.3</High>
+			</Distance_Bounds>
+			<Force_Range>
+				<Low>0.0001</Low>
+				<High>0</High>
+			</Force_Range>
+		</Observer_Attraction>
+	<Spatial_Noise_Force>
+			<Enabled>1</Enabled>
+			<Scale>1</Scale>
+			<Rate>0.1</Rate>
+			<Magnitude>0.000470637</Magnitude>
+		</Spatial_Noise_Force>
+	</Occurrences>
+	<Animations>
+		<Enabled>1</Enabled>
+		<Observer_Died>
+			<Enabled>1</Enabled>
+			<Delay>0</Delay>
+			<Duration>1</Duration>
+			<Radius>
+				<Start>0</Start>
+				<End>0.2</End>
+			</Radius>
+			<Alpha>
+				<Start>1</Start>
+				<End>0</End>
+			</Alpha>
+			<Color>0.660006, 0.644068, 0.787503, 0.686568<Hue>
+					<Low>0</Low>
+					<High>1</High>
+				</Hue>
+				<Saturation>
+					<Low>0</Low>
+					<High>1</High>
+				</Saturation>
+				<Brightness>
+					<Low>0</Low>
+					<High>1</High>
+				</Brightness>
+				<Alpha>
+					<Low>0</Low>
+					<High>1</High>
+				</Alpha>
+			</Color>
+		</Observer_Died>
+		<Occurrence_Died>
+			<Enabled>1</Enabled>
+			<Delay>0</Delay>
+			<Duration>1</Duration>
+			<Radius>
+				<Start>0</Start>
+				<End>0.2</End>
+			</Radius>
+			<Alpha>
+				<Start>1</Start>
+				<End>0</End>
+			</Alpha>
+			<Color>0.766254, 0.644068, 0.452822, 0.792816<Hue>
+					<Low>0</Low>
+					<High>1</High>
+				</Hue>
+				<Saturation>
+					<Low>0</Low>
+					<High>1</High>
+				</Saturation>
+				<Brightness>
+					<Low>0</Low>
+					<High>1</High>
+				</Brightness>
+				<Alpha>
+					<Low>0</Low>
+					<High>1</High>
+				</Alpha>
+			</Color>
+		</Occurrence_Died>
+		<Occurrence_Spawn_Failed>
+			<Enabled>1</Enabled>
+			<Delay>0</Delay>
+			<Duration>1</Duration>
+			<Radius>
+				<Start>0</Start>
+				<End>0.01</End>
+			</Radius>
+			<Alpha>
+				<Start>1</Start>
+				<End>0</End>
+			</Alpha>
+			<Color>0.814066, 0.681255, 0.511258, 0.569695<Hue>
+					<Low>0</Low>
+					<High>1</High>
+				</Hue>
+				<Saturation>
+					<Low>0</Low>
+					<High>1</High>
+				</Saturation>
+				<Brightness>
+					<Low>0</Low>
+					<High>1</High>
+				</Brightness>
+				<Alpha>
+					<Low>0</Low>
+					<High>1</High>
+				</Alpha>
+			</Color>
+		</Occurrence_Spawn_Failed>
+	</Animations>
+	<Bounds>
+		<Size>6</Size>
+	</Bounds>
+	<Debug>
+		<Show_Log>0</Show_Log>
+		<Show_Bounds>1</Show_Bounds>
+		<Show_Status>1</Show_Status>
+	</Debug>
+<group/>
+	<Clock>
+		<Paused>0</Paused>
+		<Rate>1.08163</Rate>
+	</Clock>
+<Color_Theme>
+		<Background>0, 0, 0, 1</Background>
+		<Bounds>0.2, 0.2, 0.2, 0.3</Bounds>
+		<Observer_Marker>0.525, 0.7, 0.35, 1</Observer_Marker>
+		<Occurrence_Marker>1, 0.5, 0.34, 1</Occurrence_Marker>
+		<Occurrence_Range>0.5, 0.5, 0.5, 0.58</Occurrence_Range>
+		<Occurrence_Connector>0.5, 0.5, 0.5, 1</Occurrence_Connector>
+		<Threshold_Connector>0.7, 0.7, 0.85, 0.4</Threshold_Connector>
+		<Observer_Died>0.660006, 0.644068, 0.787503, 0.686568</Observer_Died>
+		<Occurrence_Died>0.766254, 0.644068, 0.452822, 0.792816</Occurrence_Died>
+		<Occurrence_Spawn_Failed>0.814066, 0.681255, 0.511258, 0.569695</Occurrence_Spawn_Failed>
+	</Color_Theme>
+<Spin_Enabled>1</Spin_Enabled>
+	<Spin_Rate>0.108289, -2.28655, 2.399</Spin_Rate>
+</group>
