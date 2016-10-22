@@ -13,9 +13,9 @@
 #include <iostream>
 #include <JsonIO.h>
 #include <ofxMidi.h>
+#include <ofxTEvents.h>
 #include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/Events.h"
 #include "../core/JsonIO.h"
 
 using MidiDeviceId = int;
@@ -96,7 +96,7 @@ namespace std {
 }
 
 class MidiReceivedEventArgs
-: public EventArgs {
+: public ofxTCommon::EventArgs {
 public:
   MidiReceivedEventArgs(const MidiDeviceId& dev,
                         const ofxMidiMessage& msg)
@@ -113,7 +113,7 @@ protected:
   void outputFields(std::ostream& os) const override;
 };
 
-using MidiReceivedEvent = TEvent<MidiReceivedEventArgs>;
+using MidiReceivedEvent = ofxTCommon::TEvent<MidiReceivedEventArgs>;
 
 using MidiDeviceParams = ParamsWithEnabled;
 

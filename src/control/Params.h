@@ -11,11 +11,11 @@
 
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <ofxTEvents.h>
 #include <string>
 #include <typeinfo>
 #include <vector>
 #include "../core/Common.h"
-#include "../core/Events.h"
 #include "../core/JsonIO.h"
 
 class TParamBase
@@ -131,7 +131,7 @@ public:
 
   std::string asString() const override { return ofParameter<T>::toString(); }
 
-  TEvent<T&> changed;
+  ofxTCommon::TEvent<T&> changed;
 
   Json to_json() const override {
     return JsonUtil::toJson(ofParameter<T>::get());

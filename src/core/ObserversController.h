@@ -13,7 +13,6 @@
 #include "../physics/BoundsController.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
-#include "../core/Events.h"
 #include "../core/ObjectManager.h"
 #include "../core/ObserverEntity.h"
 #include "../spawning/ObserverSpawner.h"

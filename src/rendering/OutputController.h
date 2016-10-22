@@ -11,10 +11,10 @@
 
 #include <memory>
 #include <ofConstants.h>
+#include <ofxTEvents.h>
 #include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../core/Component.h"
-#include "../core/Events.h"
 
 #ifdef TARGET_OSX
 #define ENABLE_SYPHON
@@ -64,7 +64,7 @@ public:
 
   glm::ivec2 resolution() const;
 
-  TEvent<ValueEventArgs<glm::ivec2>> resolutionChanged;
+  TEvent<ofxTCommon::ValueEventArgs<glm::ivec2>> resolutionChanged;
 
 private:
   Params& _params;

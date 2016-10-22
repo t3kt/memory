@@ -11,8 +11,8 @@
 
 #include <iostream>
 #include <ofxTEnums.h>
+#include <ofxTEvents.h>
 #include "../core/Common.h"
-#include "../core/Events.h"
 
 enum class SimulationEventType {
   ANIMATION_SPAWNED,
@@ -96,7 +96,7 @@ std::ostream& operator<<(std::ostream& os,
 
 template<typename T>
 class SimulationEventArgs
-: public EventArgs {
+: public ofxTCommon::EventArgs {
 public:
   SimulationEventArgs(SimulationEventType type, T& value)
   : _type(type)
@@ -118,7 +118,7 @@ private:
 };
 
 template<typename T>
-using SimulationEvent = TEvent<SimulationEventArgs<T>>;
+using SimulationEvent = ofxTCommon::TEvent<SimulationEventArgs<T>>;
 
 using AnimationEventArgs = SimulationEventArgs<AnimationObject>;
 using AnimationEvent = SimulationEvent<AnimationObject>;

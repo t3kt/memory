@@ -291,6 +291,7 @@
 		323AA1981DBB271F0022C990 /* ofxTCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = ofxTCommon.h; sourceTree = "<group>"; };
 		323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTCommon.cpp; sourceTree = "<group>"; };
 		323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTEnums.h; sourceTree = "<group>"; };
+		323AA19D1DBB33770022C990 /* ofxTEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTEvents.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -446,7 +447,6 @@
 		84C46F6AC8EE7137636729B3 /* ZoomBlurPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ZoomBlurPass.cpp; path = ../../openFrameworks/addons/ofxPostProcessing/src/ZoomBlurPass.cpp; sourceTree = SOURCE_ROOT; };
 		8559631FA795C19177FDE97C /* Logging.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Logging.h; path = src/core/Logging.h; sourceTree = SOURCE_ROOT; };
 		862B3ECE63CE8282C1751656 /* VerticalTiltShifPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = VerticalTiltShifPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/VerticalTiltShifPass.h; sourceTree = SOURCE_ROOT; };
-		8630FD4BD2D04BDECA67876B /* Events.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Events.h; path = src/core/Events.h; sourceTree = SOURCE_ROOT; };
 		86814E6E82D8A95A7B48FB1F /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; name = ofxSyphonServerDirectory.mm; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.mm; sourceTree = SOURCE_ROOT; };
 		8699D2DB88C7AB923ABC4F9F /* ofxBaseMidi.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxBaseMidi.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxBaseMidi.h; sourceTree = SOURCE_ROOT; };
 		871145729C2A812E6085F6DD /* AnimationsController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationsController.h; path = src/core/AnimationsController.h; sourceTree = SOURCE_ROOT; };
@@ -808,6 +808,7 @@
 				323AA1981DBB271F0022C990 /* ofxTCommon.h */,
 				323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */,
 				323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */,
+				323AA19D1DBB33770022C990 /* ofxTEvents.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1361,7 +1362,6 @@
 				CEDAB2464241B3DE53644E3D /* EntityMap.h */,
 				EB0D97C4A4783D5E224D8376 /* EventLogging.cpp */,
 				F25CE82328FE513EF55EF4A7 /* EventLogging.h */,
-				8630FD4BD2D04BDECA67876B /* Events.h */,
 				9E5034EC946A6F79AA721967 /* Info.cpp */,
 				804CDAC76A2FD6B81A5703C2 /* Info.h */,
 				2D22FC9770BDA229A66C55C8 /* InspectionController.cpp */,
