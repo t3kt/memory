@@ -14,11 +14,11 @@
 
 namespace ofxTCommon {
 
-  template<typename _T>
+  template<typename T>
   class EnumTypeInfo
   : public NonCopyable {
   public:
-    using T = typename std::enable_if<std::is_enum<_T>::value, _T>::type;
+    static_assert(std::is_enum<T>::value, "T must be an enum type");
 
     EnumTypeInfo(std::initializer_list<std::pair<std::string, T>> entries) {
       for (std::pair<std::string, T> entry : entries) {
