@@ -1,33 +1,32 @@
 //
 //  Component.h
-//  memory
-//
-//  Created by tekt on 9/23/16.
-//
 //
 
-#ifndef Component_h
-#define Component_h
+#pragma once
 
 #include <memory>
 #include <type_traits>
 #include <vector>
 
+// Interface for a component that has a setup method.
 class SetupableComponent {
 public:
   virtual void setup() {}
 };
 
+// Interface for a component that has an update method.
 class UpdatableComponent {
 public:
   virtual void update() {}
 };
 
+// Interface for a component that has a draw method.
 class DrawableComponent {
 public:
   virtual void draw() {}
 };
 
+// Combination of setup/update/draw method interfaces
 class ComponentBase
 : public SetupableComponent
 , public UpdatableComponent
@@ -91,6 +90,8 @@ private:
   Storage<DrawT> _draws;
 };
 
+// A collection of components of type C, with methods for adding new
+// components, and calling update/draw on each component.
 template<typename C>
 class ComponentCollection {
 public:
@@ -98,12 +99,16 @@ public:
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
+  // Add an externally constructed component to the collection. Does
+  // not call setup() since it is assumed to have already been called.
   template<typename T>
   std::shared_ptr<T> add(std::shared_ptr<T> component) {
     _components.push_back(component);
     return component;
   }
 
+  // Construct a new component of type T, call its setup() method, and
+  // add it to the collection.
   template<typename T, typename ...Args>
   std::shared_ptr<T> add(Args&& ...args) {
     auto component = std::make_shared<T>(std::forward<Args>(args)...);
@@ -133,4 +138,3 @@ private:
   Storage _components;
 };
 
-#endif /* Component_h */

@@ -1,13 +1,8 @@
 //
 //  Context.h
-//  memory
-//
-//  Created by tekt on 7/16/16.
-//
 //
 
-#ifndef Context_h
-#define Context_h
+#pragma once
 
 #include <functional>
 #include "../core/Common.h"
@@ -26,6 +21,8 @@ class OccurrenceEntity;
 class ParticleObject;
 class WorldObject;
 
+// State of the simulation and the app in general.
+// Owns the ObjectManager instances which own all entities.
 class Context
 : public NonCopyable
 , public JsonWritable
@@ -67,4 +64,3 @@ private:
   void clear();
 };
 
-#endif /* Context_h */

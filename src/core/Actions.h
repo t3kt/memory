@@ -1,13 +1,10 @@
 //
 //  Actions.h
-//  memory
 //
-//  Created by tekt on 9/13/16.
-//
+//  Action scheduling system.
 //
 
-#ifndef Actions_h
-#define Actions_h
+#pragma once
 
 #include <functional>
 #include <memory>
@@ -20,6 +17,8 @@
 class ActionsController;
 class Context;
 
+// The result of executing an Action, which controls whether the action
+// should be performed again or finished.
 class ActionResult {
 private:
   enum class ResultType {
@@ -29,15 +28,27 @@ private:
     ABORT,
   };
 public:
+  // Makes an ActionResult indicating that the Action has finished,
+  // should call its finish callback (if any), and then be removed
+  // from the scheduler.
   static ActionResult cancel() {
     return ActionResult(-1, ResultType::CANCEL);
   }
+
+  // Makes an ActionResult indicating that the action should be called
+  // again at the specified time.
   static ActionResult reschedule(float time) {
     return ActionResult(time, ResultType::RESCHEDULE);
   }
+
+  // Makes an ActionResult indicating that the action should be called
+  // again on the next iteration of the update cycle.
   static ActionResult continuous() {
     return ActionResult(-1, ResultType::CONTINUOUS);
   }
+
+  // Makes an ActionResult indicating that the action should be removed
+  // from the scheduler without calling its finish callback.
   static ActionResult abort() {
     return ActionResult(-1, ResultType::ABORT);
   }
@@ -64,15 +75,11 @@ std::function<ActionResult(Context&,
 
 class Action {
 public:
+  static ActionPtr of(ActionFn action);
+
   virtual ActionResult operator()(Context& context,
                                   ActionsController& controller) = 0;
 
-  static ActionPtr of(ActionFn action);
-};
-
-class AbortableAction
-: public Action {
-public:
   void abort() { _aborted = true; }
 protected:
   bool _aborted;
@@ -139,4 +146,3 @@ private:
   std::vector<Entry> _continuousActions;
 };
 
-#endif /* Actions_h */

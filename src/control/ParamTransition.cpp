@@ -19,7 +19,7 @@ static inline Logger& getLog() {
 }
 
 class ApplyParamTransitionAction
-: public AbortableAction {
+: public Action {
 public:
   ApplyParamTransitionAction(ParamTransitionPtr transition,
                              float duration,
@@ -55,7 +55,7 @@ void ParamTransitionSet::apply(float ratio) {
   }
 }
 
-std::shared_ptr<AbortableAction>
+std::shared_ptr<Action>
 AbstractParamTransition::createApplyAction(float duration,
                                            const Context &context) {
   if (_applyAction) {

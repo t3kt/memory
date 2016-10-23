@@ -90,9 +90,9 @@ public:
   }
 
 protected:
-  using Action = std::function<void(T1&, T2&, const ofVec3f&)>;
+  using ForceAction = std::function<void(T1&, T2&, const ofVec3f&)>;
 
-  void performAction(Action action);
+  void performAction(ForceAction action);
 
   void debugDrawBehavior() override {
     performAction([&](T1& entity,
