@@ -20,19 +20,23 @@ namespace PTags {
   const std::string preset = "preset";
 }
 
-class ParamTagSet
-: public ofxTagSet<std::string>
-, public JsonReadable
-, public JsonWritable {
-public:
-  ParamTagSet() {}
+namespace _params_impl {
 
-  ParamTagSet(std::initializer_list<std::string> tags)
-  : ofxTagSet<std::string>(tags) { }
+  class ParamTagSet
+  : public ofxTagSet<std::string>
+  , public JsonReadable
+  , public JsonWritable {
+  public:
+    ParamTagSet() {}
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
-};
+    ParamTagSet(std::initializer_list<std::string> tags)
+    : ofxTagSet<std::string>(tags) { }
+
+    Json to_json() const override;
+    void read_json(const Json& obj) override;
+  };
+
+}
 
 class Params;
 
@@ -40,6 +44,7 @@ class TParamBase
 : public JsonReadable
 , public JsonWritable {
 public:
+  using ParamTagSet = _params_impl::ParamTagSet;
   static const char pathSeparator = '.';
 
   TParamBase() { }
@@ -77,167 +82,188 @@ protected:
   const Params* _parent;
 };
 
-template<typename T, typename ParT>
-class TTypedParamBase
-: public ofParameter<T>
-, public TParamBase {
-public:
-  TTypedParamBase() {
-    ofParameter<T>::addListener(this,
-                                &TTypedParamBase::onChanged);
-  }
+namespace _params_impl {
 
-  virtual ~TTypedParamBase() override {
-    ofParameter<T>::removeListener(this,
-                                   &TTypedParamBase::onChanged);
-  }
+  template<typename ParT>
+  class TParamBaseWithInitializers
+  : public TParamBase {
+  public:
 
-  ParT& setKey(std::string key) {
-    _key = key;
-    return selfRef();
-  }
-
-  ParT& setName(std::string name) {
-    ofParameter<T>::setName(name);
-    return selfRef();
-  }
-
-  ParT& setRange(T minValue, T maxValue) {
-    ofParameter<T>::setMin(minValue);
-    ofParameter<T>::setMax(maxValue);
-    return selfRef();
-  }
-
-  ParT& setDefaultValue(T defaultValue) {
-    _defaultValue = defaultValue;
-    _hasDefaultValue = true;
-    return selfRef();
-  }
-
-  ParT& setValueAndDefault(T value) {
-    ofParameter<T>::set(value);
-    return setDefaultValue(value);
-  }
-
-  const T& operator()() const {
-    return ofParameter<T>::get();
-  }
-
-  bool hasDefault() const override {
-    return _hasDefaultValue;
-  }
-
-  const T& getDefaultValue() const {
-    return _defaultValue;
-  }
-
-  void clearDefaultValue() {
-    _defaultValue = {};
-    _hasDefaultValue = false;
-  }
-
-  void resetToDefault() override {
-    if (hasDefault()) {
-      ofParameter<T>::set(getDefaultValue());
+    ParT& setKey(std::string key) {
+      _key = key;
+      return selfRef();
     }
-  }
 
-  std::string getKey() const override {
-    if (_key.empty()) {
-      return ofToLower(ofParameter<T>::getEscapedName());
-    } else {
-      return _key;
+    ParT& setSupportsOsc(bool support) {
+      return withTagSetTo(PTags::osc, support);
     }
-  }
 
-  bool isGroup() const override { return false; }
-
-  const std::type_info& getTypeInfo() const override {
-    return typeid(T);
-  }
-
-  std::string asString() const override { return ofParameter<T>::toString(); }
-
-  ofxTCommon::TEvent<T&> changed;
-
-  Json to_json() const override {
-    return JsonUtil::toJson(ofParameter<T>::get());
-  }
-
-  void read_json(const Json& val) override {
-    this->set(JsonUtil::fromJson<T>(val));
-  }
-
-  void readJsonField(const Json& obj) override {
-    Json val = obj[getKey()];
-    if (!val.is_null()) {
-      read_json(val);
-    } else if (hasDefault()) {
-      ofParameter<T>::set(getDefaultValue());
-    } else {
-      throw JsonException("Required field missing: " + getKey());
+    ParT& setSupportsPresets(bool support) {
+      return withTagSetTo(PTags::preset, support);
     }
-  }
 
-  Json toJsonMetadata() const override {
-    auto metadata = Json::object {
-      {"key", getKey()},
-      {"name", ofParameter<T>::getName()},
-      {"type", getTypeName()},
-      {"min", JsonUtil::toJson(ofParameter<T>::getMin())},
-      {"max", JsonUtil::toJson(ofParameter<T>::getMax())},
-    };
-    if (hasDefault()) {
-      metadata["default"] = JsonUtil::toJson(getDefaultValue());
+    template<typename Arg>
+    ParT& withTag(Arg tag) {
+      tags().enable(tag);
+      return selfRef();
     }
-    if (hasTags()) {
-      metadata.insert(writeTagsField());
+
+    template<typename Arg>
+    ParT& withoutTag(Arg tag) {
+      tags().enable(tag);
+      return selfRef();
     }
-    return metadata;
-  }
+  protected:
+    template<typename Arg>
+    ParT& withTagSetTo(Arg tag, bool value) {
+      tags().put(tag, value);
+      return selfRef();
+    }
 
-  ParT& setSupportsOsc(bool support) {
-    return withTagSetTo(PTags::osc, support);
-  }
+    virtual ParT& selfRef() = 0;
 
-  ParT& setSupportsPresets(bool support) {
-    return withTagSetTo(PTags::preset, support);
-  }
+    std::string _key;
+  };
 
-  template<typename Arg>
-  ParT& withTag(Arg tag) {
-    _tags.enable(tag);
-    return selfRef();
-  }
+  template<typename T, typename ParT>
+  class TTypedParamBase
+  : public ofParameter<T>
+  , public TParamBaseWithInitializers<ParT> {
+  public:
+    using BaseT = TParamBaseWithInitializers<ParT>;
 
-  template<typename Arg>
-  ParT& withoutTag(Arg tag) {
-    _tags.enable(tag);
-    return selfRef();
-  }
+    TTypedParamBase() {
+      ofParameter<T>::addListener(this,
+                                  &TTypedParamBase::onChanged);
+    }
+
+    virtual ~TTypedParamBase() override {
+      ofParameter<T>::removeListener(this,
+                                     &TTypedParamBase::onChanged);
+    }
+
+    ParT& setName(std::string name) {
+      ofParameter<T>::setName(name);
+      return selfRef();
+    }
+
+    ParT& setRange(T minValue, T maxValue) {
+      ofParameter<T>::setMin(minValue);
+      ofParameter<T>::setMax(maxValue);
+      return selfRef();
+    }
+
+    ParT& setDefaultValue(T defaultValue) {
+      _defaultValue = defaultValue;
+      _hasDefaultValue = true;
+      return selfRef();
+    }
+
+    ParT& setValueAndDefault(T value) {
+      ofParameter<T>::set(value);
+      return setDefaultValue(value);
+    }
+
+    const T& operator()() const {
+      return ofParameter<T>::get();
+    }
+
+    bool hasDefault() const override {
+      return _hasDefaultValue;
+    }
+
+    const T& getDefaultValue() const {
+      return _defaultValue;
+    }
+
+    void clearDefaultValue() {
+      _defaultValue = {};
+      _hasDefaultValue = false;
+    }
+
+    void resetToDefault() override {
+      if (hasDefault()) {
+        ofParameter<T>::set(getDefaultValue());
+      }
+    }
+
+    std::string getKey() const override {
+      if (BaseT::_key.empty()) {
+        return ofToLower(ofParameter<T>::getEscapedName());
+      } else {
+        return BaseT::_key;
+      }
+    }
+
+    bool isGroup() const override { return false; }
+
+    const std::type_info& getTypeInfo() const override {
+      return typeid(T);
+    }
+
+    std::string asString() const override { return ofParameter<T>::toString(); }
+
+    ofxTCommon::TEvent<T&> changed;
+
+    Json to_json() const override {
+      return JsonUtil::toJson(ofParameter<T>::get());
+    }
+
+    void read_json(const Json& val) override {
+      this->set(JsonUtil::fromJson<T>(val));
+    }
+
+    void readJsonField(const Json& obj) override {
+      Json val = obj[getKey()];
+      if (!val.is_null()) {
+        read_json(val);
+      } else if (hasDefault()) {
+        ofParameter<T>::set(getDefaultValue());
+      } else {
+        throw JsonException("Required field missing: " + getKey());
+      }
+    }
+
+    Json toJsonMetadata() const override {
+      auto metadata = Json::object {
+        {"key", getKey()},
+        {"name", ofParameter<T>::getName()},
+        {"type", getTypeName()},
+        {"min", JsonUtil::toJson(ofParameter<T>::getMin())},
+        {"max", JsonUtil::toJson(ofParameter<T>::getMax())},
+      };
+      if (hasDefault()) {
+        metadata["default"] = JsonUtil::toJson(getDefaultValue());
+      }
+      if (hasTags()) {
+        metadata.insert(writeTagsField());
+      }
+      return metadata;
+    }
+
+    using BaseT::getTypeName;
+    using BaseT::hasTags;
+    
+  protected:
+
+    using BaseT::selfRef;
+    using BaseT::writeTagsField;
+    using BaseT::readTagsField;
+
+  private:
+    void onChanged(T& value) {
+      changed.notifyListeners(value);
+    }
+
+    T _defaultValue;
+    bool _hasDefaultValue;
+  };
   
-protected:
-  template<typename Arg>
-  ParT& withTagSetTo(Arg tag, bool value) {
-    _tags.put(tag, value);
-    return selfRef();
-  }
-
-  virtual ParT& selfRef() = 0;
-
-private:
-  void onChanged(T& value) {
-    changed.notifyListeners(value);
-  }
-
-  std::string _key;
-  bool _hasDefaultValue;
-  T _defaultValue;
-};
+}
 
 template<typename T>
 class TParam
-: public TTypedParamBase<T, TParam<T>> {
+: public _params_impl::TTypedParamBase<T, TParam<T>> {
 public:
 
   void setNormalizedValue(float normVal) {
@@ -255,16 +281,17 @@ public:
   }
 
   const char* getTypeName() const override {
-    return TTypedParamBase<T, TParam<T>>::getTypeInfo().name();
+    return _params_impl::TTypedParamBase<T, TParam<T>>::getTypeInfo().name();
   }
 
 protected:
+
   TParam<T>& selfRef() override { return *this; }
 };
 
 template<>
 class TParam<bool>
-: public TTypedParamBase<bool, TParam<bool>> {
+: public _params_impl::TTypedParamBase<bool, TParam<bool>> {
 public:
 
   void setNormalizedValue(float normVal) {
@@ -284,6 +311,7 @@ public:
   }
 
 protected:
+
   TParam<bool>& selfRef() override { return *this; }
 };
 
@@ -292,13 +320,20 @@ using ConstParamPredicate = std::function<bool(const TParamBase&)>;
 
 class Params
 : public ofParameterGroup
-, public TParamBase
+, public _params_impl::TParamBaseWithInitializers<Params>
 , public NonCopyable {
 public:
+  using BaseT = _params_impl::TParamBaseWithInitializers<Params>;
+
   Params() {}
   Params(std::string key, std::string label) {
     setKey(key);
     setName(label);
+  }
+
+  Params& setName(std::string name) {
+    ofParameterGroup::setName(name);
+    return selfRef();
   }
 
   std::string getKey() const override {
@@ -307,16 +342,6 @@ public:
     } else {
       return _key;
     }
-  }
-
-  Params& setKey(std::string key) {
-    _key = key;
-    return *this;
-  }
-
-  Params& setName(std::string name) {
-    ofParameterGroup::setName(name);
-    return *this;
   }
 
   template<typename P>
@@ -384,35 +409,11 @@ public:
 
   void performRecursiveParamAction(ParamBaseAction action);
 
-
-  Params& setSupportsOsc(bool support) {
-    return withTagSetTo(PTags::osc, support);
-  }
-
-  Params& setSupportsPresets(bool support) {
-    return withTagSetTo(PTags::preset, support);
-  }
-
-  template<typename Arg>
-  Params& withTag(Arg tag) {
-    _tags.enable(tag);
-    return *this;
-  }
-
-  template<typename Arg>
-  Params& withoutTag(Arg tag) {
-    _tags.enable(tag);
-    return *this;
-  }
-
 protected:
-  template<typename Arg>
-  Params& withTagSetTo(Arg tag, bool value) {
-    _tags.put(tag, value);
-    return *this;
-  }
+
+  Params& selfRef() override { return *this; }
+
 private:
-  std::string _key;
   std::vector<TParamBase*> _paramBases;
 };
 

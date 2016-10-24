@@ -6,6 +6,8 @@
 #include <ofVec3f.h>
 #include "../control/Params.h"
 
+using namespace _params_impl;
+
 Json ParamTagSet::to_json() const {
   if (empty()) {
     return nullptr;
