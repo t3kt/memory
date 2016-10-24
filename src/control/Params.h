@@ -40,23 +40,12 @@ public:
     return _tags.find(tag) != _tags.end();
   }
 
-  void add(const std::string& tag) {
-    _tags.insert(tag);
-  }
+  void add(const std::string& tag);
+  void add(std::initializer_list<std::string> tags);
+  void add(const ParamTagSet& other);
 
-  void add(std::initializer_list<std::string> tags) {
-    _tags.insert(tags.begin(), tags.end());
-  }
-
-  void remove(const std::string& tag) {
-    _tags.erase(tag);
-  }
-
-  void remove(std::initializer_list<std::string> tags) {
-    for (const auto& tag : tags) {
-      _tags.erase(tag);
-    }
-  }
+  void remove(const std::string& tag);
+  void remove(std::initializer_list<std::string> tags);
 
   void clear() { _tags.clear(); }
 
@@ -72,6 +61,8 @@ private:
   Storage _tags;
 };
 
+class Params;
+
 class TParamBase
 : public JsonReadable
 , public JsonWritable {
@@ -79,6 +70,13 @@ public:
   static const char pathSeparator = '.';
 
   TParamBase();
+
+  Params* getParentParams() { return _parent; }
+  const Params* getParentParams() const { return _parent; }
+
+  void setParentParams(Params* parent) {
+    _parent = parent;
+  }
 
   virtual std::string getKey() const = 0;
 
@@ -94,8 +92,8 @@ public:
   virtual std::string asString() const = 0;
   virtual const std::type_info& getTypeInfo() const = 0;
   virtual const char* getTypeName() const = 0;
-  bool supportsOsc() const { return _supportsOsc; }
-  bool supportsPresets() const { return _supportsPresets; }
+  bool supportsOsc() const { return tags()[PTags::osc]; }
+  bool supportsPresets() const { return tags()[PTags::preset]; }
 
   ParamTagSet& tags() { return _tags; }
   const ParamTagSet& tags() const { return _tags; }
@@ -108,9 +106,10 @@ protected:
   void setTags(bool value,
                std::initializer_list<std::string> tags);
 
-  bool _supportsOsc;
-  bool _supportsPresets;
+  void inheritTags();
+
   ParamTagSet _tags;
+  Params* _parent;
 };
 
 template<typename T, typename ParT>
@@ -233,12 +232,10 @@ public:
   }
 
   ParT& setSupportsOsc(bool support) {
-    _supportsOsc = support;
     return withTagsSet(support, {PTags::osc});
   }
 
   ParT& setSupportsPresets(bool support) {
-    _supportsPresets = support;
     return withTagsSet(support, {PTags::preset});
   }
 
@@ -355,13 +352,9 @@ public:
     return *this;
   }
 
-  void add(Params& params) {
-    ofParameterGroup::add(params);
-    _paramBases.push_back(&params);
-  }
-
-  template<typename T>
-  void add(TParam<T>& param) {
+  template<typename P>
+  void add(P& param) {
+    param.setParentParams(this);
     ofParameterGroup::add(param);
     _paramBases.push_back(&param);
   }
@@ -425,13 +418,11 @@ public:
   void performRecursiveParamAction(ParamBaseAction action);
 
   Params& setSupportsOsc(bool support) {
-    _supportsOsc = support;
     setTags(support, {PTags::osc});
     return *this;
   }
 
   Params& setSupportsPresets(bool support) {
-    _supportsPresets = support;
     setTags(support, {PTags::preset});
     return *this;
   }

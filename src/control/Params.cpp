@@ -17,10 +17,30 @@ void ParamTagSet::read_json(const Json &val) {
   _tags.insert(tags.begin(), tags.end());
 }
 
+void ParamTagSet::add(const std::string &tag) {
+  _tags.insert(tag);
+}
+
+void ParamTagSet::add(std::initializer_list<std::string> tags) {
+  _tags.insert(tags.begin(), tags.end());
+}
+
+void ParamTagSet::add(const ParamTagSet& other) {
+  _tags.insert(other.begin(), other.end());
+}
+
+void ParamTagSet::remove(const std::string& tag) {
+  _tags.erase(tag);
+}
+
+void ParamTagSet::remove(std::initializer_list<std::string> tags) {
+  for (const auto& tag : tags) {
+    _tags.erase(tag);
+  }
+}
+
 TParamBase::TParamBase()
-: _supportsOsc(true)
-, _supportsPresets(true)
-, _tags({PTags::osc, PTags::preset}) { }
+: _tags({PTags::osc, PTags::preset}) { }
 
 void TParamBase::readTagsField(const Json &obj) {
   _tags.read_json(obj["tags"]);
@@ -36,6 +56,12 @@ void TParamBase::setTags(bool value,
     _tags.add(tags);
   } else {
     _tags.remove(tags);
+  }
+}
+
+void TParamBase::inheritTags() {
+  if (_parent) {
+    _tags.add(_parent->tags());
   }
 }
 
