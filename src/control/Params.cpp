@@ -35,6 +35,11 @@ const char* TParam<ofVec3f>::getTypeName() const {
   return "vec3";
 }
 
+template<>
+const char* TParam<std::string>::getTypeName() const {
+  return "string";
+}
+
 TParamBase* Params::findKey(const std::string &key) {
   for (auto param : _paramBases) {
     if (param->getKey() == key) {

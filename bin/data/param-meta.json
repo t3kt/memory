@@ -181,7 +181,7 @@
               "max": "",
               "min": "",
               "name": "Output Host",
-              "type": "NSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE"
+              "type": "string"
             },
             {
               "default": 9000,
@@ -197,7 +197,7 @@
               "max": "",
               "min": "",
               "name": "Param Prefix",
-              "type": "NSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE"
+              "type": "string"
             }
           ]
         }
@@ -1178,7 +1178,7 @@
                 -10
               ],
               "name": "Spin Rate",
-              "type": "7ofVec3f"
+              "type": "vec3"
             }
           ]
         },
