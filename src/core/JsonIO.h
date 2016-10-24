@@ -1,14 +1,10 @@
 //
 //  JsonIO.h
-//  memory
-//
-//  Created by tekt on 6/30/16.
-//
 //
 
-#ifndef JsonIO_h
-#define JsonIO_h
+#pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <json11.hpp>
 #include <ofxTEnums.h>
@@ -46,6 +42,41 @@ namespace JsonUtil {
 
   template<typename T>
   T fromJson(const Json& value);
+
+  template<typename T, typename Iter>
+  Json toJsonArray(Iter begin, Iter end) {
+    Json::array arr;
+    for (auto iter = begin; iter != end; iter++) {
+      arr.push_back(toJson<T>(*iter));
+    }
+    return arr;
+  }
+
+  template<typename T, typename Iter>
+  Json toJsonArrayOrNull(Iter begin, Iter end) {
+    if (begin == end) {
+      return nullptr;
+    }
+    return toJsonArray<T, Iter>(begin, end);
+  }
+
+  template<typename T>
+  std::vector<T> fromJsonArray(const Json& value) {
+    assertHasType(value, Json::ARRAY);
+    std::vector<T> result;
+    for (const auto& val : value.array_items()) {
+      result.push_back(fromJson<T>(val));
+    }
+    return result;
+  }
+
+  template<typename T>
+  std::vector<T> fromJsonArrayOrNull(const Json& value) {
+    if (value.is_null()) {
+      return std::vector<T>();
+    }
+    return fromJsonArray<T>(value);
+  }
 
   template<typename T>
   typename std::enable_if<std::is_enum<T>::value, T>::type
@@ -85,4 +116,3 @@ namespace JsonUtil {
   void prettyPrintJsonToFile(const Json& value, std::string filepath);
 }
 
-#endif /* JsonIO_h */

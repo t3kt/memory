@@ -1,22 +1,56 @@
 //
 //  Params.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/24/16.
-//
 //
 
-#ifndef Params_h
-#define Params_h
+#pragma once
 
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
 #include <ofxTEvents.h>
 #include <string>
 #include <typeinfo>
+#include <unordered_set>
 #include <vector>
 #include "../core/Common.h"
 #include "../core/JsonIO.h"
+
+class ParamTagSet
+: public JsonReadable
+, public JsonWritable {
+public:
+  using Storage = std::unordered_set<std::string>;
+  using iterator = Storage::iterator;
+  using const_iterator = Storage::const_iterator;
+
+  bool operator[](const std::string& tag) const {
+    return _tags.find(tag) != _tags.end();
+  }
+
+  bool operator[](const std::string& tag) {
+    return _tags.find(tag) != _tags.end();
+  }
+
+  void add(const std::string& tag) {
+    _tags.insert(tag);
+  }
+
+  void add(std::initializer_list<std::string> tags) {
+    _tags.insert(tags.begin(), tags.end());
+  }
+
+  void clear() { _tags.clear(); }
+
+  Json to_json() const override;
+  void read_json(const Json& val) override;
+
+  iterator begin() { return _tags.begin(); }
+  iterator end() { return _tags.end(); }
+  const_iterator begin() const { return _tags.begin(); }
+  const_iterator end() const { return _tags.end(); }
+  bool empty() const { return _tags.empty(); }
+private:
+  Storage _tags;
+};
 
 class TParamBase
 : public JsonReadable
@@ -45,9 +79,17 @@ public:
   bool supportsOsc() const { return _supportsOsc; }
   bool supportsPresets() const { return _supportsPresets; }
 
+  ParamTagSet& tags() { return _tags; }
+  const ParamTagSet& tags() const { return _tags; }
+  bool hasTags() const { return !_tags.empty(); }
+
 protected:
+  void readTagsField(const Json& obj);
+  Json::object::value_type writeTagsField() const;
+
   bool _supportsOsc;
   bool _supportsPresets;
+  ParamTagSet _tags;
 };
 
 template<typename T, typename ParT>
@@ -173,6 +215,11 @@ public:
 
   ParT& setSupportsPresets(bool supportsPresets) {
     _supportsPresets = supportsPresets;
+    return selfRef();
+  }
+
+  ParT& withTags(std::initializer_list<std::string> tags) {
+    _tags.add(tags);
     return selfRef();
   }
   
@@ -368,4 +415,3 @@ public:
   TParam<bool> enabled;
 };
 
-#endif /* Params_h */

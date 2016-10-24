@@ -1,17 +1,38 @@
 //
 //  Params.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/28/16.
-//
 //
 
 #include <ofColor.h>
+#include <ofVec3f.h>
 #include "../control/Params.h"
+
+void TParamBase::readTagsField(const Json &obj) {
+  _tags.read_json(obj["tags"]);
+}
+
+Json::object::value_type TParamBase::writeTagsField() const {
+  return {"tags", _tags.to_json()};
+}
+
+Json ParamTagSet::to_json() const {
+  return JsonUtil::toJsonArrayOrNull<std::string>(_tags.begin(),
+                                                  _tags.end());
+}
+
+void ParamTagSet::read_json(const Json &val) {
+  _tags.clear();
+  auto tags = JsonUtil::fromJsonArrayOrNull<std::string>(val);
+  _tags.insert(tags.begin(), tags.end());
+}
 
 template<>
 const char* TParam<ofFloatColor>::getTypeName() const {
   return "color";
+}
+
+template<>
+const char* TParam<ofVec3f>::getTypeName() const {
+  return "vec3";
 }
 
 TParamBase* Params::findKey(const std::string &key) {
