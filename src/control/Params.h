@@ -14,6 +14,11 @@
 #include "../core/Common.h"
 #include "../core/JsonIO.h"
 
+namespace PTags {
+  const std::string osc = "osc";
+  const std::string preset = "preset";
+}
+
 class ParamTagSet
 : public JsonReadable
 , public JsonWritable {
@@ -21,6 +26,11 @@ public:
   using Storage = std::unordered_set<std::string>;
   using iterator = Storage::iterator;
   using const_iterator = Storage::const_iterator;
+
+  ParamTagSet() {}
+
+  ParamTagSet(std::initializer_list<std::string> tags)
+  : _tags(tags) { }
 
   bool operator[](const std::string& tag) const {
     return _tags.find(tag) != _tags.end();
@@ -36,6 +46,16 @@ public:
 
   void add(std::initializer_list<std::string> tags) {
     _tags.insert(tags.begin(), tags.end());
+  }
+
+  void remove(const std::string& tag) {
+    _tags.erase(tag);
+  }
+
+  void remove(std::initializer_list<std::string> tags) {
+    for (const auto& tag : tags) {
+      _tags.erase(tag);
+    }
   }
 
   void clear() { _tags.clear(); }
@@ -58,9 +78,7 @@ class TParamBase
 public:
   static const char pathSeparator = '.';
 
-  TParamBase()
-  : _supportsOsc(true)
-  , _supportsPresets(true) { }
+  TParamBase();
 
   virtual std::string getKey() const = 0;
 
@@ -86,6 +104,9 @@ public:
 protected:
   void readTagsField(const Json& obj);
   Json::object::value_type writeTagsField() const;
+
+  void setTags(bool value,
+               std::initializer_list<std::string> tags);
 
   bool _supportsOsc;
   bool _supportsPresets;
@@ -205,25 +226,39 @@ public:
     if (hasDefault()) {
       metadata["default"] = JsonUtil::toJson(getDefaultValue());
     }
+    if (hasTags()) {
+      metadata.insert(writeTagsField());
+    }
     return metadata;
   }
 
-  ParT& setSupportsOsc(bool supportsOsc) {
-    _supportsOsc = supportsOsc;
-    return selfRef();
+  ParT& setSupportsOsc(bool support) {
+    _supportsOsc = support;
+    return withTagsSet(support, {PTags::osc});
   }
 
-  ParT& setSupportsPresets(bool supportsPresets) {
-    _supportsPresets = supportsPresets;
-    return selfRef();
+  ParT& setSupportsPresets(bool support) {
+    _supportsPresets = support;
+    return withTagsSet(support, {PTags::preset});
   }
 
   ParT& withTags(std::initializer_list<std::string> tags) {
     _tags.add(tags);
     return selfRef();
   }
+
+  ParT& withoutTags(std::initializer_list<std::string> tags) {
+    _tags.remove(tags);
+    return selfRef();
+  }
   
 protected:
+  ParT& withTagsSet(bool value,
+                    std::initializer_list<std::string> tags) {
+    setTags(value, tags);
+    return selfRef();
+  }
+
   virtual ParT& selfRef() = 0;
 
 private:
@@ -346,11 +381,15 @@ public:
     for (const auto param : _paramBases) {
       paramMetas.push_back(param->toJsonMetadata());
     }
-    return Json::object {
+    auto metadata = Json::object {
       {"key", getKey()},
       {"name", ofParameterGroup::getName()},
       {"params", paramMetas},
     };
+    if (hasTags()) {
+      metadata.insert(writeTagsField());
+    }
+    return metadata;
   }
 
   virtual void resetToDefault() override {
@@ -385,13 +424,15 @@ public:
 
   void performRecursiveParamAction(ParamBaseAction action);
 
-  Params& setSupportsOsc(bool supportsOsc) {
-    _supportsOsc = supportsOsc;
+  Params& setSupportsOsc(bool support) {
+    _supportsOsc = support;
+    setTags(support, {PTags::osc});
     return *this;
   }
 
-  Params& setSupportsPresets(bool supportsPresets) {
-    _supportsPresets = supportsPresets;
+  Params& setSupportsPresets(bool support) {
+    _supportsPresets = support;
+    setTags(support, {PTags::preset});
     return *this;
   }
 private:

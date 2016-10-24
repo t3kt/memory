@@ -6,14 +6,6 @@
 #include <ofVec3f.h>
 #include "../control/Params.h"
 
-void TParamBase::readTagsField(const Json &obj) {
-  _tags.read_json(obj["tags"]);
-}
-
-Json::object::value_type TParamBase::writeTagsField() const {
-  return {"tags", _tags.to_json()};
-}
-
 Json ParamTagSet::to_json() const {
   return JsonUtil::toJsonArrayOrNull<std::string>(_tags.begin(),
                                                   _tags.end());
@@ -23,6 +15,28 @@ void ParamTagSet::read_json(const Json &val) {
   _tags.clear();
   auto tags = JsonUtil::fromJsonArrayOrNull<std::string>(val);
   _tags.insert(tags.begin(), tags.end());
+}
+
+TParamBase::TParamBase()
+: _supportsOsc(true)
+, _supportsPresets(true)
+, _tags({PTags::osc, PTags::preset}) { }
+
+void TParamBase::readTagsField(const Json &obj) {
+  _tags.read_json(obj["tags"]);
+}
+
+Json::object::value_type TParamBase::writeTagsField() const {
+  return {"tags", _tags.to_json()};
+}
+
+void TParamBase::setTags(bool value,
+                         std::initializer_list<std::string> tags) {
+  if (value) {
+    _tags.add(tags);
+  } else {
+    _tags.remove(tags);
+  }
 }
 
 template<>
