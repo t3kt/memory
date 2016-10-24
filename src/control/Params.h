@@ -53,7 +53,9 @@ public:
 
   void setParentParams(const Params* parent);
 
-  virtual std::string getKey() const = 0;
+  const std::string& getKey() const {
+    return _key;
+  }
 
   virtual Json::object::value_type toJsonField() const {
     return { getKey(), to_json() };
@@ -78,6 +80,7 @@ protected:
   void readTagsField(const Json& obj);
   Json::object::value_type writeTagsField() const;
 
+  std::string _key;
   ParamTagSet _tags;
   const Params* _parent;
 };
@@ -90,7 +93,7 @@ namespace _params_impl {
   public:
 
     ParT& setKey(std::string key) {
-      _key = key;
+      TParamBase::_key = key;
       return selfRef();
     }
 
@@ -121,8 +124,6 @@ namespace _params_impl {
     }
 
     virtual ParT& selfRef() = 0;
-
-    std::string _key;
   };
 
   template<typename T, typename ParT>
@@ -187,13 +188,7 @@ namespace _params_impl {
       }
     }
 
-    std::string getKey() const override {
-      if (BaseT::_key.empty()) {
-        return ofToLower(ofParameter<T>::getEscapedName());
-      } else {
-        return BaseT::_key;
-      }
-    }
+    using BaseT::getKey;
 
     bool isGroup() const override { return false; }
 
@@ -323,6 +318,12 @@ class Params
 , public _params_impl::TParamBaseWithInitializers<Params>
 , public NonCopyable {
 public:
+  static ConstParamPredicate filterByTag(const std::string& tag) {
+    return [&](const TParamBase& param) {
+      return param.tags()[tag];
+    };
+  }
+
   using BaseT = _params_impl::TParamBaseWithInitializers<Params>;
 
   Params() {}
@@ -336,13 +337,7 @@ public:
     return selfRef();
   }
 
-  std::string getKey() const override {
-    if (_key.empty()) {
-      return ofToLower(ofParameterGroup::getEscapedName());
-    } else {
-      return _key;
-    }
-  }
+  using BaseT::getKey;
 
   template<typename P>
   void add(P& param) {

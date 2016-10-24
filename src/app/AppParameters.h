@@ -83,6 +83,7 @@ public:
 class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters() {
+    setKey("");
     setSupportsPresets(true);
     setSupportsOsc(true);
     add(core
