@@ -330,6 +330,7 @@
 		32CCB3001DAE172400BAE226 /* ValueRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ValueRange.h; path = control/ValueRange.h; sourceTree = "<group>"; };
 		32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParametersController.cpp; path = control/ParametersController.cpp; sourceTree = "<group>"; };
 		32CCB3051DAE1C9100BAE226 /* ParametersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParametersController.h; path = control/ParametersController.h; sourceTree = "<group>"; };
+		32D50D3B1DBDBDC90003BA27 /* ofxTagSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTagSet.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -825,6 +826,7 @@
 				323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */,
 				323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */,
 				323AA19D1DBB33770022C990 /* ofxTEvents.h */,
+				32D50D3B1DBDBDC90003BA27 /* ofxTagSet.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

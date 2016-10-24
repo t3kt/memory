@@ -83,6 +83,8 @@ public:
 class MemoryAppParameters : public Params {
 public:
   MemoryAppParameters() {
+    setSupportsPresets(true);
+    setSupportsOsc(true);
     add(core
         .setKey("core")
         .setName("Core"));

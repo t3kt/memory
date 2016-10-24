@@ -7,40 +7,31 @@
 #include "../control/Params.h"
 
 Json ParamTagSet::to_json() const {
-  return JsonUtil::toJsonArrayOrNull<std::string>(_tags.begin(),
-                                                  _tags.end());
+  if (empty()) {
+    return nullptr;
+  }
+  auto obj = Json::object();
+  for (const auto& entry: *this) {
+    obj[entry.first] = entry.second;
+  }
+  return obj;
 }
 
-void ParamTagSet::read_json(const Json &val) {
-  _tags.clear();
-  auto tags = JsonUtil::fromJsonArrayOrNull<std::string>(val);
-  _tags.insert(tags.begin(), tags.end());
-}
-
-void ParamTagSet::add(const std::string &tag) {
-  _tags.insert(tag);
-}
-
-void ParamTagSet::add(std::initializer_list<std::string> tags) {
-  _tags.insert(tags.begin(), tags.end());
-}
-
-void ParamTagSet::add(const ParamTagSet& other) {
-  _tags.insert(other.begin(), other.end());
-}
-
-void ParamTagSet::remove(const std::string& tag) {
-  _tags.erase(tag);
-}
-
-void ParamTagSet::remove(std::initializer_list<std::string> tags) {
-  for (const auto& tag : tags) {
-    _tags.erase(tag);
+void ParamTagSet::read_json(const Json &obj) {
+  clear();
+  if (obj.is_null()) {
+    return;
+  }
+  JsonUtil::assertHasType(obj, Json::OBJECT);
+  for (const auto& entry : obj.object_items()) {
+    put(entry.first, JsonUtil::fromJson<bool>(entry.second));
   }
 }
 
-TParamBase::TParamBase()
-: _tags({PTags::osc, PTags::preset}) { }
+void TParamBase::setParentParams(const Params *parent) {
+  _parent = parent;
+  _tags.setParent(parent ? &(parent->tags()) : nullptr);
+}
 
 void TParamBase::readTagsField(const Json &obj) {
   _tags.read_json(obj["tags"]);
@@ -48,21 +39,6 @@ void TParamBase::readTagsField(const Json &obj) {
 
 Json::object::value_type TParamBase::writeTagsField() const {
   return {"tags", _tags.to_json()};
-}
-
-void TParamBase::setTags(bool value,
-                         std::initializer_list<std::string> tags) {
-  if (value) {
-    _tags.add(tags);
-  } else {
-    _tags.remove(tags);
-  }
-}
-
-void TParamBase::inheritTags() {
-  if (_parent) {
-    _tags.add(_parent->tags());
-  }
 }
 
 template<>

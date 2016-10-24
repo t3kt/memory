@@ -6,6 +6,7 @@
 
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <ofxTagSet.h>
 #include <ofxTEvents.h>
 #include <string>
 #include <typeinfo>
@@ -20,45 +21,17 @@ namespace PTags {
 }
 
 class ParamTagSet
-: public JsonReadable
+: public ofxTagSet<std::string>
+, public JsonReadable
 , public JsonWritable {
 public:
-  using Storage = std::unordered_set<std::string>;
-  using iterator = Storage::iterator;
-  using const_iterator = Storage::const_iterator;
-
   ParamTagSet() {}
 
   ParamTagSet(std::initializer_list<std::string> tags)
-  : _tags(tags) { }
-
-  bool operator[](const std::string& tag) const {
-    return _tags.find(tag) != _tags.end();
-  }
-
-  bool operator[](const std::string& tag) {
-    return _tags.find(tag) != _tags.end();
-  }
-
-  void add(const std::string& tag);
-  void add(std::initializer_list<std::string> tags);
-  void add(const ParamTagSet& other);
-
-  void remove(const std::string& tag);
-  void remove(std::initializer_list<std::string> tags);
-
-  void clear() { _tags.clear(); }
+  : ofxTagSet<std::string>(tags) { }
 
   Json to_json() const override;
-  void read_json(const Json& val) override;
-
-  iterator begin() { return _tags.begin(); }
-  iterator end() { return _tags.end(); }
-  const_iterator begin() const { return _tags.begin(); }
-  const_iterator end() const { return _tags.end(); }
-  bool empty() const { return _tags.empty(); }
-private:
-  Storage _tags;
+  void read_json(const Json& obj) override;
 };
 
 class Params;
@@ -69,14 +42,11 @@ class TParamBase
 public:
   static const char pathSeparator = '.';
 
-  TParamBase();
+  TParamBase() { }
 
-  Params* getParentParams() { return _parent; }
   const Params* getParentParams() const { return _parent; }
 
-  void setParentParams(Params* parent) {
-    _parent = parent;
-  }
+  void setParentParams(const Params* parent);
 
   virtual std::string getKey() const = 0;
 
@@ -103,13 +73,8 @@ protected:
   void readTagsField(const Json& obj);
   Json::object::value_type writeTagsField() const;
 
-  void setTags(bool value,
-               std::initializer_list<std::string> tags);
-
-  void inheritTags();
-
   ParamTagSet _tags;
-  Params* _parent;
+  const Params* _parent;
 };
 
 template<typename T, typename ParT>
@@ -232,27 +197,29 @@ public:
   }
 
   ParT& setSupportsOsc(bool support) {
-    return withTagsSet(support, {PTags::osc});
+    return withTagSetTo(PTags::osc, support);
   }
 
   ParT& setSupportsPresets(bool support) {
-    return withTagsSet(support, {PTags::preset});
+    return withTagSetTo(PTags::preset, support);
   }
 
-  ParT& withTags(std::initializer_list<std::string> tags) {
-    _tags.add(tags);
+  template<typename Arg>
+  ParT& withTag(Arg tag) {
+    _tags.enable(tag);
     return selfRef();
   }
 
-  ParT& withoutTags(std::initializer_list<std::string> tags) {
-    _tags.remove(tags);
+  template<typename Arg>
+  ParT& withoutTag(Arg tag) {
+    _tags.enable(tag);
     return selfRef();
   }
   
 protected:
-  ParT& withTagsSet(bool value,
-                    std::initializer_list<std::string> tags) {
-    setTags(value, tags);
+  template<typename Arg>
+  ParT& withTagSetTo(Arg tag, bool value) {
+    _tags.put(tag, value);
     return selfRef();
   }
 
@@ -417,13 +384,31 @@ public:
 
   void performRecursiveParamAction(ParamBaseAction action);
 
+
   Params& setSupportsOsc(bool support) {
-    setTags(support, {PTags::osc});
-    return *this;
+    return withTagSetTo(PTags::osc, support);
   }
 
   Params& setSupportsPresets(bool support) {
-    setTags(support, {PTags::preset});
+    return withTagSetTo(PTags::preset, support);
+  }
+
+  template<typename Arg>
+  Params& withTag(Arg tag) {
+    _tags.enable(tag);
+    return *this;
+  }
+
+  template<typename Arg>
+  Params& withoutTag(Arg tag) {
+    _tags.enable(tag);
+    return *this;
+  }
+
+protected:
+  template<typename Arg>
+  Params& withTagSetTo(Arg tag, bool value) {
+    _tags.put(tag, value);
     return *this;
   }
 private:
