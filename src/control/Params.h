@@ -18,6 +18,7 @@
 namespace PTags {
   const std::string osc = "osc";
   const std::string preset = "preset";
+  const std::string advanced = "advanced";
 }
 
 namespace _params_impl {
@@ -38,6 +39,8 @@ namespace _params_impl {
 
 }
 
+class ofxGuiContainer;
+class ofxGuiElement;
 class Params;
 
 class TParamBase
@@ -76,9 +79,12 @@ public:
   const ParamTagSet& tags() const { return _tags; }
   bool hasTags() const { return !_tags.empty(); }
 
+  virtual ofxGuiElement* addGuiTo(ofxGuiContainer* container) = 0;
 protected:
   void readTagsField(const Json& obj);
   Json::object::value_type writeTagsField() const;
+
+  void linkGui(ofxGuiElement* element);
 
   std::string _key;
   ParamTagSet _tags;
@@ -86,6 +92,9 @@ protected:
 };
 
 namespace _params_impl {
+
+  ofxGuiElement* addSimpleParamGuiTo(TParamBase* param,
+                                     ofxGuiContainer* container);
 
   template<typename ParT>
   class TParamBaseWithInitializers
@@ -103,6 +112,10 @@ namespace _params_impl {
 
     ParT& setSupportsPresets(bool support) {
       return withTagSetTo(PTags::preset, support);
+    }
+
+    ParT& setAdvanced(bool advanced) {
+      return withTagSetTo(PTags::advanced, advanced);
     }
 
     template<typename Arg>
@@ -236,6 +249,12 @@ namespace _params_impl {
       return metadata;
     }
 
+    ofxGuiElement* addGuiTo(ofxGuiContainer* container) override {
+      auto element = _params_impl::addSimpleParamGuiTo(this, container);
+      TParamBase::linkGui(element);
+      return element;
+    }
+
     using BaseT::getTypeName;
     using BaseT::hasTags;
     
@@ -318,6 +337,11 @@ class Params
 , public _params_impl::TParamBaseWithInitializers<Params>
 , public NonCopyable {
 public:
+  enum class GuiGroupType {
+    GROUP,
+    TABS,
+  };
+
   static ConstParamPredicate filterByTag(const std::string& tag) {
     return [&](const TParamBase& param) {
       return param.tags()[tag];
@@ -337,6 +361,7 @@ public:
     return selfRef();
   }
 
+  using BaseT::setAdvanced;
   using BaseT::getKey;
 
   template<typename P>
@@ -403,6 +428,11 @@ public:
   }
 
   void performRecursiveParamAction(ParamBaseAction action);
+
+  ofxGuiElement* addGuiTo(ofxGuiContainer* container) override;
+
+  virtual ofxGuiElement* addGuiTo(ofxGuiContainer* container,
+                                  GuiGroupType groupType);
 
 protected:
 

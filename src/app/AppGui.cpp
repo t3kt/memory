@@ -73,6 +73,14 @@ private:
 //
 //}
 
+static TParamBase* getElementParam(ofxGuiElement* element) {
+  if (element == nullptr || !element->hasAttribute("tparam")) {
+    return nullptr;
+  }
+  auto attr = element->getAttribute<TParamBase*>("tparam");
+  return attr;
+}
+
 void AppGui::collapseDisabled() {
 //  ::collapseDisabled(_mainPanel);
 }
@@ -86,26 +94,26 @@ void AppGui::setup() {
   auto rootGroup = _mainPanel->addGroup();
 
   auto rootTabs = rootGroup->addTabs();
-  auto coreTab = rootTabs->addGroup(_appParams.core);
+  _appParams.core.addGuiTo(rootTabs);
   {
     auto entityTabs = rootTabs->addTabs("Ent");
-    entityTabs->addGroup(_appParams.observers)->setName("Obs");
-    entityTabs->addGroup(_appParams.occurrences)->setName("Occ");
-    entityTabs->addGroup(_appParams.navigators)->setName("Nav");
+    _appParams.observers.addGuiTo(entityTabs)->setName("Obs");
+    _appParams.occurrences.addGuiTo(entityTabs)->setName("Occ");
+    _appParams.navigators.addGuiTo(entityTabs)->setName("Nav");
     entityTabs->setTabHeight(6);
   }
   {
     auto visTabs = rootTabs->addTabs("Vis");
-    visTabs->addGroup(_appParams.animations)->setName("Ani");
-    visTabs->addGroup(_appParams.colors)->setName("Col");
+    _appParams.animations.addGuiTo(visTabs)->setName("Ani");
+    _appParams.colors.addGuiTo(visTabs)->setName("Col");
     {
       auto renderTabs = visTabs->addTabs("Ren");
-      renderTabs->addGroup(_appParams.rendering.camera)->setName("Cam");
-      renderTabs->addGroup(_appParams.rendering.observers)->setName("Obs");
-      renderTabs->addGroup(_appParams.rendering.occurrences)->setName("Occ");
-      renderTabs->addGroup(_appParams.rendering.connections)->setName("Con");
-      renderTabs->addGroup(_appParams.rendering.fog)->setName("Fog");
-      renderTabs->addGroup(_appParams.rendering.postProc)->setName("Post");
+      _appParams.rendering.camera.addGuiTo(renderTabs)->setName("Cam");
+      _appParams.rendering.observers.addGuiTo(renderTabs)->setName("Obs");
+      _appParams.rendering.occurrences.addGuiTo(renderTabs)->setName("Occ");
+      _appParams.rendering.connections.addGuiTo(renderTabs)->setName("Con");
+      _appParams.rendering.fog.addGuiTo(renderTabs)->setName("Fog");
+      _appParams.rendering.postProc.addGuiTo(renderTabs)->setName("Post");
       renderTabs->setTabHeight(6);
       renderTabs->setTabWidth(44);
     }
@@ -113,38 +121,38 @@ void AppGui::setup() {
   }
   {
     auto physTabs = rootTabs->addTabs("Phys");
-    physTabs->addGroup(_appParams.physics.bounds)->setName("Bound");
+    _appParams.physics.bounds.addGuiTo(physTabs)->setName("Bound");
     {
       auto entityTabs = physTabs->addTabs("Entity");
-      entityTabs->addGroup(_appParams.physics.observers)->setName("Obs");
-      entityTabs->addGroup(_appParams.physics.occurrences)->setName("Occ");
+      _appParams.physics.observers.addGuiTo(entityTabs)->setName("Obs");
+      _appParams.physics.occurrences.addGuiTo(entityTabs)->setName("Occ");
       entityTabs->setTabHeight(6);
     }
     {
       auto connTabs = physTabs->addTabs("Conn");
-      connTabs->addGroup(_appParams.physics.observerObserverAttraction)->setName("Obs/Obs");
-      connTabs->addGroup(_appParams.physics.observerOccurrenceForce)->setName("Obs/Occ");
+      _appParams.physics.observerObserverAttraction.addGuiTo(connTabs)->setName("Obs/Obs");
+      _appParams.physics.observerOccurrenceForce.addGuiTo(connTabs)->setName("Obs/Occ");
       connTabs->setTabHeight(6);
     }
     {
       auto anchorTabs = physTabs->addTabs("Anchor");
-      anchorTabs->addGroup(_appParams.physics.observerAnchorPointAttraction)->setName("Obs");
-      anchorTabs->addGroup(_appParams.physics.occurrenceAnchorPointAttraction)->setName("Occ");
+      _appParams.physics.observerAnchorPointAttraction.addGuiTo(anchorTabs)->setName("Obs");
+      _appParams.physics.occurrenceAnchorPointAttraction.addGuiTo(anchorTabs)->setName("Occ");
       anchorTabs->setTabHeight(6);
     }
     {
       auto forceTabs = physTabs->addTabs("Frc");
-      forceTabs->addGroup(_appParams.physics.rebound)->setName("Rebound");
-      forceTabs->addGroup(_appParams.physics.spatialNoiseForce)->setName("Noise");
-      forceTabs->addGroup(_appParams.physics.vortexNodes)->setName("Vortex");
-      forceTabs->addGroup(_appParams.physics.damping)->setName("Damp");
+      _appParams.physics.rebound.addGuiTo(forceTabs)->setName("Rebound");
+      _appParams.physics.spatialNoiseForce.addGuiTo(forceTabs)->setName("Noise");
+      _appParams.physics.vortexNodes.addGuiTo(forceTabs)->setName("Vortex");
+      _appParams.physics.damping.addGuiTo(forceTabs)->setName("Damp");
       forceTabs->setTabHeight(6);
       forceTabs->setTabWidth(54);
     }
     physTabs->setTabHeight(6);
     physTabs->setTabWidth(54);
   }
-  rootTabs->addGroup(_appParams.debug)->setName("Dbg");
+  _appParams.debug.addGuiTo(rootTabs)->setName("Dbg");
   {
     auto actionsTab = rootTabs->addGroup("Act");
     addActionButtons(actionsTab);

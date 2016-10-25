@@ -4,6 +4,7 @@
 
 #include <ofColor.h>
 #include <ofVec3f.h>
+#include <ofxGuiExtended.h>
 #include "../control/Params.h"
 
 using namespace _params_impl;
@@ -153,4 +154,62 @@ void Params::readFilteredJson(const Json &obj,
       }
     }
   }
+}
+
+void TParamBase::linkGui(ofxGuiElement *element) {
+  element->setAttribute("tparam", this);
+  element->setAttribute("advanced", tags()[PTags::advanced]);
+}
+
+template<typename T>
+static ofxGuiElement*
+addTypedParamGuiTo(TParamBase* param,
+                   ofxGuiContainer* container) {
+  auto typedParam = dynamic_cast<TParam<T>*>(param);
+  return container->add(*typedParam);
+}
+
+ofxGuiElement*
+_params_impl::addSimpleParamGuiTo(TParamBase *param,
+                                  ofxGuiContainer *container) {
+  const auto& type = param->getTypeInfo();
+  if (type == typeid(bool)) {
+    auto element = addTypedParamGuiTo<bool>(param, container);
+    static_cast<ofxGuiToggle*>(element)->setType(ofxGuiToggleType::FULLSIZE);
+    return element;
+  } else if (type == typeid(float)) {
+    return addTypedParamGuiTo<float>(param, container);
+  } else if (type == typeid(int)) {
+    return addTypedParamGuiTo<int>(param, container);
+  } else if (type == typeid(ofVec3f)) {
+    return addTypedParamGuiTo<ofVec3f>(param, container);
+  } else if (type == typeid(ofFloatColor)) {
+    return addTypedParamGuiTo<ofFloatColor>(param, container);
+  } else if (type == typeid(std::string)) {
+    return addTypedParamGuiTo<std::string>(param, container);
+  } else {
+    return nullptr;
+  }
+}
+
+ofxGuiElement* Params::addGuiTo(ofxGuiContainer *container) {
+  return addGuiTo(container, GuiGroupType::GROUP);
+}
+
+ofxGuiElement* Params::addGuiTo(ofxGuiContainer *container,
+                                GuiGroupType groupType) {
+  ofxGuiContainer* group;
+  switch (groupType) {
+    case GuiGroupType::TABS:
+      group = container->addTabs(getName());
+      break;
+    default:
+      group = container->addGroup(getName());
+      break;
+  }
+  for (auto child : getParamBases()) {
+    child->addGuiTo(group);
+  }
+  TParamBase::linkGui(group);
+  return group;
 }
