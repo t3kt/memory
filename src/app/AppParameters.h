@@ -71,7 +71,8 @@ public:
         .setKey("osc")
         .setName("OSC")
         .setSupportsOsc(false)
-        .setSupportsPresets(false));
+        .setSupportsPresets(false)
+        .setAdvanced(true));
   }
 
   TimingParams timing;

@@ -92,18 +92,25 @@ void AppGui::setup() {
   _mainPanel->blockLayout(true);
   _mainPanel->setBackgroundColor(ofFloatColor(1, 1, 1, 0.5));
   auto rootGroup = _mainPanel->addGroup();
-
-  auto rootTabs = rootGroup->addTabs();
-  _appParams.core.addGuiTo(rootTabs);
   {
-    auto entityTabs = rootTabs->addTabs("Ent");
+    _showAdvanced.set("Show Advanced", false);
+    auto btn = rootGroup->add(_showAdvanced);
+    btn->setType(ofxGuiToggleType::FULLSIZE);
+    _showAdvanced.addListener(this,
+                              &AppGui::onShowAdvancedChanged);
+  }
+
+  _rootTabs = rootGroup->addTabs();
+  _appParams.core.addGuiTo(_rootTabs);
+  {
+    auto entityTabs = _rootTabs->addTabs("Ent");
     _appParams.observers.addGuiTo(entityTabs)->setName("Obs");
     _appParams.occurrences.addGuiTo(entityTabs)->setName("Occ");
     _appParams.navigators.addGuiTo(entityTabs)->setName("Nav");
     entityTabs->setTabHeight(6);
   }
   {
-    auto visTabs = rootTabs->addTabs("Vis");
+    auto visTabs = _rootTabs->addTabs("Vis");
     _appParams.animations.addGuiTo(visTabs)->setName("Ani");
     _appParams.colors.addGuiTo(visTabs)->setName("Col");
     {
@@ -120,7 +127,7 @@ void AppGui::setup() {
     visTabs->setTabHeight(6);
   }
   {
-    auto physTabs = rootTabs->addTabs("Phys");
+    auto physTabs = _rootTabs->addTabs("Phys");
     _appParams.physics.bounds.addGuiTo(physTabs)->setName("Bound");
     {
       auto entityTabs = physTabs->addTabs("Entity");
@@ -152,19 +159,21 @@ void AppGui::setup() {
     physTabs->setTabHeight(6);
     physTabs->setTabWidth(54);
   }
-  _appParams.debug.addGuiTo(rootTabs)->setName("Dbg");
+  _appParams.debug.addGuiTo(_rootTabs)->setName("Dbg");
   {
-    auto actionsTab = rootTabs->addGroup("Act");
+    auto actionsTab = _rootTabs->addGroup("Act");
     addActionButtons(actionsTab);
   }
   {
-    auto presetsTab = rootTabs->addGroup("Preset");
+    auto presetsTab = _rootTabs->addGroup("Preset");
     _presetsContainer = presetsTab->addGroup();
     addPresetButtons(_presetsContainer);
   }
-  rootTabs->setTabHeight(6);
-  rootTabs->setTabWidth(44);
+  _rootTabs->setTabHeight(6);
+  _rootTabs->setTabWidth(44);
   collapseDisabled();
+  loadAdvancedElements();
+  setAdvancedHidden(!_showAdvanced.get());
 
   loadTheme();
   _mainPanel->blockLayout(false);
@@ -196,6 +205,39 @@ void AppGui::addActionButtons(ofxGuiContainer *container) {
       continue;
     }
     container->add<ActionButton>(action);
+  }
+}
+
+static
+void collectAdvancedElements(ofxGuiElement* element,
+                             std::vector<ofxGuiElement*>& results) {
+  if (element == nullptr) {
+    return;
+  }
+  auto param = getElementParam(element);
+  if (param && param->tags()[PTags::advanced]) {
+    results.push_back(element);
+  }
+  auto container = dynamic_cast<ofxGuiContainer*>(element);
+  if (container != nullptr) {
+    for (auto child : container->getControls()) {
+      collectAdvancedElements(child, results);
+    }
+  }
+}
+
+void AppGui::loadAdvancedElements() {
+  _advancedElements.clear();
+  collectAdvancedElements(_rootTabs, _advancedElements);
+}
+
+void AppGui::onShowAdvancedChanged(bool &visible) {
+  setAdvancedHidden(!visible);
+}
+
+void AppGui::setAdvancedHidden(bool hidden) {
+  for (auto element : _advancedElements) {
+    element->setHidden(hidden);
   }
 }
 

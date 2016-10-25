@@ -208,6 +208,7 @@
             }
           ],
           "tags": {
+            "advanced": true,
             "osc": false,
             "preset": false
           }
