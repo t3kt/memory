@@ -51,28 +51,6 @@ private:
   const ParamPreset& _preset;
 };
 
-//static void collapseDisabled(ofxGuiElement* element) {
-//  if (element == nullptr) {
-//    return;
-//  }
-//  auto container = dynamic_cast<ofxGuiContainer*>(element);
-//  if (container == nullptr) {
-//    return;
-//  }
-//  auto __NAME = element->getName().c_str();
-//  auto params = dynamic_cast<ParamsWithEnabled*>(&container->getParameter());
-//  if (params != nullptr && !params->enabled.get()) {
-//    auto group = dynamic_cast<ofxGuiGroup*>(container);
-//    if (group != nullptr) {
-//      group->minimize();
-//    }
-//  }
-//  for (auto& child : container->children<ofxGuiContainer>()) {
-//    collapseDisabled(child);
-//  }
-//
-//}
-
 static TParamBase* getElementParam(ofxGuiElement* element) {
   if (element == nullptr || !element->hasAttribute("tparam")) {
     return nullptr;
@@ -81,8 +59,27 @@ static TParamBase* getElementParam(ofxGuiElement* element) {
   return attr;
 }
 
+static void collapseDisabled(ofxGuiElement* element) {
+  if (element == nullptr) {
+    return;
+  }
+  auto params =
+    dynamic_cast<ParamsWithEnabled*>(getElementParam(element));
+  if (params && !params->enabled.get()) {
+    auto group = dynamic_cast<ofxGuiGroup*>(element);
+    group->minimize();
+  }
+  auto container = dynamic_cast<ofxGuiContainer*>(element);
+  if (!container) {
+    return;
+  }
+  for (auto child : container->getControls()) {
+    collapseDisabled(child);
+  }
+}
+
 void AppGui::collapseDisabled() {
-//  ::collapseDisabled(_mainPanel);
+  ::collapseDisabled(_mainPanel);
 }
 
 void AppGui::setup() {
