@@ -431,10 +431,14 @@ public:
 
   ofxGuiElement* addGuiTo(ofxGuiContainer* container) override;
 
-  virtual ofxGuiElement* addGuiTo(ofxGuiContainer* container,
-                                  GuiGroupType groupType);
+  virtual ofxGuiElement* addGroupGuiTo(ofxGuiContainer* container,
+                                       GuiGroupType groupType);
 
 protected:
+  ofxGuiContainer* addEmptyGroupTo(ofxGuiContainer* container,
+                                   GuiGroupType groupType);
+  virtual void addChildrenTo(ofxGuiContainer* group);
+  
 
   Params& selfRef() override { return *this; }
 
@@ -454,6 +458,8 @@ public:
   void setEnabledValueAndDefault(bool val) {
     enabled.setValueAndDefault(val);
   }
+
+  void addChildrenTo(ofxGuiContainer* group) override;
 
   TParam<bool> enabled;
 };

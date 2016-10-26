@@ -193,23 +193,65 @@ _params_impl::addSimpleParamGuiTo(TParamBase *param,
 }
 
 ofxGuiElement* Params::addGuiTo(ofxGuiContainer *container) {
-  return addGuiTo(container, GuiGroupType::GROUP);
+  return addGroupGuiTo(container, GuiGroupType::GROUP);
 }
 
-ofxGuiElement* Params::addGuiTo(ofxGuiContainer *container,
-                                GuiGroupType groupType) {
-  ofxGuiContainer* group;
+ofxGuiContainer*
+Params::addEmptyGroupTo(ofxGuiContainer *container,
+                        GuiGroupType groupType) {
   switch (groupType) {
     case GuiGroupType::TABS:
-      group = container->addTabs(getName());
-      break;
+      return container->addTabs(getName());
+    case GuiGroupType::GROUP:
     default:
-      group = container->addGroup(getName());
-      break;
+      return container->addGroup(getName());
   }
+}
+
+ofxGuiElement* Params::addGroupGuiTo(ofxGuiContainer *container,
+                                     GuiGroupType groupType) {
+  auto group = addEmptyGroupTo(container, groupType);
+  addChildrenTo(group);
+  TParamBase::linkGui(group);
+  return group;
+}
+
+void Params::addChildrenTo(ofxGuiContainer *group) {
   for (auto child : getParamBases()) {
     child->addGuiTo(group);
   }
-  TParamBase::linkGui(group);
-  return group;
+}
+
+class AdditionalParamsContainer
+: public ofxGuiGroup {
+public:
+  AdditionalParamsContainer(ParamsWithEnabled& params)
+  : _params(params) {
+    setShowHeader(false);
+    params.enabled.changed.addVoidListener([&]() {
+      updateEnabled();
+    }, this);
+  }
+private:
+  void updateEnabled() {
+    if (_params.enabled.get()) {
+      maximize();
+    } else {
+      minimize();
+    }
+  }
+
+  ParamsWithEnabled& _params;
+};
+
+void ParamsWithEnabled::addChildrenTo(ofxGuiContainer *group) {
+  enabled.addGuiTo(group);
+  auto otherParamsContainer =
+    group->add<AdditionalParamsContainer>(*this);
+  for (auto child : getParamBases()) {
+    if (child == &enabled) {
+      continue;
+    }
+    child->addGuiTo(otherParamsContainer);
+  }
 }
