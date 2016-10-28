@@ -856,6 +856,13 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		32A0D8B91DC1E77200DBB506 /* ofxTCommon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ofxTCommon;
+			sourceTree = "<group>";
+		};
 		36D7EC7EF50E326EAC88A0AD /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1594,6 +1601,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				32A0D8B91DC1E77200DBB506 /* ofxTCommon */,
 				BE9DD360F550B0DF4D357E7B /* app */,
 				102C17DAD08FCB5A66E3A9C0 /* control */,
 				BC405D98CD8417CE9E222B0C /* core */,
