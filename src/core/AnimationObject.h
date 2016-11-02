@@ -14,10 +14,11 @@
 #include "../control/RampFactory.h"
 #include "../control/ValueRange.h"
 #include "../control/ValueSupplier.h"
+#include "../core/ParticleObject.h"
 #include "../core/State.h"
 #include "../core/WorldObject.h"
 
-class AnimationObject : public WorldObject {
+class AnimationObject : public ParticleObject {
 public:
   static const auto type = EntityType::ANIMATION;
 
@@ -45,12 +46,12 @@ public:
     TParam<float> _duration;
   };
 
-  AnimationObject(const Params& params, const ClockState& state);
+  AnimationObject(ofVec3f pos,
+                  const Params& params,
+                  const ClockState& state);
 
   virtual void update(const ClockState& state) override;
   virtual void draw(const ClockState& state) = 0;
-
-  const ofVec3f& position() const override { return _position; }
   
   void show() { _visible = true; }
   void hide() { _visible = false; }
@@ -65,8 +66,6 @@ public:
   }
 
 protected:
-  void outputFields(std::ostream& os) const override;
-
   inline float percentage() const { return _percentage; }
 
   ofVec3f _position;

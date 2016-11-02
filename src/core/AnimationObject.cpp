@@ -9,15 +9,17 @@
 #include <ofMain.h>
 #include "../core/AnimationObject.h"
 
-AnimationObject::AnimationObject(const Params& params,
+AnimationObject::AnimationObject(ofVec3f pos,
+                                 const Params& params,
                                  const ClockState& state)
-: WorldObject(state)
+: ParticleObject(pos, state)
 , _duration(params.duration())
 , _visible(true)
 , _percentage(0)
 , _startTime(state.localTime) {}
 
 void AnimationObject::update(const ClockState &state) {
+  ParticleObject::update(state);
   float age = state.localTime - _startTime;
   if (age >= _duration) {
     _percentage = 1;
@@ -27,20 +29,13 @@ void AnimationObject::update(const ClockState &state) {
   }
 }
 
-void AnimationObject::outputFields(std::ostream &os) const {
-  WorldObject::outputFields(os);
-  os << ", position: " << _position;
-}
-
 ExpandingSphereAnimation::ExpandingSphereAnimation(ofVec3f position,
                                                    const Params& params,
                                                    const ofFloatColor& color,
                                                    const ClockState& state)
-: AnimationObject(params, state)
+: AnimationObject(position, params, state)
 , _params(params)
-, _color(color) {
-  _position = position;
-}
+, _color(color) {}
 
 void ExpandingSphereAnimation::draw(const ClockState &state) {
   ofPushStyle();
