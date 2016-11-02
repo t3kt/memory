@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef ParticleObject_h
-#define ParticleObject_h
+#pragma once
 
 #include <vector>
 #include "../core/State.h"
@@ -62,4 +61,3 @@ private:
 using ParticlePtr = std::shared_ptr<ParticleObject>;
 using ParticleVector = std::vector<ParticlePtr>;
 
-#endif /* ParticleObject_h */

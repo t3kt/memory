@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef AnimationObject_h
-#define AnimationObject_h
+#pragma once
 
 #include <ofTypes.h>
 #include "../control/Params.h"
@@ -115,4 +114,3 @@ private:
   const ofFloatColor& _color;
 };
 
-#endif /* AnimationObject_h */

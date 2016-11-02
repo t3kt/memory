@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef WorldObject_h
-#define WorldObject_h
+#pragma once
 
 #include <functional>
 #include <iostream>
@@ -90,4 +89,3 @@ private:
   ofVec3f _screenPos;
 };
 
-#endif /* WorldObject_h */
