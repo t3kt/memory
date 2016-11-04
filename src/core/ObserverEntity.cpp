@@ -22,7 +22,9 @@ ObserverEntity::ObserverEntity(ofVec3f pos,
                                const ClockState& state)
 : ParticleObject(pos, state)
 , _decayRate(decay)
-, _lifeFraction(1) {
+, _lifeFraction(1)
+, _observerConnections(*this)
+, _occurrenceConnections(*this) {
 }
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {

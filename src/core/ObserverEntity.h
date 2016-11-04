@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef ObserverEntity_h
-#define ObserverEntity_h
+#pragma once
 
 #include <ofTypes.h>
 #include "../core/Common.h"
@@ -93,7 +92,10 @@ protected:
                                  const SerializationContext& context) const override;
 
 private:
-  ObserverEntity(const ClockState& state) : ParticleObject(state) { }
+  ObserverEntity(const ClockState& state)
+  : ParticleObject(state)
+  , _observerConnections(*this)
+  , _occurrenceConnections(*this) { }
 
   float _lifeFraction;
   bool _sick;
@@ -102,4 +104,3 @@ private:
   EntityConnectionMap<OccurrenceEntity> _occurrenceConnections;
 };
 
-#endif /* ObserverEntity_h */

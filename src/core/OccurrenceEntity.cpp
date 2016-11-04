@@ -20,7 +20,9 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
 , _actualRadius(0)
 , _originalRadius(radius)
 , _originalRadiusFraction(radiusFraction)
-, _amountOfObservation(0) {}
+, _amountOfObservation(0)
+, _observerConnections(*this)
+, _occurrenceConnections(*this) {}
 
 void OccurrenceEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);

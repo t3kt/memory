@@ -23,15 +23,25 @@ class AbstractConnection
 : public NonCopyable
 , public JsonWritable {
 public:
+  AbstractConnection(ParticleObject& source)
+  : _sourceEntity(source) { }
+
   bool alive() const {
-    return getEntityRef().id();
+    return getEntityRef().alive();
   }
   ObjectId entityId() const {
     return getEntityRef().id();
   }
+  ObjectId sourceId() const {
+    return _sourceEntity.id();
+  }
+  ParticleObject& sourceEntity() { return _sourceEntity; }
+  const ParticleObject& sourceEntity() const { return _sourceEntity; }
 protected:
   virtual ParticleObject& getEntityRef() = 0;
   virtual const ParticleObject& getEntityRef() const = 0;
+private:
+  ParticleObject& _sourceEntity;
 };
 
 // A connection to an entity of type E.
@@ -42,8 +52,10 @@ public:
   using EntityT = E;
   using EntityPtr = std::shared_ptr<E>;
 
-  explicit EntityConnection(EntityPtr entity)
-  : _entity(entity) { }
+  explicit EntityConnection(ParticleObject& source,
+                            EntityPtr entity)
+  : AbstractConnection(source)
+  , _entity(entity) { }
 
   EntityPtr& entity() { return _entity; }
   const EntityPtr& entity() const { return _entity; }
@@ -51,6 +63,7 @@ public:
   Json to_json() const override {
     return Json::object {
       {"id", entityId()},
+      {"srcid", sourceId()},
     };
   }
 protected:
@@ -79,8 +92,11 @@ public:
   using iterator = MapToValueIterator<ObjectId, ConnPtr>;
   using const_iterator = ConstMapToValueIterator<ObjectId, ConnPtr>;
 
+  TypedEntityConnectionMap(ParticleObject& source)
+  : _sourceEntity(source) { }
+
   bool addConnection(ConnPtr connection) {
-    auto result = _map.insert(std::make_pair(connection->entity()->id(),
+    auto result = _map.insert(std::make_pair(connection->entityId(),
                                              connection));
     return result.second;
   }
@@ -92,7 +108,9 @@ public:
     if (conn) {
       return std::make_pair(conn, false);
     }
-    conn = std::make_shared<TConn>(entity, std::forward<Args>(args)...);
+    conn = std::make_shared<TConn>(_sourceEntity,
+                                   entity,
+                                   std::forward<Args>(args)...);
     addConnection(conn);
     return std::make_pair(conn, true);
   }
@@ -186,6 +204,7 @@ private:
   }
 
   Storage _map;
+  ParticleObject& _sourceEntity;
 };
 
 template<typename E>

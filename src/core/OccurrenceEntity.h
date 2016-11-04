@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef OccurrenceEntity_h
-#define OccurrenceEntity_h
+#pragma once
 
 #include <ofTypes.h>
 #include "../core/Common.h"
@@ -109,7 +108,9 @@ protected:
   
 private:
   OccurrenceEntity(const ClockState& state)
-  : ParticleObject(state) { }
+  : ParticleObject(state)
+  , _observerConnections(*this)
+  , _occurrenceConnections(*this) { }
 
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;
@@ -129,4 +130,3 @@ private:
   friend class OccurrencesController;
 };
 
-#endif /* OccurrenceEntity_h */
