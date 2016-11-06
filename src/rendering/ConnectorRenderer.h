@@ -6,8 +6,7 @@
 //
 //
 
-#ifndef ConnectorRenderer_h
-#define ConnectorRenderer_h
+#pragma once
 
 #include <ofGraphics.h>
 #include <ofTypes.h>
@@ -70,55 +69,43 @@ protected:
   ofMesh _mesh;
 };
 
-class ObserverOccurrenceConnectorRenderer
+template<typename S, typename T>
+class TypedConnectionRenderer
 : public ConnectionRenderer {
 public:
-  using Params = ConnectorRendererParams;
+  using ConnT = EntityConnection<T>;
+  using ConnMapT = TypedEntityConnectionMap<ConnT>;
 
-  ObserverOccurrenceConnectorRenderer(const Params& params,
-                                      const ofFloatColor& color,
-                                      const ObjectManager<OccurrenceEntity>& occurrences)
-  : ConnectionRenderer(params, color)
-  , _occurrences(occurrences) { }
-
-  void draw() override;
-
-private:
-  const ObjectManager<OccurrenceEntity>& _occurrences;
-};
-
-class ObserverObserverConnectorRenderer
-: public ConnectionRenderer {
-public:
-  using Params = ConnectorRendererParams;
-
-  ObserverObserverConnectorRenderer(const Params& params,
-                                    const ofFloatColor& color,
-                                    const ObjectManager<ObserverEntity>& entities)
+  TypedConnectionRenderer(const Params& params,
+                          const ofFloatColor& color,
+                          const ObjectManager<S>& entities)
   : ConnectionRenderer(params, color)
   , _entities(entities) { }
 
-  void draw() override;
+  void draw() override {
+    if (!_params.enabled.get()) {
+      return;
+    }
+    clearMesh();
+    for (const auto& entity : _entities) {
+      addConnectors(*entity,
+                    getEntityConnections(*entity));
+    }
+    drawMesh();
+  }
 
 private:
-  const ObjectManager<ObserverEntity>& _entities;
+  const ConnMapT& getEntityConnections(const S& entity) const;
+
+  const ObjectManager<S>& _entities;
 };
 
-class OccurrenceOccurrenceConnectorRenderer
-: public ConnectionRenderer {
-public:
-  using Params = ConnectorRendererParams;
+using ObserverOccurrenceConnectorRenderer =
+TypedConnectionRenderer<ObserverEntity, OccurrenceEntity>;
 
-  OccurrenceOccurrenceConnectorRenderer(const Params& params,
-                                        const ofFloatColor& color,
-                                        const ObjectManager<OccurrenceEntity>& entities)
-  : ConnectionRenderer(params, color)
-  , _entities(entities) { }
+using ObserverObserverConnectorRenderer =
+TypedConnectionRenderer<ObserverEntity, ObserverEntity>;
 
-  void draw() override;
+using OccurrenceOccurrenceConnectorRenderer =
+TypedConnectionRenderer<OccurrenceEntity, OccurrenceEntity>;
 
-private:
-  const ObjectManager<OccurrenceEntity>& _entities;
-};
-
-#endif /* ConnectorRenderer_h */

@@ -6,7 +6,6 @@
 //
 //
 
-#include <ofMain.h>
 #include "../rendering/ConnectorRenderer.h"
 
 ConnectionRenderer::ConnectionRenderer(const Params& params,
@@ -49,38 +48,20 @@ void ConnectionRenderer::drawMesh() {
   renderer->popStyle();
 }
 
-void ObserverOccurrenceConnectorRenderer::draw() {
-  if (!_params.enabled()) {
-    return;
-  }
-  clearMesh();
-  for (const auto& entity : _occurrences) {
-    addConnectors(*entity,
-                  entity->getObserverConnections());
-  }
-  drawMesh();
+template<>
+const TypedEntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+TypedConnectionRenderer<ObserverEntity, OccurrenceEntity>::getEntityConnections(const ObserverEntity& entity) const {
+  return entity.getOccurrenceConnections();
 }
 
-void ObserverObserverConnectorRenderer::draw() {
-  if (!_params.enabled()) {
-    return;
-  }
-  clearMesh();
-  for (const auto& entity : _entities) {
-    addConnectors(*entity,
-                  entity->getObserverConnections());
-  }
-  drawMesh();
+template<>
+const TypedEntityConnectionMap<EntityConnection<ObserverEntity>>&
+TypedConnectionRenderer<ObserverEntity, ObserverEntity>::getEntityConnections(const ObserverEntity& entity) const {
+  return entity.getObserverConnections();
 }
 
-void OccurrenceOccurrenceConnectorRenderer::draw() {
-  if (!_params.enabled()) {
-    return;
-  }
-  clearMesh();
-  for (const auto& entity : _entities) {
-    addConnectors(*entity,
-                  entity->getOccurrenceConnections());
-  }
-  drawMesh();
+template<>
+const TypedEntityConnectionMap<EntityConnection<OccurrenceEntity>>&
+TypedConnectionRenderer<OccurrenceEntity, OccurrenceEntity>::getEntityConnections(const OccurrenceEntity& entity) const {
+  return entity.getOccurrenceConnections();
 }

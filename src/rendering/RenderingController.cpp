@@ -36,7 +36,7 @@ void RenderingController::setup() {
 //  _renderers.add<InstancedObserverRenderer>(observerParams.instancedRenderer, _context);
   _renderers.add<ObserverObserverConnectorRenderer>(observerParams.connectorRenderer, colors.observerConnector.get(), _context.observers);
   _renderers.add<OccurrenceRenderer>(occurrenceParams.renderer, colors, _context);
-  _renderers.add<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer, colors.occurrenceObserverConnector.get(), _context.occurrences);
+  _renderers.add<ObserverOccurrenceConnectorRenderer>(occurrenceParams.connectorRenderer, colors.occurrenceObserverConnector.get(), _context.observers);
   _renderers.add<OccurrenceOccurrenceConnectorRenderer>(occurrenceParams.occurrenceConnectorRenderer, colors.occurrenceConnector.get(), _context.occurrences);
   _renderers.add<ConnectionTracerRenderer>(_params.connections,
                                            _context);
