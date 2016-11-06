@@ -32,61 +32,91 @@ public:
   TParam<float> lineWidth;
 };
 
-class ObserverOccurrenceConnectorRenderer
+class ConnectionRenderer
 : public Renderer {
 public:
   using Params = ConnectorRendererParams;
 
-  ObserverOccurrenceConnectorRenderer(const Params& params, const ofFloatColor& color, const ObjectManager<OccurrenceEntity>& occurrences)
+  ConnectionRenderer(const Params& params,
+                     const ofFloatColor& color)
   : _params(params)
-  , _color(color)
+  , _color(color) { }
+
+protected:
+  void addConnector(ofMesh& mesh,
+                    const AbstractConnection& connection,
+                    const ofFloatColor& startColor);
+
+  template<typename TConn>
+  void addConnectors(ofMesh& mesh,
+                     const ParticleObject& sourceEntity,
+                     const TypedEntityConnectionMap<TConn>& connections) {
+    if (!sourceEntity.visible()) {
+      return;
+    }
+    auto startColor = ofFloatColor(_color,
+                                   _color.a * sourceEntity.alpha());
+    for (const auto& connection : connections) {
+      addConnector(mesh,
+                   *connection,
+                   startColor);
+    }
+  }
+
+  void drawMesh(const ofMesh& mesh);
+
+  const Params& _params;
+  const ofFloatColor& _color;
+};
+
+class ObserverOccurrenceConnectorRenderer
+: public ConnectionRenderer {
+public:
+  using Params = ConnectorRendererParams;
+
+  ObserverOccurrenceConnectorRenderer(const Params& params,
+                                      const ofFloatColor& color,
+                                      const ObjectManager<OccurrenceEntity>& occurrences)
+  : ConnectionRenderer(params, color)
   , _occurrences(occurrences) { }
 
   void draw() override;
 
 private:
-  const Params& _params;
-  const ofFloatColor& _color;
   const ObjectManager<OccurrenceEntity>& _occurrences;
 };
 
 class ObserverObserverConnectorRenderer
-: public Renderer {
+: public ConnectionRenderer {
 public:
   using Params = ConnectorRendererParams;
 
   ObserverObserverConnectorRenderer(const Params& params,
                                     const ofFloatColor& color,
                                     const ObjectManager<ObserverEntity>& entities)
-  : _params(params)
-  , _color(color)
+  : ConnectionRenderer(params, color)
   , _entities(entities) { }
 
   void draw() override;
 
 private:
-  const Params& _params;
-  const ofFloatColor& _color;
   const ObjectManager<ObserverEntity>& _entities;
 };
 
 class OccurrenceOccurrenceConnectorRenderer
-: public Renderer {
+: public ConnectionRenderer {
 public:
   using Params = ConnectorRendererParams;
 
   OccurrenceOccurrenceConnectorRenderer(const Params& params,
                                         const ofFloatColor& color,
                                         const ObjectManager<OccurrenceEntity>& entities)
-  : _params(params)
-  , _color(color)
+  : ConnectionRenderer(params, color)
   , _entities(entities) { }
 
   void draw() override;
 
 private:
-  const Params& _params;
-  const ofFloatColor& _color;
   const ObjectManager<OccurrenceEntity>& _entities;
 };
 

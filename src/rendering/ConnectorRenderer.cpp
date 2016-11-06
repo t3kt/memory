@@ -9,94 +9,73 @@
 #include <ofMain.h>
 #include "../rendering/ConnectorRenderer.h"
 
+void ConnectionRenderer
+::addConnector(ofMesh& mesh,
+               const AbstractConnection &connection,
+               const ofFloatColor &startColor) {
+  if (!connection.visible()) {
+    return;
+  }
+  mesh.addVertex(connection.sourcePosition());
+  mesh.addColor(startColor);
+  mesh.addVertex(connection.endPosition());
+  mesh.addColor(ofFloatColor(_color,
+                             _color.a * connection.targetEntity().alpha()));
+}
+
+void ConnectionRenderer::drawMesh(const ofMesh &mesh) {
+  auto renderer = ofGetCurrentRenderer();
+  renderer->pushStyle();
+  renderer->setBlendMode(OF_BLENDMODE_ALPHA);
+//  renderer->setLineWidth(_params.lineWidth.get());
+
+  renderer->draw(mesh,
+                 OF_MESH_WIREFRAME,
+                 mesh.usingColors(),
+                 mesh.usingTextures(),
+                 mesh.usingNormals());
+
+  renderer->popStyle();
+}
+
 void ObserverOccurrenceConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
-  ofPushStyle();
-  ofEnableAlphaBlending();
-  ofSetLineWidth(_params.lineWidth.get());
-  ofMesh connectorMesh;
-  connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (const auto& occurrence : _occurrences) {
-    if (!occurrence->visible()) {
-      continue;
-    }
-    ofFloatColor connectorStartColor(_color,
-                                     _color.a * occurrence->alpha());
-    for (const auto& connection : occurrence->getObserverConnections()) {
-      const auto& observer = connection->entity();
-      if (!observer->visible()) {
-        continue;
-      }
-      connectorMesh.addVertex(occurrence->position());
-      connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(observer->position());
-      connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * observer->alpha()));
-    }
+  ofMesh mesh;
+  mesh.setMode(OF_PRIMITIVE_LINES);
+  for (const auto& entity : _occurrences) {
+    addConnectors(mesh,
+                  *entity,
+                  entity->getObserverConnections());
   }
-  connectorMesh.draw();
-  ofPopStyle();
+  drawMesh(mesh);
 }
 
 void ObserverObserverConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
-  ofPushStyle();
-  ofEnableAlphaBlending();
-  ofSetLineWidth(_params.lineWidth.get());
-  ofMesh connectorMesh;
-  connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (const auto& observer : _entities) {
-    if (!observer->visible()) {
-      continue;
-    }
-    ofFloatColor connectorStartColor(_color, _color.a * observer->alpha());
-    for (const auto& connection : observer->getObserverConnections()) {
-      const auto& other = connection->entity();
-      if (!other->visible()) {
-        continue;
-      }
-      connectorMesh.addVertex(observer->position());
-      connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(other->position());
-      connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * other->alpha()));
-    }
+  ofMesh mesh;
+  mesh.setMode(OF_PRIMITIVE_LINES);
+  for (const auto& entity : _entities) {
+    addConnectors(mesh,
+                  *entity,
+                  entity->getObserverConnections());
   }
-  connectorMesh.draw();
-  ofPopStyle();
+  drawMesh(mesh);
 }
 
 void OccurrenceOccurrenceConnectorRenderer::draw() {
   if (!_params.enabled()) {
     return;
   }
-  ofPushStyle();
-  ofEnableAlphaBlending();
-  ofSetLineWidth(_params.lineWidth.get());
-  ofMesh connectorMesh;
-  connectorMesh.setMode(OF_PRIMITIVE_LINES);
-  for (const auto& occurrence : _entities) {
-    if (!occurrence->visible()) {
-      continue;
-    }
-    ofFloatColor connectorStartColor(_color,
-                                     _color.a * occurrence->alpha());
-    for (const auto& connection : occurrence->getOccurrenceConnections()) {
-      const auto& other = connection->entity();
-      if (!other->visible()) {
-        continue;
-      }
-      connectorMesh.addVertex(occurrence->position());
-      connectorMesh.addColor(connectorStartColor);
-      connectorMesh.addVertex(other->position());
-      connectorMesh.addColor(ofFloatColor(_color,
-                                          _color.a * other->alpha()));
-    }
+  ofMesh mesh;
+  mesh.setMode(OF_PRIMITIVE_LINES);
+  for (const auto& entity : _entities) {
+    addConnectors(mesh,
+                  *entity,
+                  entity->getOccurrenceConnections());
   }
-  connectorMesh.draw();
-  ofPopStyle();
+  drawMesh(mesh);
 }
