@@ -31,40 +31,36 @@ void ConnectionTracerRenderer::draw() {
   renderer->setFillMode(OF_OUTLINE);
   for (const auto& entity : _context.observers) {
     for (const auto& connection : entity->getObserverConnections()) {
-      const auto& other = connection->entity();
-      drawTracer(*entity, *other, renderer);
+      drawTracer(*connection, renderer);
     }
     for (const auto& connection : entity->getOccurrenceConnections()) {
-      const auto& other = connection->entity();
-      drawTracer(*entity, *other, renderer);
+      drawTracer(*connection, renderer);
     }
   }
   for (const auto& entity : _context.occurrences) {
     for (const auto& connection : entity->getObserverConnections()) {
-      const auto& other = connection->entity();
-      drawTracer(*entity, *other, renderer);
+      drawTracer(*connection, renderer);
     }
     for (const auto& connection : entity->getOccurrenceConnections()) {
-      const auto& other = connection->entity();
-      drawTracer(*entity, *other, renderer);
+      drawTracer(*connection, renderer);
     }
   }
   renderer->popStyle();
 }
 
-void ConnectionTracerRenderer::drawTracer(ParticleObject& entityA,
-                                          ParticleObject& entityB,
-                                          std::shared_ptr<ofBaseRenderer>& renderer) {
-  if (!entityA.visible() || !entityB.visible()) {
+void ConnectionTracerRenderer
+::drawTracer(const AbstractConnection& connection,
+             std::shared_ptr<ofBaseRenderer>& renderer) {
+  if (!connection.visible()) {
     return;
   }
   auto ratio = ofWrap(_rawRatio
-                      + static_cast<float>(entityA.id() % 12) / 12.0f,
+                      + static_cast<float>(connection.entityId() % 12) / 12.0f,
                       0, 1);
 
-  const auto& posA = entityA.position();
-  const auto& posB = entityB.position();
-  auto tracerPos = getInterpolated(posA, posB, ratio);
+  auto tracerPos = connection.evaluatePosition(ratio);
+  const auto& entityA = connection.sourceEntity();
+  const auto& entityB = connection.targetEntity();
   auto color = getInterpolated(entityA.color(), entityB.color(), ratio);
   color.setBrightness(color.getBrightness() * 1.2);
   color.a *= getInterpolated(entityA.alpha(),

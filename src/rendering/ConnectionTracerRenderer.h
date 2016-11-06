@@ -65,8 +65,7 @@ public:
   void draw() override;
 
 private:
-  void drawTracer(ParticleObject& entityA,
-                  ParticleObject& entityB,
+  void drawTracer(const AbstractConnection& connection,
                   std::shared_ptr<ofBaseRenderer>& renderer);
 
   const Params& _params;

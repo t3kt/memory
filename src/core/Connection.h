@@ -27,32 +27,37 @@ public:
   : _sourceEntity(source) { }
 
   bool alive() const {
-    return getEntityRef().alive();
+    return targetEntity().alive() && _sourceEntity->alive();
   }
+
+  bool visible() const {
+    return targetEntity().visible() && _sourceEntity->visible();
+  }
+
   ObjectId entityId() const {
-    return getEntityRef().id();
+    return targetEntity().id();
   }
   ObjectId sourceId() const {
     return _sourceEntity->id();
   }
 
-  ParticlePtr& sourceEntity() { return _sourceEntity; }
-  const ParticlePtr& sourceEntity() const { return _sourceEntity; }
+  ParticleObject& sourceEntity() { return *_sourceEntity; }
+  const ParticleObject& sourceEntity() const { return *_sourceEntity; }
+
+  virtual ParticleObject& targetEntity() = 0;
+  virtual const ParticleObject& targetEntity() const = 0;
 
   const ofVec3f& sourcePosition() const {
     return _sourceEntity->position();
   }
   const ofVec3f& endPosition() const {
-    return getEntityRef().position();
+    return targetEntity().position();
   }
 
   ofVec3f evaluatePosition(float percentage) const {
     return sourcePosition().getInterpolated(endPosition(),
                                             percentage);
   }
-protected:
-  virtual ParticleObject& getEntityRef() = 0;
-  virtual const ParticleObject& getEntityRef() const = 0;
 private:
   ParticlePtr _sourceEntity;
 };
@@ -79,11 +84,10 @@ public:
       {"srcid", sourceId()},
     };
   }
-protected:
-  ParticleObject& getEntityRef() override {
+  ParticleObject& targetEntity() override {
     return *_entity;
   }
-  const ParticleObject& getEntityRef() const override {
+  const ParticleObject& targetEntity() const override {
     return *_entity;
   }
 private:
