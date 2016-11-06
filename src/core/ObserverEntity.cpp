@@ -22,9 +22,7 @@ ObserverEntity::ObserverEntity(ofVec3f pos,
                                const ClockState& state)
 : ParticleObject(pos, state)
 , _decayRate(decay)
-, _lifeFraction(1)
-, _observerConnections(*this)
-, _occurrenceConnections(*this) {
+, _lifeFraction(1) {
 }
 
 void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
@@ -35,11 +33,13 @@ void ObserverEntity::addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence)
     }
     addObserver(other);
   }
-  _occurrenceConnections.getOrAdd(occurrence);
+  _occurrenceConnections.getOrAdd(shared_from_this(),
+                                  occurrence);
 }
 
 void ObserverEntity::addObserver(std::shared_ptr<ObserverEntity> observer) {
-  _observerConnections.getOrAdd(observer);
+  _observerConnections.getOrAdd(shared_from_this(),
+                                observer);
 }
 
 void ObserverEntity::update(const ClockState &state) {
@@ -109,8 +109,12 @@ void ObserverEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.observers.loadDeserializedRefsInto(_observerConnections, obj["observerConnections"]);
-  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
+  context.observers.loadDeserializedRefsInto(shared_from_this(),
+                                             _observerConnections,
+                                             obj["observerConnections"]);
+  context.occurrences.loadDeserializedRefsInto(shared_from_this(),
+                                               _occurrenceConnections,
+                                               obj["occurrenceConnections"]);
 }
 
 void ObserverEntity::performActionOnConnected(ObjectPtrAction action) {

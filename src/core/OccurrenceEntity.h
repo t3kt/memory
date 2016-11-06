@@ -34,7 +34,8 @@ public:
   virtual ~OccurrenceEntity() {}
   
   void addObserver(std::shared_ptr<ObserverEntity> observer) {
-    _observerConnections.getOrAdd(observer);
+    _observerConnections.getOrAdd(shared_from_this(),
+                                  observer);
   }
   
   void removeObserver(ObjectId id) {
@@ -42,7 +43,8 @@ public:
   }
 
   void addOccurrence(std::shared_ptr<OccurrenceEntity> occurrence) {
-    _occurrenceConnections.getOrAdd(occurrence);
+    _occurrenceConnections.getOrAdd(shared_from_this(),
+                                    occurrence);
   }
 
   void removeOccurrence(ObjectId id) {
@@ -108,9 +110,7 @@ protected:
   
 private:
   OccurrenceEntity(const ClockState& state)
-  : ParticleObject(state)
-  , _observerConnections(*this)
-  , _occurrenceConnections(*this) { }
+  : ParticleObject(state) {}
 
   void setAmountOfObservation(float amount) {
     _amountOfObservation = amount;

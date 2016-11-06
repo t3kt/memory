@@ -93,9 +93,7 @@ protected:
 
 private:
   ObserverEntity(const ClockState& state)
-  : ParticleObject(state)
-  , _observerConnections(*this)
-  , _occurrenceConnections(*this) { }
+  : ParticleObject(state) {}
 
   float _lifeFraction;
   bool _sick;

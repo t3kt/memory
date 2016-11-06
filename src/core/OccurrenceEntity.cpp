@@ -20,9 +20,8 @@ OccurrenceEntity::OccurrenceEntity(ofVec3f pos,
 , _actualRadius(0)
 , _originalRadius(radius)
 , _originalRadiusFraction(radiusFraction)
-, _amountOfObservation(0)
-, _observerConnections(*this)
-, _occurrenceConnections(*this) {}
+, _amountOfObservation(0) {
+}
 
 void OccurrenceEntity::outputFields(std::ostream &os) const {
   ParticleObject::outputFields(os);
@@ -100,8 +99,12 @@ void OccurrenceEntity::deserializeRefs(const Json &obj,
     return;
   }
   JsonUtil::assertHasType(obj, Json::OBJECT);
-  context.observers.loadDeserializedRefsInto(_observerConnections, obj["observerConnections"]);
-  context.occurrences.loadDeserializedRefsInto(_occurrenceConnections, obj["occurrenceConnections"]);
+  context.observers.loadDeserializedRefsInto(shared_from_this(),
+                                             _observerConnections,
+                                             obj["observerConnections"]);
+  context.occurrences.loadDeserializedRefsInto(shared_from_this(),
+                                               _occurrenceConnections,
+                                               obj["occurrenceConnections"]);
 }
 
 void OccurrenceEntity::performActionOnConnected(ObjectPtrAction action) {

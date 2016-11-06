@@ -8,11 +8,14 @@
 
 #pragma once
 
+#include <memory>
 #include <vector>
 #include "../core/State.h"
 #include "../core/WorldObject.h"
 
-class ParticleObject : public WorldObject {
+class ParticleObject
+: public WorldObject
+, public std::enable_shared_from_this<ParticleObject> {
 public:
   ParticleObject(ofVec3f pos,
                  const ClockState& state);
@@ -45,7 +48,8 @@ public:
   virtual void fillInfo(Info& info) const override;
 
 protected:
-  ParticleObject(const ClockState& state) : WorldObject(state) { }
+  ParticleObject(const ClockState& state)
+  : WorldObject(state) { }
 
   virtual void outputFields(std::ostream& os) const override;
   virtual void addSerializedFields(Json::object& obj,

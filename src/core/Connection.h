@@ -103,9 +103,6 @@ public:
   using iterator = MapToValueIterator<ObjectId, ConnPtr>;
   using const_iterator = ConstMapToValueIterator<ObjectId, ConnPtr>;
 
-  TypedEntityConnectionMap(ParticleObject& source)
-  : _sourceEntity(source) { }
-
   bool addConnection(ConnPtr connection) {
     auto result = _map.insert(std::make_pair(connection->entityId(),
                                              connection));
@@ -114,12 +111,14 @@ public:
 
   template<typename E, typename ...Args>
   std::pair<ConnPtr, bool>
-  getOrAdd(std::shared_ptr<E> entity, Args&& ...args) {
+  getOrAdd(ParticlePtr source,
+           std::shared_ptr<E> entity,
+           Args&& ...args) {
     auto conn = getConnectionTo(entity->id());
     if (conn) {
       return std::make_pair(conn, false);
     }
-    conn = std::make_shared<TConn>(_sourceEntity,
+    conn = std::make_shared<TConn>(*source,
                                    entity,
                                    std::forward<Args>(args)...);
     addConnection(conn);
@@ -207,7 +206,6 @@ private:
   }
 
   Storage _map;
-  ParticleObject& _sourceEntity;
 };
 
 template<typename E>

@@ -92,7 +92,8 @@ public:
   }
 
   template<typename TConn>
-  void loadDeserializedRefsInto(TypedEntityConnectionMap<TConn>& connections,
+  void loadDeserializedRefsInto(ParticlePtr source,
+                                TypedEntityConnectionMap<TConn>& connections,
                                 const Json& array) {
     if (array.is_null()) {
       return;
@@ -105,7 +106,7 @@ public:
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));
       }
-      connections.getOrAdd(entity);
+      connections.getOrAdd(source, entity);
     }
   }
 
