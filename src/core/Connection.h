@@ -37,6 +37,17 @@ public:
   }
   ParticleObject& sourceEntity() { return _sourceEntity; }
   const ParticleObject& sourceEntity() const { return _sourceEntity; }
+  const ofVec3f& sourcePosition() const {
+    return _sourceEntity.position();
+  }
+  const ofVec3f& endPosition() const {
+    return getEntityRef().position();
+  }
+
+  ofVec3f evaluatePosition(float percentage) const {
+    return sourcePosition().getInterpolated(endPosition(),
+                                            percentage);
+  }
 protected:
   virtual ParticleObject& getEntityRef() = 0;
   virtual const ParticleObject& getEntityRef() const = 0;
@@ -121,14 +132,6 @@ public:
       return nullptr;
     }
     return iter->second;
-  }
-
-  EntityPtr getTarget(ObjectId entityId) {
-    auto conn = getConnectionTo(entityId);
-    if (!conn) {
-      return nullptr;
-    }
-    return conn->entity();
   }
 
   bool containsId(ObjectId entityId) const {
