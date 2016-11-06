@@ -44,19 +44,22 @@ protected:
   void clearMesh();
 
   void addConnector(const AbstractConnection& connection,
-                    const ofFloatColor& startColor);
+                    const ofFloatColor& startColor,
+                    const ofVec3f& startPos);
 
   template<typename TConn>
   void addConnectors(const ParticleObject& sourceEntity,
                      const TypedEntityConnectionMap<TConn>& connections) {
-    if (!sourceEntity.visible()) {
-      return;
-    }
+//    if (!sourceEntity.visible()) {
+//      return;
+//    }
     auto startColor = ofFloatColor(_color,
                                    _color.a * sourceEntity.alpha());
+    const auto& startPos = sourceEntity.position();
     for (const auto& connection : connections) {
       addConnector(*connection,
-                   startColor);
+                   startColor,
+                   startPos);
     }
   }
 

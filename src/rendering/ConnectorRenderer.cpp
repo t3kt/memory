@@ -22,11 +22,12 @@ void ConnectionRenderer::clearMesh() {
 
 void ConnectionRenderer
 ::addConnector(const AbstractConnection &connection,
-               const ofFloatColor &startColor) {
-  if (!connection.visible()) {
-    return;
-  }
-  _mesh.addVertex(connection.sourcePosition());
+               const ofFloatColor &startColor,
+               const ofVec3f& startPos) {
+//  if (!connection.visible()) {
+//    return;
+//  }
+  _mesh.addVertex(startPos);
   _mesh.addColor(startColor);
   _mesh.addVertex(connection.endPosition());
   _mesh.addColor(ofFloatColor(_color,

@@ -384,7 +384,7 @@
           "value2": 0
         },
         "drawRadius": 1.8000000715255737,
-        "enabled": true,
+        "enabled": false,
         "rate": 0.41999998688697815
       },
       "fog": {
