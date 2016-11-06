@@ -38,18 +38,16 @@ public:
   using Params = ConnectorRendererParams;
 
   ConnectionRenderer(const Params& params,
-                     const ofFloatColor& color)
-  : _params(params)
-  , _color(color) { }
+                     const ofFloatColor& color);
 
 protected:
-  void addConnector(ofMesh& mesh,
-                    const AbstractConnection& connection,
+  void clearMesh();
+
+  void addConnector(const AbstractConnection& connection,
                     const ofFloatColor& startColor);
 
   template<typename TConn>
-  void addConnectors(ofMesh& mesh,
-                     const ParticleObject& sourceEntity,
+  void addConnectors(const ParticleObject& sourceEntity,
                      const TypedEntityConnectionMap<TConn>& connections) {
     if (!sourceEntity.visible()) {
       return;
@@ -57,16 +55,16 @@ protected:
     auto startColor = ofFloatColor(_color,
                                    _color.a * sourceEntity.alpha());
     for (const auto& connection : connections) {
-      addConnector(mesh,
-                   *connection,
+      addConnector(*connection,
                    startColor);
     }
   }
 
-  void drawMesh(const ofMesh& mesh);
+  void drawMesh();
 
   const Params& _params;
   const ofFloatColor& _color;
+  ofMesh _mesh;
 };
 
 class ObserverOccurrenceConnectorRenderer
