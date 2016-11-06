@@ -23,7 +23,7 @@ class AbstractConnection
 : public NonCopyable
 , public JsonWritable {
 public:
-  AbstractConnection(ParticleObject& source)
+  AbstractConnection(ParticlePtr source)
   : _sourceEntity(source) { }
 
   bool alive() const {
@@ -33,12 +33,14 @@ public:
     return getEntityRef().id();
   }
   ObjectId sourceId() const {
-    return _sourceEntity.id();
+    return _sourceEntity->id();
   }
-  ParticleObject& sourceEntity() { return _sourceEntity; }
-  const ParticleObject& sourceEntity() const { return _sourceEntity; }
+
+  ParticlePtr& sourceEntity() { return _sourceEntity; }
+  const ParticlePtr& sourceEntity() const { return _sourceEntity; }
+
   const ofVec3f& sourcePosition() const {
-    return _sourceEntity.position();
+    return _sourceEntity->position();
   }
   const ofVec3f& endPosition() const {
     return getEntityRef().position();
@@ -52,7 +54,7 @@ protected:
   virtual ParticleObject& getEntityRef() = 0;
   virtual const ParticleObject& getEntityRef() const = 0;
 private:
-  ParticleObject& _sourceEntity;
+  ParticlePtr _sourceEntity;
 };
 
 // A connection to an entity of type E.
@@ -63,7 +65,7 @@ public:
   using EntityT = E;
   using EntityPtr = std::shared_ptr<E>;
 
-  explicit EntityConnection(ParticleObject& source,
+  explicit EntityConnection(ParticlePtr source,
                             EntityPtr entity)
   : AbstractConnection(source)
   , _entity(entity) { }
@@ -118,7 +120,7 @@ public:
     if (conn) {
       return std::make_pair(conn, false);
     }
-    conn = std::make_shared<TConn>(*source,
+    conn = std::make_shared<TConn>(source,
                                    entity,
                                    std::forward<Args>(args)...);
     addConnection(conn);
