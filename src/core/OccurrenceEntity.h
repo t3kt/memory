@@ -9,7 +9,7 @@
 #pragma once
 
 #include <ofTypes.h>
-#include "../core/Common.h"
+#include <ofxTCommon.h>
 #include "../core/Connection.h"
 #include "../core/Context.h"
 #include "../core/ParticleObject.h"
@@ -89,10 +89,10 @@ public:
 
   EntityType entityType() const override { return EntityType::OCCURRENCE; }
 
-  virtual void deserializeFields(const Json& obj,
+  virtual void deserializeFields(const ofJson& obj,
                                  const SerializationContext& context) override;
 
-  virtual void deserializeRefs(const Json& obj,
+  virtual void deserializeRefs(const ofJson& obj,
                                SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
@@ -103,9 +103,9 @@ public:
   std::string typeName() const override { return "OccurrenceEntity"; }
 protected:
   void outputFields(std::ostream& os) const override;
-  virtual void addSerializedFields(Json::object& obj,
+  virtual void addSerializedFields(ofJson& obj,
                                    const SerializationContext& context) const override;
-  virtual void addSerializedRefs(Json::object& obj,
+  virtual void addSerializedRefs(ofJson& obj,
                                  const SerializationContext& context) const override;
   
 private:

@@ -48,22 +48,22 @@ void ParticleObject::fillInfo(Info &info) const {
   info.add("force:", _force);
 }
 
-void ParticleObject::addSerializedFields(Json::object &obj,
+void ParticleObject::addSerializedFields(ofJson &obj,
                                          const SerializationContext &context) const {
   WorldObject::addSerializedFields(obj, context);
-  JsonUtil::mergeInto(obj, {
-    {"position", JsonUtil::toJson(_position)},
-    {"velocity", JsonUtil::toJson(_velocity)},
+  ofxTCommon::JsonUtil::mergeInto(obj, {
+    {"position", ofxTCommon::JsonUtil::toJson(_position)},
+    {"velocity", ofxTCommon::JsonUtil::toJson(_velocity)},
     // omit force since it's calculated
-    {"startPosition", JsonUtil::toJson(_startPosition)},
+    {"startPosition", ofxTCommon::JsonUtil::toJson(_startPosition)},
   });
 }
 
-void ParticleObject::deserializeFields(const Json &obj,
+void ParticleObject::deserializeFields(const ofJson &obj,
                                        const SerializationContext &context) {
   WorldObject::deserializeFields(obj, context);
-  _position = JsonUtil::fromJson<ofVec3f>(obj["position"]);
-  _velocity = JsonUtil::fromJsonField<ofVec3f>(obj, "velocity", ofVec3f::zero());
-  _startPosition = JsonUtil::fromJson<ofVec3f>(obj["startPosition"]);
+  _position = ofxTCommon::JsonUtil::fromJson<ofVec3f>(obj["position"]);
+  _velocity = ofxTCommon::JsonUtil::fromJsonField<ofVec3f>(obj, "velocity", ofVec3f::zero());
+  _startPosition = ofxTCommon::JsonUtil::fromJson<ofVec3f>(obj["startPosition"]);
 }
 

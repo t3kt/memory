@@ -9,8 +9,8 @@
 #ifndef Serialization_h
 #define Serialization_h
 
+#include <ofxTJsonIO.h>
 #include <stdexcept>
-#include "../core/JsonIO.h"
 
 class Context;
 
@@ -24,16 +24,16 @@ public:
 
 class Serializable {
 public:
-  Json serializeFields(const SerializationContext& context) const;
-  Json serializeRefs(const SerializationContext& context) const;
-  virtual void deserializeFields(const Json& obj,
+  ofJson serializeFields(const SerializationContext& context) const;
+  ofJson serializeRefs(const SerializationContext& context) const;
+  virtual void deserializeFields(const ofJson& obj,
                                  const SerializationContext& context) = 0;
-  virtual void deserializeRefs(const Json& obj,
+  virtual void deserializeRefs(const ofJson& obj,
                                SerializationContext& context) { }
 protected:
-  virtual void addSerializedFields(Json::object& obj,
+  virtual void addSerializedFields(ofJson& obj,
                                    const SerializationContext& context) const = 0;
-  virtual void addSerializedRefs(Json::object& obj,
+  virtual void addSerializedRefs(ofJson& obj,
                                  const SerializationContext& context) const { }
 };
 

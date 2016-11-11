@@ -8,26 +8,27 @@
 #include "../control/Params.h"
 
 using namespace _params_impl;
+using namespace ofxTCommon;
 
-Json ParamTagSet::to_json() const {
+ofJson ParamTagSet::toJson() const {
   if (empty()) {
     return nullptr;
   }
-  auto obj = Json::object();
+  auto obj = ofJson::object();
   for (const auto& entry: *this) {
     obj[entry.first] = entry.second;
   }
   return obj;
 }
 
-void ParamTagSet::read_json(const Json &obj) {
+void ParamTagSet::readJson(const ofJson &obj) {
   clear();
   if (obj.is_null()) {
     return;
   }
-  JsonUtil::assertHasType(obj, Json::OBJECT);
-  for (const auto& entry : obj.object_items()) {
-    put(entry.first, JsonUtil::fromJson<bool>(entry.second));
+  JsonUtil::assertIsObject(obj);
+  for (auto iter = obj.begin(); iter != obj.end(); ++iter) {
+    put(iter.key(), iter.value());
   }
 }
 
@@ -36,12 +37,16 @@ void TParamBase::setParentParams(const Params *parent) {
   _tags.setParent(parent ? &(parent->tags()) : nullptr);
 }
 
-void TParamBase::readTagsField(const Json &obj) {
-  _tags.read_json(obj["tags"]);
+void TParamBase::readTagsField(const ofJson &obj) {
+  _tags.readJson(obj["tags"]);
 }
 
-Json::object::value_type TParamBase::writeTagsField() const {
-  return {"tags", _tags.to_json()};
+ofJson::object_t::value_type TParamBase::writeTagsField() const {
+  return {"tags", _tags.toJson()};
+}
+
+ofJson::object_t::value_type TParamBase::toJsonField() const {
+  return { getKey(), toJson() };
 }
 
 template<>
@@ -107,11 +112,11 @@ void Params::performRecursiveParamAction(ParamBaseAction action) {
   }
 }
 
-void Params::readJsonField(const Json& obj) {
-  const Json& val = obj[getKey()];
+void Params::readJsonField(const ofJson& obj) {
+  const auto& val = obj[getKey()];
   if (!val.is_null()) {
-    JsonUtil::assertHasType(val, Json::OBJECT);
-    read_json(val);
+    JsonUtil::assertIsObject(val);
+    readJson(val);
   } else if (hasDefault()) {
     resetToDefault();
   } else {
@@ -119,38 +124,38 @@ void Params::readJsonField(const Json& obj) {
   }
 }
 
-Json Params::to_json() const {
-  Json::object obj;
+ofJson Params::toJson() const {
+  auto obj = ofJson::object();
   for (auto param : _paramBases) {
-    obj.insert(param->toJsonField());
+    obj.push_back(param->toJsonField());
   }
   return obj;
 }
 
-void Params::read_json(const Json &val) {
-  JsonUtil::assertHasType(val, Json::OBJECT);
+void Params::readJson(const ofJson &val) {
+  JsonUtil::assertIsObject(val);
   for (auto param : _paramBases) {
     param->readJsonField(val);
   }
 }
 
-Json Params::toFilteredJson(ConstParamPredicate filter) const {
-  Json::object obj;
+ofJson Params::toFilteredJson(ConstParamPredicate filter) const {
+  auto obj = ofJson::object();
   for (auto param : _paramBases) {
     if (filter(*param)) {
-      obj.insert(param->toJsonField());
+      obj.push_back(param->toJsonField());
     }
   }
   return obj;
 }
 
-void Params::readFilteredJson(const Json &obj,
+void Params::readFilteredJson(const ofJson &obj,
                               ConstParamPredicate filter) {
   for (auto param : _paramBases) {
     if (filter(*param)) {
       const auto val = obj[param->getKey()];
       if (!val.is_null()) {
-        param->read_json(val);
+        param->readJson(val);
       }
     }
   }

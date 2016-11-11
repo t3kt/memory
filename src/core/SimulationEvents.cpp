@@ -7,7 +7,6 @@
 //
 
 #include "../app/AppSystem.h"
-#include "../core/JsonIO.h"
 #include "../core/SimulationEvents.h"
 
 ofxTCommon::EnumTypeInfo<SimulationEventType> SimulationEventTypeInfo {

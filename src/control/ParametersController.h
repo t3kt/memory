@@ -10,13 +10,13 @@
 #define ParametersController_h
 
 #include <memory>
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <vector>
 #include "../app/AppActions.h"
 #include "../control/ParamPresets.h"
 #include "../control/Params.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
-#include "../core/JsonIO.h"
 
 class Context;
 class MemoryAppParameters;
@@ -25,16 +25,16 @@ class ParamTransitionSet;
 using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
 
 class ParametersState
-: public NonCopyable
-, public JsonReadable
-, public JsonWritable {
+: public ofxTCommon::NonCopyable
+, public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable {
 public:
 
   ParametersState(MemoryAppParameters& params)
   : _params(params) { }
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
+  ofJson toJson() const override;
+  void readJson(const ofJson& obj) override;
 
   PresetList& presets() { return _presets; }
   const PresetList& presets() const { return _presets; }

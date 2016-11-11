@@ -8,16 +8,18 @@
 
 #include "../control/MidiMapping.h"
 
-Json MidiMapping::to_json() const {
-  return Json::object {
-    {"key", _key},
+using namespace ofxTCommon;
+
+ofJson MidiMapping::toJson() const {
+  return {
+    {"key", _key.toJson()},
     {"path", _path},
   };
 }
 
-void MidiMapping::read_json(const Json &obj) {
-  JsonUtil::assertHasType(obj, Json::OBJECT);
-  _key.read_json(obj["key"]);
+void MidiMapping::readJson(const ofJson &obj) {
+  JsonUtil::assertIsObject(obj);
+  _key.readJson(obj["key"]);
   _path = JsonUtil::fromJson<std::string>(obj["path"]);
 }
 

@@ -14,7 +14,8 @@
 #include <memory>
 #include <ofMath.h>
 #include <ofUtils.h>
-#include "../core/Common.h"
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include "../core/Connection.h"
 #include "../core/EntityMap.h"
 #include "../core/Serialization.h"
@@ -33,37 +34,37 @@ public:
     this->_objects.push_back(object);
   }
 
-  Json serializeEntities(const SerializationContext& context) const {
-    Json::array arr;
+  ofJson serializeEntities(const SerializationContext& context) const {
+    auto arr = ofJson::array();
     for (const auto& entity : *this) {
-      Json fields = entity->serializeFields(context);
-      Json refs = entity->serializeRefs(context);
+      auto fields = entity->serializeFields(context);
+      auto refs = entity->serializeRefs(context);
       if (refs.is_null()) {
         arr.push_back(fields);
       } else {
-        arr.push_back(JsonUtil::merge(fields, refs));
+        arr.push_back(ofxTCommon::JsonUtil::merge(fields, refs));
       }
     }
     return arr;
   }
 
-  void deserializeEntityFields(const Json& arr,
+  void deserializeEntityFields(const ofJson& arr,
                                const SerializationContext& context) {
-    JsonUtil::assertHasType(arr, Json::ARRAY);
-    for (const auto& val : arr.array_items()) {
-      JsonUtil::assertHasType(val, Json::OBJECT);
+    ofxTCommon::JsonUtil::assertIsArray(arr);
+    for (const auto& val : arr) {
+      ofxTCommon::JsonUtil::assertIsObject(val);
       auto entity = T::createEmpty(context);
       entity->deserializeFields(val, context);
       add(entity);
     }
   }
 
-  void deserializeEntityRefs(const Json& arr,
+  void deserializeEntityRefs(const ofJson& arr,
                              SerializationContext& context) {
-    JsonUtil::assertHasType(arr, Json::ARRAY);
-    for (const auto& val : arr.array_items()) {
-      JsonUtil::assertHasType(val, Json::OBJECT);
-      ObjectId id = JsonUtil::fromJsonField(val, "id", ObjectIds::NONE);
+    ofxTCommon::JsonUtil::assertIsArray(arr);
+    for (const auto& val : arr) {
+      ofxTCommon::JsonUtil::assertIsObject(val);
+      ObjectId id = ofxTCommon::JsonUtil::fromJsonField(val, "id", ObjectIds::NONE);
       if (id == ObjectIds::NONE) {
         throw SerializationException("Missing ID for object: " + val.dump());
       }
@@ -76,13 +77,13 @@ public:
   }
 
   void loadDeserializedRefsInto(EntityMap<T>& entities,
-                                const Json& idArray) {
+                                const ofJson& idArray) {
     if (idArray.is_null()) {
       return;
     }
-    JsonUtil::assertHasType(idArray, Json::ARRAY);
-    for (const auto& val : idArray.array_items()) {
-      auto id = JsonUtil::fromJson<ObjectId>(val);
+    ofxTCommon::JsonUtil::assertIsArray(idArray);
+    for (const auto& val : idArray) {
+      auto id = ofxTCommon::JsonUtil::fromJson<ObjectId>(val);
       auto entity = (*this)[id];
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));
@@ -94,14 +95,14 @@ public:
   template<typename TConn>
   void loadDeserializedRefsInto(ParticlePtr source,
                                 TypedEntityConnectionMap<TConn>& connections,
-                                const Json& array) {
+                                const ofJson& array) {
     if (array.is_null()) {
       return;
     }
-    JsonUtil::assertHasType(array, Json::ARRAY);
-    for (const auto& val : array.array_items()) {
-      JsonUtil::assertHasType(val, Json::OBJECT);
-      auto id = JsonUtil::fromJson<ObjectId>(val["id"]);
+    ofxTCommon::JsonUtil::assertIsArray(array);
+    for (const auto& val : array) {
+      ofxTCommon::JsonUtil::assertIsObject(val);
+      auto id = ofxTCommon::JsonUtil::fromJson<ObjectId>(val["id"]);
       auto entity = (*this)[id];
       if (!entity) {
         throw SerializationException("Entity not found: " + ofToString(id));

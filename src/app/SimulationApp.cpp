@@ -114,8 +114,7 @@ void SimulationApp::draw() {
 }
 
 void SimulationApp::dumpEntityState() {
-  Json state = _context.to_json();
-  JsonUtil::prettyPrintJsonToStream(state, std::cout);
+  _context.writeJsonTo(std::cout);
 }
 
 void SimulationApp::loadEntityState() {
@@ -130,7 +129,7 @@ void SimulationApp::loadEntityState() {
 
 void SimulationApp::saveEntityState() {
   FileAction action = [&](ofFileDialogResult& file) {
-    _context.writeToFile(file.getPath());
+    _context.writeJsonTo(file.getPath());
     return true;
   };
   AppSystem::get().performFileSaveAction(action,

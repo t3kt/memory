@@ -79,36 +79,36 @@ void ObserverEntity::fillInfo(Info& info) const {
   }
 }
 
-void ObserverEntity::addSerializedFields(Json::object &obj,
+void ObserverEntity::addSerializedFields(ofJson &obj,
                                          const SerializationContext& context) const {
   ParticleObject::addSerializedFields(obj, context);
-  JsonUtil::mergeInto(obj, {
+  ofxTCommon::JsonUtil::mergeInto(obj, {
     {"lifeFraction", _lifeFraction},
     {"decayRate", _decayRate},
     {"sick", _sick},
   });
 }
 
-void ObserverEntity::deserializeFields(const Json &obj,
+void ObserverEntity::deserializeFields(const ofJson &obj,
                                        const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
-  _decayRate = JsonUtil::fromJson<float>(obj["decayRate"]);
-  _lifeFraction = JsonUtil::fromJson<float>(obj["lifeFraction"]);
-  _sick = JsonUtil::fromJson<bool>(obj["sick"]);
+  _decayRate = ofxTCommon::JsonUtil::fromJson<float>(obj["decayRate"]);
+  _lifeFraction = ofxTCommon::JsonUtil::fromJson<float>(obj["lifeFraction"]);
+  _sick = ofxTCommon::JsonUtil::fromJson<bool>(obj["sick"]);
 }
 
-void ObserverEntity::addSerializedRefs(Json::object &obj,
+void ObserverEntity::addSerializedRefs(ofJson &obj,
                                        const SerializationContext &context) const {
-  obj["observerConnections"] = _observerConnections.to_json();
-  obj["occurrenceConnections"] = _occurrenceConnections.to_json();
+  obj["observerConnections"] = _observerConnections.toJson();
+  obj["occurrenceConnections"] = _occurrenceConnections.toJson();
 }
 
-void ObserverEntity::deserializeRefs(const Json &obj,
+void ObserverEntity::deserializeRefs(const ofJson &obj,
                                      SerializationContext &context) {
   if (obj.is_null()) {
     return;
   }
-  JsonUtil::assertHasType(obj, Json::OBJECT);
+  ofxTCommon::JsonUtil::assertIsObject(obj);
   context.observers.loadDeserializedRefsInto(shared_from_this(),
                                              _observerConnections,
                                              obj["observerConnections"]);

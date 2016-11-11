@@ -6,14 +6,14 @@
 
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <ofxTagSet.h>
 #include <ofxTEvents.h>
 #include <string>
 #include <typeinfo>
 #include <unordered_set>
 #include <vector>
-#include "../core/Common.h"
-#include "../core/JsonIO.h"
 
 namespace PTags {
   const std::string osc = "osc";
@@ -25,16 +25,16 @@ namespace _params_impl {
 
   class ParamTagSet
   : public ofxTagSet<std::string>
-  , public JsonReadable
-  , public JsonWritable {
+  , public ofxTCommon::JsonReadable
+  , public ofxTCommon::JsonWritable {
   public:
     ParamTagSet() {}
 
     ParamTagSet(std::initializer_list<std::string> tags)
     : ofxTagSet<std::string>(tags) { }
 
-    Json to_json() const override;
-    void read_json(const Json& obj) override;
+    ofJson toJson() const override;
+    void readJson(const ofJson& obj) override;
   };
 
 }
@@ -44,8 +44,8 @@ class ofxGuiElement;
 class Params;
 
 class TParamBase
-: public JsonReadable
-, public JsonWritable {
+: public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable {
 public:
   using ParamTagSet = _params_impl::ParamTagSet;
   static const char pathSeparator = '.';
@@ -60,11 +60,10 @@ public:
     return _key;
   }
 
-  virtual Json::object::value_type toJsonField() const {
-    return { getKey(), to_json() };
-  }
-  virtual Json toJsonMetadata() const = 0;
-  virtual void readJsonField(const Json& obj) = 0;
+  ofJson::object_t::value_type toJsonField() const;
+  virtual void readJsonField(const ofJson& obj) = 0;
+  virtual ofJson toJsonMetadata() const = 0;
+
   virtual void resetToDefault() = 0;
   virtual bool hasDefault() const = 0;
   virtual bool isGroup() const = 0;
@@ -81,8 +80,8 @@ public:
 
   virtual ofxGuiElement* addGuiTo(ofxGuiContainer* container) = 0;
 protected:
-  void readTagsField(const Json& obj);
-  Json::object::value_type writeTagsField() const;
+  void readTagsField(const ofJson& obj);
+  ofJson::object_t::value_type writeTagsField() const;
 
   void linkGui(ofxGuiElement* element);
 
@@ -213,38 +212,38 @@ namespace _params_impl {
 
     ofxTCommon::TEvent<T&> changed;
 
-    Json to_json() const override {
-      return JsonUtil::toJson(ofParameter<T>::get());
+    ofJson toJson() const override {
+      return ofxTCommon::JsonUtil::toJson(ofParameter<T>::get());
     }
 
-    void read_json(const Json& val) override {
-      this->set(JsonUtil::fromJson<T>(val));
+    void readJson(const ofJson& val) override {
+      this->set(ofxTCommon::JsonUtil::fromJson<T>(val));
     }
 
-    void readJsonField(const Json& obj) override {
-      Json val = obj[getKey()];
+    void readJsonField(const ofJson& obj) override {
+      auto val = obj[getKey()];
       if (!val.is_null()) {
-        read_json(val);
+        readJson(val);
       } else if (hasDefault()) {
         ofParameter<T>::set(getDefaultValue());
       } else {
-        throw JsonException("Required field missing: " + getKey());
+        throw ofxTCommon::JsonException("Required field missing: " + getKey());
       }
     }
 
-    Json toJsonMetadata() const override {
-      auto metadata = Json::object {
+    ofJson toJsonMetadata() const override {
+      ofJson metadata = {
         {"key", getKey()},
         {"name", ofParameter<T>::getName()},
         {"type", getTypeName()},
-        {"min", JsonUtil::toJson(ofParameter<T>::getMin())},
-        {"max", JsonUtil::toJson(ofParameter<T>::getMax())},
+        {"min", ofxTCommon::JsonUtil::toJson(ofParameter<T>::getMin())},
+        {"max", ofxTCommon::JsonUtil::toJson(ofParameter<T>::getMax())},
       };
       if (hasDefault()) {
-        metadata["default"] = JsonUtil::toJson(getDefaultValue());
+        metadata["default"] = ofxTCommon::JsonUtil::toJson(getDefaultValue());
       }
       if (hasTags()) {
-        metadata.insert(writeTagsField());
+        metadata.push_back(writeTagsField());
       }
       return metadata;
     }
@@ -335,7 +334,7 @@ using ConstParamPredicate = std::function<bool(const TParamBase&)>;
 class Params
 : public ofParameterGroup
 , public _params_impl::TParamBaseWithInitializers<Params>
-, public NonCopyable {
+  , public ofxTCommon::NonCopyable {
 public:
   enum class GuiGroupType {
     GROUP,
@@ -371,28 +370,28 @@ public:
     _paramBases.push_back(&param);
   }
 
-  Json to_json() const override;
+  ofJson toJson() const override;
 
-  Json toFilteredJson(ConstParamPredicate filter) const;
+  ofJson toFilteredJson(ConstParamPredicate filter) const;
 
-  void read_json(const Json& val) override;
+  void readJson(const ofJson& val) override;
 
-  void readJsonField(const Json& obj) override;
+  void readJsonField(const ofJson& obj) override;
 
-  void readFilteredJson(const Json& obj, ConstParamPredicate filter);
+  void readFilteredJson(const ofJson& obj, ConstParamPredicate filter);
 
-  Json toJsonMetadata() const override {
-    auto paramMetas = Json::array {};
+  ofJson toJsonMetadata() const override {
+    auto paramMetas = ofJson::array();
     for (const auto param : _paramBases) {
       paramMetas.push_back(param->toJsonMetadata());
     }
-    auto metadata = Json::object {
+    ofJson metadata = {
       {"key", getKey()},
       {"name", ofParameterGroup::getName()},
       {"params", paramMetas},
     };
     if (hasTags()) {
-      metadata.insert(writeTagsField());
+      metadata.push_back(writeTagsField());
     }
     return metadata;
   }

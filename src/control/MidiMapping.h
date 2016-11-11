@@ -9,15 +9,15 @@
 #ifndef MidiMapping_h
 #define MidiMapping_h
 
+#include <ofxTJsonIO.h>
 #include <string>
 #include "../core/Common.h"
-#include "../core/JsonIO.h"
 #include "../control/MappingSet.h"
 #include "../control/MidiCommon.h"
 
 class MidiMapping
-: public JsonReadable
-, public JsonWritable
+: public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable
 , public Outputable {
 public:
   MidiMapping() {}
@@ -28,8 +28,8 @@ public:
   const MidiMappingKey& key() const { return _key; }
   const std::string& path() const { return _path; }
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
+  ofJson toJson() const override;
+  void readJson(const ofJson& obj) override;
 
   std::string typeName() const override { return "MidiMapping"; }
 protected:

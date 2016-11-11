@@ -9,6 +9,8 @@
 #include <boost/functional/hash.hpp>
 #include "../control/MidiCommon.h"
 
+using namespace ofxTCommon;
+
 EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
   {"cc", MidiMessageType::CONTROL_CHANGE},
   {"noteOn", MidiMessageType::NOTE_ON},
@@ -70,8 +72,8 @@ std::size_t MidiMappingKey::hash() const {
   return seed;
 }
 
-Json MidiMappingKey::to_json() const {
-  return Json::object {
+ofJson MidiMappingKey::toJson() const {
+  return {
     {"device", JsonUtil::toJson(_device)},
     {"channel", JsonUtil::toJson(_channel)},
     {"type", JsonUtil::enumToJson(_type)},
@@ -79,8 +81,8 @@ Json MidiMappingKey::to_json() const {
   };
 }
 
-void MidiMappingKey::read_json(const Json &obj) {
-  JsonUtil::assertHasType(obj, Json::OBJECT);
+void MidiMappingKey::readJson(const ofJson &obj) {
+  JsonUtil::assertIsObject(obj);
   _device = JsonUtil::fromJson<MidiDeviceId>(obj["device"]);
   _channel = JsonUtil::fromJson<MidiChannel>(obj["channel"]);
   _type = JsonUtil::enumFromJson<MidiMessageType>(obj["type"]);

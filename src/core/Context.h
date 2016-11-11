@@ -5,8 +5,8 @@
 #pragma once
 
 #include <functional>
+#include <ofxTJsonIO.h>
 #include "../core/Common.h"
-#include "../core/JsonIO.h"
 #include "../core/ObjectManager.h"
 #include "../core/Serialization.h"
 #include "../core/State.h"
@@ -25,8 +25,8 @@ class WorldObject;
 // Owns the ObjectManager instances which own all entities.
 class Context
 : public NonCopyable
-, public JsonWritable
-, public JsonReadable {
+, public ofxTCommon::JsonWritable
+, public ofxTCommon::JsonReadable {
 public:
   float time() const { return rootState.localTime; }
 
@@ -43,8 +43,8 @@ public:
 
   void performActionOnParticleEntityPtrs(std::function<void(std::shared_ptr<ParticleObject>)> action);
 
-  Json to_json() const override;
-  void read_json(const Json& val) override;
+  ofJson toJson() const override;
+  void readJson(const ofJson& val) override;
 
   ClockState rootState;
   ClockState entityState;

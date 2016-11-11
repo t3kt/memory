@@ -9,12 +9,12 @@
 #ifndef MidiEvents_h
 #define MidiEvents_h
 
+#include <ofxTJsonIO.h>
 #include <vector>
 #include "../control/MappingSet.h"
 #include "../control/MidiCommon.h"
 #include "../control/Params.h"
 #include "../core/Common.h"
-#include "../core/JsonIO.h"
 #include "../core/SimulationEvents.h"
 
 class MidiRouter;
@@ -23,8 +23,8 @@ class MidiEventBinding;
 
 class MidiEventMapping
 : public Outputable
-, public JsonReadable
-, public JsonWritable {
+, public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable {
 public:
   MidiEventMapping()
   : _eventType(SimulationEventType::ANIMATION_SPAWNED)
@@ -44,8 +44,8 @@ public:
   int value() const { return _value; }
   bool autoOff() const { return _autoOff; }
 
-  Json to_json() const override;
-  void read_json(const Json& obj) override;
+  ofJson toJson() const override;
+  void readJson(const ofJson& obj) override;
 
   std::string typeName() const override { return "MidiEventMapping"; }
 protected:

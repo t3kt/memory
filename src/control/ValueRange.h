@@ -67,7 +67,7 @@ public:
   }
 
   T getLerped(float amount) const {
-    return getInterpolated(lowValue(), highValue(), amount);
+    return ofxTCommon::getInterpolated(lowValue(), highValue(), amount);
   }
 
   TParam<T> lowValue;
