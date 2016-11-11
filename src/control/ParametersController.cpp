@@ -91,6 +91,10 @@ void ParametersController::resetParams() {
   _params.resetToDefault();
 }
 
+TParamBase* ParametersController::lookupPath(const std::string &path) {
+  return _params.lookupPath(path);
+}
+
 void ParametersController::load() {
   AppSystem::get().log().app().logNotice("Reading JSON settings...");
 

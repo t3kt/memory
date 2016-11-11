@@ -66,6 +66,8 @@ public:
   PresetList& presets() { return _state.presets();; }
   const PresetList& presets() const { return _state.presets(); }
 
+  TParamBase* lookupPath(const std::string& path);
+
   void loadPreset(const ParamPreset& preset);
   void transitionToPreset(const ParamPreset& preset);
 

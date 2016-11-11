@@ -40,6 +40,7 @@
 		323AA1B01DBB43240022C990 /* DataChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1AA1DBB43240022C990 /* DataChannel.cpp */; };
 		323AA1B11DBB43240022C990 /* EntityDataChannels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1AC1DBB43240022C990 /* EntityDataChannels.cpp */; };
 		323AA1B21DBB43240022C990 /* SharedMemChopOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1AE1DBB43240022C990 /* SharedMemChopOutput.cpp */; };
+		3242899F1DD561B10048C208 /* Scenes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3242899D1DD561B10048C208 /* Scenes.cpp */; };
 		327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 327C58881DAC82C00089FE80 /* TimingController.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
@@ -308,6 +309,8 @@
 		323AA1AD1DBB43240022C990 /* EntityDataChannels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityDataChannels.h; path = data/EntityDataChannels.h; sourceTree = "<group>"; };
 		323AA1AE1DBB43240022C990 /* SharedMemChopOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SharedMemChopOutput.cpp; path = data/SharedMemChopOutput.cpp; sourceTree = "<group>"; };
 		323AA1AF1DBB43240022C990 /* SharedMemChopOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedMemChopOutput.h; path = data/SharedMemChopOutput.h; sourceTree = "<group>"; };
+		3242899D1DD561B10048C208 /* Scenes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scenes.cpp; path = scenes/Scenes.cpp; sourceTree = "<group>"; };
+		3242899E1DD561B10048C208 /* Scenes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scenes.h; path = scenes/Scenes.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
@@ -854,6 +857,15 @@
 				323AA1AF1DBB43240022C990 /* SharedMemChopOutput.h */,
 			);
 			name = data;
+			sourceTree = "<group>";
+		};
+		324289991DD4637A0048C208 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3242899D1DD561B10048C208 /* Scenes.cpp */,
+				3242899E1DD561B10048C208 /* Scenes.h */,
+			);
+			name = scenes;
 			sourceTree = "<group>";
 		};
 		32A0D8B91DC1E77200DBB506 /* ofxTCommon */ = {
@@ -1612,6 +1624,7 @@
 				8EB304E39B119DD2D764E269 /* physics */,
 				5533A127DD65323EB591F7AD /* rendering */,
 				709D19C04D0D4FFE5A4741F4 /* rules */,
+				324289991DD4637A0048C208 /* scenes */,
 				176116F22F13AAA655564519 /* spawning */,
 			);
 			path = src;
@@ -2009,6 +2022,7 @@
 				2C68D3A329673D7462B5234C /* ofxXmlSettings.cpp in Sources */,
 				F09418FA2F23718DA511CD00 /* tinyxml.cpp in Sources */,
 				B55EAB4BE963079B30C35A71 /* tinyxmlerror.cpp in Sources */,
+				3242899F1DD561B10048C208 /* Scenes.cpp in Sources */,
 				8310AD6E522ADBA976B9F785 /* tinyxmlparser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
