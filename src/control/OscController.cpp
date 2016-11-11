@@ -141,44 +141,44 @@ ofVec3f getOscMessageValue(const ofxOscMessage& message) {
 }
 
 template<typename T>
-Json getParamConfigJson(const TParam<T>& param) {
-  return Json::object {
+ofJson getParamConfigJson(const TParam<T>& param) {
+  return {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"default", JsonUtil::toJson(param.getDefaultValue())},
+    {"default", ofxTCommon::JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 
 template<>
-Json getParamConfigJson(const TParam<float>& param) {
-  return Json::object {
+ofJson getParamConfigJson(const TParam<float>& param) {
+  return {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"min", JsonUtil::toJson(param.getMin())},
-    {"max", JsonUtil::toJson(param.getMax())},
-    {"default", JsonUtil::toJson(param.getDefaultValue())},
+    {"min", ofxTCommon::JsonUtil::toJson(param.getMin())},
+    {"max", ofxTCommon::JsonUtil::toJson(param.getMax())},
+    {"default", ofxTCommon::JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 
 template<>
-Json getParamConfigJson(const TParam<int>& param) {
-  return Json::object {
+ofJson getParamConfigJson(const TParam<int>& param) {
+  return {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"min", JsonUtil::toJson(param.getMin())},
-    {"max", JsonUtil::toJson(param.getMax())},
-    {"default", JsonUtil::toJson(param.getDefaultValue())},
+    {"min", ofxTCommon::JsonUtil::toJson(param.getMin())},
+    {"max", ofxTCommon::JsonUtil::toJson(param.getMax())},
+    {"default", ofxTCommon::JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 
 template<>
-Json getParamConfigJson(const TParam<ofVec3f>& param) {
-  return Json::object {
+ofJson getParamConfigJson(const TParam<ofVec3f>& param) {
+  return {
     {"key", param.getKey()},
     {"name", param.getName()},
-    {"min", JsonUtil::toJson(param.getMin())},
-    {"max", JsonUtil::toJson(param.getMax())},
-    {"default", JsonUtil::toJson(param.getDefaultValue())},
+    {"min", ofxTCommon::JsonUtil::toJson(param.getMin())},
+    {"max", ofxTCommon::JsonUtil::toJson(param.getMax())},
+    {"default", ofxTCommon::JsonUtil::toJson(param.getDefaultValue())},
   };
 }
 

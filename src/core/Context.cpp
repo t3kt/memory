@@ -1,9 +1,5 @@
 //
 //  Context.cpp
-//  memory
-//
-//  Created by tekt on 7/16/16.
-//
 //
 
 #include "../core/Context.h"
@@ -76,17 +72,17 @@ void Context::clear() {
   occurrences.clear();
 }
 
-Json Context::to_json() const {
-  return Json::object {
+ofJson Context::toJson() const {
+  return {
     {"observers", observers.serializeEntities(*this)},
     {"occurrences", occurrences.serializeEntities(*this)},
   };
 }
 
-void Context::read_json(const Json& val) {
-  JsonUtil::assertHasType(val, Json::OBJECT);
-  Json observersArr = val["observers"];
-  Json occurrencesArr = val["occurrences"];
+void Context::readJson(const ofJson& val) {
+  ofxTCommon::JsonUtil::assertIsObject(val);
+  const auto& observersArr = val["observers"];
+  const auto& occurrencesArr = val["occurrences"];
   clear();
   observers.deserializeEntityFields(observersArr, *this);
   occurrences.deserializeEntityFields(occurrencesArr, *this);

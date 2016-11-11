@@ -25,7 +25,6 @@
 		1DD2DFE5A017DC672650B9C7 /* ofxAssimpTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C724EC6180CAFE518D60730B /* ofxAssimpTexture.cpp */; };
 		1DFDF7E8ED8C960B70213C9F /* MidiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F96463E5281CD1FEBA25AA7 /* MidiDevice.cpp */; };
 		1E04799B0A003386CC327425 /* OccurrenceSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5799F9D0D6D0F42DB0F51D3F /* OccurrenceSpawner.cpp */; };
-		1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF3275DA1779ABB3A490844 /* JsonIO.cpp */; };
 		226EC6AEF3C41439295F7D81 /* ofxGuiTabs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4269493DA5784AC1ABE30F0A /* ofxGuiTabs.cpp */; };
 		23EE47CCA8D157EF33A955AA /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB0D9F981980447C7EDCC1E /* RtMidi.cpp */; };
 		2A80D8990079E60E3D6CAC4B /* ObserverSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6067D373CDFBC439C938A0D0 /* ObserverSpawner.cpp */; };
@@ -46,6 +45,7 @@
 		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
 		329F511F1DA9F73F00063471 /* OutputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F511D1DA9F73F00063471 /* OutputController.cpp */; };
 		329F51221DAA089600063471 /* FogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51201DAA089600063471 /* FogController.cpp */; };
+		32B31BA71DD57A9600F57FAC /* ofxTJsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */; };
 		32CCB2FC1DAE13F900BAE226 /* ParamPresets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */; };
 		32CCB2FD1DAE13F900BAE226 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F61DAE13F900BAE226 /* Params.cpp */; };
 		32CCB2FE1DAE13F900BAE226 /* ValueSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */; };
@@ -319,6 +319,8 @@
 		329F511E1DA9F73F00063471 /* OutputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutputController.h; path = rendering/OutputController.h; sourceTree = "<group>"; };
 		329F51201DAA089600063471 /* FogController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FogController.cpp; path = rendering/FogController.cpp; sourceTree = "<group>"; };
 		329F51211DAA089600063471 /* FogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogController.h; path = rendering/FogController.h; sourceTree = "<group>"; };
+		32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTJsonIO.cpp; sourceTree = "<group>"; };
+		32B31BA61DD57A9600F57FAC /* ofxTJsonIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTJsonIO.h; sourceTree = "<group>"; };
 		32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamPresets.cpp; path = control/ParamPresets.cpp; sourceTree = "<group>"; };
 		32CCB2F51DAE13F900BAE226 /* ParamPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamPresets.h; path = control/ParamPresets.h; sourceTree = "<group>"; };
 		32CCB2F61DAE13F900BAE226 /* Params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Params.cpp; path = control/Params.cpp; sourceTree = "<group>"; };
@@ -547,7 +549,6 @@
 		BA07C47C80DF8A31D74FCF0A /* AnimationObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnimationObject.h; path = src/core/AnimationObject.h; sourceTree = SOURCE_ROOT; };
 		BAC51EB4E01983DB8EE683D0 /* ForceNodeBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ForceNodeBehavior.h; path = src/physics/ForceNodeBehavior.h; sourceTree = SOURCE_ROOT; };
 		BD12DAB4968A513EE609AB9C /* AnchorPointBehavior.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AnchorPointBehavior.h; path = src/physics/AnchorPointBehavior.h; sourceTree = SOURCE_ROOT; };
-		BDF3275DA1779ABB3A490844 /* JsonIO.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = JsonIO.cpp; path = src/core/JsonIO.cpp; sourceTree = SOURCE_ROOT; };
 		BE0B6497B5EA559C3212F3D1 /* ofxAssimpUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAssimpUtils.h; path = ../../openFrameworks/addons/ofxAssimpModelLoader/src/ofxAssimpUtils.h; sourceTree = SOURCE_ROOT; };
 		BE8A95E1EA36B623E9ED42D2 /* ofxDOM.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDOM.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/DOM/ofxDOM.h; sourceTree = SOURCE_ROOT; };
 		BEBBFC54787D9D60CDE7569E /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../openFrameworks/addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
@@ -624,7 +625,6 @@
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E58A16CC8338A8AE07D8C95A /* TimelineItem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimelineItem.h; path = ../../openFrameworks/addons/ofxChoreograph/libs/Choreograph/src/choreograph/TimelineItem.h; sourceTree = SOURCE_ROOT; };
-		E64D341064775BD3E3B680FC /* JsonIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JsonIO.h; path = src/core/JsonIO.h; sourceTree = SOURCE_ROOT; };
 		E6D9960492FC4D3363422480 /* EventTarget.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EventTarget.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/DOM/EventTarget.h; sourceTree = SOURCE_ROOT; };
 		E84DF9A185378037BF0CD2C3 /* SSAOPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SSAOPass.cpp; path = ../../openFrameworks/addons/ofxPostProcessing/src/SSAOPass.cpp; sourceTree = SOURCE_ROOT; };
 		E985063B2070E972873066F7 /* FakeSSSPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FakeSSSPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/FakeSSSPass.h; sourceTree = SOURCE_ROOT; };
@@ -822,6 +822,8 @@
 		323AA18F1DBB26700022C990 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */,
+				32B31BA61DD57A9600F57FAC /* ofxTJsonIO.h */,
 				323AA1981DBB271F0022C990 /* ofxTCommon.h */,
 				323AA19A1DBB2A2C0022C990 /* ofxTCommon.cpp */,
 				323AA19C1DBB2DAA0022C990 /* ofxTEnums.h */,
@@ -1417,8 +1419,6 @@
 				804CDAC76A2FD6B81A5703C2 /* Info.h */,
 				2D22FC9770BDA229A66C55C8 /* InspectionController.cpp */,
 				67AB7ECB8C8A34590096E3CF /* InspectionController.h */,
-				BDF3275DA1779ABB3A490844 /* JsonIO.cpp */,
-				E64D341064775BD3E3B680FC /* JsonIO.h */,
 				C1B5E271E03A2AD71E997DD1 /* Logging.cpp */,
 				8559631FA795C19177FDE97C /* Logging.h */,
 				7FD1AE1C36AD527B52D3EEB2 /* NodeEntity.cpp */,
@@ -1849,6 +1849,7 @@
 				E05A6CAB8CBE20EFC17B773E /* MidiEvents.cpp in Sources */,
 				329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */,
 				BD93D57F60AD9B51EB56EDF8 /* MidiMapping.cpp in Sources */,
+				32B31BA71DD57A9600F57FAC /* ofxTJsonIO.cpp in Sources */,
 				B6C962E732C4D744A2600D32 /* MidiRouter.cpp in Sources */,
 				323AA1B11DBB43240022C990 /* EntityDataChannels.cpp in Sources */,
 				E667D2346637EF388691BB91 /* OscController.cpp in Sources */,
@@ -1861,7 +1862,6 @@
 				E0194FE44814C8337B696F06 /* Info.cpp in Sources */,
 				323AA1B21DBB43240022C990 /* SharedMemChopOutput.cpp in Sources */,
 				A9EA0DA3681A4682D890F307 /* InspectionController.cpp in Sources */,
-				1F1CB090C818F0674A1C8FF7 /* JsonIO.cpp in Sources */,
 				4550C0A277C1DA94EA84509A /* Logging.cpp in Sources */,
 				C8FF926ED1C1C5FB0CF45E30 /* NodeEntity.cpp in Sources */,
 				866EF7E8D43FA2B96A475872 /* NodesController.cpp in Sources */,

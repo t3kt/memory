@@ -13,9 +13,9 @@
 #include <memory>
 #include <ofColor.h>
 #include <ofVec3f.h>
-#include "../core/Common.h"
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include "../core/ObjectId.h"
-#include "../core/JsonIO.h"
 #include "../core/Serialization.h"
 #include "../core/State.h"
 
@@ -30,9 +30,9 @@ enum class EntityType {
 class Info;
 
 class WorldObject
-: public Outputable
+: public ofxTCommon::Outputable
 , public Serializable
-, public NonCopyable {
+, public ofxTCommon::NonCopyable {
 public:
   WorldObject(const ClockState& state);
   virtual ~WorldObject() {}
@@ -61,7 +61,7 @@ public:
 
   virtual EntityType entityType() const = 0;
 
-  virtual void deserializeFields(const Json& obj,
+  virtual void deserializeFields(const ofJson& obj,
                                  const SerializationContext& context) override;
   virtual std::string typeName() const override;
 
@@ -79,7 +79,7 @@ public:
   virtual void update(const ClockState& state) {}
 protected:
   virtual void outputFields(std::ostream& os) const override;
-  virtual void addSerializedFields(Json::object& obj,
+  virtual void addSerializedFields(ofJson& obj,
                                    const SerializationContext& context) const override;
 private:
   AgeTracker _age;

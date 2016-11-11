@@ -69,10 +69,10 @@ void OccurrenceEntity::update(const ClockState& state) {
   }
 }
 
-void OccurrenceEntity::addSerializedFields(Json::object &obj,
+void OccurrenceEntity::addSerializedFields(ofJson &obj,
                                            const SerializationContext &context) const {
   ParticleObject::addSerializedFields(obj, context);
-  JsonUtil::mergeInto(obj, {
+  ofxTCommon::JsonUtil::mergeInto(obj, {
     {"originalRadius", _originalRadius},
     {"originalRadiusFraction", _originalRadiusFraction},
     // omit actualRadius since it's calculated
@@ -80,25 +80,25 @@ void OccurrenceEntity::addSerializedFields(Json::object &obj,
   });
 }
 
-void OccurrenceEntity::deserializeFields(const Json &obj,
+void OccurrenceEntity::deserializeFields(const ofJson &obj,
                                          const SerializationContext &context) {
   ParticleObject::deserializeFields(obj, context);
-  _originalRadius = JsonUtil::fromJson<float>(obj["originalRadius"]);
-  _originalRadiusFraction = JsonUtil::fromJson<float>(obj["originalRadiusFraction"]);
+  _originalRadius = ofxTCommon::JsonUtil::fromJson<float>(obj["originalRadius"]);
+  _originalRadiusFraction = ofxTCommon::JsonUtil::fromJson<float>(obj["originalRadiusFraction"]);
 }
 
-void OccurrenceEntity::addSerializedRefs(Json::object &obj,
+void OccurrenceEntity::addSerializedRefs(ofJson &obj,
                                          const SerializationContext &context) const {
-  obj["observerConnections"] = _observerConnections.to_json();
-  obj["occurrenceConnections"] = _occurrenceConnections.to_json();
+  obj["observerConnections"] = _observerConnections.toJson();
+  obj["occurrenceConnections"] = _occurrenceConnections.toJson();
 }
 
-void OccurrenceEntity::deserializeRefs(const Json &obj,
+void OccurrenceEntity::deserializeRefs(const ofJson &obj,
                                        SerializationContext &context) {
   if (obj.is_null()) {
     return;
   }
-  JsonUtil::assertHasType(obj, Json::OBJECT);
+  ofxTCommon::JsonUtil::assertIsObject(obj);
   context.observers.loadDeserializedRefsInto(shared_from_this(),
                                              _observerConnections,
                                              obj["observerConnections"]);

@@ -9,35 +9,35 @@
 #ifndef MappingSet_h
 #define MappingSet_h
 
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <string>
-#include "../core/Common.h"
-#include "../core/JsonIO.h"
 
 template<typename T>
 class MappingSet
-: public JsonReadable
-, public JsonWritable
-, public Outputable
-, public NonCopyable {
+: public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable
+, public ofxTCommon::Outputable
+, public ofxTCommon::NonCopyable {
 public:
   using Storage = std::vector<T>;
   using iterator = typename Storage::iterator;
   using const_iterator = typename Storage::const_iterator;
 
-  Json to_json() const override {
-    Json::array arr;
-    for (const auto& mapping : _mappings) {
-      arr.push_back(mapping.to_json());
+  ofJson toJson() const override {
+    auto arr = ofJson::array();
+    for (const auto& mapping : *this) {
+      arr.push_back(mapping.toJson());
     }
     return arr;
   }
 
-  void read_json(const Json& arr) override {
-    JsonUtil::assertHasType(arr, Json::ARRAY);
+  void readJson(const ofJson& arr) override {
+    ofxTCommon::JsonUtil::assertIsArray(arr);
     _mappings.clear();
-    for (const auto& val : arr.array_items()) {
+    for (const auto& val : arr) {
       T mapping;
-      mapping.read_json(val);
+      mapping.readJson(val);
       _mappings.push_back(mapping);
     }
   }

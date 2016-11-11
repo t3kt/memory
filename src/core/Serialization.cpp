@@ -9,14 +9,14 @@
 #include "../core/Context.h"
 #include "../core/Serialization.h"
 
-Json Serializable::serializeFields(const SerializationContext &context) const {
-  Json::object obj;
+ofJson Serializable::serializeFields(const SerializationContext &context) const {
+  auto obj = ofJson::object();
   addSerializedFields(obj, context);
   return obj;
 }
 
-Json Serializable::serializeRefs(const SerializationContext &context) const {
-  Json::object obj;
+ofJson Serializable::serializeRefs(const SerializationContext &context) const {
+  auto obj = ofJson::object();
   addSerializedRefs(obj, context);
   if (obj.empty()) {
     return nullptr;

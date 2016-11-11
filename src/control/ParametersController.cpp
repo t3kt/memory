@@ -14,23 +14,23 @@
 #include "../control/ParamTransition.h"
 #include "../core/Actions.h"
 
-Json ParametersState::to_json() const {
-  auto obj = Json::object {
-    {"params", _params},
+ofJson ParametersState::toJson() const {
+  ofJson obj = {
+    {"params", _params.toJson()},
   };
   if (!_presets.empty()) {
-    auto presetsArr = Json::array();
+    auto presetsArr = ofJson::array();
     for (const auto& preset : _presets) {
-      presetsArr.push_back(preset->to_json());
+      presetsArr.push_back(preset->toJson());
     }
     obj["presets"] = presetsArr;
   }
   return obj;
 }
 
-void ParametersState::read_json(const Json &obj) {
-  JsonUtil::assertHasType(obj, Json::OBJECT);
-  const Json *paramVals;
+void ParametersState::readJson(const ofJson &obj) {
+  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
+  const ofJson *paramVals;
   if (obj["params"].is_null()) {
     // parsing it as old format that only contains raw params
     paramVals = &obj;
@@ -39,9 +39,9 @@ void ParametersState::read_json(const Json &obj) {
     const auto& presetsArr = obj["presets"];
     if (presetsArr.is_array()) {
       _params.clear();
-      for (const auto& presetObj : presetsArr.array_items()) {
+      for (const auto& presetObj : presetsArr) {
         auto preset = std::make_shared<ParamPreset>();
-        preset->read_json(presetObj);
+        preset->readJson(presetObj);
         if (preset->name().empty()) {
           preset->setName("preset " + ofToString(_presets.size()));
         }
@@ -51,8 +51,8 @@ void ParametersState::read_json(const Json &obj) {
     }
   }
   if (!paramVals->is_null()) {
-    JsonUtil::assertHasType(*paramVals, Json::OBJECT);
-    _params.read_json(*paramVals);
+    ofxTCommon::JsonUtil::assertHasType(*paramVals, ofJson::value_t::object);
+    _params.readJson(*paramVals);
   } else {
     AppSystem::get().log().app().logWarning("Unable to find param values in settings json");
   }
@@ -107,7 +107,7 @@ void ParametersController::load() {
 void ParametersController::save() {
   AppSystem::get().log().app().logNotice("Writing JSON settings...");
   AppSystem::get().doWhilePaused([&]() {
-    _state.writeToFile("settings.json");
+    _state.writeJsonTo("settings.json");
     return true;
   });
   AppSystem::get().log().app().logNotice(".. write to JSON finished");
@@ -117,7 +117,7 @@ void ParametersController::writeMetadata() {
   AppSystem::get().log().app().logNotice("Writing JSON metadata...");
   AppSystem::get().doWhilePaused([&]() {
     auto meta = _params.toJsonMetadata();
-    JsonUtil::prettyPrintJsonToFile(meta, "param-meta.json");
+    ofxTCommon::JsonUtil::writeJsonToFile("param-meta.json", meta);
     return true;
   });
   AppSystem::get().log().app().logNotice(".. write metadata JSON finished");

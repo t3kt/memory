@@ -42,7 +42,7 @@ public:
   float size() const { return _size; }
   void setSize(float size) { _size = size; }
 
-  virtual void deserializeFields(const Json& obj,
+  virtual void deserializeFields(const ofJson& obj,
                                  const SerializationContext& context) override;
 
   virtual void fillInfo(Info& info) const override;
@@ -52,7 +52,7 @@ protected:
   : WorldObject(state) { }
 
   virtual void outputFields(std::ostream& os) const override;
-  virtual void addSerializedFields(Json::object& obj,
+  virtual void addSerializedFields(ofJson& obj,
                                    const SerializationContext& context) const override;
   ofVec3f _position;
 private:

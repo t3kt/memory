@@ -12,9 +12,9 @@
 #include <memory>
 #include <ofMath.h>
 #include <ofUtils.h>
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <unordered_map>
-#include "../core/Common.h"
-#include "../core/JsonIO.h"
 #include "../core/WorldObject.h"
 
 // A map of references to entities, keyed by entity ID.
@@ -71,8 +71,8 @@ public:
     }
   }
 
-  Json idsToJson() const {
-    Json::array arr;
+  ofJson idsToJson() const {
+    auto arr = ofJson::array();
     for (const auto& entity : _map) {
       int idVal = static_cast<int>(entity.second->id());
       arr.push_back(idVal);

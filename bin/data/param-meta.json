@@ -23,10 +23,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "rate",
-                  "max": 10,
-                  "min": 0,
+                  "max": 10.0,
+                  "min": 0.0,
                   "name": "Rate",
                   "type": "f"
                 },
@@ -43,10 +43,10 @@
                       "type": "b"
                     },
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "rate",
-                      "max": 10,
-                      "min": 0,
+                      "max": 10.0,
+                      "min": 0.0,
                       "name": "Rate",
                       "type": "f"
                     }
@@ -65,10 +65,10 @@
                       "type": "b"
                     },
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "rate",
-                      "max": 10,
-                      "min": 0,
+                      "max": 10.0,
+                      "min": 0.0,
                       "name": "Rate",
                       "type": "f"
                     }
@@ -232,18 +232,18 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "chance",
-              "max": 1,
-              "min": 0,
+              "max": 1.0,
+              "min": 0.0,
               "name": "Chance",
               "type": "f"
             },
             {
               "default": 0.5,
               "key": "rate",
-              "max": 5,
-              "min": 0,
+              "max": 5.0,
+              "min": 0.0,
               "name": "Rate",
               "type": "f"
             },
@@ -252,18 +252,18 @@
               "name": "Decay Rate Range",
               "params": [
                 {
-                  "default": 0.004999999888241291,
+                  "default": 0.00499999988824129,
                   "key": "low",
                   "max": 0.5,
-                  "min": 0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 0.090000003576278687,
+                  "default": 0.0900000035762787,
                   "key": "high",
                   "max": 0.5,
-                  "min": 0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -274,18 +274,18 @@
               "name": "Initial Velocity",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 20,
-                  "min": 0,
+                  "max": 20.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 4,
+                  "default": 4.0,
                   "key": "high",
-                  "max": 20,
-                  "min": 0,
+                  "max": 20.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -318,10 +318,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "chance",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Chance",
                   "type": "f"
                 },
@@ -330,18 +330,18 @@
                   "name": "Interval",
                   "params": [
                     {
-                      "default": 4,
+                      "default": 4.0,
                       "key": "low",
-                      "max": 60,
-                      "min": 0,
+                      "max": 60.0,
+                      "min": 0.0,
                       "name": "Low",
                       "type": "f"
                     },
                     {
-                      "default": 10,
+                      "default": 10.0,
                       "key": "high",
-                      "max": 60,
-                      "min": 0,
+                      "max": 60.0,
+                      "min": 0.0,
                       "name": "High",
                       "type": "f"
                     }
@@ -350,10 +350,10 @@
               ]
             },
             {
-              "default": 0.059999998658895493,
+              "default": 0.0599999986588955,
               "key": "decayRateAmount",
-              "max": 0.20000000298023224,
-              "min": -0.20000000298023224,
+              "max": 0.200000002980232,
+              "min": -0.200000002980232,
               "name": "Decay Rate Amount",
               "type": "f"
             }
@@ -378,18 +378,18 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "chance",
-              "max": 1,
-              "min": 0,
+              "max": 1.0,
+              "min": 0.0,
               "name": "Chance",
               "type": "f"
             },
             {
               "default": 0.5,
               "key": "rate",
-              "max": 5,
-              "min": 0,
+              "max": 5.0,
+              "min": 0.0,
               "name": "Rate",
               "type": "f"
             },
@@ -398,18 +398,18 @@
               "name": "Radius Range",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 400,
-                  "min": 0,
+                  "max": 400.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 80,
+                  "default": 80.0,
                   "key": "high",
-                  "max": 400,
-                  "min": 0,
+                  "max": 400.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -420,18 +420,18 @@
               "name": "Initial Velocity",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 20,
-                  "min": 0,
+                  "max": 20.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "high",
-                  "max": 20,
-                  "min": 0,
+                  "max": 20.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -442,10 +442,10 @@
               "name": "Chain",
               "params": [
                 {
-                  "default": 0.20000000298023224,
+                  "default": 0.200000002980232,
                   "key": "chance",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Chance",
                   "type": "f"
                 }
@@ -478,18 +478,18 @@
               "name": "Chain Distance",
               "params": [
                 {
-                  "default": 8,
+                  "default": 8.0,
                   "key": "low",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 40,
+                  "default": 40.0,
                   "key": "high",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -500,10 +500,10 @@
               "name": "Sequence",
               "params": [
                 {
-                  "default": 0.10000000149011612,
+                  "default": 0.100000001490116,
                   "key": "chance",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Chance",
                   "type": "f"
                 }
@@ -536,18 +536,18 @@
               "name": "Sequence Interval",
               "params": [
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "low",
-                  "max": 60,
-                  "min": 0,
+                  "max": 60.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 20,
+                  "default": 20.0,
                   "key": "high",
-                  "max": 60,
-                  "min": 0,
+                  "max": 60.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -558,18 +558,18 @@
               "name": "Seq Step Distance",
               "params": [
                 {
-                  "default": 10,
+                  "default": 10.0,
                   "key": "low",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 50,
+                  "default": 50.0,
                   "key": "high",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -596,44 +596,44 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "chance",
-              "max": 1,
-              "min": 0,
+              "max": 1.0,
+              "min": 0.0,
               "name": "Chance",
               "type": "f"
             },
             {
-              "default": 0.039999999105930328,
+              "default": 0.0399999991059303,
               "key": "rate",
-              "max": 2,
-              "min": 0,
+              "max": 2.0,
+              "min": 0.0,
               "name": "Rate",
               "type": "f"
             }
           ]
         },
         {
-          "default": 10,
+          "default": 10.0,
           "key": "moveRate",
-          "max": 50,
-          "min": 0,
+          "max": 50.0,
+          "min": 0.0,
           "name": "Move Rate",
           "type": "f"
         },
         {
-          "default": 1,
+          "default": 1.0,
           "key": "stepDuration",
-          "max": 10,
-          "min": 0,
+          "max": 10.0,
+          "min": 0.0,
           "name": "Step Duration",
           "type": "f"
         },
         {
-          "default": 10,
+          "default": 10.0,
           "key": "reachRange",
-          "max": 50,
-          "min": 0,
+          "max": 50.0,
+          "min": 0.0,
           "name": "Reach Range",
           "type": "f"
         }
@@ -664,10 +664,10 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "duration",
-              "max": 8,
-              "min": 0,
+              "max": 8.0,
+              "min": 0.0,
               "name": "Duration",
               "type": "f"
             },
@@ -676,18 +676,18 @@
               "name": "Radius",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 0.40000000596046448,
-                  "min": 0,
+                  "max": 0.400000005960464,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 0.20000000298023224,
+                  "default": 0.200000002980232,
                   "key": "high",
-                  "max": 0.40000000596046448,
-                  "min": 0,
+                  "max": 0.400000005960464,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -698,18 +698,18 @@
               "name": "Alpha",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "high",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -730,10 +730,10 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "duration",
-              "max": 8,
-              "min": 0,
+              "max": 8.0,
+              "min": 0.0,
               "name": "Duration",
               "type": "f"
             },
@@ -742,18 +742,18 @@
               "name": "Radius",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 0.40000000596046448,
-                  "min": 0,
+                  "max": 0.400000005960464,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 0.20000000298023224,
+                  "default": 0.200000002980232,
                   "key": "high",
-                  "max": 0.40000000596046448,
-                  "min": 0,
+                  "max": 0.400000005960464,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -764,18 +764,18 @@
               "name": "Alpha",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "high",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -796,10 +796,10 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "duration",
-              "max": 8,
-              "min": 0,
+              "max": 8.0,
+              "min": 0.0,
               "name": "Duration",
               "type": "f"
             },
@@ -808,18 +808,18 @@
               "name": "Radius",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 20,
+                  "default": 20.0,
                   "key": "high",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -830,18 +830,18 @@
               "name": "Alpha",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "low",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Start",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "high",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "End",
                   "type": "f"
                 }
@@ -857,138 +857,138 @@
       "params": [
         {
           "default": [
-            0,
-            0,
-            0,
-            1
+            0.0,
+            0.0,
+            0.0,
+            1.0
           ],
           "key": "background",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Background",
           "type": "color"
         },
         {
           "default": [
-            0.20000000298023224,
-            0.20000000298023224,
-            0.20000000298023224,
-            0.30000001192092896
+            0.200000002980232,
+            0.200000002980232,
+            0.200000002980232,
+            0.300000011920929
           ],
           "key": "bounds",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Bounds",
           "type": "color"
         },
         {
           "default": [
-            0.52499997615814209,
-            0.69999998807907104,
-            0.34999999403953552,
-            1
+            0.524999976158142,
+            0.699999988079071,
+            0.349999994039536,
+            1.0
           ],
           "key": "observerMarker",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Observer Marker",
           "type": "color"
         },
         {
           "default": [
-            0.69999998807907104,
-            0.69999998807907104,
-            0.85000002384185791,
-            0.40000000596046448
+            0.699999988079071,
+            0.699999988079071,
+            0.850000023841858,
+            0.400000005960464
           ],
           "key": "observerThresholdConnector",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Observer Threshold Connector",
           "type": "color"
         },
         {
           "default": [
-            0.20000000298023224,
+            0.200000002980232,
             0.5,
-            0.69999998807907104,
-            1
+            0.699999988079071,
+            1.0
           ],
           "key": "observerConnector",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Observer Connector",
           "type": "color"
         },
         {
           "default": [
-            1,
+            1.0,
             0.5,
-            0.34000000357627869,
-            1
+            0.340000003576279,
+            1.0
           ],
           "key": "occurrenceMarker",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Marker",
           "type": "color"
@@ -998,20 +998,20 @@
             0.5,
             0.5,
             0.5,
-            0.57999998331069946
+            0.579999983310699
           ],
           "key": "occurrenceRange",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Range",
           "type": "color"
@@ -1021,135 +1021,135 @@
             0.5,
             0.5,
             0.5,
-            1
+            1.0
           ],
           "key": "occurrenceObserverConnector",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Observer Connector",
           "type": "color"
         },
         {
           "default": [
-            1,
+            1.0,
             0.5,
-            0.34000000357627869,
-            1
+            0.340000003576279,
+            1.0
           ],
           "key": "occurrenceConnector",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Connector",
           "type": "color"
         },
         {
           "default": [
-            0.66000598669052124,
-            0.64406800270080566,
-            0.78750300407409668,
-            0.68656802177429199
+            0.660005986690521,
+            0.644068002700806,
+            0.787503004074097,
+            0.686568021774292
           ],
           "key": "observerDied",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Observer Died",
           "type": "color"
         },
         {
           "default": [
-            0.7662540078163147,
-            0.64406800270080566,
-            0.4528219997882843,
-            0.79281598329544067
+            0.766254007816315,
+            0.644068002700806,
+            0.452821999788284,
+            0.792815983295441
           ],
           "key": "occurrenceDied",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Died",
           "type": "color"
         },
         {
           "default": [
-            0.81406599283218384,
-            0.68125498294830322,
-            0.51125800609588623,
-            0.56969499588012695
+            0.814065992832184,
+            0.681254982948303,
+            0.511258006095886,
+            0.569694995880127
           ],
           "key": "occurrenceSpawnFailed",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Occurrence Spawn Failed",
           "type": "color"
         },
         {
           "default": [
-            0.60000002384185791,
-            0.60000002384185791,
-            0.60000002384185791,
+            0.600000023841858,
+            0.600000023841858,
+            0.600000023841858,
             0.5
           ],
           "key": "fog",
           "max": [
-            1,
-            1,
-            1,
-            1
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ],
           "min": [
-            0,
-            0,
-            0,
-            0
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
           "name": "Fog",
           "type": "color"
@@ -1174,20 +1174,20 @@
             },
             {
               "default": [
-                2,
-                4,
-                5
+                2.0,
+                4.0,
+                5.0
               ],
               "key": "spinRate",
               "max": [
-                10,
-                10,
-                10
+                10.0,
+                10.0,
+                10.0
               ],
               "min": [
-                -10,
-                -10,
-                -10
+                -10.0,
+                -10.0,
+                -10.0
               ],
               "name": "Spin Rate",
               "type": "vec3"
@@ -1207,44 +1207,44 @@
                   "name": "Fade In",
                   "params": [
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "duration",
-                      "max": 4,
-                      "min": 0,
+                      "max": 4.0,
+                      "min": 0.0,
                       "name": "Duration",
                       "type": "f"
                     },
                     {
-                      "default": 0,
+                      "default": 0.0,
                       "key": "startValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "Start Value",
                       "type": "f"
                     },
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "endValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "End Value",
                       "type": "f"
                     }
                   ]
                 },
                 {
-                  "default": 0.40000000596046448,
+                  "default": 0.400000005960464,
                   "key": "highlightAmount",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Highlighting",
                   "type": "f"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "size",
-                  "max": 20,
-                  "min": 0,
+                  "max": 20.0,
+                  "min": 0.0,
                   "name": "Draw Size",
                   "type": "f"
                 }
@@ -1277,10 +1277,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 10,
+                  "default": 10.0,
                   "key": "size",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Draw Size",
                   "type": "f"
                 },
@@ -1289,26 +1289,26 @@
                   "name": "Fade In",
                   "params": [
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "duration",
-                      "max": 4,
-                      "min": 0,
+                      "max": 4.0,
+                      "min": 0.0,
                       "name": "Duration",
                       "type": "f"
                     },
                     {
-                      "default": 0,
+                      "default": 0.0,
                       "key": "startValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "Start Value",
                       "type": "f"
                     },
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "endValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "End Value",
                       "type": "f"
                     }
@@ -1329,10 +1329,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "lineWidth",
-                  "max": 30,
-                  "min": 0,
+                  "max": 30.0,
+                  "min": 0.0,
                   "name": "Line Width",
                   "type": "f"
                 }
@@ -1353,36 +1353,36 @@
                   "name": "Fade In",
                   "params": [
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "duration",
-                      "max": 4,
-                      "min": 0,
+                      "max": 4.0,
+                      "min": 0.0,
                       "name": "Duration",
                       "type": "f"
                     },
                     {
-                      "default": 0,
+                      "default": 0.0,
                       "key": "startValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "Start Value",
                       "type": "f"
                     },
                     {
-                      "default": 1,
+                      "default": 1.0,
                       "key": "endValue",
-                      "max": 1,
-                      "min": 0,
+                      "max": 1.0,
+                      "min": 0.0,
                       "name": "End Value",
                       "type": "f"
                     }
                   ]
                 },
                 {
-                  "default": 0.40000000596046448,
+                  "default": 0.400000005960464,
                   "key": "highlightAmount",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Highlighting",
                   "type": "f"
                 },
@@ -1391,18 +1391,18 @@
                   "name": "Draw Size Range",
                   "params": [
                     {
-                      "default": 10,
+                      "default": 10.0,
                       "key": "low",
-                      "max": 100,
-                      "min": 0,
+                      "max": 100.0,
+                      "min": 0.0,
                       "name": "Low",
                       "type": "f"
                     },
                     {
-                      "default": 25,
+                      "default": 25.0,
                       "key": "high",
-                      "max": 100,
-                      "min": 0,
+                      "max": 100.0,
+                      "min": 0.0,
                       "name": "High",
                       "type": "f"
                     }
@@ -1413,18 +1413,18 @@
                   "name": "Connection Amount Scale",
                   "params": [
                     {
-                      "default": 0,
+                      "default": 0.0,
                       "key": "low",
-                      "max": 20,
-                      "min": 0,
+                      "max": 20.0,
+                      "min": 0.0,
                       "name": "Low",
                       "type": "f"
                     },
                     {
-                      "default": 4,
+                      "default": 4.0,
                       "key": "high",
-                      "max": 20,
-                      "min": 0,
+                      "max": 20.0,
+                      "min": 0.0,
                       "name": "High",
                       "type": "f"
                     }
@@ -1469,10 +1469,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 1.2000000476837158,
+                  "default": 1.20000004768372,
                   "key": "wireScale",
-                  "max": 1.7999999523162842,
-                  "min": 0.89999997615814209,
+                  "max": 1.79999995231628,
+                  "min": 0.899999976158142,
                   "name": "Wire Scale",
                   "type": "f"
                 },
@@ -1480,12 +1480,12 @@
                   "default": 0.5,
                   "key": "wireSaturation",
                   "max": 1.5,
-                  "min": 0,
+                  "min": 0.0,
                   "name": "Wire Saturation",
                   "type": "f"
                 },
                 {
-                  "default": 1.1000000238418579,
+                  "default": 1.10000002384186,
                   "key": "wireBrightness",
                   "max": 1.5,
                   "min": 0.5,
@@ -1507,10 +1507,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "lineWidth",
-                  "max": 30,
-                  "min": 0,
+                  "max": 30.0,
+                  "min": 0.0,
                   "name": "Line Width",
                   "type": "f"
                 }
@@ -1529,10 +1529,10 @@
                   "type": "b"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "lineWidth",
-                  "max": 30,
-                  "min": 0,
+                  "max": 30.0,
+                  "min": 0.0,
                   "name": "Line Width",
                   "type": "f"
                 }
@@ -1553,18 +1553,18 @@
               "type": "b"
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "drawRadius",
-              "max": 10,
-              "min": 0,
+              "max": 10.0,
+              "min": 0.0,
               "name": "Draw Radius",
               "type": "f"
             },
             {
-              "default": 0.40000000596046448,
+              "default": 0.400000005960464,
               "key": "rate",
-              "max": 2,
-              "min": 0,
+              "max": 2.0,
+              "min": 0.0,
               "name": "Rate",
               "type": "f"
             },
@@ -1573,58 +1573,58 @@
               "name": "Alpha Fade",
               "params": [
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "startValue",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Start Value",
                   "type": "f"
                 },
                 {
-                  "default": 0.30000001192092896,
+                  "default": 0.300000011920929,
                   "key": "length0",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Length 0",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "value0",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Value 0",
                   "type": "f"
                 },
                 {
-                  "default": 0.69999998807907104,
+                  "default": 0.699999988079071,
                   "key": "length1",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Length 1",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "value1",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Value 1",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "length2",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Length 2",
                   "type": "f"
                 },
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "value2",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Value 2",
                   "type": "f"
                 }
@@ -1645,10 +1645,10 @@
               "type": "b"
             },
             {
-              "default": 0.0010000000474974513,
+              "default": 0.00100000004749745,
               "key": "density",
-              "max": 0.0040000001899898052,
-              "min": 0,
+              "max": 0.00400000018998981,
+              "min": 0.0,
               "name": "Density",
               "type": "f"
             },
@@ -1665,18 +1665,18 @@
               "name": "Distance",
               "params": [
                 {
-                  "default": 0.30000001192092896,
+                  "default": 0.300000011920929,
                   "key": "low",
-                  "max": 8,
-                  "min": 0,
+                  "max": 8.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 0.89999997615814209,
+                  "default": 0.899999976158142,
                   "key": "high",
-                  "max": 8,
-                  "min": 0,
+                  "max": 8.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -1725,16 +1725,16 @@
                 {
                   "default": 0.5,
                   "key": "hue",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Hue",
                   "type": "f"
                 },
                 {
                   "default": 0.5,
                   "key": "saturation",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Saturation",
                   "type": "f"
                 }
@@ -1753,26 +1753,26 @@
                   "type": "b"
                 },
                 {
-                  "default": 0.98500001430511475,
+                  "default": 0.985000014305115,
                   "key": "focus",
-                  "max": 1.0099999904632568,
-                  "min": 0.99000000953674316,
+                  "max": 1.00999999046326,
+                  "min": 0.990000009536743,
                   "name": "Focus",
                   "type": "f"
                 },
                 {
-                  "default": 0.80000001192092896,
+                  "default": 0.800000011920929,
                   "key": "aperture",
-                  "max": 1.2000000476837158,
-                  "min": 0,
+                  "max": 1.20000004768372,
+                  "min": 0.0,
                   "name": "Aperture",
                   "type": "f"
                 },
                 {
-                  "default": 0.60000002384185791,
+                  "default": 0.600000023841858,
                   "key": "maxBlur",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Max Blur",
                   "type": "f"
                 }
@@ -1805,42 +1805,42 @@
                   "type": "b"
                 },
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "brightness",
-                  "max": 1,
-                  "min": -1,
+                  "max": 1.0,
+                  "min": -1.0,
                   "name": "Brightness",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "contrast",
-                  "max": 4,
-                  "min": 0,
+                  "max": 4.0,
+                  "min": 0.0,
                   "name": "Contrast",
                   "type": "f"
                 },
                 {
-                  "default": 0,
+                  "default": 0.0,
                   "key": "hueOffset",
-                  "max": 1,
-                  "min": -1,
+                  "max": 1.0,
+                  "min": -1.0,
                   "name": "Hue Offset",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "saturationMult",
-                  "max": 3,
-                  "min": 0,
+                  "max": 3.0,
+                  "min": 0.0,
                   "name": "Saturation Mult",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "valueMult",
-                  "max": 3,
-                  "min": 0,
+                  "max": 3.0,
+                  "min": 0.0,
                   "name": "Value Mult",
                   "type": "f"
                 }
@@ -1859,10 +1859,10 @@
           "name": "Bounds",
           "params": [
             {
-              "default": 500,
+              "default": 500.0,
               "key": "size",
-              "max": 1000,
-              "min": 0,
+              "max": 1000.0,
+              "min": 0.0,
               "name": "Size",
               "type": "f"
             }
@@ -1873,10 +1873,10 @@
           "name": "Observers",
           "params": [
             {
-              "default": 10,
+              "default": 10.0,
               "key": "speed",
-              "max": 50,
-              "min": 0,
+              "max": 50.0,
+              "min": 0.0,
               "name": "Speed",
               "type": "f"
             }
@@ -1887,10 +1887,10 @@
           "name": "Occurrences",
           "params": [
             {
-              "default": 10,
+              "default": 10.0,
               "key": "speed",
-              "max": 50,
-              "min": 0,
+              "max": 50.0,
+              "min": 0.0,
               "name": "Speed",
               "type": "f"
             }
@@ -1927,28 +1927,28 @@
               "name": "Distance Bounds",
               "params": [
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "low",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Near",
                   "type": "f"
                 },
                 {
-                  "default": 100,
+                  "default": 100.0,
                   "key": "high",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Far",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 4,
+              "default": 4.0,
               "key": "magnitude",
-              "max": 20,
-              "min": 0,
+              "max": 20.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             },
@@ -1979,52 +1979,52 @@
               "name": "Force",
               "params": [
                 {
-                  "default": -2,
+                  "default": -2.0,
                   "key": "startValue",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Start Value",
                   "type": "f"
                 },
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "length0",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Length 0",
                   "type": "f"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "value0",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 0",
                   "type": "f"
                 },
                 {
-                  "default": 15,
+                  "default": 15.0,
                   "key": "length1",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Length 1",
                   "type": "f"
                 },
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "value1",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 1",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "magnitude",
-              "max": 3,
-              "min": 0,
+              "max": 3.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             }
@@ -2047,52 +2047,52 @@
               "name": "Force",
               "params": [
                 {
-                  "default": -2,
+                  "default": -2.0,
                   "key": "startValue",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Start Value",
                   "type": "f"
                 },
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "length0",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Length 0",
                   "type": "f"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "value0",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 0",
                   "type": "f"
                 },
                 {
-                  "default": 15,
+                  "default": 15.0,
                   "key": "length1",
-                  "max": 100,
-                  "min": 0,
+                  "max": 100.0,
+                  "min": 0.0,
                   "name": "Length 1",
                   "type": "f"
                 },
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "value1",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 1",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 1,
+              "default": 1.0,
               "key": "magnitude",
-              "max": 3,
-              "min": 0,
+              "max": 3.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             }
@@ -2111,26 +2111,26 @@
               "type": "b"
             },
             {
-              "default": 10,
+              "default": 10.0,
               "key": "scale",
-              "max": 200,
-              "min": 0,
+              "max": 200.0,
+              "min": 0.0,
               "name": "Scale",
               "type": "f"
             },
             {
-              "default": 0.10000000149011612,
+              "default": 0.100000001490116,
               "key": "rate",
               "max": 0.5,
-              "min": 0,
+              "min": 0.0,
               "name": "Rate",
               "type": "f"
             },
             {
-              "default": 5,
+              "default": 5.0,
               "key": "magnitude",
-              "max": 20,
-              "min": 0,
+              "max": 20.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             }
@@ -2153,28 +2153,28 @@
               "name": "Distance Bounds",
               "params": [
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "low",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Near",
                   "type": "f"
                 },
                 {
-                  "default": 100,
+                  "default": 100.0,
                   "key": "high",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Far",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 4,
+              "default": 4.0,
               "key": "magnitude",
-              "max": 20,
-              "min": 0,
+              "max": 20.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             },
@@ -2205,28 +2205,28 @@
               "name": "Distance Bounds",
               "params": [
                 {
-                  "default": 5,
+                  "default": 5.0,
                   "key": "low",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Near",
                   "type": "f"
                 },
                 {
-                  "default": 100,
+                  "default": 100.0,
                   "key": "high",
-                  "max": 500,
-                  "min": 0,
+                  "max": 500.0,
+                  "min": 0.0,
                   "name": "Far",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 4,
+              "default": 4.0,
               "key": "magnitude",
-              "max": 20,
-              "min": 0,
+              "max": 20.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             },
@@ -2257,18 +2257,18 @@
               "name": "Radius",
               "params": [
                 {
-                  "default": 10,
+                  "default": 10.0,
                   "key": "low",
-                  "max": 200,
-                  "min": 0,
+                  "max": 200.0,
+                  "min": 0.0,
                   "name": "Low",
                   "type": "f"
                 },
                 {
-                  "default": 80,
+                  "default": 80.0,
                   "key": "high",
-                  "max": 200,
-                  "min": 0,
+                  "max": 200.0,
+                  "min": 0.0,
                   "name": "High",
                   "type": "f"
                 }
@@ -2279,52 +2279,52 @@
               "name": "Force",
               "params": [
                 {
-                  "default": 10,
+                  "default": 10.0,
                   "key": "startValue",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Start Value",
                   "type": "f"
                 },
                 {
                   "default": 0.5,
                   "key": "length0",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Length 0",
                   "type": "f"
                 },
                 {
-                  "default": 6,
+                  "default": 6.0,
                   "key": "value0",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 0",
                   "type": "f"
                 },
                 {
-                  "default": 1,
+                  "default": 1.0,
                   "key": "length1",
-                  "max": 1,
-                  "min": 0,
+                  "max": 1.0,
+                  "min": 0.0,
                   "name": "Length 1",
                   "type": "f"
                 },
                 {
-                  "default": 2,
+                  "default": 2.0,
                   "key": "value1",
-                  "max": 15,
-                  "min": -15,
+                  "max": 15.0,
+                  "min": -15.0,
                   "name": "Value 1",
                   "type": "f"
                 }
               ]
             },
             {
-              "default": 10,
+              "default": 10.0,
               "key": "magnitude",
-              "max": 100,
-              "min": 0,
+              "max": 100.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             }
@@ -2343,10 +2343,10 @@
               "type": "b"
             },
             {
-              "default": 2,
+              "default": 2.0,
               "key": "magnitude",
-              "max": 20,
-              "min": 0,
+              "max": 20.0,
+              "min": 0.0,
               "name": "Magnitude",
               "type": "f"
             }
@@ -2395,10 +2395,10 @@
               "type": "b"
             },
             {
-              "default": 10,
+              "default": 10.0,
               "key": "clickRange",
-              "max": 100,
-              "min": 0,
+              "max": 100.0,
+              "min": 0.0,
               "name": "Click Range",
               "type": "f"
             },

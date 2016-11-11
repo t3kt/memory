@@ -12,6 +12,7 @@
 #include <initializer_list>
 #include <map>
 #include <memory>
+#include <ofxTCommon.h>
 #include <string>
 #include <unordered_map>
 #include "../app/AppParameters.h"
@@ -19,13 +20,11 @@
 #include "../control/MidiEvents.h"
 #include "../control/MidiMapping.h"
 #include "../control/Params.h"
-#include "../core/Common.h"
-#include "../core/JsonIO.h"
 
 class AbstractMidiBinding;
 
 class MidiRouter
-: public NonCopyable {
+: public ofxTCommon::NonCopyable {
 public:
   using DeviceMap = std::unordered_map<MidiDeviceId, std::shared_ptr<MidiDevice>>;
   using BindingMap = std::unordered_map<MidiMappingKey, std::shared_ptr<AbstractMidiBinding>>;

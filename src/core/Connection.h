@@ -10,18 +10,18 @@
 
 #include <memory>
 #include <ofMath.h>
+#include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <unordered_map>
 #include <type_traits>
-#include "../core/Common.h"
-#include "../core/JsonIO.h"
 #include "../core/ParticleObject.h"
 #include "../core/WorldObject.h"
 
 // Base class for a connection to an entity (generally from
 // another entity).
 class AbstractConnection
-: public NonCopyable
-, public JsonWritable {
+: public ofxTCommon::NonCopyable
+, public ofxTCommon::JsonWritable {
 public:
   AbstractConnection(ParticlePtr source)
   : _sourceEntity(source) { }
@@ -78,8 +78,8 @@ public:
   EntityPtr& entity() { return _entity; }
   const EntityPtr& entity() const { return _entity; }
 
-  Json to_json() const override {
-    return Json::object {
+  ofJson toJson() const override {
+    return {
       {"id", entityId()},
       {"srcid", sourceId()},
     };
@@ -98,8 +98,8 @@ private:
 // TConn is the type of connection (a subclass of AbstractConnection).
 template<typename TConn>
 class TypedEntityConnectionMap
-: public NonCopyable
-, public JsonWritable {
+: public ofxTCommon::NonCopyable
+, public ofxTCommon::JsonWritable {
   static_assert(std::is_base_of<AbstractConnection, TConn>::value,
                 "TConn must be a subclass of AbstractConnection");
 public:
@@ -185,10 +185,10 @@ public:
     }
   }
 
-  Json to_json() const override {
-    Json::array arr;
+  ofJson toJson() const override {
+    auto arr = ofJson::array();
     for (const auto& entry : _map) {
-      arr.push_back(entry.second->to_json());
+      arr.push_back(entry.second->toJson());
     }
     return arr;
   }

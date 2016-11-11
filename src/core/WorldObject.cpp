@@ -36,18 +36,18 @@ void WorldObject::fillInfo(Info &info) const {
   info.add("age:", age());
 }
 
-void WorldObject::addSerializedFields(Json::object &obj,
+void WorldObject::addSerializedFields(ofJson &obj,
                                       const SerializationContext& context) const {
-  JsonUtil::mergeInto(obj, {
-    {"id", JsonUtil::toJson(_id)},
+  ofxTCommon::JsonUtil::mergeInto(obj, {
+    {"id", ofxTCommon::JsonUtil::toJson(_id)},
     {"alive", _alive},
     {"age", age().get()},
   });
 }
 
-void WorldObject::deserializeFields(const Json &obj,
+void WorldObject::deserializeFields(const ofJson &obj,
                                     const SerializationContext &context) {
-  _id = JsonUtil::fromJson<ObjectId>(obj["id"]);
-  _alive = JsonUtil::fromJsonField(obj, "alive", true);
-  _age.setAge(JsonUtil::fromJsonField(obj, "age", 0));
+  _id = ofxTCommon::JsonUtil::fromJson<ObjectId>(obj["id"]);
+  _alive = ofxTCommon::JsonUtil::fromJsonField(obj, "alive", true);
+  _age.setAge(ofxTCommon::JsonUtil::fromJsonField(obj, "age", 0));
 }

@@ -76,9 +76,9 @@ void AbstractParamTransition::abortApplyAction() {
 
 template<typename T>
 static ParamTransitionPtr
-createTypedTransition(TParamBase& param, const Json& endJsonVal) {
+createTypedTransition(TParamBase& param, const ofJson& endJsonVal) {
   TParam<T>& typedParam = dynamic_cast<TParam<T>&>(param);
-  auto endVal = JsonUtil::fromJson<T>(endJsonVal);
+  auto endVal = ofxTCommon::JsonUtil::fromJson<T>(endJsonVal);
   auto trans = new ParamTransition<T>(typedParam,
                                       typedParam.get(),
                                       endVal);
@@ -86,7 +86,7 @@ createTypedTransition(TParamBase& param, const Json& endJsonVal) {
 }
 
 static ParamTransitionPtr
-createTransition(TParamBase& param, const Json& endJsonVal) {
+createTransition(TParamBase& param, const ofJson& endJsonVal) {
   if (param.isGroup()) {
     getLog().logWarning("Cannot transition param group " + param.getKey());
     return nullptr;
@@ -115,10 +115,10 @@ public:
   : _transitions(transitions) { }
 
   void load(Params& params,
-            const Json& presetValues);
+            const ofJson& presetValues);
 
 private:
-  void add(TParamBase& param, const Json& endJsonVal) {
+  void add(TParamBase& param, const ofJson& endJsonVal) {
     auto transition = createTransition(param, endJsonVal);
     if (transition) {
       getLog().logNotice([&](ofLog& log) {
@@ -132,7 +132,7 @@ private:
 };
 
 void CurrentToPresetLoader::load(Params &params,
-                                 const Json &presetValues) {
+                                 const ofJson &presetValues) {
   if (!presetValues.is_object()) {
     return;
   }
