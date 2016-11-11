@@ -9,7 +9,9 @@
 #include <boost/functional/hash.hpp>
 #include "../control/MidiCommon.h"
 
-ofxTCommon::EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
+using namespace ofxTCommon;
+
+EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
   {"cc", MidiMessageType::CONTROL_CHANGE},
   {"noteOn", MidiMessageType::NOTE_ON},
   {"noteOff", MidiMessageType::NOTE_OFF},
@@ -17,7 +19,7 @@ ofxTCommon::EnumTypeInfo<MidiMessageType> MidiMessageTypeInfo {
 };
 
 template<>
-const ofxTCommon::EnumTypeInfo<MidiMessageType>& ofxTCommon::getEnumInfo() {
+const EnumTypeInfo<MidiMessageType>& ofxTCommon::getEnumInfo() {
   return MidiMessageTypeInfo;
 }
 
@@ -72,19 +74,19 @@ std::size_t MidiMappingKey::hash() const {
 
 ofJson MidiMappingKey::toJson() const {
   return {
-    {"device", ofxTCommon::JsonUtil::toJson(_device)},
-    {"channel", ofxTCommon::JsonUtil::toJson(_channel)},
-    {"type", ofxTCommon::JsonUtil::enumToJson(_type)},
-    {"cc", ofxTCommon::JsonUtil::toJson(_cc)},
+    {"device", JsonUtil::toJson(_device)},
+    {"channel", JsonUtil::toJson(_channel)},
+    {"type", JsonUtil::enumToJson(_type)},
+    {"cc", JsonUtil::toJson(_cc)},
   };
 }
 
 void MidiMappingKey::readJson(const ofJson &obj) {
-  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
-  _device = ofxTCommon::JsonUtil::fromJson<MidiDeviceId>(obj["device"]);
-  _channel = ofxTCommon::JsonUtil::fromJson<MidiChannel>(obj["channel"]);
-  _type = ofxTCommon::JsonUtil::enumFromJson<MidiMessageType>(obj["type"]);
-  _cc = ofxTCommon::JsonUtil::fromJson<int>(obj["cc"]);
+  JsonUtil::assertIsObject(obj);
+  _device = JsonUtil::fromJson<MidiDeviceId>(obj["device"]);
+  _channel = JsonUtil::fromJson<MidiChannel>(obj["channel"]);
+  _type = JsonUtil::enumFromJson<MidiMessageType>(obj["type"]);
+  _cc = JsonUtil::fromJson<int>(obj["cc"]);
 }
 
 void MidiReceivedEventArgs::outputFields(std::ostream &os) const {

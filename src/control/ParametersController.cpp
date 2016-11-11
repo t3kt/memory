@@ -14,6 +14,8 @@
 #include "../control/ParamTransition.h"
 #include "../core/Actions.h"
 
+using namespace ofxTCommon;
+
 ofJson ParametersState::toJson() const {
   ofJson obj = {
     {"params", _params.toJson()},
@@ -29,7 +31,7 @@ ofJson ParametersState::toJson() const {
 }
 
 void ParametersState::readJson(const ofJson &obj) {
-  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
+  JsonUtil::assertIsObject(obj);
   const ofJson *paramVals;
   if (obj["params"].is_null()) {
     // parsing it as old format that only contains raw params
@@ -51,7 +53,7 @@ void ParametersState::readJson(const ofJson &obj) {
     }
   }
   if (!paramVals->is_null()) {
-    ofxTCommon::JsonUtil::assertHasType(*paramVals, ofJson::value_t::object);
+    JsonUtil::assertIsObject(*paramVals);
     _params.readJson(*paramVals);
   } else {
     AppSystem::get().log().app().logWarning("Unable to find param values in settings json");

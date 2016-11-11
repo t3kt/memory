@@ -8,6 +8,8 @@
 
 #include "../control/ParamPresets.h"
 
+using namespace ofxTCommon;
+
 static ConstParamPredicate presetPredicate =
 [](const TParamBase& param) {
   return param.supportsPresets();
@@ -21,10 +23,10 @@ ofJson ParamPreset::toJson() const {
 }
 
 void ParamPreset::readJson(const ofJson &obj) {
-  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
-  _name = ofxTCommon::JsonUtil::fromJsonField<std::string>(obj, "name");
+  JsonUtil::assertIsObject(obj);
+  _name = JsonUtil::fromJsonField<std::string>(obj, "name");
   auto vals = obj["params"];
-  ofxTCommon::JsonUtil::assertHasType(vals, ofJson::value_t::object);
+  JsonUtil::assertIsObject(vals);
   _values = vals;
 }
 

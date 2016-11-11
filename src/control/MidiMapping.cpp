@@ -8,6 +8,8 @@
 
 #include "../control/MidiMapping.h"
 
+using namespace ofxTCommon;
+
 ofJson MidiMapping::toJson() const {
   return {
     {"key", _key.toJson()},
@@ -16,9 +18,9 @@ ofJson MidiMapping::toJson() const {
 }
 
 void MidiMapping::readJson(const ofJson &obj) {
-  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
+  JsonUtil::assertIsObject(obj);
   _key.readJson(obj["key"]);
-  _path = ofxTCommon::JsonUtil::fromJson<std::string>(obj["path"]);
+  _path = JsonUtil::fromJson<std::string>(obj["path"]);
 }
 
 void MidiMapping::outputFields(std::ostream& os) const {

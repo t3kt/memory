@@ -26,7 +26,7 @@ void ParamTagSet::readJson(const ofJson &obj) {
   if (obj.is_null()) {
     return;
   }
-  JsonUtil::assertHasType(obj, ofJson::value_t::object);
+  JsonUtil::assertIsObject(obj);
   for (auto iter = obj.begin(); iter != obj.end(); ++iter) {
     put(iter.key(), iter.value());
   }
@@ -115,7 +115,7 @@ void Params::performRecursiveParamAction(ParamBaseAction action) {
 void Params::readJsonField(const ofJson& obj) {
   const auto& val = obj[getKey()];
   if (!val.is_null()) {
-    JsonUtil::assertHasType(val, ofJson::value_t::object);
+    JsonUtil::assertIsObject(val);
     readJson(val);
   } else if (hasDefault()) {
     resetToDefault();
@@ -133,7 +133,7 @@ ofJson Params::toJson() const {
 }
 
 void Params::readJson(const ofJson &val) {
-  JsonUtil::assertHasType(val, ofJson::value_t::object);
+  JsonUtil::assertIsObject(val);
   for (auto param : _paramBases) {
     param->readJsonField(val);
   }

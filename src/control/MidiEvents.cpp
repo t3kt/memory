@@ -11,6 +11,8 @@
 #include "../control/MidiEvents.h"
 #include "../control/MidiRouter.h"
 
+using namespace ofxTCommon;
+
 class MidiEventBinding {
 public:
   MidiEventBinding(const MidiEventMapping& mapping,
@@ -58,7 +60,7 @@ void MidiEventMapping::outputFields(std::ostream &os) const {
 
 ofJson MidiEventMapping::toJson() const {
   ofJson obj = {
-    {"event", ofxTCommon::JsonUtil::enumToJson(_eventType)},
+    {"event", JsonUtil::enumToJson(_eventType)},
     {"key", _key.toJson()},
     {"value", _value},
   };
@@ -69,11 +71,11 @@ ofJson MidiEventMapping::toJson() const {
 }
 
 void MidiEventMapping::readJson(const ofJson &obj) {
-  ofxTCommon::JsonUtil::assertHasType(obj, ofJson::value_t::object);
-  _eventType = ofxTCommon::JsonUtil::enumFromJson<SimulationEventType>(obj["event"]);
+  JsonUtil::assertIsObject(obj);
+  _eventType = JsonUtil::enumFromJson<SimulationEventType>(obj["event"]);
   _key.readJson(obj["key"]);
-  _value = ofxTCommon::JsonUtil::fromJsonField(obj, "value", 0);
-  _autoOff = ofxTCommon::JsonUtil::fromJsonField(obj, "autoOff", true);
+  _value = JsonUtil::fromJsonField(obj, "value", 0);
+  _autoOff = JsonUtil::fromJsonField(obj, "autoOff", true);
 }
 
 void MidiEventRouter::setup() {
