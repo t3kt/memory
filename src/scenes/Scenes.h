@@ -6,13 +6,13 @@
 
 #include <memory>
 #include <ofxTCommon.h>
+#include <ofxTJsonIO.h>
 #include <vector>
-#include "../core/JsonIO.h"
 
 class SceneNode
 : public ofxTCommon::NonCopyable
-, public JsonReadable
-, public JsonWritable {
+, public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable {
 public:
 };
 
@@ -21,14 +21,14 @@ using SceneNodeList = std::vector<SceneNodePtr>;
 
 class Scene
 : public ofxTCommon::NonCopyable
-, public JsonReadable
-, public JsonWritable {
+, public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable {
 public:
   const std::string& name() const { return _name; }
   const SceneNodeList& nodes() const { return _nodes; }
 
-  void read_json(const Json& obj) override;
-  Json to_json() const override;
+  void readJson(const ofJson& obj) override;
+  ofJson toJson() const override;
 private:
   std::string _name;
   SceneNodeList _nodes;

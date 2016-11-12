@@ -47,6 +47,8 @@
 		329F511F1DA9F73F00063471 /* OutputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F511D1DA9F73F00063471 /* OutputController.cpp */; };
 		329F51221DAA089600063471 /* FogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51201DAA089600063471 /* FogController.cpp */; };
 		32B31BA71DD57A9600F57FAC /* ofxTJsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */; };
+		32B31BB31DD6D06A00F57FAC /* SpawnSceneNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */; };
+		32B31BB61DD6D1C100F57FAC /* SceneValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */; };
 		32CCB2FC1DAE13F900BAE226 /* ParamPresets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */; };
 		32CCB2FD1DAE13F900BAE226 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F61DAE13F900BAE226 /* Params.cpp */; };
 		32CCB2FE1DAE13F900BAE226 /* ValueSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */; };
@@ -324,6 +326,10 @@
 		329F51211DAA089600063471 /* FogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogController.h; path = rendering/FogController.h; sourceTree = "<group>"; };
 		32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTJsonIO.cpp; sourceTree = "<group>"; };
 		32B31BA61DD57A9600F57FAC /* ofxTJsonIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTJsonIO.h; sourceTree = "<group>"; };
+		32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpawnSceneNode.cpp; path = scenes/SpawnSceneNode.cpp; sourceTree = "<group>"; };
+		32B31BB21DD6D06A00F57FAC /* SpawnSceneNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpawnSceneNode.h; path = scenes/SpawnSceneNode.h; sourceTree = "<group>"; };
+		32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneValue.cpp; path = scenes/SceneValue.cpp; sourceTree = "<group>"; };
+		32B31BB51DD6D1C100F57FAC /* SceneValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneValue.h; path = scenes/SceneValue.h; sourceTree = "<group>"; };
 		32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamPresets.cpp; path = control/ParamPresets.cpp; sourceTree = "<group>"; };
 		32CCB2F51DAE13F900BAE226 /* ParamPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParamPresets.h; path = control/ParamPresets.h; sourceTree = "<group>"; };
 		32CCB2F61DAE13F900BAE226 /* Params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Params.cpp; path = control/Params.cpp; sourceTree = "<group>"; };
@@ -866,6 +872,10 @@
 			children = (
 				3242899D1DD561B10048C208 /* Scenes.cpp */,
 				3242899E1DD561B10048C208 /* Scenes.h */,
+				32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */,
+				32B31BB21DD6D06A00F57FAC /* SpawnSceneNode.h */,
+				32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */,
+				32B31BB51DD6D1C100F57FAC /* SceneValue.h */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -1877,6 +1887,7 @@
 				A9EA0DA3681A4682D890F307 /* InspectionController.cpp in Sources */,
 				4550C0A277C1DA94EA84509A /* Logging.cpp in Sources */,
 				C8FF926ED1C1C5FB0CF45E30 /* NodeEntity.cpp in Sources */,
+				32B31BB31DD6D06A00F57FAC /* SpawnSceneNode.cpp in Sources */,
 				866EF7E8D43FA2B96A475872 /* NodesController.cpp in Sources */,
 				DAF2181567516475842265FD /* ObjectId.cpp in Sources */,
 				8A63C26B1BA3667BD5A7F7D5 /* ObserverEntity.cpp in Sources */,
@@ -2016,6 +2027,7 @@
 				C4930D0AC5FC48D030E74BCA /* ofxSyphonClient.mm in Sources */,
 				16BE83B10078E1808DC3F8E4 /* ofxSyphonServer.mm in Sources */,
 				F346D2278BFF20EC7683F535 /* ofxSyphonServerDirectory.mm in Sources */,
+				32B31BB61DD6D1C100F57FAC /* SceneValue.cpp in Sources */,
 				D79D1EF3A5839395392CAF37 /* SyphonNameboundClient.m in Sources */,
 				3F4776562018A3BAA7B95BD3 /* ofxTextAlign.cpp in Sources */,
 				9795DC7D5433EB5EEAE1254B /* ofxTextAlignTTF.cpp in Sources */,

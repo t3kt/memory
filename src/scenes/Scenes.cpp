@@ -4,7 +4,9 @@
 
 #include "../scenes/Scenes.h"
 
-void Scene::read_json(const Json &obj) {
+using namespace ofxTCommon;
+
+void Scene::readJson(const ofJson &obj) {
   _name = JsonUtil::fromJsonField<std::string>(obj, "name", "scene");
   // read nodes...
 }
