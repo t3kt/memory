@@ -6,6 +6,24 @@
 #include <ofVec3f.h>
 #include "../scenes/SceneValue.h"
 
+using namespace ofxTCommon;
+
+EnumTypeInfo<SceneValueMode> SceneValueModeInfo {
+  {"value", SceneValueMode::VALUE},
+  {"randomRange", SceneValueMode::RANDOM_RANGE},
+  {"chance", SceneValueMode::CHANCE},
+};
+
+template<>
+const EnumTypeInfo<SceneValueMode>& ofxTCommon::getEnumInfo() {
+  return SceneValueModeInfo;
+}
+
+std::ostream& operator<<(std::ostream& os,
+                         const SceneValueMode& mode) {
+  os << enumToString(mode);
+}
+
 template<>
 float SceneValue<float>::getRandomValue() const {
   return ofRandom(_value0, _value1);
