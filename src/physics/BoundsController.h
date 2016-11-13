@@ -49,6 +49,8 @@ public:
 
   ofVec3f randomPoint() const;
 
+  ofVec3f scalePoint(const ofVec3f& position) const;
+
   void draw() override;
 
   bool performAction(AppAction action) override;

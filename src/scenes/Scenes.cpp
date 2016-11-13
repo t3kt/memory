@@ -2,30 +2,24 @@
 //  Scenes.cpp
 //
 
-#include <stdexcept>
+#include <functional>
 #include <unordered_map>
 #include "../scenes/Scenes.h"
 #include "../scenes/SpawnSceneNode.h"
 
 using namespace ofxTCommon;
 
+using SceneNodeFactory = std::function<SceneNodePtr()>;
+
 std::unordered_map<std::string, SceneNodeFactory> typeFactories {
-//  {"spawnObserver",},
+  {SpawnObserverSceneNode::typeName(),
+    []() { return std::make_shared<SpawnObserverSceneNode>(); }},
 };
 
 
-/* static */
-void SceneNode::registerType(const std::string &typeName,
-                             SceneNodeFactory factory) {
-  typeFactories[typeName] = factory;
-}
-
-/* static */
-SceneNodePtr SceneNode::create(const std::string &typeName) {
+static SceneNodePtr createNode(const std::string &typeName) {
   auto iter = typeFactories.find(typeName);
   if (iter == typeFactories.end()) {
-    // log...?
-//    throw std::invalid_argument("Unsupported scene node type: " + typeName);
     ofLogWarning() << "Unrecognized scene node type: " << typeName;
     return nullptr;
   }
@@ -38,11 +32,10 @@ void SceneNode::readJson(const ofJson &obj) {
 }
 
 ofJson SceneNode::toJson() const {
-  return {
-    {"type", typeName()},
-    {"beginTime", _beginTime.toJson()},
-    {"endTime", _endTime.toJson()},
-  };
+  auto obj = ofJson::object();
+  _beginTime.writeFieldTo(obj, "beginTime");
+  _endTime.writeFieldTo(obj, "endTime");
+  return obj;
 }
 
 void Scene::readJson(const ofJson &obj) {
@@ -54,7 +47,7 @@ void Scene::readJson(const ofJson &obj) {
     for (const auto& nodeObj : nodesArray) {
       JsonUtil::assertIsObject(nodeObj);
       std::string typeName = nodeObj["type"];
-      auto node = SceneNode::create(typeName);
+      auto node = createNode(typeName);
       if (!node) {
         continue;
       }

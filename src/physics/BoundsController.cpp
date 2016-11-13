@@ -52,6 +52,11 @@ ofVec3f BoundsController::clampPoint(const ofVec3f &position) const {
                  ofClamp(position.z, -bound, bound));
 }
 
+ofVec3f BoundsController::scalePoint(const ofVec3f &position) const {
+  float bound = _params.size.get() / 2;
+  return position * bound;
+}
+
 void BoundsController::draw() {
   if (!_debugParams.showBounds.get()) {
     return;

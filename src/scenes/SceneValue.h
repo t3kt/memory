@@ -36,7 +36,7 @@ public:
   , _value1(value1)
   , _chance(chance) { }
 
-  T get() const {
+  T get(std::function<T()> getDefault) const {
     switch (_mode) {
       case Mode::VALUE:
         return _value0;
@@ -49,6 +49,16 @@ public:
         return T();
     }
   }
+
+  T get() const {
+    return get([]() { return T(); });
+  }
+
+  T get(T defaultValue) const {
+    return get([=]() { return defaultValue; });
+  }
+
+  bool isSpecified() const { return _mode != Mode::NONE; }
 
   void readJson(const ofJson& obj) override {
     if (!obj.is_null()) {
@@ -95,12 +105,18 @@ public:
         };
       case Mode::RANDOM_RANGE:
         return {
-          {"range", { _value0, _value1 }},
+          {"range", {
+            ofxTCommon::JsonUtil::toJson(_value0),
+            ofxTCommon::JsonUtil::toJson(_value1),
+          }},
         };
       case Mode::CHANCE:
         return {
           {"chance", _chance},
-          {"options", { _value0, _value1}},
+          {"options", {
+            ofxTCommon::JsonUtil::toJson(_value0),
+            ofxTCommon::JsonUtil::toJson(_value1),
+          }},
         };
       case Mode::NONE:
       default:
@@ -109,6 +125,12 @@ public:
   }
 
   std::string typeName() const override { return "SceneValue"; }
+
+  void writeFieldTo(ofJson& obj, const std::string& name) const {
+    if (isSpecified()) {
+      obj[name] = toJson();
+    }
+  }
 protected:
   void outputFields(std::ostream& os) const override {
     os << "mode: " << _mode;
