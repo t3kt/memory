@@ -10,6 +10,7 @@
 #include <vector>
 #include "../scenes/SceneValue.h"
 
+class ActionsController;
 class SceneNode;
 using SceneNodePtr = std::shared_ptr<SceneNode>;
 using SceneNodeList = std::vector<SceneNodePtr>;
@@ -19,6 +20,8 @@ class SceneNode
 , public ofxTCommon::JsonReadable
 , public ofxTCommon::JsonWritable {
 public:
+  virtual void schedule(ActionsController& actions);
+
   virtual void begin() = 0;
   virtual void end() { }
 
@@ -36,6 +39,8 @@ class Scene
 public:
   const std::string& name() const { return _name; }
   const SceneNodeList& nodes() const { return _nodes; }
+
+  void schedule(ActionsController& actions);
 
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;

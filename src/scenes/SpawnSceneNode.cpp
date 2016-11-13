@@ -24,7 +24,8 @@ static ofVec3f randomUnsignedPoint() {
 }
 
 SpawnSceneNode::SpawnSceneNode()
-: _bounds(AppSystem::get().simulation().bounds()) { }
+: _bounds(AppSystem::get().simulation().bounds())
+, _context(AppSystem::get().context()) { }
 
 void SpawnSceneNode::readJson(const ofJson &obj) {
   SceneNode::readJson(obj);
@@ -48,14 +49,17 @@ void SpawnObserverSceneNode::readJson(const ofJson &obj) {
 
 ofJson SpawnObserverSceneNode::toJson() const {
   auto obj = SpawnSceneNode::toJson();
+  obj["type"] = SpawnObserverSceneNode::typeName();
   _decayRate.writeFieldTo(obj, "decayRate");
 }
 
 void SpawnObserverSceneNode::begin() {
   auto pos = _bounds.scalePoint(_position.get([]() { return randomPoint(); }));
   auto velocity = _velocity.get(ofVec3f(0, 0, 0));
-//  auto decayRate = _decayRate.get(0.)
-//  auto entity = std::make_shared
-//  AppSystem::get().context().observers.add
-  //...
+  auto decay = _decayRate.get(0.09);
+  auto entity = std::make_shared<ObserverEntity>(pos,
+                                                 decay,
+                                                 _context.entityState);
+  entity->setVelocity(velocity);
+  _context.observers.add(entity);
 }

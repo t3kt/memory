@@ -10,6 +10,7 @@
 #include "../scenes/SceneValue.h"
 
 class BoundsController;
+class Context;
 
 class SpawnSceneNode
 : public SceneNode {
@@ -20,6 +21,7 @@ public:
   ofJson toJson() const override;
 protected:
   const BoundsController& _bounds;
+  Context& _context;
 
   SceneValue<ofVec3f> _position;
   SceneValue<ofVec3f> _velocity;
