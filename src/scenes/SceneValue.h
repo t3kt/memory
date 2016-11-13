@@ -22,7 +22,8 @@ std::ostream& operator<<(std::ostream& os,
 
 template<typename T>
 class SceneValue
-: public ofxTCommon::JsonWritable
+: public ofxTCommon::JsonReadable
+, public ofxTCommon::JsonWritable
 , public ofxTCommon::Outputable {
 public:
   using Mode = SceneValueMode;
@@ -49,6 +50,43 @@ public:
     }
   }
 
+  void readJson(const ofJson& obj) override {
+    if (!obj.is_null()) {
+      ofxTCommon::JsonUtil::assertIsObject(obj);
+      const auto& val = obj["value"];
+      if (!val.is_null()) {
+        _mode = Mode::VALUE;
+        _value0 = ofxTCommon::JsonUtil::fromJson<T>(val);
+        _value1 = _value0;
+        _chance = 0;
+        return;
+      }
+      const auto& range = obj["range"];
+      if (!range.is_null()) {
+        ofxTCommon::JsonUtil::assertIsArray(range, 2);
+        _mode = Mode::RANDOM_RANGE;
+        _value0 = ofxTCommon::JsonUtil::fromJson<T>(range[0]);
+        _value1 = ofxTCommon::JsonUtil::fromJson<T>(range[1]);
+        _chance = 0;
+        return;
+      }
+      const auto& chance = obj["chance"];
+      const auto& options = obj["options"];
+      if (!chance.is_null() && !options.is_null()) {
+        ofxTCommon::JsonUtil::assertIsArray(options, 2);
+        _mode = Mode::CHANCE;
+        _value0 = ofxTCommon::JsonUtil::fromJson<T>(options[0]);
+        _value1 = ofxTCommon::JsonUtil::fromJson<T>(options[1]);
+        _chance = chance;
+        return;
+      }
+    }
+    _mode = Mode::NONE;
+    _value0 = T();
+    _value1 = T();
+    _chance = 0;
+  }
+
   ofJson toJson() const override {
     switch (_mode) {
       case Mode::VALUE:
@@ -69,6 +107,7 @@ public:
         return nullptr;
     }
   }
+
   std::string typeName() const override { return "SceneValue"; }
 protected:
   void outputFields(std::ostream& os) const override {
@@ -112,34 +151,5 @@ namespace SceneValues {
   template<typename T>
   SceneValue<T> createNone() {
     return SceneValue<T>(SceneValueMode::NONE, T(), T(), 0);
-  }
-
-  template<typename T>
-  SceneValue<T> readSceneValueJson(const ofJson& obj) {
-    if (obj.is_null()) {
-      return createNone<T>();
-    }
-    const auto& val = obj["value"];
-    if (!val.is_null()) {
-      auto v = ofxTCommon::JsonUtil::fromJson<T>(val);
-      return createValue(v);
-    }
-    const auto& range = obj["range"];
-    if (!range.is_null()) {
-      ofxTCommon::JsonUtil::assertIsArray(range, 2);
-      auto v0 = ofxTCommon::JsonUtil::fromJson<T>(range[0]);
-      auto v1 = ofxTCommon::JsonUtil::fromJson<T>(range[1]);
-      return createRandomRange(v0, v1);
-    }
-    const auto& chance = obj["chance"];
-    const auto& options = obj["options"];
-    if (!chance.is_null() && !options.is_null()) {
-      ofxTCommon::JsonUtil::assertIsArray(options, 2);
-      auto v0 = ofxTCommon::JsonUtil::fromJson<T>(options[0]);
-      auto v1 = ofxTCommon::JsonUtil::fromJson<T>(options[1]);
-      float c = chance;
-      return createChance(v0, v1, c);
-    }
-    return createNone<T>();
   }
 }
