@@ -7,29 +7,28 @@
 #include <memory>
 #include <ofxTCommon.h>
 #include <ofxTJsonIO.h>
-#include <vector>
-#include "../scenes/SceneValue.h"
+#include <unordered_map>
+#include "../core/Actions.h"
+#include "../core/ObjectId.h"
 
-class ActionsController;
 class SceneNode;
 using SceneNodePtr = std::shared_ptr<SceneNode>;
-using SceneNodeList = std::vector<SceneNodePtr>;
+using SceneNodeMap = std::unordered_map<ObjectId, SceneNodePtr>;
 
 class SceneNode
 : public ofxTCommon::NonCopyable
 , public ofxTCommon::JsonReadable
 , public ofxTCommon::JsonWritable {
 public:
-  virtual void schedule(ActionsController& actions);
+  SceneNode()
+  : _id(ObjectIds::next()) { }
 
-  virtual void begin() = 0;
-  virtual void end() { }
+  const ObjectId& id() const { return _id; }
 
-  void readJson(const ofJson& obj) override;
-  ofJson toJson() const override;
+  virtual void schedule(ActionsController& actions,
+                        ActionFinishCallback finishCallback) = 0;
 private:
-  SceneValue<float> _beginTime;
-  SceneValue<float> _endTime;
+  const ObjectId _id;
 };
 
 class Scene
@@ -38,13 +37,16 @@ class Scene
 , public ofxTCommon::JsonWritable {
 public:
   const std::string& name() const { return _name; }
-  const SceneNodeList& nodes() const { return _nodes; }
+  const SceneNodeMap& nodes() const { return _nodes; }
 
   void schedule(ActionsController& actions);
 
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;
+
+  bool active() const { return _activeCount > 0; }
 private:
   std::string _name;
-  SceneNodeList _nodes;
+  SceneNodeMap _nodes;
+  int _activeCount;
 };

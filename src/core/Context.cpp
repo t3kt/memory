@@ -70,6 +70,8 @@ void Context::clear() {
   nodes.clear();
   observers.clear();
   occurrences.clear();
+  activeScene = nullptr;
+  spawningSuspended = false;
 }
 
 ofJson Context::toJson() const {

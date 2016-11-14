@@ -4,7 +4,6 @@
 
 #include <functional>
 #include <unordered_map>
-#include "../core/Actions.h"
 #include "../scenes/Scenes.h"
 #include "../scenes/SpawnSceneNode.h"
 
@@ -26,38 +25,13 @@ static SceneNodePtr createNode(const std::string &typeName) {
   return iter->second();
 }
 
-void SceneNode::schedule(ActionsController &actions) {
-  if (_beginTime.isSpecified()) {
-    auto time = _beginTime.get();
-    actions.addDelayed(time, [&](Context&, ActionsController&) {
-      begin();
-      return ActionResult::cancel();
-    });
-  }
-  if (_endTime.isSpecified()) {
-    auto time = _endTime.get();
-    actions.addDelayed(time, [&](Context&, ActionsController&) {
-      end();
-      return ActionResult::cancel();
-    });
-  }
-}
-
-void SceneNode::readJson(const ofJson &obj) {
-  _beginTime.readJson(obj["beginTime"]);
-  _endTime.readJson(obj["endTime"]);
-}
-
-ofJson SceneNode::toJson() const {
-  auto obj = ofJson::object();
-  _beginTime.writeFieldTo(obj, "beginTime");
-  _endTime.writeFieldTo(obj, "endTime");
-  return obj;
-}
-
 void Scene::schedule(ActionsController &actions) {
-  for (auto& node : _nodes) {
-    node->schedule(actions);
+  ActionFinishCallback finishCallback = [&]() {
+    _activeCount--;
+  };
+  for (auto& entry : _nodes) {
+    _activeCount++;
+    entry.second->schedule(actions, finishCallback);
   }
 }
 
@@ -74,15 +48,15 @@ void Scene::readJson(const ofJson &obj) {
       if (!node) {
         continue;
       }
-      _nodes.push_back(node);
+      _nodes.insert(std::make_pair(node->id(), node));
     }
   }
 }
 
 ofJson Scene::toJson() const {
   auto nodesArray = ofJson::array();
-  for (const auto& node : _nodes) {
-    nodesArray.push_back(node->toJson());
+  for (const auto& entry : _nodes) {
+    nodesArray.push_back(entry.second->toJson());
   }
   return {
     {"name", _name},

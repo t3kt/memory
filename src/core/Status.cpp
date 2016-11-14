@@ -10,6 +10,7 @@
 #include "../app/AppParameters.h"
 #include "../control/ParamTransition.h"
 #include "../core/Status.h"
+#include "../scenes/Scenes.h"
 
 StatusInfoController::StatusInfoController(const Params& params,
                                            const Context& context)
@@ -37,6 +38,10 @@ void StatusInfoController::update() {
   if (_context.activeTransition) {
     _info.add("Transitioning:",
               _context.activeTransition->name());
+  }
+  if (_context.activeScene) {
+    _info.add("Scene:",
+              _context.activeScene->name());
   }
 }
 

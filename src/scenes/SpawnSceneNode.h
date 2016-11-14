@@ -17,12 +17,18 @@ class SpawnSceneNode
 public:
   SpawnSceneNode();
 
+  void schedule(ActionsController& actions,
+                ActionFinishCallback finishCallback) override;
+
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;
 protected:
+  virtual void spawn() = 0;
+
   const BoundsController& _bounds;
   Context& _context;
 
+  SceneValue<float> _time;
   SceneValue<ofVec3f> _position;
   SceneValue<ofVec3f> _velocity;
 };
@@ -36,11 +42,10 @@ public:
 
   SpawnObserverSceneNode();
 
-  void begin() override;
-
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;
-
+protected:
+  void spawn() override;
 private:
   SceneValue<float> _decayRate;
   const RateObserverSpawnerParams& _params;

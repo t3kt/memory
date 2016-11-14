@@ -40,6 +40,9 @@ public:
   , _scheduler(context, params) { }
 
   void update() override {
+    if (_context.spawningSuspended) {
+      return;
+    }
     int count = _scheduler.query();
     if (count > 0) {
       spawnEntities(count);

@@ -28,15 +28,25 @@ SpawnSceneNode::SpawnSceneNode()
 , _context(AppSystem::get().context()) { }
 
 void SpawnSceneNode::readJson(const ofJson &obj) {
-  SceneNode::readJson(obj);
+  _time.readJson(obj["time"]);
   _position.readJson(obj["position"]);
   _velocity.readJson(obj["velocity"]);
 }
 
 ofJson SpawnSceneNode::toJson() const {
-  auto obj = SceneNode::toJson();
+  auto obj = ofJson::object();
+  _time.writeFieldTo(obj, "time");
   _position.writeFieldTo(obj, "position");
   _velocity.writeFieldTo(obj, "velocity");
+}
+
+void SpawnSceneNode::schedule(ActionsController &actions,
+                              ActionFinishCallback finishCallback) {
+  auto time = _time.get(0);
+  actions.addDelayed(time, [&](Context&, ActionsController&) {
+    spawn();
+    return ActionResult::cancel();
+  }, finishCallback);
 }
 
 SpawnObserverSceneNode::SpawnObserverSceneNode()
@@ -53,7 +63,7 @@ ofJson SpawnObserverSceneNode::toJson() const {
   _decayRate.writeFieldTo(obj, "decayRate");
 }
 
-void SpawnObserverSceneNode::begin() {
+void SpawnObserverSceneNode::spawn() {
   auto pos = _bounds.scalePoint(_position.get([]() { return randomPoint(); }));
   auto velocity = _velocity.get(ofVec3f(0, 0, 0));
   auto decay = _decayRate.get(0.09);

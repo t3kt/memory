@@ -19,6 +19,7 @@ class NodeEntity;
 class ObserverEntity;
 class OccurrenceEntity;
 class ParticleObject;
+class Scene;
 class WorldObject;
 
 // State of the simulation and the app in general.
@@ -59,6 +60,10 @@ public:
   EntityGroup highlightedEntities;
 
   std::shared_ptr<AbstractParamTransition> activeTransition;
+
+  std::shared_ptr<Scene> activeScene;
+
+  bool spawningSuspended;
 
 private:
   void clear();
