@@ -36,6 +36,7 @@
 
 class BoundsController;
 class EventLoggers;
+class ScenesController;
 
 class SimulationApp
 : public ofBaseApp
@@ -98,6 +99,7 @@ private:
   std::shared_ptr<InspectionController> _inspectionController;
   std::shared_ptr<StatusInfoController> _statusController;
   std::shared_ptr<ParametersController> _paramsController;
+  std::shared_ptr<ScenesController> _scenes;
   ComponentCollection<ComponentBase> _components;
 };
 

@@ -45,6 +45,7 @@ EnumTypeInfo<AppAction> AppActionType({
   {"toggleFullscreen", AppAction::TOGGLE_FULLSCREEN},
   {"capturePreset", AppAction::CAPTURE_PRESET},
   {"resetParams", AppAction::RESET_PARAMS},
+  {"loadScene", AppAction::LOAD_SCENE},
 });
 
 template<>

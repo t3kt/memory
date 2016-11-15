@@ -10,6 +10,7 @@
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
 #include "../core/EventLogging.h"
+#include "../scenes/ScenesController.h"
 
 void SimulationApp::setup() {
   _paramsController =
@@ -81,6 +82,10 @@ void SimulationApp::setup() {
   _statusController =
   _components.add<StatusInfoController>(_appParams.debug,
                                         _context);
+
+  _scenes =
+  _components.add<ScenesController>(_context,
+                                    *_actions);
 }
 
 void SimulationApp::updateLogState() {

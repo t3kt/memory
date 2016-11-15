@@ -50,6 +50,7 @@ enum class AppAction {
   TOGGLE_FULLSCREEN,
   CAPTURE_PRESET,
   RESET_PARAMS,
+  LOAD_SCENE,
 };
 
 using AppActionEventArgs = ofxTCommon::ValueEventArgs<AppAction>;
