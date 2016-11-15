@@ -27,6 +27,8 @@ public:
 
   void loadSceneFile(const std::string& filename);
 
+  void startScene(std::shared_ptr<Scene> scene);
+
   void promptAndLoadScene();
 
 private:

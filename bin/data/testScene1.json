@@ -1,0 +1,122 @@
+{
+  "name": "testScene1",
+  "nodes": [
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 6.0
+      },
+      "type": "spawnObserver",
+      "velocity": {
+        "value": [
+          -30.0,
+          -30.0,
+          -30.0
+        ]
+      }
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 6.0
+      },
+      "type": "spawnObserver",
+      "velocity": {
+        "value": [
+          30.0,
+          30.0,
+          30.0
+        ]
+      }
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.699999988079071,
+          0.699999988079071,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 3.20000004768372
+      },
+      "type": "spawnObserver",
+      "velocity": null
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.600000023841858,
+          0.600000023841858,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 3.09999990463257
+      },
+      "type": "spawnObserver",
+      "velocity": null
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.5,
+          0.5,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 3.09999990463257
+      },
+      "type": "spawnObserver",
+      "velocity": null
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 3.0
+      },
+      "type": "spawnObserver",
+      "velocity": null
+    },
+    {
+      "decayRate": null,
+      "position": {
+        "value": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time": {
+        "value": 2.0
+      },
+      "type": "spawnObserver",
+      "velocity": null
+    }
+  ]
+}

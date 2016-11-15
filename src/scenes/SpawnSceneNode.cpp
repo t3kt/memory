@@ -38,6 +38,7 @@ ofJson SpawnSceneNode::toJson() const {
   _time.writeFieldTo(obj, "time");
   _position.writeFieldTo(obj, "position");
   _velocity.writeFieldTo(obj, "velocity");
+  return obj;
 }
 
 void SpawnSceneNode::schedule(ActionsController &actions,
@@ -61,6 +62,7 @@ ofJson SpawnObserverSceneNode::toJson() const {
   auto obj = SpawnSceneNode::toJson();
   obj["type"] = SpawnObserverSceneNode::typeName();
   _decayRate.writeFieldTo(obj, "decayRate");
+  return obj;
 }
 
 void SpawnObserverSceneNode::spawn() {

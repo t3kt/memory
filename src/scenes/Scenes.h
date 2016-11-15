@@ -36,6 +36,11 @@ class Scene
 , public ofxTCommon::JsonReadable
 , public ofxTCommon::JsonWritable {
 public:
+  void addNode(SceneNodePtr node) {
+    _nodes.insert(std::make_pair(node->id(), node));
+  }
+  void setName(const std::string& name) { _name = name; }
+
   const std::string& name() const { return _name; }
   const SceneNodeMap& nodes() const { return _nodes; }
 

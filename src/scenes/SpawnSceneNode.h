@@ -22,6 +22,10 @@ public:
 
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;
+
+  void setTime(SceneValue<float> time) { _time = time; }
+  void setPosition(SceneValue<ofVec3f> position) { _position = position; }
+  void setVelocity(SceneValue<ofVec3f> velocity) { _velocity = velocity; }
 protected:
   virtual void spawn() = 0;
 
