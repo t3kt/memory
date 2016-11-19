@@ -11,54 +11,54 @@
 #include "../scenes/SpawnSceneNode.h"
 
 void ScenesController::setup() {
-  // make test scene
-  auto scene = std::make_shared<Scene>();
-  scene->setName("testScene1");
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(2.0f));
-    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(3.0f));
-    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(3.1f));
-    node->setPosition(SceneValues::createValue(ofVec3f(.5, .5, 0)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(3.1f));
-    node->setPosition(SceneValues::createValue(ofVec3f(.6, .6, 0)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(3.2f));
-    node->setPosition(SceneValues::createValue(ofVec3f(.7, .7, 0)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(6.0f));
-    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
-    node->setVelocity(SceneValues::createValue(ofVec3f(30, 30, 30)));
-    scene->addNode(node);
-  }
-  {
-    auto node = std::make_shared<SpawnObserverSceneNode>();
-    node->setTime(SceneValues::createValue(6.0f));
-    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
-    node->setVelocity(SceneValues::createValue(ofVec3f(-30, -30, -30)));
-    scene->addNode(node);
-  }
-  scene->writeJsonTo("testScene1.json");
+//  // make test scene
+//  auto scene = std::make_shared<Scene>();
+//  scene->setName("testScene1");
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(2.0f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(3.0f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(3.1f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(.5, .5, 0)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(3.1f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(.6, .6, 0)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(3.2f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(.7, .7, 0)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(6.0f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
+//    node->setVelocity(SceneValues::createValue(ofVec3f(30, 30, 30)));
+//    scene->addNode(node);
+//  }
+//  {
+//    auto node = std::make_shared<SpawnObserverSceneNode>();
+//    node->setTime(SceneValues::createValue(6.0f));
+//    node->setPosition(SceneValues::createValue(ofVec3f(0, 0, 0)));
+//    node->setVelocity(SceneValues::createValue(ofVec3f(-30, -30, -30)));
+//    scene->addNode(node);
+//  }
+//  scene->writeJsonTo("testScene1.json");
 }
 
 void ScenesController::update() {
