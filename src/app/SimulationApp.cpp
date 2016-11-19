@@ -9,6 +9,7 @@
 #include <ofSystemUtils.h>
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
+#include "../control/CommandsController.h"
 #include "../core/EventLogging.h"
 #include "../scenes/ScenesController.h"
 
@@ -86,6 +87,9 @@ void SimulationApp::setup() {
   _scenes =
   _components.add<ScenesController>(_context,
                                     *_actions);
+
+  _commands =
+  _components.add<CommandsController>(_context);
 }
 
 void SimulationApp::updateLogState() {
@@ -143,6 +147,9 @@ void SimulationApp::saveEntityState() {
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
+//  if (event.key == 'v') {
+//    _commands->perform("test", CommandArgs{ std::string("foo") });
+//  }
   AppSystem::get().handleKeyPressed(event);
 }
 

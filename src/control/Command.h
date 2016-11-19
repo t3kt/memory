@@ -7,10 +7,10 @@
 
 #include <cstdint>
 #include <functional>
+#include <initializer_list>
 #include <memory>
 #include <Poco/Any.h>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 class Context;
@@ -21,6 +21,11 @@ class CommandArgs {
 public:
   using Arg = CommandArg;
   using Storage = std::vector<Arg>;
+
+  CommandArgs() { }
+
+  CommandArgs(std::initializer_list<Arg> args)
+  : _args(args) { }
 
   Arg operator[](std::size_t i) const {
     return _args[i];
@@ -48,22 +53,4 @@ public:
                        const CommandArgs& args) = 0;
 
   static CommandPtr of(CommandFn fn);
-};
-
-
-class TestCommand
-: public Command {
-public:
-  bool perform(Context& context,
-               const CommandArgs& args) override;
-};
-
-class CommandSet {
-public:
-  using CommandMap = std::unordered_map<std::string, CommandPtr>;
-
-  bool perform(const std::string& name, Context& context, const CommandArgs& args) const;
-
-private:
-  CommandMap _commands;
 };
