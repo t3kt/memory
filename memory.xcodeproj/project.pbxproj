@@ -41,6 +41,7 @@
 		323AA1B21DBB43240022C990 /* SharedMemChopOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 323AA1AE1DBB43240022C990 /* SharedMemChopOutput.cpp */; };
 		3242899F1DD561B10048C208 /* Scenes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3242899D1DD561B10048C208 /* Scenes.cpp */; };
 		327C588A1DAC82C00089FE80 /* TimingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 327C58881DAC82C00089FE80 /* TimingController.cpp */; };
+		3296549F1DE04622008EA127 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3296549D1DE04622008EA127 /* Command.cpp */; };
 		329F510A1DA6100C00063471 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51091DA6100C00063471 /* Component.cpp */; };
 		329F510F1DA765BF00063471 /* BoundsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F510D1DA765BF00063471 /* BoundsController.cpp */; };
 		329F51161DA89A4E00063471 /* ConnectionTracerRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51141DA89A4E00063471 /* ConnectionTracerRenderer.cpp */; };
@@ -316,6 +317,8 @@
 		3242899E1DD561B10048C208 /* Scenes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scenes.h; path = scenes/Scenes.h; sourceTree = "<group>"; };
 		327C58881DAC82C00089FE80 /* TimingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimingController.cpp; path = core/TimingController.cpp; sourceTree = "<group>"; };
 		327C58891DAC82C00089FE80 /* TimingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimingController.h; path = core/TimingController.h; sourceTree = "<group>"; };
+		3296549D1DE04622008EA127 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Command.cpp; path = control/Command.cpp; sourceTree = "<group>"; };
+		3296549E1DE04622008EA127 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Command.h; path = control/Command.h; sourceTree = "<group>"; };
 		329F51091DA6100C00063471 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = "<group>"; };
 		329F510D1DA765BF00063471 /* BoundsController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoundsController.cpp; path = physics/BoundsController.cpp; sourceTree = "<group>"; };
 		329F510E1DA765BF00063471 /* BoundsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoundsController.h; path = physics/BoundsController.h; sourceTree = "<group>"; };
@@ -713,6 +716,8 @@
 		102C17DAD08FCB5A66E3A9C0 /* control */ = {
 			isa = PBXGroup;
 			children = (
+				3296549D1DE04622008EA127 /* Command.cpp */,
+				3296549E1DE04622008EA127 /* Command.h */,
 				D007C865B2527CA426BD0CD8 /* MappingSet.h */,
 				B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */,
 				B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */,
@@ -1971,6 +1976,7 @@
 				B76100153D1478BC43FE1FFE /* ofxGuiZoomableGraphics.cpp in Sources */,
 				53EFF84794FA0C5FD82DC868 /* Document.cpp in Sources */,
 				C82367F9D4DBE471E481CF1A /* Element.cpp in Sources */,
+				3296549F1DE04622008EA127 /* Command.cpp in Sources */,
 				AE84F1D6567DD495617504CA /* Events.cpp in Sources */,
 				D7E03BCE97A18C3BE3CBADC5 /* Exceptions.cpp in Sources */,
 				B12958C5329C3E230AFB66F9 /* Layout.cpp in Sources */,
