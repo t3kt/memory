@@ -6,6 +6,7 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <Poco/Any.h>
 #include <string>
@@ -37,13 +38,18 @@ private:
   Storage _args;
 };
 
+using CommandFn = std::function<bool(Context&, const CommandArgs&)>;
+class Command;
+using CommandPtr = std::shared_ptr<Command>;
+
 class Command {
 public:
   virtual bool perform(Context& context,
                        const CommandArgs& args) = 0;
+
+  static CommandPtr of(CommandFn fn);
 };
 
-using CommandPtr = std::shared_ptr<Command>;
 
 class TestCommand
 : public Command {
