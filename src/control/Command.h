@@ -9,6 +9,8 @@
 #include <functional>
 #include <initializer_list>
 #include <memory>
+#include <ofxOscMessage.h>
+#include <ofxTCommon.h>
 #include <Poco/Any.h>
 #include <string>
 #include <vector>
@@ -26,6 +28,12 @@ public:
 
   CommandArgs(std::initializer_list<Arg> args)
   : _args(args) { }
+
+  template<typename T>
+  CommandArgs& add(T val) {
+    _args.push_back(val);
+    return *this;
+  }
 
   Arg operator[](std::size_t i) const {
     return _args[i];

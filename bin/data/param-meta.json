@@ -205,6 +205,14 @@
               "min": "",
               "name": "Param Prefix",
               "type": "string"
+            },
+            {
+              "default": "/cmd/",
+              "key": "commandPrefix",
+              "max": "",
+              "min": "",
+              "name": "Command Prefix",
+              "type": "string"
             }
           ],
           "tags": {

@@ -33,7 +33,11 @@ void SimulationApp::setup() {
 
   _midi = _components.add<MidiController>(_appParams);
 
-  _osc = _components.add<OscController>(_appParams);
+  _commands =
+  _components.add<CommandsController>(_context);
+
+  _osc = _components.add<OscController>(_appParams,
+                                        *_commands);
   _timing =
   _components.add<TimingController>(_appParams.core.timing,
                                     _context);
@@ -87,9 +91,6 @@ void SimulationApp::setup() {
   _scenes =
   _components.add<ScenesController>(_context,
                                     *_actions);
-
-  _commands =
-  _components.add<CommandsController>(_context);
 }
 
 void SimulationApp::updateLogState() {

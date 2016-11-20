@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../control/OscController.h"
 
 class AbstractOscBinding {
@@ -266,9 +267,45 @@ createBinding(TParamBase& param,
   }
 }
 
-OscController::OscController(MemoryAppParameters& appParams)
+static CommandArg messageArgToCommandArg(const ofxOscMessage& message,
+                                         int i) {
+  auto type = message.getArgType(i);
+  switch (type) {
+    case OFXOSC_TYPE_INT32:
+      return message.getArgAsInt32(i);
+      break;
+    case OFXOSC_TYPE_INT64:
+      return message.getArgAsInt64(i);
+    case OFXOSC_TYPE_FLOAT:
+      return message.getArgAsFloat(i);
+    case OFXOSC_TYPE_DOUBLE:
+      return message.getArgAsDouble(i);
+    case OFXOSC_TYPE_STRING:
+    case OFXOSC_TYPE_SYMBOL:
+      return message.getArgAsString(i);
+    case OFXOSC_TYPE_TRUE:
+      return true;
+    case OFXOSC_TYPE_FALSE:
+      return false;
+    default:
+      break;
+  }
+}
+
+static CommandArgs messageToCommandArgs(const ofxOscMessage& message) {
+  CommandArgs args;
+  for (int i = 0; i < message.getNumArgs(); ++i) {
+    auto arg = messageArgToCommandArg(message, i);
+    args.add(arg);
+  }
+  return args;
+}
+
+OscController::OscController(MemoryAppParameters& appParams,
+                             CommandsController& commands)
 : _params(appParams.core.osc)
-, _appParams(appParams) {
+, _appParams(appParams)
+, _commands(commands) {
   TEvent<bool>::VoidFunctor handler = [this]() {
     handleOpen(); // closes if disabled
   };
@@ -402,9 +439,23 @@ void OscController::update() {
 }
 
 void OscController::handleMessage(const ofxOscMessage &message) {
+  if (handleMessageAsCommand(message)) {
+    return;
+  }
   auto iter = _bindings.find(message.getAddress());
   if (iter == _bindings.end()) {
     return;
   }
   iter->second->handleMessage(message);
+}
+
+bool OscController::handleMessageAsCommand(const ofxOscMessage &message) {
+  auto address = message.getAddress();
+  const auto& prefix = _params.commandPrefix.get();
+  if (address.find(prefix) == std::string::npos) {
+    return false;
+  }
+  auto name = address.substr(prefix.size());
+  auto args = messageToCommandArgs(message);
+  return _commands.perform(name, args);
 }

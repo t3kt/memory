@@ -1,13 +1,8 @@
 //
 //  OscController.h
-//  memory
-//
-//  Created by tekt on 7/22/16.
-//
 //
 
-#ifndef OscController_h
-#define OscController_h
+#pragma once
 
 #include <memory>
 #include <ofxOsc.h>
@@ -17,6 +12,7 @@
 #include "../core/Component.h"
 
 class AbstractOscBinding;
+class CommandsController;
 class MemoryAppParameters;
 
 class OscController
@@ -52,6 +48,10 @@ public:
           .setKey("paramPrefix")
           .setName("Param Prefix")
           .setValueAndDefault("/param/"));
+      add(commandPrefix
+          .setKey("commandPrefix")
+          .setName("Command Prefix")
+          .setValueAndDefault("/cmd/"));
     }
     TParam<std::string> outputHost;
     TParam<int> outputPort;
@@ -59,9 +59,11 @@ public:
     TParam<bool> inputEnabled;
     TParam<bool> outputEnabled;
     TParam<std::string> paramPrefix;
+    TParam<std::string> commandPrefix;
   };
 
-  OscController(MemoryAppParameters& appParams);
+  OscController(MemoryAppParameters& appParams,
+                CommandsController& commands);
 
   ~OscController();
 
@@ -72,6 +74,7 @@ private:
   void handleClose(bool updateParams);
   void loadBindings(::Params& params, const std::string& basePath);
   void handleMessage(const ofxOscMessage& message);
+  bool handleMessageAsCommand(const ofxOscMessage& message);
 //  void queueOutputMessage(const ofxOscMessage& message);
   void sendMessage(ofxOscMessage message);
   void sendAllParameters();
@@ -79,6 +82,7 @@ private:
 
   Params& _params;
   MemoryAppParameters& _appParams;
+  CommandsController& _commands;
   std::shared_ptr<ofxOscSender> _sender;
   std::shared_ptr<ofxOscReceiver> _receiver;
   BindingMap _bindings;
@@ -87,5 +91,3 @@ private:
 
   friend class AbstractOscBinding;
 };
-
-#endif /* OscController_h */
