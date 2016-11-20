@@ -3,26 +3,25 @@
 //
 
 #include <ofLog.h>
+#include <ofxTEnums.h>
+#include "../app/AppActions.h"
+#include "../app/AppSystem.h"
 #include "../control/CommandsController.h"
 
-class TestCommand
-: public Command {
-public:
-  bool perform(Context& context,
-               const CommandArgs& args) override {
-    if (args.empty()) {
-      return false;
-    }
-    if (args[0].type() != typeid(std::string)) {
-      return false;
-    }
-    ofLogNotice() << "Hello TestCommand: " << args.get<std::string>(0);
-  }
-};
-
 void CommandsController::setup() {
-  registerCommand<TestCommand>("test");
-  //...
+  registerCommand("action", [](Context& context,
+                               const CommandArgs& args) {
+    if (args.empty() || args[0].type() != typeid(std::string)) {
+      return false;
+    }
+    std::string name = Poco::AnyCast<std::string>(args[0]);
+    AppAction action;
+    if (!ofxTCommon::getEnumInfo<AppAction>().tryParseString(name,
+                                                             &action)) {
+      return false;
+    }
+    return AppSystem::get().performAction(action);
+  });
 }
 
 void CommandsController::registerCommand(std::string name,
