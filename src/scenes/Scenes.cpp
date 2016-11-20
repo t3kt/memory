@@ -38,8 +38,9 @@ void Scene::schedule(ActionsController &actions) {
 void Scene::readJson(const ofJson &obj) {
   _name = JsonUtil::fromJsonField<std::string>(obj, "name", "scene");
   _nodes.clear();
-  const auto& nodesArray = obj["nodes"];
-  if (!nodesArray.is_null()) {
+  auto iter = obj.find("nodes");
+  if (iter != obj.end() && !iter.value().is_null()) {
+    const auto& nodesArray = iter.value();
     JsonUtil::assertIsArray(nodesArray);
     for (const auto& nodeObj : nodesArray) {
       JsonUtil::assertIsObject(nodeObj);

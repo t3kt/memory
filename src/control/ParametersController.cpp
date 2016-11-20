@@ -33,22 +33,24 @@ ofJson ParametersState::toJson() const {
 void ParametersState::readJson(const ofJson &obj) {
   JsonUtil::assertIsObject(obj);
   const ofJson *paramVals;
-  if (obj["params"].is_null()) {
+  if (obj.count("params") == 0 || obj["params"].is_null()) {
     // parsing it as old format that only contains raw params
     paramVals = &obj;
   } else {
     paramVals = &(obj["params"]);
-    const auto& presetsArr = obj["presets"];
-    if (presetsArr.is_array()) {
-      _params.clear();
-      for (const auto& presetObj : presetsArr) {
-        auto preset = std::make_shared<ParamPreset>();
-        preset->readJson(presetObj);
-        if (preset->name().empty()) {
-          preset->setName("preset " + ofToString(_presets.size()));
+    if (obj.count("presets") != 0) {
+      const auto& presetsArr = obj["presets"];
+      if (presetsArr.is_array()) {
+        _params.clear();
+        for (const auto& presetObj : presetsArr) {
+          auto preset = std::make_shared<ParamPreset>();
+          preset->readJson(presetObj);
+          if (preset->name().empty()) {
+            preset->setName("preset " + ofToString(_presets.size()));
+          }
+          preset->stripUnsupportedParams(_params);
+          _presets.push_back(preset);
         }
-        preset->stripUnsupportedParams(_params);
-        _presets.push_back(preset);
       }
     }
   }

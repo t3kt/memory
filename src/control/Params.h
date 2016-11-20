@@ -221,10 +221,14 @@ namespace _params_impl {
     }
 
     void readJsonField(const ofJson& obj) override {
-      auto val = obj[getKey()];
-      if (!val.is_null()) {
-        readJson(val);
-      } else if (hasDefault()) {
+      if (obj.count(getKey()) != 0) {
+        auto val = obj[getKey()];
+        if (!val.is_null()) {
+          readJson(val);
+          return;
+        }
+      }
+      if (hasDefault()) {
         ofParameter<T>::set(getDefaultValue());
       } else {
         throw ofxTCommon::JsonException("Required field missing: " + getKey());
