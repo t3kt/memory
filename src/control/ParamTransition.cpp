@@ -137,7 +137,11 @@ void CurrentToPresetLoader::load(Params &params,
     return;
   }
   for (auto param : params.getParamBases()) {
-    const auto& presetVal = presetValues[param->getKey()];
+    auto iter = presetValues.find(param->getKey());
+    if (iter == presetValues.end()) {
+      continue;
+    }
+    const auto& presetVal = iter.value();
     if (presetVal.is_null()) {
       continue;
     }

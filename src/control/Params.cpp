@@ -113,11 +113,15 @@ void Params::performRecursiveParamAction(ParamBaseAction action) {
 }
 
 void Params::readJsonField(const ofJson& obj) {
-  const auto& val = obj[getKey()];
-  if (!val.is_null()) {
-    JsonUtil::assertIsObject(val);
-    readJson(val);
-  } else if (hasDefault()) {
+  if (obj.count(getKey()) != 0) {
+    const auto& val = obj[getKey()];
+    if (!val.is_null()) {
+      JsonUtil::assertIsObject(val);
+      readJson(val);
+      return;
+    }
+  }
+  if (hasDefault()) {
     resetToDefault();
   } else {
     throw JsonException("Required field missing: " + getKey());
@@ -153,7 +157,11 @@ void Params::readFilteredJson(const ofJson &obj,
                               ConstParamPredicate filter) {
   for (auto param : _paramBases) {
     if (filter(*param)) {
-      const auto val = obj[param->getKey()];
+      auto iter = obj.find(param->getKey());
+      if (iter == obj.end()) {
+        continue;
+      }
+      const auto& val = iter.value();
       if (!val.is_null()) {
         param->readJson(val);
       }
