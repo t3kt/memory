@@ -1,9 +1,5 @@
 //
 //  AnimationObject.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
 #pragma once
@@ -12,6 +8,7 @@
 #include "../control/Params.h"
 #include "../control/RampFactory.h"
 #include "../control/ValueRange.h"
+#include "../control/ValueSequence.h"
 #include "../control/ValueSupplier.h"
 #include "../core/ParticleObject.h"
 #include "../core/State.h"
@@ -67,7 +64,6 @@ public:
 protected:
   inline float percentage() const { return _percentage; }
 
-  ofVec3f _position;
 private:
   float _startTime;
   bool _visible;
@@ -83,19 +79,23 @@ public:
       add(radius
           .setKey("radius")
           .setName("Radius")
-          .setParamNames("Start", "End")
-          .setParamRanges(0, 0.4)
-          .setParamValuesAndDefaults(0, 0.2));
+          .setValueRanges(0, 100)
+          .setLengthRanges(0, 1));
+      radius.startValue.setValueAndDefault(0);
+      radius.values[0].setValueAndDefault(20);
+      radius.lengths[0].setValueAndDefault(1);
       add(alpha
           .setKey("alpha")
           .setName("Alpha")
-          .setParamNames("Start", "End")
-          .setParamRanges(0, 1)
-          .setParamValuesAndDefaults(0, 1));
+          .setValueRanges(0, 1)
+          .setLengthRanges(0, 1));
+      alpha.startValue.setValueAndDefault(0);
+      alpha.values[0].setValueAndDefault(1);
+      alpha.lengths[0].setValueAndDefault(1);
     }
 
-    ValueRange<float> radius;
-    ValueRange<float> alpha;
+    ValueSequence<float, 1> radius;
+    ValueSequence<float, 1> alpha;
   };
 
   ExpandingSphereAnimation(ofVec3f position,

@@ -685,18 +685,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
-                  "max": 0.400000005960464,
+                  "key": "startValue",
+                  "max": 100.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
-                  "default": 0.200000002980232,
-                  "key": "high",
-                  "max": 0.400000005960464,
+                  "default": 1.0,
+                  "key": "length0",
+                  "max": 1.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 20.0,
+                  "key": "value0",
+                  "max": 100.0,
+                  "min": 0.0,
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]
@@ -707,18 +715,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
+                  "key": "startValue",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
                   "default": 1.0,
-                  "key": "high",
+                  "key": "length0",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 1.0,
+                  "key": "value0",
+                  "max": 1.0,
+                  "min": 0.0,
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]
@@ -751,18 +767,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
-                  "max": 0.400000005960464,
+                  "key": "startValue",
+                  "max": 100.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
-                  "default": 0.200000002980232,
-                  "key": "high",
-                  "max": 0.400000005960464,
+                  "default": 1.0,
+                  "key": "length0",
+                  "max": 1.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 20.0,
+                  "key": "value0",
+                  "max": 100.0,
+                  "min": 0.0,
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]
@@ -773,18 +797,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
+                  "key": "startValue",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
                   "default": 1.0,
-                  "key": "high",
+                  "key": "length0",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 1.0,
+                  "key": "value0",
+                  "max": 1.0,
+                  "min": 0.0,
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]
@@ -817,18 +849,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
+                  "key": "startValue",
                   "max": 100.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
                   "default": 20.0,
-                  "key": "high",
+                  "key": "length0",
+                  "max": 1.0,
+                  "min": 0.0,
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 0.0,
+                  "key": "value0",
                   "max": 100.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]
@@ -839,18 +879,26 @@
               "params": [
                 {
                   "default": 0.0,
-                  "key": "low",
+                  "key": "startValue",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "Start",
+                  "name": "Start Value",
                   "type": "f"
                 },
                 {
                   "default": 1.0,
-                  "key": "high",
+                  "key": "length0",
                   "max": 1.0,
                   "min": 0.0,
-                  "name": "End",
+                  "name": "Length 0",
+                  "type": "f"
+                },
+                {
+                  "default": 1.0,
+                  "key": "value0",
+                  "max": 1.0,
+                  "min": 0.0,
+                  "name": "Value 0",
                   "type": "f"
                 }
               ]

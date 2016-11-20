@@ -27,6 +27,7 @@ public:
   using SeqT = ofxChoreograph::Sequence<T>;
   using SeqRefT = ofxChoreograph::SequenceRef<T>;
   using RampT = ofxChoreograph::RampTo<T>;
+  using SelfT = ValueSequence<T, N>;
 
   ValueSequence() {
     std::function<void()> onChange = [&]() {
@@ -51,7 +52,7 @@ public:
     rebuildSequence();
   }
 
-  ~ValueSequence() {
+  ~ValueSequence() override {
     startValue.changed.removeListeners(this);
     for (std::size_t i = 0; i < N; ++i) {
       auto& lengthParam = lengths[i];
@@ -61,17 +62,29 @@ public:
     }
   }
 
-  void setValueRanges(T minVal, T maxVal) {
+  SelfT& setKey(std::string key) {
+    Params::setKey(key);
+    return *this;
+  }
+
+  SelfT& setName(std::string name) {
+    Params::setName(name);
+    return *this;
+  }
+
+  SelfT& setValueRanges(T minVal, T maxVal) {
     startValue.setRange(minVal, maxVal);
     for (std::size_t i = 0; i < N; ++i) {
       values[i].setRange(minVal, maxVal);
     }
+    return *this;
   }
 
-  void setLengthRanges(T minVal, T maxVal) {
+  SelfT& setLengthRanges(T minVal, T maxVal) {
     for (std::size_t i = 0; i < N; ++i) {
       lengths[i].setRange(minVal, maxVal);
     }
+    return *this;
   }
 
   TParam<T> startValue;
@@ -83,6 +96,10 @@ public:
     return _sequence->getValue(position);
   }
 
+protected:
+  SelfT& selfRef() override {
+    return *this;
+  }
 private:
   void rebuildSequence() {
     using ofxChoreograph::RampTo;

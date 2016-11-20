@@ -1,9 +1,5 @@
 //
 //  AnimationObject.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
 #include <ofMain.h>
@@ -41,9 +37,9 @@ void ExpandingSphereAnimation::draw(const ClockState &state) {
   ofPushStyle();
 
   ofFloatColor color = _color;
-  color.a *= _params.alpha.getLerped(percentage());
+  color.a *= _params.alpha.evaluate(percentage());
   ofSetColor(color);
-  ofDrawSphere(_position, _params.radius.getLerped(percentage()));
+  ofDrawSphere(_position, _params.radius.evaluate(percentage()));
 
   ofPopStyle();
 }

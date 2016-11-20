@@ -36,8 +36,9 @@ public:
           .setKey("occurrenceSpawnFailed")
           .setName("Occurrence Spawn Failed"));
       setEnabledValueAndDefault(true);
-      occurrenceSpawnFailed.radius.setParamValuesAndDefaults(0, 20);
-      occurrenceSpawnFailed.radius.setParamRanges(0, 100);
+      occurrenceSpawnFailed.radius.setValueRanges(0, 100);
+      occurrenceSpawnFailed.radius.values[0].setValueAndDefault(0);
+      occurrenceSpawnFailed.radius.values[1].setValueAndDefault(20);
       occurrenceSpawnFailed.setDuration(1);
     }
 

@@ -61,10 +61,6 @@ public:
     return *this;
   }
 
-  T getLerped(float amount) const {
-    return ofxTCommon::getInterpolated(lowValue(), highValue(), amount);
-  }
-
   TParam<T> lowValue;
   TParam<T> highValue;
 };
