@@ -1,13 +1,8 @@
 //
 //  ValueSupplier.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/24/16.
-//
 //
 
-#ifndef ValueSupplier_h
-#define ValueSupplier_h
+#pragma once
 
 #include <ofParameter.h>
 #include <ofParameterGroup.h>
@@ -63,18 +58,16 @@ public:
   TParam<float> chance;
 };
 
-class SimpleRandomVectorSupplier : public FloatValueRange {
+class SimpleRandomVectorSupplier : public ValueRange<float> {
 public:
   SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
-    FloatValueRange::setParamValues(minVal, maxVal);
+    ValueRange<float>::setParamValues(minVal, maxVal);
     return *this;
   }
   SimpleRandomVectorSupplier& setParamRanges(float minVal, float maxVal) {
-    FloatValueRange::setParamRanges(minVal, maxVal);
+    ValueRange<float>::setParamRanges(minVal, maxVal);
     return *this;
   }
 
   ofVec3f getValue() const;
 };
-
-#endif /* ValueSpecifier_h */

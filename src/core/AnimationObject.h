@@ -94,8 +94,8 @@ public:
           .setParamValuesAndDefaults(0, 1));
     }
 
-    FloatValueRange radius;
-    FloatValueRange alpha;
+    ValueRange<float> radius;
+    ValueRange<float> alpha;
   };
 
   ExpandingSphereAnimation(ofVec3f position,

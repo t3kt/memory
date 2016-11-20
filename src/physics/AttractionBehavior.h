@@ -43,7 +43,7 @@ public:
     return magnitude() * (reverse() ? -1 : 1);
   }
 
-  FloatValueRange distanceBounds;
+  ValueRange<float> distanceBounds;
   TParam<float> magnitude;
   TParam<bool> reverse;
 };

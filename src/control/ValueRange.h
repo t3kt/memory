@@ -1,13 +1,8 @@
 //
 //  ValueRange.h
-//  memory
-//
-//  Created by tekt on 10/12/16.
-//
 //
 
-#ifndef ValueRange_h
-#define ValueRange_h
+#pragma once
 
 #include "../control/Params.h"
 
@@ -73,7 +68,3 @@ public:
   TParam<T> lowValue;
   TParam<T> highValue;
 };
-
-using FloatValueRange = ValueRange<float>;
-
-#endif /* ValueRange_h */

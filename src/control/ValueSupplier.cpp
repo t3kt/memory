@@ -1,9 +1,5 @@
 //
 //  ValueSupplier.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/24/16.
-//
 //
 
 #include <cmath>
