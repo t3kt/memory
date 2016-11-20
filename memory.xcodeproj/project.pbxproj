@@ -50,13 +50,13 @@
 		329F51221DAA089600063471 /* FogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 329F51201DAA089600063471 /* FogController.cpp */; };
 		32B31BA71DD57A9600F57FAC /* ofxTJsonIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BA51DD57A9600F57FAC /* ofxTJsonIO.cpp */; };
 		32B31BB31DD6D06A00F57FAC /* SpawnSceneNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */; };
-		32B31BB61DD6D1C100F57FAC /* SceneValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */; };
 		32B31BB91DD84A6200F57FAC /* ScenesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32B31BB71DD84A6200F57FAC /* ScenesController.cpp */; };
 		32CCB2FC1DAE13F900BAE226 /* ParamPresets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */; };
 		32CCB2FD1DAE13F900BAE226 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F61DAE13F900BAE226 /* Params.cpp */; };
 		32CCB2FE1DAE13F900BAE226 /* ValueSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2F81DAE13F900BAE226 /* ValueSequence.cpp */; };
 		32CCB2FF1DAE13F900BAE226 /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2FA1DAE13F900BAE226 /* ValueSupplier.cpp */; };
 		32CCB3061DAE1C9100BAE226 /* ParametersController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */; };
+		32E458431DE252A300FF81F2 /* ControlValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E458411DE252A300FF81F2 /* ControlValue.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -335,8 +335,6 @@
 		32B31BA61DD57A9600F57FAC /* ofxTJsonIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTJsonIO.h; sourceTree = "<group>"; };
 		32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpawnSceneNode.cpp; path = scenes/SpawnSceneNode.cpp; sourceTree = "<group>"; };
 		32B31BB21DD6D06A00F57FAC /* SpawnSceneNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpawnSceneNode.h; path = scenes/SpawnSceneNode.h; sourceTree = "<group>"; };
-		32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneValue.cpp; path = scenes/SceneValue.cpp; sourceTree = "<group>"; };
-		32B31BB51DD6D1C100F57FAC /* SceneValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneValue.h; path = scenes/SceneValue.h; sourceTree = "<group>"; };
 		32B31BB71DD84A6200F57FAC /* ScenesController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScenesController.cpp; path = scenes/ScenesController.cpp; sourceTree = "<group>"; };
 		32B31BB81DD84A6200F57FAC /* ScenesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScenesController.h; path = scenes/ScenesController.h; sourceTree = "<group>"; };
 		32CCB2F41DAE13F900BAE226 /* ParamPresets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParamPresets.cpp; path = control/ParamPresets.cpp; sourceTree = "<group>"; };
@@ -351,6 +349,8 @@
 		32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParametersController.cpp; path = control/ParametersController.cpp; sourceTree = "<group>"; };
 		32CCB3051DAE1C9100BAE226 /* ParametersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParametersController.h; path = control/ParametersController.h; sourceTree = "<group>"; };
 		32D50D3B1DBDBDC90003BA27 /* ofxTagSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTagSet.h; sourceTree = "<group>"; };
+		32E458411DE252A300FF81F2 /* ControlValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControlValue.cpp; path = control/ControlValue.cpp; sourceTree = "<group>"; };
+		32E458421DE252A300FF81F2 /* ControlValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlValue.h; path = control/ControlValue.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -723,6 +723,8 @@
 				3296549E1DE04622008EA127 /* Command.h */,
 				329654A01DE113BE008EA127 /* CommandsController.cpp */,
 				329654A11DE113BE008EA127 /* CommandsController.h */,
+				32E458411DE252A300FF81F2 /* ControlValue.cpp */,
+				32E458421DE252A300FF81F2 /* ControlValue.h */,
 				D007C865B2527CA426BD0CD8 /* MappingSet.h */,
 				B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */,
 				B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */,
@@ -887,8 +889,6 @@
 				3242899E1DD561B10048C208 /* Scenes.h */,
 				32B31BB71DD84A6200F57FAC /* ScenesController.cpp */,
 				32B31BB81DD84A6200F57FAC /* ScenesController.h */,
-				32B31BB41DD6D1C100F57FAC /* SceneValue.cpp */,
-				32B31BB51DD6D1C100F57FAC /* SceneValue.h */,
 				32B31BB11DD6D06A00F57FAC /* SpawnSceneNode.cpp */,
 				32B31BB21DD6D06A00F57FAC /* SpawnSceneNode.h */,
 			);
@@ -1955,6 +1955,7 @@
 				88D37585D55C941EAE03D6E0 /* ofxAssimpAnimation.cpp in Sources */,
 				9681D27B6976CEB66A9A528B /* ofxAssimpMeshHelper.cpp in Sources */,
 				76A23C1C5CE1337CC5EA8454 /* ofxAssimpModelLoader.cpp in Sources */,
+				32E458431DE252A300FF81F2 /* ControlValue.cpp in Sources */,
 				1DD2DFE5A017DC672650B9C7 /* ofxAssimpTexture.cpp in Sources */,
 				AAEB7CD4F15BE8D9C093C4EB /* Cue.cpp in Sources */,
 				329F510A1DA6100C00063471 /* Component.cpp in Sources */,
@@ -2045,7 +2046,6 @@
 				C4930D0AC5FC48D030E74BCA /* ofxSyphonClient.mm in Sources */,
 				16BE83B10078E1808DC3F8E4 /* ofxSyphonServer.mm in Sources */,
 				F346D2278BFF20EC7683F535 /* ofxSyphonServerDirectory.mm in Sources */,
-				32B31BB61DD6D1C100F57FAC /* SceneValue.cpp in Sources */,
 				D79D1EF3A5839395392CAF37 /* SyphonNameboundClient.m in Sources */,
 				3F4776562018A3BAA7B95BD3 /* ofxTextAlign.cpp in Sources */,
 				9795DC7D5433EB5EEAE1254B /* ofxTextAlignTTF.cpp in Sources */,

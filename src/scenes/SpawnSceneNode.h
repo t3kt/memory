@@ -6,8 +6,8 @@
 #pragma once
 
 #include <ofVec3f.h>
+#include "../control/ControlValue.h"
 #include "../scenes/Scenes.h"
-#include "../scenes/SceneValue.h"
 
 class BoundsController;
 class Context;
@@ -23,18 +23,22 @@ public:
   void readJson(const ofJson& obj) override;
   ofJson toJson() const override;
 
-  void setTime(SceneValue<float> time) { _time = time; }
-  void setPosition(SceneValue<ofVec3f> position) { _position = position; }
-  void setVelocity(SceneValue<ofVec3f> velocity) { _velocity = velocity; }
+  void setTime(ControlValue<float> time) { _time = time; }
+  void setPosition(ControlValue<ofVec3f> position) {
+    _position = position;
+  }
+  void setVelocity(ControlValue<ofVec3f> velocity) {
+    _velocity = velocity;
+  }
 protected:
   virtual void spawn() = 0;
 
   const BoundsController& _bounds;
   Context& _context;
 
-  SceneValue<float> _time;
-  SceneValue<ofVec3f> _position;
-  SceneValue<ofVec3f> _velocity;
+  ControlValue<float> _time;
+  ControlValue<ofVec3f> _position;
+  ControlValue<ofVec3f> _velocity;
 };
 
 class RateObserverSpawnerParams;
@@ -51,6 +55,6 @@ public:
 protected:
   void spawn() override;
 private:
-  SceneValue<float> _decayRate;
+  ControlValue<float> _decayRate;
   const RateObserverSpawnerParams& _params;
 };

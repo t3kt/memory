@@ -1,6 +1,5 @@
 //
-//  SceneValue.h
-//  memory
+//  ControlValue.h
 //
 
 #pragma once
@@ -10,27 +9,27 @@
 #include <ofxTCommon.h>
 #include <ofxTJsonIO.h>
 
-enum class SceneValueMode {
-  NONE,
+enum class ControlValueMode {
+  UNSPECIFIED,
   VALUE,
   RANDOM_RANGE,
   CHANCE,
 };
 
 std::ostream& operator<<(std::ostream& os,
-                         const SceneValueMode& mode);
+                         const ControlValueMode& mode);
 
 template<typename T>
-class SceneValue
+class ControlValue
 : public ofxTCommon::JsonReadable
 , public ofxTCommon::JsonWritable
 , public ofxTCommon::Outputable {
 public:
-  using Mode = SceneValueMode;
+  using Mode = ControlValueMode;
 
-  SceneValue() {}
+  ControlValue() {}
 
-  SceneValue(Mode mode, T value0, T value1, float chance)
+  ControlValue(Mode mode, T value0, T value1, float chance)
   : _mode(mode)
   , _value0(value0)
   , _value1(value1)
@@ -44,7 +43,7 @@ public:
         return getRandomValue();
       case Mode::CHANCE:
         return getChanceValue();
-      case Mode::NONE:
+      case Mode::UNSPECIFIED:
       default:
         return T();
     }
@@ -58,7 +57,7 @@ public:
     return get([=]() { return defaultValue; });
   }
 
-  bool isSpecified() const { return _mode != Mode::NONE; }
+  bool isSpecified() const { return _mode != Mode::UNSPECIFIED; }
 
   void readJson(const ofJson& obj) override {
     if (!obj.is_null()) {
@@ -92,7 +91,7 @@ public:
         return;
       }
     }
-    _mode = Mode::NONE;
+    _mode = Mode::UNSPECIFIED;
     _value0 = T();
     _value1 = T();
     _chance = 0;
@@ -119,13 +118,13 @@ public:
             ofxTCommon::JsonUtil::toJson(_value1),
           }},
         };
-      case Mode::NONE:
+      case Mode::UNSPECIFIED:
       default:
         return nullptr;
     }
   }
 
-  std::string typeName() const override { return "SceneValue"; }
+  std::string typeName() const override { return "ControlValue"; }
 
   void writeFieldTo(ofJson& obj, const std::string& name) const {
     if (isSpecified()) {
@@ -155,24 +154,24 @@ private:
   float _chance;
 };
 
-namespace SceneValues {
+namespace ControlValues {
   template<typename T>
-  SceneValue<T> createValue(T value) {
-    return SceneValue<T>(SceneValueMode::VALUE, value, value, 0);
+  ControlValue<T> createValue(T value) {
+    return ControlValue<T>(ControlValueMode::VALUE, value, value, 0);
   }
   template<typename T>
-  SceneValue<T> createRandomRange(T value0, T value1) {
-    return SceneValue<T>(SceneValueMode::RANDOM_RANGE,
+  ControlValue<T> createRandomRange(T value0, T value1) {
+    return ControlValue<T>(ControlValueMode::RANDOM_RANGE,
                          value0, value1, 0);
   }
   template<typename T>
-  SceneValue<T> createChance(T value0, T value1, float chance) {
-    return SceneValue<T>(SceneValueMode::CHANCE,
+  ControlValue<T> createChance(T value0, T value1, float chance) {
+    return ControlValue<T>(ControlValueMode::CHANCE,
                          value0, value1, chance);
   }
 
   template<typename T>
-  SceneValue<T> createNone() {
-    return SceneValue<T>(SceneValueMode::NONE, T(), T(), 0);
+  ControlValue<T> createUnspecified() {
+    return ControlValue<T>(ControlValueMode::UNSPECIFIED, T(), T(), 0);
   }
 }
