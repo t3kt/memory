@@ -5,6 +5,7 @@
 #include <ofxGuiExtended.h>
 #include "../app/AppGui.h"
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../app/SimulationApp.h"
 #include "../control/Command.h"
 #include "../control/CommandsController.h"
@@ -199,6 +200,13 @@ void AppGui::setup() {
 
   loadTheme();
   _mainPanel->blockLayout(false);
+
+  AppSystem::get().commands()
+  .registerCommand("reloadGuiTheme", "Reload GUI Theme", [&](const CommandArgs&) {
+    loadTheme();
+    return true;
+  })
+  .withButton(true);
 }
 
 void AppGui::updatePresetButtons() {
@@ -275,16 +283,6 @@ void AppGui::setAdvancedHidden(bool hidden) {
 
 void AppGui::loadTheme() {
   _mainPanel->loadTheme("theme.json");
-}
-
-bool AppGui::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::RELOAD_THEME:
-      loadTheme();
-      return true;
-    default:
-      return false;
-  }
 }
 
 void AppGui::draw() {

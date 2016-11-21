@@ -13,7 +13,6 @@
 #include <ofxTCommon.h>
 #include <ofxTJsonIO.h>
 #include <vector>
-#include "../app/AppActions.h"
 #include "../control/ParamPresets.h"
 #include "../control/Params.h"
 #include "../core/Component.h"
@@ -48,9 +47,8 @@ private:
 };
 
 class ParametersController
-: public NonCopyable
-, public ComponentBase
-, public AppActionHandler {
+: public ofxTCommon::NonCopyable
+, public ComponentBase {
 public:
   using State = ParametersState;
 
@@ -71,7 +69,6 @@ public:
   void loadPreset(const ParamPreset& preset);
   void transitionToPreset(const ParamPreset& preset);
 
-  bool performAction(AppAction action) override;
   void load();
   void save();
   void captureNewPreset();

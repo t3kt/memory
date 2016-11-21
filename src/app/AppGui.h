@@ -2,15 +2,13 @@
 //  AppGui.h
 //
 
-#ifndef AppGui_h
-#define AppGui_h
+#pragma once
 
 #include <memory>
 #include <ofParameter.h>
+#include <ofxTCommon.h>
 #include <vector>
-#include "../app/AppActions.h"
 #include "../app/AppParameters.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 
 class ofxGui;
@@ -21,8 +19,7 @@ class ofxGuiTabs;
 
 // Control panel GUI which modifies Params
 class AppGui
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   AppGui(MemoryAppParameters& appParams)
@@ -31,7 +28,6 @@ public:
   void setup() override;
   void draw() override;
 
-  bool performAction(AppAction action) override;
   void collapseDisabled();
   void updatePresetButtons();
 private:
@@ -52,4 +48,3 @@ private:
   std::vector<ofxGuiElement*> _advancedElements;
 };
 
-#endif /* AppGui_h */

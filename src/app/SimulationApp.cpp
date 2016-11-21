@@ -10,6 +10,9 @@
 #include "../scenes/ScenesController.h"
 
 void SimulationApp::setup() {
+  _commands =
+  _components.add<CommandsController>();
+
   _paramsController =
   _components.add<ParametersController>(_appParams,
                                         _context);
@@ -26,9 +29,6 @@ void SimulationApp::setup() {
   _components.add<ActionsController>(_context);
 
   _midi = _components.add<MidiController>(_appParams);
-
-  _commands =
-  _components.add<CommandsController>();
 
   _osc = _components.add<OscController>(_appParams,
                                         *_commands);

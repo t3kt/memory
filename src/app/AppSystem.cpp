@@ -26,12 +26,9 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'(', AppAction::SPAWN_MANY_OCCURRENCES},
   {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {'n', AppAction::SPAWN_OBSERVER_NAVIGATOR},
-  {'r', AppAction::LOAD_SETTINGS},
-  {'w', AppAction::SAVE_SETTINGS},
   {'d', AppAction::DUMP_ENTITY_STATE},
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
-  {'t', AppAction::RELOAD_THEME},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
