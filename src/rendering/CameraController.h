@@ -1,16 +1,11 @@
 //
 //  CameraController.h
-//  memory
-//
-//  Created by tekt on 7/16/16.
-//
 //
 
-#ifndef CameraController_h
-#define CameraController_h
+#pragma once
 
 #include <ofEasyCam.h>
-#include "../app/AppActions.h"
+#include <ofxTCommon.h>
 #include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
@@ -35,8 +30,8 @@ public:
 };
 
 class CameraController
-: public AppActionHandler
-, public NonCopyable {
+: public ofxTCommon::NonCopyable
+, public ComponentBase {
 public:
   using Params = CameraParams;
 
@@ -44,13 +39,12 @@ public:
   : _params(params)
   , _context(context) {}
 
-  void update();
+  void setup() override;
+  void update() override;
 
   void applyTransform();
 
   ofCamera& getCamera() { return _cam; }
-
-  bool performAction(AppAction action) override;
 
 private:
   void resetCamera();
@@ -61,4 +55,3 @@ private:
   ofVec3f _rotation;
 };
 
-#endif /* CameraController_h */

@@ -4,7 +4,6 @@
 
 #include <ofConstants.h>
 #include "../app/AppSystem.h"
-#include "../app/SimulationApp.h"
 #include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../core/TimingController.h"

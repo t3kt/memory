@@ -23,6 +23,7 @@ RenderingController::RenderingController(Params& params,
 void RenderingController::setup() {
   _camera = std::make_shared<CameraController>(_params.camera,
                                                _context);
+  _camera->setup();
   const auto& appParams = AppSystem::get().params();
   const auto& colors = appParams.colors;
   const auto& observerParams = _params.observers;

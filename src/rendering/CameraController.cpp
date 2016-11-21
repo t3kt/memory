@@ -1,27 +1,22 @@
 //
 //  CameraController.cpp
-//  memory
-//
-//  Created by tekt on 7/16/16.
-//
 //
 
 #include <ofMain.h>
+#include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../rendering/CameraController.h"
+
+void CameraController::setup() {
+  AppSystem::get().commands()
+  .registerCommand("resetCamera", "Reset Camera", [&](const CommandArgs&) {
+    resetCamera();
+    return true;
+  }, true, 'h');
+}
 
 void CameraController::resetCamera() {
   _cam.reset();
-}
-
-bool CameraController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::RESET_CAMERA:
-      resetCamera();
-      break;
-    default:
-      return false;
-  }
-  return true;
 }
 
 void CameraController::update() {
