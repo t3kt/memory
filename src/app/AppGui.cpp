@@ -6,6 +6,8 @@
 #include "../app/AppGui.h"
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
+#include "../control/Command.h"
+#include "../control/CommandsController.h"
 #include "../control/ParametersController.h"
 #include "../control/ParamPresets.h"
 
@@ -27,6 +29,25 @@ private:
   }
 
   const AppAction _action;
+};
+
+class CommandButton
+: public ofxGuiButton {
+public:
+  explicit CommandButton(CommandPtr command)
+  : ofxGuiButton(command->label())
+  , _command(command) {
+    setType(ofxGuiToggleType::FULLSIZE);
+    addListener(this, &CommandButton::onClick);
+  }
+  ~CommandButton() {
+    removeListener(this, &CommandButton::onClick);
+  }
+private:
+  void onClick() {
+    _command->perform();
+  }
+  CommandPtr _command;
 };
 
 class LoadPresetButton
@@ -162,6 +183,10 @@ void AppGui::setup() {
     addActionButtons(actionsTab);
   }
   {
+    auto commandsTab = _rootTabs->addGroup("Cmd");
+    addCommandButtons(commandsTab);
+  }
+  {
     auto presetsTab = _rootTabs->addGroup("Preset");
     _presetsContainer = presetsTab->addGroup();
     addPresetButtons(_presetsContainer);
@@ -202,6 +227,14 @@ void AppGui::addActionButtons(ofxGuiContainer *container) {
       continue;
     }
     container->add<ActionButton>(action);
+  }
+}
+
+void AppGui::addCommandButtons(ofxGuiContainer *container) {
+  auto& commands =
+  AppSystem::get().simulation().commands().commands();
+  for (auto command : commands) {
+    container->add<CommandButton>(command.second);
   }
 }
 

@@ -27,7 +27,8 @@ void CommandsController::setup() {
 void CommandsController::registerCommand(std::string name,
                                          std::string label,
                                          CommandFn function) {
-  _commands[name] = Command(name, label, function);
+  _commands[name] =
+  std::make_shared<Command>(name, label, function);
 }
 
 bool CommandsController::perform(const std::string &name,
@@ -36,7 +37,7 @@ bool CommandsController::perform(const std::string &name,
   if (iter == _commands.end()) {
     return false;
   }
-  return iter->second.perform(args);
+  return iter->second->perform(args);
 }
 
 bool CommandsController::perform(const std::string &name) {

@@ -38,6 +38,7 @@ private:
   void loadAdvancedElements();
   void loadTheme();
   void addActionButtons(ofxGuiContainer* container);
+  void addCommandButtons(ofxGuiContainer* container);
   void addPresetButtons(ofxGuiContainer* container);
   void onShowAdvancedChanged(bool& visible);
   void setAdvancedHidden(bool hidden);

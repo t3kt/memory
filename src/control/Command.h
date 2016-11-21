@@ -12,6 +12,7 @@
 #include <ofxOscMessage.h>
 #include <ofxTCommon.h>
 #include <Poco/Any.h>
+#include <stdexcept>
 #include <string>
 
 using CommandArg = Poco::Any;
@@ -49,10 +50,9 @@ private:
 
 using CommandFn = std::function<bool(const CommandArgs&)>;
 
-class Command {
+class Command
+: public ofxTCommon::NonCopyable {
 public:
-  Command() = default;
-
   Command(std::string name,
           std::string label,
           CommandFn perfFunc)
@@ -63,10 +63,18 @@ public:
   const std::string& name() const { return _name; }
   const std::string& label() const { return _label; }
 
-  bool perform(const CommandArgs& args) { return _perform(args); }
+  bool perform(const CommandArgs& args) {
+    return _perform(args);
+  }
+  bool perform() {
+    CommandArgs args;
+    return _perform(args);
+  }
 
 private:
-  std::string _name;
-  std::string _label;
+  const std::string _name;
+  const std::string _label;
   CommandFn _perform;
 };
+
+using CommandPtr = std::shared_ptr<Command>;
