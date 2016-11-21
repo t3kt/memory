@@ -1,9 +1,5 @@
 //
 //  EntityController.h
-//  memory
-//
-//  Created by tekt on 8/5/16.
-//
 //
 
 #pragma once

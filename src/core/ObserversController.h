@@ -1,15 +1,9 @@
 //
 //  ObserversController.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
-#ifndef ObserversController_h
-#define ObserversController_h
+#pragma once
 
-#include "../app/AppActions.h"
 #include "../physics/BoundsController.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
@@ -41,8 +35,7 @@ public:
 };
 
 class ObserversController
-: public EntityController<ObserverEntity>
-, public AppActionHandler {
+: public EntityController<ObserverEntity> {
 public:
   using Params = ObserverParams;
   
@@ -52,8 +45,6 @@ public:
                       SimulationEvents& events);
   
   void setup() override;
-
-  bool performAction(AppAction action) override;
   
 private:
   const Params& _params;
@@ -64,4 +55,3 @@ private:
   friend class IntervalObserverSpawner;
 };
 
-#endif /* ObserversController_h */

@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../core/Context.h"
 #include "../core/EntityController.h"
@@ -32,8 +31,7 @@ public:
 };
 
 class OccurrencesController
-: public EntityController<OccurrenceEntity>
-, public AppActionHandler {
+: public EntityController<OccurrenceEntity> {
 public:
   using Params = OccurrenceParams;
 
@@ -44,8 +42,6 @@ public:
                         SimulationEvents& events);
   
   void setup() override;
-
-  bool performAction(AppAction action) override;
   
 private:
   const Params& _params;

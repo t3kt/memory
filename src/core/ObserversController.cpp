@@ -2,6 +2,8 @@
 //  ObserversController.cpp
 //
 
+#include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../core/AnimationObject.h"
 #include "../core/ObserversController.h"
 #include "../core/OccurrenceEntity.h"
@@ -25,21 +27,26 @@ void ObserversController::setup() {
   _sickness =
   _components.add<ObserverSickness>(_context,
                                     _params.sickness);
-}
 
-bool ObserversController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::KILL_FEW_OBSERVERS:
-      killEntities(5);
-      break;
-    case AppAction::KILL_MANY_OBSERVERS:
-      killEntities(100);
-      break;
-    case AppAction::KILL_ALL_OBSERVERS:
+  const std::string killCommandName = "killObs";
+  AppSystem::get().commands()
+  .registerCommand(killCommandName, "Kill Observers", [&](const CommandArgs& args) {
+    if (args.empty()) {
       killAllEntities();
-      break;
-    default:
-      return false;
-  }
-  return true;
+      return true;
+    }
+    if (args[0].type() == typeid(std::string) && args.get<std::string>(0) == "all") {
+      killAllEntities();
+      return true;
+    }
+    if (args[0].type() == typeid(int)) {
+      killEntities(args.get<int>(0));
+      return true;
+    }
+    return false;
+  }, true);
+  AppSystem::get().commands().keyMap()
+  .registerCommand('-', KeyboardCommandMapping(killCommandName, CommandArgs({5})));
+  AppSystem::get().commands().keyMap()
+  .registerCommand('_', KeyboardCommandMapping(killCommandName, CommandArgs({100})));
 }

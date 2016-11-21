@@ -8,6 +8,8 @@
 
 #include <ofGraphics.h>
 #include <set>
+#include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
 #include "../core/ObserverEntity.h"
@@ -28,6 +30,30 @@ void InspectionController::setup() {
     onEnabledChanged(enabled);
   };
   onEnabledChanged(_params.enabled.get());
+
+  AppSystem::get().commands()
+  .registerCommand("selectPrevObserver", "Select Prev Observer", [&](const CommandArgs& args) {
+    selectPrevEntity<ObserverEntity>();
+    return true;
+  }, true, '<');
+
+  AppSystem::get().commands()
+  .registerCommand("selectNextObserver", "Select Next Observer", [&](const CommandArgs& args) {
+    selectNextEntity<ObserverEntity>();
+    return true;
+  }, true, '>');
+
+  AppSystem::get().commands()
+  .registerCommand("selectPrevOccurrence", "Select Prev Occurrence", [&](const CommandArgs& args) {
+    selectPrevEntity<OccurrenceEntity>();
+    return true;
+  }, true, ',');
+
+  AppSystem::get().commands()
+  .registerCommand("selectNextOccurrence", "Select Next Occurrence", [&](const CommandArgs& args) {
+    selectNextEntity<OccurrenceEntity>();
+    return true;
+  }, true, '.');
 }
 
 void InspectionController::onEnabledChanged(bool enabled) {
@@ -146,25 +172,6 @@ void InspectionController::onMousePressed(ofMouseEventArgs &event) {
   }
   _clickPos = event;
   _hasClick = true;
-}
-
-bool InspectionController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::SELECT_PREV_OBSERVER:
-      selectPrevEntity<ObserverEntity>();
-      return true;
-    case AppAction::SELECT_NEXT_OBSERVER:
-      selectNextEntity<ObserverEntity>();
-      return true;
-    case AppAction::SELECT_PREV_OCCURRENCE:
-      selectPrevEntity<OccurrenceEntity>();
-      return true;
-    case AppAction::SELECT_NEXT_OCCURRENCE:
-      selectNextEntity<OccurrenceEntity>();
-      return true;
-    default:
-      return false;
-  }
 }
 
 bool InspectionController::isTypeSelected(EntityType type) const {

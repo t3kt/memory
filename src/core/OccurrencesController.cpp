@@ -2,8 +2,10 @@
 //  OccurrencesController.cpp
 //
 
-#include "../core/OccurrencesController.h"
+#include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
+#include "../control/CommandsController.h"
+#include "../core/OccurrencesController.h"
 #include "../core/SimulationEvents.h"
 
 OccurrencesController::OccurrencesController(const Params& params,
@@ -23,21 +25,26 @@ void OccurrencesController::setup() {
   _components.add<OccurrenceSpawner>(_context,
                                      _params.rateSpawner,
                                      _bounds);
-}
 
-bool OccurrencesController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::KILL_FEW_OCCURRENCES:
-      killEntities(5);
-      break;
-    case AppAction::KILL_MANY_OCCURRENCES:
-      killEntities(100);
-      break;
-    case AppAction::KILL_ALL_OCCURRENCES:
+  const std::string killCommandName = "killOcc";
+  AppSystem::get().commands()
+  .registerCommand(killCommandName, "Kill Occurrences", [&](const CommandArgs& args) {
+    if (args.empty()) {
       killAllEntities();
-      break;
-    default:
-      return false;
-  }
-  return true;
+      return true;
+    }
+    if (args[0].type() == typeid(std::string) && args.get<std::string>(0) == "all") {
+      killAllEntities();
+      return true;
+    }
+    if (args[0].type() == typeid(int)) {
+      killEntities(args.get<int>(0));
+      return true;
+    }
+    return false;
+  }, true);
+  AppSystem::get().commands().keyMap()
+  .registerCommand('=', KeyboardCommandMapping(killCommandName, CommandArgs({5})));
+  AppSystem::get().commands().keyMap()
+  .registerCommand('+', KeyboardCommandMapping(killCommandName, CommandArgs({100})));
 }

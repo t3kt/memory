@@ -22,12 +22,8 @@ AppSystem& AppSystem::get() {
 static std::map<int, AppAction> KEY_TO_ACTION = {
   {'0', AppAction::SPAWN_FEW_OBSERVERS},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
-  {'-', AppAction::KILL_FEW_OBSERVERS},
-  {'_', AppAction::KILL_MANY_OBSERVERS},
   {'9', AppAction::SPAWN_FEW_OCCURRENCES},
   {'(', AppAction::SPAWN_MANY_OCCURRENCES},
-  {'=', AppAction::KILL_FEW_OCCURRENCES},
-  {'+', AppAction::KILL_MANY_OCCURRENCES},
   {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {'n', AppAction::SPAWN_OBSERVER_NAVIGATOR},
   {'r', AppAction::LOAD_SETTINGS},
@@ -39,10 +35,6 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
   {'t', AppAction::RELOAD_THEME},
-  {'<', AppAction::SELECT_PREV_OBSERVER},
-  {'>', AppAction::SELECT_NEXT_OBSERVER},
-  {',', AppAction::SELECT_PREV_OCCURRENCE},
-  {'.', AppAction::SELECT_NEXT_OCCURRENCE},
   {OF_KEY_F11, AppAction::TOGGLE_FULLSCREEN},
 };
 

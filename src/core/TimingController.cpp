@@ -48,7 +48,7 @@ void TimingController::setup() {
   .registerCommand("toggleClockState", "Toggle Clock State", [&](const CommandArgs& args) {
    _rootClock->toggleState();
     return true;
-  }, true, '/');
+  }, true, ' ');
 }
 
 void TimingController::update() {

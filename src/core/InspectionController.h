@@ -1,18 +1,13 @@
 //
 //  InspectionController.h
-//  memory
-//
-//  Created by tekt on 7/17/16.
-//
 //
 
-#ifndef InspectionController_h
-#define InspectionController_h
+#pragma once
 
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
-#include "../app/AppActions.h"
+#include <ofxTCommon.h>
 #include "../control/Params.h"
 #include "../core/Common.h"
 #include "../core/Component.h"
@@ -22,8 +17,7 @@
 class Context;
 
 class InspectionController
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   class Params : public ParamsWithEnabled {
@@ -55,8 +49,6 @@ public:
   void setup() override;
   void update() override;
   void draw() override;
-
-  bool performAction(AppAction action) override;
 private:
   void onMousePressed(ofMouseEventArgs& event);
   void attachToEvents();
@@ -86,4 +78,3 @@ private:
   InfoBox _infoBox;
 };
 
-#endif /* InspectionController_h */
