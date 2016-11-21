@@ -15,7 +15,6 @@
 // Type of action
 enum class AppAction {
   NONE,
-  RESET_CAMERA,
   TOGGLE_LOGGING,
   SPAWN_FEW_OCCURRENCES,
   SPAWN_FEW_OBSERVERS,

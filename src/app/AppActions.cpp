@@ -10,7 +10,6 @@ using namespace ofxTCommon;
 
 EnumTypeInfo<AppAction> AppActionType({
   {"(none)", AppAction::NONE},
-  {"resetCamera", AppAction::RESET_CAMERA},
   {"toggleLogging", AppAction::TOGGLE_LOGGING},
   {"spawnFewOccurrences", AppAction::SPAWN_FEW_OCCURRENCES},
   {"spawnFewObservers", AppAction::SPAWN_FEW_OBSERVERS},
