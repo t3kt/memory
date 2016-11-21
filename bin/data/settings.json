@@ -219,25 +219,25 @@
       "rateSpawner": {
         "chance": 1.0,
         "decayRate": {
-          "high": 0.0900000035762787,
-          "low": 0.00499999988824129
+          "high": 0.0132596688345075,
+          "low": 0.00220994465053082
         },
         "enabled": true,
         "initialVelocity": {
-          "high": 7.71345233917236,
+          "high": 4.99447536468506,
           "low": 0.0
         },
-        "rate": 4.10714292526245
+        "rate": 0.0712719261646271
       },
       "sickness": {
-        "decayRateAmount": 0.0599999986588955,
+        "decayRateAmount": 0.0565789490938187,
         "enabled": true,
         "scheduler": {
-          "chance": 1.0,
+          "chance": 0.0322939865291119,
           "enabled": true,
           "interval": {
-            "high": 10.0,
-            "low": 4.0
+            "high": 41.2121200561523,
+            "low": 29.4949493408203
           }
         }
       }
@@ -262,19 +262,19 @@
           "low": 0.0
         },
         "radius": {
-          "high": 100.609756469727,
-          "low": 25.0
+          "high": 66.29833984375,
+          "low": 15.9116010665894
         },
-        "rate": 4.51530599594116,
+        "rate": 1.20065784454346,
         "sequence": {
-          "chance": 0.100000001490116
+          "chance": 0.327071815729141
         },
         "sequenceCount": {
           "high": 10,
-          "low": 2
+          "low": 3
         },
         "sequenceInterval": {
-          "high": 20.0,
+          "high": 16.8397789001465,
           "low": 5.0
         },
         "sequenceStepDistance": {
@@ -285,7 +285,7 @@
     },
     "physics": {
       "bounds": {
-        "size": 1000.0
+        "size": 300
       },
       "damping": {
         "enabled": true,
@@ -405,8 +405,8 @@
       },
       "observers": {
         "connectorRenderer": {
-          "enabled": true,
-          "lineWidth": 2.51145386695862
+          "enabled": false,
+          "lineWidth": 1.45054948329926
         },
         "instancedRenderer": {
           "enabled": false,
@@ -433,15 +433,15 @@
       "occurrences": {
         "connectorRenderer": {
           "enabled": true,
-          "lineWidth": 1.88671410083771
+          "lineWidth": 2.10989022254944
         },
         "occurrenceConnectorRenderer": {
           "enabled": true,
-          "lineWidth": 4.07330322265625
+          "lineWidth": 2.83516478538513
         },
         "preRenderer": {
           "connectionCountRange": {
-            "high": 4.0,
+            "high": 1.53846156597137,
             "low": 0.0
           },
           "fadeIn": {
@@ -451,8 +451,8 @@
           },
           "highlightAmount": 0.400000005960464,
           "sizeRange": {
-            "high": 10.7514743804932,
-            "low": 1.18913209438324
+            "high": 18.2417583465576,
+            "low": 7.69230794906616
           }
         },
         "renderer": {
@@ -479,7 +479,7 @@
         },
         "dof": {
           "aperture": 0.337859243154526,
-          "enabled": true,
+          "enabled": false,
           "focus": 0.99490213394165,
           "maxBlur": 0.703248620033264
         },
