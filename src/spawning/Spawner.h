@@ -1,27 +1,22 @@
 //
 //  Spawner.h
-//  memory
-//
-//  Created by tekt on 7/14/16.
-//
 //
 
-#ifndef Spawner_h
-#define Spawner_h
+#pragma once
 
 #include <memory>
+#include <ofxTCommon.h>
 #include "../control/Params.h"
 #include "../control/ValueRange.h"
-#include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/Scheduler.h"
 
 class Spawner
-: public NonCopyable {
+: public ofxTCommon::NonCopyable
+, public ComponentBase {
 public:
   using Params = ParamsWithEnabled;
-
-  virtual void update() = 0;
 
   virtual bool spawnNow(int count) = 0;
 };
@@ -91,4 +86,3 @@ protected:
   const Params& _params;
 };
 
-#endif /* Spawner_h */

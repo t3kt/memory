@@ -227,7 +227,7 @@
           "high": 4.99447536468506,
           "low": 0.0
         },
-        "rate": 0.0712719261646271
+        "rate": 0.871710538864136
       },
       "sickness": {
         "decayRateAmount": 0.0565789490938187,
@@ -285,7 +285,7 @@
     },
     "physics": {
       "bounds": {
-        "size": 300
+        "size": 300.0
       },
       "damping": {
         "enabled": true,

@@ -1,9 +1,5 @@
 //
 //  OccurrencesController.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
 #include "../core/OccurrencesController.h"
@@ -24,15 +20,9 @@ OccurrencesController::OccurrencesController(const Params& params,
 
 void OccurrencesController::setup() {
   _rateSpawner =
-  std::make_shared<OccurrenceSpawner>(_context,
-                                      _params.rateSpawner,
-                                      _bounds);
-}
-
-void OccurrencesController::update() {
-  EntityController::update();
-
-  _rateSpawner->update();
+  _components.add<OccurrenceSpawner>(_context,
+                                     _params.rateSpawner,
+                                     _bounds);
 }
 
 bool OccurrencesController::performAction(AppAction action) {

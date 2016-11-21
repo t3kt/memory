@@ -1,9 +1,5 @@
 //
 //  ObserversController.cpp
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
 #include "../core/AnimationObject.h"
@@ -23,12 +19,12 @@ ObserversController::ObserversController(const Params& params,
 
 void ObserversController::setup() {
   _rateSpawner =
-  std::make_shared<RateObserverSpawner>(_context,
-                                        _params.rateSpawner,
-                                        _bounds);
+  _components.add<RateObserverSpawner>(_context,
+                                       _params.rateSpawner,
+                                       _bounds);
   _sickness =
-  std::make_shared<ObserverSickness>(_context,
-                                     _params.sickness);
+  _components.add<ObserverSickness>(_context,
+                                    _params.sickness);
 }
 
 bool ObserversController::performAction(AppAction action) {
@@ -46,10 +42,4 @@ bool ObserversController::performAction(AppAction action) {
       return false;
   }
   return true;
-}
-
-void ObserversController::update() {
-  _sickness->update();
-  EntityController::update();
-  _rateSpawner->update();
 }

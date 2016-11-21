@@ -9,8 +9,8 @@
 #pragma once
 
 #include <memory>
+#include <ofxTCommon.h>
 #include "../control/Params.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/ObjectManager.h"
 #include "../core/SimulationEvents.h"
@@ -21,7 +21,7 @@ class SimulationEvents;
 // A controller which manages a set of entities of a particular type E.
 template<typename E>
 class EntityController
-: public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   using EntityPtr = std::shared_ptr<E>;
@@ -58,7 +58,8 @@ public:
   }
 
   // Update each entity and remove the ones that die.
-  virtual void update() {
+  void update() override {
+    _components.update();
     _entities.processAndCullObjects([&](EntityPtr& entity) {
       entity->update(_context.entityState);
       if (!entity->alive()) {
@@ -67,8 +68,13 @@ public:
     });
   }
 
+  void draw() override {
+    _components.draw();
+  }
+
 protected:
   Context& _context;
   SimulationEvents& _events;
   ObjectManager<E>& _entities;
+  ComponentCollection<ComponentBase> _components;
 };

@@ -1,16 +1,12 @@
 //
 //  ObserverSickness.h
-//  memory
-//
-//  Created by tekt on 9/5/16.
-//
 //
 
-#ifndef ObserverSickness_h
-#define ObserverSickness_h
+#pragma once
 
 #include "../control/Params.h"
 #include "../core/Common.h"
+#include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/Scheduler.h"
 
@@ -33,7 +29,8 @@ public:
 };
 
 class ObserverSickness
-: public NonCopyable {
+: public ofxTCommon::NonCopyable
+, public ComponentBase {
 public:
   using Params = ObserverSicknessParams;
 
@@ -42,7 +39,7 @@ public:
   , _params(params)
   , _scheduler(context, params.scheduler) { }
 
-  void update();
+  void update() override;
 
 private:
   Context& _context;
@@ -50,4 +47,3 @@ private:
   IntervalScheduler _scheduler;
 };
 
-#endif /* ObserverSickness_h */

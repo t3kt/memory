@@ -1,13 +1,8 @@
 //
 //  OccurrencesController.h
-//  memory-prototype-2
-//
-//  Created by tekt on 6/25/16.
-//
 //
 
-#ifndef OccurrencesController_h
-#define OccurrencesController_h
+#pragma once
 
 #include "../app/AppActions.h"
 #include "../control/Params.h"
@@ -49,7 +44,6 @@ public:
                         SimulationEvents& events);
   
   void setup() override;
-  void update() override;
 
   bool performAction(AppAction action) override;
   
@@ -58,9 +52,5 @@ private:
   const BoundsController& _bounds;
   ObserversController& _observers;
   std::shared_ptr<OccurrenceSpawner> _rateSpawner;
-
-  friend class IntervalOccurrenceSpawner;
-  friend class DescendantOccurrenceSpawner;
 };
 
-#endif /* OccurrencesController_h */

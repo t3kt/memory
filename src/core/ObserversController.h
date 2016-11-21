@@ -21,7 +21,8 @@
 
 class SimulationEvents;
 
-class ObserverParams : public ::Params {
+class ObserverParams
+: public Params {
 public:
   ObserverParams() {
     add(rateSpawner
@@ -51,7 +52,6 @@ public:
                       SimulationEvents& events);
   
   void setup() override;
-  void update() override;
 
   bool performAction(AppAction action) override;
   
