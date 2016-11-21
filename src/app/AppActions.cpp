@@ -12,7 +12,6 @@ EnumTypeInfo<AppAction> AppActionType({
   {"(none)", AppAction::NONE},
   {"resetCamera", AppAction::RESET_CAMERA},
   {"toggleLogging", AppAction::TOGGLE_LOGGING},
-  {"toggleClockState", AppAction::TOGGLE_CLOCK_STATE},
   {"spawnFewOccurrences", AppAction::SPAWN_FEW_OCCURRENCES},
   {"spawnFewObservers", AppAction::SPAWN_FEW_OBSERVERS},
   {"spawnManyOccurrences", AppAction::SPAWN_MANY_OCCURRENCES},

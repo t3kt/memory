@@ -1,12 +1,11 @@
 //
 //  TimingController.cpp
-//  memory
-//
-//  Created by tekt on 10/10/16.
-//
 //
 
+#include <ofConstants.h>
 #include "../app/AppSystem.h"
+#include "../app/SimulationApp.h"
+#include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../core/TimingController.h"
 
@@ -45,18 +44,14 @@ void TimingController::setup() {
   _clocks.add<ClockNode>(_params.physics,
                          _context.physicsState,
                          _rootClock);
+
+  AppSystem::get().commands()
+  .registerCommand("toggleClockState", "Toggle Clock State", [&](const CommandArgs& args) {
+   _rootClock->toggleState();
+    return true;
+  }, true, '/');
 }
 
 void TimingController::update() {
   _clocks.update();
-}
-
-bool TimingController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::TOGGLE_CLOCK_STATE:
-      _rootClock->toggleState();
-      return true;
-    default:
-      return false;
-  }
 }

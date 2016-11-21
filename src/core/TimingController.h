@@ -1,16 +1,10 @@
 //
 //  TimingController.h
-//  memory
-//
-//  Created by tekt on 10/10/16.
-//
 //
 
-#ifndef TimingController_h
-#define TimingController_h
+#pragma once
 
 #include <functional>
-#include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../core/Clock.h"
 #include "../core/Common.h"
@@ -40,8 +34,7 @@ public:
 
 class TimingController
 : public ComponentBase
-, public NonCopyable
-, public AppActionHandler {
+, public NonCopyable {
 public:
   using Params = TimingParams;
 
@@ -53,8 +46,6 @@ public:
   void setup() override;
   void update() override;
 
-  bool performAction(AppAction action) override;
-
   bool doWhilePaused(std::function<bool(void)> action);
 
 private:
@@ -64,4 +55,3 @@ private:
   ComponentCollection<ClockNode> _clocks;
 };
 
-#endif /* TimingController_h */

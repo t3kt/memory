@@ -22,7 +22,6 @@ AppSystem& AppSystem::get() {
 static std::map<int, AppAction> KEY_TO_ACTION = {
   {'h', AppAction::RESET_CAMERA},
   {'l', AppAction::TOGGLE_LOGGING},
-  {' ', AppAction::TOGGLE_CLOCK_STATE},
   {'0', AppAction::SPAWN_FEW_OBSERVERS},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
   {'-', AppAction::KILL_FEW_OBSERVERS},
@@ -73,6 +72,10 @@ void AppSystem::setup() {
 
 ActionsController& AppSystem::actions() {
   return _simulationApp->actions();
+}
+
+CommandsController& AppSystem::commands() {
+  return _simulationApp->commands();
 }
 
 void AppSystem::main() {

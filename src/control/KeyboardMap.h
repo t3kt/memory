@@ -12,8 +12,6 @@
 
 class KeyboardCommandMapping {
 public:
-  KeyboardCommandMapping() { }
-
   KeyboardCommandMapping(std::string name,
                          CommandArgs args)
   : _name(name)
@@ -35,11 +33,11 @@ public:
   using Storage = std::unordered_map<int, KeyboardCommandMapping>;
 
   void registerCommand(int key, KeyboardCommandMapping mapping);
-
-  template<typename ...Args>
-  void registerCommand(int key, std::string name, Args&& ...args) {
-    registerCommand(key,
-                    KeyboardCommandMapping(std::forward<Args>(args)...));
+  void registerCommand(int key, std::string name) {
+    registerCommand(key, KeyboardCommandMapping(name));
+  }
+  void registerCommand(int key, std::string name, CommandArgs args) {
+    registerCommand(key, KeyboardCommandMapping(name, args));
   }
 
   bool handleKeyPressed(ofKeyEventArgs event);
