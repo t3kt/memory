@@ -87,6 +87,12 @@ void SimulationApp::setup() {
                                     *_actions);
 
   _gui = _components.add<AppGui>(_appParams);
+
+  _commands->registerCommand("toggleLogging", "Toggle Logging",
+                             [&](const CommandArgs&) {
+    _appParams.debug.logging.enabled.toggle();
+    return true;
+  }, true, 'l');
 }
 
 void SimulationApp::updateLogState() {
@@ -164,9 +170,6 @@ bool SimulationApp::performAction(AppAction action) {
     case AppAction::SPAWN_LOAD_TEST_ENTITIES:
       AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
       AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
-      break;
-    case AppAction::TOGGLE_LOGGING:
-      _appParams.debug.logging.enabled.toggle();
       break;
     default:
       return false;

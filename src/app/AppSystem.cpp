@@ -20,7 +20,6 @@ AppSystem& AppSystem::get() {
 }
 
 static std::map<int, AppAction> KEY_TO_ACTION = {
-  {'l', AppAction::TOGGLE_LOGGING},
   {'0', AppAction::SPAWN_FEW_OBSERVERS},
   {')', AppAction::SPAWN_MANY_OBSERVERS},
   {'-', AppAction::KILL_FEW_OBSERVERS},

@@ -1,23 +1,18 @@
 //
 //  Logging.h
-//  memory
-//
-//  Created by tekt on 7/25/16.
-//
 //
 
-#ifndef Logging_h
-#define Logging_h
+#pragma once
 
 #include <functional>
 #include <memory>
 #include <ofLog.h>
+#include <ofxTCommon.h>
 #include <string>
 #include "../control/Params.h"
-#include "../core/Common.h"
 
 class Logger
-: public NonCopyable {
+: public ofxTCommon::NonCopyable {
 public:
   using Statement = std::function<void(ofLog& log)>;
 
@@ -82,7 +77,7 @@ protected:
 };
 
 class LoggingController
-: public NonCopyable {
+: public ofxTCommon::NonCopyable {
 public:
   class Params : public ParamsWithEnabled {
   public:
@@ -147,4 +142,3 @@ private:
   Logger _occurrence;
 };
 
-#endif /* Logging_h */

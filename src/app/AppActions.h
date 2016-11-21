@@ -5,8 +5,7 @@
 //  and handled by various components.
 //
 
-#ifndef AppActions_h
-#define AppActions_h
+#pragma once
 
 #include <iostream>
 #include <ofxTEvents.h>
@@ -15,7 +14,6 @@
 // Type of action
 enum class AppAction {
   NONE,
-  TOGGLE_LOGGING,
   SPAWN_FEW_OCCURRENCES,
   SPAWN_FEW_OBSERVERS,
   SPAWN_MANY_OCCURRENCES,
@@ -62,4 +60,3 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const AppAction& action);
 
-#endif /* AppActions_h */
