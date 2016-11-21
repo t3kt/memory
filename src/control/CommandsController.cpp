@@ -20,10 +20,10 @@ CommandRegistration& CommandRegistration::withKeyMapping(int key, CommandArgs ar
 
 void CommandsController::setup() {
   registerCommand("action", "Perform Action", [](const CommandArgs& args) {
-    if (args.empty() || args[0].type() != typeid(std::string)) {
+    if (!args.hasArgType<std::string>(0)) {
       return false;
     }
-    std::string name = Poco::AnyCast<std::string>(args[0]);
+    std::string name = args.get<std::string>(0);
     AppAction action;
     if (!ofxTCommon::getEnumInfo<AppAction>().tryParseString(name,
                                                              &action)) {

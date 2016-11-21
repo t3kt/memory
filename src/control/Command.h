@@ -44,6 +44,16 @@ public:
     return Poco::AnyCast<T>(_args[i]);
   }
 
+  template<typename T>
+  bool hasArgType(std::size_t i) const {
+    return i < size() && _args[i].type() == typeid(T);
+  }
+
+  template<typename T>
+  bool hasArg(std::size_t i, const T& value) const {
+    return hasArgType<T>(i) && Poco::AnyCast<T>(_args[i]) == value;
+  }
+
 private:
   Storage _args;
 };

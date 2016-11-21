@@ -35,11 +35,11 @@ void ObserversController::setup() {
       killAllEntities();
       return true;
     }
-    if (args[0].type() == typeid(std::string) && args.get<std::string>(0) == "all") {
+    if (args.hasArg<std::string>(0, "all")) {
       killAllEntities();
       return true;
     }
-    if (args[0].type() == typeid(int)) {
+    if (args.hasArgType<int>(0)) {
       killEntities(args.get<int>(0));
       return true;
     }
