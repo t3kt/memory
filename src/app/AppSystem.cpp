@@ -41,7 +41,6 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'d', AppAction::DUMP_ENTITY_STATE},
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
-  {'z', AppAction::TEST_ACTION},
   {'t', AppAction::RELOAD_THEME},
   {'<', AppAction::SELECT_PREV_OBSERVER},
   {'>', AppAction::SELECT_NEXT_OBSERVER},

@@ -207,15 +207,6 @@ void ActionsController::update() {
 
 bool ActionsController::performAction(AppAction action) {
   switch (action) {
-    case AppAction::TEST_ACTION:
-      addDelayed(10, std::make_shared<LoggingAction>("omglol"));
-      return true;
-    case AppAction::TEST_ACTION_2:
-      addContinuous(1, [&]() {
-        logAction("fooo");
-        return true;
-      });
-      return true;
     default:
       return false;
   }
