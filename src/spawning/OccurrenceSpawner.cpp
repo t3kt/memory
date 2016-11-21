@@ -9,6 +9,8 @@
 #include <ofMath.h>
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
+#include "../control/Command.h"
+#include "../control/CommandsController.h"
 #include "../core/Actions.h"
 #include "../core/Context.h"
 #include "../core/Logging.h"
@@ -26,6 +28,15 @@ OccurrenceSpawner::OccurrenceSpawner(Context& context,
 , _params(params)
 , _bounds(bounds)
 , _events(AppSystem::get().simulation().getEvents()) { }
+
+void OccurrenceSpawner::setup() {
+  AppSystem::get().simulation().commands()
+  .registerCommand("spawnOcc", [&](Context&,
+                                   const CommandArgs&) {
+    spawnEntities(1);
+    return true;
+  });
+}
 
 class OccurrenceSequenceSpawnAction
 : public Action {

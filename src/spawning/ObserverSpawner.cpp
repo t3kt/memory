@@ -19,10 +19,10 @@ RateObserverSpawner::RateObserverSpawner(Context& context,
 
 void RateObserverSpawner::setup() {
   AppSystem::get().simulation().commands()
-  .registerCommand("spawnObserver", [&](Context&,
-                                        const CommandArgs&) {
+  .registerCommand("spawnObs", [&](Context&,
+                                   const CommandArgs&) {
     spawnEntities(1);
-    return false;
+    return true;
   });
 }
 

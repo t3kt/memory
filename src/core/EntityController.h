@@ -33,8 +33,6 @@ public:
   , _events(events)
   , _entities(entities) { }
 
-  virtual void setup() {}
-
   ObjectManager<E>& entities() { return _entities; }
   const ObjectManager<E>& entities() const { return _entities; }
 

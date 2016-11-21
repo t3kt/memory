@@ -88,6 +88,8 @@ public:
                     const Params& params,
                     const BoundsController& bounds);
 
+  void setup() override;
+
   std::shared_ptr<OccurrenceEntity>
   spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
 
