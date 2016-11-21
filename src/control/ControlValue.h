@@ -45,7 +45,7 @@ public:
         return getChanceValue();
       case Mode::UNSPECIFIED:
       default:
-        return T();
+        return getDefault();
     }
   }
 
