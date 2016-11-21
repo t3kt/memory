@@ -1,18 +1,13 @@
 //
 //  OutputController.h
-//  memory
-//
-//  Created by tekt on 10/8/16.
-//
 //
 
-#ifndef OutputController_h
-#define OutputController_h
+#pragma once
 
 #include <memory>
 #include <ofConstants.h>
+#include <ofxTCommon.h>
 #include <ofxTEvents.h>
-#include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../core/Component.h"
 
@@ -46,7 +41,7 @@ public:
 
 class OutputController
 : public ComponentBase
-, public AppActionHandler {
+, public ofxTCommon::NonCopyable {
 public:
   using Params = OutputParams;
 
@@ -60,11 +55,9 @@ public:
   void pushTexture(ofTexture* texture);
   void pushScreen();
 
-  bool performAction(AppAction action) override;
-
   glm::ivec2 resolution() const;
 
-  TEvent<ofxTCommon::ValueEventArgs<glm::ivec2>> resolutionChanged;
+  ofxTCommon::TEvent<ofxTCommon::ValueEventArgs<glm::ivec2>> resolutionChanged;
 
 private:
   Params& _params;
@@ -75,4 +68,3 @@ private:
 #endif
 };
 
-#endif /* OutputController_h */

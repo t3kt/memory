@@ -1,9 +1,5 @@
 //
 //  RenderingController.cpp
-//  memory
-//
-//  Created by tekt on 7/5/16.
-//
 //
 
 #include <ofMain.h>
@@ -55,10 +51,6 @@ void RenderingController::setup() {
   _output->resolutionChanged += [&](ValueEventArgs<glm::ivec2> e) {
     _postProc->updateResolution(e.value());
   };
-}
-
-bool RenderingController::performAction(AppAction action) {
-  return false;
 }
 
 void RenderingController::update() {

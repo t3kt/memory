@@ -1,13 +1,12 @@
 //
 //  OutputController.cpp
-//  memory
-//
-//  Created by tekt on 10/8/16.
-//
 //
 
+#include <ofConstants.h>
 #include <ofTexture.h>
 #include <ofAppGLFWWindow.h>
+#include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../rendering/OutputController.h"
 
 glm::ivec2 OutputController::resolution() const {
@@ -22,6 +21,11 @@ void OutputController::setup() {
     auto e = ValueEventArgs<glm::ivec2>(res);
     resolutionChanged(e);
   };
+  AppSystem::get().commands()
+  .registerCommand("toggleFullscreen", "Toggle Fullscreen", [&](const CommandArgs& args) {
+    _params.fullscreen.toggle();
+    return true;
+  }, true, 'f');
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif
@@ -46,15 +50,5 @@ void OutputController::pushScreen() {
 #else
     //...
 #endif
-  }
-}
-
-bool OutputController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::TOGGLE_FULLSCREEN:
-      _params.fullscreen.toggle();
-      return true;
-    default:
-      return false;
   }
 }

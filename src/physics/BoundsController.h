@@ -1,19 +1,13 @@
 //
 //  BoundsController.h
-//  memory
-//
-//  Created by tekt on 10/6/16.
-//
 //
 
-#ifndef BoundsController_h
-#define BoundsController_h
+#pragma once
 
 #include <ofColor.h>
 #include <ofVec3f.h>
-#include "../app/AppActions.h"
+#include <ofxTCommon.h>
 #include "../control/Params.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 
 class DebugParams;
@@ -33,14 +27,15 @@ public:
 };
 
 class BoundsController
-: public NonCopyable
-, public ComponentBase
-, public AppActionHandler {
+: public ofxTCommon::NonCopyable
+, public ComponentBase {
 public:
   using Params = BoundsParams;
 
   BoundsController(const Params& params,
                    DebugParams& debugParams);
+
+  void setup() override;
 
   bool reflect(ofVec3f* velocity,
                ofVec3f* position) const;
@@ -53,12 +48,9 @@ public:
 
   void draw() override;
 
-  bool performAction(AppAction action) override;
-
 private:
   const Params& _params;
   DebugParams& _debugParams;
   const ofFloatColor& _boundsColor;
 };
 
-#endif /* BoundsController_h */

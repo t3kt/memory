@@ -28,14 +28,10 @@ static std::map<int, AppAction> KEY_TO_ACTION = {
   {'n', AppAction::SPAWN_OBSERVER_NAVIGATOR},
   {'r', AppAction::LOAD_SETTINGS},
   {'w', AppAction::SAVE_SETTINGS},
-  {'x', AppAction::STOP_ALL_ENTITIES},
-  {'p', AppAction::TOGGLE_SHOW_PHYSICS},
-  {'b', AppAction::TOGGLE_SHOW_BOUNDS},
   {'d', AppAction::DUMP_ENTITY_STATE},
   {'[', AppAction::LOAD_ENTITY_STATE},
   {']', AppAction::SAVE_ENTITY_STATE},
   {'t', AppAction::RELOAD_THEME},
-  {OF_KEY_F11, AppAction::TOGGLE_FULLSCREEN},
 };
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {

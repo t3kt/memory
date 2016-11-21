@@ -1,15 +1,12 @@
 //
 //  BoundsController.cpp
-//  memory
-//
-//  Created by tekt on 10/6/16.
-//
 //
 
 #include <ofGraphics.h>
 #include <ofMath.h>
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../physics/BoundsController.h"
 
 BoundsController::BoundsController(const Params& params,
@@ -17,6 +14,14 @@ BoundsController::BoundsController(const Params& params,
 : _params(params)
 , _debugParams(debugParams)
 , _boundsColor(AppSystem::get().params().colors.bounds.get()) { }
+
+void BoundsController::setup() {
+  AppSystem::get().commands()
+  .registerCommand("toggleShowBounds", "Toggle Show Bounds", [&](const CommandArgs& args) {
+    _debugParams.showBounds.toggle();
+    return true;
+  }, true, 'b');
+}
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
   float newPos = *pos + *vel;
@@ -72,15 +77,4 @@ void BoundsController::draw() {
                      true, // labels
                      true, true, true // x / y /z
                      );
-}
-
-bool BoundsController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::TOGGLE_SHOW_BOUNDS:
-      _debugParams.showBounds.toggle();
-      break;
-    default:
-      return false;
-  }
-  return true;
 }

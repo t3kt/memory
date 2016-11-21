@@ -1,19 +1,13 @@
 //
 //  PhysicsController.h
-//  memory
-//
-//  Created by tekt on 7/5/16.
-//
 //
 
-#ifndef PhysicsController_h
-#define PhysicsController_h
+#pragma once
 
+#include <ofxTCommon.h>
 #include "../physics/AnchorPointBehavior.h"
-#include "../app/AppActions.h"
 #include "../physics/AttractionBehavior.h"
 #include "../physics/BoundsController.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Context.h"
 #include "../physics/DampingBehavior.h"
@@ -109,8 +103,7 @@ public:
 };
 
 class PhysicsController
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   using Params = PhysicsParams;
@@ -126,8 +119,6 @@ public:
   void update() override;
   void draw() override;
 
-  bool performAction(AppAction action) override;
-
   const BoundsController& bounds() const { return *_bounds; }
 
 private:
@@ -141,4 +132,3 @@ private:
   PhysicsBehaviorCollection _behaviors;
 };
 
-#endif /* PhysicsController_h */

@@ -1,13 +1,8 @@
 //
 //  RenderingController.h
-//  memory
-//
-//  Created by tekt on 7/5/16.
-//
 //
 
-#ifndef RenderingController_h
-#define RenderingController_h
+#pragma once
 
 #include <ofAppGLFWWindow.h>
 #include "../app/AppActions.h"
@@ -107,8 +102,7 @@ public:
 };
 
 class RenderingController
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   using Params = RenderingParams;
@@ -122,8 +116,6 @@ public:
   void beginDraw();
   void draw() override;
   void endDraw();
-
-  bool performAction(AppAction action) override;
 
 private:
 
@@ -141,4 +133,3 @@ private:
   bool _previousNormalizedTexCoords;
 };
 
-#endif /* RenderingController_h */
