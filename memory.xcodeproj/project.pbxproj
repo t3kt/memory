@@ -57,6 +57,7 @@
 		32CCB2FF1DAE13F900BAE226 /* ValueSupplier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB2FA1DAE13F900BAE226 /* ValueSupplier.cpp */; };
 		32CCB3061DAE1C9100BAE226 /* ParametersController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32CCB3041DAE1C9100BAE226 /* ParametersController.cpp */; };
 		32E458431DE252A300FF81F2 /* ControlValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E458411DE252A300FF81F2 /* ControlValue.cpp */; };
+		32E4584B1DE2925600FF81F2 /* KeyboardMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32E458491DE2925600FF81F2 /* KeyboardMap.cpp */; };
 		3492C6FEECF73D32083D6D9E /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 930A494C4F25D56395850FE1 /* GodRaysPass.cpp */; };
 		37AAE1278531AAB62379F2BF /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98E2BF64FEB308C0BA4B34 /* ofxMidiOut.cpp */; };
 		3D088CF455745E1DA5E26B13 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F516E0DB37B5C5B072A6DE2D /* BloomPass.cpp */; };
@@ -351,6 +352,8 @@
 		32D50D3B1DBDBDC90003BA27 /* ofxTagSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTagSet.h; sourceTree = "<group>"; };
 		32E458411DE252A300FF81F2 /* ControlValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControlValue.cpp; path = control/ControlValue.cpp; sourceTree = "<group>"; };
 		32E458421DE252A300FF81F2 /* ControlValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlValue.h; path = control/ControlValue.h; sourceTree = "<group>"; };
+		32E458491DE2925600FF81F2 /* KeyboardMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KeyboardMap.cpp; path = control/KeyboardMap.cpp; sourceTree = "<group>"; };
+		32E4584A1DE2925600FF81F2 /* KeyboardMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardMap.h; path = control/KeyboardMap.h; sourceTree = "<group>"; };
 		33B86F69F2DBB8EADF5423F3 /* ofxMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidiOut.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidiOut.h; sourceTree = SOURCE_ROOT; };
 		33EECA5FD6ECA630D55F54C0 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSyphonServerDirectory.h; path = ../../openFrameworks/addons/ofxSyphon/src/ofxSyphonServerDirectory.h; sourceTree = SOURCE_ROOT; };
 		356AFB527C1FC2CDEA602A11 /* ContrastPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ContrastPass.h; path = ../../openFrameworks/addons/ofxPostProcessing/src/ContrastPass.h; sourceTree = SOURCE_ROOT; };
@@ -725,6 +728,8 @@
 				329654A11DE113BE008EA127 /* CommandsController.h */,
 				32E458411DE252A300FF81F2 /* ControlValue.cpp */,
 				32E458421DE252A300FF81F2 /* ControlValue.h */,
+				32E458491DE2925600FF81F2 /* KeyboardMap.cpp */,
+				32E4584A1DE2925600FF81F2 /* KeyboardMap.h */,
 				D007C865B2527CA426BD0CD8 /* MappingSet.h */,
 				B7E6B29DAC5898C967F29633 /* MidiCommon.cpp */,
 				B1CAC3FDCCFDEC2C41E50D24 /* MidiCommon.h */,
@@ -1991,6 +1996,7 @@
 				AFA9284358731213D453C949 /* JsonConfigParser.cpp in Sources */,
 				D67A3FB3DB09435B85EEBB3E /* ofxDOMBoxLayout.cpp in Sources */,
 				61088496459C7ADB7891187C /* ofxDOMFlexBoxLayout.cpp in Sources */,
+				32E4584B1DE2925600FF81F2 /* KeyboardMap.cpp in Sources */,
 				D5E1D8E8A87A8FFFF4338CEC /* ofxDOMLayoutHelper.cpp in Sources */,
 				402B590DB92A4EBD4AEF7879 /* ofxRtMidiIn.cpp in Sources */,
 				45C697F3B2EFB0FA8798FDC8 /* ofxRtMidiOut.cpp in Sources */,

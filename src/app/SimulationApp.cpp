@@ -144,6 +144,9 @@ void SimulationApp::saveEntityState() {
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
+  if (_commands->keyMap().handleKeyPressed(event)) {
+    return;
+  }
   AppSystem::get().handleKeyPressed(event);
 }
 

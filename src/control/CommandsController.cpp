@@ -27,9 +27,14 @@ void CommandsController::setup() {
 void CommandsController::registerCommand(std::string name,
                                          std::string label,
                                          CommandFn function,
-                                         bool supportsButton) {
-  _commands[name] =
+                                         bool supportsButton,
+                                         int key) {
+  auto& command = _commands[name] =
   std::make_shared<Command>(name, label, function, supportsButton);
+
+  if (key >= 0) {
+    _keyMap.registerCommand(key, name);
+  }
 }
 
 bool CommandsController::perform(const std::string &name,
