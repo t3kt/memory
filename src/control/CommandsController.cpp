@@ -21,14 +21,15 @@ void CommandsController::setup() {
       return false;
     }
     return AppSystem::get().performAction(action);
-  });
+  }, false);
 }
 
 void CommandsController::registerCommand(std::string name,
                                          std::string label,
-                                         CommandFn function) {
+                                         CommandFn function,
+                                         bool supportsButton) {
   _commands[name] =
-  std::make_shared<Command>(name, label, function);
+  std::make_shared<Command>(name, label, function, supportsButton);
 }
 
 bool CommandsController::perform(const std::string &name,

@@ -234,7 +234,9 @@ void AppGui::addCommandButtons(ofxGuiContainer *container) {
   auto& commands =
   AppSystem::get().simulation().commands().commands();
   for (auto command : commands) {
-    container->add<CommandButton>(command.second);
+    if (command.second->supportsButton()) {
+      container->add<CommandButton>(command.second);
+    }
   }
 }
 

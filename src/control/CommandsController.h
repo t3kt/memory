@@ -19,7 +19,8 @@ public:
 
   void registerCommand(std::string name,
                        std::string label,
-                       CommandFn function);
+                       CommandFn function,
+                       bool supportsButton = true);
 
   bool perform(const std::string& name, const CommandArgs& args);
   bool perform(const std::string& name);
