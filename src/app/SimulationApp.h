@@ -71,6 +71,8 @@ public:
 
   TimingController& timing() { return *_timing; }
 
+  CommandsController& commands() { return *_commands; }
+
   AppGui& gui() { return *_gui; }
 
 private:

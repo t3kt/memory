@@ -1,15 +1,13 @@
 //
 //  ObserverSpawner.cpp
-//  memory
-//
-//  Created by tekt on 8/6/16.
-//
 //
 
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
-#include "../physics/BoundsController.h"
+#include "../control/Command.h"
+#include "../control/CommandsController.h"
 #include "../core/Context.h"
+#include "../physics/BoundsController.h"
 #include "../spawning/ObserverSpawner.h"
 
 RateObserverSpawner::RateObserverSpawner(Context& context,
@@ -18,6 +16,15 @@ RateObserverSpawner::RateObserverSpawner(Context& context,
 : RateSpawner(context, params)
 , _bounds(bounds)
 , _events(AppSystem::get().simulation().getEvents()) { }
+
+void RateObserverSpawner::setup() {
+  AppSystem::get().simulation().commands()
+  .registerCommand("spawnObserver", [&](Context&,
+                                        const CommandArgs&) {
+    spawnEntities(1);
+    return false;
+  });
+}
 
 void RateObserverSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {

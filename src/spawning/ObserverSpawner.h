@@ -1,13 +1,8 @@
 //
 //  ObserverSpawner.h
-//  memory
-//
-//  Created by tekt on 8/6/16.
-//
 //
 
-#ifndef ObserverSpawner_h
-#define ObserverSpawner_h
+#pragma once
 
 #include "../app/AppActions.h"
 #include "../control/Params.h"
@@ -54,6 +49,8 @@ public:
                       const Params& params,
                       const BoundsController& bounds);
 
+  void setup() override;
+
   bool performAction(AppAction action) override;
 
 protected:
@@ -65,4 +62,3 @@ protected:
   SimulationEvents& _events;
 };
 
-#endif /* ObserverSpawner_h */
