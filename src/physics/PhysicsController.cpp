@@ -39,12 +39,16 @@ void PhysicsController::setup() {
   .registerCommand("stopEntities", "Stop All Entities", [&](const CommandArgs&) {
     stopAllEntities();
     return true;
-  }, true, 'x');
+  })
+  .withButton(true)
+  .withKeyMapping('x');
   AppSystem::get().commands()
   .registerCommand("toggleShowPhysics", "Toggle Show Physics", [&](const CommandArgs&) {
     _debugParams.showPhysics.toggle();
     return true;
-  }, true, 'p');
+  })
+  .withButton(true)
+  .withKeyMapping('p');
 }
 
 void PhysicsController::beginEntityUpdate(ParticleObject *entity,

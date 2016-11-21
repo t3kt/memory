@@ -12,7 +12,9 @@ void CameraController::setup() {
   .registerCommand("resetCamera", "Reset Camera", [&](const CommandArgs&) {
     resetCamera();
     return true;
-  }, true, 'h');
+  })
+  .withButton(true)
+  .withKeyMapping('h');
 }
 
 void CameraController::resetCamera() {

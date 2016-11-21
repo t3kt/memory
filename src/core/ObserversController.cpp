@@ -44,9 +44,8 @@ void ObserversController::setup() {
       return true;
     }
     return false;
-  }, true);
-  AppSystem::get().commands().keyMap()
-  .registerCommand('-', KeyboardCommandMapping(killCommandName, CommandArgs({5})));
-  AppSystem::get().commands().keyMap()
-  .registerCommand('_', KeyboardCommandMapping(killCommandName, CommandArgs({100})));
+  })
+  .withButton(true)
+  .withKeyMapping('-', CommandArgs({5}))
+  .withKeyMapping('_', CommandArgs({100}));
 }

@@ -92,7 +92,9 @@ void SimulationApp::setup() {
                              [&](const CommandArgs&) {
     _appParams.debug.logging.enabled.toggle();
     return true;
-  }, true, 'l');
+  })
+  .withButton(true)
+  .withKeyMapping('l');
 }
 
 void SimulationApp::updateLogState() {

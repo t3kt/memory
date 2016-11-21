@@ -8,9 +8,18 @@
 #include "../app/AppSystem.h"
 #include "../control/CommandsController.h"
 
+CommandRegistration& CommandRegistration::withButton(bool button) {
+  _command->setSupportsButton(button);
+  return *this;
+}
+
+CommandRegistration& CommandRegistration::withKeyMapping(int key, CommandArgs args) {
+  _controller.keyMap().registerCommand(key, KeyboardCommandMapping(_command->name(), args));
+  return *this;
+}
+
 void CommandsController::setup() {
-  registerCommand("action", "Perform Action",
-                  [](const CommandArgs& args) {
+  registerCommand("action", "Perform Action", [](const CommandArgs& args) {
     if (args.empty() || args[0].type() != typeid(std::string)) {
       return false;
     }
@@ -21,20 +30,17 @@ void CommandsController::setup() {
       return false;
     }
     return AppSystem::get().performAction(action);
-  }, false);
+  })
+  .withButton(false);
 }
 
-void CommandsController::registerCommand(std::string name,
-                                         std::string label,
-                                         CommandFn function,
-                                         bool supportsButton,
-                                         int key) {
-  _commands[name] =
-  std::make_shared<Command>(name, label, function, supportsButton);
-
-  if (key > 0) {
-    _keyMap.registerCommand(key, name);
-  }
+CommandRegistration
+CommandsController::registerCommand(std::string name,
+                                    std::string label,
+                                    CommandFn function) {
+  auto command = _commands[name] =
+  std::make_shared<Command>(name, label, function);
+  return CommandRegistration(*this, command);
 }
 
 bool CommandsController::perform(const std::string &name,

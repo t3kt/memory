@@ -42,9 +42,8 @@ void OccurrencesController::setup() {
       return true;
     }
     return false;
-  }, true);
-  AppSystem::get().commands().keyMap()
-  .registerCommand('=', KeyboardCommandMapping(killCommandName, CommandArgs({5})));
-  AppSystem::get().commands().keyMap()
-  .registerCommand('+', KeyboardCommandMapping(killCommandName, CommandArgs({100})));
+  })
+  .withButton(false)
+  .withKeyMapping('=', CommandArgs({5}))
+  .withKeyMapping('+', CommandArgs({100}));
 }

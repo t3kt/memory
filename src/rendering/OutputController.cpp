@@ -25,7 +25,9 @@ void OutputController::setup() {
   .registerCommand("toggleFullscreen", "Toggle Fullscreen", [&](const CommandArgs& args) {
     _params.fullscreen.toggle();
     return true;
-  }, true, 'f');
+  })
+  .withButton(true)
+  .withKeyMapping('f');
 #ifdef ENABLE_SYPHON
   _syphonServer.setName("Memory Main Output");
 #endif

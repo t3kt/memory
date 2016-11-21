@@ -55,16 +55,19 @@ class Command
 public:
   Command(std::string name,
           std::string label,
-          CommandFn perfFunc,
-          bool supportsButton = true)
+          CommandFn perfFunc)
   : _name(name)
   , _label(label)
   , _perform(perfFunc)
-  , _supportsButton(supportsButton) { }
+  , _supportsButton(false) { }
 
   const std::string& name() const { return _name; }
   const std::string& label() const { return _label; }
   bool supportsButton() const { return _supportsButton; }
+
+  void setSupportsButton(bool supportsButton) {
+    _supportsButton = supportsButton;
+  }
 
   bool perform(const CommandArgs& args) {
     return _perform(args);
@@ -78,7 +81,7 @@ private:
   const std::string _name;
   const std::string _label;
   CommandFn _perform;
-  const bool _supportsButton;
+  bool _supportsButton;
 };
 
 using CommandPtr = std::shared_ptr<Command>;

@@ -35,25 +35,33 @@ void InspectionController::setup() {
   .registerCommand("selectPrevObserver", "Select Prev Observer", [&](const CommandArgs& args) {
     selectPrevEntity<ObserverEntity>();
     return true;
-  }, true, '<');
+  })
+  .withButton(true)
+  .withKeyMapping('<');
 
   AppSystem::get().commands()
   .registerCommand("selectNextObserver", "Select Next Observer", [&](const CommandArgs& args) {
     selectNextEntity<ObserverEntity>();
     return true;
-  }, true, '>');
+  })
+  .withButton(true)
+  .withKeyMapping('>');
 
   AppSystem::get().commands()
   .registerCommand("selectPrevOccurrence", "Select Prev Occurrence", [&](const CommandArgs& args) {
     selectPrevEntity<OccurrenceEntity>();
     return true;
-  }, true, ',');
+  })
+  .withButton(true)
+  .withKeyMapping(',');
 
   AppSystem::get().commands()
   .registerCommand("selectNextOccurrence", "Select Next Occurrence", [&](const CommandArgs& args) {
     selectNextEntity<OccurrenceEntity>();
     return true;
-  }, true, '.');
+  })
+  .withButton(true)
+  .withKeyMapping('.');
 }
 
 void InspectionController::onEnabledChanged(bool enabled) {

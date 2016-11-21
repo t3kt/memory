@@ -20,7 +20,9 @@ void BoundsController::setup() {
   .registerCommand("toggleShowBounds", "Toggle Show Bounds", [&](const CommandArgs& args) {
     _debugParams.showBounds.toggle();
     return true;
-  }, true, 'b');
+  })
+  .withButton(true)
+  .withKeyMapping('b');
 }
 
 static bool reflectVal(float *vel, float *pos, float minPos, float maxPos) {
