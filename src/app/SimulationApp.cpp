@@ -1,9 +1,5 @@
 //
 //  SimulationApp.cpp
-//  memory
-//
-//  Created by tekt on 7/10/16.
-//
 //
 
 #include <ofSystemUtils.h>
@@ -26,15 +22,13 @@ void SimulationApp::setup() {
 
   updateLogState();
 
-  _gui = _components.add<AppGui>(_appParams);
-
   _actions =
   _components.add<ActionsController>(_context);
 
   _midi = _components.add<MidiController>(_appParams);
 
   _commands =
-  _components.add<CommandsController>(_context);
+  _components.add<CommandsController>();
 
   _osc = _components.add<OscController>(_appParams,
                                         *_commands);
@@ -91,6 +85,8 @@ void SimulationApp::setup() {
   _scenes =
   _components.add<ScenesController>(_context,
                                     *_actions);
+
+  _gui = _components.add<AppGui>(_appParams);
 }
 
 void SimulationApp::updateLogState() {
@@ -148,9 +144,6 @@ void SimulationApp::saveEntityState() {
 }
 
 void SimulationApp::keyPressed(ofKeyEventArgs& event) {
-//  if (event.key == 'v') {
-//    _commands->perform("test", CommandArgs{ std::string("foo") });
-//  }
   AppSystem::get().handleKeyPressed(event);
 }
 

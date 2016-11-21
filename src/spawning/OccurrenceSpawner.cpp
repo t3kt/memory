@@ -31,8 +31,9 @@ OccurrenceSpawner::OccurrenceSpawner(Context& context,
 
 void OccurrenceSpawner::setup() {
   AppSystem::get().simulation().commands()
-  .registerCommand("spawnOcc", [&](Context&,
-                                   const CommandArgs&) {
+  .registerCommand("spawnOcc",
+                   "Spawn Occurrence",
+                   [&](const CommandArgs&) {
     spawnEntities(1);
     return true;
   });

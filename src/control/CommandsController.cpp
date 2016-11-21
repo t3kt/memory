@@ -9,8 +9,8 @@
 #include "../control/CommandsController.h"
 
 void CommandsController::setup() {
-  registerCommand("action", [](Context& context,
-                               const CommandArgs& args) {
+  registerCommand("action", "Perform Action",
+                  [](const CommandArgs& args) {
     if (args.empty() || args[0].type() != typeid(std::string)) {
       return false;
     }
@@ -25,25 +25,21 @@ void CommandsController::setup() {
 }
 
 void CommandsController::registerCommand(std::string name,
-                                         CommandPtr command) {
-  _commands[name] = command;
-}
-
-void CommandsController::registerCommand(std::string name,
+                                         std::string label,
                                          CommandFn function) {
-  registerCommand(name, Command::of(function));
+  _commands[name] = Command(name, label, function);
 }
 
 bool CommandsController::perform(const std::string &name,
-                                 const CommandArgs &args) const {
+                                 const CommandArgs &args) {
   auto iter = _commands.find(name);
   if (iter == _commands.end()) {
     return false;
   }
-  return iter->second->perform(_context, args);
+  return iter->second.perform(args);
 }
 
-bool CommandsController::perform(const std::string &name) const {
+bool CommandsController::perform(const std::string &name) {
   CommandArgs args;
   return perform(name, args);
 }

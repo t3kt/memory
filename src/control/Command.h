@@ -13,9 +13,6 @@
 #include <ofxTCommon.h>
 #include <Poco/Any.h>
 #include <string>
-#include <vector>
-
-class Context;
 
 using CommandArg = Poco::Any;
 
@@ -29,9 +26,8 @@ public:
   CommandArgs(std::initializer_list<Arg> args)
   : _args(args) { }
 
-  template<typename T>
-  CommandArgs& add(T val) {
-    _args.push_back(val);
+  CommandArgs& add(Arg arg) {
+    _args.push_back(arg);
     return *this;
   }
 
@@ -51,14 +47,26 @@ private:
   Storage _args;
 };
 
-using CommandFn = std::function<bool(Context&, const CommandArgs&)>;
-class Command;
-using CommandPtr = std::shared_ptr<Command>;
+using CommandFn = std::function<bool(const CommandArgs&)>;
 
 class Command {
 public:
-  virtual bool perform(Context& context,
-                       const CommandArgs& args) = 0;
+  Command() = default;
 
-  static CommandPtr of(CommandFn fn);
+  Command(std::string name,
+          std::string label,
+          CommandFn perfFunc)
+  : _name(name)
+  , _label(label)
+  , _perform(perfFunc) { }
+
+  const std::string& name() const { return _name; }
+  const std::string& label() const { return _label; }
+
+  bool perform(const CommandArgs& args) { return _perform(args); }
+
+private:
+  std::string _name;
+  std::string _label;
+  CommandFn _perform;
 };
