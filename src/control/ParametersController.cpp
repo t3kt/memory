@@ -65,9 +65,9 @@ void ParametersState::readJson(const ofJson &obj) {
 
 PresetPtr ParametersState::getPreset(const std::string &name) {
   for (auto& preset : _presets) {
-//    if (preset->na)
-
-    //..
+    if (preset->name() == name) {
+      return preset;
+    }
   }
   return nullptr;
 }
@@ -79,6 +79,16 @@ void ParametersController::setup() {
   .registerCommand("capturePreset", "Capture Preset", [&](const CommandArgs& args) {
     captureNewPreset(args.getOrDefault<std::string>(0));
     return true;
+  })
+  .withButton(true);
+  AppSystem::get().commands()
+  .registerCommand("loadPreset", "Load Preset", [&](const CommandArgs& args) {
+    return loadPreset(args.getOrDefault<std::string>(0));
+  })
+  .withButton(true);
+  AppSystem::get().commands()
+  .registerCommand("transitionPreset", "Transition to Preset", [&](const CommandArgs& args) {
+    return transitionToPreset(args.getOrDefault<std::string>(0));
   })
   .withButton(true);
   AppSystem::get().commands()
@@ -175,22 +185,46 @@ void ParametersController::captureNewPreset(std::string presetName) {
   AppSystem::get().simulation().gui().updatePresetButtons();
 }
 
-void ParametersController::loadPreset(const ParamPreset &preset) {
-  AppSystem::get().log().app().logNotice("Loading preset...");
-  preset.applyToParams(_params);
+bool ParametersController::loadPreset(std::string presetName) {
+  if (presetName.empty()) {
+    presetName = AppSystem::promptForText("Preset to load");
+    if (presetName.empty()) {
+      return false;
+    }
+  }
+  auto preset = _state.getPreset(presetName);
+  if (!preset) {
+    AppSystem::get().log().app().logWarning("Preset not found: " + presetName);
+    return false;
+  }
+  AppSystem::get().log().app().logNotice("Loading preset " + presetName);
+  preset->applyToParams(_params);
+  return true;
 }
 
-void
-ParametersController::transitionToPreset(const ParamPreset &preset) {
+bool ParametersController::transitionToPreset(std::string presetName) {
+  if (presetName.empty()) {
+    presetName = AppSystem::promptForText("Preset to transition to");
+    if (presetName.empty()) {
+      return false;
+    }
+  }
+
+  auto preset = _state.getPreset(presetName);
+  if (!preset) {
+    AppSystem::get().log().app().logWarning("Preset not found: " + presetName);
+    return false;
+  }
   if (_context.activeTransition) {
     AppSystem::get().log().app().logNotice("Aborting active transition: " + _context.activeTransition->name());
     _context.activeTransition->abortApplyAction();
     _context.activeTransition.reset();
   }
-  AppSystem::get().log().app().logNotice("Transitioning to preset " + preset.name() + "...");
+
+  AppSystem::get().log().app().logNotice("Transitioning to preset " + presetName + "...");
   auto transitions = std::make_shared<ParamTransitionSet>();
-  transitions->loadCurrentToPreset(_params, preset);
-  transitions->setName("to preset '" + preset.name() + "'");
+  transitions->loadCurrentToPreset(_params, *preset);
+  transitions->setName("to preset '" + presetName + "'");
   auto action = transitions->createApplyAction(5, _context);
   _context.activeTransition = transitions;
   ActionFinishCallback onFinish = [&]() {
@@ -199,4 +233,5 @@ ParametersController::transitionToPreset(const ParamPreset &preset) {
   };
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);
+  return true;
 }

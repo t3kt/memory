@@ -62,8 +62,8 @@ public:
 
   TParamBase* lookupPath(const std::string& path);
 
-  void loadPreset(const ParamPreset& preset);
-  void transitionToPreset(const ParamPreset& preset);
+  bool loadPreset(std::string presetName = "");
+  bool transitionToPreset(std::string presetName = "");
 
   void load(std::string filename = "");
   void save(std::string filename = "");
