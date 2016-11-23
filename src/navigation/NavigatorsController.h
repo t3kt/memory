@@ -1,18 +1,12 @@
 //
 //  NavigatorsController.h
-//  memory
-//
-//  Created by tekt on 7/17/16.
-//
 //
 
-#ifndef NavigatorsController_h
-#define NavigatorsController_h
+#pragma once
 
 #include <memory>
-#include "../app/AppActions.h"
+#include <ofxTCommon.h>
 #include "../control/Params.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/ObjectManager.h"
 #include "../spawning/Spawner.h"
@@ -57,8 +51,7 @@ public:
 };
 
 class NavigatorsController
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 public:
   using Params = NavigatorParams;
@@ -70,8 +63,6 @@ public:
   void setup() override;
   void update() override;
   void draw() override;
-
-  bool performAction(AppAction action) override;
 private:
   bool spawnObserverNavigator(std::shared_ptr<ObserverEntity> observer);
   bool spawnHighlightedObserverNavigator();
@@ -85,4 +76,3 @@ private:
   friend class ObserverNavSpawner;
 };
 
-#endif /* NavigatorsController_h */

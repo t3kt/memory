@@ -21,7 +21,6 @@ enum class AppAction {
   SPAWN_TONS_OF_OBSERVERS,
   SPAWN_TONS_OF_OCCURRENCES,
   SPAWN_LOAD_TEST_ENTITIES,
-  SPAWN_OBSERVER_NAVIGATOR,
 };
 
 using AppActionEventArgs = ofxTCommon::ValueEventArgs<AppAction>;
