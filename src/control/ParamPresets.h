@@ -1,14 +1,10 @@
 //
 //  ParamPresets.h
-//  memory
-//
-//  Created by tekt on 10/11/16.
-//
 //
 
-#ifndef ParamPresets_h
-#define ParamPresets_h
+#pragma once
 
+#include <memory>
 #include <ofxTJsonIO.h>
 #include <utility>
 #include "../control/Params.h"
@@ -52,4 +48,4 @@ private:
   ofJson _values;
 };
 
-#endif /* ParamPresets_h */
+using PresetPtr = std::shared_ptr<ParamPreset>;

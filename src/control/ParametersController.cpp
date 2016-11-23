@@ -63,12 +63,21 @@ void ParametersState::readJson(const ofJson &obj) {
   }
 }
 
+PresetPtr ParametersState::getPreset(const std::string &name) {
+  for (auto& preset : _presets) {
+//    if (preset->na)
+
+    //..
+  }
+  return nullptr;
+}
+
 void ParametersController::setup() {
   writeMetadata();
   load();
   AppSystem::get().commands()
-  .registerCommand("capturePreset", "Capture Preset", [&](const CommandArgs&) {
-    captureNewPreset();
+  .registerCommand("capturePreset", "Capture Preset", [&](const CommandArgs& args) {
+    captureNewPreset(args.getOrDefault<std::string>(0));
     return true;
   })
   .withButton(true);
@@ -79,23 +88,19 @@ void ParametersController::setup() {
   })
   .withButton(true);
   AppSystem::get().commands()
-  .registerCommand("loadSettings", "Load Settings", [&](const CommandArgs&) {
-    load();
+  .registerCommand("loadSettings", "Load Settings", [&](const CommandArgs& args) {
+    load(args.getOrDefault<std::string>(0));
     return true;
   })
   .withButton(true)
   .withKeyMapping('r');
   AppSystem::get().commands()
-  .registerCommand("saveSettings", "Save Settings", [&](const CommandArgs&) {
-    save();
+  .registerCommand("saveSettings", "Save Settings", [&](const CommandArgs& args) {
+    save(args.getOrDefault<std::string>(0));
     return true;
   })
   .withButton(true)
   .withKeyMapping('w');
-}
-
-void ParametersController::update() {
-  //...
 }
 
 void ParametersController::resetParams() {
@@ -107,12 +112,13 @@ TParamBase* ParametersController::lookupPath(const std::string &path) {
   return _params.lookupPath(path);
 }
 
-void ParametersController::load() {
-  AppSystem::get().log().app().logNotice("Reading JSON settings...");
-
+void ParametersController::load(std::string filename) {
+  if (filename.empty()) {
+    filename = "settings.json";
+  }
+  AppSystem::get().log().app().logNotice("Reading JSON settings from " + filename);
   AppSystem::get().doWhilePaused([&]() {
-    _state.readFromFile("settings.json");
-    //...
+    _state.readFromFile(filename);
     return true;
   });
   AppSystem::get().log().app().logNotice([&](ofLog& log) {
@@ -120,10 +126,13 @@ void ParametersController::load() {
   });
 }
 
-void ParametersController::save() {
-  AppSystem::get().log().app().logNotice("Writing JSON settings...");
+void ParametersController::save(std::string filename) {
+  if (filename.empty()) {
+    filename = "settings.json";
+  }
+  AppSystem::get().log().app().logNotice("Writing JSON settings to " + filename);
   AppSystem::get().doWhilePaused([&]() {
-    _state.writeJsonTo("settings.json");
+    _state.writeJsonTo(filename);
     return true;
   });
   AppSystem::get().log().app().logNotice(".. write to JSON finished");
@@ -139,26 +148,28 @@ void ParametersController::writeMetadata() {
   AppSystem::get().log().app().logNotice(".. write metadata JSON finished");
 }
 
-void ParametersController::captureNewPreset() {
+void ParametersController::captureNewPreset(std::string presetName) {
   if (_isCapturingPreset) {
     // see https://github.com/t3kt/memory#15
     AppSystem::get().log().app().logWarning("Already capturing preset... it's that annoying duplicate action bug...");
     return;
   }
   _isCapturingPreset = true;
-  AppSystem::get().log().app().logNotice("Capturing preset...");
-  auto name = AppSystem::promptForText("Preset name");
-  if (name.empty()) {
-    AppSystem::get().log().app().logNotice("Not creating preset");
-    return;
+  if (presetName.empty()) {
+    presetName = AppSystem::promptForText("Preset name");
+    if (presetName.empty()) {
+      AppSystem::get().log().app().logNotice("Not creating preset");
+      return;
+    }
   }
+  AppSystem::get().log().app().logNotice("Capturing preset " + presetName);
   auto preset = std::make_shared<ParamPreset>();
-  preset->setName(name);
+  preset->setName(presetName);
   preset->captureParams(_params);
   _state.addPreset(preset);
 
   AppSystem::get().log().app()
-  .logNotice("Captured preset: '" + name + "'");
+  .logNotice("Captured preset: '" + presetName + "'");
   _isCapturingPreset = false;
 
   AppSystem::get().simulation().gui().updatePresetButtons();
