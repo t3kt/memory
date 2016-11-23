@@ -284,7 +284,7 @@ class TParam
 public:
 
   void setNormalizedValue(float normVal) {
-    ofParameter<T>::set(getInterpolated(ofParameter<T>::getMin(),
+    ofParameter<T>::set(ofxTCommon::getInterpolated(ofParameter<T>::getMin(),
                                         ofParameter<T>::getMax(),
                                         normVal));
   }

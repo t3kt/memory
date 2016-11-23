@@ -10,6 +10,9 @@
 #include "../scenes/ScenesController.h"
 
 void SimulationApp::setup() {
+  _commands =
+  _components.add<CommandsController>();
+
   _paramsController =
   _components.add<ParametersController>(_appParams,
                                         _context);
@@ -26,9 +29,6 @@ void SimulationApp::setup() {
   _components.add<ActionsController>(_context);
 
   _midi = _components.add<MidiController>(_appParams);
-
-  _commands =
-  _components.add<CommandsController>();
 
   _osc = _components.add<OscController>(_appParams,
                                         *_commands);
@@ -95,6 +95,21 @@ void SimulationApp::setup() {
   })
   .withButton(true)
   .withKeyMapping('l');
+  _commands->registerCommand("dumpEntityState", "Dump Entity State", [&](const CommandArgs&) {
+    dumpEntityState();
+    return true;
+  })
+  .withButton(true);
+  _commands->registerCommand("loadEntityState", "Load Entity State", [&](const CommandArgs&) {
+    loadEntityState();
+    return true;
+  })
+  .withButton(true);
+  _commands->registerCommand("saveEntityState", "Save Entity State", [&](const CommandArgs&) {
+    saveEntityState();
+    return true;
+  })
+  .withButton(true);
 }
 
 void SimulationApp::updateLogState() {
@@ -156,25 +171,4 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
     return;
   }
   AppSystem::get().handleKeyPressed(event);
-}
-
-bool SimulationApp::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::DUMP_ENTITY_STATE:
-      dumpEntityState();
-      break;
-    case AppAction::LOAD_ENTITY_STATE:
-      loadEntityState();
-      break;
-    case AppAction::SAVE_ENTITY_STATE:
-      saveEntityState();
-      break;
-    case AppAction::SPAWN_LOAD_TEST_ENTITIES:
-      AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
-      AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
-      break;
-    default:
-      return false;
-  }
-  return true;
 }

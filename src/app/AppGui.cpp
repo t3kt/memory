@@ -5,31 +5,12 @@
 #include <ofxGuiExtended.h>
 #include "../app/AppGui.h"
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../app/SimulationApp.h"
 #include "../control/Command.h"
 #include "../control/CommandsController.h"
 #include "../control/ParametersController.h"
 #include "../control/ParamPresets.h"
-
-class ActionButton
-: public ofxGuiButton {
-public:
-  explicit ActionButton(AppAction action)
-  : ofxGuiButton(enumToString(action))
-  , _action(action) {
-    setType(ofxGuiToggleType::FULLSIZE);
-    addListener(this, &ActionButton::onClick);
-  }
-  ~ActionButton() {
-    removeListener(this, &ActionButton::onClick);
-  }
-private:
-  void onClick() {
-    AppSystem::get().performAction(_action);
-  }
-
-  const AppAction _action;
-};
 
 class CommandButton
 : public ofxGuiButton {
@@ -179,10 +160,6 @@ void AppGui::setup() {
   }
   _appParams.debug.addGuiTo(_rootTabs)->setName("Dbg");
   {
-    auto actionsTab = _rootTabs->addGroup("Act");
-    addActionButtons(actionsTab);
-  }
-  {
     auto commandsTab = _rootTabs->addGroup("Cmd");
     addCommandButtons(commandsTab);
   }
@@ -199,6 +176,13 @@ void AppGui::setup() {
 
   loadTheme();
   _mainPanel->blockLayout(false);
+
+  AppSystem::get().commands()
+  .registerCommand("reloadGuiTheme", "Reload GUI Theme", [&](const CommandArgs&) {
+    loadTheme();
+    return true;
+  })
+  .withButton(true);
 }
 
 void AppGui::updatePresetButtons() {
@@ -218,15 +202,6 @@ void AppGui::addPresetButtons(ofxGuiContainer *container) {
       name = "[" + ofToString(i) + "]";
     }
     _presetsContainer->add<LoadPresetButton>(name, preset);
-  }
-}
-
-void AppGui::addActionButtons(ofxGuiContainer *container) {
-  for (auto action : enumValues<AppAction>()) {
-    if (action == AppAction::NONE) {
-      continue;
-    }
-    container->add<ActionButton>(action);
   }
 }
 
@@ -275,16 +250,6 @@ void AppGui::setAdvancedHidden(bool hidden) {
 
 void AppGui::loadTheme() {
   _mainPanel->loadTheme("theme.json");
-}
-
-bool AppGui::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::RELOAD_THEME:
-      loadTheme();
-      return true;
-    default:
-      return false;
-  }
 }
 
 void AppGui::draw() {

@@ -11,6 +11,7 @@
 #include <random>
 #include "../app/AppAssets.h"
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../navigation/NavigatorEntity.h"
 #include "../navigation/NavigatorsController.h"
@@ -72,6 +73,12 @@ void NavigatorsController::setup() {
   std::make_shared<ObserverNavSpawner>(*this,
                                        _context,
                                        _params.observerNavigatorSpawner);
+
+  AppSystem::get().commands()
+  .registerCommand("spawnObsNav", "Spawn Observer Navigator", [&](const CommandArgs& args) {
+    return spawnHighlightedObserverNavigator();
+  })
+  .withButton(true);
 }
 
 void NavigatorsController::update() {
@@ -184,13 +191,4 @@ bool NavigatorsController::spawnHighlightedObserverNavigator() {
     return false;
   }
   return spawnObserverNavigator(observer);
-}
-
-bool NavigatorsController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::SPAWN_OBSERVER_NAVIGATOR:
-      return spawnHighlightedObserverNavigator();
-    default:
-      return false;
-  }
 }

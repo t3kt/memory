@@ -28,9 +28,8 @@ void ObserversController::setup() {
   _components.add<ObserverSickness>(_context,
                                     _params.sickness);
 
-  const std::string killCommandName = "killObs";
   AppSystem::get().commands()
-  .registerCommand(killCommandName, "Kill Observers", [&](const CommandArgs& args) {
+  .registerCommand("killObs", "Kill Observers", [&](const CommandArgs& args) {
     if (args.empty()) {
       killAllEntities();
       return true;

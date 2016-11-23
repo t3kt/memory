@@ -1,15 +1,9 @@
 //
 //  OccurrenceSpawner.h
-//  memory
-//
-//  Created by tekt on 8/6/16.
-//
 //
 
-#ifndef OccurrenceSpawner_h
-#define OccurrenceSpawner_h
+#pragma once
 
-#include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../control/ValueSupplier.h"
 #include "../spawning/Spawner.h"
@@ -81,8 +75,7 @@ public:
 };
 
 class OccurrenceSpawner
-: public RateSpawner<RateOccurrenceSpawnerParams>
-, public AppActionHandler {
+: public RateSpawner<RateOccurrenceSpawnerParams> {
 public:
   OccurrenceSpawner(Context& context,
                     const Params& params,
@@ -92,8 +85,6 @@ public:
 
   std::shared_ptr<OccurrenceEntity>
   spawnSequenceStepEntity(std::shared_ptr<OccurrenceEntity> prev);
-
-  bool performAction(AppAction action) override;
 
 protected:
   void spawnEntities(int count) override;
@@ -117,4 +108,3 @@ private:
   friend class OccurrenceSequenceSpawnAction;
 };
 
-#endif /* OccurrenceSpawner_h */

@@ -26,9 +26,8 @@ void OccurrencesController::setup() {
                                      _params.rateSpawner,
                                      _bounds);
 
-  const std::string killCommandName = "killOcc";
   AppSystem::get().commands()
-  .registerCommand(killCommandName, "Kill Occurrences", [&](const CommandArgs& args) {
+  .registerCommand("killOcc", "Kill Occurrences", [&](const CommandArgs& args) {
     if (args.empty()) {
       killAllEntities();
       return true;

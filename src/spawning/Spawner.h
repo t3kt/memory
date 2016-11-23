@@ -6,6 +6,8 @@
 
 #include <memory>
 #include <ofxTCommon.h>
+#include "../control/Command.h"
+#include "../control/CommandsController.h"
 #include "../control/Params.h"
 #include "../control/ValueRange.h"
 #include "../core/Component.h"
@@ -14,11 +16,19 @@
 
 class Spawner
 : public ofxTCommon::NonCopyable
-, public ComponentBase {
+, public ComponentBase
+, public std::enable_shared_from_this<Spawner> {
 public:
   using Params = ParamsWithEnabled;
 
   virtual bool spawnNow(int count) = 0;
+
+protected:
+  CommandRegistration
+  registerSpawnCommand(std::string name,
+                       std::string label);
+
+  friend class SpawnCommand;
 };
 
 using RateSpawnerParams = RateSchedulerParams;

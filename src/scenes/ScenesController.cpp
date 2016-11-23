@@ -3,6 +3,7 @@
 //
 
 #include "../app/AppSystem.h"
+#include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../scenes/ScenesController.h"
 
@@ -59,6 +60,16 @@ void ScenesController::setup() {
 //    scene->addNode(node);
 //  }
 //  scene->writeJsonTo("testScene1.json");
+
+  AppSystem::get().commands()
+  .registerCommand("loadScene", "Load Scene", [&](const CommandArgs& args) {
+    if (args.hasArgType<std::string>(0)) {
+      loadSceneFile(args.get<std::string>(0));
+    }
+    promptAndLoadScene();
+    return true;
+  })
+  .withButton(true);
 }
 
 void ScenesController::update() {
@@ -98,14 +109,4 @@ void ScenesController::startScene(std::shared_ptr<Scene> scene) {
   scene->schedule(_actions);
   _context.activeScene = scene;
   _context.spawningSuspended = true;
-}
-
-bool ScenesController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::LOAD_SCENE:
-      promptAndLoadScene();
-      return true;
-    default:
-      return false;
-  }
 }

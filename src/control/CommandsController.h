@@ -33,11 +33,15 @@ class CommandsController
 public:
   using CommandMap = std::unordered_map<std::string, CommandPtr>;
 
-  void setup() override;
+  CommandRegistration registerCommand(CommandPtr command);
 
   CommandRegistration registerCommand(std::string name,
                                       std::string label,
                                       CommandFn function);
+
+  CommandRegistration registerCommand(std::string name,
+                                      std::string label,
+                                      std::function<bool()> function);
 
   bool perform(const std::string& name, const CommandArgs& args);
   bool perform(const std::string& name);

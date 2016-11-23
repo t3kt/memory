@@ -5,7 +5,6 @@
 #pragma once
 
 #include <ofAppGLFWWindow.h>
-#include "../app/AppActions.h"
 #include "../rendering/CameraController.h"
 #include "../rendering/Colors.h"
 #include "../core/Common.h"

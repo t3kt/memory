@@ -10,6 +10,7 @@
 #include "../app/AppParameters.h"
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
+#include "../control/CommandsController.h"
 #include "../control/ParametersController.h"
 #include "../control/ParamTransition.h"
 #include "../core/Actions.h"
@@ -65,29 +66,36 @@ void ParametersState::readJson(const ofJson &obj) {
 void ParametersController::setup() {
   writeMetadata();
   load();
+  AppSystem::get().commands()
+  .registerCommand("capturePreset", "Capture Preset", [&](const CommandArgs&) {
+    captureNewPreset();
+    return true;
+  })
+  .withButton(true);
+  AppSystem::get().commands()
+  .registerCommand("resetParams", "Reset Params", [&](const CommandArgs&) {
+    resetParams();
+    return true;
+  })
+  .withButton(true);
+  AppSystem::get().commands()
+  .registerCommand("loadSettings", "Load Settings", [&](const CommandArgs&) {
+    load();
+    return true;
+  })
+  .withButton(true)
+  .withKeyMapping('r');
+  AppSystem::get().commands()
+  .registerCommand("saveSettings", "Save Settings", [&](const CommandArgs&) {
+    save();
+    return true;
+  })
+  .withButton(true)
+  .withKeyMapping('w');
 }
 
 void ParametersController::update() {
   //...
-}
-
-bool ParametersController::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::LOAD_SETTINGS:
-      load();
-      return true;
-    case AppAction::SAVE_SETTINGS:
-      save();
-      return true;
-    case AppAction::CAPTURE_PRESET:
-      captureNewPreset();
-      return true;
-    case AppAction::RESET_PARAMS:
-      resetParams();
-      return true;
-    default:
-      return false;
-  }
 }
 
 void ParametersController::resetParams() {

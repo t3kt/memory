@@ -1,22 +1,16 @@
 //
 //  SimulationApp.h
-//  memory
-//
-//  Created by tekt on 7/10/16.
-//
 //
 
-#ifndef SimulationApp_h
-#define SimulationApp_h
+#pragma once
 
 #include <ofMain.h>
+#include <ofxTCommon.h>
 #include "../core/Actions.h"
 #include "../core/AnimationsController.h"
-#include "../app/AppActions.h"
 #include "../app/AppGui.h"
 #include "../app/AppParameters.h"
 #include "../core/Clock.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Context.h"
 #include "../core/InspectionController.h"
@@ -41,8 +35,7 @@ class CommandsController;
 
 class SimulationApp
 : public ofBaseApp
-, public AppActionHandler
-, public NonCopyable {
+, public ofxTCommon::NonCopyable {
 public:
   SimulationApp(MemoryAppParameters& appParams,
                 Context& context,
@@ -56,8 +49,6 @@ public:
   void draw() override;
 
   void keyPressed(ofKeyEventArgs& eventl) override;
-
-  bool performAction(AppAction action) override;
 
   SimulationEvents& getEvents() { return _events; }
 
@@ -107,4 +98,3 @@ private:
   ComponentCollection<ComponentBase> _components;
 };
 
-#endif /* SimulationApp_h */

@@ -8,9 +8,8 @@
 
 #include <functional>
 #include <memory>
+#include <ofxTCommon.h>
 #include <vector>
-#include "../app/AppActions.h"
-#include "../core/Common.h"
 #include "../core/Component.h"
 #include "../core/Logging.h"
 
@@ -88,8 +87,7 @@ protected:
 using ActionFinishCallback = std::function<void()>;
 
 class ActionsController
-: public AppActionHandler
-, public NonCopyable
+: public ofxTCommon::NonCopyable
 , public ComponentBase {
 private:
   class Entry {
@@ -138,8 +136,6 @@ public:
 
   void logAction(std::string message);
   void logAction(Logger::Statement statement);
-
-  bool performAction(AppAction action) override;
 private:
   Context& _context;
   std::vector<Entry> _actions;
