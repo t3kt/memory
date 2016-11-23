@@ -60,15 +60,20 @@ private:
 
 using CommandFn = std::function<bool(const CommandArgs&)>;
 
+class Command;
+using CommandPtr = std::shared_ptr<Command>;
+
 class Command
 : public ofxTCommon::NonCopyable {
 public:
+  static CommandPtr of(std::string name,
+                       std::string label,
+                       CommandFn performFunc);
+
   Command(std::string name,
-          std::string label,
-          CommandFn perfFunc)
+          std::string label)
   : _name(name)
   , _label(label)
-  , _perform(perfFunc)
   , _supportsButton(false) { }
 
   const std::string& name() const { return _name; }
@@ -79,19 +84,14 @@ public:
     _supportsButton = supportsButton;
   }
 
-  bool perform(const CommandArgs& args) {
-    return _perform(args);
-  }
+  virtual bool perform(const CommandArgs& args) = 0;
   bool perform() {
     CommandArgs args;
-    return _perform(args);
+    return perform(args);
   }
 
 private:
   const std::string _name;
   const std::string _label;
-  CommandFn _perform;
   bool _supportsButton;
 };
-
-using CommandPtr = std::shared_ptr<Command>;

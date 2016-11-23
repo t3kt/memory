@@ -172,15 +172,3 @@ void SimulationApp::keyPressed(ofKeyEventArgs& event) {
   }
   AppSystem::get().handleKeyPressed(event);
 }
-
-bool SimulationApp::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::SPAWN_LOAD_TEST_ENTITIES:
-      AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OBSERVERS);
-      AppSystem::get().performAction(AppAction::SPAWN_TONS_OF_OCCURRENCES);
-      break;
-    default:
-      return false;
-  }
-  return true;
-}

@@ -19,20 +19,7 @@ AppSystem& AppSystem::get() {
   return *instance;
 }
 
-static std::map<int, AppAction> KEY_TO_ACTION = {
-  {'0', AppAction::SPAWN_FEW_OBSERVERS},
-  {')', AppAction::SPAWN_MANY_OBSERVERS},
-  {'9', AppAction::SPAWN_FEW_OCCURRENCES},
-  {'(', AppAction::SPAWN_MANY_OCCURRENCES},
-  {'|', AppAction::SPAWN_LOAD_TEST_ENTITIES},
-};
-
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
-  auto iter = KEY_TO_ACTION.find(event.key);
-  if (iter == KEY_TO_ACTION.end()) {
-    return false;
-  }
-  return performAction(iter->second);
 }
 
 void AppSystem::setup() {
@@ -62,16 +49,6 @@ void AppSystem::main() {
 
   ofRunApp(_simulationWindow, _simulationApp);
   ofRunMainLoop();
-}
-
-bool AppSystem::performAction(AppAction action) {
-  _log.app().logVerbose("Performing AppAction: " + enumToString(action) + "...");
-  auto args = AppActionEventArgs(action);
-  bool handled = appActionTriggered.notifyListenersUntilHandled(args);
-  if (!handled) {
-    _log.app().logWarning("App action not handled: " + enumToString(action));
-  }
-  return handled;
 }
 
 bool AppSystem::doWhilePaused(std::function<bool(void)> action) {

@@ -4,7 +4,6 @@
 
 #include <ofLog.h>
 #include <ofxTEnums.h>
-#include "../app/AppActions.h"
 #include "../app/AppSystem.h"
 #include "../control/CommandsController.h"
 
@@ -18,29 +17,25 @@ CommandRegistration& CommandRegistration::withKeyMapping(int key, CommandArgs ar
   return *this;
 }
 
-void CommandsController::setup() {
-  registerCommand("action", "Perform Action", [](const CommandArgs& args) {
-    if (!args.hasArgType<std::string>(0)) {
-      return false;
-    }
-    std::string name = args.get<std::string>(0);
-    AppAction action;
-    if (!ofxTCommon::getEnumInfo<AppAction>().tryParseString(name,
-                                                             &action)) {
-      return false;
-    }
-    return AppSystem::get().performAction(action);
-  })
-  .withButton(false);
+CommandRegistration
+CommandsController::registerCommand(CommandPtr command) {
+  _commands[command->name()] = command;
+  return CommandRegistration(*this, command);
 }
 
 CommandRegistration
 CommandsController::registerCommand(std::string name,
                                     std::string label,
                                     CommandFn function) {
-  auto command = _commands[name] =
-  std::make_shared<Command>(name, label, function);
+  auto command = _commands[name] = Command::of(name, label, function);
   return CommandRegistration(*this, command);
+}
+
+CommandRegistration
+CommandsController::registerCommand(std::string name, std::string label, std::function<bool ()> function) {
+  return registerCommand(name, label, [&](const CommandArgs& args) {
+    return function();
+  });
 }
 
 bool CommandsController::perform(const std::string &name,

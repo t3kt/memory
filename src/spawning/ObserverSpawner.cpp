@@ -5,7 +5,6 @@
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
 #include "../control/Command.h"
-#include "../control/CommandsController.h"
 #include "../core/Context.h"
 #include "../physics/BoundsController.h"
 #include "../spawning/ObserverSpawner.h"
@@ -18,13 +17,11 @@ RateObserverSpawner::RateObserverSpawner(Context& context,
 , _events(AppSystem::get().simulation().getEvents()) { }
 
 void RateObserverSpawner::setup() {
-  AppSystem::get().simulation().commands()
-  .registerCommand("spawnObs",
-                   "Spawn Observer",
-                   [&](const CommandArgs&) {
-    spawnEntities(1);
-    return true;
-  });
+  registerSpawnCommand("spawnObs", "Spawn Observer")
+  .withButton(true)
+  .withKeyMapping('0', CommandArgs{5})
+  .withKeyMapping(')', CommandArgs{100})
+  .withKeyMapping('%', CommandArgs{1000});
 }
 
 void RateObserverSpawner::spawnEntities(int count) {
@@ -42,20 +39,4 @@ void RateObserverSpawner::spawnEntities(int count) {
 void RateObserverSpawner::addEntity(std::shared_ptr<ObserverEntity> entity) {
   _context.observers.add(entity);
   _events.spawned(*entity);
-}
-
-bool RateObserverSpawner::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::SPAWN_FEW_OBSERVERS:
-      spawnEntities(5);
-      return true;
-    case AppAction::SPAWN_MANY_OBSERVERS:
-      spawnEntities(100);
-      return true;
-    case AppAction::SPAWN_TONS_OF_OBSERVERS:
-      spawnEntities(4000);
-      return true;
-    default:
-      return false;
-  }
 }

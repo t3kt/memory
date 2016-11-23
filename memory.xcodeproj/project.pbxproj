@@ -83,7 +83,6 @@
 		5186E72FCC97A817CBDA64A4 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7190435E05437240987B30AB /* RenderPass.cpp */; };
 		53EFF84794FA0C5FD82DC868 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 471F2ED7E965E94FB8FB74D1 /* Document.cpp */; };
 		5462FEA088101825AE10D6F3 /* EntityRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5193B31B267C4F4F24D8F66 /* EntityRule.cpp */; };
-		55592031663A7C81C1FEB895 /* AppActions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BD70E18A6F64136478D47F2 /* AppActions.cpp */; };
 		55DD1ECB81422E0082B50751 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F3BF57B5700F89ED0D80616 /* UdpSocket.cpp */; };
 		56A321B53B8DAC80A12B6FDB /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E047A9BFC611F4CDE338E3 /* ofxGuiGroup.cpp */; };
 		58C28DF9DE298D93BD7DA85A /* EntityForceBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D428C30FED3CCEE825EA1A0D /* EntityForceBehavior.cpp */; };
@@ -242,7 +241,6 @@
 		08E944637C72FC1B33CE6773 /* NetworkingUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NetworkingUtils.cpp; path = ../../openFrameworks/addons/ofxOsc/libs/oscpack/src/ip/posix/NetworkingUtils.cpp; sourceTree = SOURCE_ROOT; };
 		0B109A62623688769C87E563 /* OscController.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscController.cpp; path = src/control/OscController.cpp; sourceTree = SOURCE_ROOT; };
 		0B7DEEEB0F80FDFC6E6829E8 /* WorldObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = WorldObject.h; path = src/core/WorldObject.h; sourceTree = SOURCE_ROOT; };
-		0BD70E18A6F64136478D47F2 /* AppActions.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AppActions.cpp; path = src/app/AppActions.cpp; sourceTree = SOURCE_ROOT; };
 		0C37EB00EECE5690B2BF3F78 /* MidiController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MidiController.h; path = src/control/MidiController.h; sourceTree = SOURCE_ROOT; };
 		0D5AF1276D183160C51D5BFA /* IDGenerator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IDGenerator.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/util/IDGenerator.h; sourceTree = SOURCE_ROOT; };
 		0D6651083921B5BEB4F591F7 /* ofxMidi.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxMidi.cpp; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidi.cpp; sourceTree = SOURCE_ROOT; };
@@ -611,7 +609,6 @@
 		D5A738D61015149AA963CFA0 /* ofxMidi.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxMidi.h; path = ../../openFrameworks/addons/ofxMidi/src/ofxMidi.h; sourceTree = SOURCE_ROOT; };
 		D5EE089091F8006C1F18A2CE /* NetworkingUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NetworkingUtils.h; path = ../../openFrameworks/addons/ofxOsc/libs/oscpack/src/ip/NetworkingUtils.h; sourceTree = SOURCE_ROOT; };
 		D67C2AFA6E2C15F101D252EC /* ofxGuiZoomableGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiZoomableGraphics.cpp; path = ../../openFrameworks/addons/ofxGuiExtended/src/controls/ofxGuiZoomableGraphics.cpp; sourceTree = SOURCE_ROOT; };
-		D73CD9932CEE37242016A9C3 /* AppActions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = AppActions.h; path = src/app/AppActions.h; sourceTree = SOURCE_ROOT; };
 		D76018AF312C3BCD413C4133 /* ProgressHandler.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ProgressHandler.hpp; path = ../../openFrameworks/addons/ofxAssimpModelLoader/libs/assimp/include/assimp/ProgressHandler.hpp; sourceTree = SOURCE_ROOT; };
 		D7A63DD6CE0CDB3371C8F032 /* ofxGuiButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiButton.h; path = ../../openFrameworks/addons/ofxGuiExtended/src/controls/ofxGuiButton.h; sourceTree = SOURCE_ROOT; };
 		D823840BE02EAD251FCF7688 /* TimerListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimerListener.h; path = ../../openFrameworks/addons/ofxOsc/libs/oscpack/src/ip/TimerListener.h; sourceTree = SOURCE_ROOT; };
@@ -1536,8 +1533,6 @@
 		BE9DD360F550B0DF4D357E7B /* app */ = {
 			isa = PBXGroup;
 			children = (
-				0BD70E18A6F64136478D47F2 /* AppActions.cpp */,
-				D73CD9932CEE37242016A9C3 /* AppActions.h */,
 				8D80DA2E84AA73C5D84C6666 /* AppAssets.cpp */,
 				A939BC4CFBAFFF72B23A933A /* AppAssets.h */,
 				4A966064480CBCE7D9FE9EA8 /* AppGui.cpp */,
@@ -1877,7 +1872,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55592031663A7C81C1FEB895 /* AppActions.cpp in Sources */,
 				323AA19B1DBB2A2C0022C990 /* ofxTCommon.cpp in Sources */,
 				A3C7825CC9DD15F503185429 /* AppAssets.cpp in Sources */,
 				820A1219C69CE65A951DDE7E /* AppGui.cpp in Sources */,

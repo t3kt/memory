@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../app/AppActions.h"
 #include "../control/Params.h"
 #include "../control/ValueSupplier.h"
 #include "../spawning/Spawner.h"
@@ -42,16 +41,13 @@ public:
 };
 
 class RateObserverSpawner
-: public RateSpawner<RateObserverSpawnerParams>
-, public AppActionHandler {
+: public RateSpawner<RateObserverSpawnerParams> {
 public:
   RateObserverSpawner(Context& context,
                       const Params& params,
                       const BoundsController& bounds);
 
   void setup() override;
-
-  bool performAction(AppAction action) override;
 
 protected:
   void spawnEntities(int count) override;

@@ -1,16 +1,11 @@
 //
 //  OccurrenceSpawner.cpp
-//  memory
-//
-//  Created by tekt on 8/6/16.
-//
 //
 
 #include <ofMath.h>
 #include "../app/AppSystem.h"
 #include "../app/SimulationApp.h"
 #include "../control/Command.h"
-#include "../control/CommandsController.h"
 #include "../core/Actions.h"
 #include "../core/Context.h"
 #include "../core/Logging.h"
@@ -30,13 +25,11 @@ OccurrenceSpawner::OccurrenceSpawner(Context& context,
 , _events(AppSystem::get().simulation().getEvents()) { }
 
 void OccurrenceSpawner::setup() {
-  AppSystem::get().simulation().commands()
-  .registerCommand("spawnOcc",
-                   "Spawn Occurrence",
-                   [&](const CommandArgs&) {
-    spawnEntities(1);
-    return true;
-  });
+  registerSpawnCommand("spawnOcc", "Spawn Occurrence")
+  .withButton(true)
+  .withKeyMapping('9', CommandArgs{5})
+  .withKeyMapping('(', CommandArgs{100})
+  .withKeyMapping('^', CommandArgs{1000});
 }
 
 class OccurrenceSequenceSpawnAction
@@ -217,21 +210,5 @@ bool OccurrenceSpawner::tryAddEntity(std::shared_ptr<OccurrenceEntity> occurrenc
 void OccurrenceSpawner::spawnEntities(int count) {
   for (int i = 0; i < count; ++i) {
     spawnEntityGroup();
-  }
-}
-
-bool OccurrenceSpawner::performAction(AppAction action) {
-  switch (action) {
-    case AppAction::SPAWN_FEW_OCCURRENCES:
-      spawnEntities(5);
-      return true;
-    case AppAction::SPAWN_MANY_OCCURRENCES:
-      spawnEntities(100);
-      return true;
-    case AppAction::SPAWN_TONS_OF_OCCURRENCES:
-      spawnEntities(4000);
-      return true;
-    default:
-      return false;
   }
 }

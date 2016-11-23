@@ -5,14 +5,12 @@
 //  and it provides centralized access to various global objects.
 //
 
-#ifndef AppSystem_h
-#define AppSystem_h
+#pragma once
 
 #include <memory>
 #include <ofAppGLFWWindow.h>
 #include <ofEvents.h>
 #include <string>
-#include "../app/AppActions.h"
 #include "../app/AppParameters.h"
 #include "../core/Common.h"
 #include "../core/Context.h"
@@ -52,11 +50,7 @@ public:
 
   CommandsController& commands();
 
-  bool performAction(AppAction action);
-
   bool handleKeyPressed(ofKeyEventArgs& event);
-
-  AppActionEvent appActionTriggered;
 
   bool doWhilePaused(std::function<bool(void)> action);
 
@@ -80,4 +74,3 @@ private:
   LoggingController _log;
 };
 
-#endif /* AppSystem_h */

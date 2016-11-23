@@ -204,10 +204,3 @@ void ActionsController::update() {
     callback();
   }
 }
-
-bool ActionsController::performAction(AppAction action) {
-  switch (action) {
-    default:
-      return false;
-  }
-}
