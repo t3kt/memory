@@ -5,7 +5,6 @@
 #pragma once
 
 #include <ofxTCommon.h>
-#include "../app/AppActions.h"
 #include "../core/Component.h"
 #include "../scenes/Scenes.h"
 
@@ -14,7 +13,6 @@ class Context;
 
 class ScenesController
 : public ComponentBase
-, public AppActionHandler
 , public ofxTCommon::NonCopyable {
 public:
   ScenesController(Context& context, ActionsController& actions)
@@ -24,8 +22,6 @@ public:
   void setup() override;
 
   void update() override;
-
-  bool performAction(AppAction action) override;
 
   void loadSceneFile(const std::string& filename);
 

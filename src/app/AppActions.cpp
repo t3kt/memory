@@ -18,7 +18,6 @@ EnumTypeInfo<AppAction> AppActionType({
   {"spawnTonsOfOccurrences", AppAction::SPAWN_TONS_OF_OCCURRENCES},
   {"spawnLoadTestEntities", AppAction::SPAWN_LOAD_TEST_ENTITIES},
   {"spawnObserverNavigator", AppAction::SPAWN_OBSERVER_NAVIGATOR},
-  {"loadScene", AppAction::LOAD_SCENE},
 });
 
 template<>

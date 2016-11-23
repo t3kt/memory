@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include <ofxTEvents.h>
-#include "../core/Common.h"
+#include <ofxTCommon.h>
 
 // Type of action
 enum class AppAction {
@@ -22,7 +22,6 @@ enum class AppAction {
   SPAWN_TONS_OF_OCCURRENCES,
   SPAWN_LOAD_TEST_ENTITIES,
   SPAWN_OBSERVER_NAVIGATOR,
-  LOAD_SCENE,
 };
 
 using AppActionEventArgs = ofxTCommon::ValueEventArgs<AppAction>;
