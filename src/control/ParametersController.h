@@ -70,6 +70,7 @@ public:
   void captureNewPreset(std::string presetName = "");
   void resetParams();
   void writeMetadata();
+  bool setFromJson(const std::string& path, const ofJson& obj);
 private:
   MemoryAppParameters& _params;
   ParametersState _state;

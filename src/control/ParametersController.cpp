@@ -111,6 +111,32 @@ void ParametersController::setup() {
   })
   .withButton(true)
   .withKeyMapping('w');
+  AppSystem::get().commands()
+  .registerCommand("setParams", "Set Params From JSON", [&](const CommandArgs& args) {
+    if (!args.hasArgType<std::string>(0)) {
+      return false;
+    }
+    std::string path;
+    std::string json;
+    if (args.hasArgType<std::string>(1)) {
+      path = args.get<std::string>(0);
+      json = args.get<std::string>(1);
+    } else {
+      path = "";
+      json = args.get<std::string>(0);
+    }
+    try {
+      auto obj = ofJson::parse(json);
+      return setFromJson(path, obj);
+    }catch(std::exception & e){
+      ofLogError("ofLoadJson") << "error loading json: " << e.what();
+      return false;
+    }catch(...){
+      ofLogError("ofLoadJson") << "error loading json";
+      return false;
+    }
+    return false;
+  });
 }
 
 void ParametersController::resetParams() {
@@ -233,5 +259,18 @@ bool ParametersController::transitionToPreset(std::string presetName) {
   };
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);
+  return true;
+}
+
+bool ParametersController::setFromJson(const std::string& path, const ofJson& obj) {
+  if (path.empty()) {
+    _params.readJson(obj);
+    return true;
+  }
+  auto params = _params.lookupPath(path);
+  if (!params) {
+    return false;
+  }
+  params->readJson(obj);
   return true;
 }
