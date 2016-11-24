@@ -71,6 +71,7 @@ public:
   void resetParams();
   void writeMetadata();
   bool setFromJson(const std::string& path, const ofJson& obj);
+  bool setFromJson(const std::string& path, const std::string& json);
 private:
   MemoryAppParameters& _params;
   ParametersState _state;

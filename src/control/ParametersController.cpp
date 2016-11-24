@@ -125,17 +125,7 @@ void ParametersController::setup() {
       path = "";
       json = args.get<std::string>(0);
     }
-    try {
-      auto obj = ofJson::parse(json);
-      return setFromJson(path, obj);
-    }catch(std::exception & e){
-      ofLogError("ofLoadJson") << "error loading json: " << e.what();
-      return false;
-    }catch(...){
-      ofLogError("ofLoadJson") << "error loading json";
-      return false;
-    }
-    return false;
+    return setFromJson(path, json);
   });
 }
 
@@ -260,6 +250,20 @@ bool ParametersController::transitionToPreset(std::string presetName) {
   AppSystem::get().actions().addContinuous(action,
                                            onFinish);
   return true;
+}
+
+bool ParametersController::setFromJson(const std::string& path, const std::string& json) {
+  try {
+    auto obj = ofJson::parse(json);
+    return setFromJson(path, obj);
+  }catch(std::exception & e){
+    ofLogError("setFromJson") << "error loading json: " << e.what();
+    return false;
+  }catch(...){
+    ofLogError("setFromJson") << "error loading json";
+    return false;
+  }
+  return false;
 }
 
 bool ParametersController::setFromJson(const std::string& path, const ofJson& obj) {
