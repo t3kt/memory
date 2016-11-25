@@ -45,6 +45,13 @@ public:
   }
 
   template<typename T>
+  T getOrDefault(std::size_t i, T defaultValue = T()) const {
+    if (hasArgType<T>(i)) {
+      return get<T>(i);
+    }
+    return defaultValue;
+  }
+  template<typename T>
   bool hasArgType(std::size_t i) const {
     return i < size() && _args[i].type() == typeid(T);
   }

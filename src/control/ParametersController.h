@@ -1,13 +1,8 @@
 //
 //  ParametersController.h
-//  memory
-//
-//  Created by tekt on 10/12/16.
-//
 //
 
-#ifndef ParametersController_h
-#define ParametersController_h
+#pragma once
 
 #include <memory>
 #include <ofxTCommon.h>
@@ -21,7 +16,7 @@ class Context;
 class MemoryAppParameters;
 class ParamTransitionSet;
 
-using PresetList = std::vector<std::shared_ptr<ParamPreset>>;
+using PresetList = std::vector<PresetPtr>;
 
 class ParametersState
 : public ofxTCommon::NonCopyable
@@ -38,9 +33,11 @@ public:
   PresetList& presets() { return _presets; }
   const PresetList& presets() const { return _presets; }
 
-  void addPreset(std::shared_ptr<ParamPreset> preset) {
+  void addPreset(PresetPtr preset) {
     _presets.push_back(preset);
   }
+
+  PresetPtr getPreset(const std::string& name);
 private:
   MemoryAppParameters& _params;
   PresetList _presets;
@@ -59,21 +56,22 @@ public:
   , _context(context) { }
 
   void setup() override;
-  void update() override;
 
   PresetList& presets() { return _state.presets();; }
   const PresetList& presets() const { return _state.presets(); }
 
   TParamBase* lookupPath(const std::string& path);
 
-  void loadPreset(const ParamPreset& preset);
-  void transitionToPreset(const ParamPreset& preset);
+  bool loadPreset(std::string presetName = "");
+  bool transitionToPreset(std::string presetName = "");
 
-  void load();
-  void save();
-  void captureNewPreset();
+  void load(std::string filename = "");
+  void save(std::string filename = "");
+  void captureNewPreset(std::string presetName = "");
   void resetParams();
   void writeMetadata();
+  bool setFromJson(const std::string& path, const ofJson& obj);
+  bool setFromJson(const std::string& path, const std::string& json);
 private:
   MemoryAppParameters& _params;
   ParametersState _state;
@@ -81,4 +79,3 @@ private:
   Context& _context;
 };
 
-#endif /* ParametersController_h */
