@@ -12,6 +12,9 @@
 
 class CommandsController;
 
+// A record of the registration of a command, which provides a
+// fluent-style interface for registering commands with UI and/or
+// keyboard mappings.
 class CommandRegistration {
 public:
   CommandRegistration(CommandsController& controller,
@@ -27,6 +30,8 @@ private:
   CommandPtr _command;
 };
 
+// Controller which manages commands and invokes them in response
+// to UI and/or keyboard input.
 class CommandsController
 : public ofxTCommon::NonCopyable
 , public ComponentBase {

@@ -13,6 +13,8 @@
 #include <ofxTJsonIO.h>
 #include <string>
 
+// A serializable set of control mappings (like keyboard or MIDI).
+// Type `T` is expected to implement JsonReadable and JsonWritable.
 template<typename T>
 class MappingSet
 : public ofxTCommon::JsonReadable

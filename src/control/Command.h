@@ -17,6 +17,9 @@
 
 using CommandArg = Poco::Any;
 
+// Arguments supplied when invoking an action.
+// This is basically just a list of dynamically typed values.
+// The meaning of the contained arguments is command-specific.
 class CommandArgs {
 public:
   using Arg = CommandArg;
@@ -70,6 +73,8 @@ using CommandFn = std::function<bool(const CommandArgs&)>;
 class Command;
 using CommandPtr = std::shared_ptr<Command>;
 
+// An action which can be performed to modify the state of the simulation
+// and/or the application.
 class Command
 : public ofxTCommon::NonCopyable {
 public:
