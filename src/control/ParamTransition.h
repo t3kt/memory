@@ -18,6 +18,7 @@ class Action;
 class Context;
 class ParamPreset;
 
+// Base class for transitions of parameters from some value to another.
 class AbstractParamTransition
 : public NonCopyable
 , public Outputable
@@ -40,6 +41,8 @@ private:
 
 using ParamTransitionPtr = std::shared_ptr<AbstractParamTransition>;
 
+// A transition of a parameter value of type T from some value to
+// another.
 template<typename T>
 class ParamTransition
 : public AbstractParamTransition {
@@ -76,6 +79,7 @@ void ParamTransition<T>::outputFields(std::ostream& os) const {
   os << ", end: " << _endValue;
 }
 
+// A set of multiple parameter transitions.
 class ParamTransitionSet
 : public AbstractParamTransition {
 public:
