@@ -15,6 +15,8 @@
 
 class SimulationEvents;
 
+// Parameters that control the behavior of observers, including
+// how they are spawned.
 class ObserverParams
 : public Params {
 public:
@@ -34,6 +36,7 @@ public:
   ObserverSicknessParams sickness;
 };
 
+// Controller which manages the state of all the observer entities.
 class ObserversController
 : public EntityController<ObserverEntity> {
 public:

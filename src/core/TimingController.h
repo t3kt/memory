@@ -32,6 +32,7 @@ public:
   ClockParams physics;
 };
 
+// Controller which manages the timing of the simulation.
 class TimingController
 : public ComponentBase
 , public NonCopyable {

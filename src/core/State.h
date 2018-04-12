@@ -11,6 +11,7 @@
 
 #include "../core/Common.h"
 
+// The current simulation time.
 class ClockState
 : public NonCopyable
 , public Outputable {
@@ -31,6 +32,7 @@ protected:
   void outputFields(std::ostream& os) const override;
 };
 
+// Tracks the amount of time that has elapsed since it was created.
 class AgeTracker
 : public NonCopyable
 , public Outputable {

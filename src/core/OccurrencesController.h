@@ -16,6 +16,8 @@
 class OccurrencesController;
 class SimulationEvents;
 
+// Parameters that control the behavior of occurrence entities,
+// including how they are spawned.
 class OccurrenceParams
 : public Params {
 public:
@@ -30,6 +32,7 @@ public:
   OccurrenceSpawner::Params rateSpawner;
 };
 
+// Controller that manages the state of all the occurrence entities.
 class OccurrencesController
 : public EntityController<OccurrenceEntity> {
 public:

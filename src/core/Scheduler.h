@@ -29,6 +29,7 @@ public:
 
 // Base class for objects used to determine whether some action
 // should be performed at the current time.
+// Type P is the type of params that control the scheduler.
 template<typename P>
 class Scheduler
 : public NonCopyable {
@@ -84,6 +85,9 @@ public:
   RandomValueSupplier<float> interval;
 };
 
+// Scheduler which triggers at some point in time, then randomly
+// determines how long (within a specified range) it will wait
+// until it next triggers.
 class IntervalScheduler
 : public Scheduler<IntervalSchedulerParams> {
 public:
@@ -111,6 +115,7 @@ public:
   TParam<float> rate;
 };
 
+// Scheduler which triggers consistently at a specified rate.
 class RateScheduler
 : public Scheduler<RateSchedulerParams> {
 public:
