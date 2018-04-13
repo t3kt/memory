@@ -13,6 +13,11 @@
 #include "../core/State.h"
 #include "../core/WorldObject.h"
 
+// Base class for objects which have particle-based position and
+// motion behavior.
+// In each frame, each particle object has a position and a velocity.
+// Some number of forces are applied to it, which modify the velocity,
+// which in turn modifies the position.
 class ParticleObject
 : public WorldObject
 , public std::enable_shared_from_this<ParticleObject> {

@@ -16,6 +16,8 @@
 #include <ofxChoreograph.h>
 #include "../control/Params.h"
 
+// A sequence of parameter values, which can be linearly interpolated
+// based on time or some other index.
 template<typename T, std::size_t N>
 class ValueSequence
 : public Params {

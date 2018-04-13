@@ -6,6 +6,7 @@
 
 #include "../control/Params.h"
 
+// Parameters that specify a range of values of type T.
 template<typename T>
 class ValueRange : public Params {
 public:

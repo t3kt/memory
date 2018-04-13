@@ -16,6 +16,8 @@
 
 class Context;
 
+// Controller that supports selecting an entity and viewing details
+// about it.
 class InspectionController
 : public ofxTCommon::NonCopyable
 , public ComponentBase {

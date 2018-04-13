@@ -11,6 +11,7 @@
 #include <string>
 #include "../control/Params.h"
 
+// A logger for a single area of the application.
 class Logger
 : public ofxTCommon::NonCopyable {
 public:
@@ -76,6 +77,8 @@ protected:
   const bool& _allEnabled;
 };
 
+// Controller which owns the loggers for the various parts of the
+// application.
 class LoggingController
 : public ofxTCommon::NonCopyable {
 public:

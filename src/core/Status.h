@@ -19,6 +19,8 @@
 
 class DebugParams;
 
+// Controller which provides a display showing the state of the
+// simulation.
 class StatusInfoController
 : public NonCopyable
 , public ComponentBase {
