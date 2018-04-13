@@ -18,6 +18,12 @@
 
 class ObserverEntity;
 
+// An "occurrence" entity which pops into existence in some location
+// and becomes connected to any "observers" within range.
+// Each occurrence has a range within which it will connect to
+// observers, and tracks the state of the connected observers.
+// When there are no remaining observers within range, the occurrence
+// dies.
 class OccurrenceEntity
 : public ParticleObject {
 public:

@@ -43,6 +43,9 @@ class ofxGuiContainer;
 class ofxGuiElement;
 class Params;
 
+// Base class for nodes in a parameter structure.
+// This is the base shared between parameter groups (Params) and
+// individual parameters (TParam).
 class TParamBase
 : public ofxTCommon::JsonReadable
 , public ofxTCommon::JsonWritable {
@@ -278,6 +281,11 @@ namespace _params_impl {
   
 }
 
+// A single parameter of type T.
+// This default version of the template supports numeric
+// (or vector, etc) value types.
+// This is an extension of ofParameter which adds serialization,
+// metadata, interpolation, etc.
 template<typename T>
 class TParam
 : public _params_impl::TTypedParamBase<T, TParam<T>> {
@@ -335,6 +343,9 @@ protected:
 using ParamBaseAction = std::function<void(TParamBase&)>;
 using ConstParamPredicate = std::function<bool(const TParamBase&)>;
 
+// A group of related parameters.
+// This is an extension of ofParameterGroup which adds serialization,
+// metadata, etc.
 class Params
 : public ofParameterGroup
 , public _params_impl::TParamBaseWithInitializers<Params>

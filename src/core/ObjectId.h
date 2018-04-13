@@ -6,6 +6,7 @@
 
 #pragma once
 
+// A application-wide unique entity identifier.
 using ObjectId = int;
 
 namespace ObjectIds {

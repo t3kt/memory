@@ -17,6 +17,9 @@
 
 class OccurrenceEntity;
 
+// An "observer" entity, which moves around and experiences
+// "occurrences" which connect it to other observers.
+// Observers have a lifespan, after which they die.
 class ObserverEntity
 : public ParticleObject {
 public:

@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include "../control/Command.h"
 
+// Settings for a binding of a command to a keyboard shortcut.
 class KeyboardCommandMapping {
 public:
   KeyboardCommandMapping(std::string name,
@@ -27,6 +28,7 @@ private:
   CommandArgs _args;
 };
 
+// Map of keyboard shortcuts to commands.
 class KeyboardMap
 : public ofxTCommon::NonCopyable {
 public:

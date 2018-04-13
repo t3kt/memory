@@ -86,6 +86,8 @@ protected:
 
 using ActionFinishCallback = std::function<void()>;
 
+// Controller for queueing up actions to occur at points of time in
+// the future.
 class ActionsController
 : public ofxTCommon::NonCopyable
 , public ComponentBase {

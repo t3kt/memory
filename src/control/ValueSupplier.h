@@ -11,6 +11,7 @@
 #include "../control/Params.h"
 #include "../control/ValueRange.h"
 
+// Producer of random values within some specified range.
 template <typename T>
 class RandomValueSupplier : public ValueRange<T> {
 public:
@@ -27,6 +28,8 @@ public:
   T getValue() const;
 };
 
+// Producer of randomly selected boolean values, with some specified
+// chance of producing true.
 class RandomBoolSupplier
 : public Params {
 public:
@@ -58,6 +61,7 @@ public:
   TParam<float> chance;
 };
 
+// Producer of random vectors within a specified range.
 class SimpleRandomVectorSupplier : public ValueRange<float> {
 public:
   SimpleRandomVectorSupplier& set(float minVal, float maxVal) {
