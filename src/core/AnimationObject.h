@@ -14,6 +14,8 @@
 #include "../core/State.h"
 #include "../core/WorldObject.h"
 
+// An animation entity, which comes into existence at some point in
+// space, exists for some duration, and has type-specific rendering.
 class AnimationObject : public ParticleObject {
 public:
   static const auto type = EntityType::ANIMATION;

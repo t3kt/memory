@@ -19,6 +19,9 @@
 
 class SimulationEvents;
 
+// Controller that owns and manages all animation entities, which
+// can be created when various events occur (like another entity
+// dying)
 class AnimationsController
 : public NonCopyable
 , public ComponentBase {
