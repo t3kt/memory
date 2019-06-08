@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <ofMath.h>
 #include <ofParameterGroup.h>
 #include <ofUtils.h>
 #include <ofxTCommon.h>

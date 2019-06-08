@@ -24,8 +24,7 @@ bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
 
 void AppSystem::setup() {
   ofGLFWWindowSettings simWinSettings;
-  simWinSettings.width = 1400;
-  simWinSettings.height = 800;
+  simWinSettings.setSize(1400, 800);
   simWinSettings.resizable = false;
   simWinSettings.setPosition(glm::vec2(0, 0));
   _simulationWindow =

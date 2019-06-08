@@ -52,11 +52,11 @@ static ofJson stripUnsupported(const ofJson& obj,
         if (group) {
           auto val = stripUnsupported(iter.value(), *group);
           if (!val.is_null()) {
-            result.push_back(std::make_pair(iter.key(), val));
+            result[iter.key()] = val;
           }
         }
       } else {
-        result.push_back(std::make_pair(iter.key(), iter.value()));
+        result[iter.key()] = iter.value();
       }
     }
   }
