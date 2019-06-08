@@ -44,3 +44,5 @@ bin/data/textures/*.jpg
 bin/data/textures/*.bmp
 bin/data/textures/*.png
 
+
+build/XCBuildData/
