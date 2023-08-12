@@ -20,6 +20,7 @@ AppSystem& AppSystem::get() {
 }
 
 bool AppSystem::handleKeyPressed(ofKeyEventArgs &event) {
+  return false;
 }
 
 void AppSystem::setup() {

@@ -50,31 +50,37 @@ void EntityGroup::clear() {
   _occurrences.clear();
 }
 
-template<>
+//template<>
 bool EntityGroup::add(std::shared_ptr<WorldObject> entity) {
   auto type = entity->entityType();
   switch (type) {
     case EntityType::NODE:
-      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
+      return getEntities<NodeEntity>().add(std::dynamic_pointer_cast<NodeEntity>(entity));
+//      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
     case EntityType::OBSERVER:
-      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+      return getEntities<ObserverEntity>().add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+//      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
     case EntityType::OCCURRENCE:
-      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+      return getEntities<OccurrenceEntity>().add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+//      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
     default:
       return false;
   }
 }
 
-template<>
+//template<>
 bool EntityGroup::add(std::shared_ptr<ParticleObject> entity) {
   auto type = entity->entityType();
   switch (type) {
     case EntityType::NODE:
-      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
+      return getEntities<NodeEntity>().add(std::dynamic_pointer_cast<NodeEntity>(entity));
+//      return add(std::dynamic_pointer_cast<NodeEntity>(entity));
     case EntityType::OBSERVER:
-      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+      return getEntities<ObserverEntity>().add(std::dynamic_pointer_cast<ObserverEntity>(entity));
+//      return add(std::dynamic_pointer_cast<ObserverEntity>(entity));
     case EntityType::OCCURRENCE:
-      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+      return getEntities<OccurrenceEntity>().add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
+//      return add(std::dynamic_pointer_cast<OccurrenceEntity>(entity));
     default:
       return false;
   }

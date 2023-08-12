@@ -128,6 +128,7 @@ void InspectionController::updateHighlights() {
   if (!_selectedEntity) {
     return;
   }
+  
   _context.highlightedEntities.add(_selectedEntity);
   _selectedEntity->performActionOnConnected([&](std::shared_ptr<WorldObject> entity) {
     _context.highlightedEntities.add(entity);

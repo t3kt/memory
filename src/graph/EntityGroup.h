@@ -27,10 +27,13 @@ public:
   template<typename E>
   EntityMap<E>& getEntities();
 
-  template<typename E>
-  bool add(std::shared_ptr<E> entity) {
-    return getEntities<E>().add(entity);
-  }
+//  template<typename E>
+//  bool add(std::shared_ptr<E> entity) {
+//    return getEntities<E>().add(entity);
+//  }
+  
+  bool add(std::shared_ptr<WorldObject> entity);
+  bool add(std::shared_ptr<ParticleObject> entity);
 
   template<typename E, typename A>
   void performEntityAction(A action) {

@@ -38,21 +38,9 @@ MidiDevice::MidiDevice(std::string name,
   }
 }
 
-template<typename M>
-bool tryOpenPort(M& midi, const std::string& portName) {
-  auto portNames = M::getPortList();
-  for (const auto& p : portNames) {
-    AppSystem::get().log().control().logNotice("Port name: " + p);
-  }
-  if (std::find(portNames.begin(), portNames.end(), portName) == portNames.end()) {
-    return false;
-  }
-  return midi.openPort(portName);
-}
-
 void MidiDevice::handleOpen() {
-  auto hasIn = tryOpenPort(_midiIn, _inputPortName);
-  auto hasOut = tryOpenPort(_midiOut, _outputPortName);
+  auto hasIn = _midiIn.openPort(_inputPortName);
+  auto hasOut = _midiOut.openPort(_outputPortName);
   if (hasIn) {
     _midiIn.addListener(this);
   }

@@ -41,4 +41,6 @@ EntityScanner::scan(std::shared_ptr<ObserverEntity>& entity,
     auto result = _policy.tester(entity);
   }
   //...
+  
+  return ScanResult::reject();
 }

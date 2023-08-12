@@ -83,7 +83,7 @@ bool NavigatorEntity::stateAlive() const {
   }
   return _nextState ? _nextState->alive() : _prevState->alive();
 }
-
+/*
 NavigatorEntity_2::NavigatorEntity_2(NavigatorStatePtr prevState,
                                      const float& stepTime,
                                      const ClockState& state)
@@ -115,3 +115,14 @@ void NavigatorEntity_2::updateRamp() {
     }
   }
 }
+
+const ofVec3f& NavigatorEntity_2::prevPosition() const {
+  return _prevState->position();
+}
+
+const ofVec3f& NavigatorEntity_2::nextPosition() const {
+  return _nextState->position();
+}
+
+void NavigatorEntity_2::onTimelineFinished() {}
+*/

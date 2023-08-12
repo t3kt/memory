@@ -22,7 +22,7 @@ const EnumTypeInfo<ControlValueMode>& ofxTCommon::getEnumInfo() {
 
 std::ostream& operator<<(std::ostream& os,
                          const ControlValueMode& mode) {
-  os << enumToString(mode);
+  return os << enumToString(mode);
 }
 
 template<>

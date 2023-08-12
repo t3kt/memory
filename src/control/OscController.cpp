@@ -290,6 +290,7 @@ static CommandArg messageArgToCommandArg(const ofxOscMessage& message,
     default:
       break;
   }
+  return false;
 }
 
 static CommandArgs messageToCommandArgs(const ofxOscMessage& message) {

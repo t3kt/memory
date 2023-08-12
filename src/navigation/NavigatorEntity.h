@@ -62,7 +62,7 @@ private:
   float _lastChangeTime;
 };
 
-class NavigatorEntity_2
+/*class NavigatorEntity_2
 : public WorldObject {
 private:
   using TimelineT = ofxChoreograph::Timeline;
@@ -103,5 +103,5 @@ private:
   TimelineT _timeline;
   std::shared_ptr<RampT> _ramp;
 };
-
+*/
 #endif /* NavigatorEntity_h */
